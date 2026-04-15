@@ -68,7 +68,7 @@ const Index = () => {
               <Sparkles className="h-5 w-5 text-primary-foreground" />
             </div>
             <div>
-              <h1 className="font-heading font-bold text-lg leading-none">SiteScope</h1>
+              <h1 className="font-heading font-bold text-lg leading-none">SiteScoper</h1>
               <span className="text-[10px] text-muted-foreground font-body tracking-wider uppercase">AI Website Analyzer</span>
             </div>
           </button>
@@ -239,7 +239,7 @@ const Index = () => {
       {/* Footer */}
       <footer className="border-t border-border mt-16 py-6">
         <div className="max-w-6xl mx-auto px-4 text-center text-xs text-muted-foreground font-body">
-          SiteScope — AI-powered website analysis
+          SiteScoper — AI-powered website analysis
         </div>
       </footer>
     </div>
