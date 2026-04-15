@@ -25,7 +25,7 @@ serve(async (req) => {
       throw new Error("LOVABLE_API_KEY is not configured");
     }
 
-    const truncatedMarkdown = markdown.slice(0, 12000);
+    const truncatedMarkdown = markdown.slice(0, 15000);
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
@@ -34,16 +34,18 @@ serve(async (req) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "google/gemini-3-flash-preview",
+        model: "google/gemini-2.5-pro",
         messages: [
           {
             role: "system",
-            content: `You are an expert website analyst and UX consultant. The current date is ${new Date().toISOString().split('T')[0]}. Analyze the provided website content and give actionable suggestions for improvement. 
-            
-Structure your response as JSON with this format:
+            content: `You are an elite website analyst, UX researcher, and digital strategist. The current date is ${new Date().toISOString().split('T')[0]}.
+
+Analyze the provided website content thoroughly and provide expert-level, highly specific, actionable recommendations. Do NOT give generic advice — reference actual elements, text, and patterns you observe in the content.
+
+Structure your response as JSON:
 {
   "overall_score": number (1-100),
-  "summary": "brief overall assessment",
+  "summary": "2-3 sentence executive summary of the website's strengths and key areas for improvement",
   "categories": [
     {
       "name": "Category Name",
@@ -51,8 +53,8 @@ Structure your response as JSON with this format:
       "icon": "emoji",
       "suggestions": [
         {
-          "title": "Short title",
-          "description": "Detailed suggestion",
+          "title": "Concise actionable title",
+          "description": "Detailed explanation referencing specific content/elements on the page. Include what to change and why it matters.",
           "priority": "high" | "medium" | "low",
           "type": "ux" | "content" | "seo" | "performance" | "accessibility" | "design"
         }
@@ -61,8 +63,15 @@ Structure your response as JSON with this format:
   ]
 }
 
-Categories to evaluate: UX & Navigation, Content Quality, SEO, Accessibility, Visual Design, Performance.
-Be specific and actionable. Reference actual content from the page.`,
+Categories to evaluate:
+1. **UX & Navigation** — Information architecture, user flows, CTAs, mobile usability, interaction patterns
+2. **Content Quality** — Clarity, tone, value proposition, copywriting effectiveness, content hierarchy
+3. **SEO** — Title tags, meta descriptions, heading structure, keyword usage, internal linking, schema markup
+4. **Accessibility** — WCAG compliance indicators, color contrast, alt text, semantic HTML, keyboard navigation
+5. **Visual Design** — Layout, typography, whitespace, color consistency, visual hierarchy, brand coherence
+6. **Performance** — Page weight indicators, resource optimization, loading strategy, third-party scripts
+
+For each category provide 2-4 suggestions. Be specific: mention exact text, sections, or patterns you found. Prioritize high-impact changes.`,
           },
           {
             role: "user",
