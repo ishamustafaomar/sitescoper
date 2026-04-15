@@ -101,9 +101,9 @@ export default function Dashboard() {
         url: website.url,
         overall_score: analysis.overall_score,
         summary: analysis.summary,
-        categories: analysis.categories,
-        scrape_data: { screenshot: scrapeData.screenshot, metadata: scrapeData.metadata, links: scrapeData.links },
-      });
+        categories: analysis.categories as any,
+        scrape_data: { screenshot: scrapeData.screenshot, metadata: scrapeData.metadata, links: scrapeData.links } as any,
+      } as any);
 
       // Update website
       await supabase
