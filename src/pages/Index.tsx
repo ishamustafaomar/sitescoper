@@ -68,7 +68,7 @@ const Index = () => {
             <h2 className="text-4xl md:text-5xl font-heading font-bold tracking-tight">
               Analyze any website
               <br />
-              <span className="bg-clip-text text-transparent gradient-primary bg-primary-foreground">in seconds</span>
+              <span className="bg-clip-text text-transparent gradient-primary bg-secondary">in seconds</span>
             </h2>
             <p className="text-muted-foreground font-body text-lg max-w-lg mx-auto">
               Crawl, preview, and get AI-powered suggestions to improve UX, SEO, accessibility, and more.
