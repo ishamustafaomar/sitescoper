@@ -6,6 +6,79 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
+const FIRECRAWL_V2 = "https://api.firecrawl.dev/v2";
+
+// Priority patterns for page selection — higher index = higher priority
+const PAGE_PRIORITY: [RegExp, number][] = [
+  [/\/(pricing|plans|packages)/i, 10],
+  [/\/(features|product|capabilities)/i, 9],
+  [/\/(about|team|company|story)/i, 8],
+  [/\/(signup|sign-up|register|join|get-started)/i, 7],
+  [/\/(login|sign-in|signin)/i, 6],
+  [/\/(docs|documentation|guide|help|faq)/i, 5],
+  [/\/(blog|resources|learn)/i, 4],
+  [/\/(contact|support)/i, 3],
+  [/\/(demo|tour|how-it-works)/i, 3],
+  [/\/(integrations|partners|customers|testimonials|case-studies)/i, 2],
+];
+
+function scorePage(url: string): number {
+  for (const [pattern, score] of PAGE_PRIORITY) {
+    if (pattern.test(url)) return score;
+  }
+  return 0;
+}
+
+function selectPages(urls: string[], baseUrl: string, max = 8): string[] {
+  const base = new URL(baseUrl);
+  // Filter to same origin, remove anchors/query noise, deduplicate
+  const seen = new Set<string>();
+  const candidates: { url: string; score: number }[] = [];
+
+  for (const raw of urls) {
+    try {
+      const u = new URL(raw);
+      if (u.origin !== base.origin) continue;
+      const clean = u.origin + u.pathname.replace(/\/+$/, "");
+      if (seen.has(clean)) continue;
+      seen.add(clean);
+      candidates.push({ url: raw, score: scorePage(u.pathname) });
+    } catch {
+      continue;
+    }
+  }
+
+  // Sort by score descending, take top N (homepage already scraped separately)
+  candidates.sort((a, b) => b.score - a.score);
+  const homeClean = base.origin + base.pathname.replace(/\/+$/, "");
+  return candidates
+    .filter((c) => {
+      const clean = new URL(c.url).origin + new URL(c.url).pathname.replace(/\/+$/, "");
+      return clean !== homeClean && c.score > 0;
+    })
+    .slice(0, max)
+    .map((c) => c.url);
+}
+
+async function firecrawlRequest(path: string, body: object, apiKey: string) {
+  const res = await fetch(`${FIRECRAWL_V2}${path}`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
+  });
+  const data = await res.json();
+  if (!res.ok) {
+    if (res.status === 402) {
+      throw { status: 402, message: "Firecrawl credits exhausted. Please top up your Firecrawl account." };
+    }
+    throw new Error(data.error || `Firecrawl error: ${res.status}`);
+  }
+  return data;
+}
+
 serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
@@ -25,39 +98,87 @@ serve(async (req) => {
       throw new Error("FIRECRAWL_API_KEY is not configured");
     }
 
-    const response = await fetch("https://api.firecrawl.dev/v2/scrape", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${FIRECRAWL_API_KEY}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        url,
-        formats: ["markdown", "html", "screenshot", "links"],
-        onlyMainContent: false,
-      }),
-    });
+    // Step 1: Scrape homepage with screenshot + branding
+    console.log("Scraping homepage:", url);
+    const homeData = await firecrawlRequest("/scrape", {
+      url,
+      formats: ["markdown", "html", "screenshot", "links"],
+      onlyMainContent: false,
+    }, FIRECRAWL_API_KEY);
 
-    const data = await response.json();
+    const homeResult = homeData.data || homeData;
 
-    if (!response.ok) {
-      if (response.status === 402) {
-        return new Response(
-          JSON.stringify({ error: "Firecrawl credits exhausted. Please top up your Firecrawl account." }),
-          { status: 402, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-        );
-      }
-      throw new Error(data.error || `Firecrawl error: ${response.status}`);
+    // Step 2: Map the site to discover pages
+    console.log("Mapping site:", url);
+    let siteUrls: string[] = [];
+    try {
+      const mapData = await firecrawlRequest("/map", { url, limit: 50 }, FIRECRAWL_API_KEY);
+      siteUrls = mapData.links || mapData.data?.links || [];
+      console.log(`Found ${siteUrls.length} URLs on site`);
+    } catch (e) {
+      console.warn("Map failed, continuing with homepage only:", e);
     }
 
-    return new Response(JSON.stringify({ success: true, data }), {
+    // Step 3: Select and scrape important pages
+    const pagesToScrape = selectPages(siteUrls, url);
+    console.log("Selected pages to scrape:", pagesToScrape);
+
+    const pages: { url: string; markdown: string; title?: string }[] = [
+      {
+        url,
+        markdown: homeResult.markdown || "",
+        title: homeResult.metadata?.title || "Homepage",
+      },
+    ];
+
+    // Scrape additional pages in parallel (max 5 concurrent)
+    const scrapePromises = pagesToScrape.map(async (pageUrl) => {
+      try {
+        const pageData = await firecrawlRequest("/scrape", {
+          url: pageUrl,
+          formats: ["markdown"],
+          onlyMainContent: true,
+        }, FIRECRAWL_API_KEY);
+        const result = pageData.data || pageData;
+        return {
+          url: pageUrl,
+          markdown: result.markdown || "",
+          title: result.metadata?.title || new URL(pageUrl).pathname,
+        };
+      } catch (e) {
+        console.warn(`Failed to scrape ${pageUrl}:`, e);
+        return null;
+      }
+    });
+
+    const additionalPages = (await Promise.all(scrapePromises)).filter(Boolean);
+    pages.push(...additionalPages as typeof pages);
+
+    // Build combined markdown with page separators
+    const combinedMarkdown = pages
+      .map((p) => `\n\n===== PAGE: ${p.title} (${p.url}) =====\n\n${p.markdown}`)
+      .join("\n");
+
+    return new Response(JSON.stringify({
+      success: true,
+      data: {
+        markdown: combinedMarkdown,
+        screenshot: homeResult.screenshot,
+        links: homeResult.links,
+        metadata: homeResult.metadata,
+        pages: pages.map((p) => ({ url: p.url, title: p.title })),
+        pagesCount: pages.length,
+        siteUrlsDiscovered: siteUrls.length,
+      },
+    }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
-  } catch (e) {
+  } catch (e: any) {
     console.error("scrape error:", e);
+    const status = e?.status || 500;
     return new Response(
-      JSON.stringify({ error: e instanceof Error ? e.message : "Unknown error" }),
-      { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      JSON.stringify({ error: e?.message || (e instanceof Error ? e.message : "Unknown error") }),
+      { status, headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
   }
 });

@@ -25,7 +25,7 @@ serve(async (req) => {
       throw new Error("LOVABLE_API_KEY is not configured");
     }
 
-    const truncatedMarkdown = markdown.slice(0, 15000);
+    const truncatedMarkdown = markdown.slice(0, 40000);
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
@@ -38,14 +38,25 @@ serve(async (req) => {
         messages: [
           {
             role: "system",
-            content: `You are an elite website analyst, UX researcher, and digital strategist. The current date is ${new Date().toISOString().split('T')[0]}.
+            content: `You are an elite website analyst, UX researcher, product strategist, and digital consultant. The current date is ${new Date().toISOString().split('T')[0]}.
 
-Analyze the provided website content thoroughly and provide expert-level, highly specific, actionable recommendations. Do NOT give generic advice — reference actual elements, text, and patterns you observe in the content.
+You are given content from MULTIPLE PAGES of a website, separated by "===== PAGE: ... =====" markers. Use ALL pages to form a comprehensive picture of the product, not just the homepage.
+
+Analyze the provided website content thoroughly and provide expert-level, highly specific, actionable recommendations. Do NOT give generic advice — reference actual elements, text, sections, and patterns you observe across the pages.
+
+When multiple pages are available, evaluate how they work TOGETHER as a product experience:
+- Does the navigation make sense across pages?
+- Is the messaging consistent?
+- Are there missing pages that should exist (e.g., no pricing page, no docs, no about page)?
+- How does the signup/onboarding flow look based on available signup/login pages?
+- Is the pricing strategy clear and competitive from the pricing page?
+- Is the feature communication effective across feature pages?
+- Is the documentation helpful and well-structured if docs exist?
 
 Structure your response as JSON:
 {
   "overall_score": number (1-100),
-  "summary": "2-3 sentence executive summary of the website's strengths and key areas for improvement",
+  "summary": "2-3 sentence executive summary of the website's strengths and key areas for improvement, referencing specific pages analyzed",
   "categories": [
     {
       "name": "Category Name",
@@ -54,7 +65,7 @@ Structure your response as JSON:
       "suggestions": [
         {
           "title": "Concise actionable title",
-          "description": "Detailed explanation referencing specific content/elements on the page. Include what to change and why it matters.",
+          "description": "Detailed explanation referencing specific content/elements on specific pages. Include what to change and why it matters.",
           "priority": "high" | "medium" | "low",
           "type": "ux" | "content" | "seo" | "performance" | "accessibility" | "design" | "product" | "strategy" | "business" | "growth"
         }
@@ -64,16 +75,16 @@ Structure your response as JSON:
 }
 
 Categories to evaluate:
-1. **UX & Navigation** — Information architecture, user flows, CTAs, mobile usability, interaction patterns
-2. **Content Quality** — Clarity, tone, value proposition, copywriting effectiveness, content hierarchy
-3. **SEO** — Title tags, meta descriptions, heading structure, keyword usage, internal linking, schema markup
+1. **UX & Navigation** — Information architecture across pages, user flows between pages, CTAs, mobile usability, interaction patterns, cross-page consistency
+2. **Content Quality** — Clarity, tone, value proposition, copywriting effectiveness, content hierarchy, messaging consistency across pages
+3. **SEO** — Title tags, meta descriptions, heading structure, keyword usage, internal linking between pages, schema markup
 4. **Accessibility** — WCAG compliance indicators, color contrast, alt text, semantic HTML, keyboard navigation
-5. **Visual Design** — Layout, typography, whitespace, color consistency, visual hierarchy, brand coherence
+5. **Visual Design** — Layout, typography, whitespace, color consistency, visual hierarchy, brand coherence across pages
 6. **Performance** — Page weight indicators, resource optimization, loading strategy, third-party scripts
-7. **Product & Strategy** — Value proposition clarity, competitive positioning, feature communication, pricing presentation, trust signals (testimonials, social proof, certifications), onboarding friction, conversion funnel effectiveness, target audience alignment
-8. **Business & Growth** — Lead capture mechanisms, email/newsletter signup, monetization strategy, retention hooks, viral loops, partnership/integration opportunities, market positioning gaps
+7. **Product Experience** — Signup/onboarding friction (based on signup page if found), feature discoverability, page flow logic, information architecture, missing critical pages, documentation quality, pricing page effectiveness, demo/trial accessibility
+8. **Business & Growth** — Value proposition clarity, competitive positioning, lead capture mechanisms, trust signals (testimonials, social proof, certifications), conversion funnel effectiveness, monetization strategy, retention hooks, market positioning gaps
 
-For each category provide 2-4 suggestions. Be specific: mention exact text, sections, or patterns you found. Prioritize high-impact changes.`,
+For each category provide 2-4 suggestions. Be specific: mention exact text, sections, page names, or patterns you found. Prioritize high-impact changes. When referencing content, note which page it came from.`,
           },
           {
             role: "user",
