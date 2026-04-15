@@ -1,34 +1,26 @@
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import {
-  Plus, Globe, TrendingUp, Clock, Trash2, RefreshCw, ExternalLink,
-  BarChart3, Sparkles, Loader2, Search
-} from "lucide-react";
+import { Globe, Clock, Search, Sparkles, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { useAuth } from "@/components/AuthProvider";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { AppHeader } from "@/components/AppHeader";
-import { ScoreRing } from "@/components/ScoreRing";
-import { scrapeWebsite, analyzeWebsite } from "@/lib/api";
-
-interface Website {
-  id: string;
-  url: string;
-  name: string | null;
-  last_score: number | null;
-  last_analyzed_at: string | null;
-  created_at: string;
-}
+import { scrapeWebsite, analyzeWebsite, AnalysisCategory } from "@/lib/api";
+import { StatsOverview } from "@/components/dashboard/StatsOverview";
+import { AddWebsiteForm } from "@/components/dashboard/AddWebsiteForm";
+import { WebsiteCard, Website } from "@/components/dashboard/WebsiteCard";
+import { SEODetailPanel } from "@/components/dashboard/SEODetailPanel";
 
 interface AnalysisRecord {
   id: string;
   url: string;
   overall_score: number;
   summary: string | null;
+  categories: any;
+  scrape_data: any;
   created_at: string;
   website_id: string | null;
 }
@@ -39,10 +31,9 @@ export default function Dashboard() {
   const navigate = useNavigate();
   const [websites, setWebsites] = useState<Website[]>([]);
   const [history, setHistory] = useState<AnalysisRecord[]>([]);
-  const [newUrl, setNewUrl] = useState("");
-  const [addingWebsite, setAddingWebsite] = useState(false);
   const [analyzingId, setAnalyzingId] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+  const [seoWebsiteId, setSeoWebsiteId] = useState<string | null>(null);
 
   useEffect(() => {
     if (user) loadData();
@@ -59,42 +50,30 @@ export default function Dashboard() {
     setLoading(false);
   };
 
-  const addWebsite = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!newUrl.trim() || !user) return;
-    setAddingWebsite(true);
-
-    let normalized = newUrl.trim();
+  const addWebsite = async (rawUrl: string) => {
+    if (!user) return;
+    let normalized = rawUrl;
     if (!normalized.startsWith("http")) normalized = "https://" + normalized;
 
-    try {
-      const name = new URL(normalized).hostname;
-      const { data, error } = await supabase
-        .from("websites")
-        .insert({ user_id: user.id, url: normalized, name })
-        .select()
-        .single();
+    const name = new URL(normalized).hostname;
+    const { data, error } = await supabase
+      .from("websites")
+      .insert({ user_id: user.id, url: normalized, name })
+      .select()
+      .single();
 
-      if (error) throw error;
-      setWebsites((prev) => [data, ...prev]);
-      setNewUrl("");
-      toast({ title: "Website added", description: `${name} has been added to your dashboard.` });
-    } catch (err: any) {
-      toast({ title: "Error", description: err.message, variant: "destructive" });
-    } finally {
-      setAddingWebsite(false);
-    }
+    if (error) throw error;
+    setWebsites((prev) => [data, ...prev]);
+    toast({ title: "Website added", description: `${name} has been added to your dashboard.` });
   };
 
   const analyzeTrackedWebsite = async (website: Website) => {
     if (!user) return;
     setAnalyzingId(website.id);
-
     try {
       const scrapeData = await scrapeWebsite(website.url);
       const analysis = await analyzeWebsite(scrapeData.markdown || "", website.url);
 
-      // Save to history
       await supabase.from("analysis_history").insert({
         user_id: user.id,
         website_id: website.id,
@@ -105,7 +84,6 @@ export default function Dashboard() {
         scrape_data: { screenshot: scrapeData.screenshot, metadata: scrapeData.metadata, links: scrapeData.links } as any,
       } as any);
 
-      // Update website
       await supabase
         .from("websites")
         .update({ last_score: analysis.overall_score, last_analyzed_at: new Date().toISOString() })
@@ -118,7 +96,6 @@ export default function Dashboard() {
             : w
         )
       );
-
       await loadData();
       toast({ title: "Analysis complete", description: `Score: ${analysis.overall_score}/100` });
     } catch (err: any) {
@@ -131,6 +108,7 @@ export default function Dashboard() {
   const deleteWebsite = async (id: string) => {
     await supabase.from("websites").delete().eq("id", id);
     setWebsites((prev) => prev.filter((w) => w.id !== id));
+    if (seoWebsiteId === id) setSeoWebsiteId(null);
     toast({ title: "Website removed" });
   };
 
@@ -140,6 +118,22 @@ export default function Dashboard() {
     if (score >= 50) return "text-primary";
     return "text-destructive";
   };
+
+  // Get latest analysis for the selected website
+  const seoAnalysis = seoWebsiteId
+    ? history.find((h) => h.website_id === seoWebsiteId)
+    : null;
+  const seoWebsite = seoWebsiteId
+    ? websites.find((w) => w.id === seoWebsiteId)
+    : null;
+
+  const avgScore =
+    websites.length > 0
+      ? Math.round(
+          websites.filter((w) => w.last_score).reduce((acc, w) => acc + (w.last_score || 0), 0) /
+            Math.max(1, websites.filter((w) => w.last_score).length)
+        )
+      : null;
 
   if (loading) {
     return (
@@ -157,71 +151,23 @@ export default function Dashboard() {
       <AppHeader />
 
       <main className="max-w-6xl mx-auto px-4 py-8 space-y-8">
-        {/* Stats Overview */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <div className="bg-card rounded-xl border border-border p-5 shadow-[var(--shadow-sm)]">
-            <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-primary/10">
-                <Globe className="h-4 w-4 text-primary" />
-              </div>
-              <div>
-                <p className="text-2xl font-heading font-bold">{websites.length}</p>
-                <p className="text-xs text-muted-foreground font-body">Tracked Websites</p>
-              </div>
-            </div>
-          </div>
-          <div className="bg-card rounded-xl border border-border p-5 shadow-[var(--shadow-sm)]">
-            <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-accent/10">
-                <BarChart3 className="h-4 w-4 text-accent" />
-              </div>
-              <div>
-                <p className="text-2xl font-heading font-bold">{history.length}</p>
-                <p className="text-xs text-muted-foreground font-body">Total Analyses</p>
-              </div>
-            </div>
-          </div>
-          <div className="bg-card rounded-xl border border-border p-5 shadow-[var(--shadow-sm)]">
-            <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-primary/10">
-                <TrendingUp className="h-4 w-4 text-primary" />
-              </div>
-              <div>
-                <p className="text-2xl font-heading font-bold">
-                  {websites.length > 0
-                    ? Math.round(
-                        websites.filter((w) => w.last_score).reduce((acc, w) => acc + (w.last_score || 0), 0) /
-                          Math.max(1, websites.filter((w) => w.last_score).length)
-                      )
-                    : "—"}
-                </p>
-                <p className="text-xs text-muted-foreground font-body">Avg Score</p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <StatsOverview websiteCount={websites.length} historyCount={history.length} avgScore={avgScore} />
 
-        {/* Add Website */}
-        <div className="bg-card rounded-xl border border-border p-6 shadow-[var(--shadow-sm)]">
-          <h2 className="font-heading font-semibold text-lg mb-4 flex items-center gap-2">
-            <Plus className="h-5 w-5 text-primary" />
-            Add Website
-          </h2>
-          <form onSubmit={addWebsite} className="flex gap-3">
-            <Input
-              type="text"
-              placeholder="https://example.com"
-              value={newUrl}
-              onChange={(e) => setNewUrl(e.target.value)}
-              className="flex-1 font-body"
-              disabled={addingWebsite}
+        <AddWebsiteForm onAdd={addWebsite} />
+
+        {/* SEO Detail Panel */}
+        <AnimatePresence>
+          {seoAnalysis && seoWebsite && (
+            <SEODetailPanel
+              websiteName={seoWebsite.name || seoWebsite.url}
+              url={seoWebsite.url}
+              overallScore={seoAnalysis.overall_score}
+              categories={(seoAnalysis.categories as AnalysisCategory[]) || []}
+              scrapeData={seoAnalysis.scrape_data}
+              onClose={() => setSeoWebsiteId(null)}
             />
-            <Button type="submit" variant="hero" disabled={addingWebsite || !newUrl.trim()}>
-              {addingWebsite ? <Loader2 className="h-4 w-4 animate-spin" /> : <Plus className="h-4 w-4" />}
-              Add
-            </Button>
-          </form>
-        </div>
+          )}
+        </AnimatePresence>
 
         {/* Websites Grid */}
         <div>
@@ -239,64 +185,14 @@ export default function Dashboard() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <AnimatePresence>
                 {websites.map((website) => (
-                  <motion.div
+                  <WebsiteCard
                     key={website.id}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    className="bg-card rounded-xl border border-border p-5 shadow-[var(--shadow-sm)] hover:shadow-[var(--shadow-md)] transition-shadow"
-                  >
-                    <div className="flex items-start justify-between gap-3">
-                      <div className="flex-1 min-w-0">
-                        <h3 className="font-heading font-semibold text-sm truncate">{website.name || website.url}</h3>
-                        <a
-                          href={website.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-xs text-muted-foreground hover:text-primary font-body truncate flex items-center gap-1 mt-0.5"
-                        >
-                          {website.url}
-                          <ExternalLink className="h-3 w-3 shrink-0" />
-                        </a>
-                      </div>
-                      {website.last_score !== null && (
-                        <ScoreRing score={website.last_score} size={48} />
-                      )}
-                    </div>
-
-                    <div className="flex items-center justify-between mt-4 pt-3 border-t border-border">
-                      <div className="flex items-center gap-1 text-xs text-muted-foreground font-body">
-                        <Clock className="h-3 w-3" />
-                        {website.last_analyzed_at
-                          ? new Date(website.last_analyzed_at).toLocaleDateString()
-                          : "Not analyzed yet"}
-                      </div>
-                      <div className="flex gap-1.5">
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          className="h-8 text-xs"
-                          onClick={() => analyzeTrackedWebsite(website)}
-                          disabled={analyzingId === website.id}
-                        >
-                          {analyzingId === website.id ? (
-                            <Loader2 className="h-3 w-3 animate-spin" />
-                          ) : (
-                            <RefreshCw className="h-3 w-3" />
-                          )}
-                          Analyze
-                        </Button>
-                        <Button
-                          size="sm"
-                          variant="ghost"
-                          className="h-8 text-xs text-destructive hover:text-destructive"
-                          onClick={() => deleteWebsite(website.id)}
-                        >
-                          <Trash2 className="h-3 w-3" />
-                        </Button>
-                      </div>
-                    </div>
-                  </motion.div>
+                    website={website}
+                    analyzing={analyzingId === website.id}
+                    onAnalyze={() => analyzeTrackedWebsite(website)}
+                    onDelete={() => deleteWebsite(website.id)}
+                    onViewSEO={() => setSeoWebsiteId(seoWebsiteId === website.id ? null : website.id)}
+                  />
                 ))}
               </AnimatePresence>
             </div>
