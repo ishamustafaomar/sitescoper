@@ -4,39 +4,10 @@ import { Badge } from "@/components/ui/badge";
 import { ChevronDown, ChevronUp, TrendingUp, TrendingDown, Minus } from "lucide-react";
 import { useState } from "react";
 import { ScoreRing } from "@/components/ScoreRing";
-import { useState } from "react";
 
 interface AnalysisPanelProps {
   analysis: AnalysisResult;
 }
-
-function ScoreRing({ score, size = 112 }: { score: number; size?: number }) {
-  const radius = (size - 16) / 2;
-  const color =
-    score >= 80 ? "hsl(var(--accent))"
-    : score >= 50 ? "hsl(var(--primary))"
-    : "hsl(var(--destructive))";
-  const circumference = 2 * Math.PI * radius;
-  const offset = circumference - (score / 100) * circumference;
-
-  return (
-    <div className="relative flex items-center justify-center" style={{ width: size, height: size }}>
-      <svg className="w-full h-full -rotate-90" viewBox={`0 0 ${size} ${size}`}>
-        <circle cx={size/2} cy={size/2} r={radius} fill="none" stroke="hsl(var(--border))" strokeWidth="8" />
-        <motion.circle
-          cx={size/2} cy={size/2} r={radius}
-          fill="none" stroke={color} strokeWidth="8" strokeLinecap="round"
-          strokeDasharray={circumference}
-          initial={{ strokeDashoffset: circumference }}
-          animate={{ strokeDashoffset: offset }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
-        />
-      </svg>
-      <span className="absolute text-2xl font-heading font-bold">{score}</span>
-    </div>
-  );
-}
-
 function MiniScoreBar({ score }: { score: number }) {
   const color = score >= 80 ? "bg-accent" : score >= 50 ? "bg-primary" : "bg-destructive";
   return (
