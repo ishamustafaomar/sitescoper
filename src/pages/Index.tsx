@@ -239,7 +239,7 @@ const Index = () => {
       {/* Footer */}
       <footer className="border-t border-border mt-16 py-6">
         <div className="max-w-6xl mx-auto px-4 text-center text-xs text-muted-foreground font-body">
-          SiteScope — AI-powered website analysis
+          SiteScoper — AI-powered website analysis
         </div>
       </footer>
     </div>
