@@ -38,7 +38,7 @@ serve(async (req) => {
         messages: [
           {
             role: "system",
-            content: `You are an expert website analyst and UX consultant. Analyze the provided website content and give actionable suggestions for improvement. 
+            content: `You are an expert website analyst and UX consultant. The current date is ${new Date().toISOString().split('T')[0]}. Analyze the provided website content and give actionable suggestions for improvement. 
             
 Structure your response as JSON with this format:
 {
