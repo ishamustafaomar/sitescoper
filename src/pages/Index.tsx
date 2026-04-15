@@ -48,10 +48,15 @@ const Index = () => {
       {/* Header */}
       <header className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-10">
         <div className="max-w-6xl mx-auto px-4 py-4 flex items-center gap-3">
-          <div className="gradient-primary p-2 rounded-xl">
-            <Sparkles className="h-5 w-5 text-primary-foreground" />
-          </div>
-          <h1 className="font-heading font-bold text-lg">SiteScope</h1>
+          <button
+            onClick={() => { setStep("idle"); setScrapeData(null); setAnalysis(null); setCurrentUrl(""); }}
+            className="flex items-center gap-3 hover:opacity-80 transition-opacity"
+          >
+            <div className="gradient-primary p-2 rounded-xl">
+              <Sparkles className="h-5 w-5 text-primary-foreground" />
+            </div>
+            <h1 className="font-heading font-bold text-lg">SiteScope</h1>
+          </button>
           <span className="text-xs text-muted-foreground font-body">AI Website Analyzer</span>
         </div>
       </header>
