@@ -3,6 +3,8 @@ import { AnalysisResult } from "@/lib/api";
 import { Badge } from "@/components/ui/badge";
 import { ChevronDown, ChevronUp, TrendingUp, TrendingDown, Minus } from "lucide-react";
 import { useState } from "react";
+import { ScoreRing } from "@/components/ScoreRing";
+import { useState } from "react";
 
 interface AnalysisPanelProps {
   analysis: AnalysisResult;
