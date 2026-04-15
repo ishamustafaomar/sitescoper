@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Users, BarChart3, Globe, TrendingUp, Clock, Loader2,
   ChevronDown, ChevronUp, ArrowLeft
