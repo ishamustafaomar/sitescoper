@@ -34,6 +34,7 @@ const priorityConfig: Record<string, { class: string; icon: typeof TrendingUp }>
 const typeLabels: Record<string, string> = {
   ux: "UX", content: "Content", seo: "SEO",
   performance: "Perf", accessibility: "A11y", design: "Design",
+  product: "Product", strategy: "Strategy", business: "Business", growth: "Growth",
 };
 
 export function AnalysisPanel({ analysis }: AnalysisPanelProps) {

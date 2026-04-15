@@ -56,7 +56,7 @@ Structure your response as JSON:
           "title": "Concise actionable title",
           "description": "Detailed explanation referencing specific content/elements on the page. Include what to change and why it matters.",
           "priority": "high" | "medium" | "low",
-          "type": "ux" | "content" | "seo" | "performance" | "accessibility" | "design"
+          "type": "ux" | "content" | "seo" | "performance" | "accessibility" | "design" | "product" | "strategy" | "business" | "growth"
         }
       ]
     }
@@ -70,6 +70,8 @@ Categories to evaluate:
 4. **Accessibility** — WCAG compliance indicators, color contrast, alt text, semantic HTML, keyboard navigation
 5. **Visual Design** — Layout, typography, whitespace, color consistency, visual hierarchy, brand coherence
 6. **Performance** — Page weight indicators, resource optimization, loading strategy, third-party scripts
+7. **Product & Strategy** — Value proposition clarity, competitive positioning, feature communication, pricing presentation, trust signals (testimonials, social proof, certifications), onboarding friction, conversion funnel effectiveness, target audience alignment
+8. **Business & Growth** — Lead capture mechanisms, email/newsletter signup, monetization strategy, retention hooks, viral loops, partnership/integration opportunities, market positioning gaps
 
 For each category provide 2-4 suggestions. Be specific: mention exact text, sections, or patterns you found. Prioritize high-impact changes.`,
           },
