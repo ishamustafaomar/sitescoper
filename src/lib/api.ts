@@ -17,7 +17,7 @@ export interface AnalysisSuggestion {
   title: string;
   description: string;
   priority: "high" | "medium" | "low";
-  type: "ux" | "content" | "seo" | "performance" | "accessibility" | "design";
+  type: "ux" | "content" | "seo" | "performance" | "accessibility" | "design" | "product" | "strategy" | "business" | "growth";
 }
 
 export interface AnalysisCategory {
