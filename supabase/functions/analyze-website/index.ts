@@ -56,7 +56,7 @@ Structure your response as JSON:
           "title": "Concise actionable title",
           "description": "Detailed explanation referencing specific content/elements on the page. Include what to change and why it matters.",
           "priority": "high" | "medium" | "low",
-          "type": "ux" | "content" | "seo" | "performance" | "accessibility" | "design"
+          "type": "ux" | "content" | "seo" | "performance" | "accessibility" | "design" | "product" | "strategy" | "business" | "growth"
         }
       ]
     }
