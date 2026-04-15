@@ -1,5 +1,10 @@
 import { supabase } from "@/integrations/supabase/client";
 
+export interface CrawledPage {
+  url: string;
+  title?: string;
+}
+
 export interface ScrapeResult {
   markdown?: string;
   html?: string;
@@ -11,6 +16,9 @@ export interface ScrapeResult {
     language?: string;
     sourceURL?: string;
   };
+  pages?: CrawledPage[];
+  pagesCount?: number;
+  siteUrlsDiscovered?: number;
 }
 
 export interface AnalysisSuggestion {
