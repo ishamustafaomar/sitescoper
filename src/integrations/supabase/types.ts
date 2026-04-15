@@ -14,7 +14,113 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      analysis_history: {
+        Row: {
+          categories: Json
+          created_at: string
+          id: string
+          overall_score: number
+          scrape_data: Json | null
+          summary: string | null
+          url: string
+          user_id: string
+          website_id: string | null
+        }
+        Insert: {
+          categories?: Json
+          created_at?: string
+          id?: string
+          overall_score: number
+          scrape_data?: Json | null
+          summary?: string | null
+          url: string
+          user_id: string
+          website_id?: string | null
+        }
+        Update: {
+          categories?: Json
+          created_at?: string
+          id?: string
+          overall_score?: number
+          scrape_data?: Json | null
+          summary?: string | null
+          url?: string
+          user_id?: string
+          website_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "analysis_history_website_id_fkey"
+            columns: ["website_id"]
+            isOneToOne: false
+            referencedRelation: "websites"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          bio: string | null
+          created_at: string
+          display_name: string | null
+          id: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          bio?: string | null
+          created_at?: string
+          display_name?: string | null
+          id?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          avatar_url?: string | null
+          bio?: string | null
+          created_at?: string
+          display_name?: string | null
+          id?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      websites: {
+        Row: {
+          created_at: string
+          id: string
+          last_analyzed_at: string | null
+          last_score: number | null
+          name: string | null
+          updated_at: string
+          url: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          last_analyzed_at?: string | null
+          last_score?: number | null
+          name?: string | null
+          updated_at?: string
+          url: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          last_analyzed_at?: string | null
+          last_score?: number | null
+          name?: string | null
+          updated_at?: string
+          url?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
