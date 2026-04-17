@@ -80,7 +80,15 @@ const Index = () => {
           overall_score: result.overall_score,
           summary: result.summary,
           categories: result.categories as any,
-          scrape_data: { screenshot: data.screenshot, metadata: data.metadata, links: data.links } as any,
+          scrape_data: {
+            screenshot: data.screenshot,
+            metadata: data.metadata,
+            links: data.links,
+            images: data.images,
+            image_suggestions: result.image_suggestions,
+            site_category: result.site_category,
+            category_rationale: result.category_rationale,
+          } as any,
         } as any);
       } else {
         localStorage.setItem(FREE_ANALYSIS_KEY, "true");

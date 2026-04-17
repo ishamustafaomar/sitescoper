@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { AppHeader } from "@/components/AppHeader";
 import { AnalysisPanel } from "@/components/AnalysisPanel";
 import { supabase } from "@/integrations/supabase/client";
-import { AnalysisResult } from "@/lib/api";
+import { AnalysisResult, ScrapeResult } from "@/lib/api";
 import { generateAnalysisPDF } from "@/lib/pdf";
 
 export default function AnalysisDetail() {
