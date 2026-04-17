@@ -5,6 +5,12 @@ export interface CrawledPage {
   title?: string;
 }
 
+export interface ScrapedImage {
+  src: string;
+  alt: string;
+  context?: string;
+}
+
 export interface ScrapeResult {
   markdown?: string;
   html?: string;
@@ -19,13 +25,21 @@ export interface ScrapeResult {
   pages?: CrawledPage[];
   pagesCount?: number;
   siteUrlsDiscovered?: number;
+  images?: ScrapedImage[];
 }
+
+export type SiteCategory =
+  | "saas" | "marketing" | "ecommerce" | "blog"
+  | "docs" | "portfolio" | "community" | "other";
 
 export interface AnalysisSuggestion {
   title: string;
   description: string;
   priority: "high" | "medium" | "low";
   type: "ux" | "content" | "seo" | "performance" | "accessibility" | "design" | "product" | "strategy" | "business" | "growth";
+  impact?: "high" | "medium" | "low";
+  effort?: "low" | "medium" | "high";
+  tradeoff?: string;
 }
 
 export interface AnalysisCategory {
@@ -35,10 +49,20 @@ export interface AnalysisCategory {
   suggestions: AnalysisSuggestion[];
 }
 
+export interface ImageSuggestion {
+  src: string;
+  current_alt: string;
+  suggested_alt: string;
+  issue: string;
+}
+
 export interface AnalysisResult {
   overall_score: number;
   summary: string;
   categories: AnalysisCategory[];
+  site_category?: SiteCategory;
+  category_rationale?: string;
+  image_suggestions?: ImageSuggestion[];
 }
 
 export async function scrapeWebsite(url: string): Promise<ScrapeResult> {
@@ -54,10 +78,11 @@ export async function scrapeWebsite(url: string): Promise<ScrapeResult> {
 
 export async function analyzeWebsite(
   markdown: string,
-  url: string
+  url: string,
+  images?: ScrapedImage[]
 ): Promise<AnalysisResult> {
   const { data, error } = await supabase.functions.invoke("analyze-website", {
-    body: { markdown, url },
+    body: { markdown, url, images },
   });
 
   if (error) throw new Error(error.message || "Failed to analyze website");
