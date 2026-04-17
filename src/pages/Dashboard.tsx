@@ -43,7 +43,7 @@ export default function Dashboard() {
     setLoading(true);
     const [websitesRes, historyRes] = await Promise.all([
       supabase.from("websites").select("*").order("created_at", { ascending: false }),
-      supabase.from("analysis_history").select("*").order("created_at", { ascending: false }).limit(20),
+      supabase.from("analysis_history").select("*").order("created_at", { ascending: false }).limit(100),
     ]);
     if (websitesRes.data) setWebsites(websitesRes.data);
     if (historyRes.data) setHistory(historyRes.data);
@@ -72,7 +72,7 @@ export default function Dashboard() {
     setAnalyzingId(website.id);
     try {
       const scrapeData = await scrapeWebsite(website.url);
-      const analysis = await analyzeWebsite(scrapeData.markdown || "", website.url);
+      const analysis = await analyzeWebsite(scrapeData.markdown || "", website.url, scrapeData.images);
 
       await supabase.from("analysis_history").insert({
         user_id: user.id,
@@ -81,7 +81,19 @@ export default function Dashboard() {
         overall_score: analysis.overall_score,
         summary: analysis.summary,
         categories: analysis.categories as any,
-        scrape_data: { screenshot: scrapeData.screenshot, metadata: scrapeData.metadata, links: scrapeData.links } as any,
+        scrape_data: {
+          screenshot: scrapeData.screenshot,
+          metadata: scrapeData.metadata,
+          links: scrapeData.links,
+          images: scrapeData.images,
+          image_suggestions: analysis.image_suggestions,
+          site_category: analysis.site_category,
+          category_rationale: analysis.category_rationale,
+          benchmark_percentile: analysis.benchmark_percentile,
+          benchmark_label: analysis.benchmark_label,
+          peer_examples: analysis.peer_examples,
+          action_plan: analysis.action_plan,
+        } as any,
       } as any);
 
       await supabase
