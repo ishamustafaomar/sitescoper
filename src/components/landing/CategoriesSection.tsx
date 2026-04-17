@@ -16,13 +16,11 @@ const categories = [
   { icon: Sparkles, title: "Polish & Feel", description: "Micro-animations, copy quality, mobile feel — the details that separate good from great.", color: "from-pink-500 to-rose-600" },
 ];
 
-import { motion as m } from "framer-motion";
-
 export function CategoriesSection() {
   return (
     <section className="py-20 px-4">
       <div className="max-w-6xl mx-auto">
-        <m.div
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -38,7 +36,7 @@ export function CategoriesSection() {
           <p className="text-muted-foreground font-body text-lg max-w-2xl mx-auto">
             We go far beyond surface-level SEO to evaluate what actually makes a website convert, retain, and grow.
           </p>
-        </m.div>
+        </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {categories.map((cat, i) => {
