@@ -269,7 +269,20 @@ const Index = () => {
         </AnimatePresence>
       </main>
 
-      <footer className="border-t border-border mt-16 py-6">
+      {/* Landing page sections — only visible when idle */}
+      {step === "idle" && !scrapeData && (
+        <>
+          <StatsSection />
+          <FeaturesSection />
+          <HowItWorksSection />
+          <CategoriesSection />
+          <UseCasesSection />
+          <FAQSection />
+          <CTASection onGetStarted={scrollToInput} />
+        </>
+      )}
+
+      <footer className="border-t border-border mt-8 py-8">
         <div className="max-w-6xl mx-auto px-4 text-center text-xs text-muted-foreground font-body">
           SiteScoper — AI-powered website analysis
         </div>
