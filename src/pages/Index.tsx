@@ -37,12 +37,26 @@ const Index = () => {
   const { toast } = useToast();
   const { user } = useAuth();
   const inputRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
+  const [hasUsedFreeAnalysis, setHasUsedFreeAnalysis] = useState(
+    () => typeof window !== "undefined" && localStorage.getItem(FREE_ANALYSIS_KEY) === "true"
+  );
 
   const scrollToInput = () => {
     inputRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
   };
 
   const handleAnalyze = async (url: string) => {
+    // Free-tier gate: anon users get 1 free analysis, then must sign up
+    if (!user && hasUsedFreeAnalysis) {
+      toast({
+        title: "Free analysis used",
+        description: "Sign up free to keep analyzing websites and save your history.",
+      });
+      navigate("/auth");
+      return;
+    }
+
     setCurrentUrl(url);
     setScrapeData(null);
     setAnalysis(null);
@@ -57,7 +71,7 @@ const Index = () => {
       setAnalysis(result);
       setStep("done");
 
-      // Save to history if logged in
+      // Save to history if logged in, otherwise mark free analysis as used
       if (user) {
         await supabase.from("analysis_history").insert({
           user_id: user.id,
@@ -67,6 +81,9 @@ const Index = () => {
           categories: result.categories as any,
           scrape_data: { screenshot: data.screenshot, metadata: data.metadata, links: data.links } as any,
         } as any);
+      } else {
+        localStorage.setItem(FREE_ANALYSIS_KEY, "true");
+        setHasUsedFreeAnalysis(true);
       }
     } catch (err: any) {
       console.error(err);
