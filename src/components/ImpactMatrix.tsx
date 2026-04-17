@@ -153,6 +153,11 @@ export function ImpactMatrix({ analysis }: ImpactMatrixProps) {
                 </div>
               </div>
               <p className="text-xs text-muted-foreground font-body leading-relaxed">{s.description}</p>
+              {s.evidence && s.evidence.trim() && (
+                <p className="text-[11px] italic text-muted-foreground/80 font-body border-l-2 border-border pl-2">
+                  "{s.evidence}"
+                </p>
+              )}
               {s.tradeoff && (
                 <div className="flex items-start gap-1.5 text-[11px] text-muted-foreground font-body bg-muted/40 rounded-md px-2 py-1.5 border border-border">
                   <AlertTriangle className="h-3 w-3 shrink-0 mt-0.5 text-primary" />

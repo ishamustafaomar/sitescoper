@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
-import { Clock, ExternalLink, RefreshCw, Trash2, Loader2, Eye } from "lucide-react";
+import { Clock, ExternalLink, RefreshCw, Trash2, Loader2, Eye, TrendingUp, TrendingDown, Minus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ScoreRing } from "@/components/ScoreRing";
+import { Sparkline } from "@/components/Sparkline";
 
 export interface Website {
   id: string;
@@ -18,15 +19,26 @@ interface WebsiteCardProps {
   onAnalyze: () => void;
   onDelete: () => void;
   onViewSEO: () => void;
+  /** Historical scores oldest -> newest (for the trend sparkline) */
+  scoreHistory?: number[];
 }
 
-export function WebsiteCard({ website, analyzing, onAnalyze, onDelete, onViewSEO }: WebsiteCardProps) {
+function trendDelta(scores?: number[]) {
+  if (!scores || scores.length < 2) return null;
+  return scores[scores.length - 1] - scores[0];
+}
+
+export function WebsiteCard({ website, analyzing, onAnalyze, onDelete, onViewSEO, scoreHistory }: WebsiteCardProps) {
+  const delta = trendDelta(scoreHistory);
+  const TrendIcon = delta === null ? Minus : delta > 0 ? TrendingUp : delta < 0 ? TrendingDown : Minus;
+  const trendColor = delta === null ? "text-muted-foreground" : delta > 0 ? "text-accent" : delta < 0 ? "text-destructive" : "text-muted-foreground";
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.95 }}
-      className="bg-card rounded-xl border border-border p-5 shadow-[var(--shadow-sm)] hover:shadow-[var(--shadow-md)] transition-shadow"
+      className="bg-card rounded-xl border border-border p-5 shadow-[var(--shadow-sm)] hover:shadow-[var(--shadow-md)] hover:border-primary/30 transition-all"
     >
       <div className="flex items-start justify-between gap-3">
         <div className="flex-1 min-w-0">
@@ -40,6 +52,23 @@ export function WebsiteCard({ website, analyzing, onAnalyze, onDelete, onViewSEO
             {website.url}
             <ExternalLink className="h-3 w-3 shrink-0" />
           </a>
+
+          {scoreHistory && scoreHistory.length >= 2 && (
+            <div className="flex items-center gap-2 mt-3">
+              <Sparkline values={scoreHistory} width={70} height={20} />
+              <div className={`flex items-center gap-0.5 text-[10px] font-body ${trendColor}`}>
+                <TrendIcon className="h-3 w-3" />
+                {delta !== null && (
+                  <span className="font-heading font-semibold">
+                    {delta > 0 ? "+" : ""}{delta}
+                  </span>
+                )}
+              </div>
+              <span className="text-[10px] text-muted-foreground/70 font-body">
+                {scoreHistory.length} scans
+              </span>
+            </div>
+          )}
         </div>
         {website.last_score !== null && <ScoreRing score={website.last_score} size={48} />}
       </div>
