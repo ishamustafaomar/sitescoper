@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { Globe, Clock, Search, Sparkles, Loader2 } from "lucide-react";
+import { Globe, Clock, Search, Sparkles, Loader2, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useAuth } from "@/components/AuthProvider";
@@ -43,7 +43,7 @@ export default function Dashboard() {
     setLoading(true);
     const [websitesRes, historyRes] = await Promise.all([
       supabase.from("websites").select("*").order("created_at", { ascending: false }),
-      supabase.from("analysis_history").select("*").order("created_at", { ascending: false }).limit(20),
+      supabase.from("analysis_history").select("*").order("created_at", { ascending: false }).limit(100),
     ]);
     if (websitesRes.data) setWebsites(websitesRes.data);
     if (historyRes.data) setHistory(historyRes.data);
@@ -72,7 +72,7 @@ export default function Dashboard() {
     setAnalyzingId(website.id);
     try {
       const scrapeData = await scrapeWebsite(website.url);
-      const analysis = await analyzeWebsite(scrapeData.markdown || "", website.url);
+      const analysis = await analyzeWebsite(scrapeData.markdown || "", website.url, scrapeData.images);
 
       await supabase.from("analysis_history").insert({
         user_id: user.id,
@@ -81,7 +81,19 @@ export default function Dashboard() {
         overall_score: analysis.overall_score,
         summary: analysis.summary,
         categories: analysis.categories as any,
-        scrape_data: { screenshot: scrapeData.screenshot, metadata: scrapeData.metadata, links: scrapeData.links } as any,
+        scrape_data: {
+          screenshot: scrapeData.screenshot,
+          metadata: scrapeData.metadata,
+          links: scrapeData.links,
+          images: scrapeData.images,
+          image_suggestions: analysis.image_suggestions,
+          site_category: analysis.site_category,
+          category_rationale: analysis.category_rationale,
+          benchmark_percentile: analysis.benchmark_percentile,
+          benchmark_label: analysis.benchmark_label,
+          peer_examples: analysis.peer_examples,
+          action_plan: analysis.action_plan,
+        } as any,
       } as any);
 
       await supabase
@@ -135,6 +147,19 @@ export default function Dashboard() {
         )
       : null;
 
+  // Build score history per website (oldest -> newest) for sparklines
+  const historyByWebsite = useMemo(() => {
+    const map = new Map<string, number[]>();
+    // history is sorted newest -> oldest from the query; reverse for oldest -> newest
+    [...history].reverse().forEach((h) => {
+      if (!h.website_id) return;
+      const arr = map.get(h.website_id) ?? [];
+      arr.push(h.overall_score);
+      map.set(h.website_id, arr);
+    });
+    return map;
+  }, [history]);
+
   if (loading) {
     return (
       <div className="min-h-screen bg-background">
@@ -177,9 +202,18 @@ export default function Dashboard() {
           </h2>
 
           {websites.length === 0 ? (
-            <div className="bg-card rounded-xl border border-border p-12 text-center shadow-[var(--shadow-sm)]">
-              <Globe className="h-10 w-10 text-muted-foreground/30 mx-auto mb-3" />
-              <p className="text-muted-foreground font-body">No websites tracked yet. Add one above!</p>
+            <div className="bg-gradient-to-br from-card to-muted/30 rounded-2xl border border-dashed border-border p-12 text-center shadow-[var(--shadow-sm)]">
+              <div className="inline-flex p-3 rounded-2xl bg-primary/10 mb-4">
+                <Globe className="h-8 w-8 text-primary" />
+              </div>
+              <h3 className="font-heading font-semibold text-base mb-1">No websites tracked yet</h3>
+              <p className="text-muted-foreground font-body text-sm mb-4 max-w-xs mx-auto">
+                Add your first website above to track score trends over time and get re-analysis with one click.
+              </p>
+              <div className="inline-flex items-center gap-1.5 text-xs text-muted-foreground/80 font-body">
+                <Plus className="h-3 w-3" />
+                Use the form above to start
+              </div>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -192,6 +226,7 @@ export default function Dashboard() {
                     onAnalyze={() => analyzeTrackedWebsite(website)}
                     onDelete={() => deleteWebsite(website.id)}
                     onViewSEO={() => setSeoWebsiteId(seoWebsiteId === website.id ? null : website.id)}
+                    scoreHistory={historyByWebsite.get(website.id)}
                   />
                 ))}
               </AnimatePresence>
@@ -207,9 +242,14 @@ export default function Dashboard() {
           </h2>
 
           {history.length === 0 ? (
-            <div className="bg-card rounded-xl border border-border p-12 text-center shadow-[var(--shadow-sm)]">
-              <Search className="h-10 w-10 text-muted-foreground/30 mx-auto mb-3" />
-              <p className="text-muted-foreground font-body">No analyses yet. Analyze a website to see history here.</p>
+            <div className="bg-gradient-to-br from-card to-muted/30 rounded-2xl border border-dashed border-border p-12 text-center shadow-[var(--shadow-sm)]">
+              <div className="inline-flex p-3 rounded-2xl bg-accent/10 mb-4">
+                <Search className="h-8 w-8 text-accent" />
+              </div>
+              <h3 className="font-heading font-semibold text-base mb-1">No analyses yet</h3>
+              <p className="text-muted-foreground font-body text-sm max-w-xs mx-auto">
+                Run your first scan from the analyzer or click "Analyze" on a tracked website.
+              </p>
             </div>
           ) : (
             <div className="bg-card rounded-xl border border-border overflow-hidden shadow-[var(--shadow-sm)]">

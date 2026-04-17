@@ -11,6 +11,7 @@ import Index from "./pages/Index";
 import Auth from "./pages/Auth";
 import Dashboard from "./pages/Dashboard";
 import AnalysisDetail from "./pages/AnalysisDetail";
+import SharedAnalysis from "./pages/SharedAnalysis";
 import Onboarding from "./pages/Onboarding";
 import Admin from "./pages/Admin";
 import Privacy from "./pages/Privacy";
@@ -30,6 +31,7 @@ const App = () => (
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/auth" element={<Auth />} />
+              <Route path="/share/:token" element={<SharedAnalysis />} />
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/terms" element={<Terms />} />
               <Route

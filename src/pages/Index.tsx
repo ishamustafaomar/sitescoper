@@ -83,6 +83,10 @@ const Index = () => {
             image_suggestions: result.image_suggestions,
             site_category: result.site_category,
             category_rationale: result.category_rationale,
+            benchmark_percentile: result.benchmark_percentile,
+            benchmark_label: result.benchmark_label,
+            peer_examples: result.peer_examples,
+            action_plan: result.action_plan,
           } as any,
         } as any);
       } else {
@@ -128,22 +132,46 @@ const Index = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.6 }}
-              className="text-center space-y-5 py-16"
+              className="relative text-center space-y-6 py-16 md:py-20"
             >
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-body mb-2">
-                <Sparkles className="h-3 w-3" />
-                Powered by AI
+              <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
+                <div className="absolute top-0 left-1/4 w-72 h-72 bg-primary/20 rounded-full blur-3xl opacity-60" />
+                <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-[hsl(280,70%,60%)]/20 rounded-full blur-3xl opacity-60" />
               </div>
-              <h2 className="text-4xl md:text-5xl font-heading font-bold tracking-tight">
-                Analyze any website
+
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-body border border-primary/20">
+                <Sparkles className="h-3 w-3" />
+                Powered by Gemini 2.5 Pro · 20+ analysis dimensions
+              </div>
+              <h2 className="text-4xl md:text-6xl font-heading font-bold tracking-tight leading-[1.05]">
+                A brutally honest
                 <br />
-                <span className="bg-gradient-to-r from-primary to-[hsl(280,70%,60%)] bg-clip-text text-transparent">
-                  in seconds
+                <span className="bg-gradient-to-r from-primary via-[hsl(265,70%,58%)] to-[hsl(280,70%,60%)] bg-clip-text text-transparent">
+                  audit of your site
+                </span>
+                <br />
+                <span className="text-2xl md:text-3xl font-heading font-medium text-muted-foreground">
+                  in under 30 seconds.
                 </span>
               </h2>
-              <p className="text-muted-foreground font-body text-lg max-w-lg mx-auto leading-relaxed">
-                Crawl, preview, and get AI-powered suggestions to improve UX, SEO, accessibility, and more.
+              <p className="text-muted-foreground font-body text-base md:text-lg max-w-xl mx-auto leading-relaxed">
+                Get the kind of feedback a senior YC partner would give you — with a 7-day action plan,
+                peer benchmarks, and concrete copy rewrites you can ship today.
               </p>
+              <div className="flex items-center justify-center gap-4 text-[11px] text-muted-foreground font-body flex-wrap">
+                <div className="flex items-center gap-1.5">
+                  <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+                  No signup for first scan
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                  Free forever
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <div className="w-1.5 h-1.5 rounded-full bg-[hsl(280,70%,60%)]" />
+                  PDF & share-link export
+                </div>
+              </div>
             </motion.div>
           )}
         </AnimatePresence>

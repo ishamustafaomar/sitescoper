@@ -1,19 +1,29 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, Download, Loader2 } from "lucide-react";
+import { ArrowLeft, Download, Loader2, Share2, Check, Copy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AppHeader } from "@/components/AppHeader";
 import { AnalysisPanel } from "@/components/AnalysisPanel";
 import { supabase } from "@/integrations/supabase/client";
 import { AnalysisResult, ScrapeResult } from "@/lib/api";
 import { generateAnalysisPDF } from "@/lib/pdf";
+import { useToast } from "@/hooks/use-toast";
+
+function genToken() {
+  const arr = new Uint8Array(16);
+  crypto.getRandomValues(arr);
+  return Array.from(arr).map((b) => b.toString(16).padStart(2, "0")).join("");
+}
 
 export default function AnalysisDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { toast } = useToast();
   const [record, setRecord] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [sharing, setSharing] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     if (id) loadAnalysis();
@@ -36,8 +46,41 @@ export default function AnalysisDetail() {
       overall_score: record.overall_score,
       summary: record.summary || "",
       categories: record.categories as any[],
+      site_category: record.scrape_data?.site_category,
+      category_rationale: record.scrape_data?.category_rationale,
+      image_suggestions: record.scrape_data?.image_suggestions,
+      benchmark_percentile: record.scrape_data?.benchmark_percentile,
+      benchmark_label: record.scrape_data?.benchmark_label,
+      peer_examples: record.scrape_data?.peer_examples,
+      action_plan: record.scrape_data?.action_plan,
     };
     generateAnalysisPDF(analysis, record.url, record.scrape_data);
+  };
+
+  const handleShare = async () => {
+    if (!record) return;
+    setSharing(true);
+    try {
+      let token = (record as any).share_token as string | null;
+      if (!token) {
+        token = genToken();
+        const { error } = await supabase
+          .from("analysis_history")
+          .update({ share_token: token } as any)
+          .eq("id", record.id);
+        if (error) throw error;
+        setRecord({ ...record, share_token: token });
+      }
+      const url = `${window.location.origin}/share/${token}`;
+      await navigator.clipboard.writeText(url);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+      toast({ title: "Share link copied", description: "Anyone with this link can view this report." });
+    } catch (e: any) {
+      toast({ title: "Couldn't create share link", description: e.message, variant: "destructive" });
+    } finally {
+      setSharing(false);
+    }
   };
 
   if (loading) {
@@ -72,6 +115,10 @@ export default function AnalysisDetail() {
     site_category: record.scrape_data?.site_category,
     category_rationale: record.scrape_data?.category_rationale,
     image_suggestions: record.scrape_data?.image_suggestions,
+    benchmark_percentile: record.scrape_data?.benchmark_percentile,
+    benchmark_label: record.scrape_data?.benchmark_label,
+    peer_examples: record.scrape_data?.peer_examples,
+    action_plan: record.scrape_data?.action_plan,
   };
   const scrapeData: ScrapeResult | undefined = record.scrape_data
     ? {
@@ -86,23 +133,46 @@ export default function AnalysisDetail() {
     <div className="min-h-screen bg-background">
       <AppHeader />
       <main className="max-w-4xl mx-auto px-4 py-8 space-y-6">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
+        <div className="flex items-center justify-between gap-3 flex-wrap">
+          <div className="flex items-center gap-3 min-w-0">
             <Button variant="ghost" size="icon" onClick={() => navigate(-1)}>
               <ArrowLeft className="h-4 w-4" />
             </Button>
-            <div>
-              <h2 className="font-heading font-bold text-lg">{record.url}</h2>
+            <div className="min-w-0">
+              <h2 className="font-heading font-bold text-lg truncate">{record.url}</h2>
               <p className="text-xs text-muted-foreground font-body">
                 Analyzed {new Date(record.created_at).toLocaleString()}
               </p>
             </div>
           </div>
-          <Button variant="outline" size="sm" onClick={handleExportPDF}>
-            <Download className="h-3.5 w-3.5" />
-            Export PDF
-          </Button>
+          <div className="flex items-center gap-2">
+            <Button variant="outline" size="sm" onClick={handleShare} disabled={sharing}>
+              {copied ? <Check className="h-3.5 w-3.5" /> : sharing ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Share2 className="h-3.5 w-3.5" />}
+              {copied ? "Copied!" : "Share"}
+            </Button>
+            <Button variant="outline" size="sm" onClick={handleExportPDF}>
+              <Download className="h-3.5 w-3.5" />
+              Export PDF
+            </Button>
+          </div>
         </div>
+
+        {(record as any).share_token && (
+          <div className="bg-muted/40 border border-border rounded-lg px-3 py-2 flex items-center gap-2 text-xs font-body">
+            <Share2 className="h-3 w-3 text-muted-foreground" />
+            <span className="text-muted-foreground">Public link:</span>
+            <code className="truncate flex-1 text-foreground">
+              {window.location.origin}/share/{(record as any).share_token}
+            </code>
+            <button
+              onClick={handleShare}
+              className="text-primary hover:text-primary/80 transition-colors shrink-0"
+              aria-label="Copy"
+            >
+              <Copy className="h-3 w-3" />
+            </button>
+          </div>
+        )}
 
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
           <AnalysisPanel analysis={analysis} scrapeData={scrapeData} />

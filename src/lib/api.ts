@@ -32,14 +32,26 @@ export type SiteCategory =
   | "saas" | "marketing" | "ecommerce" | "blog"
   | "docs" | "portfolio" | "community" | "other";
 
+export interface SuggestionRewrite {
+  before: string;
+  after: string;
+}
+
 export interface AnalysisSuggestion {
   title: string;
   description: string;
   priority: "high" | "medium" | "low";
-  type: "ux" | "content" | "seo" | "performance" | "accessibility" | "design" | "product" | "strategy" | "business" | "growth";
+  type: "ux" | "content" | "seo" | "performance" | "accessibility" | "design" | "product" | "strategy" | "business" | "growth" | "brand" | "legal" | "analytics";
   impact?: "high" | "medium" | "low";
   effort?: "low" | "medium" | "high";
+  evidence?: string;
+  rewrite?: SuggestionRewrite;
   tradeoff?: string;
+}
+
+export interface CategorySubScore {
+  name: string;
+  score: number;
 }
 
 export interface AnalysisCategory {
@@ -47,6 +59,7 @@ export interface AnalysisCategory {
   score: number;
   icon: string;
   suggestions: AnalysisSuggestion[];
+  sub_scores?: CategorySubScore[];
 }
 
 export interface ImageSuggestion {
@@ -56,6 +69,19 @@ export interface ImageSuggestion {
   issue: string;
 }
 
+export interface ActionPlanDay {
+  day: number;
+  title: string;
+  task: string;
+  category: string;
+  estimated_minutes: number;
+}
+
+export interface ActionPlan {
+  headline: string;
+  days: ActionPlanDay[];
+}
+
 export interface AnalysisResult {
   overall_score: number;
   summary: string;
@@ -63,6 +89,10 @@ export interface AnalysisResult {
   site_category?: SiteCategory;
   category_rationale?: string;
   image_suggestions?: ImageSuggestion[];
+  benchmark_percentile?: number;
+  benchmark_label?: string;
+  peer_examples?: string[];
+  action_plan?: ActionPlan;
 }
 
 export async function scrapeWebsite(url: string): Promise<ScrapeResult> {

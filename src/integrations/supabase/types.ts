@@ -21,6 +21,7 @@ export type Database = {
           id: string
           overall_score: number
           scrape_data: Json | null
+          share_token: string | null
           summary: string | null
           url: string
           user_id: string
@@ -32,6 +33,7 @@ export type Database = {
           id?: string
           overall_score: number
           scrape_data?: Json | null
+          share_token?: string | null
           summary?: string | null
           url: string
           user_id: string
@@ -43,6 +45,7 @@ export type Database = {
           id?: string
           overall_score?: number
           scrape_data?: Json | null
+          share_token?: string | null
           summary?: string | null
           url?: string
           user_id?: string
