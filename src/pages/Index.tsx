@@ -1,10 +1,17 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, AlertCircle, ExternalLink, Link2, FileText, Download } from "lucide-react";
 import { UrlInput } from "@/components/UrlInput";
 import { WebsitePreview } from "@/components/WebsitePreview";
 import { AnalysisPanel } from "@/components/AnalysisPanel";
 import { AppHeader } from "@/components/AppHeader";
+import { FeaturesSection } from "@/components/landing/FeaturesSection";
+import { HowItWorksSection } from "@/components/landing/HowItWorksSection";
+import { CategoriesSection } from "@/components/landing/CategoriesSection";
+import { StatsSection } from "@/components/landing/StatsSection";
+import { UseCasesSection } from "@/components/landing/UseCasesSection";
+import { FAQSection } from "@/components/landing/FAQSection";
+import { CTASection } from "@/components/landing/CTASection";
 import { scrapeWebsite, analyzeWebsite, ScrapeResult, AnalysisResult } from "@/lib/api";
 import { generateAnalysisPDF } from "@/lib/pdf";
 import { useToast } from "@/hooks/use-toast";
@@ -26,6 +33,11 @@ const Index = () => {
   const [currentUrl, setCurrentUrl] = useState("");
   const { toast } = useToast();
   const { user } = useAuth();
+  const inputRef = useRef<HTMLDivElement>(null);
+
+  const scrollToInput = () => {
+    inputRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+  };
 
   const handleAnalyze = async (url: string) => {
     setCurrentUrl(url);
