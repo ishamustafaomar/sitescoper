@@ -25,11 +25,6 @@ const FREE_ANALYSIS_KEY = "sitescoper_free_analysis_used";
 
 type Step = "idle" | "scraping" | "analyzing" | "done";
 
-const stepsInfo = [
-  { key: "scraping", label: "Crawling website", icon: Link2 },
-  { key: "analyzing", label: "AI analyzing", icon: Sparkles },
-];
-
 const Index = () => {
   const [step, setStep] = useState<Step>("idle");
   const [scrapeData, setScrapeData] = useState<ScrapeResult | null>(null);
