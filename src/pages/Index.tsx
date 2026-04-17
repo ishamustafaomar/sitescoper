@@ -83,6 +83,10 @@ const Index = () => {
             image_suggestions: result.image_suggestions,
             site_category: result.site_category,
             category_rationale: result.category_rationale,
+            benchmark_percentile: result.benchmark_percentile,
+            benchmark_label: result.benchmark_label,
+            peer_examples: result.peer_examples,
+            action_plan: result.action_plan,
           } as any,
         } as any);
       } else {
