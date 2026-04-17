@@ -1,5 +1,5 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import { Sparkles, LayoutDashboard, LogOut, LogIn, Shield } from "lucide-react";
+import { Sparkles, LayoutDashboard, LogOut, LogIn, Shield, Home } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { useAuth } from "@/components/AuthProvider";
