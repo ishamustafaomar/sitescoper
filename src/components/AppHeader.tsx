@@ -1,5 +1,5 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import { Sparkles, LayoutDashboard, LogOut, LogIn, Shield } from "lucide-react";
+import { Sparkles, LayoutDashboard, LogOut, LogIn, Shield, Home } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { useAuth } from "@/components/AuthProvider";
@@ -34,15 +34,15 @@ export function AppHeader() {
         </button>
 
         <div className="flex items-center gap-2">
-          {user && location.pathname !== "/" && (
+          {location.pathname !== "/" && (
             <Button
               variant="ghost"
               size="sm"
               onClick={() => navigate("/")}
               className="text-xs font-body"
             >
-              <Sparkles className="h-3.5 w-3.5" />
-              Analyzer
+              <Home className="h-3.5 w-3.5" />
+              Home
             </Button>
           )}
           {user && location.pathname !== "/dashboard" && (
