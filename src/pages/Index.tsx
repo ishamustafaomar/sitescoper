@@ -234,7 +234,7 @@ const Index = () => {
                     AI Analysis
                   </h3>
                   {analysis ? (
-                    <AnalysisPanel analysis={analysis} />
+                    <AnalysisPanel analysis={analysis} scrapeData={scrapeData ?? undefined} />
                   ) : step === "analyzing" ? null : (
                     <div className="flex items-center gap-2 text-muted-foreground text-sm font-body p-4">
                       <AlertCircle className="h-4 w-4" />
