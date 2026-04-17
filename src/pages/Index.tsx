@@ -5,6 +5,7 @@ import { Sparkles, AlertCircle, ExternalLink, Link2, FileText, Download, Lock } 
 import { UrlInput } from "@/components/UrlInput";
 import { WebsitePreview } from "@/components/WebsitePreview";
 import { AnalysisPanel } from "@/components/AnalysisPanel";
+import { AnalysisSkeleton } from "@/components/AnalysisSkeleton";
 import { AppHeader } from "@/components/AppHeader";
 import { FeaturesSection } from "@/components/landing/FeaturesSection";
 import { HowItWorksSection } from "@/components/landing/HowItWorksSection";
