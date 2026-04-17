@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, AlertCircle, ExternalLink, Link2, FileText, Download } from "lucide-react";
+import { Sparkles, AlertCircle, ExternalLink, Link2, FileText, Download, Lock } from "lucide-react";
 import { UrlInput } from "@/components/UrlInput";
 import { WebsitePreview } from "@/components/WebsitePreview";
 import { AnalysisPanel } from "@/components/AnalysisPanel";
@@ -18,6 +19,8 @@ import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/components/AuthProvider";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
+
+const FREE_ANALYSIS_KEY = "sitescoper_free_analysis_used";
 
 type Step = "idle" | "scraping" | "analyzing" | "done";
 
