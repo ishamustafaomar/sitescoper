@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { AppHeader } from "@/components/AppHeader";
 import { AnalysisPanel } from "@/components/AnalysisPanel";
 import { supabase } from "@/integrations/supabase/client";
-import { AnalysisResult } from "@/lib/api";
+import { AnalysisResult, ScrapeResult } from "@/lib/api";
 import { generateAnalysisPDF } from "@/lib/pdf";
 
 export default function AnalysisDetail() {
@@ -69,7 +69,18 @@ export default function AnalysisDetail() {
     overall_score: record.overall_score,
     summary: record.summary || "",
     categories: record.categories as any[],
+    site_category: record.scrape_data?.site_category,
+    category_rationale: record.scrape_data?.category_rationale,
+    image_suggestions: record.scrape_data?.image_suggestions,
   };
+  const scrapeData: ScrapeResult | undefined = record.scrape_data
+    ? {
+        screenshot: record.scrape_data.screenshot,
+        metadata: record.scrape_data.metadata,
+        links: record.scrape_data.links,
+        images: record.scrape_data.images,
+      }
+    : undefined;
 
   return (
     <div className="min-h-screen bg-background">
@@ -94,7 +105,7 @@ export default function AnalysisDetail() {
         </div>
 
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-          <AnalysisPanel analysis={analysis} />
+          <AnalysisPanel analysis={analysis} scrapeData={scrapeData} />
         </motion.div>
       </main>
     </div>

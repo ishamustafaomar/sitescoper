@@ -5,6 +5,7 @@ import { Sparkles, AlertCircle, ExternalLink, Link2, FileText, Download, Lock } 
 import { UrlInput } from "@/components/UrlInput";
 import { WebsitePreview } from "@/components/WebsitePreview";
 import { AnalysisPanel } from "@/components/AnalysisPanel";
+import { AnalysisSkeleton } from "@/components/AnalysisSkeleton";
 import { AppHeader } from "@/components/AppHeader";
 import { FeaturesSection } from "@/components/landing/FeaturesSection";
 import { HowItWorksSection } from "@/components/landing/HowItWorksSection";
@@ -23,11 +24,6 @@ import { Button } from "@/components/ui/button";
 const FREE_ANALYSIS_KEY = "sitescoper_free_analysis_used";
 
 type Step = "idle" | "scraping" | "analyzing" | "done";
-
-const stepsInfo = [
-  { key: "scraping", label: "Crawling website", icon: Link2 },
-  { key: "analyzing", label: "AI analyzing", icon: Sparkles },
-];
 
 const Index = () => {
   const [step, setStep] = useState<Step>("idle");
@@ -67,7 +63,7 @@ const Index = () => {
       setScrapeData(data);
 
       setStep("analyzing");
-      const result = await analyzeWebsite(data.markdown || "", url);
+      const result = await analyzeWebsite(data.markdown || "", url, data.images);
       setAnalysis(result);
       setStep("done");
 
@@ -79,7 +75,15 @@ const Index = () => {
           overall_score: result.overall_score,
           summary: result.summary,
           categories: result.categories as any,
-          scrape_data: { screenshot: data.screenshot, metadata: data.metadata, links: data.links } as any,
+          scrape_data: {
+            screenshot: data.screenshot,
+            metadata: data.metadata,
+            links: data.links,
+            images: data.images,
+            image_suggestions: result.image_suggestions,
+            site_category: result.site_category,
+            category_rationale: result.category_rationale,
+          } as any,
         } as any);
       } else {
         localStorage.setItem(FREE_ANALYSIS_KEY, "true");
@@ -149,52 +153,10 @@ const Index = () => {
           <UrlInput onSubmit={handleAnalyze} isLoading={isLoading} />
         </div>
 
-        {/* Loading state */}
+        {/* Loading state — skeleton matches final layout */}
         <AnimatePresence>
           {isLoading && (
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0 }}
-              className="flex flex-col items-center py-16 space-y-6"
-            >
-              <div className="flex gap-2">
-                {[0, 1, 2].map((i) => (
-                  <motion.div
-                    key={i}
-                    className="h-3 w-3 rounded-full gradient-primary"
-                    animate={{ y: [0, -12, 0] }}
-                    transition={{ duration: 0.6, delay: i * 0.15, repeat: Infinity, repeatDelay: 0.3 }}
-                  />
-                ))}
-              </div>
-              <div className="flex flex-col gap-3">
-                {stepsInfo.map((s) => {
-                  const isActive = step === s.key;
-                  const isDone = s.key === "scraping" && step === "analyzing";
-                  const Icon = s.icon;
-                  return (
-                    <div
-                      key={s.key}
-                      className={`flex items-center gap-2.5 text-sm font-body transition-all duration-300 ${
-                        isActive ? "text-primary font-medium" : isDone ? "text-accent" : "text-muted-foreground/50"
-                      }`}
-                    >
-                      <Icon className="h-4 w-4" />
-                      {s.label}
-                      {isDone && <span className="text-accent">✓</span>}
-                      {isActive && (
-                        <motion.div
-                          className="h-1.5 w-1.5 rounded-full bg-primary"
-                          animate={{ opacity: [1, 0.3, 1] }}
-                          transition={{ duration: 1, repeat: Infinity }}
-                        />
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
-            </motion.div>
+            <AnalysisSkeleton step={step as "scraping" | "analyzing"} />
           )}
         </AnimatePresence>
 
@@ -275,7 +237,7 @@ const Index = () => {
                     AI Analysis
                   </h3>
                   {analysis ? (
-                    <AnalysisPanel analysis={analysis} />
+                    <AnalysisPanel analysis={analysis} scrapeData={scrapeData ?? undefined} />
                   ) : step === "analyzing" ? null : (
                     <div className="flex items-center gap-2 text-muted-foreground text-sm font-body p-4">
                       <AlertCircle className="h-4 w-4" />

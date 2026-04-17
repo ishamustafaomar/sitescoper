@@ -79,6 +79,39 @@ async function firecrawlRequest(path: string, body: object, apiKey: string) {
   return data;
 }
 
+// Extract <img> tags from HTML, returning {src, alt, context} for visual overlay analysis
+function extractImages(html: string, baseUrl: string): { src: string; alt: string; context: string }[] {
+  if (!html) return [];
+  const results: { src: string; alt: string; context: string }[] = [];
+  const seen = new Set<string>();
+  const base = (() => { try { return new URL(baseUrl); } catch { return null; } })();
+
+  // Match <img ...> tags
+  const imgRegex = /<img\b([^>]*)>/gi;
+  let match;
+  while ((match = imgRegex.exec(html)) !== null) {
+    const attrs = match[1];
+    const srcMatch = attrs.match(/\bsrc\s*=\s*["']([^"']+)["']/i);
+    const altMatch = attrs.match(/\balt\s*=\s*["']([^"']*)["']/i);
+    if (!srcMatch) continue;
+    let src = srcMatch[1].trim();
+    if (!src || src.startsWith("data:")) continue;
+    // Resolve relative URLs
+    if (base) {
+      try { src = new URL(src, base).toString(); } catch { /* skip */ }
+    }
+    if (seen.has(src)) continue;
+    seen.add(src);
+
+    // Try to grab a small text context (next 80 chars after the tag, stripped of tags)
+    const after = html.slice(match.index + match[0].length, match.index + match[0].length + 200);
+    const context = after.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim().slice(0, 80);
+
+    results.push({ src, alt: altMatch?.[1] ?? "", context });
+  }
+  return results;
+}
+
 serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
@@ -159,6 +192,9 @@ serve(async (req) => {
       .map((p) => `\n\n===== PAGE: ${p.title} (${p.url}) =====\n\n${p.markdown}`)
       .join("\n");
 
+    // Extract images from homepage HTML for visual overlay analysis
+    const images = extractImages(homeResult.html || "", url).slice(0, 30);
+
     return new Response(JSON.stringify({
       success: true,
       data: {
@@ -169,6 +205,7 @@ serve(async (req) => {
         pages: pages.map((p) => ({ url: p.url, title: p.title })),
         pagesCount: pages.length,
         siteUrlsDiscovered: siteUrls.length,
+        images,
       },
     }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
