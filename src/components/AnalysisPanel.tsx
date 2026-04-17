@@ -1,12 +1,15 @@
 import { motion } from "framer-motion";
 import { AnalysisResult, ScrapeResult } from "@/lib/api";
 import { Badge } from "@/components/ui/badge";
-import { ChevronDown, ChevronUp, TrendingUp, TrendingDown, Minus, LayoutList, Zap, Image as ImageIcon } from "lucide-react";
+import { ChevronDown, ChevronUp, LayoutList, Zap, Image as ImageIcon, Calendar } from "lucide-react";
 import { useState } from "react";
 import { ScoreRing } from "@/components/ScoreRing";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ImpactMatrix } from "@/components/ImpactMatrix";
 import { VisualOverlayView } from "@/components/VisualOverlayView";
+import { SuggestionCard } from "@/components/SuggestionCard";
+import { ActionPlanView } from "@/components/ActionPlanView";
+import { BenchmarkCard } from "@/components/BenchmarkCard";
 
 interface AnalysisPanelProps {
   analysis: AnalysisResult;
@@ -30,27 +33,10 @@ function MiniScoreBar({ score }: { score: number }) {
   );
 }
 
-const priorityConfig: Record<string, { class: string; icon: typeof TrendingUp }> = {
-  high: { class: "bg-destructive/10 text-destructive border-destructive/20", icon: TrendingUp },
-  medium: { class: "bg-primary/10 text-primary border-primary/20", icon: Minus },
-  low: { class: "bg-accent/10 text-accent border-accent/20", icon: TrendingDown },
-};
-
-const typeLabels: Record<string, string> = {
-  ux: "UX", content: "Content", seo: "SEO",
-  performance: "Perf", accessibility: "A11y", design: "Design",
-  product: "Product", strategy: "Strategy", business: "Business", growth: "Growth",
-};
-
 const categoryLabels: Record<string, string> = {
-  saas: "SaaS product",
-  marketing: "Marketing site",
-  ecommerce: "E-commerce",
-  blog: "Blog",
-  docs: "Documentation",
-  portfolio: "Portfolio",
-  community: "Community/Directory",
-  other: "Website",
+  saas: "SaaS product", marketing: "Marketing site", ecommerce: "E-commerce",
+  blog: "Blog", docs: "Documentation", portfolio: "Portfolio",
+  community: "Community/Directory", other: "Website",
 };
 
 const categoryColors: Record<string, string> = {
@@ -69,6 +55,7 @@ export function AnalysisPanel({ analysis, scrapeData }: AnalysisPanelProps) {
 
   const totalSuggestions = analysis.categories.reduce((sum, c) => sum + c.suggestions.length, 0);
   const hasImageSuggestions = (analysis.image_suggestions?.length ?? 0) > 0 || (scrapeData?.images?.length ?? 0) > 0;
+  const hasActionPlan = (analysis.action_plan?.days?.length ?? 0) > 0;
 
   return (
     <motion.div
@@ -114,9 +101,17 @@ export function AnalysisPanel({ analysis, scrapeData }: AnalysisPanelProps) {
         </div>
       </div>
 
-      {/* Tabs: Categories | Impact Matrix | Visual */}
-      <Tabs defaultValue="categories" className="w-full">
-        <TabsList className="grid w-full grid-cols-3">
+      {/* Benchmark card */}
+      <BenchmarkCard analysis={analysis} />
+
+      {/* Tabs */}
+      <Tabs defaultValue={hasActionPlan ? "plan" : "categories"} className="w-full">
+        <TabsList className="grid w-full grid-cols-4">
+          <TabsTrigger value="plan" className="gap-1.5 text-xs" disabled={!hasActionPlan}>
+            <Calendar className="h-3.5 w-3.5" />
+            <span className="hidden sm:inline">Action Plan</span>
+            <span className="sm:hidden">Plan</span>
+          </TabsTrigger>
           <TabsTrigger value="categories" className="gap-1.5 text-xs">
             <LayoutList className="h-3.5 w-3.5" />
             <span className="hidden sm:inline">Categories</span>
@@ -124,7 +119,7 @@ export function AnalysisPanel({ analysis, scrapeData }: AnalysisPanelProps) {
           </TabsTrigger>
           <TabsTrigger value="matrix" className="gap-1.5 text-xs">
             <Zap className="h-3.5 w-3.5" />
-            <span className="hidden sm:inline">Impact Matrix</span>
+            <span className="hidden sm:inline">Matrix</span>
             <span className="sm:hidden">Matrix</span>
             {totalSuggestions > 0 && (
               <Badge variant="secondary" className="ml-0.5 px-1.5 text-[9px] h-4">{totalSuggestions}</Badge>
@@ -135,6 +130,17 @@ export function AnalysisPanel({ analysis, scrapeData }: AnalysisPanelProps) {
             Visual
           </TabsTrigger>
         </TabsList>
+
+        {/* Action Plan tab */}
+        <TabsContent value="plan" className="mt-4">
+          {hasActionPlan && analysis.action_plan ? (
+            <ActionPlanView plan={analysis.action_plan} />
+          ) : (
+            <div className="bg-card rounded-xl border border-border p-6 text-center text-sm text-muted-foreground font-body">
+              No action plan generated for this analysis.
+            </div>
+          )}
+        </TabsContent>
 
         {/* Categories tab */}
         <TabsContent value="categories" className="space-y-2 mt-4">
@@ -150,20 +156,20 @@ export function AnalysisPanel({ analysis, scrapeData }: AnalysisPanelProps) {
                 onClick={() => setExpandedCategory(expandedCategory === idx ? null : idx)}
                 className="w-full flex items-center justify-between p-4 hover:bg-muted/50 transition-colors"
               >
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 min-w-0">
                   <span className="text-lg">{category.icon}</span>
-                  <span className="font-heading font-semibold text-sm">{category.name}</span>
-                  <Badge variant="secondary" className="text-[10px] font-body">
+                  <span className="font-heading font-semibold text-sm truncate">{category.name}</span>
+                  <Badge variant="secondary" className="text-[10px] font-body shrink-0">
                     {category.score}/100
                   </Badge>
-                  <Badge variant="outline" className="text-[10px] font-body">
+                  <Badge variant="outline" className="text-[10px] font-body shrink-0 hidden sm:inline-flex">
                     {category.suggestions.length} tips
                   </Badge>
                 </div>
                 {expandedCategory === idx ? (
-                  <ChevronUp className="h-4 w-4 text-muted-foreground" />
+                  <ChevronUp className="h-4 w-4 text-muted-foreground shrink-0" />
                 ) : (
-                  <ChevronDown className="h-4 w-4 text-muted-foreground" />
+                  <ChevronDown className="h-4 w-4 text-muted-foreground shrink-0" />
                 )}
               </button>
 
@@ -174,28 +180,25 @@ export function AnalysisPanel({ analysis, scrapeData }: AnalysisPanelProps) {
                   transition={{ duration: 0.25 }}
                   className="border-t border-border"
                 >
-                  <div className="p-4 space-y-2.5">
-                    {category.suggestions.map((suggestion, sIdx) => {
-                      const config = priorityConfig[suggestion.priority] || priorityConfig.medium;
-                      return (
-                        <div key={sIdx} className="p-3 rounded-lg bg-muted/30 space-y-2 hover:bg-muted/50 transition-colors">
-                          <div className="flex items-start justify-between gap-2">
-                            <h4 className="font-heading font-medium text-sm leading-snug">{suggestion.title}</h4>
-                            <div className="flex gap-1 shrink-0 flex-wrap justify-end">
-                              <Badge variant="outline" className={`text-[10px] px-1.5 ${config.class}`}>
-                                {suggestion.priority}
-                              </Badge>
-                              <Badge variant="outline" className="text-[10px] px-1.5">
-                                {typeLabels[suggestion.type] || suggestion.type}
-                              </Badge>
-                            </div>
+                  {/* Sub-scores */}
+                  {category.sub_scores && category.sub_scores.length > 0 && (
+                    <div className="p-4 bg-muted/20 border-b border-border space-y-2">
+                      <div className="text-[10px] font-body uppercase tracking-wider text-muted-foreground">Sub-scores</div>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1.5">
+                        {category.sub_scores.map((s) => (
+                          <div key={s.name} className="flex items-center justify-between gap-2 text-xs font-body">
+                            <span className="text-muted-foreground truncate">{s.name}</span>
+                            <MiniScoreBar score={s.score} />
                           </div>
-                          <p className="text-xs text-muted-foreground font-body leading-relaxed">
-                            {suggestion.description}
-                          </p>
-                        </div>
-                      );
-                    })}
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="p-4 space-y-2.5">
+                    {category.suggestions.map((suggestion, sIdx) => (
+                      <SuggestionCard key={sIdx} suggestion={suggestion} />
+                    ))}
                   </div>
                 </motion.div>
               )}
