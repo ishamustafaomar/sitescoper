@@ -284,6 +284,28 @@ const Index = () => {
                   )}
                 </div>
               </div>
+
+              {/* Free-analysis upsell — only when anon user just completed their free analysis */}
+              {!user && hasUsedFreeAnalysis && analysis && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                  className="bg-gradient-to-br from-primary/10 via-primary/5 to-transparent border border-primary/20 rounded-2xl p-6 text-center space-y-3"
+                >
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/15 text-primary text-xs font-body">
+                    <Lock className="h-3 w-3" />
+                    That was your free analysis
+                  </div>
+                  <h3 className="text-xl font-heading font-bold">Sign up free to keep going</h3>
+                  <p className="text-sm text-muted-foreground font-body max-w-md mx-auto">
+                    Save your history, track scores over time, and analyze unlimited websites — no credit card required.
+                  </p>
+                  <Button variant="hero" onClick={() => navigate("/auth")} className="mt-2">
+                    Create free account
+                  </Button>
+                </motion.div>
+              )}
             </motion.div>
           )}
         </AnimatePresence>
@@ -303,8 +325,12 @@ const Index = () => {
       )}
 
       <footer className="border-t border-border mt-8 py-8">
-        <div className="max-w-6xl mx-auto px-4 text-center text-xs text-muted-foreground font-body">
-          SiteScoper — AI-powered website analysis
+        <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted-foreground font-body">
+          <div>SiteScoper — AI-powered website analysis</div>
+          <nav className="flex items-center gap-5">
+            <Link to="/privacy" className="hover:text-foreground transition-colors">Privacy</Link>
+            <Link to="/terms" className="hover:text-foreground transition-colors">Terms</Link>
+          </nav>
         </div>
       </footer>
     </div>
