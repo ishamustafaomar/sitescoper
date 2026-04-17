@@ -34,15 +34,15 @@ export function AppHeader() {
         </button>
 
         <div className="flex items-center gap-2">
-          {user && location.pathname !== "/" && (
+          {location.pathname !== "/" && (
             <Button
               variant="ghost"
               size="sm"
               onClick={() => navigate("/")}
               className="text-xs font-body"
             >
-              <Sparkles className="h-3.5 w-3.5" />
-              Analyzer
+              <Home className="h-3.5 w-3.5" />
+              Home
             </Button>
           )}
           {user && location.pathname !== "/dashboard" && (
