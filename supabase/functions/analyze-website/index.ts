@@ -89,17 +89,26 @@ Return ONLY valid JSON:
   ]
 }
 
-## Categories (in this order — product/strategy first, SEO last)
+## Categories (in this order — product/strategy first, technical last)
 1. **Product & Value Prop** 🎯 — What it does, who it's for, why it matters. Is the core value obvious?
 2. **Positioning & Market Fit** 📊 — Competitive landscape, differentiation, target audience clarity, market opportunity
-3. **Messaging & Copy** ✍️ — Headlines, subheads, body copy, button copy. Does it sell? Does it sound human?
-4. **Trust & Credibility** 🛡️ — Social proof, testimonials, logos, founder presence, case studies — does this feel real
-5. **Conversion & Funnel** 💰 — CTAs, pricing clarity, signup friction, what visitors are pushed to do next
-6. **Visual Design & Brand** 🎨 — Aesthetic, originality, brand coherence, does it look premium or generic
-7. **UX & Navigation** 🧭 — Cross-page flow, mobile, IA, can people find what they need
-8. **Technical & SEO** ⚙️ — Meta, headings, performance, accessibility — keep this BRIEF unless something is genuinely broken
+3. **Copy & Messaging** ✍️ — Headlines, subheads, body copy, button copy. Does it sell? Does it sound human?
+4. **Trust & Credibility** 🛡️ — Social proof, testimonials, logos, founder presence, case studies
+5. **Conversion** 💰 — CTAs, pricing clarity, signup friction, what visitors are pushed to do next
+6. **User Flow** 🧭 — Cross-page journey, IA, can people get from landing to value without dead ends
+7. **Onboarding & First-Run** 🚀 — Signup friction, first-time experience, time-to-value, empty states
+8. **UI/UX Design** 🎨 — Visual hierarchy, layout, interaction patterns, usability
+9. **Polish & Feel** ✨ — Craft, attention to detail, micro-interactions, does it feel premium or rushed
+10. **Mobile Experience** 📱 — Responsive layout, touch targets, mobile-specific friction
+11. **Performance** ⚡ — Load speed signals, image weight, render-blocking, perceived performance
+12. **Accessibility** ♿ — Contrast, alt text, semantic HTML, keyboard nav, screen reader support
+13. **SEO & Discovery** 🔍 — Meta tags, headings, structured data, indexability — keep BRIEF unless broken
+14. **Feature Ideas** 💡 — Concrete features or sections this site is missing that would meaningfully help
+15. **Bug & QA Risks** 🐛 — Visible bugs, broken links, typos, layout glitches, things that look unfinished
+16. **App Logic & Rules** 🧠 — If it's an app: business rules, edge cases, logic gaps you can infer from the UI
+17. **Security & Privacy** 🔒 — Trust signals around data handling, privacy policy, security indicators, sketchy patterns
 
-For each category give 2-4 suggestions. Don't pad. If a category is genuinely strong, give 1-2 short suggestions and a high score. If it's broken, be specific about what's broken and what to do.
+For each category give 2-4 suggestions. Don't pad. If a category is genuinely strong, give 1-2 short suggestions and a high score. If it's broken, be specific. If a category genuinely doesn't apply (e.g. App Logic on a pure marketing site), skip it rather than padding.
 
 Remember: you are a human advisor, not a checklist generator. The founder should read your feedback and feel like "damn, that's a real take I needed to hear".`,
           },
