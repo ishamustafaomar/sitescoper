@@ -125,7 +125,9 @@ const Index = () => {
         </AnimatePresence>
 
         {/* URL Input */}
-        <UrlInput onSubmit={handleAnalyze} isLoading={isLoading} />
+        <div ref={inputRef}>
+          <UrlInput onSubmit={handleAnalyze} isLoading={isLoading} />
+        </div>
 
         {/* Loading state */}
         <AnimatePresence>
