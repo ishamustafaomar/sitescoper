@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, AlertCircle, ExternalLink, Link2, FileText, Download } from "lucide-react";
+import { Sparkles, AlertCircle, ExternalLink, Link2, FileText, Download, Lock } from "lucide-react";
 import { UrlInput } from "@/components/UrlInput";
 import { WebsitePreview } from "@/components/WebsitePreview";
 import { AnalysisPanel } from "@/components/AnalysisPanel";
@@ -19,6 +20,8 @@ import { useAuth } from "@/components/AuthProvider";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 
+const FREE_ANALYSIS_KEY = "sitescoper_free_analysis_used";
+
 type Step = "idle" | "scraping" | "analyzing" | "done";
 
 const stepsInfo = [
@@ -34,12 +37,26 @@ const Index = () => {
   const { toast } = useToast();
   const { user } = useAuth();
   const inputRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
+  const [hasUsedFreeAnalysis, setHasUsedFreeAnalysis] = useState(
+    () => typeof window !== "undefined" && localStorage.getItem(FREE_ANALYSIS_KEY) === "true"
+  );
 
   const scrollToInput = () => {
     inputRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
   };
 
   const handleAnalyze = async (url: string) => {
+    // Free-tier gate: anon users get 1 free analysis, then must sign up
+    if (!user && hasUsedFreeAnalysis) {
+      toast({
+        title: "Free analysis used",
+        description: "Sign up free to keep analyzing websites and save your history.",
+      });
+      navigate("/auth");
+      return;
+    }
+
     setCurrentUrl(url);
     setScrapeData(null);
     setAnalysis(null);
@@ -54,7 +71,7 @@ const Index = () => {
       setAnalysis(result);
       setStep("done");
 
-      // Save to history if logged in
+      // Save to history if logged in, otherwise mark free analysis as used
       if (user) {
         await supabase.from("analysis_history").insert({
           user_id: user.id,
@@ -64,6 +81,9 @@ const Index = () => {
           categories: result.categories as any,
           scrape_data: { screenshot: data.screenshot, metadata: data.metadata, links: data.links } as any,
         } as any);
+      } else {
+        localStorage.setItem(FREE_ANALYSIS_KEY, "true");
+        setHasUsedFreeAnalysis(true);
       }
     } catch (err: any) {
       console.error(err);
@@ -264,6 +284,28 @@ const Index = () => {
                   )}
                 </div>
               </div>
+
+              {/* Free-analysis upsell — only when anon user just completed their free analysis */}
+              {!user && hasUsedFreeAnalysis && analysis && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                  className="bg-gradient-to-br from-primary/10 via-primary/5 to-transparent border border-primary/20 rounded-2xl p-6 text-center space-y-3"
+                >
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/15 text-primary text-xs font-body">
+                    <Lock className="h-3 w-3" />
+                    That was your free analysis
+                  </div>
+                  <h3 className="text-xl font-heading font-bold">Sign up free to keep going</h3>
+                  <p className="text-sm text-muted-foreground font-body max-w-md mx-auto">
+                    Save your history, track scores over time, and analyze unlimited websites — no credit card required.
+                  </p>
+                  <Button variant="hero" onClick={() => navigate("/auth")} className="mt-2">
+                    Create free account
+                  </Button>
+                </motion.div>
+              )}
             </motion.div>
           )}
         </AnimatePresence>
@@ -283,8 +325,12 @@ const Index = () => {
       )}
 
       <footer className="border-t border-border mt-8 py-8">
-        <div className="max-w-6xl mx-auto px-4 text-center text-xs text-muted-foreground font-body">
-          SiteScoper — AI-powered website analysis
+        <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted-foreground font-body">
+          <div>SiteScoper — AI-powered website analysis</div>
+          <nav className="flex items-center gap-5">
+            <Link to="/privacy" className="hover:text-foreground transition-colors">Privacy</Link>
+            <Link to="/terms" className="hover:text-foreground transition-colors">Terms</Link>
+          </nav>
         </div>
       </footer>
     </div>
