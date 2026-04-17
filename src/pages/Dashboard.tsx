@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { Globe, Clock, Search, Sparkles, Loader2 } from "lucide-react";
+import { Globe, Clock, Search, Sparkles, Loader2, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useAuth } from "@/components/AuthProvider";
@@ -135,6 +135,19 @@ export default function Dashboard() {
         )
       : null;
 
+  // Build score history per website (oldest -> newest) for sparklines
+  const historyByWebsite = useMemo(() => {
+    const map = new Map<string, number[]>();
+    // history is sorted newest -> oldest from the query; reverse for oldest -> newest
+    [...history].reverse().forEach((h) => {
+      if (!h.website_id) return;
+      const arr = map.get(h.website_id) ?? [];
+      arr.push(h.overall_score);
+      map.set(h.website_id, arr);
+    });
+    return map;
+  }, [history]);
+
   if (loading) {
     return (
       <div className="min-h-screen bg-background">
@@ -177,9 +190,18 @@ export default function Dashboard() {
           </h2>
 
           {websites.length === 0 ? (
-            <div className="bg-card rounded-xl border border-border p-12 text-center shadow-[var(--shadow-sm)]">
-              <Globe className="h-10 w-10 text-muted-foreground/30 mx-auto mb-3" />
-              <p className="text-muted-foreground font-body">No websites tracked yet. Add one above!</p>
+            <div className="bg-gradient-to-br from-card to-muted/30 rounded-2xl border border-dashed border-border p-12 text-center shadow-[var(--shadow-sm)]">
+              <div className="inline-flex p-3 rounded-2xl bg-primary/10 mb-4">
+                <Globe className="h-8 w-8 text-primary" />
+              </div>
+              <h3 className="font-heading font-semibold text-base mb-1">No websites tracked yet</h3>
+              <p className="text-muted-foreground font-body text-sm mb-4 max-w-xs mx-auto">
+                Add your first website above to track score trends over time and get re-analysis with one click.
+              </p>
+              <div className="inline-flex items-center gap-1.5 text-xs text-muted-foreground/80 font-body">
+                <Plus className="h-3 w-3" />
+                Use the form above to start
+              </div>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -192,6 +214,7 @@ export default function Dashboard() {
                     onAnalyze={() => analyzeTrackedWebsite(website)}
                     onDelete={() => deleteWebsite(website.id)}
                     onViewSEO={() => setSeoWebsiteId(seoWebsiteId === website.id ? null : website.id)}
+                    scoreHistory={historyByWebsite.get(website.id)}
                   />
                 ))}
               </AnimatePresence>
@@ -207,9 +230,14 @@ export default function Dashboard() {
           </h2>
 
           {history.length === 0 ? (
-            <div className="bg-card rounded-xl border border-border p-12 text-center shadow-[var(--shadow-sm)]">
-              <Search className="h-10 w-10 text-muted-foreground/30 mx-auto mb-3" />
-              <p className="text-muted-foreground font-body">No analyses yet. Analyze a website to see history here.</p>
+            <div className="bg-gradient-to-br from-card to-muted/30 rounded-2xl border border-dashed border-border p-12 text-center shadow-[var(--shadow-sm)]">
+              <div className="inline-flex p-3 rounded-2xl bg-accent/10 mb-4">
+                <Search className="h-8 w-8 text-accent" />
+              </div>
+              <h3 className="font-heading font-semibold text-base mb-1">No analyses yet</h3>
+              <p className="text-muted-foreground font-body text-sm max-w-xs mx-auto">
+                Run your first scan from the analyzer or click "Analyze" on a tracked website.
+              </p>
             </div>
           ) : (
             <div className="bg-card rounded-xl border border-border overflow-hidden shadow-[var(--shadow-sm)]">
