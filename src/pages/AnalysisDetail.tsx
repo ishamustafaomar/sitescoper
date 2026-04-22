@@ -5,6 +5,8 @@ import { ArrowLeft, Download, Loader2, Share2, Check, Copy } from "lucide-react"
 import { Button } from "@/components/ui/button";
 import { AppHeader } from "@/components/AppHeader";
 import { AnalysisPanel } from "@/components/AnalysisPanel";
+import { ChatPanel } from "@/components/ChatPanel";
+import { ScoreTrendChart } from "@/components/ScoreTrendChart";
 import { supabase } from "@/integrations/supabase/client";
 import { AnalysisResult, ScrapeResult } from "@/lib/api";
 import { generateAnalysisPDF } from "@/lib/pdf";
@@ -126,6 +128,7 @@ export default function AnalysisDetail() {
         metadata: record.scrape_data.metadata,
         links: record.scrape_data.links,
         images: record.scrape_data.images,
+        detectedSections: record.scrape_data.detectedSections,
       }
     : undefined;
 
@@ -177,7 +180,11 @@ export default function AnalysisDetail() {
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
           <AnalysisPanel analysis={analysis} scrapeData={scrapeData} />
         </motion.div>
+
+        <ScoreTrendChart url={record.url} currentId={record.id} />
       </main>
+
+      <ChatPanel analysis={analysis} scrapeData={scrapeData} url={record.url} analysisId={record.id} />
     </div>
   );
 }

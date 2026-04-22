@@ -7,6 +7,7 @@ import { UrlInput } from "@/components/UrlInput";
 import { WebsitePreview } from "@/components/WebsitePreview";
 import { AnalysisPanel } from "@/components/AnalysisPanel";
 import { AnalysisSkeleton } from "@/components/AnalysisSkeleton";
+import { ChatPanel } from "@/components/ChatPanel";
 import { AppHeader } from "@/components/AppHeader";
 import { SignInBenefits } from "@/components/SignInBenefits";
 import { FeaturesSection } from "@/components/landing/FeaturesSection";
@@ -326,6 +327,10 @@ const Index = () => {
           </nav>
         </div>
       </footer>
+
+      {analysis && user && (
+        <ChatPanel analysis={analysis} scrapeData={scrapeData ?? undefined} url={currentUrl} />
+      )}
     </div>
   );
 };
