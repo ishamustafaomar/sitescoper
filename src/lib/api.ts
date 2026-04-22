@@ -26,6 +26,7 @@ export interface ScrapeResult {
   pagesCount?: number;
   siteUrlsDiscovered?: number;
   images?: ScrapedImage[];
+  detectedSections?: { name: string; evidence: string }[];
 }
 
 export type SiteCategory =
@@ -109,10 +110,11 @@ export async function scrapeWebsite(url: string): Promise<ScrapeResult> {
 export async function analyzeWebsite(
   markdown: string,
   url: string,
-  images?: ScrapedImage[]
+  images?: ScrapedImage[],
+  detectedSections?: { name: string; evidence: string }[]
 ): Promise<AnalysisResult> {
   const { data, error } = await supabase.functions.invoke("analyze-website", {
-    body: { markdown, url, images },
+    body: { markdown, url, images, detectedSections },
   });
 
   if (error) throw new Error(error.message || "Failed to analyze website");

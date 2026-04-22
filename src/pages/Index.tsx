@@ -66,7 +66,7 @@ const Index = () => {
       setScrapeData(data);
 
       setStep("analyzing");
-      const result = await analyzeWebsite(data.markdown || "", url, data.images);
+      const result = await analyzeWebsite(data.markdown || "", url, data.images, data.detectedSections);
       setAnalysis(result);
       setStep("done");
 
