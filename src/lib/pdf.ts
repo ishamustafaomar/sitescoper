@@ -2,6 +2,14 @@ import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 import { AnalysisResult } from "@/lib/api";
 
+// jsPDF's built-in helvetica is WinAnsi-only and renders unicode emojis as garbled glyphs
+// (e.g. "🎯" becomes "Ø=ÜÊ"). Strip emojis & symbols before drawing any text.
+const EMOJI_RE = /[\u{1F1E6}-\u{1F1FF}\u{1F300}-\u{1FAFF}\u{2000}-\u{27BF}\u{2B00}-\u{2BFF}\uFE0F\u200D]/gu;
+function clean(s: string | undefined | null): string {
+  if (!s) return "";
+  return s.replace(EMOJI_RE, "").replace(/\s{2,}/g, " ").trim();
+}
+
 export function generateAnalysisPDF(
   analysis: AnalysisResult,
   url: string,
@@ -60,7 +68,7 @@ export function generateAnalysisPDF(
   doc.setTextColor(100, 100, 100);
   doc.setFontSize(9);
   doc.setFont("helvetica", "normal");
-  const summaryLines = doc.splitTextToSize(analysis.summary || "", pageWidth - 65);
+  const summaryLines = doc.splitTextToSize(clean(analysis.summary) || "", pageWidth - 65);
   doc.text(summaryLines, 55, 91);
 
   let yPos = 110 + Math.max(0, (summaryLines.length - 3) * 4);
@@ -88,7 +96,7 @@ export function generateAnalysisPDF(
       yPos += 5;
     }
     if (analysis.benchmark_label) {
-      const lines = doc.splitTextToSize(analysis.benchmark_label, pageWidth - 40);
+      const lines = doc.splitTextToSize(clean(analysis.benchmark_label), pageWidth - 40);
       doc.text(lines, 20, yPos);
       yPos += lines.length * 5;
     }
@@ -112,7 +120,7 @@ export function generateAnalysisPDF(
       doc.setFontSize(9);
       doc.setFont("helvetica", "italic");
       doc.setTextColor(100, 100, 100);
-      const lines = doc.splitTextToSize(analysis.action_plan.headline, pageWidth - 40);
+      const lines = doc.splitTextToSize(clean(analysis.action_plan.headline), pageWidth - 40);
       doc.text(lines, 20, yPos);
       yPos += lines.length * 5 + 2;
     }
@@ -122,8 +130,8 @@ export function generateAnalysisPDF(
       head: [["Day", "Title", "Task", "Time"]],
       body: analysis.action_plan.days.map((d) => [
         `Day ${d.day}`,
-        d.title,
-        d.task,
+        clean(d.title),
+        clean(d.task),
         `${d.estimated_minutes ?? 30}m`,
       ]),
       margin: { left: 20, right: 20 },
@@ -153,11 +161,11 @@ export function generateAnalysisPDF(
     doc.setFont("helvetica", "normal");
     doc.setTextColor(100, 100, 100);
     if (meta.title) {
-      doc.text(`Title: ${meta.title}`, 20, yPos);
+      doc.text(`Title: ${clean(meta.title)}`, 20, yPos);
       yPos += 5;
     }
     if (meta.description) {
-      const descLines = doc.splitTextToSize(`Description: ${meta.description}`, pageWidth - 40);
+      const descLines = doc.splitTextToSize(`Description: ${clean(meta.description)}`, pageWidth - 40);
       doc.text(descLines, 20, yPos);
       yPos += descLines.length * 5 + 2;
     }
@@ -171,14 +179,14 @@ export function generateAnalysisPDF(
     doc.setFontSize(12);
     doc.setFont("helvetica", "bold");
     doc.setTextColor(60, 60, 60);
-    doc.text(`${category.icon} ${category.name} - ${category.score}/100`, 20, yPos);
+    doc.text(`${clean(category.name)} - ${category.score}/100`, 20, yPos);
     yPos += 6;
 
     if (category.sub_scores?.length) {
       doc.setFontSize(8);
       doc.setFont("helvetica", "normal");
       doc.setTextColor(120, 120, 120);
-      const subText = category.sub_scores.map((s) => `${s.name}: ${s.score}`).join("  |  ");
+      const subText = category.sub_scores.map((s) => `${clean(s.name)}: ${s.score}`).join("  |  ");
       const subLines = doc.splitTextToSize(subText, pageWidth - 40);
       doc.text(subLines, 20, yPos);
       yPos += subLines.length * 4 + 2;
@@ -187,9 +195,9 @@ export function generateAnalysisPDF(
     if (category.suggestions.length > 0) {
       const tableData = category.suggestions.map((s) => [
         s.priority.toUpperCase(),
-        s.title,
-        s.description + (s.evidence ? `\n\nEvidence: "${s.evidence}"` : "") +
-          (s.rewrite ? `\n\nBefore: ${s.rewrite.before}\nAfter: ${s.rewrite.after}` : ""),
+        clean(s.title),
+        clean(s.description) + (s.evidence ? `\n\nEvidence: "${clean(s.evidence)}"` : "") +
+          (s.rewrite ? `\n\nBefore: ${clean(s.rewrite.before)}\nAfter: ${clean(s.rewrite.after)}` : ""),
         `${s.impact ?? "med"}/${s.effort ?? "med"}`,
       ]);
 
@@ -234,9 +242,9 @@ export function generateAnalysisPDF(
       head: [["Image", "Current Alt", "Suggested Alt", "Issue"]],
       body: analysis.image_suggestions.map((img) => [
         img.src.length > 40 ? img.src.slice(0, 40) + "..." : img.src,
-        img.current_alt || "(empty)",
-        img.suggested_alt,
-        img.issue,
+        clean(img.current_alt) || "(empty)",
+        clean(img.suggested_alt),
+        clean(img.issue),
       ]),
       margin: { left: 20, right: 20 },
       styles: { fontSize: 7, cellPadding: 2, font: "helvetica" },
