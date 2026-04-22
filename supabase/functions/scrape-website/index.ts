@@ -112,6 +112,71 @@ function extractImages(html: string, baseUrl: string): { src: string; alt: strin
   return results;
 }
 
+// Detect semantic sections on the homepage so the AI doesn't claim missing-when-present
+// (e.g. testimonials, pricing, FAQ). Looks at headings, ids, classes, and section labels.
+const SECTION_PATTERNS: { name: string; pattern: RegExp }[] = [
+  { name: "testimonials", pattern: /testimonial|reviews?|loved by|trusted by|what (our )?(users|customers|clients) say|kind words/i },
+  { name: "pricing", pattern: /pricing|plans?|tiers?|subscriptions?|cost|how much/i },
+  { name: "faq", pattern: /\bfaq\b|frequently asked|questions? & answers?|common questions/i },
+  { name: "features", pattern: /features?|what you get|capabilities|benefits/i },
+  { name: "social_proof", pattern: /as (seen|featured) (in|on)|trusted by|customers|logos|press/i },
+  { name: "cta", pattern: /get started|start free|sign up|try (it )?free|book a (demo|call)|contact us|join now/i },
+  { name: "integrations", pattern: /integrations?|works with|connects? to/i },
+  { name: "case_studies", pattern: /case stud|success stor|customer stor/i },
+  { name: "team", pattern: /our team|meet the team|founders?|about us/i },
+  { name: "blog", pattern: /blog|articles?|recent posts|from the blog/i },
+  { name: "newsletter", pattern: /newsletter|subscribe|stay updated|join our list/i },
+  { name: "comparison", pattern: /compared? to|vs\.|why (us|choose)|alternatives?/i },
+  { name: "stats", pattern: /\b\d{2,}[,.]?\d*\s*(users?|customers?|companies|websites?|reviews?)\b|\b\d+\s*\+\s*(users?|customers?|countries|teams)\b/i },
+  { name: "video_demo", pattern: /watch (the )?(demo|video)|see it in action|product tour/i },
+  { name: "trust_badges", pattern: /soc\s?2|gdpr|hipaa|iso\s?27001|pci|secure by/i },
+};
+
+function detectSections(html: string, markdown: string): { name: string; evidence: string }[] {
+  const found: { name: string; evidence: string }[] = [];
+  if (!html && !markdown) return found;
+
+  // Extract headings (h1-h4) + id/class hints from HTML
+  const headings: string[] = [];
+  if (html) {
+    const headingRe = /<h[1-4][^>]*>([\s\S]*?)<\/h[1-4]>/gi;
+    let m;
+    while ((m = headingRe.exec(html)) !== null) {
+      const text = m[1].replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
+      if (text) headings.push(text);
+    }
+    // section ids/classes
+    const idClassRe = /\b(?:id|class)\s*=\s*["']([^"']+)["']/gi;
+    let m2;
+    while ((m2 = idClassRe.exec(html)) !== null) {
+      const v = m2[1];
+      if (/(testimonial|pricing|faq|feature|integration|case-stud|newsletter|stats?|trust|team|hero|cta)/i.test(v)) {
+        headings.push(v.replace(/[-_]/g, " "));
+      }
+    }
+  }
+
+  // Markdown headings
+  const mdHeadingRe = /^#{1,4}\s+(.+)$/gm;
+  let mm;
+  while ((mm = mdHeadingRe.exec(markdown || "")) !== null) {
+    headings.push(mm[1].trim());
+  }
+
+  const haystack = headings.join(" \n ") + " \n " + (markdown || "").slice(0, 8000);
+
+  for (const { name, pattern } of SECTION_PATTERNS) {
+    const match = haystack.match(pattern);
+    if (match) {
+      // Find a representative snippet (the matching heading if any)
+      const heading = headings.find((h) => pattern.test(h));
+      found.push({ name, evidence: (heading ?? match[0]).slice(0, 120) });
+    }
+  }
+  return found;
+}
+
+
 serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
