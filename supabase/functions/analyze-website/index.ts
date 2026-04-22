@@ -171,7 +171,7 @@ Be a real advisor. Quote actual content. Be specific. Be honest.`,
           },
           {
             role: "user",
-            content: `Analyze this website (${url}):\n\n${truncatedMarkdown}${imageContext}`,
+            content: `Analyze this website (${url}):\n\n${truncatedMarkdown}${sectionContext}${imageContext}`,
           },
         ],
         response_format: { type: "json_object" },
