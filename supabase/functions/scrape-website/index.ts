@@ -130,7 +130,7 @@ const SECTION_PATTERNS: { name: string; pattern: RegExp }[] = [
   { name: "stats", pattern: /\b\d{2,}[,.]?\d*\s*(users?|customers?|companies|websites?|reviews?)\b|\b\d+\s*\+\s*(users?|customers?|countries|teams)\b/i },
   { name: "video_demo", pattern: /watch (the )?(demo|video)|see it in action|product tour/i },
   { name: "trust_badges", pattern: /soc\s?2|gdpr|hipaa|iso\s?27001|pci|secure by/i },
-};
+];
 
 function detectSections(html: string, markdown: string): { name: string; evidence: string }[] {
   const found: { name: string; evidence: string }[] = [];
@@ -260,6 +260,9 @@ serve(async (req) => {
     // Extract images from homepage HTML for visual overlay analysis
     const images = extractImages(homeResult.html || "", url).slice(0, 30);
 
+    // Detect sections on homepage so AI doesn't claim missing-when-present
+    const detectedSections = detectSections(homeResult.html || "", homeResult.markdown || "");
+
     return new Response(JSON.stringify({
       success: true,
       data: {
@@ -271,6 +274,7 @@ serve(async (req) => {
         pagesCount: pages.length,
         siteUrlsDiscovered: siteUrls.length,
         images,
+        detectedSections,
       },
     }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
