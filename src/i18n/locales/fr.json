@@ -1,0 +1,92 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "dashboard": "Tableau de bord",
+    "admin": "Admin",
+    "signIn": "Se connecter",
+    "signOut": "Se déconnecter",
+    "account": "Compte",
+    "language": "Langue"
+  },
+  "hero": {
+    "badge": "Propulsé par Gemini 2.5 Pro · 20+ dimensions d'analyse",
+    "title1": "Un audit",
+    "title2": "brutalement honnête de votre site",
+    "title3": "en moins de 30 secondes.",
+    "subtitle": "Obtenez le retour qu'un partner senior de YC vous donnerait — avec un plan d'action de 7 jours, des benchmarks et des réécritures concrètes prêtes à publier.",
+    "noSignup": "Sans inscription pour le 1er scan",
+    "free": "Gratuit pour toujours",
+    "export": "Export PDF et lien public"
+  },
+  "signin": {
+    "tooltipTitle": "Pourquoi créer un compte gratuit ?",
+    "benefit1": "Sauvegardez et revisitez chaque analyse",
+    "benefit2": "Suivez l'évolution de votre score",
+    "benefit3": "Générez des liens publics",
+    "benefit4": "Analyses illimitées (gratuit, sans CB)",
+    "sectionTitle": "Pourquoi créer un compte gratuit ?",
+    "sectionSubtitle": "SiteScoper est gratuit avec ou sans compte. Un compte débloque simplement plus.",
+    "anonTitle": "Sans compte",
+    "anonItem1": "1 analyse gratuite",
+    "anonItem2": "Aucun historique",
+    "anonItem3": "Export PDF uniquement",
+    "memberTitle": "Avec compte gratuit",
+    "memberItem1": "Analyses illimitées",
+    "memberItem2": "Historique complet et tendances",
+    "memberItem3": "Liens publics",
+    "memberItem4": "Comparer dans le temps",
+    "ctaCreate": "Créer un compte gratuit",
+    "ctaLogin": "Se connecter"
+  },
+  "auth": {
+    "welcomeBack": "Bon retour",
+    "create": "Créez votre compte",
+    "google": "Continuer avec Google",
+    "or": "ou",
+    "fullName": "Nom complet",
+    "email": "E-mail",
+    "password": "Mot de passe",
+    "signIn": "Se connecter",
+    "signUp": "Créer un compte",
+    "noAccount": "Pas encore de compte ?",
+    "hasAccount": "Vous avez déjà un compte ?",
+    "switchSignup": "S'inscrire",
+    "switchLogin": "Se connecter",
+    "consent": "En créant un compte, vous acceptez nos <terms>Conditions</terms> et notre <privacy>Politique de confidentialité</privacy>.",
+    "benefitsTitle": "Avantages du compte gratuit"
+  },
+  "consent": {
+    "title": "Nous respectons votre vie privée",
+    "body": "Nous utilisons des cookies essentiels pour garder votre session et mémoriser votre quota d'analyse gratuit. Avec votre consentement, nous utilisons aussi un peu d'analytique pour améliorer le produit. Lire notre <privacy>Politique de confidentialité</privacy>.",
+    "accept": "Tout accepter",
+    "essential": "Essentiels uniquement",
+    "manage": "En savoir plus"
+  },
+  "account": {
+    "title": "Paramètres du compte",
+    "subtitle": "Gérez vos données et votre vie privée",
+    "profile": "Profil",
+    "email": "E-mail",
+    "language": "Préférence de langue",
+    "dataTitle": "Vos données (RGPD)",
+    "exportTitle": "Exporter vos données",
+    "exportDesc": "Téléchargez une copie JSON de votre profil, vos réponses d'onboarding, vos sites et tout votre historique.",
+    "exportBtn": "Télécharger mes données",
+    "deleteTitle": "Supprimer votre compte",
+    "deleteDesc": "Effacez définitivement votre compte, profil, sites et historique. Cette action est irréversible.",
+    "deleteBtn": "Supprimer mon compte",
+    "confirmTitle": "Êtes-vous absolument sûr ?",
+    "confirmDesc": "Ceci supprimera définitivement votre compte et toutes les données associées. Tapez DELETE pour confirmer.",
+    "confirmPlaceholder": "Tapez DELETE pour confirmer",
+    "cancel": "Annuler",
+    "confirm": "Supprimer définitivement",
+    "deleted": "Compte supprimé",
+    "deletedDesc": "Votre compte et toutes les données associées ont été supprimés.",
+    "exported": "Données exportées"
+  },
+  "footer": {
+    "tagline": "Analyse de sites web par IA",
+    "privacy": "Confidentialité",
+    "terms": "Conditions"
+  }
+}

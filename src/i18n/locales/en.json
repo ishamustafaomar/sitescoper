@@ -1,0 +1,92 @@
+{
+  "nav": {
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "admin": "Admin",
+    "signIn": "Sign In",
+    "signOut": "Sign out",
+    "account": "Account",
+    "language": "Language"
+  },
+  "hero": {
+    "badge": "Powered by Gemini 2.5 Pro · 20+ analysis dimensions",
+    "title1": "A brutally honest",
+    "title2": "audit of your site",
+    "title3": "in under 30 seconds.",
+    "subtitle": "Get the kind of feedback a senior YC partner would give you — with a 7-day action plan, peer benchmarks, and concrete copy rewrites you can ship today.",
+    "noSignup": "No signup for first scan",
+    "free": "Free forever",
+    "export": "PDF & share-link export"
+  },
+  "signin": {
+    "tooltipTitle": "Why create a free account?",
+    "benefit1": "Save & revisit every analysis",
+    "benefit2": "Track score trends over time",
+    "benefit3": "Generate public share links",
+    "benefit4": "Unlimited scans (free, no card)",
+    "sectionTitle": "Why create a free account?",
+    "sectionSubtitle": "SiteScoper is free with or without an account. An account just unlocks more.",
+    "anonTitle": "Without account",
+    "anonItem1": "1 free analysis",
+    "anonItem2": "No history saved",
+    "anonItem3": "PDF export only",
+    "memberTitle": "With free account",
+    "memberItem1": "Unlimited analyses",
+    "memberItem2": "Full history & score trends",
+    "memberItem3": "Public share links",
+    "memberItem4": "Compare scans over time",
+    "ctaCreate": "Create free account",
+    "ctaLogin": "Sign in"
+  },
+  "auth": {
+    "welcomeBack": "Welcome back",
+    "create": "Create your account",
+    "google": "Continue with Google",
+    "or": "or",
+    "fullName": "Full Name",
+    "email": "Email",
+    "password": "Password",
+    "signIn": "Sign In",
+    "signUp": "Create Account",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "switchSignup": "Sign up",
+    "switchLogin": "Sign in",
+    "consent": "By creating an account, you agree to our <terms>Terms</terms> and <privacy>Privacy Policy</privacy>.",
+    "benefitsTitle": "Free account perks"
+  },
+  "consent": {
+    "title": "We respect your privacy",
+    "body": "We use essential cookies to keep you signed in and to remember your free-analysis quota. With your consent, we also use a small amount of analytics to improve the product. Read our <privacy>Privacy Policy</privacy>.",
+    "accept": "Accept all",
+    "essential": "Essential only",
+    "manage": "Learn more"
+  },
+  "account": {
+    "title": "Account settings",
+    "subtitle": "Manage your data and privacy",
+    "profile": "Profile",
+    "email": "Email",
+    "language": "Language preference",
+    "dataTitle": "Your data (GDPR)",
+    "exportTitle": "Export your data",
+    "exportDesc": "Download a JSON copy of your profile, onboarding answers, websites, and full analysis history.",
+    "exportBtn": "Download my data",
+    "deleteTitle": "Delete your account",
+    "deleteDesc": "Permanently erase your account, profile, websites, and all analysis history. This action cannot be undone.",
+    "deleteBtn": "Delete my account",
+    "confirmTitle": "Are you absolutely sure?",
+    "confirmDesc": "This will permanently delete your account and all associated data. Type DELETE below to confirm.",
+    "confirmPlaceholder": "Type DELETE to confirm",
+    "cancel": "Cancel",
+    "confirm": "Permanently delete",
+    "deleted": "Account deleted",
+    "deletedDesc": "Your account and all associated data have been removed.",
+    "exported": "Data exported"
+  },
+  "footer": {
+    "tagline": "AI-powered website analysis",
+    "privacy": "Privacy",
+    "terms": "Terms"
+  }
+}
