@@ -2,11 +2,13 @@ import { useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, AlertCircle, ExternalLink, Link2, FileText, Download, Lock } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { UrlInput } from "@/components/UrlInput";
 import { WebsitePreview } from "@/components/WebsitePreview";
 import { AnalysisPanel } from "@/components/AnalysisPanel";
 import { AnalysisSkeleton } from "@/components/AnalysisSkeleton";
 import { AppHeader } from "@/components/AppHeader";
+import { SignInBenefits } from "@/components/SignInBenefits";
 import { FeaturesSection } from "@/components/landing/FeaturesSection";
 import { HowItWorksSection } from "@/components/landing/HowItWorksSection";
 import { CategoriesSection } from "@/components/landing/CategoriesSection";
@@ -32,6 +34,7 @@ const Index = () => {
   const [currentUrl, setCurrentUrl] = useState("");
   const { toast } = useToast();
   const { user } = useAuth();
+  const { t } = useTranslation();
   const inputRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const [hasUsedFreeAnalysis, setHasUsedFreeAnalysis] = useState(
@@ -141,35 +144,34 @@ const Index = () => {
 
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-body border border-primary/20">
                 <Sparkles className="h-3 w-3" />
-                Powered by Gemini 2.5 Pro · 20+ analysis dimensions
+                {t("hero.badge")}
               </div>
               <h2 className="text-4xl md:text-6xl font-heading font-bold tracking-tight leading-[1.05]">
-                A brutally honest
+                {t("hero.title1")}
                 <br />
                 <span className="bg-gradient-to-r from-primary via-[hsl(265,70%,58%)] to-[hsl(280,70%,60%)] bg-clip-text text-transparent">
-                  audit of your site
+                  {t("hero.title2")}
                 </span>
                 <br />
                 <span className="text-2xl md:text-3xl font-heading font-medium text-muted-foreground">
-                  in under 30 seconds.
+                  {t("hero.title3")}
                 </span>
               </h2>
               <p className="text-muted-foreground font-body text-base md:text-lg max-w-xl mx-auto leading-relaxed">
-                Get the kind of feedback a senior YC partner would give you — with a 7-day action plan,
-                peer benchmarks, and concrete copy rewrites you can ship today.
+                {t("hero.subtitle")}
               </p>
               <div className="flex items-center justify-center gap-4 text-[11px] text-muted-foreground font-body flex-wrap">
                 <div className="flex items-center gap-1.5">
                   <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-                  No signup for first scan
+                  {t("hero.noSignup")}
                 </div>
                 <div className="flex items-center gap-1.5">
                   <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                  Free forever
+                  {t("hero.free")}
                 </div>
                 <div className="flex items-center gap-1.5">
                   <div className="w-1.5 h-1.5 rounded-full bg-[hsl(280,70%,60%)]" />
-                  PDF & share-link export
+                  {t("hero.export")}
                 </div>
               </div>
             </motion.div>
@@ -309,6 +311,7 @@ const Index = () => {
           <HowItWorksSection />
           <CategoriesSection />
           <UseCasesSection />
+          {!user && <SignInBenefits />}
           <FAQSection />
           <CTASection onGetStarted={scrollToInput} />
         </>
@@ -316,10 +319,10 @@ const Index = () => {
 
       <footer className="border-t border-border mt-8 py-8">
         <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted-foreground font-body">
-          <div>SiteScoper — AI-powered website analysis</div>
+          <div>SiteScoper — {t("footer.tagline")}</div>
           <nav className="flex items-center gap-5">
-            <Link to="/privacy" className="hover:text-foreground transition-colors">Privacy</Link>
-            <Link to="/terms" className="hover:text-foreground transition-colors">Terms</Link>
+            <Link to="/privacy" className="hover:text-foreground transition-colors">{t("footer.privacy")}</Link>
+            <Link to="/terms" className="hover:text-foreground transition-colors">{t("footer.terms")}</Link>
           </nav>
         </div>
       </footer>
