@@ -1,0 +1,92 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "dashboard": "Panel",
+    "admin": "Admin",
+    "signIn": "Iniciar sesión",
+    "signOut": "Cerrar sesión",
+    "account": "Cuenta",
+    "language": "Idioma"
+  },
+  "hero": {
+    "badge": "Con tecnología de Gemini 2.5 Pro · 20+ dimensiones de análisis",
+    "title1": "Una auditoría",
+    "title2": "brutalmente honesta de tu sitio",
+    "title3": "en menos de 30 segundos.",
+    "subtitle": "Recibe la opinión que te daría un socio sénior de YC — con un plan de acción de 7 días, comparativas y reescrituras concretas listas para publicar hoy.",
+    "noSignup": "Sin registro la primera vez",
+    "free": "Gratis para siempre",
+    "export": "Exportación PDF y enlace público"
+  },
+  "signin": {
+    "tooltipTitle": "¿Por qué crear una cuenta gratis?",
+    "benefit1": "Guarda y revisa cada análisis",
+    "benefit2": "Sigue la evolución de tu puntuación",
+    "benefit3": "Genera enlaces públicos",
+    "benefit4": "Análisis ilimitados (gratis, sin tarjeta)",
+    "sectionTitle": "¿Por qué crear una cuenta gratis?",
+    "sectionSubtitle": "SiteScoper es gratis con o sin cuenta. Una cuenta solo desbloquea más.",
+    "anonTitle": "Sin cuenta",
+    "anonItem1": "1 análisis gratis",
+    "anonItem2": "Sin historial guardado",
+    "anonItem3": "Solo exportación PDF",
+    "memberTitle": "Con cuenta gratis",
+    "memberItem1": "Análisis ilimitados",
+    "memberItem2": "Historial completo y tendencias",
+    "memberItem3": "Enlaces públicos",
+    "memberItem4": "Comparar escaneos a lo largo del tiempo",
+    "ctaCreate": "Crear cuenta gratis",
+    "ctaLogin": "Iniciar sesión"
+  },
+  "auth": {
+    "welcomeBack": "Bienvenido de nuevo",
+    "create": "Crea tu cuenta",
+    "google": "Continuar con Google",
+    "or": "o",
+    "fullName": "Nombre completo",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "signIn": "Iniciar sesión",
+    "signUp": "Crear cuenta",
+    "noAccount": "¿No tienes cuenta?",
+    "hasAccount": "¿Ya tienes una cuenta?",
+    "switchSignup": "Regístrate",
+    "switchLogin": "Inicia sesión",
+    "consent": "Al crear una cuenta, aceptas nuestros <terms>Términos</terms> y la <privacy>Política de privacidad</privacy>.",
+    "benefitsTitle": "Ventajas de la cuenta gratuita"
+  },
+  "consent": {
+    "title": "Respetamos tu privacidad",
+    "body": "Usamos cookies esenciales para mantener tu sesión y recordar tu cuota de análisis gratuito. Con tu consentimiento, usamos también analítica mínima para mejorar el producto. Lee nuestra <privacy>Política de privacidad</privacy>.",
+    "accept": "Aceptar todo",
+    "essential": "Solo esenciales",
+    "manage": "Saber más"
+  },
+  "account": {
+    "title": "Configuración de la cuenta",
+    "subtitle": "Gestiona tus datos y privacidad",
+    "profile": "Perfil",
+    "email": "Correo",
+    "language": "Preferencia de idioma",
+    "dataTitle": "Tus datos (RGPD)",
+    "exportTitle": "Exporta tus datos",
+    "exportDesc": "Descarga una copia JSON de tu perfil, respuestas de onboarding, sitios e historial completo de análisis.",
+    "exportBtn": "Descargar mis datos",
+    "deleteTitle": "Eliminar tu cuenta",
+    "deleteDesc": "Borra permanentemente tu cuenta, perfil, sitios e historial. Esta acción no se puede deshacer.",
+    "deleteBtn": "Eliminar mi cuenta",
+    "confirmTitle": "¿Estás absolutamente seguro?",
+    "confirmDesc": "Esto eliminará permanentemente tu cuenta y todos los datos asociados. Escribe DELETE para confirmar.",
+    "confirmPlaceholder": "Escribe DELETE para confirmar",
+    "cancel": "Cancelar",
+    "confirm": "Eliminar permanentemente",
+    "deleted": "Cuenta eliminada",
+    "deletedDesc": "Tu cuenta y todos los datos asociados han sido eliminados.",
+    "exported": "Datos exportados"
+  },
+  "footer": {
+    "tagline": "Análisis de sitios web con IA",
+    "privacy": "Privacidad",
+    "terms": "Términos"
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "nav": {
+    "home": "Start",
+    "dashboard": "Dashboard",
+    "admin": "Admin",
+    "signIn": "Anmelden",
+    "signOut": "Abmelden",
+    "account": "Konto",
+    "language": "Sprache"
+  },
+  "hero": {
+    "badge": "Powered by Gemini 2.5 Pro · 20+ Analysedimensionen",
+    "title1": "Ein schonungslos",
+    "title2": "ehrlicher Audit deiner Seite",
+    "title3": "in unter 30 Sekunden.",
+    "subtitle": "Hol dir das Feedback eines erfahrenen YC-Partners — mit 7-Tage-Aktionsplan, Branchen-Benchmarks und konkreten Text-Vorschlägen, die du heute live nehmen kannst.",
+    "noSignup": "Erster Scan ohne Anmeldung",
+    "free": "Für immer kostenlos",
+    "export": "PDF- & Share-Link-Export"
+  },
+  "signin": {
+    "tooltipTitle": "Warum ein kostenloses Konto?",
+    "benefit1": "Speichere & öffne jede Analyse erneut",
+    "benefit2": "Verfolge Score-Trends im Zeitverlauf",
+    "benefit3": "Erstelle öffentliche Share-Links",
+    "benefit4": "Unbegrenzte Scans (gratis, ohne Karte)",
+    "sectionTitle": "Warum ein kostenloses Konto erstellen?",
+    "sectionSubtitle": "SiteScoper ist mit und ohne Konto kostenlos. Ein Konto schaltet einfach mehr frei.",
+    "anonTitle": "Ohne Konto",
+    "anonItem1": "1 kostenlose Analyse",
+    "anonItem2": "Kein Verlauf gespeichert",
+    "anonItem3": "Nur PDF-Export",
+    "memberTitle": "Mit kostenlosem Konto",
+    "memberItem1": "Unbegrenzte Analysen",
+    "memberItem2": "Voller Verlauf & Trends",
+    "memberItem3": "Öffentliche Share-Links",
+    "memberItem4": "Scans über Zeit vergleichen",
+    "ctaCreate": "Kostenloses Konto erstellen",
+    "ctaLogin": "Anmelden"
+  },
+  "auth": {
+    "welcomeBack": "Willkommen zurück",
+    "create": "Konto erstellen",
+    "google": "Mit Google fortfahren",
+    "or": "oder",
+    "fullName": "Vollständiger Name",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "signIn": "Anmelden",
+    "signUp": "Konto erstellen",
+    "noAccount": "Noch kein Konto?",
+    "hasAccount": "Bereits ein Konto?",
+    "switchSignup": "Registrieren",
+    "switchLogin": "Anmelden",
+    "consent": "Mit dem Erstellen eines Kontos akzeptierst du unsere <terms>AGB</terms> und <privacy>Datenschutzrichtlinie</privacy>.",
+    "benefitsTitle": "Vorteile des kostenlosen Kontos"
+  },
+  "consent": {
+    "title": "Wir respektieren deine Privatsphäre",
+    "body": "Wir verwenden notwendige Cookies, um dich angemeldet zu halten und dein kostenloses Analyse-Kontingent zu speichern. Mit deiner Zustimmung nutzen wir auch eine kleine Menge Analyse-Daten zur Produktverbesserung. Lies unsere <privacy>Datenschutzrichtlinie</privacy>.",
+    "accept": "Alle akzeptieren",
+    "essential": "Nur notwendige",
+    "manage": "Mehr erfahren"
+  },
+  "account": {
+    "title": "Kontoeinstellungen",
+    "subtitle": "Verwalte deine Daten und Privatsphäre",
+    "profile": "Profil",
+    "email": "E-Mail",
+    "language": "Sprachpräferenz",
+    "dataTitle": "Deine Daten (DSGVO)",
+    "exportTitle": "Daten exportieren",
+    "exportDesc": "Lade eine JSON-Kopie deines Profils, der Onboarding-Antworten, Websites und des kompletten Verlaufs herunter.",
+    "exportBtn": "Meine Daten herunterladen",
+    "deleteTitle": "Konto löschen",
+    "deleteDesc": "Lösche dein Konto, Profil, Websites und den gesamten Verlauf endgültig. Dies kann nicht rückgängig gemacht werden.",
+    "deleteBtn": "Mein Konto löschen",
+    "confirmTitle": "Bist du absolut sicher?",
+    "confirmDesc": "Dies löscht dein Konto und alle zugehörigen Daten endgültig. Tippe DELETE zur Bestätigung.",
+    "confirmPlaceholder": "DELETE eingeben",
+    "cancel": "Abbrechen",
+    "confirm": "Endgültig löschen",
+    "deleted": "Konto gelöscht",
+    "deletedDesc": "Dein Konto und alle zugehörigen Daten wurden entfernt.",
+    "exported": "Daten exportiert"
+  },
+  "footer": {
+    "tagline": "KI-gestützte Website-Analyse",
+    "privacy": "Datenschutz",
+    "terms": "AGB"
+  }
+}

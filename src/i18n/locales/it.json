@@ -1,0 +1,92 @@
+{
+  "nav": {
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "admin": "Admin",
+    "signIn": "Accedi",
+    "signOut": "Esci",
+    "account": "Account",
+    "language": "Lingua"
+  },
+  "hero": {
+    "badge": "Powered by Gemini 2.5 Pro · 20+ dimensioni di analisi",
+    "title1": "Un audit",
+    "title2": "brutalmente onesto del tuo sito",
+    "title3": "in meno di 30 secondi.",
+    "subtitle": "Ricevi il feedback di un partner senior di YC — con un piano d'azione di 7 giorni, benchmark di settore e riscritture concrete pronte da pubblicare.",
+    "noSignup": "Nessuna registrazione per la prima scansione",
+    "free": "Gratis per sempre",
+    "export": "Export PDF e link pubblico"
+  },
+  "signin": {
+    "tooltipTitle": "Perché creare un account gratuito?",
+    "benefit1": "Salva e rivedi ogni analisi",
+    "benefit2": "Monitora i punteggi nel tempo",
+    "benefit3": "Genera link pubblici",
+    "benefit4": "Analisi illimitate (gratis, senza carta)",
+    "sectionTitle": "Perché creare un account gratuito?",
+    "sectionSubtitle": "SiteScoper è gratuito con o senza account. L'account sblocca semplicemente di più.",
+    "anonTitle": "Senza account",
+    "anonItem1": "1 analisi gratuita",
+    "anonItem2": "Nessuna cronologia",
+    "anonItem3": "Solo export PDF",
+    "memberTitle": "Con account gratuito",
+    "memberItem1": "Analisi illimitate",
+    "memberItem2": "Cronologia e tendenze complete",
+    "memberItem3": "Link pubblici",
+    "memberItem4": "Confronta scansioni nel tempo",
+    "ctaCreate": "Crea account gratuito",
+    "ctaLogin": "Accedi"
+  },
+  "auth": {
+    "welcomeBack": "Bentornato",
+    "create": "Crea il tuo account",
+    "google": "Continua con Google",
+    "or": "oppure",
+    "fullName": "Nome completo",
+    "email": "Email",
+    "password": "Password",
+    "signIn": "Accedi",
+    "signUp": "Crea account",
+    "noAccount": "Non hai un account?",
+    "hasAccount": "Hai già un account?",
+    "switchSignup": "Registrati",
+    "switchLogin": "Accedi",
+    "consent": "Creando un account, accetti i nostri <terms>Termini</terms> e la <privacy>Privacy Policy</privacy>.",
+    "benefitsTitle": "Vantaggi dell'account gratuito"
+  },
+  "consent": {
+    "title": "Rispettiamo la tua privacy",
+    "body": "Usiamo cookie essenziali per mantenere la sessione e ricordare la tua analisi gratuita. Con il tuo consenso, usiamo anche una piccola quantità di analytics per migliorare il prodotto. Leggi la nostra <privacy>Privacy Policy</privacy>.",
+    "accept": "Accetta tutto",
+    "essential": "Solo essenziali",
+    "manage": "Scopri di più"
+  },
+  "account": {
+    "title": "Impostazioni account",
+    "subtitle": "Gestisci i tuoi dati e la tua privacy",
+    "profile": "Profilo",
+    "email": "Email",
+    "language": "Preferenza lingua",
+    "dataTitle": "I tuoi dati (GDPR)",
+    "exportTitle": "Esporta i tuoi dati",
+    "exportDesc": "Scarica una copia JSON del tuo profilo, risposte di onboarding, siti e cronologia completa.",
+    "exportBtn": "Scarica i miei dati",
+    "deleteTitle": "Elimina account",
+    "deleteDesc": "Cancella in modo permanente account, profilo, siti e cronologia. Questa azione è irreversibile.",
+    "deleteBtn": "Elimina account",
+    "confirmTitle": "Sei assolutamente sicuro?",
+    "confirmDesc": "Questo eliminerà definitivamente il tuo account e tutti i dati associati. Digita DELETE per confermare.",
+    "confirmPlaceholder": "Digita DELETE per confermare",
+    "cancel": "Annulla",
+    "confirm": "Elimina definitivamente",
+    "deleted": "Account eliminato",
+    "deletedDesc": "Il tuo account e tutti i dati associati sono stati rimossi.",
+    "exported": "Dati esportati"
+  },
+  "footer": {
+    "tagline": "Analisi di siti web con IA",
+    "privacy": "Privacy",
+    "terms": "Termini"
+  }
+}

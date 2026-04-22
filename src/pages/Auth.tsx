@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Sparkles, Mail, Lock, User, ArrowRight, Loader2 } from "lucide-react";
+import { Trans, useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -10,6 +11,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { lovable } from "@/integrations/lovable/index";
 import { useAuth } from "@/components/AuthProvider";
 import { useEffect } from "react";
+import { SignInBenefits } from "@/components/SignInBenefits";
 
 export default function Auth() {
   const [isLogin, setIsLogin] = useState(true);
@@ -21,6 +23,7 @@ export default function Auth() {
   const { toast } = useToast();
   const navigate = useNavigate();
   const { user } = useAuth();
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (user) navigate("/dashboard", { replace: true });
@@ -86,9 +89,11 @@ export default function Auth() {
             <h1 className="font-heading font-bold text-2xl">SiteScoper</h1>
           </div>
           <p className="text-muted-foreground font-body text-sm">
-            {isLogin ? "Welcome back" : "Create your account"}
+            {isLogin ? t("auth.welcomeBack") : t("auth.create")}
           </p>
         </div>
+
+        {!isLogin && <SignInBenefits variant="card" />}
 
         {/* Google Sign In */}
         <Button
@@ -107,7 +112,7 @@ export default function Auth() {
               <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
             </svg>
           )}
-          Continue with Google
+          {t("auth.google")}
         </Button>
 
         <div className="relative">
@@ -115,7 +120,7 @@ export default function Auth() {
             <span className="w-full border-t border-border" />
           </div>
           <div className="relative flex justify-center text-xs uppercase">
-            <span className="bg-background px-2 text-muted-foreground font-body">or</span>
+            <span className="bg-background px-2 text-muted-foreground font-body">{t("auth.or")}</span>
           </div>
         </div>
 
@@ -123,7 +128,7 @@ export default function Auth() {
         <form onSubmit={handleEmailAuth} className="space-y-4">
           {!isLogin && (
             <div className="space-y-2">
-              <Label htmlFor="name" className="font-body text-sm">Full Name</Label>
+              <Label htmlFor="name" className="font-body text-sm">{t("auth.fullName")}</Label>
               <div className="relative">
                 <User className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                 <Input
@@ -140,7 +145,7 @@ export default function Auth() {
           )}
 
           <div className="space-y-2">
-            <Label htmlFor="email" className="font-body text-sm">Email</Label>
+            <Label htmlFor="email" className="font-body text-sm">{t("auth.email")}</Label>
             <div className="relative">
               <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
               <Input
@@ -156,7 +161,7 @@ export default function Auth() {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="password" className="font-body text-sm">Password</Label>
+            <Label htmlFor="password" className="font-body text-sm">{t("auth.password")}</Label>
             <div className="relative">
               <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
               <Input
@@ -177,20 +182,32 @@ export default function Auth() {
               <Loader2 className="h-4 w-4 animate-spin" />
             ) : (
               <>
-                {isLogin ? "Sign In" : "Create Account"}
+                {isLogin ? t("auth.signIn") : t("auth.signUp")}
                 <ArrowRight className="h-4 w-4 ml-1" />
               </>
             )}
           </Button>
+
+          {!isLogin && (
+            <p className="text-[11px] text-muted-foreground font-body text-center leading-relaxed px-2">
+              <Trans
+                i18nKey="auth.consent"
+                components={{
+                  terms: <Link to="/terms" className="underline hover:text-foreground" />,
+                  privacy: <Link to="/privacy" className="underline hover:text-foreground" />,
+                }}
+              />
+            </p>
+          )}
         </form>
 
         <p className="text-center text-sm text-muted-foreground font-body">
-          {isLogin ? "Don't have an account?" : "Already have an account?"}{" "}
+          {isLogin ? t("auth.noAccount") : t("auth.hasAccount")}{" "}
           <button
             onClick={() => setIsLogin(!isLogin)}
             className="text-primary hover:underline font-medium"
           >
-            {isLogin ? "Sign up" : "Sign in"}
+            {isLogin ? t("auth.switchSignup") : t("auth.switchLogin")}
           </button>
         </p>
       </motion.div>
