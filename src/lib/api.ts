@@ -48,6 +48,10 @@ export interface AnalysisSuggestion {
   evidence?: string;
   rewrite?: SuggestionRewrite;
   tradeoff?: string;
+  impact_reason?: string;
+  fix?: string;
+  category?: string;
+  category_icon?: string;
 }
 
 export interface CategorySubScore {

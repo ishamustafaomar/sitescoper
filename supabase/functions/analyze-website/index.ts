@@ -53,6 +53,7 @@ serve(async (req) => {
       },
       body: JSON.stringify({
         model: "google/gemini-2.5-pro",
+        temperature: 0.3,
         messages: [
           {
             role: "system",
@@ -79,8 +80,18 @@ Before claiming something is "missing", scan the ENTIRE provided markdown for it
 For EVERY suggestion, you MUST include:
 - title, description, priority, type, impact, effort
 - "evidence": a short verbatim quote from the site that triggered this observation (or "" if structural). Max 200 chars.
+- "impact_reason": ONE short sentence explaining WHY this matters (e.g. "Hurts conversion — visitors bounce when value isn't clear in 5 seconds"). No fluff. Max 140 chars.
+- "fix": ONE concrete next action a founder can do, imperative voice (e.g. "Replace the headline with the value statement from your About page"). Max 160 chars.
 - "rewrite": ONLY for copy/messaging/positioning suggestions, provide a concrete before/after rewrite as { "before": "...", "after": "..." }. Omit for non-copy issues.
 - "tradeoff": optional 1-sentence note if the fix conflicts with another goal.
+
+## Site-type tailoring (REQUIRED)
+After detecting site_category, your suggestions MUST be specific to that type. NEVER give generic advice like "improve readability" or "add more content". Examples of tailoring:
+- ecommerce → product imagery, price clarity, trust badges, shipping info, cart friction
+- saas → activation moment, free trial CTA, integrations clarity, pricing tiers
+- blog → reading flow, related posts, newsletter capture, author credibility
+- marketing → hero clarity, social proof above fold, single primary CTA
+If you catch yourself writing advice that would apply to ANY site, rewrite it to reference actual page content.
 
 ## Action plan (NEW — required)
 Generate a "action_plan" object: a prioritized 7-day roadmap built from your highest impact / lowest effort suggestions.
