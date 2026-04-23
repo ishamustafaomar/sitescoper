@@ -12,7 +12,7 @@ serve(async (req) => {
   }
 
   try {
-    const { markdown, url, images } = await req.json();
+    const { markdown, url, images, detectedSections } = await req.json();
     if (!markdown || typeof markdown !== "string") {
       return new Response(JSON.stringify({ error: "Markdown content is required" }), {
         status: 400,
@@ -32,6 +32,15 @@ serve(async (req) => {
       ? `\n\n## Images on the homepage (${imageList.length}):\n${imageList
           .map((img: any, i: number) =>
             `${i + 1}. src="${img.src}" alt="${img.alt || "(empty)"}"${img.context ? ` context="${img.context}"` : ""}`
+          )
+          .join("\n")}`
+      : "";
+
+    const sectionList = Array.isArray(detectedSections) ? detectedSections.slice(0, 30) : [];
+    const sectionContext = sectionList.length
+      ? `\n\n## Detected page sections (DO NOT claim these are missing):\n${sectionList
+          .map((s: any, i: number) =>
+            `${i + 1}. ${s.name}${s.evidence ? ` — evidence: "${String(s.evidence).slice(0, 160)}"` : ""}`
           )
           .join("\n")}`
       : "";
