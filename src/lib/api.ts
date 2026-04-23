@@ -52,6 +52,7 @@ export interface AnalysisSuggestion {
   fix?: string;
   category?: string;
   category_icon?: string;
+  kind?: "blocker" | "opportunity";
 }
 
 export interface CategorySubScore {

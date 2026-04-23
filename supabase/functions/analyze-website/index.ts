@@ -82,6 +82,7 @@ For EVERY suggestion, you MUST include:
 - "evidence": a short verbatim quote from the site that triggered this observation (or "" if structural). Max 200 chars.
 - "impact_reason": ONE short sentence explaining WHY this matters (e.g. "Hurts conversion — visitors bounce when value isn't clear in 5 seconds"). No fluff. Max 140 chars.
 - "fix": ONE concrete next action a founder can do, imperative voice (e.g. "Replace the headline with the value statement from your About page"). Max 160 chars.
+- "kind": "blocker" if this is something CURRENTLY HARMING the site (broken, confusing, missing essentials, hurting conversion). "opportunity" if it's a MISSED GROWTH WIN (the site is fine without it but adding it would meaningfully improve results). Be honest — not everything is a blocker.
 - "rewrite": ONLY for copy/messaging/positioning suggestions, provide a concrete before/after rewrite as { "before": "...", "after": "..." }. Omit for non-copy issues.
 - "tradeoff": optional 1-sentence note if the fix conflicts with another goal.
 
@@ -176,6 +177,7 @@ Return ONLY valid JSON:
           "impact": "high" | "medium" | "low",
           "effort": "low" | "medium" | "high",
           "evidence": "verbatim quote from site or empty string",
+          "kind": "blocker" | "opportunity",
           "rewrite": { "before": "string", "after": "string" } (OPTIONAL — only for copy fixes),
           "tradeoff": "optional string"
         }
