@@ -27,6 +27,8 @@ export interface ScrapeResult {
   siteUrlsDiscovered?: number;
   images?: ScrapedImage[];
   detectedSections?: { name: string; evidence: string }[];
+  partial?: boolean;
+  partialReason?: string;
 }
 
 export type SiteCategory =

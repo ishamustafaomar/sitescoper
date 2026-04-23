@@ -197,14 +197,37 @@ serve(async (req) => {
     }
 
     // Step 1: Scrape homepage with screenshot + branding
+    // Wait for JS rendering (helps SPAs) + auto-retry once if markdown is empty.
     console.log("Scraping homepage:", url);
-    const homeData = await firecrawlRequest("/scrape", {
-      url,
-      formats: ["markdown", "html", "screenshot", "links"],
-      onlyMainContent: false,
-    }, FIRECRAWL_API_KEY);
+    const scrapeHome = async (waitFor: number) => {
+      const data = await firecrawlRequest("/scrape", {
+        url,
+        formats: ["markdown", "html", "screenshot", "links"],
+        onlyMainContent: false,
+        waitFor,
+      }, FIRECRAWL_API_KEY);
+      return data.data || data;
+    };
 
-    const homeResult = homeData.data || homeData;
+    let homeResult = await scrapeHome(2500);
+    let partialReason: string | null = null;
+
+    const isEmpty = (r: any) =>
+      !r || !((r.markdown || "").trim().length > 60 || (r.html || "").length > 500);
+
+    if (isEmpty(homeResult)) {
+      console.warn("Homepage scrape returned empty — retrying with longer wait");
+      try {
+        homeResult = await scrapeHome(6000);
+      } catch (e) {
+        console.warn("Retry failed:", e);
+      }
+    }
+
+    if (isEmpty(homeResult)) {
+      partialReason =
+        "We couldn't load much content from this page. The site may rely heavily on JavaScript or block crawlers. Results below are based on partial data.";
+    }
 
     // Step 2: Map the site to discover pages
     console.log("Mapping site:", url);
@@ -275,6 +298,8 @@ serve(async (req) => {
         siteUrlsDiscovered: siteUrls.length,
         images,
         detectedSections,
+        partial: !!partialReason,
+        partialReason,
       },
     }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
