@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Check, X, Sparkles, ArrowRight } from "lucide-react";
+import { Check, Sparkles, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface SignInBenefitsProps {
@@ -69,7 +69,7 @@ export function SignInBenefits({ variant = "section" }: SignInBenefitsProps) {
             <ul className="space-y-2">
               {anonItems.map((item, i) => (
                 <li key={i} className="flex items-center gap-2 text-sm font-body text-muted-foreground">
-                  <X className="h-4 w-4 shrink-0" />
+                  <Check className="h-4 w-4 text-accent shrink-0" />
                   {item}
                 </li>
               ))}
