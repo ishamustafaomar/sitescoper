@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { AnalysisResult, ScrapeResult } from "@/lib/api";
 import { Badge } from "@/components/ui/badge";
-import { ChevronDown, ChevronUp, LayoutList, Zap, Image as ImageIcon, Calendar } from "lucide-react";
+import { ChevronDown, ChevronUp, LayoutList, Zap, Image as ImageIcon, Calendar, Flame } from "lucide-react";
 import { useState } from "react";
 import { ScoreRing } from "@/components/ScoreRing";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -10,6 +10,8 @@ import { VisualOverlayView } from "@/components/VisualOverlayView";
 import { SuggestionCard } from "@/components/SuggestionCard";
 import { ActionPlanView } from "@/components/ActionPlanView";
 import { BenchmarkCard } from "@/components/BenchmarkCard";
+import { VerdictCard } from "@/components/VerdictCard";
+import { ImpactGroupedView } from "@/components/ImpactGroupedView";
 
 interface AnalysisPanelProps {
   analysis: AnalysisResult;
@@ -52,6 +54,7 @@ const categoryColors: Record<string, string> = {
 
 export function AnalysisPanel({ analysis, scrapeData }: AnalysisPanelProps) {
   const [expandedCategory, setExpandedCategory] = useState<number | null>(0);
+  const [activeTab, setActiveTab] = useState<string>("impact");
 
   const totalSuggestions = analysis.categories.reduce((sum, c) => sum + c.suggestions.length, 0);
   const hasImageSuggestions = (analysis.image_suggestions?.length ?? 0) > 0 || (scrapeData?.images?.length ?? 0) > 0;
@@ -64,34 +67,13 @@ export function AnalysisPanel({ analysis, scrapeData }: AnalysisPanelProps) {
       transition={{ duration: 0.4, delay: 0.2 }}
       className="space-y-4"
     >
-      {/* Score Header */}
-      <div className="bg-card rounded-2xl border border-border p-6 shadow-[var(--shadow-md)]">
-        <div className="flex items-center gap-6">
-          <ScoreRing score={analysis.overall_score} />
-          <div className="flex-1 min-w-0 space-y-2">
-            <div className="flex items-center gap-2 flex-wrap">
-              <h2 className="text-xl font-heading font-bold">Overall Score</h2>
-              {analysis.site_category && (
-                <Badge
-                  variant="outline"
-                  className={`text-[10px] font-body ${categoryColors[analysis.site_category] ?? categoryColors.other}`}
-                  title={analysis.category_rationale}
-                >
-                  Analyzed as: {categoryLabels[analysis.site_category] ?? analysis.site_category}
-                </Badge>
-              )}
-            </div>
-            <p className="text-muted-foreground font-body text-sm leading-relaxed">{analysis.summary}</p>
-            {analysis.category_rationale && (
-              <p className="text-[11px] text-muted-foreground/70 font-body italic">
-                Category rationale: {analysis.category_rationale}
-              </p>
-            )}
-          </div>
-        </div>
+      {/* Verdict: overall + top 3 issues */}
+      <VerdictCard analysis={analysis} onJumpToImpact={() => setActiveTab("impact")} />
 
-        {/* Category overview grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mt-5 pt-5 border-t border-border">
+      {/* Category overview grid */}
+      <div className="bg-card rounded-2xl border border-border p-5 shadow-[var(--shadow-sm)]">
+        <div className="text-[10px] font-body uppercase tracking-wider text-muted-foreground mb-3">Category scores</div>
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
           {analysis.categories.map((cat) => (
             <div key={cat.name} className="flex flex-col gap-1">
               <span className="text-xs font-body text-muted-foreground truncate">{cat.icon} {cat.name}</span>
@@ -105,17 +87,22 @@ export function AnalysisPanel({ analysis, scrapeData }: AnalysisPanelProps) {
       <BenchmarkCard analysis={analysis} />
 
       {/* Tabs */}
-      <Tabs defaultValue={hasActionPlan ? "plan" : "categories"} className="w-full">
-        <TabsList className="grid w-full grid-cols-4">
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+        <TabsList className="grid w-full grid-cols-5">
+          <TabsTrigger value="impact" className="gap-1.5 text-xs">
+            <Flame className="h-3.5 w-3.5" />
+            <span className="hidden sm:inline">By Impact</span>
+            <span className="sm:hidden">Impact</span>
+          </TabsTrigger>
           <TabsTrigger value="plan" className="gap-1.5 text-xs" disabled={!hasActionPlan}>
             <Calendar className="h-3.5 w-3.5" />
-            <span className="hidden sm:inline">Action Plan</span>
+            <span className="hidden sm:inline">Plan</span>
             <span className="sm:hidden">Plan</span>
           </TabsTrigger>
           <TabsTrigger value="categories" className="gap-1.5 text-xs">
             <LayoutList className="h-3.5 w-3.5" />
-            <span className="hidden sm:inline">Categories</span>
-            <span className="sm:hidden">List</span>
+            <span className="hidden sm:inline">By Category</span>
+            <span className="sm:hidden">Cat</span>
           </TabsTrigger>
           <TabsTrigger value="matrix" className="gap-1.5 text-xs">
             <Zap className="h-3.5 w-3.5" />
@@ -130,6 +117,11 @@ export function AnalysisPanel({ analysis, scrapeData }: AnalysisPanelProps) {
             Visual
           </TabsTrigger>
         </TabsList>
+
+        {/* By Impact (NEW default) */}
+        <TabsContent value="impact" className="mt-4">
+          <ImpactGroupedView analysis={analysis} />
+        </TabsContent>
 
         {/* Action Plan tab */}
         <TabsContent value="plan" className="mt-4">
