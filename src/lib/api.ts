@@ -27,6 +27,8 @@ export interface ScrapeResult {
   siteUrlsDiscovered?: number;
   images?: ScrapedImage[];
   detectedSections?: { name: string; evidence: string }[];
+  partial?: boolean;
+  partialReason?: string;
 }
 
 export type SiteCategory =
@@ -52,6 +54,7 @@ export interface AnalysisSuggestion {
   fix?: string;
   category?: string;
   category_icon?: string;
+  kind?: "blocker" | "opportunity";
 }
 
 export interface CategorySubScore {

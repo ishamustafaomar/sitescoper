@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { AlertTriangle, ArrowRight } from "lucide-react";
+import { AlertTriangle, Sparkles, ArrowRight } from "lucide-react";
 import { ScoreRing } from "@/components/ScoreRing";
 import { Badge } from "@/components/ui/badge";
 import { AnalysisResult, AnalysisSuggestion } from "@/lib/api";
@@ -45,7 +45,16 @@ interface Props {
 
 export function VerdictCard({ analysis, onJumpToImpact }: Props) {
   const all = flattenSuggestions(analysis);
-  const top3 = rankSuggestions(all).slice(0, 3);
+  const ranked = rankSuggestions(all);
+
+  // Heuristic fallback if AI didn't tag kind: priority:high === blocker
+  const isBlocker = (s: AnalysisSuggestion) =>
+    s.kind === "blocker" || (!s.kind && s.priority === "high");
+  const isOpportunity = (s: AnalysisSuggestion) =>
+    s.kind === "opportunity" || (!s.kind && s.priority !== "high");
+
+  const blockers = ranked.filter(isBlocker).slice(0, 3);
+  const opportunities = ranked.filter(isOpportunity).slice(0, 3);
 
   const score = analysis.overall_score;
   const verdict =
@@ -80,47 +89,84 @@ export function VerdictCard({ analysis, onJumpToImpact }: Props) {
         </div>
       </div>
 
-      {top3.length > 0 && (
-        <div className="space-y-2.5 pt-4 border-t border-border">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-1.5">
-              <AlertTriangle className="h-3.5 w-3.5 text-destructive" />
-              <span className="text-[11px] font-body uppercase tracking-wider text-muted-foreground">
-                Top {top3.length} {top3.length === 1 ? "issue" : "issues"} to fix first
-              </span>
-            </div>
-            {onJumpToImpact && (
-              <button
-                onClick={onJumpToImpact}
-                className="text-[11px] font-body text-primary hover:underline inline-flex items-center gap-0.5"
-              >
-                See all by impact <ArrowRight className="h-3 w-3" />
-              </button>
-            )}
-          </div>
-          <ol className="space-y-2">
-            {top3.map((s, i) => (
-              <li
-                key={i}
-                className="flex items-start gap-3 p-3 rounded-lg bg-muted/40 border border-border/60"
-              >
-                <span className="shrink-0 inline-flex items-center justify-center h-6 w-6 rounded-full bg-destructive/10 text-destructive text-xs font-heading font-semibold">
-                  {i + 1}
-                </span>
-                <div className="min-w-0 flex-1 space-y-0.5">
-                  <p className="text-sm font-heading font-medium leading-snug truncate">{s.title}</p>
-                  <p className="text-xs text-muted-foreground font-body leading-relaxed line-clamp-2">
-                    {s.impact_reason || s.description}
-                  </p>
-                </div>
-                <Badge variant="outline" className="text-[9px] shrink-0 font-body">
-                  {s._category}
-                </Badge>
-              </li>
-            ))}
-          </ol>
+      <div className="grid md:grid-cols-2 gap-4 pt-4 border-t border-border">
+        <TopList
+          title="Critical blockers"
+          items={blockers}
+          icon={AlertTriangle}
+          iconClass="text-destructive"
+          chipClass="bg-destructive/10 text-destructive"
+          emptyText="No critical blockers — nice."
+        />
+        <TopList
+          title="Top opportunities"
+          items={opportunities}
+          icon={Sparkles}
+          iconClass="text-primary"
+          chipClass="bg-primary/10 text-primary"
+          emptyText="No clear growth opportunities surfaced."
+        />
+      </div>
+
+      {onJumpToImpact && (
+        <div className="pt-2 flex justify-end">
+          <button
+            onClick={onJumpToImpact}
+            className="text-xs font-body text-primary hover:underline inline-flex items-center gap-1"
+          >
+            See full report <ArrowRight className="h-3 w-3" />
+          </button>
         </div>
       )}
     </motion.div>
+  );
+}
+
+function TopList({
+  title,
+  items,
+  icon: Icon,
+  iconClass,
+  chipClass,
+  emptyText,
+}: {
+  title: string;
+  items: (AnalysisSuggestion & { _category?: string })[];
+  icon: typeof AlertTriangle;
+  iconClass: string;
+  chipClass: string;
+  emptyText: string;
+}) {
+  return (
+    <div className="space-y-2.5">
+      <div className="flex items-center gap-1.5">
+        <Icon className={`h-3.5 w-3.5 ${iconClass}`} />
+        <span className="text-[11px] font-body uppercase tracking-wider text-muted-foreground">
+          {title}
+        </span>
+      </div>
+      {items.length === 0 ? (
+        <p className="text-xs text-muted-foreground font-body italic px-1">{emptyText}</p>
+      ) : (
+        <ol className="space-y-2">
+          {items.map((s, i) => (
+            <li
+              key={i}
+              className="flex items-start gap-2.5 p-2.5 rounded-lg bg-muted/40 border border-border/60"
+            >
+              <span className={`shrink-0 inline-flex items-center justify-center h-5 w-5 rounded-full ${chipClass} text-[10px] font-heading font-semibold`}>
+                {i + 1}
+              </span>
+              <div className="min-w-0 flex-1 space-y-0.5">
+                <p className="text-[13px] font-heading font-medium leading-snug">{s.title}</p>
+                <p className="text-[11px] text-muted-foreground font-body leading-snug line-clamp-2">
+                  {s.impact_reason || s.fix || s.description}
+                </p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      )}
+    </div>
   );
 }

@@ -1,9 +1,8 @@
 import { motion } from "framer-motion";
 import { AnalysisResult, ScrapeResult } from "@/lib/api";
 import { Badge } from "@/components/ui/badge";
-import { ChevronDown, ChevronUp, LayoutList, Zap, Image as ImageIcon, Calendar, Flame } from "lucide-react";
+import { ChevronDown, ChevronUp, LayoutList, Zap, Image as ImageIcon, Calendar, Flame, AlertCircle, ArrowDown } from "lucide-react";
 import { useState } from "react";
-import { ScoreRing } from "@/components/ScoreRing";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ImpactMatrix } from "@/components/ImpactMatrix";
 import { VisualOverlayView } from "@/components/VisualOverlayView";
@@ -12,6 +11,7 @@ import { ActionPlanView } from "@/components/ActionPlanView";
 import { BenchmarkCard } from "@/components/BenchmarkCard";
 import { VerdictCard } from "@/components/VerdictCard";
 import { ImpactGroupedView } from "@/components/ImpactGroupedView";
+import { Button } from "@/components/ui/button";
 
 interface AnalysisPanelProps {
   analysis: AnalysisResult;
@@ -35,26 +35,10 @@ function MiniScoreBar({ score }: { score: number }) {
   );
 }
 
-const categoryLabels: Record<string, string> = {
-  saas: "SaaS product", marketing: "Marketing site", ecommerce: "E-commerce",
-  blog: "Blog", docs: "Documentation", portfolio: "Portfolio",
-  community: "Community/Directory", other: "Website",
-};
-
-const categoryColors: Record<string, string> = {
-  saas: "bg-primary/10 text-primary border-primary/20",
-  marketing: "bg-primary/10 text-primary border-primary/20",
-  ecommerce: "bg-accent/10 text-accent border-accent/20",
-  blog: "bg-[hsl(280,70%,60%)]/10 text-[hsl(280,70%,60%)] border-[hsl(280,70%,60%)]/20",
-  docs: "bg-muted text-foreground border-border",
-  portfolio: "bg-accent/10 text-accent border-accent/20",
-  community: "bg-primary/10 text-primary border-primary/20",
-  other: "bg-muted text-muted-foreground border-border",
-};
-
 export function AnalysisPanel({ analysis, scrapeData }: AnalysisPanelProps) {
   const [expandedCategory, setExpandedCategory] = useState<number | null>(0);
   const [activeTab, setActiveTab] = useState<string>("impact");
+  const [showFull, setShowFull] = useState(false);
 
   const totalSuggestions = analysis.categories.reduce((sum, c) => sum + c.suggestions.length, 0);
   const hasImageSuggestions = (analysis.image_suggestions?.length ?? 0) > 0 || (scrapeData?.images?.length ?? 0) > 0;
@@ -67,8 +51,43 @@ export function AnalysisPanel({ analysis, scrapeData }: AnalysisPanelProps) {
       transition={{ duration: 0.4, delay: 0.2 }}
       className="space-y-4"
     >
-      {/* Verdict: overall + top 3 issues */}
-      <VerdictCard analysis={analysis} onJumpToImpact={() => setActiveTab("impact")} />
+      {/* Partial-data banner */}
+      {scrapeData?.partial && (
+        <div className="rounded-xl border border-primary/30 bg-primary/10 p-3 flex items-start gap-2.5">
+          <AlertCircle className="h-4 w-4 text-primary shrink-0 mt-0.5" />
+          <p className="text-xs font-body text-foreground/90 leading-relaxed">
+            {scrapeData.partialReason ||
+              "Partial results — we couldn't load all of this site's content."}
+          </p>
+        </div>
+      )}
+
+      {/* Layer 1: Verdict only — overall + 3 blockers + 3 opportunities */}
+      <VerdictCard
+        analysis={analysis}
+        onJumpToImpact={() => setShowFull(true)}
+      />
+
+      {!showFull && (
+        <div className="flex flex-col items-center gap-2 pt-2 pb-4">
+          <Button
+            variant="outline"
+            size="lg"
+            onClick={() => setShowFull(true)}
+            className="gap-2"
+          >
+            See full report
+            <ArrowDown className="h-4 w-4" />
+          </Button>
+          <p className="text-[11px] text-muted-foreground font-body">
+            Category scores, action plan, and deep diagnostics
+          </p>
+        </div>
+      )}
+
+      {!showFull && null}
+      {showFull && (
+        <>
 
       {/* Category overview grid */}
       <div className="bg-card rounded-2xl border border-border p-5 shadow-[var(--shadow-sm)]">
@@ -214,6 +233,8 @@ export function AnalysisPanel({ analysis, scrapeData }: AnalysisPanelProps) {
           )}
         </TabsContent>
       </Tabs>
+        </>
+      )}
     </motion.div>
   );
 }

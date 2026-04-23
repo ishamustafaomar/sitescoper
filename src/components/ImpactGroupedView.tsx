@@ -7,9 +7,9 @@ import { flattenSuggestions, rankSuggestions } from "@/components/VerdictCard";
 import { Badge } from "@/components/ui/badge";
 
 const groups = [
-  { key: "high", label: "High impact", icon: TrendingUp, accent: "text-destructive", chip: "bg-destructive/10 text-destructive border-destructive/20" },
-  { key: "medium", label: "Medium impact", icon: Minus, accent: "text-primary", chip: "bg-primary/10 text-primary border-primary/20" },
-  { key: "low", label: "Low impact", icon: TrendingDown, accent: "text-accent", chip: "bg-accent/10 text-accent border-accent/20" },
+  { key: "high", label: "Critical blockers", icon: TrendingUp, accent: "text-destructive", chip: "bg-destructive/10 text-destructive border-destructive/20" },
+  { key: "medium", label: "High-impact improvements", icon: Minus, accent: "text-primary", chip: "bg-primary/10 text-primary border-primary/20" },
+  { key: "low", label: "Low priority", icon: TrendingDown, accent: "text-accent", chip: "bg-accent/10 text-accent border-accent/20" },
 ] as const;
 
 export function ImpactGroupedView({ analysis }: { analysis: AnalysisResult }) {
