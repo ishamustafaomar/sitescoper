@@ -3,7 +3,6 @@ import { AnalysisResult, ScrapeResult } from "@/lib/api";
 import { Badge } from "@/components/ui/badge";
 import { ChevronDown, ChevronUp, LayoutList, Zap, Image as ImageIcon, Calendar, Flame, AlertCircle, ArrowDown } from "lucide-react";
 import { useState } from "react";
-import { ScoreRing } from "@/components/ScoreRing";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ImpactMatrix } from "@/components/ImpactMatrix";
 import { VisualOverlayView } from "@/components/VisualOverlayView";
@@ -36,23 +35,6 @@ function MiniScoreBar({ score }: { score: number }) {
   );
 }
 
-const categoryLabels: Record<string, string> = {
-  saas: "SaaS product", marketing: "Marketing site", ecommerce: "E-commerce",
-  blog: "Blog", docs: "Documentation", portfolio: "Portfolio",
-  community: "Community/Directory", other: "Website",
-};
-
-const categoryColors: Record<string, string> = {
-  saas: "bg-primary/10 text-primary border-primary/20",
-  marketing: "bg-primary/10 text-primary border-primary/20",
-  ecommerce: "bg-accent/10 text-accent border-accent/20",
-  blog: "bg-[hsl(280,70%,60%)]/10 text-[hsl(280,70%,60%)] border-[hsl(280,70%,60%)]/20",
-  docs: "bg-muted text-foreground border-border",
-  portfolio: "bg-accent/10 text-accent border-accent/20",
-  community: "bg-primary/10 text-primary border-primary/20",
-  other: "bg-muted text-muted-foreground border-border",
-};
-
 export function AnalysisPanel({ analysis, scrapeData }: AnalysisPanelProps) {
   const [expandedCategory, setExpandedCategory] = useState<number | null>(0);
   const [activeTab, setActiveTab] = useState<string>("impact");
@@ -71,8 +53,8 @@ export function AnalysisPanel({ analysis, scrapeData }: AnalysisPanelProps) {
     >
       {/* Partial-data banner */}
       {scrapeData?.partial && (
-        <div className="rounded-xl border border-amber-500/30 bg-amber-500/10 p-3 flex items-start gap-2.5">
-          <AlertCircle className="h-4 w-4 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
+        <div className="rounded-xl border border-primary/30 bg-primary/10 p-3 flex items-start gap-2.5">
+          <AlertCircle className="h-4 w-4 text-primary shrink-0 mt-0.5" />
           <p className="text-xs font-body text-foreground/90 leading-relaxed">
             {scrapeData.partialReason ||
               "Partial results — we couldn't load all of this site's content."}
