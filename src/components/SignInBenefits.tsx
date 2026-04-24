@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Check, Sparkles, ArrowRight } from "lucide-react";
+import { Check, Sparkles, ArrowRight, Lock, Infinity as InfinityIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface SignInBenefitsProps {
@@ -63,17 +63,41 @@ export function SignInBenefits({ variant = "section" }: SignInBenefitsProps) {
             transition={{ duration: 0.4 }}
             className="rounded-2xl border border-border bg-card p-6 space-y-4"
           >
-            <h3 className="font-heading font-semibold text-lg text-muted-foreground">
-              {t("signin.anonTitle")}
-            </h3>
+            <div className="space-y-1">
+              <h3 className="font-heading font-semibold text-lg text-muted-foreground">
+                {t("signin.anonTitle")}
+              </h3>
+              <p className="text-xs font-body text-muted-foreground/80">
+                Try it instantly — limited features.
+              </p>
+            </div>
             <ul className="space-y-2">
               {anonItems.map((item, i) => (
                 <li key={i} className="flex items-center gap-2 text-sm font-body text-muted-foreground">
                   <Check className="h-4 w-4 text-accent shrink-0" />
-                  {item}
+                  <span>{item}</span>
                 </li>
               ))}
             </ul>
+            <div className="pt-2 border-t border-border/60 space-y-1.5">
+              <p className="text-[11px] font-body uppercase tracking-wider text-muted-foreground/70">
+                Not included
+              </p>
+              <ul className="space-y-1.5">
+                <li className="flex items-center gap-2 text-xs font-body text-muted-foreground/80">
+                  <Lock className="h-3 w-3 shrink-0" />
+                  <span>History &amp; score trends</span>
+                </li>
+                <li className="flex items-center gap-2 text-xs font-body text-muted-foreground/80">
+                  <Lock className="h-3 w-3 shrink-0" />
+                  <span>Public share links</span>
+                </li>
+                <li className="flex items-center gap-2 text-xs font-body text-muted-foreground/80">
+                  <Lock className="h-3 w-3 shrink-0" />
+                  <span>Compare scans over time</span>
+                </li>
+              </ul>
+            </div>
           </motion.div>
 
           <motion.div
@@ -86,18 +110,27 @@ export function SignInBenefits({ variant = "section" }: SignInBenefitsProps) {
             <div className="absolute -top-3 left-6 px-3 py-0.5 rounded-full bg-primary text-primary-foreground text-[10px] font-body uppercase tracking-wider">
               Recommended
             </div>
-            <h3 className="font-heading font-semibold text-lg flex items-center gap-2">
-              <Sparkles className="h-4 w-4 text-primary" />
-              {t("signin.memberTitle")}
-            </h3>
+            <div className="space-y-1">
+              <h3 className="font-heading font-semibold text-lg flex items-center gap-2">
+                <Sparkles className="h-4 w-4 text-primary" />
+                {t("signin.memberTitle")}
+              </h3>
+              <p className="text-xs font-body text-muted-foreground">
+                Everything above, plus everything below — free, no credit card.
+              </p>
+            </div>
             <ul className="space-y-2">
               {memberItems.map((item, i) => (
-                <li key={i} className="flex items-center gap-2 text-sm font-body">
-                  <Check className="h-4 w-4 text-accent shrink-0" />
-                  {item}
+                <li key={i} className="flex items-start gap-2 text-sm font-body">
+                  <Check className="h-4 w-4 text-accent shrink-0 mt-0.5" />
+                  <span><span className="font-semibold">{item}</span></span>
                 </li>
               ))}
             </ul>
+            <div className="flex items-center gap-2 text-xs font-body text-primary pt-1">
+              <InfinityIcon className="h-3.5 w-3.5" />
+              <span>No usage limits — ever.</span>
+            </div>
             <div className="flex items-center gap-2 pt-2">
               <Button variant="hero" size="sm" onClick={() => navigate("/auth")}>
                 {t("signin.ctaCreate")}
