@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, Download, Loader2, Share2, Check, Copy } from "lucide-react";
+import { ArrowLeft, Download, Loader2, Share2, Check, Copy, Home } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AppHeader } from "@/components/AppHeader";
 import { AnalysisPanel } from "@/components/AnalysisPanel";
@@ -138,8 +138,12 @@ export default function AnalysisDetail() {
       <main className="max-w-4xl mx-auto px-4 py-8 space-y-6">
         <div className="flex items-center justify-between gap-3 flex-wrap">
           <div className="flex items-center gap-3 min-w-0">
-            <Button variant="ghost" size="icon" onClick={() => navigate(-1)}>
+            <Button variant="ghost" size="icon" onClick={() => navigate(-1)} aria-label="Go back">
               <ArrowLeft className="h-4 w-4" />
+            </Button>
+            <Button variant="ghost" size="sm" onClick={() => navigate("/")} className="text-xs font-body">
+              <Home className="h-3.5 w-3.5" />
+              Home
             </Button>
             <div className="min-w-0">
               <h2 className="font-heading font-bold text-lg truncate">{record.url}</h2>
