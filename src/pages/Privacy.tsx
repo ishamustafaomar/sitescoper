@@ -1,7 +1,9 @@
 import { AppHeader } from "@/components/AppHeader";
 import { motion } from "framer-motion";
+import { useCanonical } from "@/hooks/useCanonical";
 
 const Privacy = () => {
+  useCanonical("/privacy");
   return (
     <div className="min-h-screen bg-background">
       <AppHeader />

@@ -21,6 +21,20 @@ export function CookieConsent() {
     }
   }, []);
 
+  // Allow keyboard users (and automated tools) to dismiss with Escape
+  // by accepting essentials only.
+  useEffect(() => {
+    if (!visible) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        accept("essential");
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [visible]);
+
   const accept = (level: "all" | "essential") => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify({ level, ts: Date.now() }));
     setVisible(false);
