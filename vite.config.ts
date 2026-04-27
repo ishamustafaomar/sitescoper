@@ -19,4 +19,18 @@ export default defineConfig(({ mode }) => ({
     },
     dedupe: ["react", "react-dom", "react/jsx-runtime", "react/jsx-dev-runtime", "@tanstack/react-query", "@tanstack/query-core"],
   },
+  build: {
+    // Split heavy/stable libs into their own long-cached chunks so repeat
+    // navigations don't re-download the entire app, and policy pages don't
+    // pull in chart/PDF/AI code.
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          react: ["react", "react-dom", "react-router-dom"],
+          query: ["@tanstack/react-query", "@tanstack/query-core"],
+          ui: ["framer-motion", "lucide-react"],
+        },
+      },
+    },
+  },
 }));

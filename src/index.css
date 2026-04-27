@@ -132,6 +132,34 @@
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
   }
+
+  /* Prevent accidental horizontal scroll on tablet/mobile */
+  html, body {
+    overflow-x: hidden;
+    max-width: 100%;
+  }
+
+  /* Wrap long URLs / inline code so they don't blow out narrow viewports */
+  a, code {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  /* Touch tap-target floor: ensure interactive controls hit ~44x44 on
+     coarse pointers (touch). Desktop / fine pointers are unaffected so
+     dense UIs (toolbars, table actions) keep their compact look. */
+  @media (pointer: coarse) {
+    button:not([data-no-min-target]),
+    [role="button"]:not([data-no-min-target]),
+    a.btn,
+    .nav a,
+    nav a,
+    input[type="button"],
+    input[type="submit"] {
+      min-height: 44px;
+      min-width: 44px;
+    }
+  }
 }
 
 @layer utilities {

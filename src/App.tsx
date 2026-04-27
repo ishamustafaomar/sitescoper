@@ -7,18 +7,22 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { AuthProvider } from "@/components/AuthProvider";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
 import { OnboardingGuard } from "@/components/OnboardingGuard";
-import Index from "./pages/Index";
-import Auth from "./pages/Auth";
-import Dashboard from "./pages/Dashboard";
-import AnalysisDetail from "./pages/AnalysisDetail";
-import SharedAnalysis from "./pages/SharedAnalysis";
-import Onboarding from "./pages/Onboarding";
-import Admin from "./pages/Admin";
-import Account from "./pages/Account";
-import Privacy from "./pages/Privacy";
-import Terms from "./pages/Terms";
-import NotFound from "./pages/NotFound";
+import { lazy, Suspense } from "react";
 import { CookieConsent } from "@/components/CookieConsent";
+
+// Lazy-load route components so simple pages (privacy / terms / auth) don't
+// pull in the heavy app bundle (analysis panel, charts, AI chat, etc.).
+const Index = lazy(() => import("./pages/Index"));
+const Auth = lazy(() => import("./pages/Auth"));
+const Dashboard = lazy(() => import("./pages/Dashboard"));
+const AnalysisDetail = lazy(() => import("./pages/AnalysisDetail"));
+const SharedAnalysis = lazy(() => import("./pages/SharedAnalysis"));
+const Onboarding = lazy(() => import("./pages/Onboarding"));
+const Admin = lazy(() => import("./pages/Admin"));
+const Account = lazy(() => import("./pages/Account"));
+const Privacy = lazy(() => import("./pages/Privacy"));
+const Terms = lazy(() => import("./pages/Terms"));
+const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
 
@@ -30,7 +34,8 @@ const App = () => (
           <Toaster />
           <Sonner />
           <BrowserRouter>
-            <Routes>
+            <Suspense fallback={<div className="min-h-screen bg-background" />}>
+              <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/auth" element={<Auth />} />
               <Route path="/share/:token" element={<SharedAnalysis />} />
@@ -79,7 +84,8 @@ const App = () => (
                 }
               />
               <Route path="*" element={<NotFound />} />
-            </Routes>
+              </Routes>
+            </Suspense>
             <CookieConsent />
           </BrowserRouter>
         </TooltipProvider>
