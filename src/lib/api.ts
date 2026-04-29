@@ -90,6 +90,52 @@ export interface ActionPlan {
   days: ActionPlanDay[];
 }
 
+export interface FeatureIdea {
+  title: string;
+  description: string;
+  why_now?: string;
+  effort?: "low" | "medium" | "high";
+  impact?: "low" | "medium" | "high";
+}
+
+export interface GrowthIdea {
+  title: string;
+  description: string;
+  channel?: string;
+  effort?: "low" | "medium" | "high";
+}
+
+export interface MonetizationIdea {
+  title: string;
+  description: string;
+  type?: string;
+}
+
+export interface CompetitorInfo {
+  name: string;
+  url?: string;
+  positioning?: string;
+  what_they_do_better?: string;
+  what_this_product_does_better?: string;
+}
+
+export interface MarketGap {
+  title: string;
+  description: string;
+}
+
+export interface ProductStrategy {
+  what_this_product_actually_is?: string;
+  who_its_for?: string;
+  core_job_to_be_done?: string;
+  feature_ideas?: FeatureIdea[];
+  growth_ideas?: GrowthIdea[];
+  monetization_ideas?: MonetizationIdea[];
+  competitors?: CompetitorInfo[];
+  market_gaps?: MarketGap[];
+  positioning_recommendation?: string;
+}
+
 export interface AnalysisResult {
   overall_score: number;
   summary: string;
@@ -101,6 +147,7 @@ export interface AnalysisResult {
   benchmark_label?: string;
   peer_examples?: string[];
   action_plan?: ActionPlan;
+  product_strategy?: ProductStrategy;
 }
 
 export async function scrapeWebsite(url: string): Promise<ScrapeResult> {
