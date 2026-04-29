@@ -91,6 +91,7 @@ const Index = () => {
             benchmark_label: result.benchmark_label,
             peer_examples: result.peer_examples,
             action_plan: result.action_plan,
+            product_strategy: result.product_strategy,
           } as any,
         } as any);
       } else {
