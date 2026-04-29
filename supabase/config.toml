@@ -4,4 +4,4 @@ project_id = "tmdnoailedngafchtaxj"
 verify_jwt = true
 
 [functions.chat-with-report]
-verify_jwt = true
+verify_jwt = false
