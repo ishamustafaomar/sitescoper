@@ -23,6 +23,7 @@ const Account = lazy(() => import("./pages/Account"));
 const Privacy = lazy(() => import("./pages/Privacy"));
 const Terms = lazy(() => import("./pages/Terms"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+const Pricing = lazy(() => import("./pages/Pricing"));
 
 const queryClient = new QueryClient();
 
@@ -41,6 +42,7 @@ const App = () => (
               <Route path="/share/:token" element={<SharedAnalysis />} />
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/terms" element={<Terms />} />
+              <Route path="/pricing" element={<Pricing />} />
               <Route
                 path="/onboarding"
                 element={
