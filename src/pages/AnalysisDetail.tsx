@@ -55,6 +55,7 @@ export default function AnalysisDetail() {
       benchmark_label: record.scrape_data?.benchmark_label,
       peer_examples: record.scrape_data?.peer_examples,
       action_plan: record.scrape_data?.action_plan,
+      product_strategy: record.scrape_data?.product_strategy,
     };
     generateAnalysisPDF(analysis, record.url, record.scrape_data);
   };
@@ -121,6 +122,7 @@ export default function AnalysisDetail() {
     benchmark_label: record.scrape_data?.benchmark_label,
     peer_examples: record.scrape_data?.peer_examples,
     action_plan: record.scrape_data?.action_plan,
+    product_strategy: record.scrape_data?.product_strategy,
   };
   const scrapeData: ScrapeResult | undefined = record.scrape_data
     ? {
