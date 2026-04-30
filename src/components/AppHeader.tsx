@@ -1,5 +1,5 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import { Sparkles, LayoutDashboard, LogOut, LogIn, Shield, Home, Settings, Check, Swords } from "lucide-react";
+import { Sparkles, LayoutDashboard, LogOut, LogIn, Shield, Home, Settings, Check, Swords, Crown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { useAuth } from "@/components/AuthProvider";
@@ -7,12 +7,14 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { useTranslation } from "react-i18next";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import { useSubscription } from "@/hooks/useSubscription";
 
 export function AppHeader() {
   const navigate = useNavigate();
   const location = useLocation();
   const { user, signOut } = useAuth();
   const { t } = useTranslation();
+  const { isPro } = useSubscription();
 
   const handleSignOut = async () => {
     await signOut();
@@ -84,6 +86,23 @@ export function AppHeader() {
           )}
           <LanguageSwitcher />
           <ThemeToggle />
+          {/* Always-visible Pro entry point */}
+          {location.pathname !== "/pricing" && (
+            isPro ? (
+              <span className="hidden sm:inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-gradient-to-r from-primary/20 to-accent/20 text-primary text-[11px] font-body font-bold border border-primary/30">
+                <Crown className="h-3 w-3" /> PRO
+              </span>
+            ) : (
+              <Button
+                size="sm"
+                onClick={() => navigate("/pricing")}
+                className="text-xs font-body shadow-glow bg-gradient-to-r from-primary to-accent hover:opacity-90 text-primary-foreground"
+              >
+                <Sparkles className="h-3.5 w-3.5" />
+                Upgrade
+              </Button>
+            )
+          )}
           {user ? (
             <div className="flex items-center gap-2">
               <button
