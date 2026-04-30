@@ -1,5 +1,5 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import { Sparkles, LayoutDashboard, LogOut, LogIn, Shield, Home, Settings, Check, Crown } from "lucide-react";
+import { Sparkles, LayoutDashboard, LogOut, LogIn, Shield, Home, Settings, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { useAuth } from "@/components/AuthProvider";
@@ -73,17 +73,6 @@ export function AppHeader() {
           )}
           <LanguageSwitcher />
           <ThemeToggle />
-          {location.pathname !== "/pricing" && (
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => navigate("/pricing")}
-              className="text-xs font-body text-primary"
-            >
-              <Crown className="h-3.5 w-3.5" />
-              Pro
-            </Button>
-          )}
           {user ? (
             <div className="flex items-center gap-2">
               <button

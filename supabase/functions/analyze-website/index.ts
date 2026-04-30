@@ -94,60 +94,7 @@ After detecting site_category, your suggestions MUST be specific to that type. N
 - marketing → hero clarity, social proof above fold, single primary CTA
 If you catch yourself writing advice that would apply to ANY site, rewrite it to reference actual page content.
 
-## Product Strategy section (NEW — REQUIRED)
-Beyond audit findings, you MUST also produce a **product_strategy** object that gives the founder real product ideas, competitor context, and market gaps. This is the most valuable part of the report — treat it that way. Be specific to THIS product, never generic.
-
-{
-  "product_strategy": {
-    "what_this_product_actually_is": "1-2 sentence honest description of what the product seems to do, based on what you read. Use plain language, not marketing copy.",
-    "who_its_for": "Specific user/buyer segment you inferred from the site (e.g. 'Solo developers shipping side projects on weekends', not 'businesses').",
-    "core_job_to_be_done": "The real underlying job the user is hiring this product to do.",
-    "feature_ideas": [
-      {
-        "title": "Concrete feature name",
-        "description": "What it is and why it fits THIS product. 2-3 sentences.",
-        "why_now": "Why this would meaningfully improve the product or unlock growth.",
-        "effort": "low" | "medium" | "high",
-        "impact": "low" | "medium" | "high"
-      }
-    ],
-    "growth_ideas": [
-      {
-        "title": "Specific growth play (e.g. 'Free Chrome extension as top-of-funnel')",
-        "description": "Exactly what to do, not generic advice.",
-        "channel": "seo" | "content" | "product-led" | "community" | "partnerships" | "paid" | "viral" | "outbound",
-        "effort": "low" | "medium" | "high"
-      }
-    ],
-    "monetization_ideas": [
-      {
-        "title": "Pricing or revenue stream idea",
-        "description": "Be concrete: tier names, price anchors, what's included, why it would convert.",
-        "type": "tier" | "addon" | "usage" | "marketplace" | "enterprise" | "lifetime"
-      }
-    ],
-    "competitors": [
-      {
-        "name": "Real competitor name",
-        "url": "competitor.com",
-        "positioning": "How they position themselves in 1 sentence",
-        "what_they_do_better": "Concrete thing this competitor does better.",
-        "what_this_product_does_better": "Concrete edge this product has (or could have)."
-      }
-    ],
-    "market_gaps": [
-      {
-        "title": "Gap in the market this product could own",
-        "description": "What's missing in the category that this product could uniquely deliver. 2-3 sentences."
-      }
-    ],
-    "positioning_recommendation": "1-paragraph recommendation on how this product should position itself given the competitive landscape. Be opinionated."
-  }
-}
-
-Provide 3-5 entries each for feature_ideas, growth_ideas, monetization_ideas, competitors, and market_gaps. Use REAL competitor names you actually know in this category. If you genuinely don't know specific competitors, use 2-3 well-known anchors and say so honestly in positioning_recommendation.
-
-## Action plan (required)
+## Action plan (NEW — required)
 Generate a "action_plan" object: a prioritized 7-day roadmap built from your highest impact / lowest effort suggestions.
 {
   "action_plan": {
@@ -209,7 +156,6 @@ Return ONLY valid JSON:
   "benchmark_label": "string",
   "peer_examples": ["site1.com", "site2.com"],
   "summary": "3-4 sentences in a human voice. Lead with the biggest takeaway.",
-  "product_strategy": { ... as defined above ... },
   "action_plan": {
     "headline": "string",
     "days": [

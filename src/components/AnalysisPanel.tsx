@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { AnalysisResult, ScrapeResult } from "@/lib/api";
 import { Badge } from "@/components/ui/badge";
-import { ChevronDown, ChevronUp, LayoutList, Zap, Image as ImageIcon, Calendar, Flame, AlertCircle, ArrowDown, Lightbulb } from "lucide-react";
+import { ChevronDown, ChevronUp, LayoutList, Zap, Image as ImageIcon, Calendar, Flame, AlertCircle, ArrowDown } from "lucide-react";
 import { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ImpactMatrix } from "@/components/ImpactMatrix";
@@ -11,8 +11,6 @@ import { ActionPlanView } from "@/components/ActionPlanView";
 import { BenchmarkCard } from "@/components/BenchmarkCard";
 import { VerdictCard } from "@/components/VerdictCard";
 import { ImpactGroupedView } from "@/components/ImpactGroupedView";
-import { ProductStrategyView } from "@/components/ProductStrategyView";
-import { ProGate } from "@/components/ProGate";
 import { Button } from "@/components/ui/button";
 
 interface AnalysisPanelProps {
@@ -45,12 +43,6 @@ export function AnalysisPanel({ analysis, scrapeData }: AnalysisPanelProps) {
   const totalSuggestions = analysis.categories.reduce((sum, c) => sum + c.suggestions.length, 0);
   const hasImageSuggestions = (analysis.image_suggestions?.length ?? 0) > 0 || (scrapeData?.images?.length ?? 0) > 0;
   const hasActionPlan = (analysis.action_plan?.days?.length ?? 0) > 0;
-  const hasStrategy = !!(
-    analysis.product_strategy?.feature_ideas?.length ||
-    analysis.product_strategy?.growth_ideas?.length ||
-    analysis.product_strategy?.competitors?.length ||
-    analysis.product_strategy?.market_gaps?.length
-  );
 
   return (
     <motion.div
@@ -115,16 +107,11 @@ export function AnalysisPanel({ analysis, scrapeData }: AnalysisPanelProps) {
 
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <TabsList className="grid w-full grid-cols-6">
+        <TabsList className="grid w-full grid-cols-5">
           <TabsTrigger value="impact" className="gap-1.5 text-xs">
             <Flame className="h-3.5 w-3.5" />
             <span className="hidden sm:inline">By Impact</span>
             <span className="sm:hidden">Impact</span>
-          </TabsTrigger>
-          <TabsTrigger value="strategy" className="gap-1.5 text-xs" disabled={!hasStrategy}>
-            <Lightbulb className="h-3.5 w-3.5" />
-            <span className="hidden sm:inline">Product Ideas</span>
-            <span className="sm:hidden">Ideas</span>
           </TabsTrigger>
           <TabsTrigger value="plan" className="gap-1.5 text-xs" disabled={!hasActionPlan}>
             <Calendar className="h-3.5 w-3.5" />
@@ -153,22 +140,6 @@ export function AnalysisPanel({ analysis, scrapeData }: AnalysisPanelProps) {
         {/* By Impact (NEW default) */}
         <TabsContent value="impact" className="mt-4">
           <ImpactGroupedView analysis={analysis} />
-        </TabsContent>
-
-        {/* Product Strategy tab — Pro feature */}
-        <TabsContent value="strategy" className="mt-4">
-          {hasStrategy && analysis.product_strategy ? (
-            <ProGate
-              feature="Product Ideas & Competitor Analysis"
-              description="Concrete feature ideas, growth plays, monetization angles, real competitor breakdowns, and market gaps for your product."
-            >
-              <ProductStrategyView strategy={analysis.product_strategy} />
-            </ProGate>
-          ) : (
-            <div className="bg-card rounded-xl border border-border p-6 text-center text-sm text-muted-foreground font-body">
-              No product strategy generated for this analysis.
-            </div>
-          )}
         </TabsContent>
 
         {/* Action Plan tab */}
