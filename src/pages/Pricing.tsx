@@ -12,18 +12,21 @@ import { supabase } from "@/integrations/supabase/client";
 import { getStripeEnvironment } from "@/lib/stripe";
 import { toast } from "sonner";
 
-// Side-by-side rows: same row = same capability so users can compare directly.
+// Side-by-side rows: Free account (signed in, no subscription) vs Pro account.
+// Same row = same capability so users can compare directly.
 const COMPARISON_ROWS: { label: string; free: string | boolean; pro: string | boolean; highlight?: boolean }[] = [
-  { label: "Site analyses",                  free: "1 / month",          pro: "Unlimited",                    highlight: true },
-  { label: "Overall score & traffic-light",  free: true,                  pro: true },
-  { label: "Top action items",               free: "Top 3 only",          pro: "Full prioritized roadmap",     highlight: true },
-  { label: "Deep product reasoning (AI plays your product)", free: false, pro: true,                           highlight: true },
-  { label: "Product ideas & strategy",       free: false,                 pro: true },
-  { label: "Side-by-side competitor compare",free: "Preview only",        pro: "Full battle mode",             highlight: true },
-  { label: "Chat with your report (AI)",     free: false,                 pro: true },
-  { label: "1-click PDF export",             free: false,                 pro: true },
-  { label: "Full saved history",             free: false,                 pro: true },
-  { label: "Priority Gemini-powered scans",  free: false,                 pro: true },
+  { label: "Site analyses",                                   free: "1 / month",       pro: "Unlimited",                  highlight: true },
+  { label: "Overall score & traffic-light breakdown",         free: true,              pro: true },
+  { label: "Action items per scan",                           free: "Top 3 only",      pro: "Full prioritized roadmap",   highlight: true },
+  { label: "Deep product reasoning (AI plays your product)",  free: "Surface only",    pro: "Full deep simulation",       highlight: true },
+  { label: "Product ideas & strategy section",                free: false,             pro: true },
+  { label: "Saved analysis history",                          free: "Last 1 scan",     pro: "Unlimited & searchable" },
+  { label: "Saved websites for re-scanning",                  free: "Up to 1",         pro: "Unlimited" },
+  { label: "Side-by-side competitor compare",                 free: "Preview only",    pro: "Full battle mode",           highlight: true },
+  { label: "Chat with your report (AI)",                      free: false,             pro: true },
+  { label: "1-click PDF export",                              free: false,             pro: true },
+  { label: "Priority Gemini-powered scans",                   free: false,             pro: true },
+  { label: "Email support",                                   free: "Community",       pro: "Priority" },
 ];
 
 export default function Pricing() {
@@ -65,8 +68,8 @@ export default function Pricing() {
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-body mb-4">
             <Sparkles className="h-3 w-3" /> Pricing
           </div>
-          <h1 className="font-heading text-4xl md:text-5xl font-bold mb-3">Free vs Pro — see the difference.</h1>
-          <p className="text-muted-foreground max-w-xl mx-auto">Free gives you a taste. Pro is where SiteScoper actually plays your product, finds the bugs in your logic, and writes the fixes for you.</p>
+          <h1 className="font-heading text-4xl md:text-5xl font-bold mb-3">Free account vs Pro account</h1>
+          <p className="text-muted-foreground max-w-xl mx-auto">Both require an account. Free lets you try SiteScoper. Pro is where it actually plays your product, finds the bugs in your logic, and writes the fixes for you.</p>
         </div>
 
         {!checkoutOpen && (
@@ -90,13 +93,13 @@ export default function Pricing() {
                 {/* Header row */}
                 <div className="p-5 bg-muted/40 border-b border-border" />
                 <div className="p-5 bg-muted/40 border-b border-border text-center">
-                  <div className="font-heading text-lg font-bold">Free</div>
-                  <div className="text-xs text-muted-foreground mt-1">Try it out</div>
-                  <div className="mt-3"><span className="text-2xl font-heading font-bold">$0</span></div>
+                  <div className="font-heading text-lg font-bold">Free account</div>
+                  <div className="text-xs text-muted-foreground mt-1">Signed in · no card</div>
+                  <div className="mt-3"><span className="text-2xl font-heading font-bold">$0</span><span className="text-xs text-muted-foreground">/forever</span></div>
                 </div>
                 <div className="p-5 bg-gradient-to-br from-primary/15 via-primary/5 to-transparent border-b-2 border-primary text-center relative">
                   <div className="absolute -top-0 left-1/2 -translate-x-1/2 px-3 py-1 rounded-b-lg bg-primary text-primary-foreground text-[10px] font-body uppercase tracking-wider font-bold">★ Recommended</div>
-                  <div className="font-heading text-lg font-bold text-primary mt-3">Pro</div>
+                  <div className="font-heading text-lg font-bold text-primary mt-3">Pro account</div>
                   <div className="text-xs text-muted-foreground mt-1">For people shipping real products</div>
                   <div className="mt-3">
                     {interval === "monthly" ? (
