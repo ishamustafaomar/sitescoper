@@ -24,6 +24,8 @@ import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/components/AuthProvider";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
+import { useSubscription } from "@/hooks/useSubscription";
+import { getStripeEnvironment } from "@/lib/stripe";
 
 const FREE_ANALYSIS_KEY = "sitescoper_free_analysis_used";
 
@@ -36,6 +38,7 @@ const Index = () => {
   const [currentUrl, setCurrentUrl] = useState("");
   const { toast } = useToast();
   const { user } = useAuth();
+  const { isPro } = useSubscription();
   const { t } = useTranslation();
   const inputRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
@@ -48,7 +51,7 @@ const Index = () => {
   };
 
   const handleAnalyze = async (url: string) => {
-    // Free-tier gate: anon users get 1 free analysis, then must sign up
+    // Anon: localStorage gate (1 lifetime free scan)
     if (!user && hasUsedFreeAnalysis) {
       toast({
         title: "Free analysis used",
@@ -56,6 +59,24 @@ const Index = () => {
       });
       navigate("/auth");
       return;
+    }
+
+    // Signed-in non-Pro: server-checked monthly quota
+    if (user) {
+      const { data: quota, error: quotaErr } = await supabase.functions.invoke("check-scan-quota", {
+        body: { environment: getStripeEnvironment() },
+      });
+      if (quotaErr || !quota?.allowed) {
+        toast({
+          title: quota?.isPro ? "Scan blocked" : "Monthly free scan used",
+          description: quota?.isPro
+            ? "Try again in a moment."
+            : `You've used your ${quota?.limit ?? 1} free scan this month. Upgrade to Pro for unlimited.`,
+          variant: "destructive",
+        });
+        if (!quota?.isPro) navigate("/pricing");
+        return;
+      }
     }
 
     setCurrentUrl(url);
@@ -117,6 +138,11 @@ const Index = () => {
   };
 
   const handleExportPDF = () => {
+    if (!isPro) {
+      toast({ title: "PDF export is a Pro feature", description: "Upgrade to download polished client-ready reports." });
+      navigate("/pricing");
+      return;
+    }
     if (analysis && currentUrl) {
       generateAnalysisPDF(analysis, currentUrl, scrapeData ? { metadata: scrapeData.metadata } : undefined);
     }
@@ -239,8 +265,8 @@ const Index = () => {
                     )}
                   </div>
                   <Button variant="hero" size="default" onClick={handleExportPDF} className="rounded-xl">
-                    <Download className="h-4 w-4" />
-                    Download PDF Report
+                    {isPro ? <Download className="h-4 w-4" /> : <Lock className="h-4 w-4" />}
+                    {isPro ? "Download PDF Report" : "Download PDF · Pro"}
                   </Button>
                 </div>
               )}
@@ -351,8 +377,17 @@ const Index = () => {
         </div>
       </footer>
 
-      {analysis && user && (
+      {analysis && user && isPro && (
         <ChatPanel analysis={analysis} scrapeData={scrapeData ?? undefined} url={currentUrl} />
+      )}
+      {analysis && user && !isPro && (
+        <button
+          onClick={() => navigate("/pricing")}
+          className="fixed bottom-6 right-6 z-40 flex items-center gap-2 px-4 py-3 rounded-full bg-card border border-border shadow-lg hover:shadow-xl transition text-sm font-body"
+        >
+          <Lock className="h-4 w-4 text-primary" />
+          <span>Chat with this report — <span className="text-primary font-semibold">Pro</span></span>
+        </button>
       )}
     </div>
   );

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, Download, Loader2, Share2, Check, Copy, Home } from "lucide-react";
+import { ArrowLeft, Download, Loader2, Share2, Check, Copy, Home, Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AppHeader } from "@/components/AppHeader";
 import { AnalysisPanel } from "@/components/AnalysisPanel";
@@ -11,6 +11,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { AnalysisResult, ScrapeResult } from "@/lib/api";
 import { generateAnalysisPDF } from "@/lib/pdf";
 import { useToast } from "@/hooks/use-toast";
+import { useSubscription } from "@/hooks/useSubscription";
 
 function genToken() {
   const arr = new Uint8Array(16);
@@ -22,6 +23,7 @@ export default function AnalysisDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { isPro } = useSubscription();
   const [record, setRecord] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [sharing, setSharing] = useState(false);
@@ -44,6 +46,11 @@ export default function AnalysisDetail() {
 
   const handleExportPDF = () => {
     if (!record) return;
+    if (!isPro) {
+      toast({ title: "PDF export is a Pro feature", description: "Upgrade to download the full report." });
+      navigate("/pricing");
+      return;
+    }
     const analysis: AnalysisResult = {
       overall_score: record.overall_score,
       summary: record.summary || "",
@@ -158,8 +165,8 @@ export default function AnalysisDetail() {
               {copied ? "Copied!" : "Share"}
             </Button>
             <Button variant="outline" size="sm" onClick={handleExportPDF}>
-              <Download className="h-3.5 w-3.5" />
-              Export PDF
+              {isPro ? <Download className="h-3.5 w-3.5" /> : <Lock className="h-3.5 w-3.5" />}
+              {isPro ? "Export PDF" : "Export PDF · Pro"}
             </Button>
           </div>
         </div>
@@ -188,7 +195,17 @@ export default function AnalysisDetail() {
         <ScoreTrendChart url={record.url} currentId={record.id} />
       </main>
 
-      <ChatPanel analysis={analysis} scrapeData={scrapeData} url={record.url} analysisId={record.id} />
+      {isPro ? (
+        <ChatPanel analysis={analysis} scrapeData={scrapeData} url={record.url} analysisId={record.id} />
+      ) : (
+        <button
+          onClick={() => navigate("/pricing")}
+          className="fixed bottom-6 right-6 z-40 flex items-center gap-2 px-4 py-3 rounded-full bg-card border border-border shadow-lg hover:shadow-xl transition text-sm font-body"
+        >
+          <Lock className="h-4 w-4 text-primary" />
+          <span>Chat with this report — <span className="text-primary font-semibold">Pro</span></span>
+        </button>
+      )}
     </div>
   );
 }
