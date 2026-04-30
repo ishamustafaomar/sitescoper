@@ -1,5 +1,5 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import { Sparkles, LayoutDashboard, LogOut, LogIn, Shield, Home, Settings, Check } from "lucide-react";
+import { Sparkles, LayoutDashboard, LogOut, LogIn, Shield, Home, Settings, Check, Swords } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { useAuth } from "@/components/AuthProvider";
@@ -58,6 +58,17 @@ export function AppHeader() {
             >
               <LayoutDashboard className="h-3.5 w-3.5" />
               {t("nav.dashboard")}
+            </Button>
+          )}
+          {location.pathname !== "/compare" && (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => navigate("/compare")}
+              className="text-xs font-body"
+            >
+              <Swords className="h-3.5 w-3.5" />
+              Compare
             </Button>
           )}
           {user && location.pathname !== "/admin" && (
