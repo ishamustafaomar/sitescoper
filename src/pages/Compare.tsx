@@ -20,7 +20,7 @@ interface Side {
 const empty: Side = { url: "", analysis: null, loading: false };
 
 export default function Compare() {
-  useCanonical();
+  useCanonical("/compare");
   const { toast } = useToast();
   const [a, setA] = useState<Side>({ ...empty });
   const [b, setB] = useState<Side>({ ...empty });
