@@ -12,28 +12,25 @@ import { supabase } from "@/integrations/supabase/client";
 import { getStripeEnvironment } from "@/lib/stripe";
 import { toast } from "sonner";
 
-const FREE_FEATURES = [
-  "1 free analysis to start",
-  "Overall score & traffic-light breakdown",
-  "Top action items",
-  "Single-page audit",
-];
-
-const PRO_FEATURES = [
-  "Unlimited site analyses",
-  "Product ideas & strategy section",
-  "Full analysis history & saved sites",
-  "Chat with your report (AI)",
-  "1-click PDF export",
-  "Side-by-side competitor compare",
-  "Priority Gemini-powered scans",
+// Side-by-side rows: same row = same capability so users can compare directly.
+const COMPARISON_ROWS: { label: string; free: string | boolean; pro: string | boolean; highlight?: boolean }[] = [
+  { label: "Site analyses",                  free: "1 / month",          pro: "Unlimited",                    highlight: true },
+  { label: "Overall score & traffic-light",  free: true,                  pro: true },
+  { label: "Top action items",               free: "Top 3 only",          pro: "Full prioritized roadmap",     highlight: true },
+  { label: "Deep product reasoning (AI plays your product)", free: false, pro: true,                           highlight: true },
+  { label: "Product ideas & strategy",       free: false,                 pro: true },
+  { label: "Side-by-side competitor compare",free: "Preview only",        pro: "Full battle mode",             highlight: true },
+  { label: "Chat with your report (AI)",     free: false,                 pro: true },
+  { label: "1-click PDF export",             free: false,                 pro: true },
+  { label: "Full saved history",             free: false,                 pro: true },
+  { label: "Priority Gemini-powered scans",  free: false,                 pro: true },
 ];
 
 export default function Pricing() {
   const navigate = useNavigate();
   const { user } = useAuth();
   const { isPro, subscription } = useSubscription();
-  const [interval, setInterval] = useState<"monthly" | "yearly">("monthly");
+  const [interval, setInterval] = useState<"monthly" | "yearly">("yearly");
   const [checkoutOpen, setCheckoutOpen] = useState(false);
   const [portalLoading, setPortalLoading] = useState(false);
 
@@ -68,8 +65,8 @@ export default function Pricing() {
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-body mb-4">
             <Sparkles className="h-3 w-3" /> Pricing
           </div>
-          <h1 className="font-heading text-4xl md:text-5xl font-bold mb-3">Ship a better site, faster.</h1>
-          <p className="text-muted-foreground max-w-xl mx-auto">Free forever for one-off audits. Go Pro for unlimited scans, history, ideas, chat & PDF.</p>
+          <h1 className="font-heading text-4xl md:text-5xl font-bold mb-3">Free vs Pro — see the difference.</h1>
+          <p className="text-muted-foreground max-w-xl mx-auto">Free gives you a taste. Pro is where SiteScoper actually plays your product, finds the bugs in your logic, and writes the fixes for you.</p>
         </div>
 
         {!checkoutOpen && (
@@ -87,48 +84,84 @@ export default function Pricing() {
               </div>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-6">
-              <Card className="p-8">
-                <h2 className="font-heading text-2xl font-bold mb-1">Free</h2>
-                <p className="text-muted-foreground text-sm mb-4">For occasional audits.</p>
-                <div className="mb-6"><span className="text-4xl font-heading font-bold">$0</span><span className="text-muted-foreground"> / forever</span></div>
-                <ul className="space-y-2 mb-6">
-                  {FREE_FEATURES.map(f => (
-                    <li key={f} className="flex items-start gap-2 text-sm"><Check className="h-4 w-4 text-accent mt-0.5 shrink-0" />{f}</li>
-                  ))}
-                </ul>
-                <Button variant="outline" className="w-full" onClick={() => navigate("/")}>Stay on Free</Button>
-              </Card>
+            {/* Side-by-side comparison table */}
+            <Card className="overflow-hidden border-2 border-primary/20">
+              <div className="grid grid-cols-[1.4fr_1fr_1.2fr]">
+                {/* Header row */}
+                <div className="p-5 bg-muted/40 border-b border-border" />
+                <div className="p-5 bg-muted/40 border-b border-border text-center">
+                  <div className="font-heading text-lg font-bold">Free</div>
+                  <div className="text-xs text-muted-foreground mt-1">Try it out</div>
+                  <div className="mt-3"><span className="text-2xl font-heading font-bold">$0</span></div>
+                </div>
+                <div className="p-5 bg-gradient-to-br from-primary/15 via-primary/5 to-transparent border-b-2 border-primary text-center relative">
+                  <div className="absolute -top-0 left-1/2 -translate-x-1/2 px-3 py-1 rounded-b-lg bg-primary text-primary-foreground text-[10px] font-body uppercase tracking-wider font-bold">★ Recommended</div>
+                  <div className="font-heading text-lg font-bold text-primary mt-3">Pro</div>
+                  <div className="text-xs text-muted-foreground mt-1">For people shipping real products</div>
+                  <div className="mt-3">
+                    {interval === "monthly" ? (
+                      <><span className="text-2xl font-heading font-bold">$19</span><span className="text-xs text-muted-foreground">/mo</span></>
+                    ) : (
+                      <>
+                        <span className="text-xs text-muted-foreground line-through mr-1">$19</span>
+                        <span className="text-2xl font-heading font-bold">$13.25</span><span className="text-xs text-muted-foreground">/mo</span>
+                        <div className="text-[10px] text-accent font-body mt-0.5">billed $159/yr · save $69</div>
+                      </>
+                    )}
+                  </div>
+                </div>
 
-              <Card className="p-8 border-primary shadow-glow relative">
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-primary text-primary-foreground text-xs font-body">Most popular</div>
-                <h2 className="font-heading text-2xl font-bold mb-1">Pro</h2>
-                <p className="text-muted-foreground text-sm mb-4">Everything you need to ship.</p>
-                <div className="mb-6">
-                  {interval === "monthly" ? (
-                    <><span className="text-4xl font-heading font-bold">$19</span><span className="text-muted-foreground"> / month</span></>
+                {/* Comparison rows */}
+                {COMPARISON_ROWS.map((row, idx) => (
+                  <div key={row.label} className="contents">
+                    <div className={`p-4 border-b border-border text-sm font-body ${row.highlight ? "font-semibold" : ""} ${idx % 2 === 1 ? "bg-muted/20" : ""}`}>
+                      {row.label}
+                    </div>
+                    <div className={`p-4 border-b border-border text-center text-sm ${idx % 2 === 1 ? "bg-muted/20" : ""}`}>
+                      {row.free === true ? (
+                        <Check className="h-4 w-4 text-muted-foreground inline" />
+                      ) : row.free === false ? (
+                        <span className="text-muted-foreground/40">—</span>
+                      ) : (
+                        <span className="text-muted-foreground">{row.free}</span>
+                      )}
+                    </div>
+                    <div className={`p-4 border-b-2 border-primary/40 text-center text-sm bg-primary/5 ${row.highlight ? "font-semibold text-foreground" : ""}`}>
+                      {row.pro === true ? (
+                        <Check className="h-4 w-4 text-primary inline" />
+                      ) : row.pro === false ? (
+                        <span className="text-muted-foreground/40">—</span>
+                      ) : (
+                        <span className="text-foreground">{row.pro}</span>
+                      )}
+                    </div>
+                  </div>
+                ))}
+
+                {/* CTA row */}
+                <div className="p-5" />
+                <div className="p-5 text-center">
+                  <Button variant="outline" className="w-full" onClick={() => navigate("/")}>Stay on Free</Button>
+                </div>
+                <div className="p-5 text-center bg-primary/5">
+                  {isPro ? (
+                    <Button className="w-full" onClick={handlePortal} disabled={portalLoading}>
+                      {portalLoading && <Loader2 className="h-4 w-4 animate-spin" />}
+                      Manage subscription
+                    </Button>
                   ) : (
-                    <><span className="text-4xl font-heading font-bold">$159</span><span className="text-muted-foreground"> / year</span><div className="text-xs text-accent mt-1">~$13.25/mo · save $69</div></>
+                    <Button className="w-full shadow-glow" size="lg" onClick={handleStart}>
+                      <Sparkles className="h-4 w-4" /> Upgrade to Pro
+                    </Button>
+                  )}
+                  {isPro && subscription?.cancel_at_period_end && (
+                    <p className="text-xs text-muted-foreground mt-3">Cancels on {subscription.current_period_end ? new Date(subscription.current_period_end).toLocaleDateString() : "period end"}</p>
                   )}
                 </div>
-                <ul className="space-y-2 mb-6">
-                  {PRO_FEATURES.map(f => (
-                    <li key={f} className="flex items-start gap-2 text-sm"><Check className="h-4 w-4 text-accent mt-0.5 shrink-0" />{f}</li>
-                  ))}
-                </ul>
-                {isPro ? (
-                  <Button className="w-full" onClick={handlePortal} disabled={portalLoading}>
-                    {portalLoading && <Loader2 className="h-4 w-4 animate-spin" />}
-                    Manage subscription
-                  </Button>
-                ) : (
-                  <Button className="w-full" onClick={handleStart}>Upgrade to Pro</Button>
-                )}
-                {isPro && subscription?.cancel_at_period_end && (
-                  <p className="text-xs text-muted-foreground mt-3 text-center">Cancels on {subscription.current_period_end ? new Date(subscription.current_period_end).toLocaleDateString() : "period end"}</p>
-                )}
-              </Card>
-            </div>
+              </div>
+            </Card>
+
+            <p className="text-center text-xs text-muted-foreground mt-6">Cancel anytime. Keep Pro until the end of your paid period. No hidden fees.</p>
           </>
         )}
 
