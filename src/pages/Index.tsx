@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import { UrlInput } from "@/components/UrlInput";
 import { WebsitePreview } from "@/components/WebsitePreview";
 import { AnalysisPanel } from "@/components/AnalysisPanel";
-import { AnalysisSkeleton } from "@/components/AnalysisSkeleton";
+import { ScanningAnimation } from "@/components/ScanningAnimation";
 import { ChatPanel } from "@/components/ChatPanel";
 import { AppHeader } from "@/components/AppHeader";
 import { SignInBenefits } from "@/components/SignInBenefits";
@@ -187,7 +187,7 @@ const Index = () => {
         {/* Loading state — skeleton matches final layout */}
         <AnimatePresence>
           {isLoading && (
-            <AnalysisSkeleton step={step as "scraping" | "analyzing"} />
+            <ScanningAnimation step={step as "scraping" | "analyzing"} url={currentUrl} />
           )}
         </AnimatePresence>
 
@@ -201,8 +201,8 @@ const Index = () => {
             >
               {/* Export bar */}
               {analysis && (
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
+                <div className="flex items-center justify-between flex-wrap gap-3">
+                  <div className="flex items-center gap-3">
                     {currentUrl && (
                       <a
                         href={currentUrl}
@@ -215,9 +215,9 @@ const Index = () => {
                       </a>
                     )}
                   </div>
-                  <Button variant="outline" size="sm" onClick={handleExportPDF}>
-                    <Download className="h-3.5 w-3.5" />
-                    Export PDF
+                  <Button variant="hero" size="default" onClick={handleExportPDF} className="rounded-xl">
+                    <Download className="h-4 w-4" />
+                    Download PDF Report
                   </Button>
                 </div>
               )}
