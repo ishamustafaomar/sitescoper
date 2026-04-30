@@ -24,6 +24,7 @@ const Privacy = lazy(() => import("./pages/Privacy"));
 const Terms = lazy(() => import("./pages/Terms"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Compare = lazy(() => import("./pages/Compare"));
+const Pricing = lazy(() => import("./pages/Pricing"));
 
 const queryClient = new QueryClient();
 
@@ -43,6 +44,7 @@ const App = () => (
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/terms" element={<Terms />} />
               <Route path="/compare" element={<Compare />} />
+              <Route path="/pricing" element={<Pricing />} />
               <Route
                 path="/onboarding"
                 element={
