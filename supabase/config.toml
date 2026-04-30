@@ -12,5 +12,8 @@ verify_jwt = false
 [functions.create-portal-session]
 verify_jwt = false
 
-[functions.stripe-webhook]
+[functions.payments-webhook]
+verify_jwt = false
+
+[functions.check-scan-quota]
 verify_jwt = false
