@@ -62,6 +62,14 @@
     --chart-3: 280 70% 60%;
     --chart-4: 45 80% 55%;
     --chart-5: 0 72% 55%;
+
+    /* Traffic light scoring system */
+    --score-good: 145 65% 42%;
+    --score-good-bg: 145 65% 42% / 0.12;
+    --score-warn: 35 95% 50%;
+    --score-warn-bg: 35 95% 50% / 0.14;
+    --score-bad: 0 75% 55%;
+    --score-bad-bg: 0 75% 55% / 0.12;
   }
 
   .dark {
@@ -116,6 +124,13 @@
     --chart-3: 280 70% 65%;
     --chart-4: 45 80% 55%;
     --chart-5: 0 72% 55%;
+
+    --score-good: 145 60% 50%;
+    --score-good-bg: 145 60% 50% / 0.18;
+    --score-warn: 35 95% 58%;
+    --score-warn-bg: 35 95% 58% / 0.18;
+    --score-bad: 0 75% 60%;
+    --score-bad-bg: 0 75% 60% / 0.18;
   }
 }
 
