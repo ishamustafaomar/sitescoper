@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, Sparkles, Swords } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 interface CTASectionProps {
   onGetStarted: () => void;
@@ -37,6 +38,13 @@ export function CTASection({ onGetStarted }: CTASectionProps) {
               Analyze your website
               <ArrowRight className="h-4 w-4" />
             </Button>
+            <div className="mt-4 text-xs font-body text-muted-foreground">
+              or{" "}
+              <Link to="/compare" className="text-primary hover:underline inline-flex items-center gap-1">
+                <Swords className="h-3 w-3" />
+                battle a competitor
+              </Link>
+            </div>
           </div>
         </motion.div>
       </div>
