@@ -8,6 +8,25 @@ const corsHeaders = {
 
 const FIRECRAWL_V2 = "https://api.firecrawl.dev/v2";
 
+// Patterns suggesting a page is gated behind a login / auth wall.
+const LOGIN_WALL_PATTERNS: RegExp[] = [
+  /\bsign\s*in\s+to\s+continue\b/i,
+  /\blog\s*in\s+to\s+(view|continue|access)\b/i,
+  /\byou\s+must\s+be\s+(logged|signed)\s+in\b/i,
+  /\bauthenticate\s+to\s+(view|continue|access)\b/i,
+  /\b(please|kindly)\s+(log|sign)\s*in\b/i,
+  /\bplease\s+enable\s+javascript\b/i,
+];
+
+function detectLoginWall(markdown: string, html: string, title?: string): boolean {
+  const haystack = `${title || ""} ${markdown.slice(0, 4000)} ${html.slice(0, 4000)}`;
+  // Multiple patterns + a password input suggests login wall, not just a login link
+  const patternHits = LOGIN_WALL_PATTERNS.filter((p) => p.test(haystack)).length;
+  const hasPasswordField = /<input[^>]*type=["']password["']/i.test(html);
+  const looksLikeAuthTitle = /^(sign|log)\s*in|login|authentication\b/i.test((title || "").trim());
+  return (patternHits >= 1 && hasPasswordField) || looksLikeAuthTitle;
+}
+
 // Priority patterns for page selection — higher index = higher priority
 const PAGE_PRIORITY: [RegExp, number][] = [
   [/\/(pricing|plans|packages)/i, 10],
@@ -39,6 +58,10 @@ function selectPages(urls: string[], baseUrl: string, max = 8): string[] {
     try {
       const u = new URL(raw);
       if (u.origin !== base.origin) continue;
+      // Skip auth/account/admin pages — likely login walls or noise
+      if (/\/(login|signin|sign-in|account|admin|dashboard|logout|auth)(\/|$)/i.test(u.pathname)) continue;
+      // Skip non-HTML assets
+      if (/\.(pdf|zip|jpg|jpeg|png|gif|svg|webp|mp4|webm|css|js|xml|json)$/i.test(u.pathname)) continue;
       const clean = u.origin + u.pathname.replace(/\/+$/, "");
       if (seen.has(clean)) continue;
       seen.add(clean);
@@ -48,16 +71,17 @@ function selectPages(urls: string[], baseUrl: string, max = 8): string[] {
     }
   }
 
-  // Sort by score descending, take top N (homepage already scraped separately)
+  // Sort by score descending, take top N (homepage already scraped separately).
+  // Pages with score 0 still included as fallback if we don't have enough scored pages.
   candidates.sort((a, b) => b.score - a.score);
   const homeClean = base.origin + base.pathname.replace(/\/+$/, "");
-  return candidates
+  const filtered = candidates
     .filter((c) => {
       const clean = new URL(c.url).origin + new URL(c.url).pathname.replace(/\/+$/, "");
-      return clean !== homeClean && c.score > 0;
+      return clean !== homeClean;
     })
-    .slice(0, max)
-    .map((c) => c.url);
+    .slice(0, max);
+  return filtered.map((c) => c.url);
 }
 
 async function firecrawlRequest(path: string, body: object, apiKey: string) {
@@ -209,24 +233,35 @@ serve(async (req) => {
       return data.data || data;
     };
 
-    let homeResult = await scrapeHome(2500);
+    let homeResult = await scrapeHome(3000);
     let partialReason: string | null = null;
+    let loginWall = false;
 
     const isEmpty = (r: any) =>
       !r || !((r.markdown || "").trim().length > 60 || (r.html || "").length > 500);
 
     if (isEmpty(homeResult)) {
-      console.warn("Homepage scrape returned empty — retrying with longer wait");
+      console.warn("Homepage scrape returned empty — retrying with longer wait for JS-heavy site");
       try {
-        homeResult = await scrapeHome(6000);
+        // Heavy-JS / parallax / scroll-triggered sites need much longer
+        homeResult = await scrapeHome(8000);
       } catch (e) {
         console.warn("Retry failed:", e);
       }
     }
 
+    // Detect login wall on homepage
+    if (homeResult && detectLoginWall(homeResult.markdown || "", homeResult.html || "", homeResult.metadata?.title)) {
+      loginWall = true;
+      partialReason =
+        "This site appears to be behind a login wall. We can only see the public sign-in page, so the analysis below is based on limited content.";
+    }
+
     if (isEmpty(homeResult)) {
       partialReason =
-        "We couldn't load much content from this page. The site may rely heavily on JavaScript or block crawlers. Results below are based on partial data.";
+        loginWall
+          ? partialReason
+          : "We couldn't load much content from this page. The site may rely heavily on JavaScript, use scroll-triggered loading, or block crawlers. Results below are based on partial data.";
     }
 
     // Step 2: Map the site to discover pages
@@ -252,7 +287,9 @@ serve(async (req) => {
       },
     ];
 
-    // Scrape additional pages in parallel (max 5 concurrent)
+    // Scrape additional pages in parallel (max 5 concurrent).
+    // Track broken / unreachable pages so the AI can flag them.
+    const brokenLinks: { url: string; reason: string }[] = [];
     const scrapePromises = pagesToScrape.map(async (pageUrl) => {
       try {
         const pageData = await firecrawlRequest("/scrape", {
@@ -261,12 +298,22 @@ serve(async (req) => {
           onlyMainContent: true,
         }, FIRECRAWL_API_KEY);
         const result = pageData.data || pageData;
+        const status = result.metadata?.statusCode;
+        if (status && (status === 404 || status >= 500)) {
+          brokenLinks.push({ url: pageUrl, reason: `HTTP ${status}` });
+          return null;
+        }
+        if (!(result.markdown || "").trim()) {
+          brokenLinks.push({ url: pageUrl, reason: "Empty page" });
+          return null;
+        }
         return {
           url: pageUrl,
           markdown: result.markdown || "",
           title: result.metadata?.title || new URL(pageUrl).pathname,
         };
       } catch (e) {
+        brokenLinks.push({ url: pageUrl, reason: e instanceof Error ? e.message : "Failed to load" });
         console.warn(`Failed to scrape ${pageUrl}:`, e);
         return null;
       }
@@ -298,6 +345,8 @@ serve(async (req) => {
         siteUrlsDiscovered: siteUrls.length,
         images,
         detectedSections,
+        brokenLinks,
+        loginWall,
         partial: !!partialReason,
         partialReason,
       },
