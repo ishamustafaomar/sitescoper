@@ -10,7 +10,7 @@ import { AnalysisPanel } from "@/components/AnalysisPanel";
 import { ScanningAnimation } from "@/components/ScanningAnimation";
 import { ChatPanel } from "@/components/ChatPanel";
 import { AppHeader } from "@/components/AppHeader";
-import { SignInBenefits } from "@/components/SignInBenefits";
+import { WhyPaySection } from "@/components/landing/WhyPaySection";
 import { FeaturesSection } from "@/components/landing/FeaturesSection";
 import { HowItWorksSection } from "@/components/landing/HowItWorksSection";
 import { CategoriesSection } from "@/components/landing/CategoriesSection";
@@ -361,7 +361,7 @@ const Index = () => {
           <HowItWorksSection />
           <CategoriesSection />
           <UseCasesSection />
-          {!user && <SignInBenefits />}
+          <WhyPaySection />
           <FAQSection />
           <CTASection onGetStarted={scrollToInput} />
         </>
