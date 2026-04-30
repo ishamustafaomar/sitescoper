@@ -25,6 +25,7 @@ const Terms = lazy(() => import("./pages/Terms"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Compare = lazy(() => import("./pages/Compare"));
 const Pricing = lazy(() => import("./pages/Pricing"));
+const CheckoutReturn = lazy(() => import("./pages/CheckoutReturn"));
 
 const queryClient = new QueryClient();
 
@@ -45,6 +46,7 @@ const App = () => (
               <Route path="/terms" element={<Terms />} />
               <Route path="/compare" element={<Compare />} />
               <Route path="/pricing" element={<Pricing />} />
+              <Route path="/checkout/return" element={<CheckoutReturn />} />
               <Route
                 path="/onboarding"
                 element={
