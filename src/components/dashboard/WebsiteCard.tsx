@@ -1,8 +1,9 @@
 import { motion } from "framer-motion";
 import { Clock, ExternalLink, RefreshCw, Trash2, Loader2, Eye, TrendingUp, TrendingDown, Minus } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { ScoreRing } from "@/components/ScoreRing";
 import { Sparkline } from "@/components/Sparkline";
+import { TrafficDot, TrafficChip, getTrafficLevel, getTrafficStyles, getTrafficLabel } from "@/components/TrafficLight";
+import { cn } from "@/lib/utils";
 
 export interface Website {
   id: string;
@@ -32,17 +33,31 @@ export function WebsiteCard({ website, analyzing, onAnalyze, onDelete, onViewSEO
   const delta = trendDelta(scoreHistory);
   const TrendIcon = delta === null ? Minus : delta > 0 ? TrendingUp : delta < 0 ? TrendingDown : Minus;
   const trendColor = delta === null ? "text-muted-foreground" : delta > 0 ? "text-accent" : delta < 0 ? "text-destructive" : "text-muted-foreground";
+  const level = getTrafficLevel(website.last_score);
+  const styles = getTrafficStyles(level);
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.95 }}
-      className="bg-card rounded-xl border border-border p-5 shadow-[var(--shadow-sm)] hover:shadow-[var(--shadow-md)] hover:border-primary/30 transition-all"
+      className={cn(
+        "relative bg-card rounded-2xl border p-5 shadow-[var(--shadow-sm)] hover:shadow-[var(--shadow-md)] transition-all overflow-hidden",
+        level === "good" && "border-[hsl(var(--score-good))]/30 hover:border-[hsl(var(--score-good))]/60",
+        level === "warn" && "border-[hsl(var(--score-warn))]/30 hover:border-[hsl(var(--score-warn))]/60",
+        level === "bad" && "border-[hsl(var(--score-bad))]/30 hover:border-[hsl(var(--score-bad))]/60",
+        level === "none" && "border-border hover:border-primary/30",
+      )}
     >
+      {/* Left status stripe */}
+      <div className={cn("absolute left-0 top-0 bottom-0 w-1", styles.dot)} />
+
       <div className="flex items-start justify-between gap-3">
         <div className="flex-1 min-w-0">
-          <h3 className="font-heading font-semibold text-sm truncate">{website.name || website.url}</h3>
+          <div className="flex items-center gap-2 mb-1">
+            <TrafficDot score={website.last_score} size="md" />
+            <h3 className="font-heading font-semibold text-sm truncate">{website.name || website.url}</h3>
+          </div>
           <a
             href={website.url}
             target="_blank"
@@ -70,7 +85,21 @@ export function WebsiteCard({ website, analyzing, onAnalyze, onDelete, onViewSEO
             </div>
           )}
         </div>
-        {website.last_score !== null && <ScoreRing score={website.last_score} size={48} />}
+        {website.last_score !== null ? (
+          <div className="flex flex-col items-center gap-1 shrink-0">
+            <div className={cn(
+              "h-14 w-14 rounded-2xl flex items-center justify-center font-heading font-bold text-xl",
+              styles.chip
+            )}>
+              {website.last_score}
+            </div>
+            <span className={cn("text-[9px] font-body uppercase tracking-wider", styles.text)}>
+              {getTrafficLabel(level)}
+            </span>
+          </div>
+        ) : (
+          <TrafficChip score={null} showScore={false} />
+        )}
       </div>
 
       <div className="flex items-center justify-between mt-4 pt-3 border-t border-border">

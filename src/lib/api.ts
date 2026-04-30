@@ -27,6 +27,8 @@ export interface ScrapeResult {
   siteUrlsDiscovered?: number;
   images?: ScrapedImage[];
   detectedSections?: { name: string; evidence: string }[];
+  brokenLinks?: { url: string; reason: string }[];
+  loginWall?: boolean;
   partial?: boolean;
   partialReason?: string;
 }

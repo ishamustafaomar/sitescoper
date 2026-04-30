@@ -1,9 +1,10 @@
 import { useState, useEffect, useMemo } from "react";
 import { AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { Globe, Clock, Search, Sparkles, Loader2, Plus } from "lucide-react";
+import { Globe, Clock, Search, Sparkles, Loader2, Plus, Swords } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
+import { TrafficDot, TrafficChip, getTrafficLevel, getTrafficStyles, getTrafficLabel } from "@/components/TrafficLight";
+import { cn } from "@/lib/utils";
 import { useAuth } from "@/components/AuthProvider";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
@@ -124,13 +125,6 @@ export default function Dashboard() {
     toast({ title: "Website removed" });
   };
 
-  const getScoreColor = (score: number | null) => {
-    if (!score) return "text-muted-foreground";
-    if (score >= 80) return "text-accent";
-    if (score >= 50) return "text-primary";
-    return "text-destructive";
-  };
-
   // Get latest analysis for the selected website
   const seoAnalysis = seoWebsiteId
     ? history.find((h) => h.website_id === seoWebsiteId)
@@ -179,6 +173,22 @@ export default function Dashboard() {
         <StatsOverview websiteCount={websites.length} historyCount={history.length} avgScore={avgScore} />
 
         <AddWebsiteForm onAdd={addWebsite} />
+
+        {/* Compare CTA */}
+        <div className="flex items-center justify-between gap-3 px-4 py-3 rounded-xl border border-primary/20 bg-gradient-to-r from-primary/5 to-transparent">
+          <div className="flex items-center gap-3 min-w-0">
+            <div className="p-2 rounded-lg bg-primary/10 text-primary shrink-0">
+              <Swords className="h-4 w-4" />
+            </div>
+            <div className="min-w-0">
+              <p className="text-sm font-heading font-semibold">Battle a competitor</p>
+              <p className="text-[11px] text-muted-foreground font-body truncate">Side-by-side scoring vs. any other site</p>
+            </div>
+          </div>
+          <Button size="sm" variant="outline" onClick={() => navigate("/compare")} className="shrink-0">
+            Compare
+          </Button>
+        </div>
 
         {/* SEO Detail Panel */}
         <AnimatePresence>
@@ -254,28 +264,38 @@ export default function Dashboard() {
           ) : (
             <div className="bg-card rounded-xl border border-border overflow-hidden shadow-[var(--shadow-sm)]">
               <div className="divide-y divide-border">
-                {history.map((record) => (
-                  <div
-                    key={record.id}
-                    className="flex items-center justify-between p-4 hover:bg-muted/50 transition-colors cursor-pointer"
-                    onClick={() => navigate(`/analysis/${record.id}`)}
-                  >
-                    <div className="flex items-center gap-3 min-w-0">
-                      <div className={`text-lg font-heading font-bold ${getScoreColor(record.overall_score)}`}>
-                        {record.overall_score}
-                      </div>
-                      <div className="min-w-0">
-                        <p className="text-sm font-heading font-medium truncate">{record.url}</p>
-                        <p className="text-xs text-muted-foreground font-body">
-                          {new Date(record.created_at).toLocaleString()}
-                        </p>
+                {history.map((record) => {
+                  const lvl = getTrafficLevel(record.overall_score);
+                  const sty = getTrafficStyles(lvl);
+                  return (
+                    <div
+                      key={record.id}
+                      className="flex items-center justify-between p-4 hover:bg-muted/50 transition-colors cursor-pointer group"
+                      onClick={() => navigate(`/analysis/${record.id}`)}
+                    >
+                      <div className="flex items-center gap-3 min-w-0">
+                        <div className={cn(
+                          "h-10 w-10 rounded-xl flex items-center justify-center font-heading font-bold text-sm shrink-0",
+                          sty.chip
+                        )}>
+                          {record.overall_score}
+                        </div>
+                        <div className="min-w-0">
+                          <p className="text-sm font-heading font-medium truncate">{record.url}</p>
+                          <div className="flex items-center gap-2 mt-0.5">
+                            <TrafficDot score={record.overall_score} size="sm" />
+                            <span className={cn("text-[10px] font-body font-medium", sty.text)}>
+                              {getTrafficLabel(lvl)}
+                            </span>
+                            <span className="text-[10px] text-muted-foreground font-body">
+                              · {new Date(record.created_at).toLocaleDateString()}
+                            </span>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                    <Badge variant="secondary" className="text-[10px] shrink-0">
-                      {record.overall_score >= 80 ? "Good" : record.overall_score >= 50 ? "Fair" : "Needs Work"}
-                    </Badge>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           )}
