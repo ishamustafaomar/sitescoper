@@ -1,9 +1,10 @@
 import { useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, AlertCircle, ExternalLink, Link2, FileText, Download, Lock } from "lucide-react";
+import { Sparkles, AlertCircle, ExternalLink, Link2, FileText, Download, Lock, ArrowDown, Swords } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { UrlInput } from "@/components/UrlInput";
+import { HeroPreview } from "@/components/landing/HeroPreview";
 import { WebsitePreview } from "@/components/WebsitePreview";
 import { AnalysisPanel } from "@/components/AnalysisPanel";
 import { ScanningAnimation } from "@/components/ScanningAnimation";
@@ -136,43 +137,65 @@ const Index = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.6 }}
-              className="relative text-center space-y-6 py-16 md:py-20"
+              className="relative py-12 md:py-16"
             >
               <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
                 <div className="absolute top-0 left-1/4 w-72 h-72 bg-primary/20 rounded-full blur-3xl opacity-60" />
                 <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-[hsl(280,70%,60%)]/20 rounded-full blur-3xl opacity-60" />
+                {/* Subtle grid */}
+                <div className="absolute inset-0 opacity-[0.04] bg-[linear-gradient(to_right,currentColor_1px,transparent_1px),linear-gradient(to_bottom,currentColor_1px,transparent_1px)] bg-[size:48px_48px]" />
               </div>
 
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-body border border-primary/20">
-                <Sparkles className="h-3 w-3" />
-                {t("hero.badge")}
-              </div>
-              <h2 className="text-4xl md:text-6xl font-heading font-bold tracking-tight leading-[1.05]">
-                {t("hero.title1")}
-                <br />
-                <span className="bg-gradient-to-r from-primary via-[hsl(265,70%,58%)] to-[hsl(280,70%,60%)] bg-clip-text text-transparent">
-                  {t("hero.title2")}
-                </span>
-                <br />
-                <span className="text-2xl md:text-3xl font-heading font-medium text-muted-foreground">
-                  {t("hero.title3")}
-                </span>
-              </h2>
-              <p className="text-muted-foreground font-body text-base md:text-lg max-w-xl mx-auto leading-relaxed">
-                {t("hero.subtitle")}
-              </p>
-              <div className="flex items-center justify-center gap-4 text-[11px] text-muted-foreground font-body flex-wrap">
-                <div className="flex items-center gap-1.5">
-                  <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-                  {t("hero.noSignup")}
+              <div className="grid lg:grid-cols-[1.1fr_1fr] gap-10 items-center">
+                {/* Left column — headline */}
+                <div className="space-y-6 text-center lg:text-left">
+                  <motion.div
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 }}
+                    className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-body border border-primary/20"
+                  >
+                    <span className="relative flex h-1.5 w-1.5">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
+                      <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-primary" />
+                    </span>
+                    Built by founders, for founders
+                  </motion.div>
+                  <h2 className="text-4xl md:text-6xl font-heading font-bold tracking-tight leading-[1.02]">
+                    The website audit
+                    <br />
+                    that tells you{" "}
+                    <span className="relative inline-block">
+                      <span className="bg-gradient-to-r from-primary via-[hsl(265,70%,58%)] to-[hsl(280,70%,60%)] bg-clip-text text-transparent">
+                        the truth.
+                      </span>
+                      <svg className="absolute left-0 -bottom-2 w-full" viewBox="0 0 200 8" fill="none" preserveAspectRatio="none">
+                        <path d="M2 5 Q50 1 100 4 T198 3" stroke="hsl(var(--primary))" strokeWidth="2.5" strokeLinecap="round" fill="none" opacity="0.4" />
+                      </svg>
+                    </span>
+                  </h2>
+                  <p className="text-muted-foreground font-body text-base md:text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                    Most analyzers spit out a 200-row checklist. We read your site like a senior product strategist would — then tell you the 3 things actually worth fixing this week.
+                  </p>
+                  <div className="flex items-center justify-center lg:justify-start gap-5 text-[11px] text-muted-foreground font-body flex-wrap pt-1">
+                    <div className="flex items-center gap-1.5">
+                      <div className="w-1.5 h-1.5 rounded-full bg-[hsl(var(--score-good))]" />
+                      No signup to try
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                      Multi-page deep crawl
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <div className="w-1.5 h-1.5 rounded-full bg-[hsl(280,70%,60%)]" />
+                      PDF export
+                    </div>
+                  </div>
                 </div>
-                <div className="flex items-center gap-1.5">
-                  <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                  {t("hero.free")}
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[hsl(280,70%,60%)]" />
-                  {t("hero.export")}
+
+                {/* Right column — visual mock */}
+                <div className="relative hidden lg:block">
+                  <HeroPreview />
                 </div>
               </div>
             </motion.div>
