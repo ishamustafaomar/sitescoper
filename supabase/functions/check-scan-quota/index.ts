@@ -81,7 +81,7 @@ Deno.serve(async (req) => {
   return new Response(
     JSON.stringify({ allowed, isPro: false, used, limit: FREE_SCANS_PER_MONTH }),
     {
-      status: allowed ? 200 : 402,
+      status: 200,
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     }
   );
