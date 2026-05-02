@@ -46,14 +46,18 @@ export function useSubscription() {
 
   useEffect(() => {
     fetchSub();
-    if (!user) return;
-    const channel = supabase
-      .channel(`sub-${user.id}-${Math.random().toString(36).slice(2)}`)
-      .on("postgres_changes", { event: "*", schema: "public", table: "subscriptions", filter: `user_id=eq.${user.id}` }, () => {
-        fetchSub();
-      })
-      .subscribe();
-    return () => { supabase.removeChannel(channel); };
+
+    const refreshOnFocus = () => {
+      if (document.visibilityState === "visible") fetchSub();
+    };
+
+    window.addEventListener("focus", fetchSub);
+    document.addEventListener("visibilitychange", refreshOnFocus);
+
+    return () => {
+      window.removeEventListener("focus", fetchSub);
+      document.removeEventListener("visibilitychange", refreshOnFocus);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user?.id]);
 
