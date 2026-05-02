@@ -18,6 +18,7 @@ import { StatsSection } from "@/components/landing/StatsSection";
 import { UseCasesSection } from "@/components/landing/UseCasesSection";
 import { FAQSection } from "@/components/landing/FAQSection";
 import { CTASection } from "@/components/landing/CTASection";
+import { SampleReportSection } from "@/components/landing/SampleReportSection";
 import { scrapeWebsite, analyzeWebsite, ScrapeResult, AnalysisResult } from "@/lib/api";
 import { generateAnalysisPDF } from "@/lib/pdf";
 import { useToast } from "@/hooks/use-toast";
@@ -357,6 +358,7 @@ const Index = () => {
       {step === "idle" && !scrapeData && (
         <>
           <StatsSection />
+          <SampleReportSection onTryYours={scrollToInput} />
           <FeaturesSection />
           <HowItWorksSection />
           <CategoriesSection />
