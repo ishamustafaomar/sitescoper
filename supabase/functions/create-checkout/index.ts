@@ -25,13 +25,21 @@ Deno.serve(async (req) => {
     const userId = userData.user.id;
     const customerEmail = userData.user.email;
     const { priceId, returnUrl, environment } = await req.json();
-    if (!priceId || !/^[a-zA-Z0-9_-]+$/.test(priceId)) throw new Error('Invalid priceId');
-    if (!returnUrl) throw new Error('Missing returnUrl');
+    if (!priceId || typeof priceId !== 'string' || !/^[a-zA-Z0-9_-]+$/.test(priceId)) {
+      return new Response(JSON.stringify({ error: 'Invalid priceId' }), {
+        status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
+    if (!returnUrl || typeof returnUrl !== 'string') {
+      return new Response(JSON.stringify({ error: 'Missing returnUrl' }), {
+        status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
     const env: StripeEnv = environment === 'live' ? 'live' : 'sandbox';
     const stripe = createStripeClient(env);
 
     const prices = await stripe.prices.list({ lookup_keys: [priceId] });
-    if (!prices.data.length) throw new Error('Price not found');
+    if (!prices.data.length) throw new Error('PRICE_NOT_FOUND');
     const stripePrice = prices.data[0];
     const isRecurring = stripePrice.type === 'recurring';
 
@@ -49,9 +57,9 @@ Deno.serve(async (req) => {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
   } catch (e) {
-    const msg = e instanceof Error ? e.message : 'Unknown error';
-    return new Response(JSON.stringify({ error: msg }), {
-      status: 400,
+    console.error('create-checkout error', e);
+    return new Response(JSON.stringify({ error: 'Could not start checkout. Please try again.' }), {
+      status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
   }
