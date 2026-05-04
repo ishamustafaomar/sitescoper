@@ -52,18 +52,18 @@ const Index = () => {
   };
 
   const handleAnalyze = async (url: string) => {
-    // Anon: localStorage gate (1 lifetime free scan)
-    if (!user && hasUsedFreeAnalysis) {
+    // Require sign-in for all scans (prevents API credit abuse)
+    if (!user) {
       toast({
-        title: "Free analysis used",
-        description: "Sign up free to keep analyzing websites and save your history.",
+        title: "Sign in to analyze",
+        description: "Create a free account to run a website analysis.",
       });
       navigate("/auth");
       return;
     }
 
     // Signed-in non-Pro: server-checked monthly quota
-    if (user) {
+    {
       const { data: quota, error: quotaErr } = await supabase.functions.invoke("check-scan-quota", {
         body: { environment: getStripeEnvironment() },
       });
@@ -94,9 +94,8 @@ const Index = () => {
       setAnalysis(result);
       setStep("done");
 
-      // Save to history if logged in, otherwise mark free analysis as used
-      if (user) {
-        await supabase.from("analysis_history").insert({
+      // Save to history (user is always signed in here)
+      await supabase.from("analysis_history").insert({
           user_id: user.id,
           url,
           overall_score: result.overall_score,
@@ -116,10 +115,6 @@ const Index = () => {
             action_plan: result.action_plan,
           } as any,
         } as any);
-      } else {
-        localStorage.setItem(FREE_ANALYSIS_KEY, "true");
-        setHasUsedFreeAnalysis(true);
-      }
     } catch (err: any) {
       console.error(err);
       toast({
