@@ -164,7 +164,7 @@ const Index = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.6 }}
-              className="relative py-12 md:py-16"
+              className="relative pt-6 md:pt-10 pb-8"
             >
               <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
                 <div className="absolute top-0 left-1/4 w-72 h-72 bg-primary/20 rounded-full blur-3xl opacity-60" />
@@ -204,6 +204,10 @@ const Index = () => {
                   <p className="text-muted-foreground font-body text-base md:text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed">
                     Most analyzers spit out a 200-row checklist. We read your site like a senior product strategist would — then tell you the 3 things actually worth fixing this week.
                   </p>
+                  {/* URL Input — kept above the fold */}
+                  <div ref={inputRef} className="pt-2">
+                    <UrlInput onSubmit={handleAnalyze} isLoading={isLoading} />
+                  </div>
                   <div className="flex items-center justify-center lg:justify-start gap-5 text-[11px] text-muted-foreground font-body flex-wrap pt-1">
                     <div className="flex items-center gap-1.5">
                       <div className="w-1.5 h-1.5 rounded-full bg-[hsl(var(--score-good))]" />
@@ -229,10 +233,12 @@ const Index = () => {
           )}
         </AnimatePresence>
 
-        {/* URL Input */}
-        <div ref={inputRef}>
-          <UrlInput onSubmit={handleAnalyze} isLoading={isLoading} />
-        </div>
+        {/* URL Input — shown when not on idle hero (e.g., during/after scan) */}
+        {(step !== "idle" || scrapeData) && (
+          <div>
+            <UrlInput onSubmit={handleAnalyze} isLoading={isLoading} />
+          </div>
+        )}
 
         {/* Loading state — skeleton matches final layout */}
         <AnimatePresence>
