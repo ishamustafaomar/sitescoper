@@ -28,7 +28,7 @@ export function ScanningAnimation({ step, url }: ScanningAnimationProps) {
   useEffect(() => {
     setActiveStep(0);
     const interval = setInterval(() => {
-      setActiveStep((prev) => (prev + 1) % steps.length);
+      setActiveStep((prev) => (prev < steps.length - 1 ? prev + 1 : prev));
     }, 1400);
     return () => clearInterval(interval);
   }, [step, steps.length]);
