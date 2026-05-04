@@ -234,6 +234,27 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      get_shared_analysis: {
+        Args: { p_token: string }
+        Returns: {
+          categories: Json
+          created_at: string
+          id: string
+          overall_score: number
+          scrape_data: Json | null
+          share_token: string | null
+          summary: string | null
+          url: string
+          user_id: string
+          website_id: string | null
+        }[]
+        SetofOptions: {
+          from: "*"
+          to: "analysis_history"
+          isOneToOne: false
+          isSetofReturn: true
+        }
+      }
       has_active_subscription: {
         Args: { _env: string; _user_id: string }
         Returns: boolean

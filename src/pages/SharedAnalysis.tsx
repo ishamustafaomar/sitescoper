@@ -16,9 +16,7 @@ export default function SharedAnalysis() {
     if (!token) return;
     (async () => {
       const { data } = await supabase
-        .from("analysis_history")
-        .select("*")
-        .eq("share_token", token)
+        .rpc("get_shared_analysis", { p_token: token })
         .maybeSingle();
       setRecord(data);
       setLoading(false);
