@@ -416,8 +416,12 @@ serve(async (req) => {
   } catch (e: any) {
     console.error("scrape error:", e);
     const status = e?.status || 500;
+    // Only forward 402 (insufficient credits) message; mask all other internals
+    const userMsg = status === 402 && typeof e?.message === "string"
+      ? e.message
+      : "Analysis failed. Please try again.";
     return new Response(
-      JSON.stringify({ error: e?.message || (e instanceof Error ? e.message : "Unknown error") }),
+      JSON.stringify({ error: userMsg }),
       { status, headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
   }
