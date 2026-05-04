@@ -16,7 +16,12 @@ export function LanguageSwitcher() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="sm" className="text-xs font-body gap-1.5" aria-label={t("nav.language")}>
+        <Button
+          variant="ghost"
+          size="sm"
+          className="text-xs font-body gap-1.5"
+          aria-label={`${t("nav.language")}: ${current.label} (${current.code.toUpperCase()})`}
+        >
           <Globe className="h-3.5 w-3.5" />
           <span className="hidden sm:inline">{current.flag} {current.code.toUpperCase()}</span>
           <span className="sm:hidden">{current.flag}</span>
