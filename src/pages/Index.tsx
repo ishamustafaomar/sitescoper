@@ -94,9 +94,8 @@ const Index = () => {
       setAnalysis(result);
       setStep("done");
 
-      // Save to history if logged in, otherwise mark free analysis as used
-      if (user) {
-        await supabase.from("analysis_history").insert({
+      // Save to history (user is always signed in here)
+      await supabase.from("analysis_history").insert({
           user_id: user.id,
           url,
           overall_score: result.overall_score,
@@ -116,10 +115,6 @@ const Index = () => {
             action_plan: result.action_plan,
           } as any,
         } as any);
-      } else {
-        localStorage.setItem(FREE_ANALYSIS_KEY, "true");
-        setHasUsedFreeAnalysis(true);
-      }
     } catch (err: any) {
       console.error(err);
       toast({
