@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, lazy, Suspense } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, AlertCircle, ExternalLink, Link2, FileText, Download, Lock, ArrowDown, Swords } from "lucide-react";
@@ -10,15 +10,15 @@ import { AnalysisPanel } from "@/components/AnalysisPanel";
 import { ScanningAnimation } from "@/components/ScanningAnimation";
 import { ChatPanel } from "@/components/ChatPanel";
 import { AppHeader } from "@/components/AppHeader";
-import { WhyPaySection } from "@/components/landing/WhyPaySection";
-import { FeaturesSection } from "@/components/landing/FeaturesSection";
-import { HowItWorksSection } from "@/components/landing/HowItWorksSection";
-import { CategoriesSection } from "@/components/landing/CategoriesSection";
-import { StatsSection } from "@/components/landing/StatsSection";
-import { UseCasesSection } from "@/components/landing/UseCasesSection";
-import { FAQSection } from "@/components/landing/FAQSection";
-import { CTASection } from "@/components/landing/CTASection";
-import { SampleReportSection } from "@/components/landing/SampleReportSection";
+const WhyPaySection = lazy(() => import("@/components/landing/WhyPaySection").then(m => ({ default: m.WhyPaySection })));
+const FeaturesSection = lazy(() => import("@/components/landing/FeaturesSection").then(m => ({ default: m.FeaturesSection })));
+const HowItWorksSection = lazy(() => import("@/components/landing/HowItWorksSection").then(m => ({ default: m.HowItWorksSection })));
+const CategoriesSection = lazy(() => import("@/components/landing/CategoriesSection").then(m => ({ default: m.CategoriesSection })));
+const StatsSection = lazy(() => import("@/components/landing/StatsSection").then(m => ({ default: m.StatsSection })));
+const UseCasesSection = lazy(() => import("@/components/landing/UseCasesSection").then(m => ({ default: m.UseCasesSection })));
+const FAQSection = lazy(() => import("@/components/landing/FAQSection").then(m => ({ default: m.FAQSection })));
+const CTASection = lazy(() => import("@/components/landing/CTASection").then(m => ({ default: m.CTASection })));
+const SampleReportSection = lazy(() => import("@/components/landing/SampleReportSection").then(m => ({ default: m.SampleReportSection })));
 import { scrapeWebsite, analyzeWebsite, ScrapeResult, AnalysisResult } from "@/lib/api";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/components/AuthProvider";
@@ -358,7 +358,7 @@ const Index = () => {
 
       {/* Landing page sections — only visible when idle */}
       {step === "idle" && !scrapeData && (
-        <>
+        <Suspense fallback={null}>
           <StatsSection />
           <SampleReportSection onTryYours={scrollToInput} />
           <FeaturesSection />
@@ -368,7 +368,7 @@ const Index = () => {
           <WhyPaySection />
           <FAQSection />
           <CTASection onGetStarted={scrollToInput} />
-        </>
+        </Suspense>
       )}
 
       <footer className="border-t border-border mt-8 py-8">
