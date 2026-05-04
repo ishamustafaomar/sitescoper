@@ -81,6 +81,21 @@ const tools = [
 async function rescanSection(url: string, keyword: string): Promise<string> {
   const FIRECRAWL_API_KEY = Deno.env.get("FIRECRAWL_API_KEY");
   if (!FIRECRAWL_API_KEY) return "Rescan unavailable (no Firecrawl key).";
+  // Validate URL: only http(s), block private/loopback/link-local
+  let parsedUrl: URL;
+  try { parsedUrl = new URL(url); } catch { return "Rescan failed: invalid URL"; }
+  if (!["http:", "https:"].includes(parsedUrl.protocol)) return "Rescan failed: only HTTP(S) URLs allowed";
+  const host = parsedUrl.hostname.toLowerCase();
+  if (
+    host === "localhost" ||
+    /^127\./.test(host) ||
+    /^10\./.test(host) ||
+    /^192\.168\./.test(host) ||
+    /^172\.(1[6-9]|2\d|3[0-1])\./.test(host) ||
+    /^169\.254\./.test(host) ||
+    host === "::1" ||
+    host.endsWith(".local")
+  ) return "Rescan failed: private URLs not allowed";
   try {
     const res = await fetch("https://api.firecrawl.dev/v2/scrape", {
       method: "POST",
@@ -111,7 +126,8 @@ async function rescanSection(url: string, keyword: string): Promise<string> {
     }
     return `RESCAN RESULT for "${keyword}":\nMatching headings: ${headings.slice(0, 5).join(" | ") || "(none)"}\n\nMatching content snippets:\n${mdHits.map((h, i) => `${i + 1}. ${h.replace(/\s+/g, " ").trim()}`).join("\n")}`;
   } catch (e: any) {
-    return `Rescan error: ${e.message}`;
+    console.error("rescan error", e);
+    return "Rescan error: request failed";
   }
 }
 
@@ -218,7 +234,7 @@ serve(async (req) => {
     });
   } catch (e: any) {
     console.error("chat-with-report error:", e);
-    return new Response(JSON.stringify({ error: e?.message ?? "Unknown error" }), {
+    return new Response(JSON.stringify({ error: "Request failed. Please try again." }), {
       status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   }
