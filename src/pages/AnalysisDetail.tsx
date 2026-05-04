@@ -9,7 +9,6 @@ import { ChatPanel } from "@/components/ChatPanel";
 import { ScoreTrendChart } from "@/components/ScoreTrendChart";
 import { supabase } from "@/integrations/supabase/client";
 import { AnalysisResult, ScrapeResult } from "@/lib/api";
-import { generateAnalysisPDF } from "@/lib/pdf";
 import { useToast } from "@/hooks/use-toast";
 import { useSubscription } from "@/hooks/useSubscription";
 
@@ -63,7 +62,9 @@ export default function AnalysisDetail() {
       peer_examples: record.scrape_data?.peer_examples,
       action_plan: record.scrape_data?.action_plan,
     };
-    generateAnalysisPDF(analysis, record.url, record.scrape_data);
+    import("@/lib/pdf").then(({ generateAnalysisPDF }) => {
+      generateAnalysisPDF(analysis, record.url, record.scrape_data);
+    });
   };
 
   const handleShare = async () => {

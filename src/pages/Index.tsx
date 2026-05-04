@@ -20,7 +20,6 @@ import { FAQSection } from "@/components/landing/FAQSection";
 import { CTASection } from "@/components/landing/CTASection";
 import { SampleReportSection } from "@/components/landing/SampleReportSection";
 import { scrapeWebsite, analyzeWebsite, ScrapeResult, AnalysisResult } from "@/lib/api";
-import { generateAnalysisPDF } from "@/lib/pdf";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/components/AuthProvider";
 import { supabase } from "@/integrations/supabase/client";
@@ -140,7 +139,9 @@ const Index = () => {
       return;
     }
     if (analysis && currentUrl) {
-      generateAnalysisPDF(analysis, currentUrl, scrapeData ? { metadata: scrapeData.metadata } : undefined);
+      import("@/lib/pdf").then(({ generateAnalysisPDF }) => {
+        generateAnalysisPDF(analysis, currentUrl, scrapeData ? { metadata: scrapeData.metadata } : undefined);
+      });
     }
   };
 
