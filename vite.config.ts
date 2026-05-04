@@ -21,6 +21,7 @@ export default defineConfig(({ mode }) => ({
   },
   build: {
     minify: "terser",
+    sourcemap: true,
     terserOptions: {
       format: { comments: false },
       compress: { passes: 2 },
