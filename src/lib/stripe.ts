@@ -4,11 +4,9 @@
 // the landing page critical path.
 import { loadStripe } from "@stripe/stripe-js/pure";
 import type { Stripe } from "@stripe/stripe-js";
-
-type StripeEnv = 'sandbox' | 'live';
+export { getStripeEnvironment } from "./stripeEnv";
 
 const clientToken = import.meta.env.VITE_PAYMENTS_CLIENT_TOKEN;
-const environment: StripeEnv = clientToken?.startsWith('pk_test_') ? 'sandbox' : 'live';
 
 let stripePromise: Promise<Stripe | null> | null = null;
 
@@ -18,8 +16,4 @@ export function getStripe(): Promise<Stripe | null> {
     stripePromise = loadStripe(clientToken);
   }
   return stripePromise;
-}
-
-export function getStripeEnvironment(): StripeEnv {
-  return environment;
 }
