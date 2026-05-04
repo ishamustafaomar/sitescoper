@@ -1,4 +1,8 @@
-import { loadStripe, Stripe } from "@stripe/stripe-js";
+// Use the "/pure" entry point so Stripe.js is NOT injected on import.
+// It will only be loaded when getStripe() is actually called (i.e. on the
+// pricing/checkout page), keeping ~240 KB and ~240 ms of script work off
+// the landing page critical path.
+import { loadStripe, type Stripe } from "@stripe/stripe-js/pure";
 
 type StripeEnv = 'sandbox' | 'live';
 
