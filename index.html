@@ -20,11 +20,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <!-- Security: clickjacking protection + baseline CSP frame-ancestors.
-         Note: full CSP/X-Frame-Options should be set as HTTP headers at the
-         hosting layer; these meta tags provide a baseline defense in depth. -->
-    <meta http-equiv="Content-Security-Policy" content="frame-ancestors 'none'">
-    <meta http-equiv="X-Frame-Options" content="DENY">
+    <!-- Security: frame-ancestors and X-Frame-Options must be set as HTTP
+         response headers at the hosting layer (browsers ignore them in <meta>).
+         Only the referrer policy is valid as a meta tag. -->
     <meta name="referrer" content="strict-origin-when-cross-origin">
 
     
