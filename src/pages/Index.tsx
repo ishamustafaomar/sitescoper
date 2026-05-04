@@ -25,7 +25,7 @@ import { useAuth } from "@/components/AuthProvider";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { useSubscription } from "@/hooks/useSubscription";
-import { getStripeEnvironment } from "@/lib/stripe";
+import { getStripeEnvironment } from "@/lib/stripeEnv";
 
 const FREE_ANALYSIS_KEY = "sitescoper_free_analysis_used";
 
