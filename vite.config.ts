@@ -20,6 +20,11 @@ export default defineConfig(({ mode }) => ({
     dedupe: ["react", "react-dom", "react/jsx-runtime", "react/jsx-dev-runtime", "@tanstack/react-query", "@tanstack/query-core"],
   },
   build: {
+    minify: "terser",
+    terserOptions: {
+      format: { comments: false },
+      compress: { passes: 2 },
+    },
     // Split heavy/stable libs into their own long-cached chunks so repeat
     // navigations don't re-download the entire app, and policy pages don't
     // pull in chart/PDF/AI code.
