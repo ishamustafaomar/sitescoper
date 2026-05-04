@@ -297,11 +297,15 @@ Be a real advisor. Quote actual content. Be specific. Be honest.`,
     return new Response(JSON.stringify({ success: true, analysis }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
-  } catch (e) {
+  } catch (e: any) {
     console.error("analyze error:", e);
+    const status = e?.status || 500;
+    const userMsg = status === 402 && typeof e?.message === "string"
+      ? e.message
+      : "Analysis failed. Please try again.";
     return new Response(
-      JSON.stringify({ error: e instanceof Error ? e.message : "Unknown error" }),
-      { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      JSON.stringify({ error: userMsg }),
+      { status, headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
   }
 });
