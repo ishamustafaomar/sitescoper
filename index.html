@@ -12,6 +12,12 @@
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="apple-touch-icon" href="/favicon.ico">
 
+    <!-- Perf: warm up critical origins to reduce FCP/connection latency -->
+    <link rel="preconnect" href="https://tmdnoailedngafchtaxj.supabase.co" crossorigin>
+    <link rel="dns-prefetch" href="https://tmdnoailedngafchtaxj.supabase.co">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <!-- Security: clickjacking protection + baseline CSP frame-ancestors.
          Note: full CSP/X-Frame-Options should be set as HTTP headers at the
          hosting layer; these meta tags provide a baseline defense in depth. -->
@@ -34,7 +40,15 @@
 </head>
 
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!-- Critical above-the-fold fallback so FCP fires before JS hydrates -->
+      <div style="min-height:100vh;display:flex;align-items:center;justify-content:center;background:#0b0b0f;color:#fff;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;padding:24px;text-align:center">
+        <div>
+          <h1 style="font-size:2rem;margin:0 0 12px;font-weight:700">SiteScoper — AI Website Analyzer</h1>
+          <p style="margin:0;opacity:.7;font-size:1rem">Loading your honest website audit…</p>
+        </div>
+      </div>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
