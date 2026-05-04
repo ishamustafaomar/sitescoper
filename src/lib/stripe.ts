@@ -2,7 +2,8 @@
 // It will only be loaded when getStripe() is actually called (i.e. on the
 // pricing/checkout page), keeping ~240 KB and ~240 ms of script work off
 // the landing page critical path.
-import { loadStripe, type Stripe } from "@stripe/stripe-js/pure";
+import { loadStripe } from "@stripe/stripe-js/pure";
+import type { Stripe } from "@stripe/stripe-js";
 
 type StripeEnv = 'sandbox' | 'live';
 
