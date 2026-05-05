@@ -68,6 +68,12 @@
     --score-warn-bg: 35 95% 50% / 0.14;
     --score-bad: 0 75% 55%;
     --score-bad-bg: 0 75% 55% / 0.12;
+    /* Darker text variants that meet WCAG AA (4.5:1) on white backgrounds.
+       Use these for small text labels; keep the brighter base tokens for
+       fills, rings, and large UI accents. */
+    --score-good-text: 145 75% 28%;
+    --score-warn-text: 28 100% 32%;
+    --score-bad-text: 0 78% 42%;
   }
 
   .dark {
@@ -129,6 +135,9 @@
     --score-warn-bg: 35 95% 58% / 0.18;
     --score-bad: 0 75% 60%;
     --score-bad-bg: 0 75% 60% / 0.18;
+    --score-good-text: 145 65% 60%;
+    --score-warn-text: 35 95% 62%;
+    --score-bad-text: 0 75% 65%;
   }
 }
 
