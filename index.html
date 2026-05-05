@@ -12,13 +12,11 @@
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="apple-touch-icon" href="/favicon.ico">
 
-    <!-- Perf: warm up critical origins to reduce FCP/connection latency.
+    <!-- Perf: warm up critical origins to reduce connection latency.
          Supabase is not requested on initial paint, only after user action,
-         so we use dns-prefetch instead of preconnect to avoid an unused
-         connection warning from Lighthouse. -->
+         so we use dns-prefetch instead of preconnect.
+         Google Fonts preconnects removed — the app uses system fonts only. -->
     <link rel="dns-prefetch" href="https://tmdnoailedngafchtaxj.supabase.co">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <!-- Security: frame-ancestors and X-Frame-Options must be set as HTTP
          response headers at the hosting layer (browsers ignore them in <meta>).
