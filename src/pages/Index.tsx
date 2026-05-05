@@ -251,7 +251,13 @@ const Index = () => {
         {/* Loading state — skeleton matches final layout */}
         <AnimatePresence>
           {isLoading && (
-            <ScanningAnimation step={step as "scraping" | "analyzing"} url={currentUrl} />
+            <StreamingProgress
+              step={step as "scraping" | "analyzing"}
+              url={currentUrl}
+              percent={progress.percent}
+              label={progress.label || (step === "analyzing" ? "AI is reading your site" : "Working…")}
+              techSeo={liveTechSeo}
+            />
           )}
         </AnimatePresence>
 
