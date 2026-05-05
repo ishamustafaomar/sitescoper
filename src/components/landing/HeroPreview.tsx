@@ -21,7 +21,7 @@ export function HeroPreview() {
         className="absolute -top-4 -left-4 z-20 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-card border border-[hsl(var(--score-good))]/30 shadow-[var(--shadow-md)]"
       >
         <div className="h-1.5 w-1.5 rounded-full bg-[hsl(var(--score-good))] animate-pulse" />
-        <span className="text-[10px] font-heading font-semibold text-[hsl(var(--score-good))]">+12 this week</span>
+        <span className="text-[10px] font-heading font-semibold text-[hsl(var(--score-good-text))]">+12 this week</span>
       </motion.div>
 
       <motion.div
@@ -131,9 +131,9 @@ export function HeroPreview() {
                 <div className="flex items-center justify-between mb-1">
                   <span className="text-[9px] font-body text-muted-foreground">{c.name}</span>
                   <span className={`text-[9px] font-heading font-bold ${
-                    c.level === "good" ? "text-[hsl(var(--score-good))]" :
-                    c.level === "warn" ? "text-[hsl(var(--score-warn))]" :
-                    "text-[hsl(var(--score-bad))]"
+                    c.level === "good" ? "text-[hsl(var(--score-good-text))]" :
+                    c.level === "warn" ? "text-[hsl(var(--score-warn-text))]" :
+                    "text-[hsl(var(--score-bad-text))]"
                   }`}>{c.score}</span>
                 </div>
                 <div className="h-1 rounded-full bg-muted overflow-hidden">
