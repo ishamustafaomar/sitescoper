@@ -31,7 +31,18 @@ export interface ScrapeResult {
   loginWall?: boolean;
   partial?: boolean;
   partialReason?: string;
+  tech_seo?: TechSeoReport;
 }
+
+export interface TechSeoCheck { name: string; passed: boolean; detail: string; }
+export interface TechSeoReport { score: number; checks: TechSeoCheck[]; }
+
+export interface ScrapeProgressEvent { type: "progress"; step: string; label: string; percent: number; }
+export interface ScrapeTechSeoEvent { type: "tech_seo"; data: TechSeoReport; }
+export interface ScrapeResultEvent { type: "result"; data: ScrapeResult; }
+export interface ScrapeErrorEvent { type: "error"; message: string; status?: number; }
+export type ScrapeStreamEvent =
+  | ScrapeProgressEvent | ScrapeTechSeoEvent | ScrapeResultEvent | ScrapeErrorEvent;
 
 export type SiteCategory =
   | "saas" | "marketing" | "ecommerce" | "blog"
@@ -106,14 +117,55 @@ export interface AnalysisResult {
 }
 
 export async function scrapeWebsite(url: string): Promise<ScrapeResult> {
-  const { data, error } = await supabase.functions.invoke("scrape-website", {
-    body: { url },
+  let result: ScrapeResult | null = null;
+  await scrapeWebsiteStream(url, (ev) => {
+    if (ev.type === "result") result = ev.data;
   });
+  if (!result) throw new Error("No result from scrape");
+  return result;
+}
 
-  if (error) throw new Error(error.message || "Failed to scrape website");
-  if (!data?.success) throw new Error(data?.error || "Scrape failed");
+export async function scrapeWebsiteStream(
+  url: string,
+  onEvent: (ev: ScrapeStreamEvent) => void,
+): Promise<void> {
+  const { data: { session } } = await supabase.auth.getSession();
+  if (!session) throw new Error("Not authenticated");
 
-  return data.data?.data || data.data;
+  const projectId = (import.meta as { env: Record<string, string> }).env.VITE_SUPABASE_PROJECT_ID;
+  const apikey = (import.meta as { env: Record<string, string> }).env.VITE_SUPABASE_PUBLISHABLE_KEY;
+  const fnUrl = `https://${projectId}.supabase.co/functions/v1/scrape-website`;
+  const res = await fetch(fnUrl, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${session.access_token}`,
+      apikey,
+    },
+    body: JSON.stringify({ url }),
+  });
+  if (!res.ok || !res.body) {
+    let msg = "Scrape failed";
+    try { const j = await res.json(); msg = j.error || msg; } catch { /* ignore */ }
+    throw new Error(msg);
+  }
+  const reader = res.body.getReader();
+  const decoder = new TextDecoder();
+  let buf = "";
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    buf += decoder.decode(value, { stream: true });
+    const lines = buf.split("\n");
+    buf = lines.pop() || "";
+    for (const line of lines) {
+      const t = line.trim();
+      if (!t) continue;
+      const ev = JSON.parse(t) as ScrapeStreamEvent;
+      if (ev.type === "error") throw new Error(ev.message);
+      onEvent(ev);
+    }
+  }
 }
 
 export async function analyzeWebsite(
