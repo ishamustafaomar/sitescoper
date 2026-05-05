@@ -19,12 +19,13 @@ const UseCasesSection = lazy(() => import("@/components/landing/UseCasesSection"
 const FAQSection = lazy(() => import("@/components/landing/FAQSection").then(m => ({ default: m.FAQSection })));
 const CTASection = lazy(() => import("@/components/landing/CTASection").then(m => ({ default: m.CTASection })));
 const SampleReportSection = lazy(() => import("@/components/landing/SampleReportSection").then(m => ({ default: m.SampleReportSection })));
-import { scrapeWebsite, analyzeWebsite, ScrapeResult, AnalysisResult } from "@/lib/api";
+import { scrapeWebsiteStream, analyzeWebsite, ScrapeResult, AnalysisResult, TechSeoReport } from "@/lib/api";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/components/AuthProvider";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { useSubscription } from "@/hooks/useSubscription";
+import { StreamingProgress } from "@/components/StreamingProgress";
 import { getStripeEnvironment } from "@/lib/stripeEnv";
 
 const FREE_ANALYSIS_KEY = "sitescoper_free_analysis_used";
@@ -36,6 +37,8 @@ const Index = () => {
   const [scrapeData, setScrapeData] = useState<ScrapeResult | null>(null);
   const [analysis, setAnalysis] = useState<AnalysisResult | null>(null);
   const [currentUrl, setCurrentUrl] = useState("");
+  const [progress, setProgress] = useState<{ percent: number; label: string }>({ percent: 0, label: "" });
+  const [liveTechSeo, setLiveTechSeo] = useState<TechSeoReport | null>(null);
   const { toast } = useToast();
   const { user } = useAuth();
   const { isPro } = useSubscription();
@@ -82,13 +85,22 @@ const Index = () => {
     setCurrentUrl(url);
     setScrapeData(null);
     setAnalysis(null);
+    setProgress({ percent: 0, label: "Starting…" });
+    setLiveTechSeo(null);
 
     try {
       setStep("scraping");
-      const data = await scrapeWebsite(url);
+      let data: ScrapeResult | null = null;
+      await scrapeWebsiteStream(url, (ev) => {
+        if (ev.type === "progress") setProgress({ percent: ev.percent, label: ev.label });
+        else if (ev.type === "tech_seo") setLiveTechSeo(ev.data);
+        else if (ev.type === "result") data = ev.data;
+      });
+      if (!data) throw new Error("No scrape result");
       setScrapeData(data);
 
       setStep("analyzing");
+      setProgress({ percent: 80, label: "Reading like a real visitor" });
       const result = await analyzeWebsite(data.markdown || "", url, data.images, data.detectedSections);
       setAnalysis(result);
       setStep("done");
@@ -239,7 +251,13 @@ const Index = () => {
         {/* Loading state — skeleton matches final layout */}
         <AnimatePresence>
           {isLoading && (
-            <ScanningAnimation step={step as "scraping" | "analyzing"} url={currentUrl} />
+            <StreamingProgress
+              step={step as "scraping" | "analyzing"}
+              url={currentUrl}
+              percent={progress.percent}
+              label={progress.label || (step === "analyzing" ? "AI is reading your site" : "Working…")}
+              techSeo={liveTechSeo}
+            />
           )}
         </AnimatePresence>
 

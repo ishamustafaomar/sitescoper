@@ -5,6 +5,7 @@ import { AppHeader } from "@/components/AppHeader";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScanningAnimation } from "@/components/ScanningAnimation";
+import { ProGate } from "@/components/ProGate";
 import { TrafficDot, TrafficChip, getTrafficLevel, getTrafficStyles, getTrafficLabel } from "@/components/TrafficLight";
 import { scrapeWebsite, analyzeWebsite, AnalysisResult } from "@/lib/api";
 import { useToast } from "@/hooks/use-toast";
@@ -64,6 +65,10 @@ export default function Compare() {
     <div className="min-h-screen bg-background">
       <AppHeader />
       <main className="max-w-6xl mx-auto px-4 py-10 space-y-8">
+        <ProGate
+          title="Competitor comparison is a Pro feature"
+          description="Scan two sites side-by-side and get a category-by-category verdict on who wins. Upgrade to unlock unlimited battles."
+        >
         <div className="text-center space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-body border border-primary/20">
             <Swords className="h-3 w-3" />
@@ -121,6 +126,7 @@ export default function Compare() {
         {step === "done" && a.analysis && b.analysis && (
           <BattleResults a={a} b={b} onReset={reset} />
         )}
+        </ProGate>
       </main>
     </div>
   );

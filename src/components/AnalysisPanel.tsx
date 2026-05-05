@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { AnalysisResult, ScrapeResult } from "@/lib/api";
 import { Badge } from "@/components/ui/badge";
-import { ChevronDown, ChevronUp, LayoutList, Zap, Image as ImageIcon, Calendar, Flame, AlertCircle, ArrowDown } from "lucide-react";
+import { ChevronDown, ChevronUp, LayoutList, Zap, Image as ImageIcon, Calendar, Flame, AlertCircle, ArrowDown, Wand2 } from "lucide-react";
 import { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ImpactMatrix } from "@/components/ImpactMatrix";
@@ -11,6 +11,7 @@ import { ActionPlanView } from "@/components/ActionPlanView";
 import { BenchmarkCard } from "@/components/BenchmarkCard";
 import { VerdictCard } from "@/components/VerdictCard";
 import { ImpactGroupedView } from "@/components/ImpactGroupedView";
+import { HeadlineRewrites } from "@/components/HeadlineRewrites";
 import { Button } from "@/components/ui/button";
 
 interface AnalysisPanelProps {
@@ -107,7 +108,7 @@ export function AnalysisPanel({ analysis, scrapeData }: AnalysisPanelProps) {
 
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <TabsList className="grid w-full grid-cols-5">
+        <TabsList className="grid w-full grid-cols-6">
           <TabsTrigger value="impact" className="gap-1.5 text-xs">
             <Flame className="h-3.5 w-3.5" />
             <span className="hidden sm:inline">By Impact</span>
@@ -117,6 +118,11 @@ export function AnalysisPanel({ analysis, scrapeData }: AnalysisPanelProps) {
             <Calendar className="h-3.5 w-3.5" />
             <span className="hidden sm:inline">Plan</span>
             <span className="sm:hidden">Plan</span>
+          </TabsTrigger>
+          <TabsTrigger value="rewrite" className="gap-1.5 text-xs">
+            <Wand2 className="h-3.5 w-3.5" />
+            <span className="hidden sm:inline">Rewrite</span>
+            <span className="sm:hidden">Copy</span>
           </TabsTrigger>
           <TabsTrigger value="categories" className="gap-1.5 text-xs">
             <LayoutList className="h-3.5 w-3.5" />
@@ -151,6 +157,15 @@ export function AnalysisPanel({ analysis, scrapeData }: AnalysisPanelProps) {
               No action plan generated for this analysis.
             </div>
           )}
+        </TabsContent>
+
+        <TabsContent value="rewrite" className="mt-4">
+          <HeadlineRewrites
+            url={scrapeData?.metadata?.sourceURL || ""}
+            markdown={scrapeData?.markdown || ""}
+            summary={analysis.summary}
+            site_category={analysis.site_category}
+          />
         </TabsContent>
 
         {/* Categories tab */}

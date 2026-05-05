@@ -44,7 +44,14 @@ const App = () => (
               <Route path="/share/:token" element={<SharedAnalysis />} />
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/terms" element={<Terms />} />
-              <Route path="/compare" element={<Compare />} />
+              <Route
+                path="/compare"
+                element={
+                  <ProtectedRoute>
+                    <Compare />
+                  </ProtectedRoute>
+                }
+              />
               <Route path="/pricing" element={<Pricing />} />
               <Route path="/checkout/return" element={<CheckoutReturn />} />
               <Route

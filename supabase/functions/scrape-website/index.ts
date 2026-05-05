@@ -9,6 +9,57 @@ const corsHeaders = {
 
 const FIRECRAWL_V2 = "https://api.firecrawl.dev/v2";
 
+// Lightweight tech-SEO checks computed from raw HTML — runs fast, before AI.
+// These are deterministic and don't need an LLM call.
+function runTechSeoChecks(html: string, url: string): {
+  score: number;
+  checks: { name: string; passed: boolean; detail: string }[];
+} {
+  const checks: { name: string; passed: boolean; detail: string }[] = [];
+  const lower = (html || "").toLowerCase();
+  const titleMatch = html.match(/<title[^>]*>([^<]+)<\/title>/i);
+  const title = titleMatch?.[1]?.trim() || "";
+  checks.push({
+    name: "Title tag",
+    passed: title.length >= 10 && title.length <= 70,
+    detail: title ? `${title.length} chars` : "missing",
+  });
+  const descMatch = html.match(/<meta[^>]+name=["']description["'][^>]*content=["']([^"']*)["']/i);
+  const desc = descMatch?.[1]?.trim() || "";
+  checks.push({
+    name: "Meta description",
+    passed: desc.length >= 50 && desc.length <= 170,
+    detail: desc ? `${desc.length} chars` : "missing",
+  });
+  const h1Count = (html.match(/<h1\b/gi) || []).length;
+  checks.push({
+    name: "Single H1",
+    passed: h1Count === 1,
+    detail: `${h1Count} H1 tags`,
+  });
+  const hasViewport = /<meta[^>]+name=["']viewport["']/i.test(html);
+  checks.push({ name: "Viewport meta", passed: hasViewport, detail: hasViewport ? "present" : "missing" });
+  const hasLang = /<html[^>]+\blang=["'][^"']+["']/i.test(html);
+  checks.push({ name: "HTML lang attr", passed: hasLang, detail: hasLang ? "present" : "missing" });
+  const hasCanonical = /<link[^>]+rel=["']canonical["']/i.test(html);
+  checks.push({ name: "Canonical link", passed: hasCanonical, detail: hasCanonical ? "present" : "missing" });
+  const hasOg = /<meta[^>]+property=["']og:title["']/i.test(html);
+  checks.push({ name: "Open Graph tags", passed: hasOg, detail: hasOg ? "present" : "missing" });
+  const isHttps = url.startsWith("https://");
+  checks.push({ name: "HTTPS", passed: isHttps, detail: isHttps ? "secure" : "not HTTPS" });
+  const imgs = html.match(/<img\b[^>]*>/gi) || [];
+  const imgsWithAlt = imgs.filter((t) => /\balt\s*=\s*["'][^"']+["']/i.test(t)).length;
+  const altCoverage = imgs.length === 0 ? 1 : imgsWithAlt / imgs.length;
+  checks.push({
+    name: "Image alt text",
+    passed: altCoverage >= 0.8,
+    detail: imgs.length === 0 ? "no images" : `${imgsWithAlt}/${imgs.length} have alt`,
+  });
+  const passed = checks.filter((c) => c.passed).length;
+  const score = Math.round((passed / checks.length) * 100);
+  return { score, checks };
+}
+
 // Patterns suggesting a page is gated behind a login / auth wall.
 const LOGIN_WALL_PATTERNS: RegExp[] = [
   /\bsign\s*in\s+to\s+continue\b/i,
@@ -207,6 +258,10 @@ serve(async (req) => {
     return new Response(null, { headers: corsHeaders });
   }
 
+  // Streaming NDJSON response — auth & validation happen synchronously up-front,
+  // then progress events are emitted as the crawl progresses.
+  let userId: string | null = null;
+  let inputUrl: string | null = null;
   try {
     // Require authentication
     const authHeader = req.headers.get("Authorization");
@@ -227,7 +282,7 @@ serve(async (req) => {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
-    const userId = claims.claims.sub as string;
+    userId = claims.claims.sub as string;
 
     // Server-side quota enforcement (prevents bypass via direct invoke / row deletion / Dashboard / Compare)
     const admin = createClient(
@@ -273,6 +328,7 @@ serve(async (req) => {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
+    inputUrl = url;
     if (url.length > 2048) {
       return new Response(JSON.stringify({ error: "URL too long" }), {
         status: 400,
@@ -318,138 +374,148 @@ serve(async (req) => {
       throw new Error("FIRECRAWL_API_KEY is not configured");
     }
 
-    // Step 1: Scrape homepage with screenshot + branding
-    // Wait for JS rendering (helps SPAs) + auto-retry once if markdown is empty.
-    console.log("Scraping homepage:", url);
-    const scrapeHome = async (waitFor: number) => {
-      const data = await firecrawlRequest("/scrape", {
-        url,
-        formats: ["markdown", "html", "screenshot", "links"],
-        onlyMainContent: false,
-        waitFor,
-      }, FIRECRAWL_API_KEY);
-      return data.data || data;
-    };
-
-    let homeResult = await scrapeHome(3000);
-    let partialReason: string | null = null;
-    let loginWall = false;
-
-    const isEmpty = (r: any) =>
-      !r || !((r.markdown || "").trim().length > 60 || (r.html || "").length > 500);
-
-    if (isEmpty(homeResult)) {
-      console.warn("Homepage scrape returned empty — retrying with longer wait for JS-heavy site");
-      try {
-        // Heavy-JS / parallax / scroll-triggered sites need much longer
-        homeResult = await scrapeHome(8000);
-      } catch (e) {
-        console.warn("Retry failed:", e);
-      }
-    }
-
-    // Detect login wall on homepage
-    if (homeResult && detectLoginWall(homeResult.markdown || "", homeResult.html || "", homeResult.metadata?.title)) {
-      loginWall = true;
-      partialReason =
-        "This site appears to be behind a login wall. We can only see the public sign-in page, so the analysis below is based on limited content.";
-    }
-
-    if (isEmpty(homeResult)) {
-      partialReason =
-        loginWall
-          ? partialReason
-          : "We couldn't load much content from this page. The site may rely heavily on JavaScript, use scroll-triggered loading, or block crawlers. Results below are based on partial data.";
-    }
-
-    // Step 2: Map the site to discover pages
-    console.log("Mapping site:", url);
-    let siteUrls: string[] = [];
-    try {
-      const mapData = await firecrawlRequest("/map", { url, limit: 50 }, FIRECRAWL_API_KEY);
-      siteUrls = mapData.links || mapData.data?.links || [];
-      console.log(`Found ${siteUrls.length} URLs on site`);
-    } catch (e) {
-      console.warn("Map failed, continuing with homepage only:", e);
-    }
-
-    // Step 3: Select and scrape important pages
-    const pagesToScrape = selectPages(siteUrls, url);
-    console.log("Selected pages to scrape:", pagesToScrape);
-
-    const pages: { url: string; markdown: string; title?: string }[] = [
-      {
-        url,
-        markdown: homeResult.markdown || "",
-        title: homeResult.metadata?.title || "Homepage",
-      },
-    ];
-
-    // Scrape additional pages in parallel (max 5 concurrent).
-    // Track broken / unreachable pages so the AI can flag them.
-    const brokenLinks: { url: string; reason: string }[] = [];
-    const scrapePromises = pagesToScrape.map(async (pageUrl) => {
-      try {
-        const pageData = await firecrawlRequest("/scrape", {
-          url: pageUrl,
-          formats: ["markdown"],
-          onlyMainContent: true,
-        }, FIRECRAWL_API_KEY);
-        const result = pageData.data || pageData;
-        const status = result.metadata?.statusCode;
-        if (status && (status === 404 || status >= 500)) {
-          brokenLinks.push({ url: pageUrl, reason: `HTTP ${status}` });
-          return null;
-        }
-        if (!(result.markdown || "").trim()) {
-          brokenLinks.push({ url: pageUrl, reason: "Empty page" });
-          return null;
-        }
-        return {
-          url: pageUrl,
-          markdown: result.markdown || "",
-          title: result.metadata?.title || new URL(pageUrl).pathname,
+    // Switch to streaming response from here on. Each event is one JSON line.
+    const stream = new ReadableStream({
+      async start(controller) {
+        const encoder = new TextEncoder();
+        const send = (obj: unknown) => {
+          try { controller.enqueue(encoder.encode(JSON.stringify(obj) + "\n")); } catch { /* closed */ }
         };
-      } catch (e) {
-        brokenLinks.push({ url: pageUrl, reason: e instanceof Error ? e.message : "Failed to load" });
-        console.warn(`Failed to scrape ${pageUrl}:`, e);
-        return null;
-      }
+        const sendProgress = (step: string, label: string, percent: number) =>
+          send({ type: "progress", step, label, percent });
+
+        try {
+          // Step 1: homepage with branding + screenshot
+          sendProgress("connect", "Connecting to site", 5);
+          console.log("Scraping homepage:", inputUrl);
+          const scrapeHome = async (waitFor: number) => {
+            const data = await firecrawlRequest("/scrape", {
+              url: inputUrl,
+              formats: ["markdown", "html", "screenshot", "links"],
+              onlyMainContent: false,
+              waitFor,
+            }, FIRECRAWL_API_KEY);
+            return data.data || data;
+          };
+
+          sendProgress("homepage", "Loading homepage", 15);
+          let homeResult = await scrapeHome(3000);
+          let partialReason: string | null = null;
+          let loginWall = false;
+          const isEmpty = (r: any) =>
+            !r || !((r.markdown || "").trim().length > 60 || (r.html || "").length > 500);
+
+          if (isEmpty(homeResult)) {
+            sendProgress("homepage", "JS-heavy site — retrying with longer wait", 20);
+            try { homeResult = await scrapeHome(8000); } catch (e) { console.warn("retry failed", e); }
+          }
+
+          if (homeResult && detectLoginWall(homeResult.markdown || "", homeResult.html || "", homeResult.metadata?.title)) {
+            loginWall = true;
+            partialReason = "This site appears to be behind a login wall. We can only see the public sign-in page, so the analysis below is based on limited content.";
+          }
+          if (isEmpty(homeResult)) {
+            partialReason = loginWall ? partialReason : "We couldn't load much content from this page. The site may rely heavily on JavaScript, use scroll-triggered loading, or block crawlers. Results below are based on partial data.";
+          }
+
+          // Tier 1: fast deterministic tech-SEO checks (no AI)
+          sendProgress("tech_seo", "Running tech SEO checks", 30);
+          const techSeo = runTechSeoChecks(homeResult.html || "", inputUrl!);
+          send({ type: "tech_seo", data: techSeo });
+
+          // Step 2: map site
+          sendProgress("map", "Discovering pages on this site", 40);
+          let siteUrls: string[] = [];
+          try {
+            const mapData = await firecrawlRequest("/map", { url: inputUrl, limit: 50 }, FIRECRAWL_API_KEY);
+            siteUrls = mapData.links || mapData.data?.links || [];
+          } catch (e) { console.warn("Map failed:", e); }
+          sendProgress("map", `Found ${siteUrls.length} pages`, 45);
+
+          // Step 3: scrape selected pages
+          const pagesToScrape = selectPages(siteUrls, inputUrl!);
+          sendProgress("pages", `Reading ${pagesToScrape.length + 1} key pages in parallel`, 55);
+
+          const pages: { url: string; markdown: string; title?: string }[] = [{
+            url: inputUrl!,
+            markdown: homeResult.markdown || "",
+            title: homeResult.metadata?.title || "Homepage",
+          }];
+          const brokenLinks: { url: string; reason: string }[] = [];
+          let completed = 0;
+          const total = pagesToScrape.length;
+          const scrapePromises = pagesToScrape.map(async (pageUrl) => {
+            try {
+              const pageData = await firecrawlRequest("/scrape", {
+                url: pageUrl,
+                formats: ["markdown"],
+                onlyMainContent: true,
+              }, FIRECRAWL_API_KEY);
+              const result = pageData.data || pageData;
+              const status = result.metadata?.statusCode;
+              if (status && (status === 404 || status >= 500)) {
+                brokenLinks.push({ url: pageUrl, reason: `HTTP ${status}` });
+                return null;
+              }
+              if (!(result.markdown || "").trim()) {
+                brokenLinks.push({ url: pageUrl, reason: "Empty page" });
+                return null;
+              }
+              return { url: pageUrl, markdown: result.markdown || "", title: result.metadata?.title || new URL(pageUrl).pathname };
+            } catch (e) {
+              brokenLinks.push({ url: pageUrl, reason: e instanceof Error ? e.message : "Failed" });
+              return null;
+            } finally {
+              completed++;
+              const pct = 55 + Math.round((completed / Math.max(1, total)) * 25);
+              sendProgress("pages", `Read ${completed}/${total} sub-pages`, pct);
+            }
+          });
+          const additionalPages = (await Promise.all(scrapePromises)).filter(Boolean);
+          pages.push(...(additionalPages as typeof pages));
+
+          sendProgress("assemble", "Assembling crawl report", 90);
+          const combinedMarkdown = pages
+            .map((p) => `\n\n===== PAGE: ${p.title} (${p.url}) =====\n\n${p.markdown}`)
+            .join("\n");
+          const images = extractImages(homeResult.html || "", inputUrl!).slice(0, 30);
+          const detectedSections = detectSections(homeResult.html || "", homeResult.markdown || "");
+
+          sendProgress("done", "Crawl complete", 100);
+          send({
+            type: "result",
+            data: {
+              markdown: combinedMarkdown,
+              screenshot: homeResult.screenshot,
+              links: homeResult.links,
+              metadata: homeResult.metadata,
+              pages: pages.map((p) => ({ url: p.url, title: p.title })),
+              pagesCount: pages.length,
+              siteUrlsDiscovered: siteUrls.length,
+              images,
+              detectedSections,
+              brokenLinks,
+              loginWall,
+              partial: !!partialReason,
+              partialReason,
+              tech_seo: techSeo,
+            },
+          });
+        } catch (e: any) {
+          console.error("stream error:", e);
+          const status = e?.status || 500;
+          const message = status === 402 && typeof e?.message === "string"
+            ? e.message
+            : (e?.message || "Scrape failed");
+          send({ type: "error", message, status });
+        } finally {
+          try { controller.close(); } catch { /* already closed */ }
+        }
+      },
     });
 
-    const additionalPages = (await Promise.all(scrapePromises)).filter(Boolean);
-    pages.push(...additionalPages as typeof pages);
-
-    // Build combined markdown with page separators
-    const combinedMarkdown = pages
-      .map((p) => `\n\n===== PAGE: ${p.title} (${p.url}) =====\n\n${p.markdown}`)
-      .join("\n");
-
-    // Extract images from homepage HTML for visual overlay analysis
-    const images = extractImages(homeResult.html || "", url).slice(0, 30);
-
-    // Detect sections on homepage so AI doesn't claim missing-when-present
-    const detectedSections = detectSections(homeResult.html || "", homeResult.markdown || "");
-
-    return new Response(JSON.stringify({
-      success: true,
-      data: {
-        markdown: combinedMarkdown,
-        screenshot: homeResult.screenshot,
-        links: homeResult.links,
-        metadata: homeResult.metadata,
-        pages: pages.map((p) => ({ url: p.url, title: p.title })),
-        pagesCount: pages.length,
-        siteUrlsDiscovered: siteUrls.length,
-        images,
-        detectedSections,
-        brokenLinks,
-        loginWall,
-        partial: !!partialReason,
-        partialReason,
-      },
-    }), {
-      headers: { ...corsHeaders, "Content-Type": "application/json" },
+    return new Response(stream, {
+      headers: { ...corsHeaders, "Content-Type": "application/x-ndjson; charset=utf-8" },
     });
   } catch (e: any) {
     console.error("scrape error:", e);
