@@ -186,7 +186,7 @@ This lets the user see WHY a category scored what it did.
 12. Mobile Experience 📱
 13. Performance ⚡
 14. Accessibility ♿
-15. SEO & Discovery 🔍 (BRIEF unless broken)
+15. SEO & Discovery 🔍 (ALWAYS INCLUDE — never skip; always give 3-5 concrete, actionable suggestions covering: title tag, meta description, H1/heading hierarchy, internal linking, image alt coverage, structured data, canonical/social/OG tags, indexability/sitemap/robots, keyword targeting and on-page copy. Quote the actual title/meta/H1 from the page when relevant.)
 16. Content Quality 📚 (boost for blog/docs)
 17. Email & Lead Capture 📧 (NEW — newsletter, lead magnets, follow-up signals)
 18. Legal & Compliance ⚖️ (NEW — privacy, terms, cookie/consent, GDPR signals)
