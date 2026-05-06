@@ -8,6 +8,7 @@ import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { useTranslation } from "react-i18next";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { useSubscription } from "@/hooks/useSubscription";
+import { useIsAdmin } from "@/hooks/useIsAdmin";
 
 export function AppHeader() {
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ export function AppHeader() {
   const { user, signOut } = useAuth();
   const { t } = useTranslation();
   const { isPro } = useSubscription();
+  const { isAdmin } = useIsAdmin();
 
   const handleSignOut = async () => {
     await signOut();
@@ -73,7 +75,7 @@ export function AppHeader() {
               Compare
             </Button>
           )}
-          {user && location.pathname !== "/admin" && (
+          {user && isAdmin && location.pathname !== "/admin" && (
             <Button
               variant="ghost"
               size="sm"
