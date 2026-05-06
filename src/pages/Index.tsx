@@ -105,9 +105,32 @@ const Index = () => {
       setAnalysis(result);
       setStep("done");
 
+      // Link to a tracked website if one matches this URL, so the dashboard
+      // shows the latest score instead of "Not analyzed yet".
+      let linkedWebsiteId: string | null = null;
+      try {
+        const { data: existing } = await supabase
+          .from("websites")
+          .select("id")
+          .eq("user_id", user.id)
+          .eq("url", url)
+          .maybeSingle();
+        if (existing?.id) {
+          linkedWebsiteId = existing.id;
+          await supabase
+            .from("websites")
+            .update({
+              last_score: result.overall_score,
+              last_analyzed_at: new Date().toISOString(),
+            })
+            .eq("id", existing.id);
+        }
+      } catch (_e) { /* non-fatal */ }
+
       // Save to history (user is always signed in here)
       await supabase.from("analysis_history").insert({
           user_id: user.id,
+          website_id: linkedWebsiteId,
           url,
           overall_score: result.overall_score,
           summary: result.summary,

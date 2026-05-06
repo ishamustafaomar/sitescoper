@@ -57,6 +57,7 @@ export default function Auth() {
 
   const handleGoogleSignIn = async () => {
     setGoogleLoading(true);
+    toast({ title: "Redirecting to Google…", description: "This usually takes a few seconds." });
     try {
       const result = await lovable.auth.signInWithOAuth("google", {
         redirect_uri: window.location.origin,
