@@ -1,0 +1,16 @@
+# SiteScoper
+
+> AI-powered website audits that tell you the 3 things actually worth fixing this week — UX, SEO, copy, conversion, and accessibility, scored like a senior product strategist would.
+
+SiteScoper crawls up to 8 of your most important pages and uses frontier AI models (GPT-5, Gemini Pro) to deliver opinionated, prioritized recommendations. Built for founders, indie hackers, and product teams who want signal, not a 200-row checklist.
+
+## Pages
+
+- [Home](/): Run a free AI website audit and see the SiteScoper product overview.
+- [Pricing](/pricing): Free vs Pro plans — unlimited audits, deep product simulation, competitor compare, PDF export.
+- [Privacy Policy](/privacy): How SiteScoper collects and protects your data.
+- [Terms of Service](/terms): Terms governing use of SiteScoper.
+
+## Optional
+
+- [Sign in](/auth): Create an account or sign in.
