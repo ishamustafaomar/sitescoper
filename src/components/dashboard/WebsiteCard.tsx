@@ -131,6 +131,7 @@ export function WebsiteCard({ website, analyzing, onAnalyze, onDelete, onViewSEO
             variant="ghost"
             className="h-8 text-xs text-destructive hover:text-destructive"
             onClick={onDelete}
+            aria-label={`Delete ${website.name || website.url}`}
           >
             <Trash2 className="h-3 w-3" />
           </Button>

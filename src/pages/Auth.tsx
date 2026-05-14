@@ -87,7 +87,9 @@ export default function Auth() {
             <div className="gradient-primary p-2.5 rounded-xl shadow-glow">
               <Sparkles className="h-6 w-6 text-primary-foreground" />
             </div>
-            <h1 className="font-heading font-bold text-2xl">SiteScoper</h1>
+            <h1 className="font-heading font-bold text-2xl">
+              SiteScoper <span className="text-muted-foreground font-normal text-base">— AI Website Analyzer</span>
+            </h1>
           </div>
           <p className="text-muted-foreground font-body text-sm">
             {isLogin ? t("auth.welcomeBack") : t("auth.create")}
