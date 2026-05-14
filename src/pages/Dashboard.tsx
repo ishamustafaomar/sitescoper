@@ -168,6 +168,15 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>Dashboard — SiteScoper</title>
+        <meta name="description" content="Track every website you've analyzed, monitor scores over time, and run new SiteScoper audits from one dashboard." />
+        <link rel="canonical" href="https://sitescoper.com/dashboard" />
+        <meta property="og:title" content="Dashboard — SiteScoper" />
+        <meta property="og:description" content="Track every website you've analyzed, monitor scores over time, and run new SiteScoper audits from one dashboard." />
+        <meta property="og:url" content="https://sitescoper.com/dashboard" />
+        <meta name="robots" content="noindex" />
+      </Helmet>
       <AppHeader />
 
       <main className="max-w-6xl mx-auto px-4 py-8 space-y-8">

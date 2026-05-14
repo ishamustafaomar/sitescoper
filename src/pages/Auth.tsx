@@ -77,6 +77,14 @@ export default function Auth() {
 
   return (
     <div className="min-h-screen bg-background flex items-center justify-center p-4">
+      <Helmet>
+        <title>Sign In — SiteScoper</title>
+        <meta name="description" content="Sign in or create a free SiteScoper account to analyze websites, track scores over time, and get AI-powered improvement suggestions." />
+        <link rel="canonical" href="https://sitescoper.com/auth" />
+        <meta property="og:title" content="Sign In — SiteScoper" />
+        <meta property="og:description" content="Sign in or create a free SiteScoper account to analyze websites and get AI-powered improvement suggestions." />
+        <meta property="og:url" content="https://sitescoper.com/auth" />
+      </Helmet>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
