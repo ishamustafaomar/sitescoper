@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet-async";
 import { ArrowLeft, Download, Loader2, Share2, Check, Copy, Home, Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AppHeader } from "@/components/AppHeader";
@@ -142,6 +143,15 @@ export default function AnalysisDetail() {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>{record?.url ? `${record.url} — SiteScoper Report` : "Analysis Report — SiteScoper"}</title>
+        <meta name="description" content={record?.summary ? String(record.summary).slice(0, 155) : "Detailed AI website analysis report with scores, findings, and improvement suggestions."} />
+        <link rel="canonical" href={`https://sitescoper.com/analysis/${id}`} />
+        <meta property="og:title" content={record?.url ? `${record.url} — SiteScoper Report` : "Analysis Report — SiteScoper"} />
+        <meta property="og:description" content={record?.summary ? String(record.summary).slice(0, 155) : "Detailed AI website analysis report."} />
+        <meta property="og:url" content={`https://sitescoper.com/analysis/${id}`} />
+        <meta name="robots" content="noindex" />
+      </Helmet>
       <AppHeader />
       <main className="max-w-4xl mx-auto px-4 py-8 space-y-6">
         <div className="flex items-center justify-between gap-3 flex-wrap">

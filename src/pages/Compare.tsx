@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Helmet } from "react-helmet-async";
 import { Swords, Loader2, ArrowRight, Trophy, Minus } from "lucide-react";
 import { AppHeader } from "@/components/AppHeader";
 import { Button } from "@/components/ui/button";
@@ -9,7 +10,6 @@ import { ProGate } from "@/components/ProGate";
 import { TrafficDot, TrafficChip, getTrafficLevel, getTrafficStyles, getTrafficLabel } from "@/components/TrafficLight";
 import { scrapeWebsite, analyzeWebsite, AnalysisResult } from "@/lib/api";
 import { useToast } from "@/hooks/use-toast";
-import { useCanonical } from "@/hooks/useCanonical";
 import { cn } from "@/lib/utils";
 
 interface Side {
@@ -21,7 +21,6 @@ interface Side {
 const empty: Side = { url: "", analysis: null, loading: false };
 
 export default function Compare() {
-  useCanonical("/compare");
   const { toast } = useToast();
   const [a, setA] = useState<Side>({ ...empty });
   const [b, setB] = useState<Side>({ ...empty });
@@ -63,6 +62,14 @@ export default function Compare() {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>Competitor Battle — SiteScoper</title>
+        <meta name="description" content="Run two websites head-to-head and get a category-by-category verdict on which site wins on SEO, UX, content, and conversions." />
+        <link rel="canonical" href="https://sitescoper.com/compare" />
+        <meta property="og:title" content="Competitor Battle — SiteScoper" />
+        <meta property="og:description" content="Run two websites head-to-head and see which one wins on SEO, UX, content, and conversions." />
+        <meta property="og:url" content="https://sitescoper.com/compare" />
+      </Helmet>
       <AppHeader />
       <main className="max-w-6xl mx-auto px-4 py-10 space-y-8">
         <ProGate

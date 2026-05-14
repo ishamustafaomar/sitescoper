@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { Globe, Clock, Search, Sparkles, Loader2, Plus, Swords } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { TrafficDot, TrafficChip, getTrafficLevel, getTrafficStyles, getTrafficLabel } from "@/components/TrafficLight";
@@ -167,6 +168,15 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>Dashboard — SiteScoper</title>
+        <meta name="description" content="Track every website you've analyzed, monitor scores over time, and run new SiteScoper audits from one dashboard." />
+        <link rel="canonical" href="https://sitescoper.com/dashboard" />
+        <meta property="og:title" content="Dashboard — SiteScoper" />
+        <meta property="og:description" content="Track every website you've analyzed, monitor scores over time, and run new SiteScoper audits from one dashboard." />
+        <meta property="og:url" content="https://sitescoper.com/dashboard" />
+        <meta name="robots" content="noindex" />
+      </Helmet>
       <AppHeader />
 
       <main className="max-w-6xl mx-auto px-4 py-8 space-y-8">
