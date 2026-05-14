@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { Globe, Clock, Search, Sparkles, Loader2, Plus, Swords } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { TrafficDot, TrafficChip, getTrafficLevel, getTrafficStyles, getTrafficLabel } from "@/components/TrafficLight";

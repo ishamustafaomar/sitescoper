@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Helmet } from "react-helmet-async";
 import { Swords, Loader2, ArrowRight, Trophy, Minus } from "lucide-react";
 import { AppHeader } from "@/components/AppHeader";
 import { Button } from "@/components/ui/button";
@@ -9,7 +10,6 @@ import { ProGate } from "@/components/ProGate";
 import { TrafficDot, TrafficChip, getTrafficLevel, getTrafficStyles, getTrafficLabel } from "@/components/TrafficLight";
 import { scrapeWebsite, analyzeWebsite, AnalysisResult } from "@/lib/api";
 import { useToast } from "@/hooks/use-toast";
-import { useCanonical } from "@/hooks/useCanonical";
 import { cn } from "@/lib/utils";
 
 interface Side {
@@ -21,7 +21,6 @@ interface Side {
 const empty: Side = { url: "", analysis: null, loading: false };
 
 export default function Compare() {
-  useCanonical("/compare");
   const { toast } = useToast();
   const [a, setA] = useState<Side>({ ...empty });
   const [b, setB] = useState<Side>({ ...empty });
