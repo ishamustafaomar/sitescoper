@@ -1,11 +1,19 @@
 import { AppHeader } from "@/components/AppHeader";
 import { motion } from "framer-motion";
-import { useCanonical } from "@/hooks/useCanonical";
+import { Helmet } from "react-helmet-async";
 
 const Terms = () => {
-  useCanonical("/terms");
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>Terms of Service — SiteScoper</title>
+        <meta name="description" content="The terms that govern your use of SiteScoper, the AI-powered website audit and analysis tool." />
+        <link rel="canonical" href="https://sitescoper.com/terms" />
+        <meta property="og:title" content="Terms of Service — SiteScoper" />
+        <meta property="og:description" content="Terms governing use of SiteScoper." />
+        <meta property="og:url" content="https://sitescoper.com/terms" />
+        <meta property="og:type" content="article" />
+      </Helmet>
       <AppHeader />
       <main className="max-w-3xl mx-auto px-4 py-12">
         <motion.div

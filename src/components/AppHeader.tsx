@@ -34,7 +34,7 @@ export function AppHeader() {
             <Sparkles className="h-5 w-5 text-primary-foreground" />
           </div>
           <div>
-            <h1 className="font-heading font-bold text-lg leading-none">SiteScoper</h1>
+            <div className="font-heading font-bold text-lg leading-none">SiteScoper</div>
             <span className="text-[10px] text-muted-foreground font-body tracking-wider uppercase">
               AI Website Analyzer
             </span>
@@ -119,7 +119,7 @@ export function AppHeader() {
                   </AvatarFallback>
                 </Avatar>
               </button>
-              <Button variant="ghost" size="icon" className="h-8 w-8" onClick={handleSignOut}>
+              <Button variant="ghost" size="icon" className="h-8 w-8" onClick={handleSignOut} aria-label={t("nav.signOut", { defaultValue: "Sign out" })}>
                 <LogOut className="h-3.5 w-3.5" />
               </Button>
             </div>

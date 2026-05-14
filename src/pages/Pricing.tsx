@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Check, Sparkles, Loader2 } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { AppHeader } from "@/components/AppHeader";
@@ -61,6 +62,26 @@ export default function Pricing() {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>Pricing — SiteScoper Pro</title>
+        <meta name="description" content="Compare Free and Pro plans for SiteScoper. Unlimited AI website audits, deep product simulation, PDF exports, and competitor compare." />
+        <link rel="canonical" href="https://sitescoper.com/pricing" />
+        <meta property="og:title" content="Pricing — SiteScoper Pro" />
+        <meta property="og:description" content="Free vs Pro: unlimited audits, deep simulation, PDF exports." />
+        <meta property="og:url" content="https://sitescoper.com/pricing" />
+        <meta property="og:type" content="website" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Product",
+          "name": "SiteScoper Pro",
+          "description": "Unlimited AI-powered website audits with deep product simulation, full prioritized roadmap, competitor compare, AI report chat, and PDF export.",
+          "brand": { "@type": "Brand", "name": "SiteScoper" },
+          "offers": [
+            { "@type": "Offer", "name": "Pro Monthly", "priceCurrency": "USD", "category": "subscription" },
+            { "@type": "Offer", "name": "Pro Yearly", "priceCurrency": "USD", "category": "subscription" }
+          ]
+        })}</script>
+      </Helmet>
       <PaymentTestModeBanner />
       <AppHeader />
       <main className="max-w-5xl mx-auto px-4 py-12">
