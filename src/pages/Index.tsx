@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, AlertCircle, ExternalLink, Link2, FileText, Download, Lock, ArrowDown, Swords } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { Helmet } from "react-helmet-async";
 import { UrlInput } from "@/components/UrlInput";
 import { HeroPreview } from "@/components/landing/HeroPreview";
 import { WebsitePreview } from "@/components/WebsitePreview";
@@ -219,7 +220,7 @@ const Index = () => {
                     </span>
                     Built by founders, for founders
                   </motion.div>
-                  <h2 className="text-4xl md:text-6xl font-heading font-bold tracking-tight leading-[1.02]">
+                  <h1 className="text-4xl md:text-6xl font-heading font-bold tracking-tight leading-[1.02]">
                     The website audit
                     <br />
                     that tells you{" "}
@@ -231,7 +232,7 @@ const Index = () => {
                         <path d="M2 5 Q50 1 100 4 T198 3" stroke="hsl(var(--primary))" strokeWidth="2.5" strokeLinecap="round" fill="none" opacity="0.4" />
                       </svg>
                     </span>
-                  </h2>
+                  </h1>
                   <p className="text-muted-foreground font-body text-base md:text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed">
                     Most analyzers spit out a 200-row checklist. We read your site like a senior product strategist would — then tell you the 3 things actually worth fixing this week.
                   </p>
