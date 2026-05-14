@@ -185,6 +185,27 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>SiteScoper — Honest AI website audits in 60 seconds</title>
+        <meta name="description" content="SiteScoper crawls your site and tells you the 3 things actually worth fixing this week — UX, SEO, copy, and conversion, scored like a senior strategist would." />
+        <link rel="canonical" href="https://sitescoper.com/" />
+        <meta property="og:title" content="SiteScoper — Honest AI website audits" />
+        <meta property="og:description" content="The 3 things actually worth fixing this week. AI website audits for founders." />
+        <meta property="og:url" content="https://sitescoper.com/" />
+        <meta property="og:type" content="website" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            { "@type": "Question", "name": "How is this different from other SEO tools?", "acceptedAnswer": { "@type": "Answer", "text": "Most SEO tools give you a checklist of technical issues. SiteScoper acts like a senior product strategist — it evaluates your messaging, positioning, value proposition, and trust signals alongside the technical stuff. Real, opinionated feedback you can actually use." } },
+            { "@type": "Question", "name": "Do you actually crawl my whole site?", "acceptedAnswer": { "@type": "Answer", "text": "We crawl up to 8 of your most important pages — typically homepage, pricing, features, docs, about, and signup. This gives the AI enough context to understand your product, not just your front door." } },
+            { "@type": "Question", "name": "Is it really free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes — anyone can analyze a website without signing up. Sign up for a free account to save your analyses, track scores over time, and access your full history." } },
+            { "@type": "Question", "name": "How accurate is the AI feedback?", "acceptedAnswer": { "@type": "Answer", "text": "The AI is powered by frontier models (GPT-5 / Gemini Pro) with prompts tuned by experienced product designers. It's not perfect — but it consistently catches issues that even experienced founders miss." } },
+            { "@type": "Question", "name": "Can I export the analysis?", "acceptedAnswer": { "@type": "Answer", "text": "Yes — every analysis can be exported as a clean, professional PDF. Great for sharing with teammates, clients, or stakeholders." } },
+            { "@type": "Question", "name": "What kind of websites does it work on?", "acceptedAnswer": { "@type": "Answer", "text": "Anything publicly accessible — SaaS landing pages, ecommerce stores, portfolios, blogs, marketing sites, documentation. If it's on the web, we can analyze it." } }
+          ]
+        })}</script>
+      </Helmet>
       <AppHeader />
 
       <main className="max-w-6xl mx-auto px-4 py-8 space-y-8">
