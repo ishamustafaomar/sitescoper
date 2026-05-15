@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import { Helmet } from "react-helmet-async";
 import { ArrowRight, ArrowLeft, Sparkles, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -120,6 +121,15 @@ export default function Onboarding() {
 
   return (
     <div className="min-h-screen bg-background flex items-center justify-center p-4">
+      <Helmet>
+        <title>Onboarding — SiteScoper</title>
+        <meta name="description" content="Complete your SiteScoper onboarding and personalize your website analysis dashboard." />
+        <link rel="canonical" href="https://sitescoper.com/onboarding" />
+        <meta property="og:title" content="Onboarding — SiteScoper" />
+        <meta property="og:description" content="Complete your SiteScoper onboarding and personalize your website analysis dashboard." />
+        <meta property="og:url" content="https://sitescoper.com/onboarding" />
+        <meta name="robots" content="noindex" />
+      </Helmet>
       <div className="w-full max-w-lg">
         {/* Progress */}
         <div className="flex gap-1.5 mb-8">
