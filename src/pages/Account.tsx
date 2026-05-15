@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet-async";
 import { Download, Trash2, Loader2, Shield, User as UserIcon, Globe } from "lucide-react";
 import { AppHeader } from "@/components/AppHeader";
 import { Button } from "@/components/ui/button";
@@ -85,6 +86,15 @@ export default function Account() {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>Account Settings — SiteScoper</title>
+        <meta name="description" content="Manage your SiteScoper account: language, data export, billing and account deletion preferences." />
+        <link rel="canonical" href="https://sitescoper.com/account" />
+        <meta property="og:title" content="Account Settings — SiteScoper" />
+        <meta property="og:description" content="Manage your SiteScoper account preferences, export your data or delete your account." />
+        <meta property="og:url" content="https://sitescoper.com/account" />
+        <meta name="robots" content="noindex" />
+      </Helmet>
       <AppHeader />
       <main className="max-w-3xl mx-auto px-4 py-10">
         <motion.div
