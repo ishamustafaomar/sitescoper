@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet-async";
 import { ExternalLink, Loader2, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AnalysisPanel } from "@/components/AnalysisPanel";
@@ -70,6 +71,15 @@ export default function SharedAnalysis() {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>{record?.url ? `${record.url} — Shared SiteScoper Report` : "Shared Report — SiteScoper"}</title>
+        <meta name="description" content={record?.summary ? String(record.summary).slice(0, 155) : "Shared SiteScoper website analysis report with scores and improvement suggestions."} />
+        <link rel="canonical" href={`https://sitescoper.com/share/${token}`} />
+        <meta property="og:title" content={record?.url ? `${record.url} — Shared SiteScoper Report` : "Shared Report — SiteScoper"} />
+        <meta property="og:description" content={record?.summary ? String(record.summary).slice(0, 155) : "Shared SiteScoper website analysis report."} />
+        <meta property="og:url" content={`https://sitescoper.com/share/${token}`} />
+        <meta name="robots" content="noindex" />
+      </Helmet>
       <header className="border-b border-border bg-card/50 backdrop-blur sticky top-0 z-30">
         <div className="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
           <a href="/" className="flex items-center gap-2 font-heading font-bold">
