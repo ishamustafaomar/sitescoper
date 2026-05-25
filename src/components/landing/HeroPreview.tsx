@@ -50,7 +50,7 @@ export function HeroPreview() {
         <div className="p-5 space-y-4">
           <div className="flex items-start gap-4">
             <div className="relative shrink-0">
-              <svg width="64" height="64" viewBox="0 0 64 64" className="rotate-[-90deg]">
+              <svg width="64" height="64" viewBox="0 0 64 64" className="rotate-[-90deg]" aria-hidden="true" focusable="false">
                 <circle cx="32" cy="32" r="28" stroke="hsl(var(--muted))" strokeWidth="6" fill="none" />
                 <motion.circle
                   cx="32"
