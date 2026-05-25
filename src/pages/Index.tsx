@@ -193,6 +193,7 @@ const Index = () => {
         <meta property="og:description" content="The 3 things actually worth fixing this week. AI website audits for founders." />
         <meta property="og:url" content="https://sitescoper.com/" />
         <meta property="og:type" content="website" />
+        <meta name="robots" content="index, follow" />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
           "@type": "FAQPage",
@@ -261,7 +262,7 @@ const Index = () => {
                   <div ref={inputRef} className="pt-2">
                     <UrlInput onSubmit={handleAnalyze} isLoading={isLoading} />
                   </div>
-                  <div className="flex items-center justify-center lg:justify-start gap-5 text-[11px] text-muted-foreground font-body flex-wrap pt-1">
+                  <div aria-label="Key features" className="flex items-center justify-center lg:justify-start gap-5 text-[11px] text-muted-foreground font-body flex-wrap pt-1">
                     <div className="flex items-center gap-1.5">
                       <div className="w-1.5 h-1.5 rounded-full bg-[hsl(var(--score-good))]" />
                       No signup to try
@@ -436,8 +437,10 @@ const Index = () => {
 
       <footer className="border-t border-border mt-8 py-8">
         <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted-foreground font-body">
-          <div>SiteScoper — {t("footer.tagline")}</div>
-          <nav className="flex items-center gap-5">
+          <div>SiteScoper — AI website audits that tell you the truth.</div>
+          <nav className="flex items-center gap-5" aria-label="Footer">
+            <Link to="/pricing" className="hover:text-foreground transition-colors">Pricing</Link>
+            <Link to="/dashboard" className="hover:text-foreground transition-colors">Dashboard</Link>
             <Link to="/privacy" className="hover:text-foreground transition-colors">{t("footer.privacy")}</Link>
             <Link to="/terms" className="hover:text-foreground transition-colors">{t("footer.terms")}</Link>
           </nav>

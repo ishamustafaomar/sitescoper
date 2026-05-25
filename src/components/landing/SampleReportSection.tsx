@@ -131,7 +131,7 @@ export function SampleReportSection({ onTryYours }: { onTryYours: () => void }) 
           <div className="p-6 md:p-8 border-b border-border">
             <div className="flex flex-col md:flex-row gap-6 items-start">
               <div className="relative shrink-0">
-                <svg width="120" height="120" viewBox="0 0 120 120" className="rotate-[-90deg]">
+                <svg width="120" height="120" viewBox="0 0 120 120" className="rotate-[-90deg]" aria-hidden="true" focusable="false">
                   <circle cx="60" cy="60" r="52" stroke="hsl(var(--muted))" strokeWidth="10" fill="none" />
                   <motion.circle
                     cx="60"
