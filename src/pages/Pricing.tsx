@@ -5,7 +5,7 @@ import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { AppHeader } from "@/components/AppHeader";
-import { PaymentTestModeBanner } from "@/components/PaymentTestModeBanner";
+
 import { StripeEmbeddedCheckoutForm } from "@/components/StripeEmbeddedCheckout";
 import { useAuth } from "@/components/AuthProvider";
 import { useSubscription } from "@/hooks/useSubscription";
@@ -82,7 +82,6 @@ export default function Pricing() {
           ]
         })}</script>
       </Helmet>
-      <PaymentTestModeBanner />
       <AppHeader />
       <main className="max-w-5xl mx-auto px-4 py-12">
         <div className="text-center mb-10">
