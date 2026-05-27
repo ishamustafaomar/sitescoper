@@ -45,7 +45,7 @@ serve(async (req) => {
       throw new Error("LOVABLE_API_KEY is not configured");
     }
 
-    const truncatedMarkdown = markdown.slice(0, 40000);
+    const truncatedMarkdown = markdown.slice(0, 25000);
 
     const imageList = Array.isArray(images) ? images.slice(0, 25) : [];
     const imageContext = imageList.length
@@ -72,7 +72,7 @@ serve(async (req) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "google/gemini-2.5-pro",
+        model: "google/gemini-2.5-flash",
         temperature: 0.3,
         messages: [
           {
