@@ -142,6 +142,29 @@ export default function Dashboard() {
         )
       : null;
 
+  // Aggregate KPIs across most recent analysis per website
+  const latestByWebsite = useMemo(() => {
+    const m = new Map<string, AnalysisRecord>();
+    history.forEach((h) => {
+      if (!h.website_id) return;
+      const existing = m.get(h.website_id);
+      if (!existing || new Date(h.created_at) > new Date(existing.created_at)) m.set(h.website_id, h);
+    });
+    return m;
+  }, [history]);
+
+  const { criticalIssues, sitesAtRisk } = useMemo(() => {
+    let crit = 0;
+    let risk = 0;
+    latestByWebsite.forEach((rec) => {
+      const cats = (rec.categories as AnalysisCategory[]) || [];
+      const highs = cats.reduce((acc, c) => acc + (c.suggestions?.filter((s) => s.priority === "high").length || 0), 0);
+      crit += highs;
+      if (rec.overall_score < 60) risk += 1;
+    });
+    return { criticalIssues: crit, sitesAtRisk: risk };
+  }, [latestByWebsite]);
+
   // Build score history per website (oldest -> newest) for sparklines
   const historyByWebsite = useMemo(() => {
     const map = new Map<string, number[]>();
@@ -179,8 +202,14 @@ export default function Dashboard() {
       </Helmet>
       <AppHeader />
 
-      <main className="max-w-6xl mx-auto px-4 py-8 space-y-8">
-        <StatsOverview websiteCount={websites.length} historyCount={history.length} avgScore={avgScore} />
+      <main className="max-w-7xl mx-auto px-4 py-8 space-y-8">
+        <StatsOverview
+          websiteCount={websites.length}
+          historyCount={history.length}
+          avgScore={avgScore}
+          criticalIssues={criticalIssues}
+          sitesAtRisk={sitesAtRisk}
+        />
 
         <AddWebsiteForm onAdd={addWebsite} />
 
