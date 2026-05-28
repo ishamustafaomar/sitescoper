@@ -6,6 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ScoreRing } from "@/components/ScoreRing";
 import { ScoreTrendChart } from "@/components/ScoreTrendChart";
 import { SemrushOverviewPanel } from "./SemrushOverviewPanel";
+import { ProGate } from "@/components/ProGate";
 import { TechSeoPanel } from "./TechSeoPanel";
 import { IssuesByImpactPanel } from "./IssuesByImpactPanel";
 import { ActionPlanPanel } from "./ActionPlanPanel";
