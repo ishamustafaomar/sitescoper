@@ -1,4 +1,4 @@
-import { Globe, BarChart3, TrendingUp } from "lucide-react";
+import { Globe, BarChart3, AlertTriangle, ShieldAlert } from "lucide-react";
 import { TrafficDot, getTrafficLevel, getTrafficStyles, getTrafficLabel } from "@/components/TrafficLight";
 import { cn } from "@/lib/utils";
 
@@ -6,18 +6,22 @@ interface StatsOverviewProps {
   websiteCount: number;
   historyCount: number;
   avgScore: number | null;
+  criticalIssues?: number;
+  sitesAtRisk?: number;
 }
 
-export function StatsOverview({ websiteCount, historyCount, avgScore }: StatsOverviewProps) {
+export function StatsOverview({ websiteCount, historyCount, avgScore, criticalIssues = 0, sitesAtRisk = 0 }: StatsOverviewProps) {
   const level = getTrafficLevel(avgScore);
   const styles = getTrafficStyles(level);
   const stats = [
     { icon: Globe, color: "bg-primary/10 text-primary", value: websiteCount, label: "Tracked sites" },
     { icon: BarChart3, color: "bg-accent/10 text-accent", value: historyCount, label: "Total scans" },
+    { icon: AlertTriangle, color: "bg-destructive/10 text-destructive", value: criticalIssues, label: "Critical issues" },
+    { icon: ShieldAlert, color: "bg-primary/10 text-primary", value: sitesAtRisk, label: "Sites at risk" },
   ];
 
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
       {/* Avg score gets the traffic-light treatment */}
       <div className={cn(
         "col-span-2 sm:col-span-1 rounded-2xl border p-5 shadow-[var(--shadow-sm)] flex items-center gap-4",
