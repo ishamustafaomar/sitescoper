@@ -174,7 +174,12 @@ export function SEODetailPanel({ websiteName, url, overallScore, categories, scr
       {/* Semrush + trend row */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         <div className="lg:col-span-2">
-          <SemrushOverviewPanel url={url} />
+          <ProGate
+            title="Semrush metrics are a Pro feature"
+            description="Upgrade to unlock Authority Score, organic traffic, ranking keywords and backlink data."
+          >
+            <SemrushOverviewPanel url={url} />
+          </ProGate>
         </div>
         <div>
           <ScoreTrendChart url={url} />
