@@ -41,7 +41,6 @@ export default function Auth() {
       if (isLogin) {
         const { error } = await supabase.auth.signInWithPassword({ email, password });
         if (error) throw error;
-        navigate(nextPath, { replace: true });
       } else {
         const { error } = await supabase.auth.signUp({
           email,
@@ -50,7 +49,6 @@ export default function Auth() {
         });
         if (error) throw error;
         toast({ title: "Account created!", description: "You're now signed in." });
-        navigate(nextPath, { replace: true });
       }
     } catch (err: any) {
       toast({ title: "Error", description: err.message, variant: "destructive" });
@@ -70,7 +68,6 @@ export default function Auth() {
         toast({ title: "Error", description: String(result.error), variant: "destructive" });
       }
       if (result.redirected) return;
-      navigate(nextPath, { replace: true });
     } catch (err: any) {
       toast({ title: "Error", description: err.message, variant: "destructive" });
     } finally {
