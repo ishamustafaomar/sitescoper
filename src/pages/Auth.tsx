@@ -14,6 +14,9 @@ import { useAuth } from "@/components/AuthProvider";
 import { useEffect } from "react";
 import { SignInBenefits } from "@/components/SignInBenefits";
 
+const getErrorMessage = (error: unknown) =>
+  error instanceof Error ? error.message : "Something went wrong. Please try again.";
+
 export default function Auth() {
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState("");
@@ -50,8 +53,8 @@ export default function Auth() {
         if (error) throw error;
         toast({ title: "Account created!", description: "You're now signed in." });
       }
-    } catch (err: any) {
-      toast({ title: "Error", description: err.message, variant: "destructive" });
+    } catch (err) {
+      toast({ title: "Error", description: getErrorMessage(err), variant: "destructive" });
     } finally {
       setLoading(false);
     }
@@ -68,8 +71,8 @@ export default function Auth() {
         toast({ title: "Error", description: String(result.error), variant: "destructive" });
       }
       if (result.redirected) return;
-    } catch (err: any) {
-      toast({ title: "Error", description: err.message, variant: "destructive" });
+    } catch (err) {
+      toast({ title: "Error", description: getErrorMessage(err), variant: "destructive" });
     } finally {
       setGoogleLoading(false);
     }
