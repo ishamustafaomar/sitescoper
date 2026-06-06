@@ -1,14 +1,25 @@
 import { useMemo } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import { useQuery } from "@tanstack/react-query";
 import { ArrowLeft } from "lucide-react";
 import { AppHeader } from "@/components/AppHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { Button } from "@/components/ui/button";
-import { findPost, posts } from "@/content/blog";
+import { Skeleton } from "@/components/ui/skeleton";
+import { supabase } from "@/integrations/supabase/client";
+
+interface BlogRow {
+  slug: string;
+  title: string;
+  description: string;
+  reading_time: string;
+  published_at: string;
+  body: string;
+}
 
 // Minimal markdown renderer: ## h2, ### h3, "- " bullets, blank-line
-// paragraphs, **bold**, [text](url) links. Keeps the bundle small.
+// paragraphs, **bold**, [text](url) links.
 function renderBody(body: string) {
   const blocks = body.split(/\n\n+/);
   return blocks.map((block, i) => {
@@ -44,7 +55,6 @@ function renderBody(body: string) {
 }
 
 function renderInline(text: string): React.ReactNode {
-  // Handle links first, then bold. Returns a fragment of strings + elements.
   const linkRe = /\[([^\]]+)\]\(([^)]+)\)/g;
   const parts: React.ReactNode[] = [];
   let last = 0;
@@ -88,41 +98,87 @@ function renderBold(text: string, key: number): React.ReactNode {
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
-  const post = slug ? findPost(slug) : undefined;
 
-  const related = useMemo(
-    () => posts.filter((p) => p.slug !== slug).slice(0, 3),
-    [slug],
-  );
+  const { data: post, isLoading, isError } = useQuery({
+    queryKey: ["blog-post", slug],
+    enabled: !!slug,
+    queryFn: async (): Promise<BlogRow | null> => {
+      const { data, error } = await supabase
+        .from("blog_posts")
+        .select("slug, title, description, reading_time, published_at, body")
+        .eq("slug", slug!)
+        .maybeSingle();
+      if (error) throw error;
+      return (data as BlogRow | null) ?? null;
+    },
+    staleTime: 60_000,
+  });
 
-  if (!post) return <Navigate to="/blog" replace />;
+  const { data: related = [] } = useQuery({
+    queryKey: ["blog-related", slug],
+    enabled: !!slug,
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("blog_posts")
+        .select("slug, title, description")
+        .neq("slug", slug!)
+        .order("published_at", { ascending: false })
+        .limit(3);
+      if (error) throw error;
+      return data ?? [];
+    },
+    staleTime: 60_000,
+  });
+
+  const ld = useMemo(() => {
+    if (!post) return null;
+    const url = `https://sitescoper.com/blog/${post.slug}`;
+    return {
+      article: {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        headline: post.title,
+        description: post.description,
+        datePublished: post.published_at,
+        dateModified: post.published_at,
+        author: { "@type": "Organization", name: "SiteScoper" },
+        publisher: {
+          "@type": "Organization",
+          name: "SiteScoper",
+          logo: { "@type": "ImageObject", url: "https://sitescoper.com/favicon.ico" },
+        },
+        mainEntityOfPage: url,
+        url,
+      },
+      breadcrumb: {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: "https://sitescoper.com/" },
+          { "@type": "ListItem", position: 2, name: "Blog", item: "https://sitescoper.com/blog" },
+          { "@type": "ListItem", position: 3, name: post.title, item: url },
+        ],
+      },
+    };
+  }, [post]);
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-background flex flex-col">
+        <AppHeader />
+        <main className="flex-1 max-w-3xl mx-auto px-4 py-12 w-full">
+          <Skeleton className="h-10 w-3/4 mb-4" />
+          <Skeleton className="h-5 w-1/2 mb-8" />
+          <Skeleton className="h-64 w-full" />
+        </main>
+        <SiteFooter />
+      </div>
+    );
+  }
+
+  if (isError || !post) return <Navigate to="/blog" replace />;
 
   const url = `https://sitescoper.com/blog/${post.slug}`;
-  const articleLd = {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    headline: post.title,
-    description: post.description,
-    datePublished: post.date,
-    dateModified: post.date,
-    author: { "@type": "Organization", name: "SiteScoper" },
-    publisher: {
-      "@type": "Organization",
-      name: "SiteScoper",
-      logo: { "@type": "ImageObject", url: "https://sitescoper.com/favicon.ico" },
-    },
-    mainEntityOfPage: url,
-    url,
-  };
-  const breadcrumbLd = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: "https://sitescoper.com/" },
-      { "@type": "ListItem", position: 2, name: "Blog", item: "https://sitescoper.com/blog" },
-      { "@type": "ListItem", position: 3, name: post.title, item: url },
-    ],
-  };
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
@@ -134,9 +190,9 @@ const BlogPost = () => {
         <meta property="og:description" content={post.description} />
         <meta property="og:url" content={url} />
         <meta property="og:type" content="article" />
-        <meta property="article:published_time" content={post.date} />
-        <script type="application/ld+json">{JSON.stringify(articleLd)}</script>
-        <script type="application/ld+json">{JSON.stringify(breadcrumbLd)}</script>
+        <meta property="article:published_time" content={post.published_at} />
+        {ld && <script type="application/ld+json">{JSON.stringify(ld.article)}</script>}
+        {ld && <script type="application/ld+json">{JSON.stringify(ld.breadcrumb)}</script>}
       </Helmet>
       <AppHeader />
 
@@ -150,11 +206,11 @@ const BlogPost = () => {
         <article>
           <header className="mb-8">
             <div className="text-xs text-muted-foreground mb-3 flex items-center gap-2">
-              <time dateTime={post.date}>
-                {new Date(post.date).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
+              <time dateTime={post.published_at}>
+                {new Date(post.published_at).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
               </time>
               <span aria-hidden>·</span>
-              <span>{post.readingTime} read</span>
+              <span>{post.reading_time} read</span>
             </div>
             <h1 className="text-3xl md:text-5xl font-heading font-bold tracking-tight mb-4">{post.title}</h1>
             <p className="text-lg text-muted-foreground">{post.description}</p>
@@ -165,7 +221,7 @@ const BlogPost = () => {
           <section className="mt-12 rounded-2xl border bg-gradient-to-b from-primary/5 to-transparent p-8 text-center">
             <h2 className="text-2xl font-heading font-bold mb-2">Audit your site in 60 seconds</h2>
             <p className="text-muted-foreground mb-5 max-w-xl mx-auto text-sm">
-              SiteScoper turns this whole checklist into a single, prioritised report. Free to try.
+              SiteScoper turns this into a single, prioritised report. Free to try.
             </p>
             <Button asChild size="lg">
               <Link to="/">Run a free audit</Link>
@@ -173,29 +229,31 @@ const BlogPost = () => {
           </section>
         </article>
 
-        <aside className="mt-16">
-          <h2 className="text-sm font-heading font-semibold uppercase tracking-wider text-muted-foreground mb-4">
-            Keep reading
-          </h2>
-          <ul className="grid sm:grid-cols-3 gap-4">
-            {related.map((r) => (
-              <li key={r.slug}>
-                <Link to={`/blog/${r.slug}`} className="block rounded-lg border bg-card p-4 hover:border-primary/40 transition-colors h-full">
-                  <h3 className="font-heading font-semibold text-sm mb-1">{r.title}</h3>
-                  <p className="text-xs text-muted-foreground line-clamp-2">{r.description}</p>
+        {related.length > 0 && (
+          <aside className="mt-16">
+            <h2 className="text-sm font-heading font-semibold uppercase tracking-wider text-muted-foreground mb-4">
+              Keep reading
+            </h2>
+            <ul className="grid sm:grid-cols-3 gap-4">
+              {related.map((r: any) => (
+                <li key={r.slug}>
+                  <Link to={`/blog/${r.slug}`} className="block rounded-lg border bg-card p-4 hover:border-primary/40 transition-colors h-full">
+                    <h3 className="font-heading font-semibold text-sm mb-1">{r.title}</h3>
+                    <p className="text-xs text-muted-foreground line-clamp-2">{r.description}</p>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-6">
+              <Button asChild variant="ghost" size="sm">
+                <Link to="/blog">
+                  <ArrowLeft className="w-3.5 h-3.5" />
+                  Back to blog
                 </Link>
-              </li>
-            ))}
-          </ul>
-          <div className="mt-6">
-            <Button asChild variant="ghost" size="sm">
-              <Link to="/blog">
-                <ArrowLeft className="w-3.5 h-3.5" />
-                Back to blog
-              </Link>
-            </Button>
-          </div>
-        </aside>
+              </Button>
+            </div>
+          </aside>
+        )}
       </main>
 
       <SiteFooter />
