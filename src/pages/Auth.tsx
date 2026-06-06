@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
 import { Sparkles, Mail, Lock, User, ArrowRight, Loader2 } from "lucide-react";
@@ -14,6 +14,9 @@ import { useAuth } from "@/components/AuthProvider";
 import { useEffect } from "react";
 import { SignInBenefits } from "@/components/SignInBenefits";
 
+const getErrorMessage = (error: unknown) =>
+  error instanceof Error ? error.message : "Something went wrong. Please try again.";
+
 export default function Auth() {
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState("");
@@ -23,12 +26,15 @@ export default function Auth() {
   const [googleLoading, setGoogleLoading] = useState(false);
   const { toast } = useToast();
   const navigate = useNavigate();
+  const location = useLocation();
   const { user } = useAuth();
   const { t } = useTranslation();
+  const redirectPath = new URLSearchParams(location.search).get("redirect");
+  const nextPath = redirectPath?.startsWith("/") && !redirectPath.startsWith("//") ? redirectPath : "/dashboard";
 
   useEffect(() => {
-    if (user) navigate("/dashboard", { replace: true });
-  }, [user, navigate]);
+    if (user) navigate(nextPath, { replace: true });
+  }, [user, navigate, nextPath]);
 
   const handleEmailAuth = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -38,7 +44,6 @@ export default function Auth() {
       if (isLogin) {
         const { error } = await supabase.auth.signInWithPassword({ email, password });
         if (error) throw error;
-        navigate("/dashboard");
       } else {
         const { error } = await supabase.auth.signUp({
           email,
@@ -47,10 +52,9 @@ export default function Auth() {
         });
         if (error) throw error;
         toast({ title: "Account created!", description: "You're now signed in." });
-        navigate("/dashboard");
       }
-    } catch (err: any) {
-      toast({ title: "Error", description: err.message, variant: "destructive" });
+    } catch (err) {
+      toast({ title: "Error", description: getErrorMessage(err), variant: "destructive" });
     } finally {
       setLoading(false);
     }
@@ -61,15 +65,14 @@ export default function Auth() {
     toast({ title: "Redirecting to Google…", description: "This usually takes a few seconds." });
     try {
       const result = await lovable.auth.signInWithOAuth("google", {
-        redirect_uri: window.location.origin,
+        redirect_uri: `${window.location.origin}/auth?redirect=${encodeURIComponent(nextPath)}`,
       });
       if (result.error) {
         toast({ title: "Error", description: String(result.error), variant: "destructive" });
       }
       if (result.redirected) return;
-      navigate("/dashboard");
-    } catch (err: any) {
-      toast({ title: "Error", description: err.message, variant: "destructive" });
+    } catch (err) {
+      toast({ title: "Error", description: getErrorMessage(err), variant: "destructive" });
     } finally {
       setGoogleLoading(false);
     }
