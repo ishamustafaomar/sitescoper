@@ -61,6 +61,42 @@ export type Database = {
           },
         ]
       }
+      blog_posts: {
+        Row: {
+          body: string
+          created_at: string
+          description: string
+          id: string
+          keyword: string
+          published_at: string
+          reading_time: string
+          slug: string
+          title: string
+        }
+        Insert: {
+          body: string
+          created_at?: string
+          description: string
+          id?: string
+          keyword: string
+          published_at?: string
+          reading_time?: string
+          slug: string
+          title: string
+        }
+        Update: {
+          body?: string
+          created_at?: string
+          description?: string
+          id?: string
+          keyword?: string
+          published_at?: string
+          reading_time?: string
+          slug?: string
+          title?: string
+        }
+        Relationships: []
+      }
       email_send_log: {
         Row: {
           created_at: string
