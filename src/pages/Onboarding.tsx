@@ -152,7 +152,7 @@ export default function Onboarding() {
             transition={{ duration: 0.3 }}
             className="bg-card rounded-2xl border border-border p-8 shadow-[var(--shadow-md)]"
           >
-            <h2 className="font-heading font-bold text-2xl mb-1">{steps[currentStep].title}</h2>
+            <h1 className="font-heading font-bold text-2xl mb-1">{steps[currentStep].title}</h1>
             <p className="text-muted-foreground font-body text-sm mb-6">{steps[currentStep].subtitle}</p>
 
             {/* Step 0: Name */}
