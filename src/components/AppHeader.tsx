@@ -17,6 +17,8 @@ export function AppHeader() {
   const { t } = useTranslation();
   const { isPro } = useSubscription();
   const { isAdmin } = useIsAdmin();
+  const currentPath = `${location.pathname}${location.search}${location.hash}`;
+  const authPath = `/auth?redirect=${encodeURIComponent(currentPath)}`;
 
   const handleSignOut = async () => {
     await signOut();
@@ -126,7 +128,7 @@ export function AppHeader() {
           ) : (
             <Tooltip>
               <TooltipTrigger asChild>
-                <Button variant="outline" size="sm" onClick={() => navigate("/auth")} className="text-xs font-body">
+                <Button variant="outline" size="sm" onClick={() => navigate(authPath)} className="text-xs font-body">
                   <LogIn className="h-3.5 w-3.5" />
                   {t("nav.signIn")}
                 </Button>
