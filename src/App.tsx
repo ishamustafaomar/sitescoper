@@ -28,6 +28,8 @@ const Pricing = lazy(() => import("./pages/Pricing"));
 const CheckoutReturn = lazy(() => import("./pages/CheckoutReturn"));
 const AiWebsiteAuditTool = lazy(() => import("./pages/AiWebsiteAuditTool"));
 const WhiteLabelSeoReports = lazy(() => import("./pages/WhiteLabelSeoReports"));
+const Blog = lazy(() => import("./pages/Blog"));
+const BlogPost = lazy(() => import("./pages/BlogPost"));
 
 const queryClient = new QueryClient();
 
@@ -57,6 +59,8 @@ const App = () => (
               <Route path="/pricing" element={<Pricing />} />
               <Route path="/ai-website-audit-tool" element={<AiWebsiteAuditTool />} />
               <Route path="/white-label-seo-reports" element={<WhiteLabelSeoReports />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:slug" element={<BlogPost />} />
               <Route path="/checkout/return" element={<CheckoutReturn />} />
               <Route
                 path="/onboarding"
