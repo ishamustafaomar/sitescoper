@@ -19,6 +19,13 @@ const entries: SitemapEntry[] = [
   { path: "/auth", changefreq: "monthly", priority: "0.5" },
   { path: "/privacy", changefreq: "yearly", priority: "0.3" },
   { path: "/terms", changefreq: "yearly", priority: "0.3" },
+  // Authenticated app routes — listed for crawl discovery; pages themselves
+  // carry <meta name="robots" content="noindex"> so they won't be indexed.
+  { path: "/dashboard", changefreq: "weekly", priority: "0.4" },
+  { path: "/onboarding", changefreq: "yearly", priority: "0.2" },
+  { path: "/checkout/return", changefreq: "yearly", priority: "0.1" },
+  // Dynamic routes (/share/:token, /analysis/:id) are per-user and gated;
+  // omitted intentionally — they shouldn't be in a public sitemap.
 ]
 
 function generateSitemap(entries: SitemapEntry[]) {
