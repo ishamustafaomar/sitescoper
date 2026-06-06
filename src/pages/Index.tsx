@@ -440,6 +440,9 @@ const Index = () => {
           <div>SiteScoper — AI website audits that tell you the truth.</div>
           <nav className="flex items-center gap-5" aria-label="Footer">
             <Link to="/pricing" className="hover:text-foreground transition-colors">Pricing</Link>
+            <Link to="/blog" className="hover:text-foreground transition-colors">Blog</Link>
+            <Link to="/ai-website-audit-tool" className="hover:text-foreground transition-colors">AI Audit Tool</Link>
+            <Link to="/white-label-seo-reports" className="hover:text-foreground transition-colors">White Label</Link>
             <Link to="/dashboard" className="hover:text-foreground transition-colors">Dashboard</Link>
             <Link to="/privacy" className="hover:text-foreground transition-colors">{t("footer.privacy")}</Link>
             <Link to="/terms" className="hover:text-foreground transition-colors">{t("footer.terms")}</Link>

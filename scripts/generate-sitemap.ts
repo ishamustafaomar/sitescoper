@@ -5,6 +5,18 @@ import { resolve } from "path"
 
 const BASE_URL = "https://sitescoper.com"
 
+// Blog post slugs — keep in sync with src/content/blog.ts. The sitemap
+// generator runs in a Node context before Vite, so we list slugs here
+// rather than importing the TS module (which would need a TS loader).
+const blogSlugs = [
+  "how-to-audit-a-website-for-seo",
+  "ai-website-audit-vs-traditional-seo-tools",
+  "core-web-vitals-explained-for-founders",
+  "free-website-audit-checklist",
+  "small-business-seo-guide",
+  "white-label-seo-reports-for-agencies",
+]
+
 interface SitemapEntry {
   path: string
   lastmod?: string
@@ -17,6 +29,12 @@ const entries: SitemapEntry[] = [
   { path: "/pricing", changefreq: "weekly", priority: "0.8" },
   { path: "/ai-website-audit-tool", changefreq: "monthly", priority: "0.9" },
   { path: "/white-label-seo-reports", changefreq: "monthly", priority: "0.9" },
+  { path: "/blog", changefreq: "weekly", priority: "0.8" },
+  ...blogSlugs.map((slug) => ({
+    path: `/blog/${slug}`,
+    changefreq: "monthly" as const,
+    priority: "0.7",
+  })),
   { path: "/compare", changefreq: "monthly", priority: "0.7" },
   { path: "/auth", changefreq: "monthly", priority: "0.5" },
   { path: "/privacy", changefreq: "yearly", priority: "0.3" },

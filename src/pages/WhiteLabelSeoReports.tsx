@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { FileText, Palette, Users, Download, Check } from "lucide-react";
 import { AppHeader } from "@/components/AppHeader";
+import { SiteFooter } from "@/components/SiteFooter";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 
@@ -165,6 +166,7 @@ const WhiteLabelSeoReports = () => {
           </Button>
         </section>
       </main>
+      <SiteFooter />
     </div>
   );
 };

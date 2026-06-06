@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { Sparkles, Zap, Shield, BarChart3, Check } from "lucide-react";
 import { AppHeader } from "@/components/AppHeader";
+import { SiteFooter } from "@/components/SiteFooter";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 
@@ -162,6 +163,7 @@ const AiWebsiteAuditTool = () => {
           </Button>
         </section>
       </main>
+      <SiteFooter />
     </div>
   );
 };
