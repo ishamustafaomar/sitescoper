@@ -186,11 +186,11 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>SiteScoper — Honest AI website audits in 60 seconds</title>
-        <meta name="description" content="SiteScoper crawls your site and tells you the 3 things actually worth fixing this week — UX, SEO, copy, and conversion, scored like a senior strategist would." />
+        <title>AI Website UX Auditor & Instant SEO Checker | SiteScoper</title>
+        <meta name="description" content="SiteScoper is the AI website UX auditor and instant SEO checker that tells you the 3 things actually worth fixing this week — UX, SEO, copy and conversion, in 60 seconds." />
         <link rel="canonical" href="https://sitescoper.com/" />
-        <meta property="og:title" content="SiteScoper — Honest AI website audits" />
-        <meta property="og:description" content="The 3 things actually worth fixing this week. AI website audits for founders." />
+        <meta property="og:title" content="AI Website UX Auditor & Instant SEO Checker | SiteScoper" />
+        <meta property="og:description" content="Instant AI audit of your site's UX, SEO and conversion. The 3 fixes actually worth shipping this week." />
         <meta property="og:url" content="https://sitescoper.com/" />
         <meta property="og:type" content="website" />
         <meta name="robots" content="index, follow" />
@@ -256,12 +256,15 @@ const Index = () => {
                     </span>
                   </h1>
                   <p className="text-muted-foreground font-body text-base md:text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed">
-                    Most analyzers spit out a 200-row checklist. We read your site like a senior product strategist would — then tell you the 3 things actually worth fixing this week.
+                    SiteScoper is an <strong className="text-foreground/90 font-semibold">AI website UX auditor</strong> and <strong className="text-foreground/90 font-semibold">instant SEO checker</strong> for founders. Skip the 200-row checklist — get the 3 fixes actually worth shipping this week, in 60 seconds.
                   </p>
                   {/* URL Input — kept above the fold */}
                   <div ref={inputRef} className="pt-2">
                     <UrlInput onSubmit={handleAnalyze} isLoading={isLoading} />
                   </div>
+                  <p className="text-[11px] text-muted-foreground font-body text-center lg:text-left">
+                    Free audit · No credit card · 2,400+ sites scored this month
+                  </p>
                   <div aria-label="Key features" className="flex items-center justify-center lg:justify-start gap-5 text-[11px] text-muted-foreground font-body flex-wrap pt-1">
                     <div className="flex items-center gap-1.5">
                       <div className="w-1.5 h-1.5 rounded-full bg-[hsl(var(--score-good))]" />
