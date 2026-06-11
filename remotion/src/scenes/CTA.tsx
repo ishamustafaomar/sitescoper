@@ -66,8 +66,8 @@ export const CTA: React.FC = () => {
             padding: "32px 56px",
             borderRadius: 24,
             background: `linear-gradient(135deg, ${colors.primary}, ${colors.accent})`,
-            boxShadow: `0 24px 80px -10px ${colors.primary}aa`,
-            transform: `scale(${interpolate(spring({ frame: frame - 28, fps, config: { damping: 16, stiffness: 140 } }), [0, 1], [0.7, 1])})`,
+            boxShadow: `0 24px 80px -10px ${colors.primary}${frame > 60 ? "ee" : "aa"}`,
+            transform: `scale(${interpolate(spring({ frame: frame - 28, fps, config: { damping: 16, stiffness: 140 } }), [0, 1], [0.7, 1]) * (1 + Math.sin(frame / 22) * 0.012)})`,
             opacity: interpolate(frame, [28, 42], [0, 1], { extrapolateRight: "clamp" }),
           }}
         >
