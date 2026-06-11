@@ -1,4 +1,4 @@
-import { AbsoluteFill, Audio, staticFile, interpolate, useCurrentFrame } from "remotion";
+import { AbsoluteFill } from "remotion";
 import { TransitionSeries, linearTiming } from "@remotion/transitions";
 import { fade } from "@remotion/transitions/fade";
 import { wipe } from "@remotion/transitions/wipe";
@@ -15,22 +15,10 @@ import { Categories } from "./scenes/Categories";
 import { Quote } from "./scenes/Quote";
 import { BeforeAfter } from "./scenes/BeforeAfter";
 import { CTA } from "./scenes/CTA";
-import { TOTAL_FRAMES } from "./Root";
-
-const AudioBed: React.FC = () => {
-  const frame = useCurrentFrame();
-  // fade in over 18f, hold, fade out over last 60f
-  const fadeIn = interpolate(frame, [0, 18], [0, 1], { extrapolateRight: "clamp" });
-  const fadeOut = interpolate(frame, [TOTAL_FRAMES - 60, TOTAL_FRAMES], [1, 0], { extrapolateLeft: "clamp" });
-  const volume = Math.min(fadeIn, fadeOut) * 0.85;
-  return <Audio src={staticFile("audio/track.mp3")} volume={volume} />;
-};
-
 export const MainVideo: React.FC = () => {
   return (
     <AbsoluteFill>
       <Background />
-      <AudioBed />
       <TransitionSeries>
         <TransitionSeries.Sequence durationInFrames={170}>
           <Hook />
