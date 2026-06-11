@@ -2,9 +2,9 @@ import { Composition } from "remotion";
 import { MainVideo } from "./MainVideo";
 
 // Scene durations (in frames @ 30fps), accounting for 12-frame transitions overlap
-// Hook 60 + URL 75 + Scan 80 + Score 95 + Issues 95 + Categories 75 + CTA 95 = 575
-// Transitions: 6 x 12 = 72 overlap -> total = 503
-export const TOTAL_FRAMES = 573;
+// Hook 130 + URL 130 + Scan 150 + Score 165 + Issues 175 + Categories 150 + CTA 170 = 1070
+// Transitions: 6 x 12 = 72 overlap -> total = 998
+export const TOTAL_FRAMES = 998;
 
 export const RemotionRoot = () => (
   <Composition

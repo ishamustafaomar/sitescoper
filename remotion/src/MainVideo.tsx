@@ -17,37 +17,37 @@ export const MainVideo: React.FC = () => {
     <AbsoluteFill>
       <Background />
       <TransitionSeries>
-        <TransitionSeries.Sequence durationInFrames={70}>
+        <TransitionSeries.Sequence durationInFrames={130}>
           <Hook />
         </TransitionSeries.Sequence>
         <TransitionSeries.Transition presentation={wipe({ direction: "from-right" })} timing={linearTiming({ durationInFrames: 12 })} />
 
-        <TransitionSeries.Sequence durationInFrames={85}>
+        <TransitionSeries.Sequence durationInFrames={130}>
           <UrlPaste />
         </TransitionSeries.Sequence>
         <TransitionSeries.Transition presentation={slide({ direction: "from-right" })} timing={linearTiming({ durationInFrames: 12 })} />
 
-        <TransitionSeries.Sequence durationInFrames={90}>
+        <TransitionSeries.Sequence durationInFrames={150}>
           <Scanning />
         </TransitionSeries.Sequence>
         <TransitionSeries.Transition presentation={fade()} timing={linearTiming({ durationInFrames: 12 })} />
 
-        <TransitionSeries.Sequence durationInFrames={105}>
+        <TransitionSeries.Sequence durationInFrames={165}>
           <ScoreReveal />
         </TransitionSeries.Sequence>
         <TransitionSeries.Transition presentation={wipe({ direction: "from-bottom" })} timing={linearTiming({ durationInFrames: 12 })} />
 
-        <TransitionSeries.Sequence durationInFrames={105}>
+        <TransitionSeries.Sequence durationInFrames={175}>
           <Issues />
         </TransitionSeries.Sequence>
         <TransitionSeries.Transition presentation={slide({ direction: "from-right" })} timing={linearTiming({ durationInFrames: 12 })} />
 
-        <TransitionSeries.Sequence durationInFrames={85}>
+        <TransitionSeries.Sequence durationInFrames={150}>
           <Categories />
         </TransitionSeries.Sequence>
         <TransitionSeries.Transition presentation={fade()} timing={linearTiming({ durationInFrames: 12 })} />
 
-        <TransitionSeries.Sequence durationInFrames={105}>
+        <TransitionSeries.Sequence durationInFrames={170}>
           <CTA />
         </TransitionSeries.Sequence>
       </TransitionSeries>
