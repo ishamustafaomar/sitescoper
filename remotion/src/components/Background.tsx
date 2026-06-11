@@ -3,7 +3,7 @@ import { colors } from "../theme";
 
 export const Background: React.FC = () => {
   const frame = useCurrentFrame();
-  const drift = (frame / 2044) * 100;
+  const drift = (frame / 1802) * 100;
   return (
     <AbsoluteFill style={{ background: colors.bg, overflow: "hidden" }}>
       {/* radial glow that drifts */}
