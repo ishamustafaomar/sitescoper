@@ -1,10 +1,10 @@
 import { Composition } from "remotion";
 import { MainVideo } from "./MainVideo";
 
-// Fast-paced cut: 13 scenes incl. 3 flash interstitials, 8-frame transitions
-// 130+36+160+120+36+170+190+200+180+36+200+200+240 = 1898
-// 12 x 8 transitions = 96 overlap -> total = 1802 (~60.07s)
-export const TOTAL_FRAMES = 1802;
+// Ultra fast-paced cut: 13 scenes incl. 3 flash interstitials, 6-frame transitions
+// 80+24+100+70+24+110+120+130+110+24+130+130+160 = 1212
+// 12 x 6 transitions = 72 overlap -> total = 1140 (~38.0s)
+export const TOTAL_FRAMES = 1140;
 
 export const RemotionRoot = () => (
   <Composition
