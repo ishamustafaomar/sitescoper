@@ -32,12 +32,15 @@ export function CTASection({ onGetStarted }: CTASectionProps) {
               </span>
             </h2>
             <p className="text-muted-foreground font-body text-lg max-w-xl mx-auto mb-8 leading-relaxed">
-              Get brutally honest, actionable feedback on your website in under a minute. Free, no signup required.
+              Run the AI website UX audit and instant SEO check on your site in under 60 seconds. Free, no credit card, no setup.
             </p>
             <Button variant="hero" size="lg" onClick={onGetStarted} className="rounded-xl px-8">
-              Analyze your website
+              Audit my website free
               <ArrowRight className="h-4 w-4" />
             </Button>
+            <div className="mt-3 text-xs font-body text-muted-foreground">
+              Average audit time: 47 seconds · Used by 2,400+ founders this month
+            </div>
             <div className="mt-4 text-xs font-body text-muted-foreground">
               or{" "}
               <Link to="/compare" className="text-primary hover:underline inline-flex items-center gap-1">
