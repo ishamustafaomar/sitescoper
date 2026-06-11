@@ -18,7 +18,7 @@ import { CTA } from "./scenes/CTA";
 import { Flash } from "./scenes/Flash";
 import { colors } from "./theme";
 
-const T = 8;
+const T = 6;
 const linear = linearTiming({ durationInFrames: T });
 
 export const MainVideo: React.FC = () => {
@@ -26,67 +26,67 @@ export const MainVideo: React.FC = () => {
     <AbsoluteFill>
       <Background />
       <TransitionSeries>
-        <TransitionSeries.Sequence durationInFrames={130}>
+        <TransitionSeries.Sequence durationInFrames={80}>
           <Hook />
         </TransitionSeries.Sequence>
         <TransitionSeries.Transition presentation={wipe({ direction: "from-right" })} timing={linear} />
 
-        <TransitionSeries.Sequence durationInFrames={36}>
+        <TransitionSeries.Sequence durationInFrames={24}>
           <Flash word="AUDIT." tint={colors.accent} />
         </TransitionSeries.Sequence>
         <TransitionSeries.Transition presentation={wipe({ direction: "from-left" })} timing={linear} />
 
-        <TransitionSeries.Sequence durationInFrames={160}>
+        <TransitionSeries.Sequence durationInFrames={100}>
           <Stats />
         </TransitionSeries.Sequence>
         <TransitionSeries.Transition presentation={slide({ direction: "from-bottom" })} timing={linear} />
 
-        <TransitionSeries.Sequence durationInFrames={120}>
+        <TransitionSeries.Sequence durationInFrames={70}>
           <UrlPaste />
         </TransitionSeries.Sequence>
         <TransitionSeries.Transition presentation={wipe({ direction: "from-right" })} timing={linear} />
 
-        <TransitionSeries.Sequence durationInFrames={36}>
+        <TransitionSeries.Sequence durationInFrames={24}>
           <Flash word="SCAN." tint={colors.primary} />
         </TransitionSeries.Sequence>
         <TransitionSeries.Transition presentation={fade()} timing={linear} />
 
-        <TransitionSeries.Sequence durationInFrames={170}>
+        <TransitionSeries.Sequence durationInFrames={110}>
           <Scanning />
         </TransitionSeries.Sequence>
         <TransitionSeries.Transition presentation={fade()} timing={linear} />
 
-        <TransitionSeries.Sequence durationInFrames={190}>
+        <TransitionSeries.Sequence durationInFrames={120}>
           <ScoreReveal />
         </TransitionSeries.Sequence>
         <TransitionSeries.Transition presentation={wipe({ direction: "from-bottom" })} timing={linear} />
 
-        <TransitionSeries.Sequence durationInFrames={200}>
+        <TransitionSeries.Sequence durationInFrames={130}>
           <Issues />
         </TransitionSeries.Sequence>
         <TransitionSeries.Transition presentation={slide({ direction: "from-right" })} timing={linear} />
 
-        <TransitionSeries.Sequence durationInFrames={180}>
+        <TransitionSeries.Sequence durationInFrames={110}>
           <Categories />
         </TransitionSeries.Sequence>
         <TransitionSeries.Transition presentation={fade()} timing={linear} />
 
-        <TransitionSeries.Sequence durationInFrames={36}>
+        <TransitionSeries.Sequence durationInFrames={24}>
           <Flash word="FIX." tint={colors.good} />
         </TransitionSeries.Sequence>
         <TransitionSeries.Transition presentation={wipe({ direction: "from-top" })} timing={linear} />
 
-        <TransitionSeries.Sequence durationInFrames={200}>
+        <TransitionSeries.Sequence durationInFrames={130}>
           <Quote />
         </TransitionSeries.Sequence>
         <TransitionSeries.Transition presentation={slide({ direction: "from-bottom" })} timing={linear} />
 
-        <TransitionSeries.Sequence durationInFrames={200}>
+        <TransitionSeries.Sequence durationInFrames={130}>
           <BeforeAfter />
         </TransitionSeries.Sequence>
         <TransitionSeries.Transition presentation={flip({ direction: "from-right" })} timing={linear} />
 
-        <TransitionSeries.Sequence durationInFrames={240}>
+        <TransitionSeries.Sequence durationInFrames={160}>
           <CTA />
         </TransitionSeries.Sequence>
       </TransitionSeries>
