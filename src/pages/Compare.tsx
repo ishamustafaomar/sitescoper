@@ -124,7 +124,6 @@ export default function Compare() {
               <CustomInstructions
                 value={customInstructions}
                 onChange={setCustomInstructions}
-                disabled={step === "scanning"}
               />
             </div>
           </form>
