@@ -187,6 +187,66 @@ export type Database = {
         }
         Relationships: []
       }
+      fix_pull_requests: {
+        Row: {
+          analysis_history_id: string | null
+          branch: string
+          created_at: string
+          fixes_applied: Json
+          id: string
+          pr_number: number | null
+          pr_url: string
+          repo: string
+          repo_connection_id: string | null
+          status: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          analysis_history_id?: string | null
+          branch: string
+          created_at?: string
+          fixes_applied?: Json
+          id?: string
+          pr_number?: number | null
+          pr_url: string
+          repo: string
+          repo_connection_id?: string | null
+          status?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          analysis_history_id?: string | null
+          branch?: string
+          created_at?: string
+          fixes_applied?: Json
+          id?: string
+          pr_number?: number | null
+          pr_url?: string
+          repo?: string
+          repo_connection_id?: string | null
+          status?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fix_pull_requests_analysis_history_id_fkey"
+            columns: ["analysis_history_id"]
+            isOneToOne: false
+            referencedRelation: "analysis_history"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "fix_pull_requests_repo_connection_id_fkey"
+            columns: ["repo_connection_id"]
+            isOneToOne: false
+            referencedRelation: "repo_connections"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       onboarding_responses: {
         Row: {
           company: string | null
@@ -251,6 +311,42 @@ export type Database = {
           display_name?: string | null
           id?: string
           onboarding_completed?: boolean
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      repo_connections: {
+        Row: {
+          account_login: string
+          created_at: string
+          default_branch: string | null
+          default_repo: string | null
+          id: string
+          installation_id: string
+          provider: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          account_login: string
+          created_at?: string
+          default_branch?: string | null
+          default_repo?: string | null
+          id?: string
+          installation_id: string
+          provider?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          account_login?: string
+          created_at?: string
+          default_branch?: string | null
+          default_repo?: string | null
+          id?: string
+          installation_id?: string
+          provider?: string
           updated_at?: string
           user_id?: string
         }
