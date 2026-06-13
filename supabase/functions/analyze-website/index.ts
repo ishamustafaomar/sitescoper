@@ -32,7 +32,7 @@ serve(async (req) => {
       });
     }
 
-    const { markdown, url, images, detectedSections } = await req.json();
+    const { markdown, url, images, detectedSections, customInstructions } = await req.json();
     if (!markdown || typeof markdown !== "string") {
       return new Response(JSON.stringify({ error: "Markdown content is required" }), {
         status: 400,
@@ -63,6 +63,13 @@ serve(async (req) => {
             `${i + 1}. ${s.name}${s.evidence ? ` — evidence: "${String(s.evidence).slice(0, 160)}"` : ""}`
           )
           .join("\n")}`
+      : "";
+
+    const trimmedInstructions = typeof customInstructions === "string"
+      ? customInstructions.trim().slice(0, 1000)
+      : "";
+    const instructionsBlock = trimmedInstructions
+      ? `\n\n## USER'S CUSTOM FOCUS (highest priority — weight your analysis toward this)\nThe user explicitly asked you to focus on the following. Do NOT ignore the other categories, but give noticeably more depth, more suggestions, and stronger opinions on what they asked about. Reflect this focus in the summary and action_plan as well.\n"""\n${trimmedInstructions}\n"""`
       : "";
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
@@ -259,7 +266,7 @@ Be a real advisor. Quote actual content. Be specific. Be honest.`,
           },
           {
             role: "user",
-            content: `Analyze this website (${url}):\n\n${truncatedMarkdown}${sectionContext}${imageContext}`,
+            content: `Analyze this website (${url}):${instructionsBlock}\n\n${truncatedMarkdown}${sectionContext}${imageContext}`,
           },
         ],
         response_format: { type: "json_object" },
