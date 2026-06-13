@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScanningAnimation } from "@/components/ScanningAnimation";
 import { ProGate } from "@/components/ProGate";
+import { CustomInstructions } from "@/components/CustomInstructions";
 import { TrafficDot, TrafficChip, getTrafficLevel, getTrafficStyles, getTrafficLabel } from "@/components/TrafficLight";
 import { scrapeWebsite, analyzeWebsite, AnalysisResult } from "@/lib/api";
 import { useToast } from "@/hooks/use-toast";
@@ -25,13 +26,14 @@ export default function Compare() {
   const [a, setA] = useState<Side>({ ...empty });
   const [b, setB] = useState<Side>({ ...empty });
   const [step, setStep] = useState<"idle" | "scanning" | "done">("idle");
+  const [customInstructions, setCustomInstructions] = useState("");
 
   const normalize = (u: string) => (u.startsWith("http") ? u : "https://" + u);
 
   const runOne = async (url: string, setter: (s: Side) => void) => {
     setter({ url, analysis: null, loading: true });
     const data = await scrapeWebsite(url);
-    const analysis = await analyzeWebsite(data.markdown || "", url, data.images, data.detectedSections);
+    const analysis = await analyzeWebsite(data.markdown || "", url, data.images, data.detectedSections, customInstructions);
     setter({ url, analysis, loading: false });
     return analysis;
   };
@@ -118,6 +120,13 @@ export default function Compare() {
               Start the battle
               <ArrowRight className="h-4 w-4" />
             </Button>
+            <div className="md:col-span-3">
+              <CustomInstructions
+                value={customInstructions}
+                onChange={setCustomInstructions}
+                disabled={step === "scanning"}
+              />
+            </div>
           </form>
         )}
 
