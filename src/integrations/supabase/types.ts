@@ -18,6 +18,7 @@ export type Database = {
         Row: {
           categories: Json
           created_at: string
+          custom_instructions: string | null
           id: string
           overall_score: number
           scrape_data: Json | null
@@ -30,6 +31,7 @@ export type Database = {
         Insert: {
           categories?: Json
           created_at?: string
+          custom_instructions?: string | null
           id?: string
           overall_score: number
           scrape_data?: Json | null
@@ -42,6 +44,7 @@ export type Database = {
         Update: {
           categories?: Json
           created_at?: string
+          custom_instructions?: string | null
           id?: string
           overall_score?: number
           scrape_data?: Json | null
@@ -394,6 +397,7 @@ export type Database = {
         Returns: {
           categories: Json
           created_at: string
+          custom_instructions: string | null
           id: string
           overall_score: number
           scrape_data: Json | null
