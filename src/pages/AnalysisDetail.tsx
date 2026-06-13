@@ -201,6 +201,13 @@ export default function AnalysisDetail() {
           </div>
         )}
 
+        {(record as any).custom_instructions && (
+          <div className="bg-primary/5 border border-primary/20 rounded-lg px-3 py-2 text-xs font-body text-foreground/90">
+            <span className="uppercase tracking-wider text-[10px] text-primary font-semibold mr-2">Focus</span>
+            <span className="whitespace-pre-wrap">{(record as any).custom_instructions}</span>
+          </div>
+        )}
+
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
           <Tabs defaultValue="analysis" className="w-full">
             <TabsList className="mb-4">
