@@ -264,6 +264,13 @@ const Index = () => {
                   {/* URL Input — kept above the fold */}
                   <div ref={inputRef} className="pt-2">
                     <UrlInput onSubmit={handleAnalyze} isLoading={isLoading} />
+                    <div className="mt-3">
+                      <CustomInstructions
+                        value={customInstructions}
+                        onChange={setCustomInstructions}
+                        disabled={isLoading}
+                      />
+                    </div>
                   </div>
                   <p className="text-[11px] text-muted-foreground font-body text-center lg:text-left">
                     Free audit · No credit card · 2,400+ sites scored this month
