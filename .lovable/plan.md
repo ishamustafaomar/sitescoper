@@ -1,58 +1,67 @@
+## On-Page SEO Audit (Firecrawl)
 
+Add a new **SEO Audit** tab inside the existing analysis detail flow. It runs a focused Firecrawl scrape of the analyzed URL and grades on-page SEO signals — no Semrush, no multi-page crawl.
 
-## Plan: Deep Product Analysis via Multi-Page Crawling
+### What it checks
 
-### Problem
-Currently the analyzer only scrapes a single page's static content. The AI has no visibility into the actual product experience — navigation flows, onboarding, feature pages, pricing, documentation, etc.
+For the single URL the user analyzed:
 
-### Solution
-Upgrade the scraping and analysis pipeline to crawl multiple pages and give the AI a much richer picture of the product.
+- **Title tag** — present, length 30–60 chars, not generic ("Home", "Untitled")
+- **Meta description** — present, length 70–160 chars
+- **Canonical** — `<link rel="canonical">` present, absolute URL, matches page URL
+- **Headings** — exactly one `<h1>`, sensible `<h2>`/`<h3>` hierarchy, no skipped levels
+- **Open Graph** — `og:title`, `og:description`, `og:image`, `og:url` present
+- **Twitter card** — `twitter:card`, `twitter:title`, `twitter:description`
+- **Robots / indexability** — `<meta name="robots">`, `noindex` flag
+- **Lang attribute** — `<html lang="…">` present
+- **Favicon** — `<link rel="icon">` present
+- **Duplicate / missing metadata** — empty title, empty description, duplicate `og:*` tags
+- **Structured data** — count of `application/ld+json` blocks and their `@type`s
 
-### Changes
+Each check returns `pass | warn | fail` + a short fix hint. Overall on-page score = weighted pass rate.
 
-**1. Upgrade scrape-website edge function to multi-page crawl**
-- Use Firecrawl's **map** endpoint first to discover all URLs on the site (up to 50)
-- Then **scrape** the top 5-10 most important pages (homepage, pricing, features, docs, about, signup)
-- Smart page selection: prioritize pages by URL patterns (`/pricing`, `/features`, `/about`, `/docs`, `/signup`, `/login`)
-- Collect markdown from each page and concatenate with clear page separators
-- Also extract **branding** data (colors, fonts, logos) from the homepage for design analysis
-
-**2. Upgrade analyze-website edge function**
-- Increase markdown limit to handle multi-page content (~30-40K chars)
-- Update the AI prompt to explicitly instruct it to:
-  - Evaluate the **signup/onboarding flow** based on the signup page content
-  - Assess **navigation and information architecture** across pages
-  - Analyze **pricing strategy** from the pricing page
-  - Evaluate **documentation quality** if docs pages exist
-  - Check **feature communication** across feature pages
-  - Identify **missing pages** (e.g., no pricing page, no docs, no about page)
-- Add a new category: **Product Experience** covering signup friction, feature discoverability, page flow logic
-
-**3. Update frontend to show multi-page context**
-- Show which pages were crawled in the Website Preview section
-- Add a "Pages crawled" list so users see the analysis scope
-- Update the Page Info card to show crawled page count
-
-### Technical Details
+### Architecture
 
 ```text
-Current flow:
-  URL → scrape 1 page → 15K chars markdown → AI analysis
-
-New flow:
-  URL → map site (discover URLs) → scrape top 5-10 pages → 
-  ~30K chars combined markdown → enhanced AI analysis
+[SEO Audit tab] ──► supabase.functions.invoke("seo-audit", { url })
+                          │
+                          ▼
+                Firecrawl /v2/scrape (formats: html, links, metadata)
+                          │
+                          ▼
+                Parse <head> + headings server-side, run rules
+                          │
+                          ▼
+                { score, checks[], head: {...}, headings: [...] }
 ```
 
-- Firecrawl map is fast and cheap (1 credit)
-- Each additional scrape costs 1 credit
-- Total per analysis: ~6-11 credits instead of 1
-- No new database changes needed — the analysis result structure stays the same
+### Files
 
-### Files to modify
-- `supabase/functions/scrape-website/index.ts` — add map + multi-page scrape
-- `supabase/functions/analyze-website/index.ts` — enhanced prompt + higher char limit
-- `src/pages/Index.tsx` — show crawled pages info
-- `src/components/WebsitePreview.tsx` — display page list
-- `src/lib/api.ts` — update ScrapeResult type for multi-page data
+**New**
+- `supabase/functions/seo-audit/index.ts` — auth-checked edge function (JWT required + `verify_jwt = true` in `config.toml`); validates URL with zod; calls Firecrawl REST v2 with `formats: ["html","links","summary"]`; parses head/headings with a small regex-based HTML inspector (no DOM lib needed in Deno); returns the audit JSON.
+- `src/components/seo-audit/SeoAuditTab.tsx` — tab content. Loading state, score ring, grouped check list (passed / warnings / failed), raw `<head>` preview, headings outline.
+- `src/components/seo-audit/CheckRow.tsx` — single check row (status icon, name, detail, fix hint).
+- `src/lib/seoAudit.ts` — client type definitions and `runSeoAudit(url)` wrapper around `supabase.functions.invoke`.
 
+**Edited**
+- `src/pages/AnalysisDetail.tsx` — add an "SEO Audit" tab next to the existing categories tabs; lazy-trigger the audit the first time the tab opens so the initial analysis isn't slowed down.
+- `supabase/config.toml` — add `[functions.seo-audit] verify_jwt = true`.
+
+### UX
+
+- Tab appears immediately; audit runs on first click and caches the result in component state for the session.
+- Score ring + 1-line summary at the top ("8 passed, 2 warnings, 1 failed").
+- Collapsible sections: **Failed**, **Warnings**, **Passed** (collapsed by default), **Raw head**.
+- Each failed/warning row has a one-line "How to fix" hint.
+- Re-run button to re-scrape.
+
+### Out of scope (call out so we don't surprise the user)
+
+- No multi-page duplicate-detection (single URL only).
+- No backlink / authority data (that's Semrush, already in the dashboard).
+- No automatic fix-application — read-only audit.
+- No persistence to `analysis_history` — results are session-only; can be added later if needed.
+
+### Cost
+
+~1 Firecrawl credit per audit run.

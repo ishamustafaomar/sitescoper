@@ -8,6 +8,8 @@ import { AppHeader } from "@/components/AppHeader";
 import { AnalysisPanel } from "@/components/AnalysisPanel";
 import { ChatPanel } from "@/components/ChatPanel";
 import { ScoreTrendChart } from "@/components/ScoreTrendChart";
+import { SeoAuditTab } from "@/components/seo-audit/SeoAuditTab";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { supabase } from "@/integrations/supabase/client";
 import { AnalysisResult, ScrapeResult } from "@/lib/api";
 import { useToast } from "@/hooks/use-toast";
@@ -200,7 +202,18 @@ export default function AnalysisDetail() {
         )}
 
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-          <AnalysisPanel analysis={analysis} scrapeData={scrapeData} />
+          <Tabs defaultValue="analysis" className="w-full">
+            <TabsList className="mb-4">
+              <TabsTrigger value="analysis">Analysis</TabsTrigger>
+              <TabsTrigger value="seo-audit">SEO Audit</TabsTrigger>
+            </TabsList>
+            <TabsContent value="analysis">
+              <AnalysisPanel analysis={analysis} scrapeData={scrapeData} />
+            </TabsContent>
+            <TabsContent value="seo-audit">
+              <SeoAuditTab url={record.url} />
+            </TabsContent>
+          </Tabs>
         </motion.div>
 
         <ScoreTrendChart url={record.url} currentId={record.id} />
