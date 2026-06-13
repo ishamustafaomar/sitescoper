@@ -1,0 +1,1 @@
+ALTER TABLE public.analysis_history ADD COLUMN IF NOT EXISTS custom_instructions TEXT;

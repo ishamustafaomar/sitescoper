@@ -172,10 +172,11 @@ export async function analyzeWebsite(
   markdown: string,
   url: string,
   images?: ScrapedImage[],
-  detectedSections?: { name: string; evidence: string }[]
+  detectedSections?: { name: string; evidence: string }[],
+  customInstructions?: string
 ): Promise<AnalysisResult> {
   const { data, error } = await supabase.functions.invoke("analyze-website", {
-    body: { markdown, url, images, detectedSections },
+    body: { markdown, url, images, detectedSections, customInstructions },
   });
 
   if (error) throw new Error(error.message || "Failed to analyze website");

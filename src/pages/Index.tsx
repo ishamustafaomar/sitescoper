@@ -5,6 +5,7 @@ import { Sparkles, AlertCircle, ExternalLink, Link2, FileText, Download, Lock, A
 import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet-async";
 import { UrlInput } from "@/components/UrlInput";
+import { CustomInstructions } from "@/components/CustomInstructions";
 import { HeroPreview } from "@/components/landing/HeroPreview";
 import { WebsitePreview } from "@/components/WebsitePreview";
 import { AnalysisPanel } from "@/components/AnalysisPanel";
@@ -38,6 +39,7 @@ const Index = () => {
   const [scrapeData, setScrapeData] = useState<ScrapeResult | null>(null);
   const [analysis, setAnalysis] = useState<AnalysisResult | null>(null);
   const [currentUrl, setCurrentUrl] = useState("");
+  const [customInstructions, setCustomInstructions] = useState("");
   const [progress, setProgress] = useState<{ percent: number; label: string }>({ percent: 0, label: "" });
   const [liveTechSeo, setLiveTechSeo] = useState<TechSeoReport | null>(null);
   const { toast } = useToast();
@@ -102,7 +104,7 @@ const Index = () => {
 
       setStep("analyzing");
       setProgress({ percent: 80, label: "Reading like a real visitor" });
-      const result = await analyzeWebsite(data.markdown || "", url, data.images, data.detectedSections);
+      const result = await analyzeWebsite(data.markdown || "", url, data.images, data.detectedSections, customInstructions);
       setAnalysis(result);
       setStep("done");
 
@@ -136,6 +138,7 @@ const Index = () => {
           overall_score: result.overall_score,
           summary: result.summary,
           categories: result.categories as any,
+          custom_instructions: customInstructions.trim() || null,
           scrape_data: {
             screenshot: data.screenshot,
             metadata: data.metadata,
@@ -261,6 +264,13 @@ const Index = () => {
                   {/* URL Input — kept above the fold */}
                   <div ref={inputRef} className="pt-2">
                     <UrlInput onSubmit={handleAnalyze} isLoading={isLoading} />
+                    <div className="mt-3">
+                      <CustomInstructions
+                        value={customInstructions}
+                        onChange={setCustomInstructions}
+                        disabled={isLoading}
+                      />
+                    </div>
                   </div>
                   <p className="text-[11px] text-muted-foreground font-body text-center lg:text-left">
                     Free audit · No credit card · 2,400+ sites scored this month
