@@ -33,12 +33,14 @@ export function WebsitePreview({ data, url }: WebsitePreviewProps) {
           </div>
           <span className="text-xs text-muted-foreground font-body truncate ml-2">{url}</span>
         </div>
-        <div className="max-h-[400px] overflow-auto bg-muted/20">
+        <div className="max-h-[400px] overflow-auto bg-muted/20 aspect-video">
           {screenshotSrc && !imgError ? (
             <img
               src={screenshotSrc}
               alt={`Screenshot of ${url}`}
               className="w-full"
+              loading="lazy"
+              decoding="async"
               onError={() => setImgError(true)}
             />
           ) : (

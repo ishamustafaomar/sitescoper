@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/components/AuthProvider";
 import { getStripeEnvironment } from "@/lib/stripe";
@@ -25,8 +25,11 @@ export function useSubscription() {
   const { user } = useAuth();
   const [subscription, setSubscription] = useState<SubscriptionRow | null>(null);
   const [loading, setLoading] = useState(true);
+  // Track the last successful fetch so we don't hammer the database every
+  // time the tab gains focus. Only refetch if data is older than 30s.
+  const lastFetchedAt = useRef<number>(0);
 
-  const fetchSub = async () => {
+  const fetchSub = useCallback(async () => {
     if (!user) {
       setSubscription(null);
       setLoading(false);
@@ -42,24 +45,27 @@ export function useSubscription() {
       .maybeSingle();
     setSubscription(data ?? null);
     setLoading(false);
-  };
+    lastFetchedAt.current = Date.now();
+  }, [user?.id]);
 
   useEffect(() => {
     fetchSub();
 
+    // visibilitychange already fires when the tab returns to focus, so we
+    // don't need a separate `focus` listener (that would double-fetch).
+    // Throttle to once every 30s to absorb rapid tab switching.
     const refreshOnFocus = () => {
-      if (document.visibilityState === "visible") fetchSub();
+      if (document.visibilityState !== "visible") return;
+      if (Date.now() - lastFetchedAt.current < 30_000) return;
+      fetchSub();
     };
 
-    window.addEventListener("focus", fetchSub);
     document.addEventListener("visibilitychange", refreshOnFocus);
 
     return () => {
-      window.removeEventListener("focus", fetchSub);
       document.removeEventListener("visibilitychange", refreshOnFocus);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user?.id]);
+  }, [fetchSub]);
 
   const isPro = computeIsActive(subscription);
   return { subscription, isPro, loading, refetch: fetchSub };
