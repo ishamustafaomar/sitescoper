@@ -74,6 +74,8 @@ export function VisualOverlayView({ scrapeData, analysis }: VisualOverlayViewPro
                   src={screenshotSrc}
                   alt="Website screenshot"
                   className="w-full h-auto block"
+                  loading="lazy"
+                  decoding="async"
                   onError={() => setImgError(true)}
                 />
               ) : (
@@ -121,6 +123,10 @@ export function VisualOverlayView({ scrapeData, analysis }: VisualOverlayViewPro
                       src={img.src}
                       alt=""
                       className="h-full w-full object-cover"
+                      loading="lazy"
+                      decoding="async"
+                      width={64}
+                      height={64}
                       onError={(e) => {
                         (e.currentTarget as HTMLImageElement).style.display = "none";
                       }}

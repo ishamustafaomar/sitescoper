@@ -22,7 +22,8 @@ const Blog = () => {
       const { data, error } = await supabase
         .from("blog_posts")
         .select("slug, title, description, reading_time, published_at")
-        .order("published_at", { ascending: false });
+        .order("published_at", { ascending: false })
+        .limit(50);
       if (error) throw error;
       return (data ?? []) as BlogRow[];
     },

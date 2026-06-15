@@ -31,7 +31,26 @@ const WhiteLabelSeoReports = lazy(() => import("./pages/WhiteLabelSeoReports"));
 const Blog = lazy(() => import("./pages/Blog"));
 const BlogPost = lazy(() => import("./pages/BlogPost"));
 
-const queryClient = new QueryClient();
+// Sensible defaults: cut redundant refetches and keep cached data warm.
+// - staleTime: data is fresh for 60s, so re-mounting a component
+//   that already has data won't trigger a network round-trip.
+// - gcTime: keep unused query data in cache for 5 min so back/forward
+//   nav stays instant.
+// - refetchOnWindowFocus: disabled — most of our queries are user-owned
+//   data that doesn't change while the tab is backgrounded. Subscription
+//   state has its own focused refresh.
+// - retry: 1 — fail fast instead of waiting through 3 exponential retries
+//   for errors that won't recover (404, RLS denials, validation).
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 60_000,
+      gcTime: 5 * 60_000,
+      refetchOnWindowFocus: false,
+      retry: 1,
+    },
+  },
+});
 
 const App = () => (
   <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
