@@ -36,6 +36,11 @@ export default function Dashboard() {
   const [analyzingId, setAnalyzingId] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [seoWebsiteId, setSeoWebsiteId] = useState<string | null>(null);
+  // Render-window for the history list. Starts at 20 and grows in chunks
+  // via "Show more" so the initial paint stays cheap even when the user
+  // has dozens of past audits.
+  const HISTORY_PAGE_SIZE = 20;
+  const [historyVisible, setHistoryVisible] = useState(HISTORY_PAGE_SIZE);
 
   useEffect(() => {
     if (user) loadData();
@@ -49,6 +54,7 @@ export default function Dashboard() {
     ]);
     if (websitesRes.data) setWebsites(websitesRes.data);
     if (historyRes.data) setHistory(historyRes.data);
+    setHistoryVisible(HISTORY_PAGE_SIZE);
     setLoading(false);
   };
 
@@ -304,7 +310,7 @@ export default function Dashboard() {
           ) : (
             <div className="bg-card rounded-xl border border-border overflow-hidden shadow-[var(--shadow-sm)]">
               <div className="divide-y divide-border">
-                {history.map((record) => {
+                {history.slice(0, historyVisible).map((record) => {
                   const lvl = getTrafficLevel(record.overall_score);
                   const sty = getTrafficStyles(lvl);
                   return (
@@ -337,6 +343,17 @@ export default function Dashboard() {
                   );
                 })}
               </div>
+              {history.length > historyVisible && (
+                <div className="border-t border-border p-3 text-center">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setHistoryVisible((n) => n + HISTORY_PAGE_SIZE)}
+                  >
+                    Show {Math.min(HISTORY_PAGE_SIZE, history.length - historyVisible)} more
+                  </Button>
+                </div>
+              )}
             </div>
           )}
         </div>
