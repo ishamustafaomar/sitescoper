@@ -16,34 +16,29 @@ export function CTASection({ onGetStarted }: CTASectionProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="relative overflow-hidden rounded-3xl border border-primary/30 bg-gradient-to-br from-primary/10 via-card to-[hsl(280,70%,60%)]/10 p-10 md:p-14 text-center shadow-glow"
+          className="relative overflow-hidden rounded-3xl p-10 md:p-14 text-center shadow-glow"
+          style={{ background: "var(--gradient-primary)" }}
         >
-          <div className="absolute inset-0 bg-grid-pattern opacity-5" />
+          <div className="absolute inset-0 bg-grid-pattern opacity-10" />
           <div className="relative z-10">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/20 text-primary text-xs font-body mb-5">
-              <Sparkles className="h-3 w-3" />
-              Ready to ship better?
-            </div>
-            <h2 className="text-3xl md:text-5xl font-heading font-bold tracking-tight mb-5">
-              Stop guessing.
-              <br />
-              <span className="bg-gradient-to-r from-primary to-[hsl(280,70%,60%)] bg-clip-text text-transparent">
-                Start scoping.
-              </span>
+            <h2 className="text-3xl md:text-5xl font-heading font-bold tracking-tight mb-4 text-white">
+              Ready to hear the truth?
             </h2>
-            <p className="text-muted-foreground font-body text-lg max-w-xl mx-auto mb-8 leading-relaxed">
-              Run the AI website UX audit and instant SEO check on your site in under 60 seconds. Free, no credit card, no setup.
+            <p className="font-body text-base md:text-lg max-w-xl mx-auto mb-8 leading-relaxed text-white/90">
+              Run a free audit and get the 3 fixes worth shipping this week. No credit card, 60 seconds.
             </p>
-            <Button variant="hero" size="lg" onClick={onGetStarted} className="rounded-xl px-8">
-              Audit my website free
+            <Button
+              size="lg"
+              onClick={onGetStarted}
+              className="rounded-xl px-8 bg-white text-primary hover:bg-white/90 border-0 font-heading font-semibold"
+            >
+              <Sparkles className="h-4 w-4" />
+              Analyze my website
               <ArrowRight className="h-4 w-4" />
             </Button>
-            <div className="mt-3 text-xs font-body text-muted-foreground">
-              Average audit time: 47 seconds · Used by 2,400+ founders this month
-            </div>
-            <div className="mt-4 text-xs font-body text-muted-foreground">
-              or{" "}
-              <Link to="/compare" className="text-primary hover:underline inline-flex items-center gap-1">
+            <div className="mt-4 text-xs font-body text-white/80">
+              Used by 2,400+ founders this month ·{" "}
+              <Link to="/compare" className="underline inline-flex items-center gap-1">
                 <Swords className="h-3 w-3" />
                 battle a competitor
               </Link>
