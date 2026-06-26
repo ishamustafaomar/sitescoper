@@ -1,30 +1,24 @@
 import { motion } from "framer-motion";
-import { Link2, Search, Sparkles, FileText } from "lucide-react";
+import { Link2, Radar, ListChecks, Workflow } from "lucide-react";
 
 const steps = [
   {
     icon: Link2,
     number: "01",
     title: "Paste your URL",
-    description: "Drop any website URL into the analyzer. No signup required to try it out.",
+    description: "Drop in any public website. No account needed to run your first audit.",
   },
   {
-    icon: Search,
+    icon: Radar,
     number: "02",
-    title: "We crawl your site",
-    description: "Our crawler discovers and scrapes your most important pages — homepage, pricing, features, docs.",
+    title: "AI reads your site",
+    description: "We crawl your key pages and read them like a skeptical first-time visitor.",
   },
   {
-    icon: Sparkles,
+    icon: ListChecks,
     number: "03",
-    title: "AI analyzes everything",
-    description: "An AI product strategist reviews your messaging, positioning, UX, SEO, and trust signals.",
-  },
-  {
-    icon: FileText,
-    number: "04",
-    title: "Get actionable feedback",
-    description: "Receive a detailed report with priority fixes, scores, and a downloadable PDF.",
+    title: "Get the 3 fixes",
+    description: "A prioritized verdict — the handful of changes actually worth shipping this week.",
   },
 ];
 
@@ -40,17 +34,15 @@ export function HowItWorksSection() {
           className="text-center mb-14"
         >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-body mb-4">
+            <Workflow className="h-3 w-3" />
             How it works
           </div>
           <h2 className="text-3xl md:text-4xl font-heading font-bold tracking-tight mb-4">
-            From URL to insights in 60 seconds
+            From URL to verdict in three steps
           </h2>
-          <p className="text-muted-foreground font-body text-lg max-w-2xl mx-auto">
-            Four simple steps. Zero configuration. Real results.
-          </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative max-w-5xl mx-auto">
           {steps.map((step, i) => {
             const Icon = step.icon;
             return (
