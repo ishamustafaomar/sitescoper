@@ -21,6 +21,8 @@ const UseCasesSection = lazy(() => import("@/components/landing/UseCasesSection"
 const FAQSection = lazy(() => import("@/components/landing/FAQSection").then(m => ({ default: m.FAQSection })));
 const CTASection = lazy(() => import("@/components/landing/CTASection").then(m => ({ default: m.CTASection })));
 const SampleReportSection = lazy(() => import("@/components/landing/SampleReportSection").then(m => ({ default: m.SampleReportSection })));
+const SocialProofBar = lazy(() => import("@/components/landing/SocialProofBar").then(m => ({ default: m.SocialProofBar })));
+const ManifestoSection = lazy(() => import("@/components/landing/ManifestoSection").then(m => ({ default: m.ManifestoSection })));
 import { scrapeWebsiteStream, analyzeWebsite, ScrapeResult, AnalysisResult, TechSeoReport } from "@/lib/api";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/components/AuthProvider";
@@ -436,10 +438,12 @@ const Index = () => {
       {/* Landing page sections — only visible when idle */}
       {step === "idle" && !scrapeData && (
         <Suspense fallback={null}>
+          <SocialProofBar />
           <StatsSection />
-          <SampleReportSection onTryYours={scrollToInput} />
           <FeaturesSection />
           <HowItWorksSection />
+          <SampleReportSection onTryYours={scrollToInput} />
+          <ManifestoSection />
           <CategoriesSection />
           <UseCasesSection />
           <WhyPaySection />
