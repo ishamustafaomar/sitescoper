@@ -43,7 +43,7 @@ export function FAQSection() {
             FAQ
           </div>
           <h2 className="text-3xl md:text-4xl font-heading font-bold tracking-tight mb-4">
-            Common questions
+            Questions founders ask
           </h2>
         </motion.div>
 
