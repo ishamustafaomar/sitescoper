@@ -19,3 +19,11 @@ project_id = "tmdnoailedngafchtaxj"
     verify_jwt = true
   [functions.seo-audit]
     verify_jwt = true
+  [functions.send-transactional-email]
+    verify_jwt = true
+  [functions.preview-transactional-email]
+    verify_jwt = false
+  [functions.handle-email-unsubscribe]
+    verify_jwt = false
+  [functions.handle-email-suppression]
+    verify_jwt = false
