@@ -375,6 +375,15 @@ serve(async (req) => {
       throw new Error("FIRECRAWL_API_KEY is not configured");
     }
 
+    // Record the scan attempt server-side BEFORE any external API call. This makes
+    // the free-tier quota self-enforcing: callers cannot skip the client-side
+    // analysis_history insert (e.g. direct invoke, Compare page) to get unlimited scans.
+    try {
+      await admin.from("scan_usage").insert({ user_id: userId, url: inputUrl });
+    } catch (logErr) {
+      console.error("scan_usage insert failed:", logErr);
+    }
+
     // Switch to streaming response from here on. Each event is one JSON line.
     const stream = new ReadableStream({
       async start(controller) {
