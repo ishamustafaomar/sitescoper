@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /admin
 
-Sitemap: https://tmdnoailedngafchtaxj.supabase.co/functions/v1/sitemap-xml
+Sitemap: https://sitescoper.com/sitemap.xml
