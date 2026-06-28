@@ -90,22 +90,11 @@ export function AppHeader() {
           )}
           <LanguageSwitcher />
           <ThemeToggle />
-          {/* Always-visible Pro entry point */}
+          {/* Early-access badge — everything's free, so no "Upgrade" CTA */}
           {location.pathname !== "/pricing" && (
-            isPro ? (
-              <span className="hidden sm:inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-gradient-to-r from-primary/20 to-accent/20 text-primary text-[11px] font-body font-bold border border-primary/30">
-                <Crown className="h-3 w-3" /> PRO
-              </span>
-            ) : (
-              <Button
-                size="sm"
-                onClick={() => navigate("/pricing")}
-                className="text-xs font-body shadow-glow bg-gradient-to-r from-primary to-accent hover:opacity-90 text-primary-foreground"
-              >
-                <Sparkles className="h-3.5 w-3.5" />
-                Upgrade
-              </Button>
-            )
+            <span className="hidden sm:inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-gradient-to-r from-primary/15 to-accent/15 text-primary text-[11px] font-body font-bold border border-primary/30">
+              <Sparkles className="h-3 w-3" /> Free · early access
+            </span>
           )}
           {user ? (
             <div className="flex items-center gap-2">
