@@ -158,11 +158,6 @@ const Index = () => {
   };
 
   const handleExportPDF = () => {
-    if (!isPro) {
-      toast({ title: "PDF export is a Pro feature", description: "Upgrade to download polished client-ready reports." });
-      navigate("/pricing");
-      return;
-    }
     if (analysis && currentUrl) {
       import("@/lib/pdf").then(({ generateAnalysisPDF }) => {
         generateAnalysisPDF(analysis, currentUrl, scrapeData ? { metadata: scrapeData.metadata } : undefined);
