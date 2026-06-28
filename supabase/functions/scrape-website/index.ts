@@ -284,43 +284,12 @@ serve(async (req) => {
     }
     userId = claims.claims.sub as string;
 
-    // Server-side quota enforcement (prevents bypass via direct invoke / row deletion / Dashboard / Compare)
+    // Early-access: scanning is free and unlimited. Keep `admin` client around for
+    // logging scan_usage so we still have a record of who is using the tool.
     const admin = createClient(
       Deno.env.get("SUPABASE_URL")!,
       Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
     );
-    const { data: subRow } = await admin
-      .from("subscriptions")
-      .select("status, current_period_end")
-      .eq("user_id", userId)
-      .order("created_at", { ascending: false })
-      .limit(1)
-      .maybeSingle();
-    const isPro = (() => {
-      if (!subRow) return false;
-      const end = subRow.current_period_end ? new Date(subRow.current_period_end).getTime() : null;
-      const future = end === null || end > Date.now();
-      if (["active", "trialing", "past_due"].includes(subRow.status as string) && future) return true;
-      if (subRow.status === "canceled" && end && end > Date.now()) return true;
-      return false;
-    })();
-    if (!isPro) {
-      const monthStart = new Date();
-      monthStart.setUTCDate(1);
-      monthStart.setUTCHours(0, 0, 0, 0);
-      // Count server-recorded scans (cannot be bypassed by skipping the client-side insert).
-      const { count } = await admin
-        .from("scan_usage")
-        .select("id", { count: "exact", head: true })
-        .eq("user_id", userId)
-        .gte("created_at", monthStart.toISOString());
-      if ((count ?? 0) >= 1) {
-        return new Response(
-          JSON.stringify({ error: "Free plan limit reached. Upgrade to Pro for unlimited scans.", code: "quota_exceeded" }),
-          { status: 403, headers: { ...corsHeaders, "Content-Type": "application/json" } },
-        );
-      }
-    }
 
     const { url } = await req.json();
     if (!url || typeof url !== "string") {

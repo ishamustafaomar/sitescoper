@@ -68,5 +68,8 @@ export function useSubscription() {
   }, [fetchSub]);
 
   const isPro = computeIsActive(subscription);
-  return { subscription, isPro, loading, refetch: fetchSub };
+  // Early-access: treat every visitor as Pro so all features are unlocked.
+  // Flip this back to `computeIsActive(subscription)` once paid plans launch.
+  void isPro;
+  return { subscription, isPro: true, loading, refetch: fetchSub };
 }
