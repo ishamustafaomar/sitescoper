@@ -38,6 +38,7 @@ export const template = {
   component: Email,
   subject: (d: Props) => (d as any)?.subject ?? 'Quick note',
   displayName: 'Personal outreach',
+  replyTo: 'omarmlaptop@gmail.com',
   previewData: {
     name: 'Alex',
     body: "I built SiteScoper — an AI website auditor that gives you prioritized fixes in minutes.\n\nThought you might find it useful. Free during early access: https://sitescoper.com",
