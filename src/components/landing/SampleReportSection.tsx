@@ -338,7 +338,7 @@ export function SampleReportSection({ onTryYours }: { onTryYours: () => void }) 
             <ArrowRight className="h-4 w-4" />
           </Button>
           <p className="text-[11px] text-muted-foreground font-body">
-            Free — no card required for your first scan
+            Free — no card required
           </p>
         </div>
       </div>
