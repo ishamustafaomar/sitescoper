@@ -4,6 +4,7 @@ import { writeFileSync } from "fs"
 import { resolve } from "path"
 
 const BASE_URL = "https://sitescoper.com"
+const TODAY = new Date().toISOString().slice(0, 10)
 
 // Blog post slugs — keep in sync with src/content/blog.ts. The sitemap
 // generator runs in a Node context before Vite, so we list slugs here
@@ -25,27 +26,21 @@ interface SitemapEntry {
 }
 
 const entries: SitemapEntry[] = [
-  { path: "/", changefreq: "weekly", priority: "1.0" },
-  { path: "/pricing", changefreq: "weekly", priority: "0.8" },
-  { path: "/ai-website-audit-tool", changefreq: "monthly", priority: "0.9" },
-  { path: "/white-label-seo-reports", changefreq: "monthly", priority: "0.9" },
-  { path: "/blog", changefreq: "weekly", priority: "0.8" },
+  { path: "/", lastmod: TODAY, changefreq: "weekly", priority: "1.0" },
+  { path: "/pricing", lastmod: TODAY, changefreq: "weekly", priority: "0.8" },
+  { path: "/ai-website-audit-tool", lastmod: TODAY, changefreq: "monthly", priority: "0.9" },
+  { path: "/white-label-seo-reports", lastmod: TODAY, changefreq: "monthly", priority: "0.9" },
+  { path: "/blog", lastmod: TODAY, changefreq: "weekly", priority: "0.8" },
   ...blogSlugs.map((slug) => ({
     path: `/blog/${slug}`,
+    lastmod: TODAY,
     changefreq: "monthly" as const,
     priority: "0.7",
   })),
-  { path: "/compare", changefreq: "monthly", priority: "0.7" },
-  { path: "/auth", changefreq: "monthly", priority: "0.5" },
-  { path: "/privacy", changefreq: "yearly", priority: "0.3" },
-  { path: "/terms", changefreq: "yearly", priority: "0.3" },
-  // Authenticated app routes — listed for crawl discovery; pages themselves
-  // carry <meta name="robots" content="noindex"> so they won't be indexed.
-  { path: "/dashboard", changefreq: "weekly", priority: "0.4" },
-  { path: "/onboarding", changefreq: "yearly", priority: "0.2" },
-  { path: "/checkout/return", changefreq: "yearly", priority: "0.1" },
-  // Dynamic routes (/share/:token, /analysis/:id) are per-user and gated;
-  // omitted intentionally — they shouldn't be in a public sitemap.
+  { path: "/compare", lastmod: TODAY, changefreq: "monthly", priority: "0.7" },
+  { path: "/auth", lastmod: TODAY, changefreq: "monthly", priority: "0.5" },
+  { path: "/privacy", lastmod: TODAY, changefreq: "yearly", priority: "0.3" },
+  { path: "/terms", lastmod: TODAY, changefreq: "yearly", priority: "0.3" },
 ]
 
 function generateSitemap(entries: SitemapEntry[]) {
