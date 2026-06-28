@@ -12,7 +12,7 @@ const faqs = [
   },
   {
     q: "Is it really free?",
-    a: "Yes — anyone can analyze a website without signing up. Sign up for a free account to save your analyses, track scores over time, and access your full history.",
+    a: "Yes — anyone can analyze a website.",
   },
   {
     q: "How accurate is the AI feedback?",
