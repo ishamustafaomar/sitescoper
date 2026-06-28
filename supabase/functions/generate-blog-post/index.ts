@@ -53,10 +53,38 @@ serve(async (req) => {
   try {
     const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
     const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+    const SUPABASE_ANON_KEY = Deno.env.get("SUPABASE_ANON_KEY")!;
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY")!;
     if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY not configured");
 
     const sb = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
+
+    // Authentication: require an admin JWT OR the cron service-role secret.
+    // pg_cron schedules this with the service role key as the bearer; humans
+    // must be authenticated admins. Unauthenticated calls are rejected.
+    const authHeader = req.headers.get("Authorization") || "";
+    const bearer = authHeader.startsWith("Bearer ") ? authHeader.slice(7) : "";
+    let authorized = false;
+    if (bearer && bearer === SUPABASE_SERVICE_ROLE_KEY) {
+      authorized = true; // cron/server-to-server
+    } else if (bearer) {
+      const userClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+      const { data: claims } = await userClient.auth.getClaims(bearer);
+      const uid = claims?.claims?.sub as string | undefined;
+      if (uid) {
+        const { data: isAdmin } = await sb.rpc("has_role", {
+          _user_id: uid,
+          _role: "admin",
+        });
+        if (isAdmin === true) authorized = true;
+      }
+    }
+    if (!authorized) {
+      return new Response(JSON.stringify({ ok: false, error: "Unauthorized" }), {
+        status: 401,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
 
     // Manual override: caller can pass { topic, keyword } to force a topic.
     let overrideTopic: { keyword: string; angle: string } | null = null;
@@ -158,8 +186,8 @@ Audience: founders, indie hackers, small business owners doing their own SEO.`;
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   } catch (e) {
-    const msg = e instanceof Error ? e.message : String(e);
-    return new Response(JSON.stringify({ ok: false, error: msg }), {
+    console.error("generate-blog-post error:", e);
+    return new Response(JSON.stringify({ ok: false, error: "Blog generation failed. Please try again." }), {
       status: 500,
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
