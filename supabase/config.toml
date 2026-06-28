@@ -1,25 +1,21 @@
 project_id = "tmdnoailedngafchtaxj"
 
-[functions.delete-account]
-verify_jwt = true
-
-[functions.chat-with-report]
-verify_jwt = false
-
-[functions.create-checkout]
-verify_jwt = false
-
-[functions.create-portal-session]
-verify_jwt = false
-
-[functions.payments-webhook]
-verify_jwt = false
-
-[functions.check-scan-quota]
-verify_jwt = false
-
-[functions.process-email-queue]
-verify_jwt = true
-
-[functions.seo-audit]
-verify_jwt = true
+[functions]
+  [functions.auth-email-hook]
+    verify_jwt = false
+  [functions.chat-with-report]
+    verify_jwt = false
+  [functions.check-scan-quota]
+    verify_jwt = false
+  [functions.create-checkout]
+    verify_jwt = false
+  [functions.create-portal-session]
+    verify_jwt = false
+  [functions.delete-account]
+    verify_jwt = true
+  [functions.payments-webhook]
+    verify_jwt = false
+  [functions.process-email-queue]
+    verify_jwt = true
+  [functions.seo-audit]
+    verify_jwt = true
