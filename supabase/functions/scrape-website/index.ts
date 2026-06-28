@@ -506,7 +506,7 @@ serve(async (req) => {
           const status = e?.status || 500;
           const message = status === 402 && typeof e?.message === "string"
             ? e.message
-            : (e?.message || "Scrape failed");
+            : "Scrape failed. Please try again.";
           send({ type: "error", message, status });
         } finally {
           try { controller.close(); } catch { /* already closed */ }
