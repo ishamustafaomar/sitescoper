@@ -69,23 +69,7 @@ const Index = () => {
       return;
     }
 
-    // Signed-in non-Pro: server-checked monthly quota
-    {
-      const { data: quota, error: quotaErr } = await supabase.functions.invoke("check-scan-quota", {
-        body: { environment: getStripeEnvironment() },
-      });
-      if (quotaErr || !quota?.allowed) {
-        toast({
-          title: quota?.isPro ? "Scan blocked" : "Monthly free scan used",
-          description: quota?.isPro
-            ? "Try again in a moment."
-            : `You've used your ${quota?.limit ?? 1} free scan this month. Upgrade to Pro for unlimited.`,
-          variant: "destructive",
-        });
-        if (!quota?.isPro) navigate("/pricing");
-        return;
-      }
-    }
+    // Early-access: scanning is free and unlimited. No quota check needed.
 
     setCurrentUrl(url);
     setScrapeData(null);
