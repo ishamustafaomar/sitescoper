@@ -308,8 +308,9 @@ serve(async (req) => {
       const monthStart = new Date();
       monthStart.setUTCDate(1);
       monthStart.setUTCHours(0, 0, 0, 0);
+      // Count server-recorded scans (cannot be bypassed by skipping the client-side insert).
       const { count } = await admin
-        .from("analysis_history")
+        .from("scan_usage")
         .select("id", { count: "exact", head: true })
         .eq("user_id", userId)
         .gte("created_at", monthStart.toISOString());
