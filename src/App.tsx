@@ -30,6 +30,7 @@ const AiWebsiteAuditTool = lazy(() => import("./pages/AiWebsiteAuditTool"));
 const WhiteLabelSeoReports = lazy(() => import("./pages/WhiteLabelSeoReports"));
 const Blog = lazy(() => import("./pages/Blog"));
 const BlogPost = lazy(() => import("./pages/BlogPost"));
+const Unsubscribe = lazy(() => import("./pages/Unsubscribe"));
 
 // Sensible defaults: cut redundant refetches and keep cached data warm.
 // - staleTime: data is fresh for 60s, so re-mounting a component
@@ -80,6 +81,7 @@ const App = () => (
               <Route path="/white-label-seo-reports" element={<WhiteLabelSeoReports />} />
               <Route path="/blog" element={<Blog />} />
               <Route path="/blog/:slug" element={<BlogPost />} />
+              <Route path="/unsubscribe" element={<Unsubscribe />} />
               <Route path="/checkout/return" element={<CheckoutReturn />} />
               <Route
                 path="/onboarding"
