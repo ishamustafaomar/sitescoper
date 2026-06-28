@@ -1,33 +1,33 @@
-## Goal
+# Forward email replies to your Gmail
 
-Let you paste a list of recipients (and optional per-person tweaks) into chat, and I'll send a personal 1-to-1 SiteScoper email to each one — from `notify.sitescoper.com`, using the email infrastructure that's already set up.
+## The problem
+The outreach emails go from `noreply@sitescoper.com`. There's no real inbox behind that, so right now if any of the 25 people hit "Reply", their reply hits a black hole.
 
-## How it will work
+The Lovable email system goes through Mailgun, but inbound-route forwarding (catch `noreply@sitescoper.com` → forward to Gmail) isn't exposed as a Lovable feature. So we shouldn't try to forward mail to that mailbox — we should make replies go straight to your Gmail in the first place.
 
-1. You give me, in chat:
-   - The list of email addresses (and optional names)
-   - The message you want sent (I can also draft it and you approve)
-   - A subject line (or I'll suggest one)
-2. I send each email individually through the existing `send-transactional-email` function, with each recipient's name merged in so it reads as a personal note — not a blast.
-3. I report back: how many sent, any that bounced or were on the suppression list.
+## The fix: add a Reply-To header
+Email supports a `Reply-To` header that's separate from `From`. When you set it, the recipient still sees the email coming from `noreply@sitescoper.com`, but the moment they hit Reply their mail client addresses it to `omarmlaptop@gmail.com`. Replies land directly in your Gmail inbox — no forwarding, no inbound config, nothing extra to maintain.
 
-No new UI, no new tables. Nothing automated or recurring.
+## Changes
 
-## What I'll add to the project (one small thing)
+1. **`send-transactional-email` edge function**
+   - Accept an optional `replyTo` field in the request body.
+   - Include `reply_to` in the payload enqueued to Mailgun when present.
 
-A new email template `personal-outreach` under `supabase/functions/_shared/transactional-email-templates/`:
-- Plain-text-feeling layout (no big buttons, no marketing chrome) so it reads like a personal email from you
-- Props: `name`, `body` (the message), optional `signature`
-- Registered in `registry.ts` and deployed
+2. **`process-email-queue` edge function**
+   - Pass `reply_to` through to the Mailgun send call (`h:Reply-To` header) when it's in the payload.
 
-## Guardrails
+3. **Defaults for `personal-outreach` template**
+   - Default `replyTo` to `omarmlaptop@gmail.com` for this template specifically, so any future personal-outreach send automatically routes replies to your Gmail without you having to remember.
 
-- I'll cap each batch at ~50 recipients per send and pace them so we don't trip rate limits or hurt your new-domain reputation.
-- Suppressed/unsubscribed addresses are skipped automatically by the existing send function.
-- Marketing blasts (same generic pitch to a big list) aren't supported — if a request looks like that, I'll flag it and suggest a dedicated marketing tool instead.
+4. **Re-deploy** both edge functions.
 
-## What I need from you next message
+## What this does NOT do
+- It does not resend the 25 emails I already sent today — those went out without Reply-To, so any replies to them will bounce/disappear. If you want, after the change I can re-send to the same list (idempotency keys would need bumping).
+- It does not create an inbox at `noreply@sitescoper.com`.
 
-- The list of emails (+ names if you have them)
-- The message body (or "draft it for me" + a few bullets on what to say)
-- Subject line (or "you pick")
+## Optional follow-up
+If you'd rather show your real Gmail in the From line (so it looks fully personal), I can change the From for `personal-outreach` to `Omar <omarmlaptop@gmail.com>` via SENDER_DOMAIN — but deliverability is worse because Gmail's DKIM isn't signing through your domain. Reply-To is the cleaner option.
+
+## Question
+Do you want me to also re-send today's outreach to the same 25 people once Reply-To is in place, so any replies they send actually reach you?
