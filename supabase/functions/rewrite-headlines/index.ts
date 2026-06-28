@@ -91,7 +91,7 @@ Rules:
     });
   } catch (e: any) {
     console.error("rewrite error:", e);
-    return new Response(JSON.stringify({ error: e?.message || "Rewrite failed" }), {
+    return new Response(JSON.stringify({ error: "Headline rewrite failed. Please try again." }), {
       status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   }

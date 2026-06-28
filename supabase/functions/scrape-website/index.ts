@@ -308,8 +308,9 @@ serve(async (req) => {
       const monthStart = new Date();
       monthStart.setUTCDate(1);
       monthStart.setUTCHours(0, 0, 0, 0);
+      // Count server-recorded scans (cannot be bypassed by skipping the client-side insert).
       const { count } = await admin
-        .from("analysis_history")
+        .from("scan_usage")
         .select("id", { count: "exact", head: true })
         .eq("user_id", userId)
         .gte("created_at", monthStart.toISOString());
@@ -372,6 +373,15 @@ serve(async (req) => {
     const FIRECRAWL_API_KEY = Deno.env.get("FIRECRAWL_API_KEY");
     if (!FIRECRAWL_API_KEY) {
       throw new Error("FIRECRAWL_API_KEY is not configured");
+    }
+
+    // Record the scan attempt server-side BEFORE any external API call. This makes
+    // the free-tier quota self-enforcing: callers cannot skip the client-side
+    // analysis_history insert (e.g. direct invoke, Compare page) to get unlimited scans.
+    try {
+      await admin.from("scan_usage").insert({ user_id: userId, url: inputUrl });
+    } catch (logErr) {
+      console.error("scan_usage insert failed:", logErr);
     }
 
     // Switch to streaming response from here on. Each event is one JSON line.
@@ -506,7 +516,7 @@ serve(async (req) => {
           const status = e?.status || 500;
           const message = status === 402 && typeof e?.message === "string"
             ? e.message
-            : (e?.message || "Scrape failed");
+            : "Scrape failed. Please try again.";
           send({ type: "error", message, status });
         } finally {
           try { controller.close(); } catch { /* already closed */ }
