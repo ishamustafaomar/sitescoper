@@ -1,0 +1,13 @@
+{
+  "name": "SiteScoper — AI Website UX Auditor",
+  "short_name": "SiteScoper",
+  "description": "AI website UX auditor and instant SEO checker. Full report in 60 seconds.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "browser",
+  "background_color": "#0b0b0f",
+  "theme_color": "#0b0b0f",
+  "icons": [
+    { "src": "/favicon.ico", "sizes": "any", "type": "image/x-icon" }
+  ]
+}
