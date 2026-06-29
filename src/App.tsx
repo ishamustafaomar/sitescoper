@@ -31,6 +31,7 @@ const WhiteLabelSeoReports = lazy(() => import("./pages/WhiteLabelSeoReports"));
 const Blog = lazy(() => import("./pages/Blog"));
 const BlogPost = lazy(() => import("./pages/BlogPost"));
 const Unsubscribe = lazy(() => import("./pages/Unsubscribe"));
+const AdminReddit = lazy(() => import("./pages/AdminReddit"));
 
 // Sensible defaults: cut redundant refetches and keep cached data warm.
 // - staleTime: data is fresh for 60s, so re-mounting a component
@@ -114,6 +115,14 @@ const App = () => (
                 element={
                   <ProtectedRoute>
                     <Admin />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/admin/reddit"
+                element={
+                  <ProtectedRoute>
+                    <AdminReddit />
                   </ProtectedRoute>
                 }
               />
