@@ -27,3 +27,7 @@ project_id = "tmdnoailedngafchtaxj"
     verify_jwt = false
   [functions.handle-email-suppression]
     verify_jwt = false
+  [functions.reddit-autopost]
+    verify_jwt = false
+  [functions.reddit-analytics]
+    verify_jwt = false
