@@ -316,6 +316,143 @@ export type Database = {
         }
         Relationships: []
       }
+      reddit_post_metrics: {
+        Row: {
+          checked_at: string
+          clicks: number
+          id: string
+          num_comments: number
+          post_id: string
+          removed: boolean
+          removed_by_category: string | null
+          score: number
+          signups_attributed: number
+        }
+        Insert: {
+          checked_at?: string
+          clicks?: number
+          id?: string
+          num_comments?: number
+          post_id: string
+          removed?: boolean
+          removed_by_category?: string | null
+          score?: number
+          signups_attributed?: number
+        }
+        Update: {
+          checked_at?: string
+          clicks?: number
+          id?: string
+          num_comments?: number
+          post_id?: string
+          removed?: boolean
+          removed_by_category?: string | null
+          score?: number
+          signups_attributed?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "reddit_post_metrics_post_id_fkey"
+            columns: ["post_id"]
+            isOneToOne: false
+            referencedRelation: "reddit_posts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      reddit_posts: {
+        Row: {
+          body: string
+          created_at: string
+          failure_reason: string | null
+          id: string
+          posted_at: string | null
+          reddit_permalink: string | null
+          reddit_post_id: string | null
+          status: string
+          subreddit: string
+          title: string
+          updated_at: string
+          url: string | null
+          utm_campaign: string
+        }
+        Insert: {
+          body: string
+          created_at?: string
+          failure_reason?: string | null
+          id?: string
+          posted_at?: string | null
+          reddit_permalink?: string | null
+          reddit_post_id?: string | null
+          status?: string
+          subreddit: string
+          title: string
+          updated_at?: string
+          url?: string | null
+          utm_campaign: string
+        }
+        Update: {
+          body?: string
+          created_at?: string
+          failure_reason?: string | null
+          id?: string
+          posted_at?: string | null
+          reddit_permalink?: string | null
+          reddit_post_id?: string | null
+          status?: string
+          subreddit?: string
+          title?: string
+          updated_at?: string
+          url?: string | null
+          utm_campaign?: string
+        }
+        Relationships: []
+      }
+      reddit_subreddit_pool: {
+        Row: {
+          avg_score: number
+          burn_reason: string | null
+          created_at: string
+          id: string
+          last_post_at: string | null
+          notes: string | null
+          posts_count: number
+          removals_count: number
+          status: string
+          subreddit: string
+          total_signups: number
+          updated_at: string
+        }
+        Insert: {
+          avg_score?: number
+          burn_reason?: string | null
+          created_at?: string
+          id?: string
+          last_post_at?: string | null
+          notes?: string | null
+          posts_count?: number
+          removals_count?: number
+          status?: string
+          subreddit: string
+          total_signups?: number
+          updated_at?: string
+        }
+        Update: {
+          avg_score?: number
+          burn_reason?: string | null
+          created_at?: string
+          id?: string
+          last_post_at?: string | null
+          notes?: string | null
+          posts_count?: number
+          removals_count?: number
+          status?: string
+          subreddit?: string
+          total_signups?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
       repo_connections: {
         Row: {
           account_login: string
