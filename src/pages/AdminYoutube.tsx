@@ -306,7 +306,7 @@ export default function AdminYoutube() {
       .select("*")
       .order("generated_at", { ascending: false })
       .limit(30);
-    setShorts((data || []) as Short[]);
+    setShorts(((data || []) as unknown) as Short[]);
     setLoading(false);
   };
 
