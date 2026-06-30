@@ -7,24 +7,22 @@ const corsHeaders = {
 };
 
 const SITE_URL = "https://sitescoper.com";
-const USER_AGENT = "sitescoper-growth-bot/0.1 by /u/sitescoper";
+const COMPOSIO_BASE = "https://backend.composio.dev/api/v3";
+const COMPOSIO_USER_ID = Deno.env.get("COMPOSIO_USER_ID") || "default";
 
-async function getRedditToken() {
-  const id = Deno.env.get("REDDIT_CLIENT_ID");
-  const secret = Deno.env.get("REDDIT_CLIENT_SECRET");
-  const user = Deno.env.get("REDDIT_USERNAME");
-  const pass = Deno.env.get("REDDIT_PASSWORD");
-  if (!id || !secret || !user || !pass) return null;
-  const basic = btoa(`${id}:${secret}`);
-  const body = new URLSearchParams({ grant_type: "password", username: user, password: pass });
-  const r = await fetch("https://www.reddit.com/api/v1/access_token", {
+async function composioExecute(toolSlug: string, args: Record<string, unknown>) {
+  const key = Deno.env.get("COMPOSIO_API_KEY");
+  if (!key) throw new Error("COMPOSIO_API_KEY missing");
+  const r = await fetch(`${COMPOSIO_BASE}/tools/execute/${toolSlug}`, {
     method: "POST",
-    headers: { Authorization: `Basic ${basic}`, "User-Agent": USER_AGENT, "Content-Type": "application/x-www-form-urlencoded" },
-    body,
+    headers: { "x-api-key": key, "Content-Type": "application/json" },
+    body: JSON.stringify({ user_id: COMPOSIO_USER_ID, arguments: args }),
   });
-  if (!r.ok) return null;
-  const j = await r.json();
-  return j.access_token as string;
+  const j = await r.json().catch(() => ({}));
+  if (!r.ok || j?.successful === false || j?.error) {
+    throw new Error(`composio ${toolSlug} ${r.status}: ${JSON.stringify(j).slice(0, 500)}`);
+  }
+  return j?.data ?? j;
 }
 
 async function draftPost(siteContext: string, subreddit: string, topPatterns: string[]) {
@@ -141,30 +139,28 @@ serve(async (req) => {
     }).select().single();
     if (insErr) throw insErr;
 
-    // 7. Try to post via Reddit API
-    const token = await getRedditToken();
-    if (!token) {
-      return new Response(JSON.stringify({ drafted: postRow, posted: false, reason: "no_reddit_credentials" }), { headers: { ...corsHeaders, "Content-Type": "application/json" } });
+    // 7. Post via Composio
+    if (!Deno.env.get("COMPOSIO_API_KEY")) {
+      return new Response(JSON.stringify({ drafted: postRow, posted: false, reason: "no_composio_api_key" }), { headers: { ...corsHeaders, "Content-Type": "application/json" } });
     }
-
-    const submitBody = new URLSearchParams({
-      sr: pick.subreddit, kind: "self", title: draft.title, text: `${draft.body}\n\n${url}`, api_type: "json",
-    });
-    const submit = await fetch("https://oauth.reddit.com/api/submit", {
-      method: "POST",
-      headers: { Authorization: `Bearer ${token}`, "User-Agent": USER_AGENT, "Content-Type": "application/x-www-form-urlencoded" },
-      body: submitBody,
-    });
-    const submitJson = await submit.json();
-    const errors = submitJson?.json?.errors || [];
-    if (!submit.ok || errors.length > 0) {
-      await supabase.from("reddit_posts").update({ status: "failed", failure_reason: JSON.stringify(errors).slice(0, 500) }).eq("id", postRow.id);
+    let submitResp: any;
+    try {
+      submitResp = await composioExecute("REDDIT_CREATE_REDDIT_POST", {
+        subreddit: pick.subreddit,
+        title: draft.title,
+        text: `${draft.body}\n\n${url}`,
+        kind: "self",
+      });
+    } catch (e: any) {
+      await supabase.from("reddit_posts").update({ status: "failed", failure_reason: String(e.message).slice(0, 500) }).eq("id", postRow.id);
       await supabase.from("reddit_subreddit_pool").update({ removals_count: (pick.removals_count || 0) + 1 }).eq("id", pick.id);
-      return new Response(JSON.stringify({ posted: false, errors }), { headers: { ...corsHeaders, "Content-Type": "application/json" } });
+      return new Response(JSON.stringify({ posted: false, error: e.message }), { headers: { ...corsHeaders, "Content-Type": "application/json" } });
     }
 
-    const redditPostId = submitJson?.json?.data?.id || submitJson?.json?.data?.name;
-    const permalink = submitJson?.json?.data?.url;
+    // Composio response shape: response_data.json.data.{id,name,url} (mirrors Reddit) — fall back to top-level keys
+    const rd = submitResp?.response_data?.json?.data ?? submitResp?.json?.data ?? submitResp?.data ?? submitResp ?? {};
+    const redditPostId = rd.id || rd.name || rd.post_id;
+    const permalink = rd.url || rd.permalink;
     await supabase.from("reddit_posts").update({
       status: "posted",
       reddit_post_id: redditPostId,
