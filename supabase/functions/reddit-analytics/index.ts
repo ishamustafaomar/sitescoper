@@ -5,30 +5,26 @@ const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
-const USER_AGENT = "sitescoper-growth-bot/0.1 by /u/sitescoper";
+const COMPOSIO_BASE = "https://backend.composio.dev/api/v3";
+const COMPOSIO_USER_ID = Deno.env.get("COMPOSIO_USER_ID") || "default";
 
-async function getRedditToken() {
-  const id = Deno.env.get("REDDIT_CLIENT_ID");
-  const secret = Deno.env.get("REDDIT_CLIENT_SECRET");
-  const user = Deno.env.get("REDDIT_USERNAME");
-  const pass = Deno.env.get("REDDIT_PASSWORD");
-  if (!id || !secret || !user || !pass) return null;
-  const basic = btoa(`${id}:${secret}`);
-  const body = new URLSearchParams({ grant_type: "password", username: user, password: pass });
-  const r = await fetch("https://www.reddit.com/api/v1/access_token", {
+async function composioExecute(toolSlug: string, args: Record<string, unknown>) {
+  const key = Deno.env.get("COMPOSIO_API_KEY");
+  if (!key) return null;
+  const r = await fetch(`${COMPOSIO_BASE}/tools/execute/${toolSlug}`, {
     method: "POST",
-    headers: { Authorization: `Basic ${basic}`, "User-Agent": USER_AGENT, "Content-Type": "application/x-www-form-urlencoded" },
-    body,
+    headers: { "x-api-key": key, "Content-Type": "application/json" },
+    body: JSON.stringify({ user_id: COMPOSIO_USER_ID, arguments: args }),
   });
-  if (!r.ok) return null;
-  return (await r.json()).access_token as string;
+  const j = await r.json().catch(() => ({}));
+  if (!r.ok || j?.successful === false) return null;
+  return j?.data ?? j;
 }
 
 serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
   try {
     const supabase = createClient(Deno.env.get("SUPABASE_URL")!, Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!);
-    const token = await getRedditToken();
 
     // Fetch posts from last 14 days that are posted (not failed/draft)
     const since = new Date(Date.now() - 14 * 86400 * 1000).toISOString();
@@ -42,20 +38,18 @@ serve(async (req) => {
     for (const post of posts || []) {
       let score = 0, comments = 0, removed = false, removedBy: string | null = null;
 
-      if (token && post.reddit_post_id) {
+      if (post.reddit_post_id) {
         const fullName = post.reddit_post_id.startsWith("t3_") ? post.reddit_post_id : `t3_${post.reddit_post_id}`;
-        const r = await fetch(`https://oauth.reddit.com/api/info?id=${fullName}`, {
-          headers: { Authorization: `Bearer ${token}`, "User-Agent": USER_AGENT },
-        });
-        if (r.ok) {
-          const j = await r.json();
-          const child = j?.data?.children?.[0]?.data;
-          if (child) {
-            score = child.score ?? 0;
-            comments = child.num_comments ?? 0;
-            removedBy = child.removed_by_category ?? null;
-            removed = !!removedBy || child.removed === true;
-          }
+        const resp = await composioExecute("REDDIT_RETRIEVE_POST", { article: fullName });
+        const child = resp?.response_data?.data?.children?.[0]?.data
+          ?? resp?.data?.children?.[0]?.data
+          ?? resp?.children?.[0]?.data
+          ?? null;
+        if (child) {
+          score = child.score ?? 0;
+          comments = child.num_comments ?? 0;
+          removedBy = child.removed_by_category ?? null;
+          removed = !!removedBy || child.removed === true;
         }
       }
 
