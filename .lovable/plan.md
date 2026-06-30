@@ -1,47 +1,44 @@
-## What changes
+# Daily YouTube Short generator — admin-only, manual posting
 
-Replace the existing `reddit-growth` skill with a `youtube-shorts-growth` skill focused on auto-posting Remotion-generated Shorts to YouTube to promote SiteScoper. **Skill files only this round** — no infra, edge functions, tables, or cron yet. We can build that out in a follow-up once the skill doc is approved.
+A new ready-to-post Short shows up at `/admin/youtube` every morning. You copy the text, download the MP4, post it yourself.
 
-## Why skill-only first
+## `/admin/youtube` page
 
-The Reddit loop is still wired up and partly working. Spinning up a full YouTube Shorts pipeline (render → upload → analytics) is a big chunk of work and needs decisions (Composio vs direct YouTube Data API OAuth, where renders run, daily quota, topic strategy). The skill captures the playbook so any future agent run executes it consistently.
+**Today's Short** (top card)
+- 9:16 inline video preview
+- **Title** (≤60 chars) + copy button
+- **Description** (with UTM-tagged sitescoper.com link) + copy button
+- **Tags** (comma-separated) + copy button
+- Format used (one of the 5 in the youtube-shorts-growth skill) and the concrete insight
+- **Download MP4** button
+- **Regenerate** button (in case you hate it)
 
-## Files
+**History** (below)
+- Past Shorts with thumbnail, date, title, status (`generated` / `posted` / `skipped`)
+- **Mark as posted** toggle so you can track what went live (later this powers a "signups per Short" view once you start tagging UTMs)
 
-Delete:
-- `.agents/skills/reddit-growth/references/subreddit-rules.md`
-- `.agents/skills/reddit-growth/references/title-patterns.md`
-- `.agents/skills/reddit-growth/SKILL.md`
-- `.agents/skills/reddit-growth/` (dir)
+Page is gated by `has_role(auth.uid(), 'admin')`.
 
-Create under `.agents/skills/youtube-shorts-growth/`:
+## Backend
 
-1. **SKILL.md** — frontmatter + body covering:
-   - Trigger description (asking about YouTube posting, Shorts performance, drafting a Short, growing SiteScoper via YouTube).
-   - Goal: auto-generate + upload one ~20s vertical Short per day promoting a single SiteScoper insight (audit finding, before/after, "what your site is leaking", etc.).
-   - Where data will live once built: `youtube_shorts` (id, title, description, tags, video_url, youtube_video_id, status, utm_campaign, posted_at) and `youtube_shorts_metrics` (views, likes, comments, subs_gained, signups, polled_at). Note these are **planned** — not yet created.
-   - Pipeline: Remotion render (reuse `remotion/` setup) → upload via YouTube Data API v3 `videos.insert` → poll via `videos.list?part=statistics` → attribute signups via UTM.
-   - Auth: YouTube Data API OAuth (Composio `YOUTUBE_UPLOAD_VIDEO` action preferred since Composio is already wired; fallback = manual OAuth refresh token).
-   - Daily quota note: YouTube API upload costs ~1600 units; 10k/day default cap = ~6 uploads/day max. Schedule once daily.
-   - Rules for drafting a Short (hook in 1s, 9:16, large captions, no marketing voice, single CTA card at the end pointing to sitescoper.com).
-   - "What's working?" query pattern: rank by signups per Short, not views.
-   - Cooldown: if a Short gets a strike or removal, pause autopost and surface it as a policy check, not a bug.
+1. **Table `youtube_shorts`** — `id, generated_at, format, insight, title, description, tags text[], video_path, status ('generated'|'posted'|'skipped'), posted_at, utm_campaign`
+2. **Storage bucket `youtube-shorts`** (private) — MP4s; admin gets signed URLs
+3. **Edge function `youtube-short-generate`**
+   - Rotates through the 5 formats from the skill (`references/short-formats.md`)
+   - Picks a real insight (random recent `analysis_history` finding or a SiteScoper hook)
+   - Lovable AI (Gemini) drafts script + on-screen captions + title + description + tags
+   - Renders 1080x1920 MP4 via Remotion (new composition `short` reusing existing `remotion/` setup)
+   - Uploads to the bucket, inserts the row
+4. **pg_cron** daily at 13:00 UTC → calls `youtube-short-generate`
+5. **Edge function `youtube-short-regenerate`** — manual trigger from the page
 
-2. **references/short-formats.md** — 5 repeatable Short formats with structure, sample voiceover script, and visual beats:
-   - "I scanned [famous site] and here's what's broken"
-   - "3 SEO issues costing you traffic right now"
-   - "Your homepage fails this 5-second test"
-   - "Before/after: fixing [one issue] in 30 seconds"
-   - "What Lighthouse won't tell you about your site"
+## What you do
 
-3. **references/title-and-description-patterns.md** — proven YouTube Shorts title patterns (curiosity gap, number-led, callout), description template with UTM link, tag set (`#seo #webdev #shorts #sitescoper #websiteaudit`), and rules (title ≤ 60 chars, first line of description is the hook because Shorts truncates fast).
+Just say **build it** and once it's done:
+1. Open `/admin/youtube` each morning
+2. Copy title / description / tags
+3. Click **Download MP4**
+4. Upload to YouTube Shorts manually
+5. Click **Mark as posted**
 
-## Out of scope this turn
-
-- Creating `youtube_shorts*` tables.
-- Writing `youtube-autopost` / `youtube-analytics` edge functions.
-- Setting up Composio YouTube connection or OAuth secrets.
-- pg_cron schedule.
-- Admin UI route.
-
-After you approve the skill, say "build the pipeline" and I'll scaffold the tables, edge functions, and Composio call in a second pass.
+Used the youtube-shorts-growth skill.
