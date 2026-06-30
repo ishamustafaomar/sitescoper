@@ -6,6 +6,8 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "@/hooks/use-toast";
 import { Loader2, Copy, Download, RefreshCcw, Sparkles, CheckCircle2 } from "lucide-react";
+// @ts-ignore - no types
+import fixWebmDuration from "fix-webm-duration";
 
 type Caption = { text: string; start_ms: number; end_ms: number };
 type Short = {
@@ -134,7 +136,7 @@ async function renderShortToBlob(short: Short, setProgress: (p: number) => void)
     rec.onstop = () => resolve(new Blob(chunks, { type: mime }));
   });
 
-  rec.start();
+  rec.start(100);
   const start = performance.now();
 
   await new Promise<void>((resolve) => {
@@ -149,7 +151,14 @@ async function renderShortToBlob(short: Short, setProgress: (p: number) => void)
   });
 
   rec.stop();
-  return done;
+  const raw = await done;
+  try {
+    return await new Promise<Blob>((resolve) => {
+      fixWebmDuration(raw, totalMs, (fixed: Blob) => resolve(fixed));
+    });
+  } catch {
+    return raw;
+  }
 }
 
 function copy(text: string, label: string) {
