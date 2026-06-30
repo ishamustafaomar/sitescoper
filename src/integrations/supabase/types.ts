@@ -633,6 +633,57 @@ export type Database = {
         }
         Relationships: []
       }
+      youtube_shorts: {
+        Row: {
+          accent_color: string
+          bg_color: string
+          captions: Json
+          created_at: string
+          description: string
+          format: string
+          generated_at: string
+          id: string
+          insight: string
+          posted_at: string | null
+          status: string
+          tags: string[]
+          title: string
+          utm_campaign: string
+        }
+        Insert: {
+          accent_color?: string
+          bg_color?: string
+          captions?: Json
+          created_at?: string
+          description: string
+          format: string
+          generated_at?: string
+          id?: string
+          insight: string
+          posted_at?: string | null
+          status?: string
+          tags?: string[]
+          title: string
+          utm_campaign: string
+        }
+        Update: {
+          accent_color?: string
+          bg_color?: string
+          captions?: Json
+          created_at?: string
+          description?: string
+          format?: string
+          generated_at?: string
+          id?: string
+          insight?: string
+          posted_at?: string | null
+          status?: string
+          tags?: string[]
+          title?: string
+          utm_campaign?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
