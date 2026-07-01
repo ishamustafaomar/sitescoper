@@ -78,10 +78,6 @@ const Privacy = () => {
               <p>We may update this policy from time to time. The "Last updated" date at the top reflects the most recent changes.</p>
             </div>
 
-            <div>
-              <h2 className="text-xl font-heading font-semibold mb-2">10. Contact</h2>
-              <p>Questions about this policy? Reach out via the support email listed on our site.</p>
-            </div>
           </section>
         </motion.div>
       </main>
