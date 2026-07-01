@@ -69,7 +69,7 @@ const Privacy = () => {
             </div>
 
             <div>
-              <h2 className="text-xl font-heading font-semibold mb-2">8. Children</h2>
+              <h2 className="text-xl font-heading font-semibold mb-2">7. Children</h2>
               <p>SiteScoper is not intended for users under 13. We do not knowingly collect data from children.</p>
             </div>
 
