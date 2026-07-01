@@ -637,50 +637,74 @@ export type Database = {
         Row: {
           accent_color: string
           bg_color: string
+          caption_timings: Json | null
           captions: Json
           created_at: string
           description: string
+          duration_ms: number | null
           format: string
           generated_at: string
           id: string
           insight: string
+          music_url: string | null
           posted_at: string | null
+          screenshot_urls: Json | null
+          script: string | null
           status: string
           tags: string[]
+          target_site: string | null
           title: string
           utm_campaign: string
+          voice_id: string | null
+          voice_url: string | null
         }
         Insert: {
           accent_color?: string
           bg_color?: string
+          caption_timings?: Json | null
           captions?: Json
           created_at?: string
           description: string
+          duration_ms?: number | null
           format: string
           generated_at?: string
           id?: string
           insight: string
+          music_url?: string | null
           posted_at?: string | null
+          screenshot_urls?: Json | null
+          script?: string | null
           status?: string
           tags?: string[]
+          target_site?: string | null
           title: string
           utm_campaign: string
+          voice_id?: string | null
+          voice_url?: string | null
         }
         Update: {
           accent_color?: string
           bg_color?: string
+          caption_timings?: Json | null
           captions?: Json
           created_at?: string
           description?: string
+          duration_ms?: number | null
           format?: string
           generated_at?: string
           id?: string
           insight?: string
+          music_url?: string | null
           posted_at?: string | null
+          screenshot_urls?: Json | null
+          script?: string | null
           status?: string
           tags?: string[]
+          target_site?: string | null
           title?: string
           utm_campaign?: string
+          voice_id?: string | null
+          voice_url?: string | null
         }
         Relationships: []
       }
