@@ -59,7 +59,7 @@ const Privacy = () => {
             </div>
 
             <div>
-              <h2 className="text-xl font-heading font-semibold mb-2">6. Cookies & local storage</h2>
+              <h2 className="text-xl font-heading font-semibold mb-2">5. Cookies & local storage</h2>
               <p>We use cookies and browser local storage to keep you signed in and to track your free-analysis usage before signup. We do not use third-party advertising cookies.</p>
             </div>
 
