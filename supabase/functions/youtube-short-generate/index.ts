@@ -60,35 +60,70 @@ async function pickFormat(supabase: any): Promise<string> {
   return pool[Math.floor(Math.random() * pool.length)];
 }
 
-async function pickInsight(supabase: any): Promise<string> {
-  const { data } = await supabase
-    .from("analysis_history")
-    .select("url, results")
-    .order("created_at", { ascending: false })
-    .limit(20);
-  const candidates: string[] = [];
-  for (const row of data || []) {
-    const r = row.results;
-    if (!r || typeof r !== "object") continue;
-    const findings = (r as any).findings || (r as any).issues || [];
-    if (Array.isArray(findings)) {
-      for (const f of findings.slice(0, 3)) {
-        const t = f?.title || f?.message || f?.description;
-        if (t && typeof t === "string") candidates.push(`${row.url}: ${t}`);
-      }
-    }
-  }
-  if (candidates.length) return candidates[Math.floor(Math.random() * candidates.length)];
-  const fallback = [
-    "4MB hero image, no lazy loading",
-    "H1 is 'Welcome' — nobody searches 'Welcome'",
-    "Lighthouse says 95 but title tag is 'Untitled'",
-    "No canonical tag on the homepage",
-    "Meta description is blank",
-    "CTA button says 'Learn more' instead of an outcome",
-    "Same H1 on every page — SEO nightmare",
-  ];
-  return pickRandom(fallback);
+// ---------- Real audit of the target site ----------
+// We refuse to invent facts. If we can't verify something, we don't say it.
+type RealFact = { label: string; detail: string };
+
+async function auditTargetSite(url: string): Promise<{ facts: RealFact[]; title: string; description: string }> {
+  const key = Deno.env.get("FIRECRAWL_API_KEY");
+  if (!key) return { facts: [], title: "", description: "" };
+  const r = await fetch("https://api.firecrawl.dev/v2/scrape", {
+    method: "POST",
+    headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
+    body: JSON.stringify({ url, formats: ["html"], onlyMainContent: false }),
+  });
+  if (!r.ok) return { facts: [], title: "", description: "" };
+  const j = await r.json();
+  const doc = j.data ?? j;
+  const html: string = doc.html ?? doc.rawHtml ?? "";
+  if (!html) return { facts: [], title: "", description: "" };
+
+  const headMatch = html.match(/<head[\s\S]*?<\/head>/i);
+  const head = headMatch ? headMatch[0] : html;
+  const titleMatch = head.match(/<title[^>]*>([\s\S]*?)<\/title>/i);
+  const title = titleMatch ? titleMatch[1].replace(/\s+/g, " ").trim() : "";
+  const descMatch = head.match(/<meta[^>]*name=["']description["'][^>]*content=["']([^"']*)["']/i);
+  const description = descMatch ? descMatch[1].trim() : "";
+  const canonicalMatches = Array.from(head.matchAll(/<link[^>]*rel=["']canonical["'][^>]*>/gi));
+  const h1s = Array.from(html.matchAll(/<h1[^>]*>([\s\S]*?)<\/h1>/gi))
+    .map((m) => m[1].replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim())
+    .filter(Boolean);
+  const ogImage = /<meta[^>]*property=["']og:image["']/i.test(head);
+  const ogTitle = /<meta[^>]*property=["']og:title["']/i.test(head);
+  const twitterCard = /<meta[^>]*name=["']twitter:card["']/i.test(head);
+  const viewport = /<meta[^>]*name=["']viewport["']/i.test(head);
+  const lang = /<html[^>]*\blang=["'][^"']+["']/i.test(html);
+  const jsonLd = (html.match(/<script[^>]*type=["']application\/ld\+json["']/gi) || []).length;
+  const imgs = Array.from(html.matchAll(/<img\b[^>]*>/gi)).map((m) => m[0]);
+  const imgsNoAlt = imgs.filter((t) => !/\balt=/i.test(t)).length;
+  const imgsNoLazy = imgs.filter((t) => !/\bloading=["']lazy["']/i.test(t)).length;
+
+  const facts: RealFact[] = [];
+  if (!title) facts.push({ label: "missing_title", detail: "The <title> tag is missing." });
+  else if (title.length < 30) facts.push({ label: "short_title", detail: `Title is only ${title.length} characters: "${title}".` });
+  else if (title.length > 60) facts.push({ label: "long_title", detail: `Title is ${title.length} characters — Google will truncate it: "${title}".` });
+
+  if (!description) facts.push({ label: "missing_description", detail: "The meta description is empty." });
+  else if (description.length < 70) facts.push({ label: "short_description", detail: `Meta description is only ${description.length} characters.` });
+  else if (description.length > 160) facts.push({ label: "long_description", detail: `Meta description is ${description.length} characters — it will get cut off in search results.` });
+
+  if (canonicalMatches.length === 0) facts.push({ label: "no_canonical", detail: "There is no <link rel=\"canonical\"> on the page." });
+  else if (canonicalMatches.length > 1) facts.push({ label: "multiple_canonicals", detail: `${canonicalMatches.length} canonical tags — only one is allowed.` });
+
+  if (h1s.length === 0) facts.push({ label: "no_h1", detail: "There is no <h1> on the page." });
+  else if (h1s.length > 1) facts.push({ label: "multiple_h1", detail: `${h1s.length} <h1> tags on one page.` });
+  else facts.push({ label: "h1", detail: `The H1 is "${h1s[0].slice(0, 100)}".` });
+
+  if (!ogImage) facts.push({ label: "no_og_image", detail: "No og:image, so link previews are blank." });
+  if (!ogTitle) facts.push({ label: "no_og_title", detail: "No og:title tag." });
+  if (!twitterCard) facts.push({ label: "no_twitter_card", detail: "No twitter:card tag." });
+  if (!viewport) facts.push({ label: "no_viewport", detail: "No viewport meta tag — the page isn't mobile-optimized." });
+  if (!lang) facts.push({ label: "no_lang", detail: "The <html> tag is missing a lang attribute." });
+  if (jsonLd === 0) facts.push({ label: "no_jsonld", detail: "There is no JSON-LD structured data on the page." });
+  if (imgs.length > 0 && imgsNoAlt > 0) facts.push({ label: "images_no_alt", detail: `${imgsNoAlt} of ${imgs.length} <img> tags are missing alt text.` });
+  if (imgs.length > 5 && imgsNoLazy > imgs.length / 2) facts.push({ label: "images_no_lazy", detail: `${imgsNoLazy} of ${imgs.length} images don't use loading="lazy".` });
+
+  return { facts, title, description };
 }
 
 // ---------- Firecrawl screenshot ----------
@@ -165,22 +200,34 @@ type Brief = {
   end_card: string; // final line, e.g. "sitescoper.com — free"
 };
 
-async function draftBrief(format: string, targetSite: string, insight: string): Promise<Brief> {
+async function draftBrief(format: string, targetSite: string, facts: RealFact[], pageTitle: string): Promise<Brief> {
   const key = Deno.env.get("LOVABLE_API_KEY");
   if (!key) throw new Error("LOVABLE_API_KEY missing");
+
+  const factList = facts.map((f, i) => `${i + 1}. [${f.label}] ${f.detail}`).join("\n");
 
   const prompt = `You are scripting a 22-second vertical YouTube Short promoting SiteScoper (a free AI website audit tool at sitescoper.com).
 
 FORMAT: ${format}
 TARGET SITE (real screenshot of this site is the background): ${targetSite}
-ONE INSIGHT to anchor on: ${insight}
+PAGE <title> (verbatim, use only if quoted exactly): ${pageTitle || "(none)"}
+
+VERIFIED FACTS ABOUT ${targetSite} (freshly scraped a moment ago — these are the ONLY facts you may state as true about the site):
+${factList}
+
+HARD RULES ON FACTS:
+- You may ONLY reference facts from the list above. Do not invent load times, image sizes, Lighthouse scores, traffic numbers, revenue impact, or any statistic that isn't in the list.
+- Do not claim "the hero image is 4MB" or "the site loads in X seconds" or "they're losing Y customers" — none of that is verified.
+- If you quote the page title, quote it verbatim from PAGE <title> above.
+- Pick 1–2 of the strongest facts and build the whole script around them. Be specific — say the actual number, actual tag name, actual title text.
+- If the fact list is empty, just say the site looks clean and pivot to "run your own site through sitescoper.com".
 
 VOICE (spoken by ElevenLabs, calm dev showing a friend a bug):
 - 3 to 5 beats of continuous speech, 4-6 seconds each.
 - Total speech ~18 seconds. Natural sentences (NOT captions — this is what a person actually says).
 - Talk like a developer, not a marketer. Short concrete sentences.
 - Never say "Hey guys", "Today I", "In this video", "make sure to subscribe".
-- One specific finding. Reference the target site by name in beat 1.
+- Reference the target site by name in beat 1.
 - Final beat is the CTA: mentions "sitescoper.com" and "free". Nothing else.
 
 ON-SCREEN HOOK (frame 0, before voice starts):
@@ -310,11 +357,16 @@ serve(async (req) => {
 
     const id = crypto.randomUUID();
     const format = await pickFormat(supabase);
-        const insight = await pickInsight(supabase);
     const targetSite = pickRandom(TARGET_SITES);
     const voiceId = pickRandom(VOICES);
     const palette = pickRandom(PALETTES);
     const utm = `yt-short-${id.slice(0, 8)}`;
+
+    // 0. Real audit of the target site — this drives the script's facts.
+    const audit = await auditTargetSite(targetSite);
+    const insight = audit.facts.length
+      ? `${targetSite}: ${audit.facts[0].detail}`
+      : `${targetSite}: no obvious surface-level SEO issues.`;
 
     // 1. Screenshot the target site + sitescoper.com in parallel
     const [targetShot, sitescoperShot] = await Promise.all([
@@ -330,8 +382,8 @@ serve(async (req) => {
       screenshotUrls.push(uploaded ? path : url); // fallback to remote if upload fails
     }
 
-    // 2. Script
-    const brief = await draftBrief(format, targetSite, insight);
+    // 2. Script — grounded in the real audit facts, never invented
+    const brief = await draftBrief(format, targetSite, audit.facts, audit.title);
 
     // 3. Voice — synthesize the concatenated beats as ONE clip so pauses feel natural
     const spokenText = (brief.beats || [])
