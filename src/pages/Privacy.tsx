@@ -74,7 +74,7 @@ const Privacy = () => {
             </div>
 
             <div>
-              <h2 className="text-xl font-heading font-semibold mb-2">9. Changes to this policy</h2>
+              <h2 className="text-xl font-heading font-semibold mb-2">8. Changes to this policy</h2>
               <p>We may update this policy from time to time. The "Last updated" date at the top reflects the most recent changes.</p>
             </div>
 
