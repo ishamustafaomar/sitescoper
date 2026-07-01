@@ -200,22 +200,34 @@ type Brief = {
   end_card: string; // final line, e.g. "sitescoper.com — free"
 };
 
-async function draftBrief(format: string, targetSite: string, insight: string): Promise<Brief> {
+async function draftBrief(format: string, targetSite: string, facts: RealFact[], pageTitle: string): Promise<Brief> {
   const key = Deno.env.get("LOVABLE_API_KEY");
   if (!key) throw new Error("LOVABLE_API_KEY missing");
+
+  const factList = facts.map((f, i) => `${i + 1}. [${f.label}] ${f.detail}`).join("\n");
 
   const prompt = `You are scripting a 22-second vertical YouTube Short promoting SiteScoper (a free AI website audit tool at sitescoper.com).
 
 FORMAT: ${format}
 TARGET SITE (real screenshot of this site is the background): ${targetSite}
-ONE INSIGHT to anchor on: ${insight}
+PAGE <title> (verbatim, use only if quoted exactly): ${pageTitle || "(none)"}
+
+VERIFIED FACTS ABOUT ${targetSite} (freshly scraped a moment ago — these are the ONLY facts you may state as true about the site):
+${factList}
+
+HARD RULES ON FACTS:
+- You may ONLY reference facts from the list above. Do not invent load times, image sizes, Lighthouse scores, traffic numbers, revenue impact, or any statistic that isn't in the list.
+- Do not claim "the hero image is 4MB" or "the site loads in X seconds" or "they're losing Y customers" — none of that is verified.
+- If you quote the page title, quote it verbatim from PAGE <title> above.
+- Pick 1–2 of the strongest facts and build the whole script around them. Be specific — say the actual number, actual tag name, actual title text.
+- If the fact list is empty, just say the site looks clean and pivot to "run your own site through sitescoper.com".
 
 VOICE (spoken by ElevenLabs, calm dev showing a friend a bug):
 - 3 to 5 beats of continuous speech, 4-6 seconds each.
 - Total speech ~18 seconds. Natural sentences (NOT captions — this is what a person actually says).
 - Talk like a developer, not a marketer. Short concrete sentences.
 - Never say "Hey guys", "Today I", "In this video", "make sure to subscribe".
-- One specific finding. Reference the target site by name in beat 1.
+- Reference the target site by name in beat 1.
 - Final beat is the CTA: mentions "sitescoper.com" and "free". Nothing else.
 
 ON-SCREEN HOOK (frame 0, before voice starts):
@@ -345,11 +357,16 @@ serve(async (req) => {
 
     const id = crypto.randomUUID();
     const format = await pickFormat(supabase);
-        const insight = await pickInsight(supabase);
     const targetSite = pickRandom(TARGET_SITES);
     const voiceId = pickRandom(VOICES);
     const palette = pickRandom(PALETTES);
     const utm = `yt-short-${id.slice(0, 8)}`;
+
+    // 0. Real audit of the target site — this drives the script's facts.
+    const audit = await auditTargetSite(targetSite);
+    const insight = audit.facts.length
+      ? `${targetSite}: ${audit.facts[0].detail}`
+      : `${targetSite}: no obvious surface-level SEO issues.`;
 
     // 1. Screenshot the target site + sitescoper.com in parallel
     const [targetShot, sitescoperShot] = await Promise.all([
@@ -365,8 +382,8 @@ serve(async (req) => {
       screenshotUrls.push(uploaded ? path : url); // fallback to remote if upload fails
     }
 
-    // 2. Script
-    const brief = await draftBrief(format, targetSite, insight);
+    // 2. Script — grounded in the real audit facts, never invented
+    const brief = await draftBrief(format, targetSite, audit.facts, audit.title);
 
     // 3. Voice — synthesize the concatenated beats as ONE clip so pauses feel natural
     const spokenText = (brief.beats || [])
