@@ -64,7 +64,7 @@ const Privacy = () => {
             </div>
 
             <div>
-              <h2 className="text-xl font-heading font-semibold mb-2">7. Security</h2>
+              <h2 className="text-xl font-heading font-semibold mb-2">6. Security</h2>
               <p>Your data is stored on infrastructure protected by row-level security and modern encryption standards. No system is perfectly secure, but we follow industry best practices to safeguard your information.</p>
             </div>
 
