@@ -1,89 +1,142 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Check, Sparkles, Gift, ArrowRight } from "lucide-react";
+import { Check, Sparkles, Crown, ArrowRight } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { AppHeader } from "@/components/AppHeader";
+import { useAuth } from "@/components/AuthProvider";
+import { useSubscription } from "@/hooks/useSubscription";
+import { StripeEmbeddedCheckoutForm } from "@/components/StripeEmbeddedCheckout";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { PaymentTestModeBanner } from "@/components/PaymentTestModeBanner";
 
-const PERKS: string[] = [
-  "Unlimited site analyses",
+const FREE_PERKS: string[] = [
+  "3 website scans per month",
   "Full prioritized action roadmap",
+  "Category scores & findings",
+  "No credit card required",
+];
+
+const PRO_PERKS: string[] = [
+  "Unlimited site analyses",
   "Deep product simulation (AI plays your product)",
-  "Product ideas & strategy section",
-  "Unlimited, searchable analysis history",
-  "Unlimited saved websites for re-scanning",
   "Side-by-side competitor battle mode",
   "Chat with your report (AI)",
   "1-click PDF export",
+  "Unlimited, searchable history",
   "Priority Gemini-powered scans",
 ];
 
 export default function Pricing() {
   const navigate = useNavigate();
+  const { user } = useAuth();
+  const { isPro } = useSubscription();
+  const [checkoutOpen, setCheckoutOpen] = useState(false);
+
+  const startCheckout = () => {
+    if (!user) {
+      navigate("/auth?redirect=/pricing");
+      return;
+    }
+    setCheckoutOpen(true);
+  };
 
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Pricing — SiteScoper is free during early access</title>
-        <meta name="description" content="SiteScoper is 100% free while we're in early access. Unlimited AI website audits, deep product simulation, PDF exports, competitor compare — every feature unlocked." />
+        <title>Pricing — SiteScoper Pro</title>
+        <meta name="description" content="Start free with 3 scans / month. Upgrade to SiteScoper Pro for $19/mo — unlimited AI website audits, deep product simulation, competitor compare, chat with report and PDF exports." />
         <link rel="canonical" href="https://sitescoper.com/pricing" />
-        <meta property="og:title" content="Pricing — SiteScoper is free during early access" />
-        <meta property="og:description" content="Every feature unlocked, no credit card, no trial timer. Free during early access." />
+        <meta property="og:title" content="Pricing — SiteScoper Pro" />
+        <meta property="og:description" content="Free plan with 3 scans / month. Pro at $19/mo for unlimited scans and every advanced feature." />
         <meta property="og:url" content="https://sitescoper.com/pricing" />
         <meta property="og:type" content="website" />
       </Helmet>
+      <PaymentTestModeBanner />
       <AppHeader />
-      <main className="max-w-3xl mx-auto px-4 py-12">
+      <main className="max-w-5xl mx-auto px-4 py-12">
         <div className="text-center mb-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-body mb-4">
-            <Gift className="h-3 w-3" /> Early access
-          </div>
           <h1 className="font-heading text-4xl md:text-5xl font-bold mb-3">
-            SiteScoper is free.<br />Every feature, for everyone.
+            Simple, honest pricing
           </h1>
           <p className="text-muted-foreground max-w-xl mx-auto">
-            We're focused on making SiteScoper genuinely useful before we figure out pricing. So right now, every feature is unlocked for every account — no credit card, no trial timer, no "Pro plan".
+            Try SiteScoper free — 3 scans per month, no card required. When you're ready to ship faster, upgrade to Pro.
           </p>
         </div>
 
-        <Card className="overflow-hidden border-2 border-primary/20 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent">
-          <div className="p-6 md:p-8">
-            <div className="flex items-center justify-between flex-wrap gap-4 mb-6">
+        <div className="grid md:grid-cols-2 gap-6">
+          <Card className="p-6 md:p-8 flex flex-col">
+            <div className="flex items-baseline justify-between mb-4">
+              <div className="font-heading text-xl font-bold">Free</div>
               <div>
-                <div className="font-heading text-xl font-bold text-primary inline-flex items-center gap-1.5">
-                  <Sparkles className="h-5 w-5" /> Everything, unlocked
-                </div>
-                <p className="text-xs text-muted-foreground font-body mt-1">Sign in with email or Google. That's it.</p>
-              </div>
-              <div className="text-right">
-                <div className="text-4xl font-heading font-bold">$0</div>
-                <div className="text-[11px] text-muted-foreground font-body">while we're in early access</div>
+                <span className="text-4xl font-heading font-bold">$0</span>
+                <span className="text-xs text-muted-foreground font-body ml-1">/month</span>
               </div>
             </div>
-
-            <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-2.5">
-              {PERKS.map((perk) => (
-                <li key={perk} className="flex items-start gap-2 text-sm font-body">
-                  <Check className="h-4 w-4 text-primary mt-0.5 shrink-0" />
-                  <span>{perk}</span>
+            <ul className="space-y-2 mb-6 flex-1">
+              {FREE_PERKS.map((p) => (
+                <li key={p} className="flex items-start gap-2 text-sm font-body">
+                  <Check className="h-4 w-4 text-muted-foreground mt-0.5 shrink-0" />
+                  <span>{p}</span>
                 </li>
               ))}
             </ul>
+            <Button variant="outline" onClick={() => navigate(user ? "/dashboard" : "/auth")}>
+              {user ? "Go to dashboard" : "Start free"}
+            </Button>
+          </Card>
 
-            <div className="mt-7 pt-6 border-t border-border/60 flex flex-col sm:flex-row gap-3 items-center justify-between">
-              <p className="text-xs text-muted-foreground font-body text-center sm:text-left max-w-md">
-                When we eventually charge for something, the people using SiteScoper now will help us decide what — and you'll hear about it long before anything changes.
-              </p>
-              <Button size="lg" className="shadow-glow" onClick={() => navigate("/auth")}>
-                <Sparkles className="h-4 w-4" /> Get started free
+          <Card className="p-6 md:p-8 border-2 border-primary/40 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent flex flex-col relative">
+            <span className="absolute -top-3 right-6 px-2 py-0.5 rounded-full bg-primary text-primary-foreground text-[10px] font-body font-bold uppercase tracking-wider">
+              Most popular
+            </span>
+            <div className="flex items-baseline justify-between mb-4">
+              <div className="font-heading text-xl font-bold text-primary inline-flex items-center gap-1.5">
+                <Crown className="h-5 w-5" /> Pro
+              </div>
+              <div>
+                <span className="text-4xl font-heading font-bold">$19</span>
+                <span className="text-xs text-muted-foreground font-body ml-1">/month</span>
+              </div>
+            </div>
+            <ul className="space-y-2 mb-6 flex-1">
+              {PRO_PERKS.map((p) => (
+                <li key={p} className="flex items-start gap-2 text-sm font-body">
+                  <Check className="h-4 w-4 text-primary mt-0.5 shrink-0" />
+                  <span>{p}</span>
+                </li>
+              ))}
+            </ul>
+            {isPro ? (
+              <Button variant="outline" disabled>
+                <Check className="h-4 w-4" /> You're on Pro
+              </Button>
+            ) : (
+              <Button className="shadow-glow" onClick={startCheckout}>
+                <Sparkles className="h-4 w-4" /> Upgrade to Pro
                 <ArrowRight className="h-4 w-4" />
               </Button>
-            </div>
-          </div>
-        </Card>
+            )}
+          </Card>
+        </div>
 
-        <p className="text-center text-xs text-muted-foreground mt-6">No credit card. No trial timer. No "Pro plan".</p>
+        <p className="text-center text-xs text-muted-foreground mt-8">
+          Cancel any time — your Pro access lasts until the end of the billing period.
+        </p>
       </main>
+
+      <Dialog open={checkoutOpen} onOpenChange={setCheckoutOpen}>
+        <DialogContent className="max-w-3xl p-0 overflow-hidden">
+          {user && (
+            <StripeEmbeddedCheckoutForm
+              priceId="pro_monthly"
+              customerEmail={user.email ?? undefined}
+              userId={user.id}
+            />
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

@@ -90,10 +90,18 @@ export function AppHeader() {
           )}
           <LanguageSwitcher />
           <ThemeToggle />
-          {/* Early-access badge — everything's free, so no "Upgrade" CTA */}
-          {location.pathname !== "/pricing" && (
+          {user && !isPro && location.pathname !== "/pricing" && (
+            <Button
+              size="sm"
+              onClick={() => navigate("/pricing")}
+              className="hidden sm:inline-flex text-xs font-body shadow-glow"
+            >
+              <Crown className="h-3.5 w-3.5" /> Upgrade
+            </Button>
+          )}
+          {user && isPro && (
             <span className="hidden sm:inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-gradient-to-r from-primary/15 to-accent/15 text-primary text-[11px] font-body font-bold border border-primary/30">
-              <Sparkles className="h-3 w-3" /> Free · early access
+              <Crown className="h-3 w-3" /> Pro
             </span>
           )}
           {user ? (

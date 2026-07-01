@@ -183,7 +183,7 @@ const Index = () => {
           "mainEntity": [
             { "@type": "Question", "name": "How is this different from other SEO tools?", "acceptedAnswer": { "@type": "Answer", "text": "Most SEO tools give you a checklist of technical issues. SiteScoper acts like a senior product strategist — it evaluates your messaging, positioning, value proposition, and trust signals alongside the technical stuff. Real, opinionated feedback you can actually use." } },
             { "@type": "Question", "name": "Do you actually crawl my whole site?", "acceptedAnswer": { "@type": "Answer", "text": "We crawl up to 8 of your most important pages — typically homepage, pricing, features, docs, about, and signup. This gives the AI enough context to understand your product, not just your front door." } },
-            { "@type": "Question", "name": "Is it really free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes — anyone can analyze a website." } },
+            { "@type": "Question", "name": "How much does it cost?", "acceptedAnswer": { "@type": "Answer", "text": "You get 3 free website scans per month with no credit card. Upgrade to SiteScoper Pro for unlimited scans, deep product simulation, competitor compare, PDF exports and chat-with-your-report." } },
             { "@type": "Question", "name": "How accurate is the AI feedback?", "acceptedAnswer": { "@type": "Answer", "text": "The AI is powered by frontier models (GPT-5 / Gemini Pro) with prompts tuned by experienced product designers. It's not perfect — but it consistently catches issues that even experienced founders miss." } },
             { "@type": "Question", "name": "Can I export the analysis?", "acceptedAnswer": { "@type": "Answer", "text": "Yes — every analysis can be exported as a clean, professional PDF. Great for sharing with teammates, clients, or stakeholders." } },
             { "@type": "Question", "name": "What kind of websites does it work on?", "acceptedAnswer": { "@type": "Answer", "text": "Anything publicly accessible — SaaS landing pages, ecommerce stores, portfolios, blogs, marketing sites, documentation. If it's on the web, we can analyze it." } }
@@ -253,12 +253,12 @@ const Index = () => {
                     </div>
                   </div>
                   <p className="text-[11px] text-muted-foreground font-body text-center lg:text-left">
-                    Free audit · No credit card · 2,400+ sites scored this month
+                    3 free scans / month · No credit card · 2,400+ sites scored this month
                   </p>
                   <div aria-label="Key features" className="flex items-center justify-center lg:justify-start gap-5 text-[11px] text-muted-foreground font-body flex-wrap pt-1">
                     <div className="flex items-center gap-1.5">
                       <div className="w-1.5 h-1.5 rounded-full bg-[hsl(var(--score-good))]" />
-                      Free to use
+                      Free to start
                     </div>
                     <div className="flex items-center gap-1.5">
                       <div className="w-1.5 h-1.5 rounded-full bg-primary" />
