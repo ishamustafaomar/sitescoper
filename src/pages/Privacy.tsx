@@ -49,18 +49,7 @@ const Privacy = () => {
             </div>
 
             <div>
-              <h2 className="text-xl font-heading font-semibold mb-2">3. Third-party services</h2>
-              <p>We use the following processors to operate SiteScoper:</p>
-              <ul className="list-disc pl-6 space-y-1 mt-2">
-                <li><strong>Lovable Cloud (Supabase):</strong> authentication, database, and serverless functions.</li>
-                <li><strong>Firecrawl:</strong> website crawling and content extraction.</li>
-                <li><strong>Lovable AI Gateway:</strong> AI analysis of crawled content.</li>
-              </ul>
-              <p className="mt-2">URLs you submit are sent to these services solely to perform the analysis you requested.</p>
-            </div>
-
-            <div>
-              <h2 className="text-xl font-heading font-semibold mb-2">4. Data retention</h2>
+              <h2 className="text-xl font-heading font-semibold mb-2">3. Data retention</h2>
               <p>Analysis history is retained for as long as your account is active. You can request deletion of your account and associated data at any time by contacting us.</p>
             </div>
 
