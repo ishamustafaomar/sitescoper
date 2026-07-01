@@ -338,7 +338,7 @@ export function SampleReportSection({ onTryYours }: { onTryYours: () => void }) 
             <ArrowRight className="h-4 w-4" />
           </Button>
           <p className="text-[11px] text-muted-foreground font-body">
-            Free — no card required
+            Free plan includes 3 scans / month · Upgrade to Pro for unlimited
           </p>
         </div>
       </div>

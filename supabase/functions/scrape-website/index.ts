@@ -284,12 +284,41 @@ serve(async (req) => {
     }
     userId = claims.claims.sub as string;
 
-    // Early-access: scanning is free and unlimited. Keep `admin` client around for
-    // logging scan_usage so we still have a record of who is using the tool.
+    // Free tier is limited to N scans per rolling 30 days. Pro is unlimited.
     const admin = createClient(
       Deno.env.get("SUPABASE_URL")!,
       Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
     );
+
+    // Server-side quota enforcement. Duplicated intentionally so callers can't
+    // skip the check-scan-quota function by invoking scrape-website directly.
+    const FREE_SCANS_PER_MONTH = 3;
+    const { data: subRow } = await admin
+      .from("subscriptions")
+      .select("status,current_period_end")
+      .eq("user_id", userId)
+      .order("created_at", { ascending: false })
+      .limit(1)
+      .maybeSingle();
+    const isPro = !!subRow && ["active", "trialing", "past_due"].includes(subRow.status) &&
+      (!subRow.current_period_end || new Date(subRow.current_period_end).getTime() > Date.now());
+    if (!isPro) {
+      const since = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString();
+      const { count } = await admin
+        .from("scan_usage")
+        .select("*", { count: "exact", head: true })
+        .eq("user_id", userId)
+        .gte("created_at", since);
+      if ((count ?? 0) >= FREE_SCANS_PER_MONTH) {
+        return new Response(
+          JSON.stringify({
+            error: "Free scan limit reached. Upgrade to SiteScoper Pro for unlimited scans.",
+            reason: "quota_exceeded",
+          }),
+          { status: 402, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+        );
+      }
+    }
 
     const { url } = await req.json();
     if (!url || typeof url !== "string") {

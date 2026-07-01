@@ -11,8 +11,8 @@ const faqs = [
     a: "We crawl up to 8 of your most important pages — typically homepage, pricing, features, docs, about, and signup. This gives the AI enough context to understand your product, not just your front door.",
   },
   {
-    q: "Is it really free?",
-    a: "Yes — anyone can analyze a website.",
+    q: "How much does it cost?",
+    a: "You get 3 free website scans per month with no credit card. For unlimited scans, deep product simulation, competitor compare, PDF exports and chat-with-your-report, upgrade to SiteScoper Pro on the pricing page.",
   },
   {
     q: "How accurate is the AI feedback?",

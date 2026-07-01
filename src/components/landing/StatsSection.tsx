@@ -4,7 +4,7 @@ const stats = [
   { value: "60s", label: "Average analysis time" },
   { value: "8+", label: "Pages crawled per site" },
   { value: "6", label: "Analysis dimensions" },
-  { value: "100%", label: "Free" },
+  { value: "3", label: "Free scans / month" },
 ];
 
 export function StatsSection() {
