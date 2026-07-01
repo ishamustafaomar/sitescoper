@@ -54,8 +54,8 @@ const Privacy = () => {
             </div>
 
             <div>
-              <h2 className="text-xl font-heading font-semibold mb-2">5. Your rights</h2>
-              <p>You have the right to access, correct, export, or delete your personal data. To exercise these rights, contact us through the support channel listed in your account.</p>
+              <h2 className="text-xl font-heading font-semibold mb-2">4. Your rights</h2>
+              <p>You have the right to access, correct, export, or delete your personal data.</p>
             </div>
 
             <div>
