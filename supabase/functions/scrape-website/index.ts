@@ -145,19 +145,23 @@ async function firecrawlRequest(path: string, body: object, apiKey: string) {
     },
     body: JSON.stringify(body),
   });
-  const data = await res.json();
+  const rawText = await res.text();
+  let data: any = null;
+  try { data = rawText ? JSON.parse(rawText) : null; } catch { /* non-JSON body */ }
   if (!res.ok) {
     if (res.status === 402) {
       throw { status: 402, message: "Firecrawl credits exhausted. Please top up your Firecrawl account." };
     }
-    const rawMsg = String(data?.error || "");
-    if (/do not support this site/i.test(rawMsg) || res.status === 403) {
+    const rawMsg = String(
+      data?.error?.message || data?.error || data?.message || data?.details || rawText || ""
+    );
+    if (/do not support this site|not supported|unsupported (site|url)|blocked|forbidden/i.test(rawMsg) || res.status === 403 || res.status === 422) {
       throw { status: 422, message: "This site can't be scanned — it blocks automated crawlers (common for large news sites, social networks, and sites behind logins). Try a different URL." };
     }
     if (res.status === 408 || /timeout/i.test(rawMsg)) {
       throw { status: 504, message: "The site took too long to respond. Try again, or try a different URL." };
     }
-    throw new Error(rawMsg || `Firecrawl error: ${res.status}`);
+    throw { status: 502, message: "Couldn't load this site. It may be down, blocking crawlers, or temporarily unavailable. Try again or use a different URL." };
   }
   return data;
 }
