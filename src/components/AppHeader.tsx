@@ -1,5 +1,6 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import { Sparkles, LayoutDashboard, LogOut, LogIn, Shield, Home, Settings, Check, Swords, Crown } from "lucide-react";
+import { LayoutDashboard, LogOut, LogIn, Shield, Home, Settings, Check, Swords, Crown } from "lucide-react";
+import logoMark from "@/assets/logo.png";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { useAuth } from "@/components/AuthProvider";
@@ -32,9 +33,13 @@ export function AppHeader() {
           onClick={() => navigate("/")}
           className="flex items-center gap-3 hover:opacity-80 transition-opacity"
         >
-          <div className="gradient-primary p-2 rounded-xl shadow-glow">
-            <Sparkles className="h-5 w-5 text-primary-foreground" />
-          </div>
+          <img
+            src={logoMark}
+            alt="SiteScoper logo"
+            width={36}
+            height={36}
+            className="h-9 w-9 object-contain"
+          />
           <div>
             <div className="font-heading font-bold text-lg leading-none">SiteScoper</div>
             <span className="text-[10px] text-muted-foreground font-body tracking-wider uppercase">

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Sparkles } from "lucide-react";
+import logoMark from "@/assets/logo.png";
 
 // Sitewide footer. Adds internal links to every public page —
 // boosts crawl depth and gives every page a consistent set of
@@ -11,9 +11,7 @@ export function SiteFooter() {
       <div className="max-w-6xl mx-auto px-4 py-12 grid gap-10 md:grid-cols-4">
         <div className="md:col-span-1">
           <Link to="/" className="flex items-center gap-2 mb-3">
-            <div className="gradient-primary p-1.5 rounded-lg">
-              <Sparkles className="h-4 w-4 text-primary-foreground" />
-            </div>
+            <img src={logoMark} alt="SiteScoper logo" width={28} height={28} className="h-7 w-7 object-contain" loading="lazy" />
             <span className="font-heading font-bold">SiteScoper</span>
           </Link>
           <p className="text-xs text-muted-foreground leading-relaxed">
