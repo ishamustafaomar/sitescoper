@@ -519,7 +519,7 @@ serve(async (req) => {
         } catch (e: any) {
           console.error("stream error:", e);
           const status = e?.status || 500;
-          const message = status === 402 && typeof e?.message === "string"
+          const message = [402, 422, 504].includes(status) && typeof e?.message === "string"
             ? e.message
             : "Scrape failed. Please try again.";
           send({ type: "error", message, status });
