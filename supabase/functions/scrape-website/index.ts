@@ -150,7 +150,14 @@ async function firecrawlRequest(path: string, body: object, apiKey: string) {
     if (res.status === 402) {
       throw { status: 402, message: "Firecrawl credits exhausted. Please top up your Firecrawl account." };
     }
-    throw new Error(data.error || `Firecrawl error: ${res.status}`);
+    const rawMsg = String(data?.error || "");
+    if (/do not support this site/i.test(rawMsg) || res.status === 403) {
+      throw { status: 422, message: "This site can't be scanned — it blocks automated crawlers (common for large news sites, social networks, and sites behind logins). Try a different URL." };
+    }
+    if (res.status === 408 || /timeout/i.test(rawMsg)) {
+      throw { status: 504, message: "The site took too long to respond. Try again, or try a different URL." };
+    }
+    throw new Error(rawMsg || `Firecrawl error: ${res.status}`);
   }
   return data;
 }
