@@ -258,7 +258,7 @@ const Index = () => {
                   <div aria-label="Key features" className="flex items-center justify-center lg:justify-start gap-5 text-[11px] text-muted-foreground font-body flex-wrap pt-1">
                     <div className="flex items-center gap-1.5">
                       <div className="w-1.5 h-1.5 rounded-full bg-[hsl(var(--score-good))]" />
-                      Free to start
+                      {t("hero.signUpForThree")}
                     </div>
                     <div className="flex items-center gap-1.5">
                       <div className="w-1.5 h-1.5 rounded-full bg-primary" />
@@ -266,7 +266,7 @@ const Index = () => {
                     </div>
                     <div className="flex items-center gap-1.5">
                       <div className="w-1.5 h-1.5 rounded-full bg-[hsl(280,70%,60%)]" />
-                      PDF export
+                      {t("hero.export")}
                     </div>
                   </div>
                 </div>
