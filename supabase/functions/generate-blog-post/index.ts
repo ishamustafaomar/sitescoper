@@ -68,9 +68,11 @@ serve(async (req) => {
     if (bearer && bearer === SUPABASE_SERVICE_ROLE_KEY) {
       authorized = true; // cron/server-to-server
     } else if (bearer) {
-      const userClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-      const { data: claims } = await userClient.auth.getClaims(bearer);
-      const uid = claims?.claims?.sub as string | undefined;
+      const userClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+        global: { headers: { Authorization: `Bearer ${bearer}` } },
+      });
+      const { data: userData } = await userClient.auth.getUser();
+      const uid = userData?.user?.id;
       if (uid) {
         const { data: isAdmin } = await sb.rpc("has_role", {
           _user_id: uid,
