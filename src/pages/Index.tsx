@@ -169,8 +169,8 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>AI Website UX Auditor & Instant SEO Checker | SiteScoper</title>
-        <meta name="description" content="SiteScoper is the AI website UX auditor and instant SEO checker that tells you the 3 things actually worth fixing this week — UX, SEO, copy and conversion, in 60 seconds." />
+        <title>Stop Guessing, Start Growing — AI Website Auditor in 60 Seconds | SiteScoper</title>
+        <meta name="description" content="SiteScoper is the AI website auditor that delivers actionable UX & SEO fixes in 60 seconds. Start free — 3 full scans per month, no credit card." />
         <link rel="canonical" href="https://sitescoper.com/" />
         <meta property="og:title" content="AI Website UX Auditor & Instant SEO Checker | SiteScoper" />
         <meta property="og:description" content="Instant AI audit of your site's UX, SEO and conversion. The 3 fixes actually worth shipping this week." />
@@ -226,12 +226,12 @@ const Index = () => {
                     Built by founders, for founders
                   </motion.div>
                   <h1 className="text-4xl md:text-6xl font-heading font-bold tracking-tight leading-[1.02]">
-                    The website audit
+                    Stop guessing,
                     <br />
-                    that tells you{" "}
+                    start growing.{" "}
                     <span className="relative inline-block">
                       <span className="bg-gradient-to-r from-primary via-[hsl(265,70%,58%)] to-[hsl(280,70%,60%)] bg-clip-text text-transparent">
-                        the truth.
+                        Actionable UX &amp; SEO fixes in 60 seconds.
                       </span>
                       <svg className="absolute left-0 -bottom-2 w-full" viewBox="0 0 200 8" fill="none" preserveAspectRatio="none">
                         <path d="M2 5 Q50 1 100 4 T198 3" stroke="hsl(var(--primary))" strokeWidth="2.5" strokeLinecap="round" fill="none" opacity="0.4" />
@@ -239,8 +239,18 @@ const Index = () => {
                     </span>
                   </h1>
                   <p className="text-muted-foreground font-body text-base md:text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed">
-                    SiteScoper is an <strong className="text-foreground/90 font-semibold">AI website UX auditor</strong> and <strong className="text-foreground/90 font-semibold">instant SEO checker</strong> for founders. Skip the 200-row checklist — get the 3 fixes actually worth shipping this week, in 60 seconds.
+                    The <strong className="text-foreground/90 font-semibold">AI website auditor</strong> that skips the 200-row checklist and hands you the 3 UX, SEO and copy fixes actually worth shipping this week — with a plain-English action plan a senior product strategist would sign off on.
                   </p>
+                  {/* Free plan badge — high-contrast, next to CTA */}
+                  <div className="flex justify-center lg:justify-start">
+                    <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[hsl(var(--score-good))]/15 text-[hsl(var(--score-good))] border border-[hsl(var(--score-good))]/30 text-xs font-heading font-semibold">
+                      <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[hsl(var(--score-good))] opacity-75" />
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-[hsl(var(--score-good))]" />
+                      </span>
+                      Free plan · 3 full scans every month · No credit card
+                    </span>
+                  </div>
                   {/* URL Input — kept above the fold */}
                   <div ref={inputRef} className="pt-2">
                     <UrlInput onSubmit={handleAnalyze} isLoading={isLoading} />
