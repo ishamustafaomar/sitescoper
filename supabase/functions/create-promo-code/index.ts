@@ -29,7 +29,7 @@ Deno.serve(async (req) => {
       body: form.toString(),
     });
     const promo = await res.json();
-    return new Response(JSON.stringify({ code: promo.code, id: promo.id, coupon: coupon.id, env }, null, 2), {
+    return new Response(JSON.stringify({ promo, coupon: coupon.id, env }, null, 2), {
       headers: { "content-type": "application/json" },
     });
   } catch (e: any) {
