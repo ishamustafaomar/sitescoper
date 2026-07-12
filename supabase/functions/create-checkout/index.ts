@@ -50,6 +50,7 @@ Deno.serve(async (req) => {
       return_url: returnUrl,
       ...(customerEmail && { customer_email: customerEmail }),
       metadata: { userId },
+      allow_promotion_codes: true,
       ...(isRecurring && { subscription_data: { metadata: { userId } } }),
     });
 
