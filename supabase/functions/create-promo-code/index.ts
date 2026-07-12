@@ -25,6 +25,7 @@ Deno.serve(async (req) => {
         "X-Connection-Api-Key": connectionKey,
         "Lovable-API-Key": lovableKey,
         "Content-Type": "application/x-www-form-urlencoded",
+        "Stripe-Version": "2024-06-20",
       },
       body: form.toString(),
     });
