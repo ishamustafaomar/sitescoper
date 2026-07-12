@@ -127,7 +127,7 @@ export default function Pricing() {
       </main>
 
       <Dialog open={checkoutOpen} onOpenChange={setCheckoutOpen}>
-        <DialogContent className="max-w-3xl p-0 overflow-hidden">
+        <DialogContent className="max-w-3xl p-0 max-h-[90vh] overflow-y-auto overscroll-contain">
           {user && (
             <StripeEmbeddedCheckoutForm
               priceId="pro_monthly"
