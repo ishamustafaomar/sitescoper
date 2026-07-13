@@ -1,6 +1,6 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { LayoutDashboard, LogOut, LogIn, Shield, Sparkles, Check, Swords, Crown, User as UserIcon, Menu } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import logoMark from "@/assets/logo.png";
 import { Button } from "@/components/ui/button";
@@ -19,9 +19,15 @@ export function AppHeader() {
   const location = useLocation();
   const { user, signOut } = useAuth();
   const { t } = useTranslation();
+  const { i18n } = useTranslation();
   const { isPro } = useSubscription();
   const { isAdmin } = useIsAdmin();
   const [mobileOpen, setMobileOpen] = useState(false);
+  useEffect(() => {
+    if (typeof document !== "undefined" && i18n.resolvedLanguage) {
+      document.documentElement.lang = i18n.resolvedLanguage;
+    }
+  }, [i18n.resolvedLanguage]);
   const currentPath = `${location.pathname}${location.search}${location.hash}`;
   const authPath = `/auth?redirect=${encodeURIComponent(currentPath)}`;
 
@@ -66,7 +72,7 @@ export function AppHeader() {
             className={cn(pillBase, path === "/" ? pillActive : pillIdle)}
           >
             <Sparkles className="h-3.5 w-3.5" />
-            Analyze
+            {t("nav.analyze")}
           </button>
           {user && (
             <button
@@ -74,7 +80,7 @@ export function AppHeader() {
               className={cn(pillBase, path.startsWith("/dashboard") ? pillActive : pillIdle)}
             >
               <LayoutDashboard className="h-3.5 w-3.5" />
-              Dashboard
+              {t("nav.dashboard")}
             </button>
           )}
           <button
@@ -82,7 +88,7 @@ export function AppHeader() {
             className={cn(pillBase, path === "/compare" ? pillActive : pillIdle)}
           >
             <Swords className="h-3.5 w-3.5" />
-            Compare
+            {t("nav.compare")}
             {!isPro && (
               <span className="ml-1 rounded-full border border-primary/25 bg-primary/10 px-1.5 py-[1px] text-[9px] font-bold tracking-wider text-primary">
                 PRO
@@ -93,7 +99,7 @@ export function AppHeader() {
             onClick={() => navigate("/pricing")}
             className={cn(pillBase, path === "/pricing" ? pillActive : pillIdle)}
           >
-            Pricing
+            {t("nav.pricing")}
           </button>
           {user && isAdmin && (
             <button
@@ -101,7 +107,7 @@ export function AppHeader() {
               className={cn(pillBase, path.startsWith("/admin") ? pillActive : pillIdle)}
             >
               <Shield className="h-3.5 w-3.5" />
-              Admin
+              {t("nav.admin")}
             </button>
           )}
         </nav>
@@ -115,7 +121,7 @@ export function AppHeader() {
               onClick={() => navigate("/pricing")}
               className="hidden sm:inline-flex text-xs font-body shadow-glow"
             >
-              <Crown className="h-3.5 w-3.5" /> Upgrade
+              <Crown className="h-3.5 w-3.5" /> {t("nav.upgrade")}
             </Button>
           )}
           {user && isPro && (
@@ -171,15 +177,15 @@ export function AppHeader() {
             </SheetTrigger>
             <SheetContent side="right" className="w-[260px]">
               <SheetHeader>
-                <SheetTitle className="font-heading">Menu</SheetTitle>
+                <SheetTitle className="font-heading">{t("nav.menu")}</SheetTitle>
               </SheetHeader>
               <nav className="mt-6 flex flex-col gap-1">
                 {[
-                  { to: "/", label: "Analyze", icon: Sparkles, show: true },
-                  { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard, show: !!user },
-                  { to: "/compare", label: "Compare", icon: Swords, show: true, pro: !isPro },
-                  { to: "/pricing", label: "Pricing", show: true },
-                  { to: "/admin", label: "Admin", icon: Shield, show: !!user && isAdmin },
+                  { to: "/", label: t("nav.analyze"), icon: Sparkles, show: true },
+                  { to: "/dashboard", label: t("nav.dashboard"), icon: LayoutDashboard, show: !!user },
+                  { to: "/compare", label: t("nav.compare"), icon: Swords, show: true, pro: !isPro },
+                  { to: "/pricing", label: t("nav.pricing"), show: true },
+                  { to: "/admin", label: t("nav.admin"), icon: Shield, show: !!user && isAdmin },
                 ]
                   .filter((i) => i.show)
                   .map((item) => {
