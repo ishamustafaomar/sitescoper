@@ -50,7 +50,9 @@ const Privacy = () => {
 
             <div>
               <h2 className="text-xl font-heading font-semibold mb-2">3. Data retention</h2>
-              <p>Analysis history is retained for as long as your account is active. You can request deletion of your account and associated data at any time by contacting us.</p>
+              <p>
+                Analysis history is retained for as long as your account is active. You can delete your account and associated data at any time by clicking the profile icon and under "Your data (GDPR)" click "Delete my account".
+              </p>
             </div>
 
             <div>
