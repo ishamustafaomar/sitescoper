@@ -1,5 +1,5 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import { LayoutDashboard, LogOut, LogIn, Shield, Home, Settings, Check, Swords, Crown } from "lucide-react";
+import { LayoutDashboard, LogOut, LogIn, Shield, Sparkles, Check, Swords, Crown, User as UserIcon } from "lucide-react";
 import logoMark from "@/assets/logo.png";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -10,6 +10,7 @@ import { useTranslation } from "react-i18next";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { useSubscription } from "@/hooks/useSubscription";
 import { useIsAdmin } from "@/hooks/useIsAdmin";
+import { cn } from "@/lib/utils";
 
 export function AppHeader() {
   const navigate = useNavigate();
@@ -26,73 +27,83 @@ export function AppHeader() {
     navigate("/");
   };
 
+  const path = location.pathname;
+  const pillBase =
+    "inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[13px] font-body transition-colors";
+  const pillActive = "bg-muted text-foreground";
+  const pillIdle = "text-muted-foreground hover:bg-muted/70 hover:text-foreground";
+  const initial = ((user?.user_metadata?.full_name || user?.email || "U") as string)[0].toUpperCase();
+
   return (
-    <header className="border-b border-border bg-card/80 backdrop-blur-md sticky top-0 z-10">
-      <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+    <header className="sticky top-0 z-40 border-b border-border bg-card/80 backdrop-blur-md supports-[backdrop-filter]:bg-card/70">
+      <div className="max-w-6xl mx-auto h-[60px] px-4 flex items-center justify-between gap-4">
         <button
           onClick={() => navigate("/")}
-          className="flex items-center gap-3 hover:opacity-80 transition-opacity"
+          className="flex items-center gap-2.5 hover:opacity-80 transition-opacity"
+          aria-label="SiteScoper home"
         >
           <img
             src={logoMark}
             alt="SiteScoper logo"
-            width={36}
-            height={36}
-            className="h-9 w-9 object-contain"
+            width={34}
+            height={34}
+            className="h-[34px] w-[34px] object-contain"
           />
-          <div>
-            <div className="font-heading font-bold text-lg leading-none">SiteScoper</div>
-            <span className="text-[10px] text-muted-foreground font-body tracking-wider uppercase">
+          <div className="flex flex-col items-start gap-[1px]">
+            <span className="font-heading font-bold text-base leading-none">SiteScoper</span>
+            <span className="text-[8.5px] text-muted-foreground font-body tracking-[0.18em] uppercase">
               AI Website Analyzer
             </span>
           </div>
         </button>
 
-        <div className="flex items-center gap-2">
-          {location.pathname !== "/" && (
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => navigate("/")}
-              className="text-xs font-body"
-            >
-              <Home className="h-3.5 w-3.5" />
-              {t("nav.home")}
-            </Button>
-          )}
-          {user && location.pathname !== "/dashboard" && (
-            <Button
-              variant="ghost"
-              size="sm"
+        <nav className="hidden md:flex items-center gap-1">
+          <button
+            onClick={() => navigate("/")}
+            className={cn(pillBase, path === "/" ? pillActive : pillIdle)}
+          >
+            <Sparkles className="h-3.5 w-3.5" />
+            Analyze
+          </button>
+          {user && (
+            <button
               onClick={() => navigate("/dashboard")}
-              className="text-xs font-body"
+              className={cn(pillBase, path.startsWith("/dashboard") ? pillActive : pillIdle)}
             >
               <LayoutDashboard className="h-3.5 w-3.5" />
-              {t("nav.dashboard")}
-            </Button>
+              Dashboard
+            </button>
           )}
-          {location.pathname !== "/compare" && (
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => navigate("/compare")}
-              className="text-xs font-body"
-            >
-              <Swords className="h-3.5 w-3.5" />
-              Compare
-            </Button>
-          )}
-          {user && isAdmin && location.pathname !== "/admin" && (
-            <Button
-              variant="ghost"
-              size="sm"
+          <button
+            onClick={() => navigate("/compare")}
+            className={cn(pillBase, path === "/compare" ? pillActive : pillIdle)}
+          >
+            <Swords className="h-3.5 w-3.5" />
+            Compare
+            {!isPro && (
+              <span className="ml-1 rounded-full border border-primary/25 bg-primary/10 px-1.5 py-[1px] text-[9px] font-bold tracking-wider text-primary">
+                PRO
+              </span>
+            )}
+          </button>
+          <button
+            onClick={() => navigate("/pricing")}
+            className={cn(pillBase, path === "/pricing" ? pillActive : pillIdle)}
+          >
+            Pricing
+          </button>
+          {user && isAdmin && (
+            <button
               onClick={() => navigate("/admin")}
-              className="text-xs font-body"
+              className={cn(pillBase, path.startsWith("/admin") ? pillActive : pillIdle)}
             >
               <Shield className="h-3.5 w-3.5" />
-              {t("nav.admin")}
-            </Button>
+              Admin
+            </button>
           )}
+        </nav>
+
+        <div className="flex items-center gap-2">
           <LanguageSwitcher />
           <ThemeToggle />
           {user && !isPro && location.pathname !== "/pricing" && (
@@ -105,23 +116,26 @@ export function AppHeader() {
             </Button>
           )}
           {user && isPro && (
-            <span className="hidden sm:inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-gradient-to-r from-primary/15 to-accent/15 text-primary text-[11px] font-body font-bold border border-primary/30">
+            <span className="hidden sm:inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary/10 text-primary text-[11px] font-heading font-semibold border border-primary/25">
               <Crown className="h-3 w-3" /> Pro
             </span>
           )}
           {user ? (
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1">
               <button
                 onClick={() => navigate("/account")}
-                className="rounded-full hover:ring-2 hover:ring-primary/40 transition"
+                className="h-8 w-8 rounded-full font-heading text-[13px] font-semibold text-primary-foreground flex items-center justify-center border border-primary/35 hover:ring-2 hover:ring-primary/40 transition"
+                style={{ background: "var(--gradient-primary)" }}
                 aria-label={t("nav.account")}
               >
-                <Avatar className="h-7 w-7">
-                  <AvatarImage src={user.user_metadata?.avatar_url} />
-                  <AvatarFallback className="text-xs font-heading bg-primary/10 text-primary">
-                    {(user.user_metadata?.full_name || user.email || "U")[0].toUpperCase()}
-                  </AvatarFallback>
-                </Avatar>
+                {user.user_metadata?.avatar_url ? (
+                  <Avatar className="h-8 w-8">
+                    <AvatarImage src={user.user_metadata?.avatar_url} />
+                    <AvatarFallback className="text-xs">{initial}</AvatarFallback>
+                  </Avatar>
+                ) : (
+                  initial
+                )}
               </button>
               <Button variant="ghost" size="icon" className="h-8 w-8" onClick={handleSignOut} aria-label={t("nav.signOut", { defaultValue: "Sign out" })}>
                 <LogOut className="h-3.5 w-3.5" />
