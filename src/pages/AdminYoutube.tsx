@@ -8,6 +8,7 @@ import { toast } from "@/hooks/use-toast";
 import { Loader2, Copy, Download, RefreshCcw, Sparkles, CheckCircle2 } from "lucide-react";
 // @ts-ignore - no types
 import fixWebmDuration from "fix-webm-duration";
+import { useTranslation } from "react-i18next";
 
 type Beat = { text: string; screenshot_index: number; visual_note: string };
 type WordTiming = { word: string; start_ms: number; end_ms: number };
@@ -361,6 +362,7 @@ function copy(text: string, label: string) {
 }
 
 function CardShort({ short, onChanged }: { short: Short; onChanged: () => void }) {
+  const { t } = useTranslation();
   const previewRef = useRef<HTMLCanvasElement>(null);
   const [rendering, setRendering] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -400,7 +402,7 @@ function CardShort({ short, onChanged }: { short: Short; onChanged: () => void }
 
   const download = async () => {
     if (!voiceSignedUrl) {
-      toast({ title: "Voice not ready", description: "Wait a moment and try again.", variant: "destructive" });
+      toast({ title: t("pages.adminYoutube.voiceNotReady"), description: t("pages.adminYoutube.waitAndRetry"), variant: "destructive" });
       return;
     }
     setRendering(true);
@@ -413,9 +415,9 @@ function CardShort({ short, onChanged }: { short: Short; onChanged: () => void }
       a.download = `sitescoper-short-${short.id.slice(0, 8)}.webm`;
       a.click();
       URL.revokeObjectURL(url);
-      toast({ title: "Downloaded", description: "Convert to MP4 or upload the .webm directly to YouTube Shorts." });
+      toast({ title: t("pages.adminYoutube.downloaded"), description: t("pages.adminYoutube.convertHint") });
     } catch (e: any) {
-      toast({ title: "Render failed", description: e.message, variant: "destructive" });
+      toast({ title: t("pages.adminYoutube.renderFailed"), description: e.message, variant: "destructive" });
     } finally {
       setRendering(false);
     }
@@ -427,7 +429,7 @@ function CardShort({ short, onChanged }: { short: Short; onChanged: () => void }
       toast({ title: "Error", description: error.message, variant: "destructive" });
       return;
     }
-    toast({ title: "New Short generated" });
+    toast({ title: t("pages.adminYoutube.newShortGenerated") });
     onChanged();
   };
 
@@ -468,15 +470,15 @@ function CardShort({ short, onChanged }: { short: Short; onChanged: () => void }
         </div>
 
         <div>
-          <div className="text-xs uppercase text-muted-foreground mb-1">Script</div>
+          <div className="text-xs uppercase text-muted-foreground mb-1">{t("pages.adminYoutube.script")}</div>
           <p className="text-sm">{short.script || short.insight}</p>
         </div>
 
         <div>
           <div className="flex items-center justify-between mb-1">
-            <div className="text-xs uppercase text-muted-foreground">Title ({short.title.length})</div>
+            <div className="text-xs uppercase text-muted-foreground">{t("pages.adminYoutube.titleLabel")} ({short.title.length})</div>
             <Button size="sm" variant="ghost" onClick={() => copy(short.title, "Title")}>
-              <Copy className="h-3 w-3 mr-1" /> Copy
+              <Copy className="h-3 w-3 mr-1" /> {t("pages.adminYoutube.copy")}
             </Button>
           </div>
           <p className="font-medium">{short.title}</p>
@@ -484,9 +486,9 @@ function CardShort({ short, onChanged }: { short: Short; onChanged: () => void }
 
         <div>
           <div className="flex items-center justify-between mb-1">
-            <div className="text-xs uppercase text-muted-foreground">Description</div>
+            <div className="text-xs uppercase text-muted-foreground">{t("pages.adminYoutube.description")}</div>
             <Button size="sm" variant="ghost" onClick={() => copy(short.description, "Description")}>
-              <Copy className="h-3 w-3 mr-1" /> Copy
+              <Copy className="h-3 w-3 mr-1" /> {t("pages.adminYoutube.copy")}
             </Button>
           </div>
           <pre className="text-sm whitespace-pre-wrap font-sans bg-muted/40 p-3 rounded">{short.description}</pre>
@@ -494,9 +496,9 @@ function CardShort({ short, onChanged }: { short: Short; onChanged: () => void }
 
         <div>
           <div className="flex items-center justify-between mb-1">
-            <div className="text-xs uppercase text-muted-foreground">Tags</div>
+            <div className="text-xs uppercase text-muted-foreground">{t("pages.adminYoutube.tags")}</div>
             <Button size="sm" variant="ghost" onClick={() => copy(short.tags.join(", "), "Tags")}>
-              <Copy className="h-3 w-3 mr-1" /> Copy
+              <Copy className="h-3 w-3 mr-1" /> {t("pages.adminYoutube.copy")}
             </Button>
           </div>
           <p className="text-sm text-muted-foreground">{short.tags.join(", ")}</p>
@@ -505,14 +507,14 @@ function CardShort({ short, onChanged }: { short: Short; onChanged: () => void }
         <div className="flex gap-2 flex-wrap pt-2">
           <Button onClick={download} disabled={rendering}>
             {rendering ? <Loader2 className="h-4 w-4 mr-2 animate-spin" /> : <Download className="h-4 w-4 mr-2" />}
-            {rendering ? `Rendering ${Math.round(progress * 100)}%` : "Download MP4"}
+            {rendering ? `${t("pages.adminYoutube.rendering")} ${Math.round(progress * 100)}%` : t("pages.adminYoutube.downloadMp4")}
           </Button>
           <Button variant="outline" onClick={regenerate}>
-            <RefreshCcw className="h-4 w-4 mr-2" /> Regenerate
+            <RefreshCcw className="h-4 w-4 mr-2" /> {t("pages.adminYoutube.regenerate")}
           </Button>
           <Button variant="secondary" onClick={markPosted}>
             <CheckCircle2 className="h-4 w-4 mr-2" />
-            {short.status === "posted" ? "Mark as not posted" : "Mark as posted"}
+            {short.status === "posted" ? t("pages.adminYoutube.markAsNotPosted") : t("pages.adminYoutube.markAsPosted")}
           </Button>
         </div>
       </div>
@@ -521,6 +523,7 @@ function CardShort({ short, onChanged }: { short: Short; onChanged: () => void }
 }
 
 export default function AdminYoutube() {
+  const { t } = useTranslation();
   const { isAdmin, loading: roleLoading } = useIsAdmin();
   const [shorts, setShorts] = useState<Short[]>([]);
   const [loading, setLoading] = useState(true);
@@ -544,12 +547,12 @@ export default function AdminYoutube() {
     const { error } = await supabase.functions.invoke("youtube-short-generate");
     setGenerating(false);
     if (error) { toast({ title: "Error", description: error.message, variant: "destructive" }); return; }
-    toast({ title: "New Short generated" });
+    toast({ title: t("pages.adminYoutube.newShortGenerated") });
     load();
   };
 
   if (roleLoading) return <div className="p-8"><Loader2 className="animate-spin" /></div>;
-  if (!isAdmin) return <div className="p-8">Admin only.</div>;
+  if (!isAdmin) return <div className="p-8">{t("pages.adminYoutube.adminOnly")}</div>;
 
   const today = shorts[0];
   const rest = shorts.slice(1);
@@ -558,14 +561,14 @@ export default function AdminYoutube() {
     <div className="container mx-auto py-8 space-y-6 max-w-5xl">
       <div className="flex items-center justify-between flex-wrap gap-3">
         <div>
-          <h1 className="text-2xl font-heading font-bold">YouTube Shorts</h1>
+          <h1 className="text-2xl font-heading font-bold">{t("pages.adminYoutube.title")}</h1>
           <p className="text-sm text-muted-foreground">
-            One Short generated daily at 13:00 UTC. Copy text, download MP4, post yourself.
+            {t("pages.adminYoutube.subtitle")}
           </p>
         </div>
         <Button onClick={generateNow} disabled={generating}>
           {generating ? <Loader2 className="h-4 w-4 mr-2 animate-spin" /> : <Sparkles className="h-4 w-4 mr-2" />}
-          Generate now
+          {t("pages.adminYoutube.generateNow")}
         </Button>
       </div>
 
@@ -573,15 +576,15 @@ export default function AdminYoutube() {
         <div className="p-12 flex justify-center"><Loader2 className="animate-spin" /></div>
       ) : !today ? (
         <Card className="p-12 text-center text-muted-foreground">
-          No Shorts yet. Click <strong>Generate now</strong> to create your first one.
+          {t("pages.adminYoutube.noShorts")}
         </Card>
       ) : (
         <>
-          <h2 className="text-sm font-semibold uppercase text-muted-foreground">Today</h2>
+          <h2 className="text-sm font-semibold uppercase text-muted-foreground">{t("pages.adminYoutube.today")}</h2>
           <CardShort short={today} onChanged={load} />
           {rest.length > 0 && (
             <>
-              <h2 className="text-sm font-semibold uppercase text-muted-foreground pt-6">History</h2>
+              <h2 className="text-sm font-semibold uppercase text-muted-foreground pt-6">{t("pages.adminYoutube.history")}</h2>
               <div className="space-y-4">
                 {rest.map((s) => <CardShort key={s.id} short={s} onChanged={load} />)}
               </div>

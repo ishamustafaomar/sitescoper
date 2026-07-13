@@ -7,8 +7,10 @@ import { AppHeader } from "@/components/AppHeader";
 import { Button } from "@/components/ui/button";
 import { useSubscription } from "@/hooks/useSubscription";
 import { useAuth } from "@/components/AuthProvider";
+import { useTranslation } from "react-i18next";
 
 export default function CheckoutReturn() {
+  const { t } = useTranslation();
   const [params] = useSearchParams();
   const sessionId = params.get("session_id");
   const navigate = useNavigate();
@@ -28,11 +30,11 @@ export default function CheckoutReturn() {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Checkout Return — SiteScoper</title>
-        <meta name="description" content="Confirm your SiteScoper subscription upgrade and continue to your website analysis dashboard." />
+        <title>{t("checkoutReturn.metaTitle")}</title>
+        <meta name="description" content={t("checkoutReturn.metaDesc")} />
         <link rel="canonical" href="https://sitescoper.com/checkout/return" />
-        <meta property="og:title" content="Checkout Return — SiteScoper" />
-        <meta property="og:description" content="Confirm your SiteScoper subscription upgrade and continue to your website analysis dashboard." />
+        <meta property="og:title" content={t("checkoutReturn.metaTitle")} />
+        <meta property="og:description" content={t("checkoutReturn.metaDesc")} />
         <meta property="og:url" content="https://sitescoper.com/checkout/return" />
         <meta name="robots" content="noindex" />
       </Helmet>
@@ -48,30 +50,30 @@ export default function CheckoutReturn() {
               <div className="inline-flex p-4 rounded-full bg-[hsl(var(--score-good))]/10">
                 <CheckCircle2 className="h-10 w-10 text-[hsl(var(--score-good))]" />
               </div>
-              <h1 className="font-heading text-3xl font-bold">You're on Pro 🎉</h1>
+              <h1 className="font-heading text-3xl font-bold">{t("checkoutReturn.proTitle")}</h1>
               <p className="text-muted-foreground font-body">
-                Welcome aboard. Unlimited scans, full history, ideas, AI chat, PDF & compare are now unlocked.
+                {t("checkoutReturn.proDesc")}
               </p>
               <div className="flex gap-2 justify-center pt-2">
                 <Button onClick={() => navigate("/dashboard")}>
-                  <Sparkles className="h-4 w-4" /> Go to dashboard
+                  <Sparkles className="h-4 w-4" /> {t("checkoutReturn.goDashboard")}
                 </Button>
-                <Button variant="outline" onClick={() => navigate("/account")}>Manage billing</Button>
+                <Button variant="outline" onClick={() => navigate("/account")}>{t("checkoutReturn.manageBilling")}</Button>
               </div>
             </>
           ) : (
             <>
               <Loader2 className="h-10 w-10 animate-spin text-primary mx-auto" />
-              <h1 className="font-heading text-2xl font-bold">Confirming your upgrade…</h1>
+              <h1 className="font-heading text-2xl font-bold">{t("checkoutReturn.confirming")}</h1>
               <p className="text-sm text-muted-foreground font-body">
                 {authLoading || !user
-                  ? "Signing you in…"
-                  : "Hang tight — we're syncing your subscription. This usually takes a few seconds."}
+                  ? t("checkoutReturn.signingIn")
+                  : t("checkoutReturn.syncing")}
               </p>
-              {sessionId && <p className="text-[10px] text-muted-foreground/60 font-mono">session: {sessionId.slice(0, 24)}…</p>}
+              {sessionId && <p className="text-[10px] text-muted-foreground/60 font-mono">{t("checkoutReturn.session", { id: sessionId.slice(0, 24) })}</p>}
               {waited > 10 && (
                 <p className="text-xs text-muted-foreground">
-                  Still syncing? <button className="underline" onClick={() => navigate("/account")}>Visit account</button>.
+                  {t("checkoutReturn.stillSyncing")} <button className="underline" onClick={() => navigate("/account")}>{t("checkoutReturn.visitAccount")}</button>
                 </p>
               )}
             </>

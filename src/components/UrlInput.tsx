@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Globe, ArrowRight, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useTranslation } from "react-i18next";
 
 interface UrlInputProps {
   onSubmit: (url: string) => void;
@@ -10,6 +11,7 @@ interface UrlInputProps {
 }
 
 export function UrlInput({ onSubmit, isLoading }: UrlInputProps) {
+  const { t } = useTranslation();
   const [url, setUrl] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -34,7 +36,7 @@ export function UrlInput({ onSubmit, isLoading }: UrlInputProps) {
         </div>
         <Input
           type="text"
-          placeholder="Enter a website URL..."
+          placeholder={t("urlInput.placeholder")}
           value={url}
           onChange={(e) => setUrl(e.target.value)}
           className="border-0 bg-transparent shadow-none focus-visible:ring-0 text-base font-body"
@@ -51,7 +53,7 @@ export function UrlInput({ onSubmit, isLoading }: UrlInputProps) {
             <Loader2 className="h-4 w-4 animate-spin" />
           ) : (
             <>
-              Analyze
+              {t("urlInput.analyze")}
               <ArrowRight className="h-4 w-4" />
             </>
           )}

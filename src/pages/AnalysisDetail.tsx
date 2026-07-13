@@ -14,6 +14,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { AnalysisResult, ScrapeResult } from "@/lib/api";
 import { useToast } from "@/hooks/use-toast";
 import { useSubscription } from "@/hooks/useSubscription";
+import { useTranslation } from "react-i18next";
 
 function genToken() {
   const arr = new Uint8Array(16);
@@ -22,6 +23,7 @@ function genToken() {
 }
 
 export default function AnalysisDetail() {
+  const { t } = useTranslation();
   const { id } = useParams();
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -49,7 +51,7 @@ export default function AnalysisDetail() {
   const handleExportPDF = () => {
     if (!record) return;
     if (!isPro) {
-      toast({ title: "PDF export is a Pro feature", description: "Upgrade to download the full report." });
+      toast({ title: t("analysisDetail.proFeatureToast"), description: t("analysisDetail.upgradeToDownload") });
       navigate("/pricing");
       return;
     }
@@ -88,9 +90,9 @@ export default function AnalysisDetail() {
       await navigator.clipboard.writeText(url);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
-      toast({ title: "Share link copied", description: "Anyone with this link can view this report." });
+      toast({ title: t("analysisDetail.shareLinkCopiedTitle"), description: t("analysisDetail.shareLinkCopiedDesc") });
     } catch (e: any) {
-      toast({ title: "Couldn't create share link", description: e.message, variant: "destructive" });
+      toast({ title: t("analysisDetail.shareErrorTitle"), description: e.message, variant: "destructive" });
     } finally {
       setSharing(false);
     }
@@ -112,9 +114,9 @@ export default function AnalysisDetail() {
       <div className="min-h-screen bg-background">
         <AppHeader />
         <div className="max-w-6xl mx-auto px-4 py-16 text-center">
-          <p className="text-muted-foreground font-body">Analysis not found.</p>
+          <p className="text-muted-foreground font-body">{t("analysisDetail.notFound")}</p>
           <Button variant="outline" onClick={() => navigate(-1)} className="mt-4">
-            Go Back
+            {t("analysisDetail.goBack")}
           </Button>
         </div>
       </div>
@@ -146,11 +148,11 @@ export default function AnalysisDetail() {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>{record?.url ? `${record.url} — SiteScoper Report` : "Analysis Report — SiteScoper"}</title>
-        <meta name="description" content={record?.summary ? String(record.summary).slice(0, 155) : "Detailed AI website analysis report with scores, findings, and improvement suggestions."} />
+        <title>{record?.url ? t("analysisDetail.title", { url: record.url }) : t("analysisDetail.titleFallback")}</title>
+        <meta name="description" content={record?.summary ? String(record.summary).slice(0, 155) : t("analysisDetail.metaDescriptionFallback")} />
         <link rel="canonical" href={`https://sitescoper.com/analysis/${id}`} />
-        <meta property="og:title" content={record?.url ? `${record.url} — SiteScoper Report` : "Analysis Report — SiteScoper"} />
-        <meta property="og:description" content={record?.summary ? String(record.summary).slice(0, 155) : "Detailed AI website analysis report."} />
+        <meta property="og:title" content={record?.url ? t("analysisDetail.title", { url: record.url }) : t("analysisDetail.titleFallback")} />
+        <meta property="og:description" content={record?.summary ? String(record.summary).slice(0, 155) : t("analysisDetail.metaDescriptionFallback")} />
         <meta property="og:url" content={`https://sitescoper.com/analysis/${id}`} />
         <meta name="robots" content="noindex" />
       </Helmet>
@@ -163,23 +165,23 @@ export default function AnalysisDetail() {
             </Button>
             <Button variant="ghost" size="sm" onClick={() => navigate("/")} className="text-xs font-body">
               <Home className="h-3.5 w-3.5" />
-              Home
+              {t("analysisDetail.home")}
             </Button>
             <div className="min-w-0">
               <h2 className="font-heading font-bold text-lg truncate">{record.url}</h2>
               <p className="text-xs text-muted-foreground font-body">
-                Analyzed {new Date(record.created_at).toLocaleString()}
+                {t("analysisDetail.analyzedAt", { date: new Date(record.created_at).toLocaleString() })}
               </p>
             </div>
           </div>
           <div className="flex items-center gap-2">
             <Button variant="outline" size="sm" onClick={handleShare} disabled={sharing}>
               {copied ? <Check className="h-3.5 w-3.5" /> : sharing ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Share2 className="h-3.5 w-3.5" />}
-              {copied ? "Copied!" : "Share"}
+              {copied ? t("analysisDetail.copied") : t("analysisDetail.share")}
             </Button>
             <Button variant="outline" size="sm" onClick={handleExportPDF}>
               {isPro ? <Download className="h-3.5 w-3.5" /> : <Lock className="h-3.5 w-3.5" />}
-              {isPro ? "Export PDF" : "Export PDF · Pro"}
+              {isPro ? t("analysisDetail.exportPdf") : t("analysisDetail.exportPdfPro")}
             </Button>
           </div>
         </div>
@@ -187,7 +189,7 @@ export default function AnalysisDetail() {
         {(record as any).share_token && (
           <div className="bg-muted/40 border border-border rounded-lg px-3 py-2 flex items-center gap-2 text-xs font-body">
             <Share2 className="h-3 w-3 text-muted-foreground" />
-            <span className="text-muted-foreground">Public link:</span>
+            <span className="text-muted-foreground">{t("analysisDetail.publicLink")}</span>
             <code className="truncate flex-1 text-foreground">
               {window.location.origin}/share/{(record as any).share_token}
             </code>
@@ -203,7 +205,7 @@ export default function AnalysisDetail() {
 
         {(record as any).custom_instructions && (
           <div className="bg-primary/5 border border-primary/20 rounded-lg px-3 py-2 text-xs font-body text-foreground/90">
-            <span className="uppercase tracking-wider text-[10px] text-primary font-semibold mr-2">Focus</span>
+            <span className="uppercase tracking-wider text-[10px] text-primary font-semibold mr-2">{t("analysisDetail.focus")}</span>
             <span className="whitespace-pre-wrap">{(record as any).custom_instructions}</span>
           </div>
         )}
@@ -211,8 +213,8 @@ export default function AnalysisDetail() {
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
           <Tabs defaultValue="analysis" className="w-full">
             <TabsList className="mb-4">
-              <TabsTrigger value="analysis">Analysis</TabsTrigger>
-              <TabsTrigger value="seo-audit">SEO Audit</TabsTrigger>
+              <TabsTrigger value="analysis">{t("analysisDetail.tabAnalysis")}</TabsTrigger>
+              <TabsTrigger value="seo-audit">{t("analysisDetail.tabSeoAudit")}</TabsTrigger>
             </TabsList>
             <TabsContent value="analysis">
               <AnalysisPanel analysis={analysis} scrapeData={scrapeData} />
@@ -234,7 +236,7 @@ export default function AnalysisDetail() {
           className="fixed bottom-6 right-6 z-40 flex items-center gap-2 px-4 py-3 rounded-full bg-card border border-border shadow-lg hover:shadow-xl transition text-sm font-body"
         >
           <Lock className="h-4 w-4 text-primary" />
-          <span>Chat with this report — <span className="text-primary font-semibold">Pro</span></span>
+          <span>{t("analysisDetail.chatWithReport")}<span className="text-primary font-semibold">Pro</span></span>
         </button>
       )}
     </div>

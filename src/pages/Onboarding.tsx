@@ -9,54 +9,56 @@ import { Badge } from "@/components/ui/badge";
 import { useAuth } from "@/components/AuthProvider";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
-
-const GOALS = [
-  "Improve SEO rankings",
-  "Boost page speed",
-  "Fix accessibility issues",
-  "Better UX/UI design",
-  "Content optimization",
-  "Competitive analysis",
-  "Monitor multiple sites",
-  "Client reporting",
-];
-
-const REFERRAL_SOURCES = [
-  "Google Search",
-  "Twitter / X",
-  "LinkedIn",
-  "YouTube",
-  "Friend / Colleague",
-  "Reddit",
-  "Product Hunt",
-  "Blog / Article",
-  "Other",
-];
-
-const EXPERIENCE_LEVELS = [
-  { value: "beginner", label: "Beginner", desc: "New to website optimization" },
-  { value: "intermediate", label: "Intermediate", desc: "Some experience with SEO/analytics" },
-  { value: "advanced", label: "Advanced", desc: "Professional marketer or developer" },
-  { value: "expert", label: "Expert", desc: "Agency owner or SEO specialist" },
-];
-
-const ROLES = [
-  "Developer",
-  "Designer",
-  "Marketer",
-  "Product Manager",
-  "Founder / CEO",
-  "Freelancer",
-  "Student",
-  "Other",
-];
+import { useTranslation } from "react-i18next";
 
 export default function Onboarding() {
+  const { t } = useTranslation();
   const { user } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
   const [currentStep, setCurrentStep] = useState(0);
   const [saving, setSaving] = useState(false);
+
+  const GOALS = [
+    t("onboarding.goalImproveSeo"),
+    t("onboarding.goalBoostSpeed"),
+    t("onboarding.goalFixA11y"),
+    t("onboarding.goalUx"),
+    t("onboarding.goalContent"),
+    t("onboarding.goalCompetitive"),
+    t("onboarding.goalMonitor"),
+    t("onboarding.goalClientReporting"),
+  ];
+
+  const REFERRAL_SOURCES = [
+    t("onboarding.refGoogle"),
+    t("onboarding.refTwitter"),
+    t("onboarding.refLinkedin"),
+    t("onboarding.refYoutube"),
+    t("onboarding.refFriend"),
+    t("onboarding.refReddit"),
+    t("onboarding.refProductHunt"),
+    t("onboarding.refBlog"),
+    t("onboarding.refOther"),
+  ];
+
+  const EXPERIENCE_LEVELS = [
+    { value: "beginner", label: t("onboarding.expBeginner"), desc: t("onboarding.expBeginnerDesc") },
+    { value: "intermediate", label: t("onboarding.expIntermediate"), desc: t("onboarding.expIntermediateDesc") },
+    { value: "advanced", label: t("onboarding.expAdvanced"), desc: t("onboarding.expAdvancedDesc") },
+    { value: "expert", label: t("onboarding.expExpert"), desc: t("onboarding.expExpertDesc") },
+  ];
+
+  const ROLES = [
+    t("onboarding.roleDeveloper"),
+    t("onboarding.roleDesigner"),
+    t("onboarding.roleMarketer"),
+    t("onboarding.roleProductManager"),
+    t("onboarding.roleFounder"),
+    t("onboarding.roleFreelancer"),
+    t("onboarding.roleStudent"),
+    t("onboarding.roleOther"),
+  ];
 
   const [displayName, setDisplayName] = useState(
     user?.user_metadata?.full_name || user?.user_metadata?.name || ""
@@ -68,11 +70,11 @@ export default function Onboarding() {
   const [experienceLevel, setExperienceLevel] = useState("");
 
   const steps = [
-    { title: "Welcome!", subtitle: "Let's personalize your experience" },
-    { title: "About You", subtitle: "What do you do?" },
-    { title: "Your Goals", subtitle: "What do you want to achieve?" },
-    { title: "How'd You Find Us?", subtitle: "Help us improve" },
-    { title: "All Set!", subtitle: "You're ready to go" },
+    { title: t("onboarding.step0Title"), subtitle: t("onboarding.step0Subtitle") },
+    { title: t("onboarding.step1Title"), subtitle: t("onboarding.step1Subtitle") },
+    { title: t("onboarding.step2Title"), subtitle: t("onboarding.step2Subtitle") },
+    { title: t("onboarding.step3Title"), subtitle: t("onboarding.step3Subtitle") },
+    { title: t("onboarding.step4Title"), subtitle: t("onboarding.step4Subtitle") },
   ];
 
   const toggleGoal = (goal: string) => {
@@ -110,7 +112,7 @@ export default function Onboarding() {
         .update({ display_name: displayName, onboarding_completed: true } as any)
         .eq("user_id", user.id);
 
-      toast({ title: "Welcome aboard! 🎉" });
+      toast({ title: t("onboarding.welcomeToast") });
       navigate("/dashboard");
     } catch (err: any) {
       toast({ title: "Error", description: err.message, variant: "destructive" });
@@ -122,11 +124,11 @@ export default function Onboarding() {
   return (
     <div className="min-h-screen bg-background flex items-center justify-center p-4">
       <Helmet>
-        <title>Onboarding — SiteScoper</title>
-        <meta name="description" content="Complete your SiteScoper onboarding and personalize your website analysis dashboard." />
+        <title>{t("onboarding.title")}</title>
+        <meta name="description" content={t("onboarding.metaDescription")} />
         <link rel="canonical" href="https://sitescoper.com/onboarding" />
-        <meta property="og:title" content="Onboarding — SiteScoper" />
-        <meta property="og:description" content="Complete your SiteScoper onboarding and personalize your website analysis dashboard." />
+        <meta property="og:title" content={t("onboarding.title")} />
+        <meta property="og:description" content={t("onboarding.metaDescription")} />
         <meta property="og:url" content="https://sitescoper.com/onboarding" />
         <meta name="robots" content="noindex" />
       </Helmet>
@@ -159,20 +161,20 @@ export default function Onboarding() {
             {currentStep === 0 && (
               <div className="space-y-4">
                 <div>
-                  <label className="text-sm font-body font-medium mb-1.5 block">What should we call you?</label>
+                  <label className="text-sm font-body font-medium mb-1.5 block">{t("onboarding.nameLabel")}</label>
                   <Input
                     value={displayName}
                     onChange={(e) => setDisplayName(e.target.value)}
-                    placeholder="Your name"
+                    placeholder={t("onboarding.namePlaceholder")}
                     className="font-body"
                   />
                 </div>
                 <div>
-                  <label className="text-sm font-body font-medium mb-1.5 block">Company (optional)</label>
+                  <label className="text-sm font-body font-medium mb-1.5 block">{t("onboarding.companyLabel")}</label>
                   <Input
                     value={company}
                     onChange={(e) => setCompany(e.target.value)}
-                    placeholder="Your company or website"
+                    placeholder={t("onboarding.companyPlaceholder")}
                     className="font-body"
                   />
                 </div>
@@ -221,7 +223,7 @@ export default function Onboarding() {
             {currentStep === 3 && (
               <div className="space-y-5">
                 <div>
-                  <label className="text-sm font-body font-medium mb-2 block">Where did you hear about us?</label>
+                  <label className="text-sm font-body font-medium mb-2 block">{t("onboarding.referralLabel")}</label>
                   <div className="grid grid-cols-3 gap-1.5">
                     {REFERRAL_SOURCES.map((s) => (
                       <button
@@ -239,7 +241,7 @@ export default function Onboarding() {
                   </div>
                 </div>
                 <div>
-                  <label className="text-sm font-body font-medium mb-2 block">Experience level</label>
+                  <label className="text-sm font-body font-medium mb-2 block">{t("onboarding.experienceLabel")}</label>
                   <div className="space-y-1.5">
                     {EXPERIENCE_LEVELS.map((l) => (
                       <button
@@ -269,8 +271,7 @@ export default function Onboarding() {
                   <Sparkles className="h-8 w-8 text-primary" />
                 </div>
                 <p className="font-body text-muted-foreground">
-                  You're all set, <span className="font-medium text-foreground">{displayName}</span>!
-                  Let's start analyzing websites.
+                  {t("onboarding.allSetText", { name: displayName })}
                 </p>
               </div>
             )}
@@ -279,7 +280,7 @@ export default function Onboarding() {
             <div className="flex justify-between mt-8">
               {currentStep > 0 ? (
                 <Button variant="ghost" size="sm" onClick={() => setCurrentStep((s) => s - 1)}>
-                  <ArrowLeft className="h-4 w-4" /> Back
+                  <ArrowLeft className="h-4 w-4" /> {t("onboarding.back")}
                 </Button>
               ) : (
                 <div />
@@ -292,11 +293,11 @@ export default function Onboarding() {
                   onClick={() => setCurrentStep((s) => s + 1)}
                   disabled={!canProceed()}
                 >
-                  Next <ArrowRight className="h-4 w-4" />
+                  {t("onboarding.next")} <ArrowRight className="h-4 w-4" />
                 </Button>
               ) : (
                 <Button variant="hero" size="sm" onClick={handleFinish} disabled={saving}>
-                  {saving ? "Saving..." : "Go to Dashboard"} <ArrowRight className="h-4 w-4" />
+                  {saving ? t("onboarding.saving") : t("onboarding.goToDashboard")} <ArrowRight className="h-4 w-4" />
                 </Button>
               )}
             </div>

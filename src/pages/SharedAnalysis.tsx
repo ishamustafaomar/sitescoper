@@ -7,8 +7,10 @@ import { Button } from "@/components/ui/button";
 import { AnalysisPanel } from "@/components/AnalysisPanel";
 import { supabase } from "@/integrations/supabase/client";
 import { AnalysisResult, ScrapeResult } from "@/lib/api";
+import { useTranslation } from "react-i18next";
 
 export default function SharedAnalysis() {
+  const { t } = useTranslation();
   const { token } = useParams();
   const [record, setRecord] = useState<any>(null);
   const [loading, setLoading] = useState(true);
@@ -36,12 +38,12 @@ export default function SharedAnalysis() {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background p-4">
         <div className="text-center space-y-3 max-w-md">
-          <h1 className="text-2xl font-heading font-bold">Report not found</h1>
+          <h1 className="text-2xl font-heading font-bold">{t("sharedAnalysis.notFoundTitle")}</h1>
           <p className="text-muted-foreground font-body text-sm">
-            This shared report link may have expired or been disabled by the owner.
+            {t("sharedAnalysis.notFoundBody")}
           </p>
           <Button asChild variant="hero">
-            <a href="/">Analyze your own site →</a>
+            <a href="/">{t("sharedAnalysis.analyzeOwnSite")}</a>
           </Button>
         </div>
       </div>
@@ -72,11 +74,11 @@ export default function SharedAnalysis() {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>{record?.url ? `${record.url} — Shared SiteScoper Report` : "Shared Report — SiteScoper"}</title>
-        <meta name="description" content={record?.summary ? String(record.summary).slice(0, 155) : "Shared SiteScoper website analysis report with scores and improvement suggestions."} />
+        <title>{record?.url ? t("sharedAnalysis.title", { url: record.url }) : t("sharedAnalysis.titleFallback")}</title>
+        <meta name="description" content={record?.summary ? String(record.summary).slice(0, 155) : t("sharedAnalysis.metaDescriptionFallback")} />
         <link rel="canonical" href={`https://sitescoper.com/share/${token}`} />
-        <meta property="og:title" content={record?.url ? `${record.url} — Shared SiteScoper Report` : "Shared Report — SiteScoper"} />
-        <meta property="og:description" content={record?.summary ? String(record.summary).slice(0, 155) : "Shared SiteScoper website analysis report."} />
+        <meta property="og:title" content={record?.url ? t("sharedAnalysis.title", { url: record.url }) : t("sharedAnalysis.titleFallback")} />
+        <meta property="og:description" content={record?.summary ? String(record.summary).slice(0, 155) : t("sharedAnalysis.metaDescriptionFallback")} />
         <meta property="og:url" content={`https://sitescoper.com/share/${token}`} />
         <meta name="robots" content="noindex" />
       </Helmet>
@@ -89,14 +91,14 @@ export default function SharedAnalysis() {
             SiteScoper
           </a>
           <Button asChild size="sm" variant="hero">
-            <a href="/">Analyze your site</a>
+            <a href="/">{t("sharedAnalysis.analyzeSite")}</a>
           </Button>
         </div>
       </header>
 
       <main className="max-w-4xl mx-auto px-4 py-8 space-y-6">
         <div className="space-y-1">
-          <div className="text-[10px] font-body uppercase tracking-widest text-muted-foreground">Shared Report</div>
+          <div className="text-[10px] font-body uppercase tracking-widest text-muted-foreground">{t("sharedAnalysis.sharedReportLabel")}</div>
           <div className="flex items-center gap-2 flex-wrap">
             <h1 className="font-heading font-bold text-xl truncate">{record.url}</h1>
             <a
@@ -105,11 +107,11 @@ export default function SharedAnalysis() {
               rel="noopener noreferrer"
               className="text-xs text-muted-foreground hover:text-primary font-body inline-flex items-center gap-1"
             >
-              Visit <ExternalLink className="h-3 w-3" />
+              {t("sharedAnalysis.visit")} <ExternalLink className="h-3 w-3" />
             </a>
           </div>
           <p className="text-xs text-muted-foreground font-body">
-            Analyzed {new Date(record.created_at).toLocaleString()}
+            {t("sharedAnalysis.analyzedAt", { date: new Date(record.created_at).toLocaleString() })}
           </p>
         </div>
 
@@ -118,18 +120,18 @@ export default function SharedAnalysis() {
         </motion.div>
 
         <div className="bg-gradient-to-br from-primary/10 via-primary/5 to-transparent border border-primary/20 rounded-2xl p-6 text-center space-y-3 mt-8">
-          <h3 className="text-xl font-heading font-bold">Run this on your own site</h3>
+          <h3 className="text-xl font-heading font-bold">{t("sharedAnalysis.ctaTitle")}</h3>
           <p className="text-sm text-muted-foreground font-body max-w-md mx-auto">
-            Free, instant, AI-powered. Get a brutally honest report on your site in seconds.
+            {t("sharedAnalysis.ctaBody")}
           </p>
           <Button asChild variant="hero">
-            <a href="/">Analyze a website →</a>
+            <a href="/">{t("sharedAnalysis.ctaButton")}</a>
           </Button>
         </div>
       </main>
 
       <footer className="border-t border-border mt-12 py-6 text-center text-xs text-muted-foreground font-body">
-        Powered by <a href="/" className="hover:text-foreground transition-colors">SiteScoper</a>
+        {t("sharedAnalysis.poweredBy")} <a href="/" className="hover:text-foreground transition-colors">SiteScoper</a>
       </footer>
     </div>
   );
