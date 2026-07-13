@@ -93,5 +93,39 @@
     "tagline": "AI-powered website analysis",
     "privacy": "Privacy",
     "terms": "Terms"
+  },
+  "plan": {
+    "title": "Plan",
+    "free": "Free",
+    "proDesc": "You're on SiteScoper Pro — unlimited scans, deep product simulation, competitor compare, chat-with-report and PDF exports are all unlocked.",
+    "freeDesc": "You're on the Free plan — 3 scans per month. Upgrade to Pro for unlimited scans and every advanced feature unlocked.",
+    "upgradeBtn": "Upgrade to Pro",
+    "manageBilling": "Manage billing",
+    "downgradeBtn": "Cancel & downgrade to Free",
+    "resumeBtn": "Resume subscription",
+    "scheduledCancel": "Your Pro plan is scheduled to cancel at the end of your billing period. You'll drop to the Free plan then — you can resume at any time before that.",
+    "scheduledCancelWithDate": "Your Pro plan is scheduled to cancel on {{date}}. You'll drop to the Free plan then — you can resume at any time before that.",
+    "confirmDowngradeTitle": "Cancel your Pro plan?",
+    "confirmDowngradeDesc": "You'll keep full Pro access until the end of your current billing period, then automatically drop to the Free plan (3 scans/month). You can resume any time before that.",
+    "confirmDowngradeDescWithDate": "You'll keep full Pro access until {{date}}, then automatically drop to the Free plan (3 scans/month). You can resume any time before that.",
+    "keepPro": "Keep Pro",
+    "confirmDowngrade": "Yes, cancel Pro",
+    "canceledTitle": "Cancellation scheduled",
+    "canceledDesc": "You'll keep Pro until the end of the billing period, then drop to Free.",
+    "resumedTitle": "Subscription resumed",
+    "resumedDesc": "You're back on Pro — your plan will renew as normal."
+  },
+  "pricing": {
+    "title": "Simple, honest pricing",
+    "subtitle": "Try SiteScoper free — 3 scans per month, no card required. When you're ready to ship faster, upgrade to Pro.",
+    "subtitlePro": "You're on Pro — thanks for supporting SiteScoper. Manage or cancel your plan any time from your account.",
+    "startFree": "Start free",
+    "goDashboard": "Go to dashboard",
+    "freeDowngradeHint": "Downgrade from account",
+    "currentPro": "You're on Pro",
+    "upgradeCta": "Upgrade to Pro",
+    "footnote": "Cancel any time — your Pro access lasts until the end of the billing period.",
+    "footnotePro": "You can cancel any time from your account — Pro access continues until the end of the billing period.",
+    "manageInAccount": "Manage or cancel from your account →"
   }
 }

@@ -93,5 +93,39 @@
     "tagline": "Analisi di siti web con IA",
     "privacy": "Privacy",
     "terms": "Termini"
+  },
+  "plan": {
+    "title": "Piano",
+    "free": "Gratuito",
+    "proDesc": "Sei su SiteScoper Pro — scansioni illimitate, simulazione approfondita del prodotto, confronto con i concorrenti, chat con report ed export PDF: tutto sbloccato.",
+    "freeDesc": "Sei sul piano Gratuito — 3 scansioni al mese. Passa a Pro per scansioni illimitate e tutte le funzioni avanzate.",
+    "upgradeBtn": "Passa a Pro",
+    "manageBilling": "Gestisci fatturazione",
+    "downgradeBtn": "Annulla e torna al piano Gratuito",
+    "resumeBtn": "Riprendi abbonamento",
+    "scheduledCancel": "Il tuo piano Pro è programmato per l'annullamento alla fine del periodo di fatturazione. Passerai al piano Gratuito allora — puoi riprenderlo in qualsiasi momento prima.",
+    "scheduledCancelWithDate": "Il tuo piano Pro verrà annullato il {{date}}. Passerai al piano Gratuito allora — puoi riprenderlo in qualsiasi momento prima.",
+    "confirmDowngradeTitle": "Annullare il tuo piano Pro?",
+    "confirmDowngradeDesc": "Manterrai l'accesso Pro completo fino alla fine del periodo di fatturazione attuale, poi passerai automaticamente al piano Gratuito (3 scansioni/mese). Puoi riprendere prima di quella data.",
+    "confirmDowngradeDescWithDate": "Manterrai l'accesso Pro completo fino al {{date}}, poi passerai automaticamente al piano Gratuito (3 scansioni/mese). Puoi riprendere prima di quella data.",
+    "keepPro": "Mantieni Pro",
+    "confirmDowngrade": "Sì, annulla Pro",
+    "canceledTitle": "Annullamento programmato",
+    "canceledDesc": "Manterrai Pro fino alla fine del periodo, poi passerai a Gratuito.",
+    "resumedTitle": "Abbonamento ripreso",
+    "resumedDesc": "Sei di nuovo su Pro — il tuo piano si rinnoverà normalmente."
+  },
+  "pricing": {
+    "title": "Prezzi semplici e onesti",
+    "subtitle": "Prova SiteScoper gratis — 3 scansioni al mese, senza carta. Quando sei pronto ad accelerare, passa a Pro.",
+    "subtitlePro": "Sei su Pro — grazie per supportare SiteScoper. Gestisci o annulla il tuo piano in qualsiasi momento dal tuo account.",
+    "startFree": "Inizia gratis",
+    "goDashboard": "Vai al pannello",
+    "freeDowngradeHint": "Passa al gratuito dall'account",
+    "currentPro": "Sei su Pro",
+    "upgradeCta": "Passa a Pro",
+    "footnote": "Annulla quando vuoi — l'accesso Pro dura fino alla fine del periodo di fatturazione.",
+    "footnotePro": "Puoi annullare quando vuoi dal tuo account — l'accesso Pro continua fino alla fine del periodo.",
+    "manageInAccount": "Gestisci o annulla dal tuo account →"
   }
 }

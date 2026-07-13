@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { Check, Sparkles, Crown, ArrowRight } from "lucide-react";
 import { Helmet } from "react-helmet-async";
@@ -33,6 +34,7 @@ export default function Pricing() {
   const navigate = useNavigate();
   const { user } = useAuth();
   const { isPro } = useSubscription();
+  const { t } = useTranslation();
   const [checkoutOpen, setCheckoutOpen] = useState(false);
 
   const startCheckout = () => {
@@ -59,10 +61,10 @@ export default function Pricing() {
       <main className="max-w-5xl mx-auto px-4 py-12">
         <div className="text-center mb-10">
           <h1 className="font-heading text-4xl md:text-5xl font-bold mb-3">
-            Simple, honest pricing
+            {t("pricing.title")}
           </h1>
           <p className="text-muted-foreground max-w-xl mx-auto">
-            Try SiteScoper free — 3 scans per month, no card required. When you're ready to ship faster, upgrade to Pro.
+            {isPro ? t("pricing.subtitlePro") : t("pricing.subtitle")}
           </p>
         </div>
 
@@ -83,8 +85,16 @@ export default function Pricing() {
                 </li>
               ))}
             </ul>
-            <Button variant="outline" onClick={() => navigate(user ? "/dashboard" : "/auth")}>
-              {user ? "Go to dashboard" : "Start free"}
+            <Button
+              variant="outline"
+              onClick={() => navigate(user ? (isPro ? "/account" : "/dashboard") : "/auth")}
+              disabled={isPro}
+            >
+              {isPro
+                ? t("pricing.freeDowngradeHint")
+                : user
+                  ? t("pricing.goDashboard")
+                  : t("pricing.startFree")}
             </Button>
           </Card>
 
@@ -111,11 +121,11 @@ export default function Pricing() {
             </ul>
             {isPro ? (
               <Button variant="outline" disabled>
-                <Check className="h-4 w-4" /> You're on Pro
+                <Check className="h-4 w-4" /> {t("pricing.currentPro")}
               </Button>
             ) : (
               <Button className="shadow-glow" onClick={startCheckout}>
-                <Sparkles className="h-4 w-4" /> Upgrade to Pro
+                <Sparkles className="h-4 w-4" /> {t("pricing.upgradeCta")}
                 <ArrowRight className="h-4 w-4" />
               </Button>
             )}
@@ -123,8 +133,16 @@ export default function Pricing() {
         </div>
 
         <p className="text-center text-xs text-muted-foreground mt-8">
-          Cancel any time — your Pro access lasts until the end of the billing period.
+          {isPro ? t("pricing.footnotePro") : t("pricing.footnote")}
         </p>
+
+        {isPro && (
+          <div className="mt-6 text-center">
+            <Button variant="link" size="sm" onClick={() => navigate("/account")}>
+              {t("pricing.manageInAccount")}
+            </Button>
+          </div>
+        )}
       </main>
 
       <Dialog open={checkoutOpen} onOpenChange={setCheckoutOpen}>

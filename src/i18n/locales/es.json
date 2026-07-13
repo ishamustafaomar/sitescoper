@@ -93,5 +93,39 @@
     "tagline": "Análisis de sitios web con IA",
     "privacy": "Privacidad",
     "terms": "Términos"
+  },
+  "plan": {
+    "title": "Plan",
+    "free": "Gratis",
+    "proDesc": "Estás en SiteScoper Pro — escaneos ilimitados, simulación profunda del producto, comparación con competidores, chat con informes y exportación a PDF, todo desbloqueado.",
+    "freeDesc": "Estás en el plan Gratis — 3 escaneos al mes. Mejora a Pro para escaneos ilimitados y todas las funciones avanzadas.",
+    "upgradeBtn": "Mejorar a Pro",
+    "manageBilling": "Gestionar facturación",
+    "downgradeBtn": "Cancelar y bajar a Gratis",
+    "resumeBtn": "Reanudar suscripción",
+    "scheduledCancel": "Tu plan Pro está programado para cancelarse al final del período de facturación. Volverás al plan Gratis entonces — puedes reanudarlo en cualquier momento antes.",
+    "scheduledCancelWithDate": "Tu plan Pro se cancelará el {{date}}. Volverás al plan Gratis entonces — puedes reanudarlo en cualquier momento antes.",
+    "confirmDowngradeTitle": "¿Cancelar tu plan Pro?",
+    "confirmDowngradeDesc": "Mantendrás Pro hasta el final del período de facturación actual y luego pasarás automáticamente al plan Gratis (3 escaneos/mes). Puedes reanudarlo antes de esa fecha.",
+    "confirmDowngradeDescWithDate": "Mantendrás Pro hasta el {{date}}, luego pasarás automáticamente al plan Gratis (3 escaneos/mes). Puedes reanudarlo antes de esa fecha.",
+    "keepPro": "Mantener Pro",
+    "confirmDowngrade": "Sí, cancelar Pro",
+    "canceledTitle": "Cancelación programada",
+    "canceledDesc": "Mantendrás Pro hasta el final del período y luego pasarás a Gratis.",
+    "resumedTitle": "Suscripción reanudada",
+    "resumedDesc": "Vuelves a estar en Pro — tu plan se renovará con normalidad."
+  },
+  "pricing": {
+    "title": "Precios simples y honestos",
+    "subtitle": "Prueba SiteScoper gratis — 3 escaneos al mes, sin tarjeta. Cuando quieras ir más rápido, mejora a Pro.",
+    "subtitlePro": "Estás en Pro — gracias por apoyar SiteScoper. Gestiona o cancela tu plan cuando quieras desde tu cuenta.",
+    "startFree": "Empieza gratis",
+    "goDashboard": "Ir al panel",
+    "freeDowngradeHint": "Bajar desde la cuenta",
+    "currentPro": "Estás en Pro",
+    "upgradeCta": "Mejorar a Pro",
+    "footnote": "Cancela cuando quieras — tu acceso Pro dura hasta el final del período de facturación.",
+    "footnotePro": "Puedes cancelar cuando quieras desde tu cuenta — el acceso Pro continúa hasta el final del período.",
+    "manageInAccount": "Gestionar o cancelar desde tu cuenta →"
   }
 }

@@ -1,17 +1,40 @@
-import { Sparkles, Crown, ArrowRight } from "lucide-react";
+import { Sparkles, Crown, ArrowRight, XCircle, RotateCcw, Loader2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { useSubscription } from "@/hooks/useSubscription";
 import { supabase } from "@/integrations/supabase/client";
 import { getStripeEnvironment } from "@/lib/stripe";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 export function SubscriptionCard() {
-  const { isPro, subscription } = useSubscription();
+  const { isPro, subscription, refetch } = useSubscription();
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { t, i18n } = useTranslation();
   const [loading, setLoading] = useState(false);
+  const [cancelling, setCancelling] = useState(false);
+
+  const scheduledToCancel = !!subscription?.cancel_at_period_end && isPro;
+  const periodEnd = subscription?.current_period_end
+    ? new Date(subscription.current_period_end).toLocaleDateString(i18n.resolvedLanguage, {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      })
+    : null;
 
   const openPortal = async () => {
     setLoading(true);
@@ -28,35 +51,95 @@ export function SubscriptionCard() {
     }
   };
 
+  const handleCancel = async (resume: boolean) => {
+    setCancelling(true);
+    try {
+      const { data, error } = await supabase.functions.invoke("cancel-subscription", {
+        body: { environment: getStripeEnvironment(), resume },
+      });
+      if (error) throw new Error(error.message || "Could not update subscription");
+      if ((data as any)?.error) throw new Error((data as any).error);
+      toast({
+        title: resume ? t("plan.resumedTitle") : t("plan.canceledTitle"),
+        description: resume ? t("plan.resumedDesc") : t("plan.canceledDesc"),
+      });
+      await refetch();
+    } catch (e: any) {
+      toast({ title: "Error", description: e.message, variant: "destructive" });
+    } finally {
+      setCancelling(false);
+    }
+  };
+
   return (
     <section className="bg-card border border-border rounded-2xl p-6 space-y-4">
       <div className="flex items-center justify-between gap-3">
         <h2 className="font-heading font-semibold flex items-center gap-2">
           <Sparkles className="h-4 w-4 text-primary" />
-          Plan
+          {t("plan.title")}
         </h2>
         <span className={`text-xs font-body px-2 py-0.5 rounded-full inline-flex items-center gap-1 border ${isPro ? "bg-primary/10 text-primary border-primary/20" : "bg-muted text-muted-foreground border-border"}`}>
-          {isPro ? <><Crown className="h-3 w-3" /> Pro</> : "Free"}
+          {isPro ? <><Crown className="h-3 w-3" /> Pro</> : t("plan.free")}
         </span>
       </div>
       {isPro ? (
         <>
-          <p className="text-sm text-muted-foreground font-body">
-            You're on SiteScoper Pro — unlimited scans, deep product simulation, competitor compare, chat-with-report and PDF exports are all unlocked.
-          </p>
-          {subscription?.stripe_customer_id && (
-            <Button variant="outline" size="sm" onClick={openPortal} disabled={loading}>
-              Manage billing
-            </Button>
+          {scheduledToCancel ? (
+            <p className="text-sm text-muted-foreground font-body">
+              {periodEnd
+                ? t("plan.scheduledCancelWithDate", { date: periodEnd })
+                : t("plan.scheduledCancel")}
+            </p>
+          ) : (
+            <p className="text-sm text-muted-foreground font-body">{t("plan.proDesc")}</p>
           )}
+          <div className="flex flex-wrap gap-2">
+            {subscription?.stripe_customer_id && (
+              <Button variant="outline" size="sm" onClick={openPortal} disabled={loading}>
+                {t("plan.manageBilling")}
+              </Button>
+            )}
+            {scheduledToCancel ? (
+              <Button variant="outline" size="sm" onClick={() => handleCancel(true)} disabled={cancelling}>
+                {cancelling ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <RotateCcw className="h-3.5 w-3.5" />}
+                {t("plan.resumeBtn")}
+              </Button>
+            ) : (
+              <AlertDialog>
+                <AlertDialogTrigger asChild>
+                  <Button variant="ghost" size="sm" className="text-destructive hover:text-destructive">
+                    <XCircle className="h-3.5 w-3.5" />
+                    {t("plan.downgradeBtn")}
+                  </Button>
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>{t("plan.confirmDowngradeTitle")}</AlertDialogTitle>
+                    <AlertDialogDescription>
+                      {periodEnd
+                        ? t("plan.confirmDowngradeDescWithDate", { date: periodEnd })
+                        : t("plan.confirmDowngradeDesc")}
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>{t("plan.keepPro")}</AlertDialogCancel>
+                    <AlertDialogAction
+                      onClick={() => handleCancel(false)}
+                      className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                    >
+                      {t("plan.confirmDowngrade")}
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
+            )}
+          </div>
         </>
       ) : (
         <>
-          <p className="text-sm text-muted-foreground font-body">
-            You're on the Free plan — 3 scans per month. Upgrade to Pro for unlimited scans and every advanced feature unlocked.
-          </p>
+          <p className="text-sm text-muted-foreground font-body">{t("plan.freeDesc")}</p>
           <Button size="sm" className="shadow-glow" onClick={() => navigate("/pricing")}>
-            <Crown className="h-4 w-4" /> Upgrade to Pro
+            <Crown className="h-4 w-4" /> {t("plan.upgradeBtn")}
             <ArrowRight className="h-4 w-4" />
           </Button>
         </>

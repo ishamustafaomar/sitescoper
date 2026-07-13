@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useSubscription } from "@/hooks/useSubscription";
 import {
   AlertTriangle,
   CheckCircle2,
@@ -85,6 +86,7 @@ function levelColor(level: string) {
 }
 
 export function SampleReportSection({ onTryYours }: { onTryYours: () => void }) {
+  const { isPro } = useSubscription();
   return (
     <section className="py-20 px-4 bg-gradient-to-b from-background via-muted/20 to-background">
       <div className="max-w-5xl mx-auto">
@@ -338,7 +340,9 @@ export function SampleReportSection({ onTryYours }: { onTryYours: () => void }) 
             <ArrowRight className="h-4 w-4" />
           </Button>
           <p className="text-[11px] text-muted-foreground font-body">
-            Free plan includes 3 scans / month · Upgrade to Pro for unlimited
+            {isPro
+              ? "You're on Pro — unlimited scans included"
+              : "Free plan includes 3 scans / month · Upgrade to Pro for unlimited"}
           </p>
         </div>
       </div>
