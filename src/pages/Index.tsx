@@ -205,7 +205,7 @@ const Index = () => {
             >
               <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
                 <div className="absolute top-0 left-1/4 w-72 h-72 bg-primary/20 rounded-full blur-3xl opacity-60" />
-                <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-[hsl(280,70%,60%)]/20 rounded-full blur-3xl opacity-60" />
+                <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-primary-alt/20 rounded-full blur-3xl opacity-60" />
                 {/* Subtle grid */}
                 <div className="absolute inset-0 opacity-[0.04] bg-[linear-gradient(to_right,currentColor_1px,transparent_1px),linear-gradient(to_bottom,currentColor_1px,transparent_1px)] bg-[size:48px_48px]" />
               </div>
@@ -230,7 +230,7 @@ const Index = () => {
                     <br />
                     start growing.{" "}
                     <span className="relative inline-block">
-                      <span className="bg-gradient-to-r from-primary via-[hsl(265,70%,58%)] to-[hsl(280,70%,60%)] bg-clip-text text-transparent">
+                      <span className="bg-gradient-to-r from-primary via-primary/90 to-primary-alt bg-clip-text text-transparent">
                         Actionable UX &amp; SEO fixes in 60 seconds.
                       </span>
                       <svg className="absolute left-0 -bottom-2 w-full" viewBox="0 0 200 8" fill="none" preserveAspectRatio="none">
@@ -275,7 +275,7 @@ const Index = () => {
                       Multi-page deep crawl
                     </div>
                     <div className="flex items-center gap-1.5">
-                      <div className="w-1.5 h-1.5 rounded-full bg-[hsl(280,70%,60%)]" />
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary-alt" />
                       {t("hero.export")}
                     </div>
                   </div>

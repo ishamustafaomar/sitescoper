@@ -15,6 +15,7 @@
 
     --primary: 250 65% 55%;
     --primary-foreground: 0 0% 100%;
+    --primary-alt: 280 70% 60%;
 
     --secondary: 220 15% 92%;
     --secondary-foreground: 220 25% 20%;
@@ -88,6 +89,7 @@
 
     --primary: 250 65% 60%;
     --primary-foreground: 0 0% 100%;
+    --primary-alt: 280 70% 65%;
 
     --secondary: 224 20% 18%;
     --secondary-foreground: 210 15% 80%;
