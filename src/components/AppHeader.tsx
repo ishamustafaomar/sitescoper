@@ -1,5 +1,7 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import { LayoutDashboard, LogOut, LogIn, Shield, Sparkles, Check, Swords, Crown, User as UserIcon } from "lucide-react";
+import { LayoutDashboard, LogOut, LogIn, Shield, Sparkles, Check, Swords, Crown, User as UserIcon, Menu } from "lucide-react";
+import { useState } from "react";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import logoMark from "@/assets/logo.png";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -19,6 +21,7 @@ export function AppHeader() {
   const { t } = useTranslation();
   const { isPro } = useSubscription();
   const { isAdmin } = useIsAdmin();
+  const [mobileOpen, setMobileOpen] = useState(false);
   const currentPath = `${location.pathname}${location.search}${location.hash}`;
   const authPath = `/auth?redirect=${encodeURIComponent(currentPath)}`;
 
@@ -160,6 +163,56 @@ export function AppHeader() {
               </TooltipContent>
             </Tooltip>
           )}
+          <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon" className="h-8 w-8 md:hidden" aria-label="Open menu">
+                <Menu className="h-4 w-4" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-[260px]">
+              <SheetHeader>
+                <SheetTitle className="font-heading">Menu</SheetTitle>
+              </SheetHeader>
+              <nav className="mt-6 flex flex-col gap-1">
+                {[
+                  { to: "/", label: "Analyze", icon: Sparkles, show: true },
+                  { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard, show: !!user },
+                  { to: "/compare", label: "Compare", icon: Swords, show: true, pro: !isPro },
+                  { to: "/pricing", label: "Pricing", show: true },
+                  { to: "/admin", label: "Admin", icon: Shield, show: !!user && isAdmin },
+                ]
+                  .filter((i) => i.show)
+                  .map((item) => {
+                    const Icon = item.icon;
+                    const active =
+                      item.to === "/"
+                        ? path === "/"
+                        : path.startsWith(item.to);
+                    return (
+                      <button
+                        key={item.to}
+                        onClick={() => {
+                          setMobileOpen(false);
+                          navigate(item.to);
+                        }}
+                        className={cn(
+                          "flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-body text-left transition-colors",
+                          active ? "bg-muted text-foreground" : "text-muted-foreground hover:bg-muted/70 hover:text-foreground",
+                        )}
+                      >
+                        {Icon && <Icon className="h-4 w-4" />}
+                        <span>{item.label}</span>
+                        {item.pro && (
+                          <span className="ml-auto rounded-full border border-primary/25 bg-primary/10 px-1.5 py-[1px] text-[9px] font-bold tracking-wider text-primary">
+                            PRO
+                          </span>
+                        )}
+                      </button>
+                    );
+                  })}
+              </nav>
+            </SheetContent>
+          </Sheet>
         </div>
       </div>
     </header>
