@@ -10,6 +10,7 @@ import { useAuth } from "@/components/AuthProvider";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { SubscriptionCard } from "@/components/SubscriptionCard";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -130,6 +131,9 @@ export default function Account() {
             </div>
             <LanguageSwitcher />
           </section>
+
+          {/* Plan & billing */}
+          <SubscriptionCard />
 
           {/* GDPR */}
           <section className="bg-card border border-border rounded-2xl p-6 space-y-6">
