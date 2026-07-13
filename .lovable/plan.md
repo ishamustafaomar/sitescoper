@@ -1,27 +1,64 @@
-# Fix: user can pay twice on the same email
+## Goal
 
-## Why it happened
-1. `create-checkout` passes `customer_email` instead of resolving a Stripe **Customer** and passing `customer:`. Every checkout creates a brand-new Customer under the same email, so Stripe has no idea the user already subscribed.
-2. The Pricing page only hides the "Upgrade to Pro" button when `isPro === true`. `isPro` is driven by the `subscriptions` table, which is only written by the webhook. If the webhook is slow, missed, or the user clicks again before it lands (second tab, back button after return URL), the button is still live and a second checkout session succeeds.
-3. There is no server-side guard in `create-checkout` that refuses to start a new subscription checkout when the user already has an active one in Stripe.
+Port the v2 design bundle (currently sitting untouched at `public/ui-v2.html`) into the real React routes so the live site reflects the new visual system. All existing data flows (auth, scans, subscriptions, Stripe, Supabase queries) stay wired — only presentation changes.
 
-## Changes
+## Screens in scope
 
-### 1. `supabase/functions/create-checkout/index.ts`
-- Add a `resolveOrCreateCustomer` helper (per the knowledge doc): search Stripe customers by `metadata['userId']`, fall back to email match, backfill `metadata.userId` on legacy matches, else create. Pass `customer: customerId` to `checkout.sessions.create` and drop `customer_email`.
-- For subscription-mode prices, before creating the session, call `stripe.subscriptions.list({ customer: customerId, status: 'all', limit: 5 })` and reject with `409 { error: "already_subscribed" }` if any subscription has status `active`, `trialing`, or `past_due` on the same `price.lookup_key`.
-- Keep `allow_promotion_codes: true` and existing metadata on session + `subscription_data`.
+The v2 bundle contains 5 screens; each maps to an existing route:
 
-### 2. `src/pages/Pricing.tsx`
-- When the checkout invoke returns `error: "already_subscribed"` (or the edge function returns 409), close the dialog and show a toast: "You already have an active Pro subscription — manage it from Account." Link to `/account`.
-- Disable the Upgrade button while the dialog is open to prevent a same-session double-click starting two sessions.
+| v2 screen  | Real route                                | File(s) to rebuild |
+|------------|-------------------------------------------|--------------------|
+| Landing    | `/`                                       | `src/pages/Index.tsx` + landing components |
+| Scanning   | in-progress state of `/` after submit     | `src/components/ScanningAnimation.tsx` + `StreamingProgress.tsx` |
+| Report     | `/analysis/:id`                           | `src/pages/AnalysisDetail.tsx` + `AnalysisPanel.tsx`, `ScoreRing.tsx`, `VerdictCard.tsx`, `ImpactMatrix.tsx`, `SuggestionCard.tsx` |
+| Dashboard  | `/dashboard`                              | `src/pages/Dashboard.tsx` + `dashboard/*` panels, `WebsiteCard.tsx`, `StatsOverview.tsx` |
+| Pricing    | `/pricing`                                | `src/pages/Pricing.tsx` |
 
-### 3. No schema / webhook changes
-The webhook already upserts on `stripe_subscription_id`. The duplicate rows would still land as two rows historically, but the new guard prevents *creating* a second subscription in Stripe in the first place, which is the actual money problem.
+Global chrome:
+- `src/components/AppHeader.tsx` — sticky blurred header with pill nav (Analyze / Dashboard / Compare-PRO / Pricing), theme toggle, avatar menu.
+- `src/components/SiteFooter.tsx` — refined footer to match.
 
-## Manual cleanup (out of scope of this code change)
-Refund + cancel the duplicate subscription for the affected user in Stripe. This plan does not touch existing data.
+## Approach
+
+1. **Design tokens (small edit, high leverage).** The v2 bundle uses the same token names we already have (`--background`, `--card`, `--primary`, `--muted`, `--border`, `--font-heading`, `--font-body`) plus one new one (`--primary-alt` for the secondary blur/gradient stop). Update `src/index.css`:
+   - Add `--primary-alt` in light and dark.
+   - Tune `--radius`, shadow tokens, and dark `--background`/`--card` values to match the v2 palette.
+   - Keep Space Grotesk + Inter (already declared). No Google Fonts change needed.
+2. **Rebuild routes top-down.** For each screen:
+   - Replicate the v2 layout using existing shadcn primitives + Tailwind utilities driven by tokens (no hard-coded hex, no `text-white`/`bg-black`).
+   - Wire the same hooks/queries the current page uses (`useAuth`, `useSubscription`, analysis fetch, etc.) into the new markup.
+   - Keep all routes, guards, and side effects (`ProtectedRoute`, `OnboardingGuard`, canonical/SEO tags) unchanged.
+3. **Motion.** Convert v2's `ssRise` / `ssBob` / `ssPing` keyframes into Framer Motion variants where components already use `framer-motion`; keep CSS keyframes for the scanning halo.
+4. **Cleanup.** Delete `public/ui-v2.html` once ports land (leave until final step in case we want to diff).
+
+## Non-goals
+
+- No new features, no schema changes, no edge-function edits.
+- No copy rewrites beyond what the v2 design shows.
+- Compare page, blog, admin, onboarding, account, auth — left as-is (not in the v2 bundle).
+- Mobile-specific redesign beyond what v2 already implies via its responsive inline styles.
 
 ## Technical notes
-- The `resolveOrCreateCustomer` helper is the exact pattern from the Stripe checkout knowledge — putting `userId` on the Customer makes future `customers.search` reads reliable and is what makes the "already subscribed" check work across sessions and devices.
-- Guard is server-side so it survives any client-side race (fast double click, second tab, stale `isPro`).
+
+- v2 uses heavy inline styles because it was exported from a design tool. In the port we translate those to Tailwind classes + token references so dark mode, theming, and the existing `next-themes` toggle keep working.
+- The header avatar circle currently shows `I` in v2 — we'll wire it to the user's initial from `useAuth`.
+- The "PRO" lock chip on the Compare nav item will use `useSubscription().isPro` to hide/show, matching current behavior.
+- Scanning screen will read from the existing `StreamingProgress` state; no new backend hooks.
+- Report screen keeps `AnalysisPanel`'s data contract; we restyle the sub-cards (`ScoreRing`, `VerdictCard`, `ImpactMatrix`, `SuggestionCard`) rather than replace their props.
+
+## Suggested execution order (each is a self-contained commit)
+
+```text
+1. Tokens + header + footer         (foundation, visible everywhere)
+2. Landing (/)
+3. Scanning state (mid-analysis)
+4. Report (/analysis/:id)
+5. Dashboard (/dashboard)
+6. Pricing (/pricing)
+7. Remove public/ui-v2.html
+```
+
+## Risks
+
+- Large diff surface across ~20 files; visual regressions likely on sub-views not shown in v2 (e.g. shared analysis, PDF export). Will spot-check `/share/:token` and PDF render after the port and patch styling deltas.
+- Framer Motion + `motion` usages in current components need to keep working with the new markup — we reuse existing motion wrappers where possible instead of rewriting them.
