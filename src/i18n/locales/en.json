@@ -6,7 +6,12 @@
     "signIn": "Sign In",
     "signOut": "Sign out",
     "account": "Account",
-    "language": "Language"
+    "language": "Language",
+    "analyze": "Analyze",
+    "compare": "Compare",
+    "pricing": "Pricing",
+    "upgrade": "Upgrade",
+    "menu": "Menu"
   },
   "hero": {
     "badge": "Powered by Gemini 2.5 Pro · 20+ analysis dimensions",
