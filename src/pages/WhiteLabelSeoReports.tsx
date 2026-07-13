@@ -159,12 +159,18 @@ const WhiteLabelSeoReports = () => {
         </section>
 
         <section className="mt-20 text-center rounded-2xl border bg-gradient-to-b from-primary/5 to-transparent p-10">
-          <h2 className="text-3xl font-heading font-bold mb-3">Start shipping branded audits today</h2>
+          <h2 className="text-3xl font-heading font-bold mb-3">
+            {isPro ? "You're all set — ship branded audits today" : "Start shipping branded audits today"}
+          </h2>
           <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
-            Free to try. Upgrade to Pro to remove SiteScoper branding and unlock unlimited white-label client audits.
+            {isPro
+              ? "Your Pro plan unlocks unlimited white-label audits. Head to the dashboard to run your next one."
+              : "Free to try. Upgrade to Pro to remove SiteScoper branding and unlock unlimited white-label client audits."}
           </p>
           <Button asChild size="lg">
-            <Link to="/pricing">Upgrade to Pro</Link>
+            <Link to={isPro ? "/dashboard" : "/pricing"}>
+              {isPro ? "Go to dashboard" : "Upgrade to Pro"}
+            </Link>
           </Button>
         </section>
       </main>
