@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import i18n from "@/i18n";
 
 export type TrafficLevel = "good" | "warn" | "bad" | "none";
 
@@ -12,13 +13,13 @@ export function getTrafficLevel(score: number | null | undefined): TrafficLevel 
 export function getTrafficLabel(level: TrafficLevel): string {
   switch (level) {
     case "good":
-      return "Healthy";
+      return i18n.t("trafficLight.healthy");
     case "warn":
-      return "Needs attention";
+      return i18n.t("trafficLight.needsAttention");
     case "bad":
-      return "Critical";
+      return i18n.t("trafficLight.critical");
     default:
-      return "Not scanned";
+      return i18n.t("trafficLight.notScanned");
   }
 }
 

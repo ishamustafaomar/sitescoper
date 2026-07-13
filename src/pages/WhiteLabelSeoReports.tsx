@@ -7,40 +7,43 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useSubscription } from "@/hooks/useSubscription";
-
-const features = [
-  { icon: Palette, title: "Your brand, not ours", body: "Export client-ready PDF audits with your agency's logo, colors, and contact details. No SiteScoper watermark." },
-  { icon: FileText, title: "Plain-English findings", body: "AI rewrites every issue into language your clients understand — no jargon, no 80-page spreadsheet dump." },
-  { icon: Users, title: "Built for agencies & freelancers", body: "Run unlimited audits across client domains. Perfect for retainers, sales pitches, and onboarding deliverables." },
-  { icon: Download, title: "One-click PDF export", body: "Generate a polished, branded report in seconds. Send straight to clients or attach to your proposals." },
-];
-
-const useCases = [
-  { t: "Sales pitches", b: "Hand prospects a branded audit of their site before the discovery call. Wins more deals than a generic deck." },
-  { t: "Client onboarding", b: "Kick off every new engagement with a benchmark report so progress is visible from day one." },
-  { t: "Monthly retainers", b: "Ship a recurring white-label SEO report as part of your retainer deliverables, without the manual work." },
-];
-
-const comparison = [
-  { feature: "Remove SiteScoper branding", us: true, them: false },
-  { feature: "Add your logo & colors", us: true, them: false },
-  { feature: "AI-written client-friendly findings", us: true, them: false },
-  { feature: "Unlimited client audits", us: true, them: true },
-  { feature: "Instant PDF export", us: true, them: true },
-  { feature: "No per-report fee", us: true, them: false },
-];
-
-const faqs = [
-  { q: "What is a white label SEO audit report?", a: "A white label SEO audit report is a branded website audit that an agency or freelancer delivers to a client under their own brand. The underlying tool is invisible — the client sees only the agency's logo, colors, and contact info." },
-  { q: "Can I add my agency's logo and colors?", a: "Yes. On the Pro plan you can upload your logo and set brand colors, and every PDF export is generated with your branding instead of SiteScoper's." },
-  { q: "How is this different from white-label Semrush or Ahrefs reports?", a: "Semrush and Ahrefs export raw data tables aimed at SEO professionals. SiteScoper's white-label reports are written by AI in plain English and prioritised by impact — ready to hand to a client without an analyst's edit pass." },
-  { q: "Is there a per-report fee?", a: "No. Pro includes unlimited audits across unlimited client domains. There is no per-report or per-client surcharge." },
-  { q: "Can I resell the audits to my clients?", a: "Yes. You can charge your clients whatever you like for the audits you deliver. That is the entire point of a white-label tool." },
-  { q: "Do I need a separate account per client?", a: "No. Run every client domain from a single Pro account and export each report with your shared agency branding." },
-];
+import { useTranslation } from "react-i18next";
 
 const WhiteLabelSeoReports = () => {
   const { isPro } = useSubscription();
+  const { t } = useTranslation();
+
+  const features = [
+    { icon: Palette, title: t("pages.whiteLabel.f1Title"), body: t("pages.whiteLabel.f1Body") },
+    { icon: FileText, title: t("pages.whiteLabel.f2Title"), body: t("pages.whiteLabel.f2Body") },
+    { icon: Users, title: t("pages.whiteLabel.f3Title"), body: t("pages.whiteLabel.f3Body") },
+    { icon: Download, title: t("pages.whiteLabel.f4Title"), body: t("pages.whiteLabel.f4Body") },
+  ];
+
+  const useCases = [
+    { t: t("pages.whiteLabel.u1Title"), b: t("pages.whiteLabel.u1Body") },
+    { t: t("pages.whiteLabel.u2Title"), b: t("pages.whiteLabel.u2Body") },
+    { t: t("pages.whiteLabel.u3Title"), b: t("pages.whiteLabel.u3Body") },
+  ];
+
+  const comparison = [
+    { feature: t("pages.whiteLabel.cmp1"), us: true, them: false },
+    { feature: t("pages.whiteLabel.cmp2"), us: true, them: false },
+    { feature: t("pages.whiteLabel.cmp3"), us: true, them: false },
+    { feature: t("pages.whiteLabel.cmp4"), us: true, them: true },
+    { feature: t("pages.whiteLabel.cmp5"), us: true, them: true },
+    { feature: t("pages.whiteLabel.cmp6"), us: true, them: false },
+  ];
+
+  const faqs = [
+    { q: t("pages.whiteLabel.faq1q"), a: t("pages.whiteLabel.faq1a") },
+    { q: t("pages.whiteLabel.faq2q"), a: t("pages.whiteLabel.faq2a") },
+    { q: t("pages.whiteLabel.faq3q"), a: t("pages.whiteLabel.faq3a") },
+    { q: t("pages.whiteLabel.faq4q"), a: t("pages.whiteLabel.faq4a") },
+    { q: t("pages.whiteLabel.faq5q"), a: t("pages.whiteLabel.faq5a") },
+    { q: t("pages.whiteLabel.faq6q"), a: t("pages.whiteLabel.faq6a") },
+  ];
+
   const faqLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -54,11 +57,11 @@ const WhiteLabelSeoReports = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>White Label SEO Audit Reports for Agencies | SiteScoper</title>
-        <meta name="description" content="Deliver branded, client-ready SEO audit reports under your own agency brand. Unlimited audits, AI-written findings, instant PDF export." />
+        <title>{t("pages.whiteLabel.metaTitle")}</title>
+        <meta name="description" content={t("pages.whiteLabel.metaDesc")} />
         <link rel="canonical" href="https://sitescoper.com/white-label-seo-reports" />
-        <meta property="og:title" content="White Label SEO Audit Reports — SiteScoper" />
-        <meta property="og:description" content="Branded, client-ready SEO audits for agencies and freelancers. Unlimited reports, your logo, your colors." />
+        <meta property="og:title" content={t("pages.whiteLabel.ogTitle")} />
+        <meta property="og:description" content={t("pages.whiteLabel.ogDesc")} />
         <meta property="og:url" content="https://sitescoper.com/white-label-seo-reports" />
         <meta property="og:type" content="website" />
         <script type="application/ld+json">{JSON.stringify(faqLd)}</script>
@@ -74,20 +77,20 @@ const WhiteLabelSeoReports = () => {
         >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium mb-4">
             <Palette className="w-3.5 h-3.5" />
-            White label SEO reports
+            {t("pages.whiteLabel.badge")}
           </div>
           <h1 className="text-4xl md:text-6xl font-heading font-bold tracking-tight mb-6">
-            Client-ready SEO audits, under your agency's brand
+            {t("pages.whiteLabel.heroTitle")}
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
-            Run unlimited white-label SEO audits across every client domain. Export polished PDF reports with your logo, your colors, and AI-written findings your clients can actually read.
+            {t("pages.whiteLabel.heroSubtitle")}
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <Button asChild size="lg">
-              <Link to="/">Run a free audit</Link>
+              <Link to="/">{t("pages.whiteLabel.runFreeAudit")}</Link>
             </Button>
             <Button asChild size="lg" variant="outline">
-              <Link to="/pricing">See Pro pricing</Link>
+              <Link to="/pricing">{t("pages.whiteLabel.seeProPricing")}</Link>
             </Button>
           </div>
         </motion.section>
@@ -103,8 +106,8 @@ const WhiteLabelSeoReports = () => {
         </section>
 
         <section className="mt-20">
-          <h2 className="text-3xl font-heading font-bold mb-3 text-center">When to send a white-label audit</h2>
-          <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-10">Three deliverables your agency can ship this week.</p>
+          <h2 className="text-3xl font-heading font-bold mb-3 text-center">{t("pages.whiteLabel.useCasesTitle")}</h2>
+          <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-10">{t("pages.whiteLabel.useCasesSubtitle")}</p>
           <ol className="grid md:grid-cols-3 gap-6">
             {useCases.map((s, i) => (
               <li key={s.t} className="rounded-lg border bg-card p-6">
@@ -117,17 +120,17 @@ const WhiteLabelSeoReports = () => {
         </section>
 
         <section className="mt-20">
-          <h2 className="text-3xl font-heading font-bold mb-3 text-center">SiteScoper vs. typical white-label SEO tools</h2>
+          <h2 className="text-3xl font-heading font-bold mb-3 text-center">{t("pages.whiteLabel.compareTitle")}</h2>
           <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-8">
-            Most "white-label" SEO platforms still hand your client a Semrush-style data dump. SiteScoper ships a report your client can actually act on.
+            {t("pages.whiteLabel.compareSubtitle")}
           </p>
           <div className="rounded-lg border overflow-hidden">
             <table className="w-full text-sm">
               <thead className="bg-muted/50">
                 <tr>
-                  <th className="text-left p-4 font-heading font-semibold">Feature</th>
-                  <th className="p-4 font-heading font-semibold">SiteScoper Pro</th>
-                  <th className="p-4 font-heading font-semibold text-muted-foreground">Typical tool</th>
+                  <th className="text-left p-4 font-heading font-semibold">{t("pages.whiteLabel.colFeature")}</th>
+                  <th className="p-4 font-heading font-semibold">{t("pages.whiteLabel.colUs")}</th>
+                  <th className="p-4 font-heading font-semibold text-muted-foreground">{t("pages.whiteLabel.colThem")}</th>
                 </tr>
               </thead>
               <tbody>
@@ -144,7 +147,7 @@ const WhiteLabelSeoReports = () => {
         </section>
 
         <section className="mt-20">
-          <h2 className="text-3xl font-heading font-bold mb-8 text-center">Frequently asked questions</h2>
+          <h2 className="text-3xl font-heading font-bold mb-8 text-center">{t("pages.whiteLabel.faqTitle")}</h2>
           <div className="space-y-4 max-w-3xl mx-auto">
             {faqs.map((f) => (
               <details key={f.q} className="rounded-lg border bg-card p-5 group">
@@ -160,16 +163,14 @@ const WhiteLabelSeoReports = () => {
 
         <section className="mt-20 text-center rounded-2xl border bg-gradient-to-b from-primary/5 to-transparent p-10">
           <h2 className="text-3xl font-heading font-bold mb-3">
-            {isPro ? "You're all set — ship branded audits today" : "Start shipping branded audits today"}
+            {isPro ? t("pages.whiteLabel.ctaTitleReady") : t("pages.whiteLabel.ctaTitleStart")}
           </h2>
           <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
-            {isPro
-              ? "Your Pro plan unlocks unlimited white-label audits. Head to the dashboard to run your next one."
-              : "Free to try. Upgrade to Pro to remove SiteScoper branding and unlock unlimited white-label client audits."}
+            {isPro ? t("pages.whiteLabel.ctaBodyPro") : t("pages.whiteLabel.ctaBodyFree")}
           </p>
           <Button asChild size="lg">
             <Link to={isPro ? "/dashboard" : "/pricing"}>
-              {isPro ? "Go to dashboard" : "Upgrade to Pro"}
+              {isPro ? t("pages.whiteLabel.goDashboard") : t("pages.whiteLabel.upgradeToPro")}
             </Link>
           </Button>
         </section>

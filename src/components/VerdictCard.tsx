@@ -3,12 +3,16 @@ import { AlertTriangle, Sparkles, ArrowRight } from "lucide-react";
 import { ScoreRing } from "@/components/ScoreRing";
 import { Badge } from "@/components/ui/badge";
 import { AnalysisResult, AnalysisSuggestion } from "@/lib/api";
+import { useTranslation } from "react-i18next";
 
-const categoryLabels: Record<string, string> = {
-  saas: "SaaS product", marketing: "Marketing site", ecommerce: "E-commerce",
-  blog: "Blog", docs: "Documentation", portfolio: "Portfolio",
-  community: "Community/Directory", other: "Website",
-};
+function useCategoryLabels(): Record<string, string> {
+  const { t } = useTranslation();
+  return {
+    saas: t("verdictCard.categorySaas"), marketing: t("verdictCard.categoryMarketing"), ecommerce: t("verdictCard.categoryEcommerce"),
+    blog: t("verdictCard.categoryBlog"), docs: t("verdictCard.categoryDocs"), portfolio: t("verdictCard.categoryPortfolio"),
+    community: t("verdictCard.categoryCommunity"), other: t("verdictCard.categoryOther"),
+  };
+}
 
 function priorityRank(p?: string) {
   return p === "high" ? 0 : p === "medium" ? 1 : 2;
@@ -44,6 +48,8 @@ interface Props {
 }
 
 export function VerdictCard({ analysis, onJumpToImpact }: Props) {
+  const { t } = useTranslation();
+  const categoryLabels = useCategoryLabels();
   const all = flattenSuggestions(analysis);
   const ranked = rankSuggestions(all);
 
@@ -58,11 +64,11 @@ export function VerdictCard({ analysis, onJumpToImpact }: Props) {
 
   const score = analysis.overall_score;
   const verdict =
-    score >= 80 ? "Strong" :
-    score >= 65 ? "Solid, with room to grow" :
-    score >= 50 ? "Mixed — some clear wins to ship" :
-    score >= 35 ? "Needs work — focus on fundamentals" :
-    "Critical issues — start at the top";
+    score >= 80 ? t("verdictCard.verdictStrong") :
+    score >= 65 ? t("verdictCard.verdictSolid") :
+    score >= 50 ? t("verdictCard.verdictMixed") :
+    score >= 35 ? t("verdictCard.verdictNeedsWork") :
+    t("verdictCard.verdictCritical");
 
   return (
     <motion.div
@@ -75,7 +81,7 @@ export function VerdictCard({ analysis, onJumpToImpact }: Props) {
         <ScoreRing score={score} />
         <div className="flex-1 min-w-0 space-y-1.5">
           <div className="flex items-center gap-2 flex-wrap">
-            <span className="text-[10px] font-body uppercase tracking-wider text-muted-foreground">Verdict</span>
+            <span className="text-[10px] font-body uppercase tracking-wider text-muted-foreground">{t("verdictCard.verdict")}</span>
             {analysis.site_category && (
               <Badge variant="outline" className="text-[10px] font-body">
                 {categoryLabels[analysis.site_category] ?? analysis.site_category}
@@ -91,20 +97,20 @@ export function VerdictCard({ analysis, onJumpToImpact }: Props) {
 
       <div className="grid md:grid-cols-2 gap-4 pt-4 border-t border-border">
         <TopList
-          title="Critical blockers"
+          title={t("verdictCard.criticalBlockers")}
           items={blockers}
           icon={AlertTriangle}
           iconClass="text-destructive"
           chipClass="bg-destructive/10 text-destructive"
-          emptyText="No critical blockers — nice."
+          emptyText={t("verdictCard.noBlockers")}
         />
         <TopList
-          title="Top opportunities"
+          title={t("verdictCard.topOpportunities")}
           items={opportunities}
           icon={Sparkles}
           iconClass="text-primary"
           chipClass="bg-primary/10 text-primary"
-          emptyText="No clear growth opportunities surfaced."
+          emptyText={t("verdictCard.noOpportunities")}
         />
       </div>
 
@@ -114,7 +120,7 @@ export function VerdictCard({ analysis, onJumpToImpact }: Props) {
             onClick={onJumpToImpact}
             className="text-xs font-body text-primary hover:underline inline-flex items-center gap-1"
           >
-            See full report <ArrowRight className="h-3 w-3" />
+            {t("verdictCard.seeFullReport")} <ArrowRight className="h-3 w-3" />
           </button>
         </div>
       )}

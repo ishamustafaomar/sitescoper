@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "react-i18next";
 
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL as string;
 const ANON = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY as string;
@@ -9,6 +10,7 @@ const ANON = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY as string;
 type State = "loading" | "ready" | "already" | "invalid" | "done" | "error";
 
 export default function Unsubscribe() {
+  const { t } = useTranslation();
   const [params] = useSearchParams();
   const token = params.get("token");
   const [state, setState] = useState<State>("loading");
@@ -44,18 +46,18 @@ export default function Unsubscribe() {
   return (
     <main className="min-h-screen flex items-center justify-center p-6 bg-background">
       <div className="max-w-md w-full text-center space-y-4 border rounded-2xl p-8">
-        <h1 className="text-2xl font-semibold">Unsubscribe</h1>
-        {state === "loading" && <p className="text-muted-foreground">Checking your link…</p>}
+        <h1 className="text-2xl font-semibold">{t("unsubscribe.title")}</h1>
+        {state === "loading" && <p className="text-muted-foreground">{t("unsubscribe.checking")}</p>}
         {state === "ready" && (
           <>
-            <p className="text-muted-foreground">Click below to stop receiving emails from SiteScoper.</p>
-            <Button onClick={confirm} className="w-full">Confirm unsubscribe</Button>
+            <p className="text-muted-foreground">{t("unsubscribe.confirmText")}</p>
+            <Button onClick={confirm} className="w-full">{t("unsubscribe.confirmBtn")}</Button>
           </>
         )}
-        {state === "done" && <p>You've been unsubscribed. Sorry to see you go.</p>}
-        {state === "already" && <p>This email is already unsubscribed.</p>}
-        {state === "invalid" && <p>This unsubscribe link is invalid or expired.</p>}
-        {state === "error" && <p>Something went wrong. Please try again later.</p>}
+        {state === "done" && <p>{t("unsubscribe.done")}</p>}
+        {state === "already" && <p>{t("unsubscribe.already")}</p>}
+        {state === "invalid" && <p>{t("unsubscribe.invalid")}</p>}
+        {state === "error" && <p>{t("unsubscribe.error")}</p>}
       </div>
     </main>
   );
