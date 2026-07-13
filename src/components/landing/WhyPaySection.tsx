@@ -4,30 +4,17 @@ import { Check, Sparkles, ArrowRight, Crown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useSubscription } from "@/hooks/useSubscription";
 import { useAuth } from "@/components/AuthProvider";
-
-const FREE_PERKS: string[] = [
-  "3 website scans per month",
-  "Full prioritized action roadmap",
-  "Category scores & findings",
-  "No credit card required",
-];
-
-const PRO_PERKS: string[] = [
-  "Unlimited site analyses",
-  "Deep product simulation (AI plays your product)",
-  "Side-by-side competitor battle mode",
-  "Chat with your report (AI)",
-  "1-click PDF export",
-  "Unlimited, searchable history",
-  "Priority Gemini-powered scans",
-];
+import { useTranslation } from "react-i18next";
 
 export function WhyPaySection() {
   const navigate = useNavigate();
   const { user } = useAuth();
   const { isPro } = useSubscription();
+  const { t } = useTranslation();
   // Pro users get a slimmer, non-salesy layout on the landing page.
   if (isPro) return null;
+  const FREE_PERKS = [1, 2, 3, 4].map((n) => t(`landing.whyPay.free${n}`));
+  const PRO_PERKS = [1, 2, 3, 4, 5, 6, 7].map((n) => t(`landing.whyPay.pro${n}`));
 
   return (
     <section className="py-16 px-4">
@@ -40,13 +27,13 @@ export function WhyPaySection() {
           className="text-center space-y-3"
         >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-body">
-            <Crown className="h-3 w-3" /> Simple pricing
+            <Crown className="h-3 w-3" /> {t("landing.whyPay.badge")}
           </div>
           <h2 className="text-3xl md:text-4xl font-heading font-bold tracking-tight">
-            Start free. Upgrade when you're serious.
+            {t("landing.whyPay.title")}
           </h2>
           <p className="text-muted-foreground font-body max-w-xl mx-auto">
-            Every founder gets 3 free scans a month. Ship faster with SiteScoper Pro — unlimited scans, deep product simulation, competitor compare, chat-with-report and PDF exports.
+            {t("landing.whyPay.subtitle")}
           </p>
         </motion.div>
 
@@ -59,10 +46,10 @@ export function WhyPaySection() {
             className="rounded-2xl border border-border bg-card p-6 md:p-8 flex flex-col"
           >
             <div className="flex items-baseline justify-between mb-4">
-              <div className="font-heading text-lg font-bold">Free</div>
+              <div className="font-heading text-lg font-bold">{t("landing.whyPay.free")}</div>
               <div>
                 <span className="text-3xl font-heading font-bold">$0</span>
-                <span className="text-xs text-muted-foreground font-body ml-1">/month</span>
+                <span className="text-xs text-muted-foreground font-body ml-1">{t("landing.whyPay.perMonth")}</span>
               </div>
             </div>
             <ul className="space-y-2 mb-6 flex-1">
@@ -78,7 +65,7 @@ export function WhyPaySection() {
               size="sm"
               onClick={() => navigate(user ? "/dashboard" : "/auth")}
             >
-              {user ? "Go to dashboard" : "Start free"}
+              {user ? t("landing.whyPay.goDashboard") : t("landing.whyPay.startFree")}
             </Button>
           </motion.div>
 
@@ -90,15 +77,15 @@ export function WhyPaySection() {
             className="rounded-2xl border-2 border-primary/40 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent p-6 md:p-8 flex flex-col relative"
           >
             <span className="absolute -top-3 right-6 px-2 py-0.5 rounded-full bg-primary text-primary-foreground text-[10px] font-body font-bold uppercase tracking-wider">
-              Most popular
+              {t("landing.whyPay.mostPopular")}
             </span>
             <div className="flex items-baseline justify-between mb-4">
               <div className="font-heading text-lg font-bold text-primary inline-flex items-center gap-1.5">
-                <Crown className="h-4 w-4" /> Pro
+                <Crown className="h-4 w-4" /> {t("landing.whyPay.pro")}
               </div>
               <div>
                 <span className="text-3xl font-heading font-bold">$19</span>
-                <span className="text-xs text-muted-foreground font-body ml-1">/month</span>
+                <span className="text-xs text-muted-foreground font-body ml-1">{t("landing.whyPay.perMonth")}</span>
               </div>
             </div>
             <ul className="space-y-2 mb-6 flex-1">
@@ -110,7 +97,7 @@ export function WhyPaySection() {
               ))}
             </ul>
             <Button size="sm" className="shadow-glow" onClick={() => navigate("/pricing")}>
-              <Sparkles className="h-3.5 w-3.5" /> Upgrade to Pro
+              <Sparkles className="h-3.5 w-3.5" /> {t("landing.whyPay.upgrade")}
               <ArrowRight className="h-3.5 w-3.5" />
             </Button>
           </motion.div>

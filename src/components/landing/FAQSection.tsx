@@ -1,34 +1,13 @@
 import { motion } from "framer-motion";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-
-const faqs = [
-  {
-    q: "How is this different from other SEO tools?",
-    a: "Most SEO tools give you a checklist of technical issues. SiteScoper acts like a senior product strategist — it evaluates your messaging, positioning, value proposition, and trust signals alongside the technical stuff. Real, opinionated feedback you can actually use.",
-  },
-  {
-    q: "Do you actually crawl my whole site?",
-    a: "We crawl up to 8 of your most important pages — typically homepage, pricing, features, docs, about, and signup. This gives the AI enough context to understand your product, not just your front door.",
-  },
-  {
-    q: "How much does it cost?",
-    a: "You get 3 free website scans per month with no credit card. For unlimited scans, deep product simulation, competitor compare, PDF exports and chat-with-your-report, upgrade to SiteScoper Pro on the pricing page.",
-  },
-  {
-    q: "How accurate is the AI feedback?",
-    a: "The AI is powered by frontier models (GPT-5 / Gemini Pro) with prompts tuned by experienced product designers. It's not perfect — but it consistently catches issues that even experienced founders miss.",
-  },
-  {
-    q: "Can I export the analysis?",
-    a: "Yes — every analysis can be exported as a clean, professional PDF. Great for sharing with teammates, clients, or stakeholders.",
-  },
-  {
-    q: "What kind of websites does it work on?",
-    a: "Anything publicly accessible — SaaS landing pages, ecommerce stores, portfolios, blogs, marketing sites, documentation. If it's on the web, we can analyze it.",
-  },
-];
+import { useTranslation } from "react-i18next";
 
 export function FAQSection() {
+  const { t } = useTranslation();
+  const faqs = [1, 2, 3, 4, 5, 6].map((n) => ({
+    q: t(`landing.faq.q${n}`),
+    a: t(`landing.faq.a${n}`),
+  }));
   return (
     <section className="py-20 px-4">
       <div className="max-w-3xl mx-auto">
@@ -40,10 +19,10 @@ export function FAQSection() {
           className="text-center mb-12"
         >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-body mb-4">
-            FAQ
+            {t("landing.faq.badge")}
           </div>
           <h2 className="text-3xl md:text-4xl font-heading font-bold tracking-tight mb-4">
-            Questions founders ask
+            {t("landing.faq.title")}
           </h2>
         </motion.div>
 

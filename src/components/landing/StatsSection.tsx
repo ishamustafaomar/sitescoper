@@ -1,13 +1,14 @@
 import { motion } from "framer-motion";
-
-const stats = [
-  { value: "60s", label: "Average analysis time" },
-  { value: "8+", label: "Pages crawled per site" },
-  { value: "6", label: "Analysis dimensions" },
-  { value: "3", label: "Free scans / month" },
-];
+import { useTranslation } from "react-i18next";
 
 export function StatsSection() {
+  const { t } = useTranslation();
+  const stats = [
+    { value: "60s", label: t("landing.stats.s1") },
+    { value: "8+", label: t("landing.stats.s2") },
+    { value: "6", label: t("landing.stats.s3") },
+    { value: "3", label: t("landing.stats.s4") },
+  ];
   return (
     <section className="py-16 px-4 border-y border-border bg-muted/20">
       <div className="max-w-6xl mx-auto">
