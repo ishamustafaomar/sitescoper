@@ -6,7 +6,12 @@
     "signIn": "Iniciar sesión",
     "signOut": "Cerrar sesión",
     "account": "Cuenta",
-    "language": "Idioma"
+    "language": "Idioma",
+    "analyze": "Analizar",
+    "compare": "Comparar",
+    "pricing": "Precios",
+    "upgrade": "Mejorar",
+    "menu": "Menú"
   },
   "hero": {
     "badge": "Con tecnología de Gemini 2.5 Pro · 20+ dimensiones de análisis",
