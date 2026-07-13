@@ -1,28 +1,14 @@
 import { motion } from "framer-motion";
 import { Link2, Radar, ListChecks, Workflow } from "lucide-react";
-
-const steps = [
-  {
-    icon: Link2,
-    number: "01",
-    title: "Paste your URL",
-    description: "Drop in any public website. No account needed to run your first audit.",
-  },
-  {
-    icon: Radar,
-    number: "02",
-    title: "AI reads your site",
-    description: "We crawl your key pages and read them like a skeptical first-time visitor.",
-  },
-  {
-    icon: ListChecks,
-    number: "03",
-    title: "Get the 3 fixes",
-    description: "A prioritized verdict — the handful of changes actually worth shipping this week.",
-  },
-];
+import { useTranslation } from "react-i18next";
 
 export function HowItWorksSection() {
+  const { t } = useTranslation();
+  const steps = [
+    { icon: Link2, number: "01", title: t("landing.howItWorks.s1t"), description: t("landing.howItWorks.s1d") },
+    { icon: Radar, number: "02", title: t("landing.howItWorks.s2t"), description: t("landing.howItWorks.s2d") },
+    { icon: ListChecks, number: "03", title: t("landing.howItWorks.s3t"), description: t("landing.howItWorks.s3d") },
+  ];
   return (
     <section className="py-20 px-4 bg-muted/30">
       <div className="max-w-6xl mx-auto">
@@ -35,10 +21,10 @@ export function HowItWorksSection() {
         >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-body mb-4">
             <Workflow className="h-3 w-3" />
-            How it works
+            {t("landing.howItWorks.badge")}
           </div>
           <h2 className="text-3xl md:text-4xl font-heading font-bold tracking-tight mb-4">
-            From URL to verdict in three steps
+            {t("landing.howItWorks.title")}
           </h2>
         </motion.div>
 
