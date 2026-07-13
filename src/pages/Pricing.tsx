@@ -10,6 +10,7 @@ import { useSubscription } from "@/hooks/useSubscription";
 import { StripeEmbeddedCheckoutForm } from "@/components/StripeEmbeddedCheckout";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { PaymentTestModeBanner } from "@/components/PaymentTestModeBanner";
+import { toast } from "@/hooks/use-toast";
 
 const FREE_PERKS: string[] = [
   "3 website scans per month",
@@ -133,6 +134,16 @@ export default function Pricing() {
               priceId="pro_monthly"
               customerEmail={user.email ?? undefined}
               userId={user.id}
+              onError={(code) => {
+                if (code === "already_subscribed") {
+                  setCheckoutOpen(false);
+                  toast({
+                    title: "You're already on Pro",
+                    description: "Manage your subscription from the Account page.",
+                  });
+                  navigate("/account");
+                }
+              }}
             />
           )}
         </DialogContent>
