@@ -90,7 +90,7 @@ Deno.serve(async (req) => {
       if (blocking) {
         return new Response(
           JSON.stringify({ error: 'already_subscribed' }),
-          { status: 409, headers: { ...corsHeaders, 'Content-Type': 'application/json' } },
+          { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } },
         );
       }
     }
