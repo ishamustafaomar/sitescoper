@@ -93,5 +93,39 @@
     "tagline": "KI-gestützte Website-Analyse",
     "privacy": "Datenschutz",
     "terms": "AGB"
+  },
+  "plan": {
+    "title": "Tarif",
+    "free": "Kostenlos",
+    "proDesc": "Du bist auf SiteScoper Pro — unbegrenzte Scans, tiefgehende Produktsimulation, Wettbewerbsvergleich, Chat mit Report und PDF-Export sind freigeschaltet.",
+    "freeDesc": "Du bist im kostenlosen Tarif — 3 Scans pro Monat. Wechsle zu Pro für unbegrenzte Scans und alle erweiterten Funktionen.",
+    "upgradeBtn": "Auf Pro upgraden",
+    "manageBilling": "Abrechnung verwalten",
+    "downgradeBtn": "Kündigen & auf Free zurückstufen",
+    "resumeBtn": "Abo fortsetzen",
+    "scheduledCancel": "Dein Pro-Tarif wird am Ende des Abrechnungszeitraums gekündigt. Du wechselst dann zum kostenlosen Tarif — du kannst jederzeit vorher fortsetzen.",
+    "scheduledCancelWithDate": "Dein Pro-Tarif wird am {{date}} gekündigt. Du wechselst dann zum kostenlosen Tarif — du kannst jederzeit vorher fortsetzen.",
+    "confirmDowngradeTitle": "Pro-Tarif kündigen?",
+    "confirmDowngradeDesc": "Du behältst vollen Pro-Zugriff bis zum Ende des aktuellen Abrechnungszeitraums und wechselst dann automatisch in den kostenlosen Tarif (3 Scans/Monat). Du kannst vorher jederzeit fortsetzen.",
+    "confirmDowngradeDescWithDate": "Du behältst vollen Pro-Zugriff bis {{date}} und wechselst dann automatisch in den kostenlosen Tarif (3 Scans/Monat). Du kannst vorher jederzeit fortsetzen.",
+    "keepPro": "Pro behalten",
+    "confirmDowngrade": "Ja, Pro kündigen",
+    "canceledTitle": "Kündigung geplant",
+    "canceledDesc": "Du behältst Pro bis zum Ende des Zeitraums und wechselst dann zu Free.",
+    "resumedTitle": "Abo fortgesetzt",
+    "resumedDesc": "Du bist zurück auf Pro — dein Tarif verlängert sich wie gewohnt."
+  },
+  "pricing": {
+    "title": "Einfache, ehrliche Preise",
+    "subtitle": "Probiere SiteScoper kostenlos — 3 Scans pro Monat, keine Kreditkarte. Wenn du schneller ausliefern willst, wechsle zu Pro.",
+    "subtitlePro": "Du bist auf Pro — danke, dass du SiteScoper unterstützt. Verwalte oder kündige deinen Tarif jederzeit im Konto.",
+    "startFree": "Kostenlos starten",
+    "goDashboard": "Zum Dashboard",
+    "freeDowngradeHint": "Vom Konto aus zurückstufen",
+    "currentPro": "Du bist auf Pro",
+    "upgradeCta": "Auf Pro upgraden",
+    "footnote": "Jederzeit kündbar — dein Pro-Zugriff läuft bis zum Ende des Abrechnungszeitraums.",
+    "footnotePro": "Du kannst jederzeit im Konto kündigen — Pro-Zugriff läuft bis zum Ende des Zeitraums.",
+    "manageInAccount": "Im Konto verwalten oder kündigen →"
   }
 }
