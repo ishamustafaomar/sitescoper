@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useSubscription } from "@/hooks/useSubscription";
 import {
   AlertTriangle,
   CheckCircle2,
@@ -85,6 +86,7 @@ function levelColor(level: string) {
 }
 
 export function SampleReportSection({ onTryYours }: { onTryYours: () => void }) {
+  const { isPro } = useSubscription();
   return (
     <section className="py-20 px-4 bg-gradient-to-b from-background via-muted/20 to-background">
       <div className="max-w-5xl mx-auto">
