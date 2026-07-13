@@ -2,6 +2,8 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Check, Sparkles, ArrowRight, Crown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useSubscription } from "@/hooks/useSubscription";
+import { useAuth } from "@/components/AuthProvider";
 
 const FREE_PERKS: string[] = [
   "3 website scans per month",
@@ -22,6 +24,10 @@ const PRO_PERKS: string[] = [
 
 export function WhyPaySection() {
   const navigate = useNavigate();
+  const { user } = useAuth();
+  const { isPro } = useSubscription();
+  // Pro users get a slimmer, non-salesy layout on the landing page.
+  if (isPro) return null;
 
   return (
     <section className="py-16 px-4">
@@ -67,8 +73,12 @@ export function WhyPaySection() {
                 </li>
               ))}
             </ul>
-            <Button variant="outline" size="sm" onClick={() => navigate("/auth")}>
-              Start free
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => navigate(user ? "/dashboard" : "/auth")}
+            >
+              {user ? "Go to dashboard" : "Start free"}
             </Button>
           </motion.div>
 
