@@ -1,40 +1,17 @@
 import { motion } from "framer-motion";
 import { Rocket, Briefcase, ShoppingBag, PenTool, GraduationCap, Building2 } from "lucide-react";
-
-const useCases = [
-  {
-    icon: Rocket,
-    title: "SaaS Founders",
-    description: "Validate your landing page messaging before launch. Find conversion blockers fast.",
-  },
-  {
-    icon: Briefcase,
-    title: "Agencies",
-    description: "Audit client websites quickly. Generate professional reports to win new business.",
-  },
-  {
-    icon: ShoppingBag,
-    title: "Ecommerce",
-    description: "Optimize product pages, trust signals, and checkout flow for higher conversions.",
-  },
-  {
-    icon: PenTool,
-    title: "Designers",
-    description: "Get objective feedback on your portfolio or client projects before shipping.",
-  },
-  {
-    icon: GraduationCap,
-    title: "Students & Learners",
-    description: "Learn what makes great websites by analyzing real ones with AI-powered breakdowns.",
-  },
-  {
-    icon: Building2,
-    title: "Marketing Teams",
-    description: "Benchmark your site against competitors. Track improvements over time.",
-  },
-];
+import { useTranslation } from "react-i18next";
 
 export function UseCasesSection() {
+  const { t } = useTranslation();
+  const useCases = [
+    { icon: Rocket, title: t("landing.useCases.u1t"), description: t("landing.useCases.u1d") },
+    { icon: Briefcase, title: t("landing.useCases.u2t"), description: t("landing.useCases.u2d") },
+    { icon: ShoppingBag, title: t("landing.useCases.u3t"), description: t("landing.useCases.u3d") },
+    { icon: PenTool, title: t("landing.useCases.u4t"), description: t("landing.useCases.u4d") },
+    { icon: GraduationCap, title: t("landing.useCases.u5t"), description: t("landing.useCases.u5d") },
+    { icon: Building2, title: t("landing.useCases.u6t"), description: t("landing.useCases.u6d") },
+  ];
   return (
     <section className="py-20 px-4 bg-muted/30">
       <div className="max-w-6xl mx-auto">
@@ -46,13 +23,13 @@ export function UseCasesSection() {
           className="text-center mb-14"
         >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-body mb-4">
-            Who it's for
+            {t("landing.useCases.badge")}
           </div>
           <h2 className="text-3xl md:text-4xl font-heading font-bold tracking-tight mb-4">
-            Built for anyone shipping on the web
+            {t("landing.useCases.title")}
           </h2>
           <p className="text-muted-foreground font-body text-lg max-w-2xl mx-auto">
-            Whether you're launching a startup or auditing a client site, SiteScoper helps you ship better.
+            {t("landing.useCases.subtitle")}
           </p>
         </motion.div>
 
