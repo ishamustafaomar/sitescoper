@@ -6,6 +6,7 @@ import { AppHeader } from "@/components/AppHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { useSubscription } from "@/hooks/useSubscription";
 
 const features = [
   { icon: Palette, title: "Your brand, not ours", body: "Export client-ready PDF audits with your agency's logo, colors, and contact details. No SiteScoper watermark." },
@@ -39,6 +40,7 @@ const faqs = [
 ];
 
 const WhiteLabelSeoReports = () => {
+  const { isPro } = useSubscription();
   const faqLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
