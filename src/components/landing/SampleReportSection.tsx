@@ -340,7 +340,9 @@ export function SampleReportSection({ onTryYours }: { onTryYours: () => void }) 
             <ArrowRight className="h-4 w-4" />
           </Button>
           <p className="text-[11px] text-muted-foreground font-body">
-            Free plan includes 3 scans / month · Upgrade to Pro for unlimited
+            {isPro
+              ? "You're on Pro — unlimited scans included"
+              : "Free plan includes 3 scans / month · Upgrade to Pro for unlimited"}
           </p>
         </div>
       </div>
