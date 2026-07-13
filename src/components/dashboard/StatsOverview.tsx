@@ -1,6 +1,7 @@
 import { Globe, BarChart3, AlertTriangle, ShieldAlert } from "lucide-react";
 import { TrafficDot, getTrafficLevel, getTrafficStyles, getTrafficLabel } from "@/components/TrafficLight";
 import { cn } from "@/lib/utils";
+import { useTranslation } from "react-i18next";
 
 interface StatsOverviewProps {
   websiteCount: number;
@@ -11,13 +12,14 @@ interface StatsOverviewProps {
 }
 
 export function StatsOverview({ websiteCount, historyCount, avgScore, criticalIssues = 0, sitesAtRisk = 0 }: StatsOverviewProps) {
+  const { t } = useTranslation();
   const level = getTrafficLevel(avgScore);
   const styles = getTrafficStyles(level);
   const stats = [
-    { icon: Globe, color: "bg-primary/10 text-primary", value: websiteCount, label: "Tracked sites" },
-    { icon: BarChart3, color: "bg-accent/10 text-accent", value: historyCount, label: "Total scans" },
-    { icon: AlertTriangle, color: "bg-destructive/10 text-destructive", value: criticalIssues, label: "Critical issues" },
-    { icon: ShieldAlert, color: "bg-primary/10 text-primary", value: sitesAtRisk, label: "Sites at risk" },
+    { icon: Globe, color: "bg-primary/10 text-primary", value: websiteCount, label: t("dashboard.stats.trackedSites") },
+    { icon: BarChart3, color: "bg-accent/10 text-accent", value: historyCount, label: t("dashboard.stats.totalScans") },
+    { icon: AlertTriangle, color: "bg-destructive/10 text-destructive", value: criticalIssues, label: t("dashboard.stats.criticalIssues") },
+    { icon: ShieldAlert, color: "bg-primary/10 text-primary", value: sitesAtRisk, label: t("dashboard.stats.sitesAtRisk") },
   ];
 
   return (
@@ -37,10 +39,10 @@ export function StatsOverview({ websiteCount, historyCount, avgScore, criticalIs
           <div className="flex items-center gap-1.5">
             <TrafficDot score={avgScore} size="sm" />
             <p className={cn("text-[10px] font-body uppercase tracking-wider font-semibold", avgScore != null ? styles.text : "text-muted-foreground")}>
-              {avgScore != null ? getTrafficLabel(level) : "No data yet"}
+              {avgScore != null ? getTrafficLabel(level) : t("dashboard.stats.noDataYet")}
             </p>
           </div>
-          <p className="text-xs text-muted-foreground font-body mt-0.5">Avg health score</p>
+          <p className="text-xs text-muted-foreground font-body mt-0.5">{t("dashboard.stats.avgHealthScore")}</p>
         </div>
       </div>
 

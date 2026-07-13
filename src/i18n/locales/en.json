@@ -292,7 +292,76 @@
     "websiteRemoved": "Website removed",
     "analysisComplete": "Analysis complete",
     "analysisScore": "Score: {{score}}/100",
-    "error": "Error"
+    "error": "Error",
+    "card": {
+      "scans_one": "{{count}} scan",
+      "scans_other": "{{count}} scans",
+      "notAnalyzed": "Not analyzed yet",
+      "seo": "SEO",
+      "analyze": "Analyze",
+      "deleteAria": "Delete {{name}}"
+    },
+    "stats": {
+      "trackedSites": "Tracked sites",
+      "totalScans": "Total scans",
+      "criticalIssues": "Critical issues",
+      "sitesAtRisk": "Sites at risk",
+      "noDataYet": "No data yet",
+      "avgHealthScore": "Avg health score"
+    },
+    "addForm": {
+      "title": "Add Website",
+      "placeholder": "https://example.com",
+      "add": "Add"
+    },
+    "actionPlan": {
+      "title": "7-day action plan",
+      "dayShort": "D{{day}}"
+    },
+    "issuesByImpact": {
+      "title": "Issues by impact",
+      "critical": "Critical",
+      "moderate": "Moderate",
+      "minor": "Minor",
+      "total": "{{count}} total",
+      "noIssues": "No critical or moderate issues — nice work."
+    },
+    "seoDetail": {
+      "titleTag": "Title Tag",
+      "missing": "Missing",
+      "charsRecommended60": "{{count}} characters (recommended: ≤60)",
+      "noTitleTag": "No title tag found",
+      "metaDescription": "Meta Description",
+      "charsRecommended160": "{{count}} characters (recommended: ≤160)",
+      "noMetaDescription": "No meta description found",
+      "language": "Language",
+      "notSet": "Not set",
+      "languageDetail": "Language: {{lang}}",
+      "considerLangAttr": "Consider setting lang attribute",
+      "canonicalUrl": "Canonical / Source URL",
+      "present": "Present",
+      "canonicalNotDetected": "Canonical URL not detected",
+      "pass": "Pass",
+      "warning": "Warning",
+      "fail": "Fail",
+      "info": "Info",
+      "total": "Total",
+      "internal": "Internal",
+      "external": "External",
+      "broken": "Broken",
+      "brokenLinks": "Broken links",
+      "noLinkData": "No link data available.",
+      "moreLinks": "+{{count}} more links",
+      "noSuggestions": "No suggestions in this category.",
+      "close": "Close",
+      "semrushProTitle": "Semrush metrics are a Pro feature",
+      "semrushProDesc": "Upgrade to unlock Authority Score, organic traffic, ranking keywords and backlink data.",
+      "tabMeta": "Meta",
+      "tabSeo": "SEO",
+      "tabLinks": "Links",
+      "tabPerf": "Perf",
+      "tabA11y": "A11y"
+    }
   },
   "admin": {
     "title": "Admin Panel — SiteScoper",

@@ -292,7 +292,76 @@
     "websiteRemoved": "Sito rimosso",
     "analysisComplete": "Analisi completata",
     "analysisScore": "Punteggio: {{score}}/100",
-    "error": "Errore"
+    "error": "Errore",
+    "card": {
+      "scans_one": "{{count}} scansione",
+      "scans_other": "{{count}} scansioni",
+      "notAnalyzed": "Non ancora analizzato",
+      "seo": "SEO",
+      "analyze": "Analizza",
+      "deleteAria": "Elimina {{name}}"
+    },
+    "stats": {
+      "trackedSites": "Siti monitorati",
+      "totalScans": "Scansioni totali",
+      "criticalIssues": "Problemi critici",
+      "sitesAtRisk": "Siti a rischio",
+      "noDataYet": "Nessun dato ancora",
+      "avgHealthScore": "Punteggio medio"
+    },
+    "addForm": {
+      "title": "Aggiungi sito web",
+      "placeholder": "https://esempio.com",
+      "add": "Aggiungi"
+    },
+    "actionPlan": {
+      "title": "Piano d'azione di 7 giorni",
+      "dayShort": "G{{day}}"
+    },
+    "issuesByImpact": {
+      "title": "Problemi per impatto",
+      "critical": "Critico",
+      "moderate": "Moderato",
+      "minor": "Minore",
+      "total": "{{count}} totali",
+      "noIssues": "Nessun problema critico o moderato — ottimo lavoro."
+    },
+    "seoDetail": {
+      "titleTag": "Tag titolo",
+      "missing": "Mancante",
+      "charsRecommended60": "{{count}} caratteri (consigliato: ≤60)",
+      "noTitleTag": "Nessun tag titolo trovato",
+      "metaDescription": "Meta descrizione",
+      "charsRecommended160": "{{count}} caratteri (consigliato: ≤160)",
+      "noMetaDescription": "Nessuna meta descrizione trovata",
+      "language": "Lingua",
+      "notSet": "Non impostato",
+      "languageDetail": "Lingua: {{lang}}",
+      "considerLangAttr": "Valuta di impostare l'attributo lang",
+      "canonicalUrl": "URL canonico / di origine",
+      "present": "Presente",
+      "canonicalNotDetected": "URL canonico non rilevato",
+      "pass": "Superato",
+      "warning": "Avviso",
+      "fail": "Non superato",
+      "info": "Info",
+      "total": "Totale",
+      "internal": "Interno",
+      "external": "Esterno",
+      "broken": "Rotti",
+      "brokenLinks": "Link rotti",
+      "noLinkData": "Nessun dato sui link disponibile.",
+      "moreLinks": "+{{count}} altri link",
+      "noSuggestions": "Nessun suggerimento in questa categoria.",
+      "close": "Chiudi",
+      "semrushProTitle": "Le metriche Semrush sono una funzione Pro",
+      "semrushProDesc": "Esegui l'upgrade per sbloccare l'Authority Score, il traffico organico, le parole chiave posizionate e i dati sui backlink.",
+      "tabMeta": "Meta",
+      "tabSeo": "SEO",
+      "tabLinks": "Link",
+      "tabPerf": "Perf.",
+      "tabA11y": "A11y"
+    }
   },
   "admin": {
     "title": "Pannello Admin — SiteScoper",

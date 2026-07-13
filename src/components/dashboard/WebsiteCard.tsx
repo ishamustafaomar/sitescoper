@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Sparkline } from "@/components/Sparkline";
 import { TrafficDot, TrafficChip, getTrafficLevel, getTrafficStyles, getTrafficLabel } from "@/components/TrafficLight";
 import { cn } from "@/lib/utils";
+import { useTranslation } from "react-i18next";
 
 export interface Website {
   id: string;
@@ -30,6 +31,7 @@ function trendDelta(scores?: number[]) {
 }
 
 export function WebsiteCard({ website, analyzing, onAnalyze, onDelete, onViewSEO, scoreHistory }: WebsiteCardProps) {
+  const { t } = useTranslation();
   const delta = trendDelta(scoreHistory);
   const TrendIcon = delta === null ? Minus : delta > 0 ? TrendingUp : delta < 0 ? TrendingDown : Minus;
   const trendColor = delta === null ? "text-muted-foreground" : delta > 0 ? "text-accent" : delta < 0 ? "text-destructive" : "text-muted-foreground";
@@ -80,7 +82,7 @@ export function WebsiteCard({ website, analyzing, onAnalyze, onDelete, onViewSEO
                 )}
               </div>
               <span className="text-[10px] text-muted-foreground/70 font-body">
-                {scoreHistory.length} scans
+                {t("dashboard.card.scans", { count: scoreHistory.length })}
               </span>
             </div>
           )}
@@ -107,13 +109,13 @@ export function WebsiteCard({ website, analyzing, onAnalyze, onDelete, onViewSEO
           <Clock className="h-3 w-3" />
           {website.last_analyzed_at
             ? new Date(website.last_analyzed_at).toLocaleDateString()
-            : "Not analyzed yet"}
+            : t("dashboard.card.notAnalyzed")}
         </div>
         <div className="flex gap-1.5">
           {website.last_score !== null && (
             <Button size="sm" variant="outline" className="h-8 text-xs" onClick={onViewSEO}>
               <Eye className="h-3 w-3" />
-              SEO
+              {t("dashboard.card.seo")}
             </Button>
           )}
           <Button
@@ -124,14 +126,14 @@ export function WebsiteCard({ website, analyzing, onAnalyze, onDelete, onViewSEO
             disabled={analyzing}
           >
             {analyzing ? <Loader2 className="h-3 w-3 animate-spin" /> : <RefreshCw className="h-3 w-3" />}
-            Analyze
+            {t("dashboard.card.analyze")}
           </Button>
           <Button
             size="sm"
             variant="ghost"
             className="h-8 text-xs text-destructive hover:text-destructive"
             onClick={onDelete}
-            aria-label={`Delete ${website.name || website.url}`}
+            aria-label={t("dashboard.card.deleteAria", { name: website.name || website.url })}
           >
             <Trash2 className="h-3 w-3" />
           </Button>

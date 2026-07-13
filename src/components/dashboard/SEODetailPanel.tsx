@@ -12,6 +12,7 @@ import { IssuesByImpactPanel } from "./IssuesByImpactPanel";
 import { ActionPlanPanel } from "./ActionPlanPanel";
 import { ImageAuditPanel } from "./ImageAuditPanel";
 import type { AnalysisCategory, AnalysisSuggestion } from "@/lib/api";
+import { useTranslation } from "react-i18next";
 
 interface SEODetailPanelProps {
   websiteName: string;
@@ -23,14 +24,15 @@ interface SEODetailPanelProps {
 }
 
 function MetaTagsAudit({ scrapeData }: { scrapeData: any }) {
+  const { t } = useTranslation();
   const metadata = scrapeData?.metadata || {};
   const title = metadata.title || "";
   const description = metadata.description || "";
   const checks = [
-    { label: "Title Tag", value: title || "Missing", status: title ? (title.length <= 60 ? "good" : "warning") : "error", detail: title ? `${title.length} characters (recommended: ≤60)` : "No title tag found" },
-    { label: "Meta Description", value: description ? description.slice(0, 80) + (description.length > 80 ? "…" : "") : "Missing", status: description ? (description.length <= 160 ? "good" : "warning") : "error", detail: description ? `${description.length} characters (recommended: ≤160)` : "No meta description found" },
-    { label: "Language", value: metadata.language || "Not set", status: metadata.language ? "good" : "warning", detail: metadata.language ? `Language: ${metadata.language}` : "Consider setting lang attribute" },
-    { label: "Canonical / Source URL", value: metadata.sourceURL ? "Present" : "Missing", status: metadata.sourceURL ? "good" : "info", detail: metadata.sourceURL || "Canonical URL not detected" },
+    { label: t("dashboard.seoDetail.titleTag"), value: title || t("dashboard.seoDetail.missing"), status: title ? (title.length <= 60 ? "good" : "warning") : "error", detail: title ? t("dashboard.seoDetail.charsRecommended60", { count: title.length }) : t("dashboard.seoDetail.noTitleTag") },
+    { label: t("dashboard.seoDetail.metaDescription"), value: description ? description.slice(0, 80) + (description.length > 80 ? "…" : "") : t("dashboard.seoDetail.missing"), status: description ? (description.length <= 160 ? "good" : "warning") : "error", detail: description ? t("dashboard.seoDetail.charsRecommended160", { count: description.length }) : t("dashboard.seoDetail.noMetaDescription") },
+    { label: t("dashboard.seoDetail.language"), value: metadata.language || t("dashboard.seoDetail.notSet"), status: metadata.language ? "good" : "warning", detail: metadata.language ? t("dashboard.seoDetail.languageDetail", { lang: metadata.language }) : t("dashboard.seoDetail.considerLangAttr") },
+    { label: t("dashboard.seoDetail.canonicalUrl"), value: metadata.sourceURL ? t("dashboard.seoDetail.present") : t("dashboard.seoDetail.missing"), status: metadata.sourceURL ? "good" : "info", detail: metadata.sourceURL || t("dashboard.seoDetail.canonicalNotDetected") },
   ];
   return (
     <div className="space-y-3">
@@ -45,11 +47,11 @@ function MetaTagsAudit({ scrapeData }: { scrapeData: any }) {
               <span className="font-heading font-medium text-sm">{check.label}</span>
             </div>
             <Badge variant={check.status === "good" ? "secondary" : check.status === "error" ? "destructive" : "outline"} className="text-[10px]">
-              {check.status === "good" ? "Pass" : check.status === "warning" ? "Warning" : check.status === "error" ? "Fail" : "Info"}
+              {check.status === "good" ? t("dashboard.seoDetail.pass") : check.status === "warning" ? t("dashboard.seoDetail.warning") : check.status === "error" ? t("dashboard.seoDetail.fail") : t("dashboard.seoDetail.info")}
             </Badge>
           </div>
           <p className="text-xs text-muted-foreground font-body">{check.detail}</p>
-          {!["Missing", "Not set", "Present"].includes(check.value) && (
+          {![t("dashboard.seoDetail.missing"), t("dashboard.seoDetail.notSet"), t("dashboard.seoDetail.present")].includes(check.value) && (
             <p className="text-xs font-body text-foreground/80 truncate">{check.value}</p>
           )}
         </div>
@@ -59,6 +61,7 @@ function MetaTagsAudit({ scrapeData }: { scrapeData: any }) {
 }
 
 function LinksAudit({ scrapeData }: { scrapeData: any }) {
+  const { t } = useTranslation();
   const links: string[] = scrapeData?.links || [];
   const broken: { url: string; reason: string }[] = scrapeData?.brokenLinks || [];
   let host = "";
@@ -69,20 +72,20 @@ function LinksAudit({ scrapeData }: { scrapeData: any }) {
   return (
     <div className="space-y-4">
       <div className="grid grid-cols-4 gap-2">
-        <Kpi label="Total" value={links.length} />
-        <Kpi label="Internal" value={internal.length} tone="primary" />
-        <Kpi label="External" value={external.length} tone="accent" />
-        <Kpi label="Broken" value={broken.length} tone={broken.length ? "destructive" : "muted"} />
+        <Kpi label={t("dashboard.seoDetail.total")} value={links.length} />
+        <Kpi label={t("dashboard.seoDetail.internal")} value={internal.length} tone="primary" />
+        <Kpi label={t("dashboard.seoDetail.external")} value={external.length} tone="accent" />
+        <Kpi label={t("dashboard.seoDetail.broken")} value={broken.length} tone={broken.length ? "destructive" : "muted"} />
       </div>
       {broken.length > 0 && (
         <div className="rounded-lg border border-destructive/30 bg-destructive/5 p-3 space-y-1">
-          <p className="text-xs font-heading font-semibold text-destructive">Broken links</p>
+          <p className="text-xs font-heading font-semibold text-destructive">{t("dashboard.seoDetail.brokenLinks")}</p>
           {broken.slice(0, 5).map((b, i) => (
             <p key={i} className="text-[11px] font-body text-destructive/80 truncate">{b.url} — {b.reason}</p>
           ))}
         </div>
       )}
-      {links.length === 0 && <p className="text-sm text-muted-foreground font-body text-center py-4">No link data available.</p>}
+      {links.length === 0 && <p className="text-sm text-muted-foreground font-body text-center py-4">{t("dashboard.seoDetail.noLinkData")}</p>}
       {links.length > 0 && (
         <div className="space-y-1 max-h-48 overflow-y-auto">
           {links.slice(0, 25).map((link, i) => (
@@ -90,7 +93,7 @@ function LinksAudit({ scrapeData }: { scrapeData: any }) {
               {link}
             </a>
           ))}
-          {links.length > 25 && <p className="text-xs text-muted-foreground font-body text-center pt-2">+{links.length - 25} more links</p>}
+          {links.length > 25 && <p className="text-xs text-muted-foreground font-body text-center pt-2">{t("dashboard.seoDetail.moreLinks", { count: links.length - 25 })}</p>}
         </div>
       )}
     </div>
@@ -108,9 +111,10 @@ function Kpi({ label, value, tone = "muted" }: { label: string; value: number; t
 }
 
 function CategorySuggestions({ categories, filterType }: { categories: AnalysisCategory[]; filterType?: string }) {
+  const { t } = useTranslation();
   const filtered = filterType ? categories.flatMap((c) => c.suggestions.filter((s) => s.type === filterType)) : categories.flatMap((c) => c.suggestions);
   const sorted = [...filtered].sort((a, b) => { const order: any = { high: 0, medium: 1, low: 2 }; return (order[a.priority] ?? 1) - (order[b.priority] ?? 1); });
-  if (sorted.length === 0) return <p className="text-sm text-muted-foreground font-body text-center py-6">No suggestions in this category.</p>;
+  if (sorted.length === 0) return <p className="text-sm text-muted-foreground font-body text-center py-6">{t("dashboard.seoDetail.noSuggestions")}</p>;
   return (
     <div className="space-y-2">
       {sorted.map((s: AnalysisSuggestion, i) => (
@@ -127,6 +131,7 @@ function CategorySuggestions({ categories, filterType }: { categories: AnalysisC
 }
 
 export function SEODetailPanel({ websiteName, url, overallScore, categories, scrapeData, onClose }: SEODetailPanelProps) {
+  const { t } = useTranslation();
   const techSeo = scrapeData?.tech_seo || null;
   const actionPlan = scrapeData?.action_plan || null;
   const imageSuggestions = scrapeData?.image_suggestions || [];
@@ -151,7 +156,7 @@ export function SEODetailPanel({ websiteName, url, overallScore, categories, scr
               </a>
             </div>
           </div>
-          <Button variant="ghost" size="sm" onClick={onClose} aria-label="Close"><X className="h-4 w-4" /></Button>
+          <Button variant="ghost" size="sm" onClick={onClose} aria-label={t("dashboard.seoDetail.close")}><X className="h-4 w-4" /></Button>
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2">
@@ -176,8 +181,8 @@ export function SEODetailPanel({ websiteName, url, overallScore, categories, scr
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         <div className="lg:col-span-2">
           <ProGate
-            title="Semrush metrics are a Pro feature"
-            description="Upgrade to unlock Authority Score, organic traffic, ranking keywords and backlink data."
+            title={t("dashboard.seoDetail.semrushProTitle")}
+            description={t("dashboard.seoDetail.semrushProDesc")}
           >
             <SemrushOverviewPanel url={url} />
           </ProGate>
@@ -203,11 +208,11 @@ export function SEODetailPanel({ websiteName, url, overallScore, categories, scr
       <div className="bg-card rounded-2xl border border-border p-5">
         <Tabs defaultValue="meta" className="w-full">
           <TabsList className="w-full grid grid-cols-5 h-9">
-            <TabsTrigger value="meta" className="text-xs gap-1"><Tag className="h-3 w-3" />Meta</TabsTrigger>
-            <TabsTrigger value="seo" className="text-xs gap-1"><Search className="h-3 w-3" />SEO</TabsTrigger>
-            <TabsTrigger value="links" className="text-xs gap-1"><Link2 className="h-3 w-3" />Links</TabsTrigger>
-            <TabsTrigger value="perf" className="text-xs gap-1"><Zap className="h-3 w-3" />Perf</TabsTrigger>
-            <TabsTrigger value="a11y" className="text-xs gap-1"><Shield className="h-3 w-3" />A11y</TabsTrigger>
+            <TabsTrigger value="meta" className="text-xs gap-1"><Tag className="h-3 w-3" />{t("dashboard.seoDetail.tabMeta")}</TabsTrigger>
+            <TabsTrigger value="seo" className="text-xs gap-1"><Search className="h-3 w-3" />{t("dashboard.seoDetail.tabSeo")}</TabsTrigger>
+            <TabsTrigger value="links" className="text-xs gap-1"><Link2 className="h-3 w-3" />{t("dashboard.seoDetail.tabLinks")}</TabsTrigger>
+            <TabsTrigger value="perf" className="text-xs gap-1"><Zap className="h-3 w-3" />{t("dashboard.seoDetail.tabPerf")}</TabsTrigger>
+            <TabsTrigger value="a11y" className="text-xs gap-1"><Shield className="h-3 w-3" />{t("dashboard.seoDetail.tabA11y")}</TabsTrigger>
           </TabsList>
           <TabsContent value="meta" className="mt-4"><MetaTagsAudit scrapeData={scrapeData} /></TabsContent>
           <TabsContent value="seo" className="mt-4"><CategorySuggestions categories={categories} filterType="seo" /></TabsContent>

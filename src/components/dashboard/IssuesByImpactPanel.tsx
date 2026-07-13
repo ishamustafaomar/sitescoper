@@ -2,10 +2,12 @@ import { useMemo } from "react";
 import { AlertTriangle, Flame, Info, Target } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import type { AnalysisCategory, AnalysisSuggestion } from "@/lib/api";
+import { useTranslation } from "react-i18next";
 
 interface Props { categories: AnalysisCategory[] }
 
 export function IssuesByImpactPanel({ categories }: Props) {
+  const { t } = useTranslation();
   const all = useMemo(
     () => categories.flatMap((c) => c.suggestions.map((s) => ({ ...s, _cat: c.name }))),
     [categories]
@@ -15,18 +17,18 @@ export function IssuesByImpactPanel({ categories }: Props) {
   const low = all.filter((s) => s.priority === "low");
 
   const buckets = [
-    { key: "high", label: "Critical", count: high.length, items: high, icon: Flame, cls: "border-destructive/30 bg-destructive/5 text-destructive" },
-    { key: "med", label: "Moderate", count: med.length, items: med, icon: AlertTriangle, cls: "border-primary/30 bg-primary/5 text-primary" },
-    { key: "low", label: "Minor", count: low.length, items: low, icon: Info, cls: "border-accent/30 bg-accent/5 text-accent" },
+    { key: "high", label: t("dashboard.issuesByImpact.critical"), count: high.length, items: high, icon: Flame, cls: "border-destructive/30 bg-destructive/5 text-destructive" },
+    { key: "med", label: t("dashboard.issuesByImpact.moderate"), count: med.length, items: med, icon: AlertTriangle, cls: "border-primary/30 bg-primary/5 text-primary" },
+    { key: "low", label: t("dashboard.issuesByImpact.minor"), count: low.length, items: low, icon: Info, cls: "border-accent/30 bg-accent/5 text-accent" },
   ];
 
   return (
     <div className="rounded-2xl border border-border bg-card p-5 space-y-4">
       <div className="flex items-center justify-between">
         <h3 className="font-heading font-semibold text-sm flex items-center gap-2">
-          <Target className="h-4 w-4 text-primary" /> Issues by impact
+          <Target className="h-4 w-4 text-primary" /> {t("dashboard.issuesByImpact.title")}
         </h3>
-        <span className="text-[11px] text-muted-foreground font-body">{all.length} total</span>
+        <span className="text-[11px] text-muted-foreground font-body">{t("dashboard.issuesByImpact.total", { count: all.length })}</span>
       </div>
       <div className="grid grid-cols-3 gap-2">
         {buckets.map((b) => (
@@ -58,7 +60,7 @@ export function IssuesByImpactPanel({ categories }: Props) {
           </div>
         ))}
         {high.length + med.length === 0 && (
-          <p className="text-xs text-muted-foreground font-body text-center py-4">No critical or moderate issues — nice work.</p>
+          <p className="text-xs text-muted-foreground font-body text-center py-4">{t("dashboard.issuesByImpact.noIssues")}</p>
         )}
       </div>
     </div>
