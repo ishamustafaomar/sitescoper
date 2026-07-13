@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { useQuery } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
 import { AppHeader } from "@/components/AppHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { Card } from "@/components/ui/card";
@@ -16,6 +17,7 @@ interface BlogRow {
 }
 
 const Blog = () => {
+  const { t } = useTranslation();
   const { data: posts = [], isLoading } = useQuery({
     queryKey: ["blog-posts"],
     queryFn: async (): Promise<BlogRow[]> => {
@@ -69,10 +71,10 @@ const Blog = () => {
       <main className="flex-1 max-w-5xl mx-auto px-4 py-12 md:py-20 w-full">
         <header className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-heading font-bold tracking-tight mb-4">
-            The SiteScoper Blog
+            {t("blog.title")}
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Practical guides on website audits, SEO, Core Web Vitals, and conversion — a fresh post published every day.
+            {t("blog.subtitle")}
           </p>
         </header>
 

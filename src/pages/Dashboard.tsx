@@ -3,6 +3,7 @@ import { AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Globe, Clock, Search, Sparkles, Loader2, Plus, Swords } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { TrafficDot, TrafficChip, getTrafficLevel, getTrafficStyles, getTrafficLabel } from "@/components/TrafficLight";
 import { cn } from "@/lib/utils";
@@ -31,6 +32,7 @@ export default function Dashboard() {
   const { user } = useAuth();
   const { toast } = useToast();
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [websites, setWebsites] = useState<Website[]>([]);
   const [history, setHistory] = useState<AnalysisRecord[]>([]);
   const [analyzingId, setAnalyzingId] = useState<string | null>(null);
@@ -72,7 +74,7 @@ export default function Dashboard() {
 
     if (error) throw error;
     setWebsites((prev) => [data, ...prev]);
-    toast({ title: "Website added", description: `${name} has been added to your dashboard.` });
+    toast({ title: t("dashboard.websiteAdded"), description: t("dashboard.websiteAddedDesc", { name }) });
   };
 
   const analyzeTrackedWebsite = async (website: Website) => {
@@ -117,9 +119,9 @@ export default function Dashboard() {
         )
       );
       await loadData();
-      toast({ title: "Analysis complete", description: `Score: ${analysis.overall_score}/100` });
+      toast({ title: t("dashboard.analysisComplete"), description: t("dashboard.analysisScore", { score: analysis.overall_score }) });
     } catch (err: any) {
-      toast({ title: "Error", description: err.message, variant: "destructive" });
+      toast({ title: t("dashboard.error"), description: err.message, variant: "destructive" });
     } finally {
       setAnalyzingId(null);
     }
@@ -129,7 +131,7 @@ export default function Dashboard() {
     await supabase.from("websites").delete().eq("id", id);
     setWebsites((prev) => prev.filter((w) => w.id !== id));
     if (seoWebsiteId === id) setSeoWebsiteId(null);
-    toast({ title: "Website removed" });
+    toast({ title: t("dashboard.websiteRemoved") });
   };
 
   // Get latest analysis for the selected website
@@ -198,18 +200,18 @@ export default function Dashboard() {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Dashboard — SiteScoper</title>
-        <meta name="description" content="Track every website you've analyzed, monitor scores over time, and run new SiteScoper audits from one dashboard." />
+        <title>{t("dashboard.title")}</title>
+        <meta name="description" content={t("dashboard.metaDesc")} />
         <link rel="canonical" href="https://sitescoper.com/dashboard" />
-        <meta property="og:title" content="Dashboard — SiteScoper" />
-        <meta property="og:description" content="Track every website you've analyzed, monitor scores over time, and run new SiteScoper audits from one dashboard." />
+        <meta property="og:title" content={t("dashboard.title")} />
+        <meta property="og:description" content={t("dashboard.metaDesc")} />
         <meta property="og:url" content="https://sitescoper.com/dashboard" />
         <meta name="robots" content="noindex" />
       </Helmet>
       <AppHeader />
 
       <main className="max-w-7xl mx-auto px-4 py-8 space-y-8">
-        <h1 className="sr-only">Your SiteScoper dashboard</h1>
+        <h1 className="sr-only">{t("dashboard.srH1")}</h1>
         <StatsOverview
           websiteCount={websites.length}
           historyCount={history.length}
@@ -227,12 +229,12 @@ export default function Dashboard() {
               <Swords className="h-4 w-4" />
             </div>
             <div className="min-w-0">
-              <p className="text-sm font-heading font-semibold">Battle a competitor</p>
-              <p className="text-[11px] text-muted-foreground font-body truncate">Side-by-side scoring vs. any other site</p>
+              <p className="text-sm font-heading font-semibold">{t("dashboard.battleTitle")}</p>
+              <p className="text-[11px] text-muted-foreground font-body truncate">{t("dashboard.battleDesc")}</p>
             </div>
           </div>
           <Button size="sm" variant="outline" onClick={() => navigate("/compare")} className="shrink-0">
-            Compare
+            {t("dashboard.compare")}
           </Button>
         </div>
 
@@ -254,7 +256,7 @@ export default function Dashboard() {
         <div>
           <h2 className="font-heading font-semibold text-lg mb-4 flex items-center gap-2">
             <Globe className="h-5 w-5 text-primary" />
-            Your Websites
+            {t("dashboard.yourWebsites")}
           </h2>
 
           {websites.length === 0 ? (
@@ -262,13 +264,13 @@ export default function Dashboard() {
               <div className="inline-flex p-3 rounded-2xl bg-primary/10 mb-4">
                 <Globe className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="font-heading font-semibold text-base mb-1">No websites tracked yet</h3>
+              <h3 className="font-heading font-semibold text-base mb-1">{t("dashboard.noWebsitesTitle")}</h3>
               <p className="text-muted-foreground font-body text-sm mb-4 max-w-xs mx-auto">
-                Add your first website above to track score trends over time and get re-analysis with one click.
+                {t("dashboard.noWebsitesDesc")}
               </p>
               <div className="inline-flex items-center gap-1.5 text-xs text-muted-foreground/80 font-body">
                 <Plus className="h-3 w-3" />
-                Use the form above to start
+                {t("dashboard.useFormAbove")}
               </div>
             </div>
           ) : (
@@ -294,7 +296,7 @@ export default function Dashboard() {
         <div>
           <h2 className="font-heading font-semibold text-lg mb-4 flex items-center gap-2">
             <Clock className="h-5 w-5 text-primary" />
-            Analysis History
+            {t("dashboard.history")}
           </h2>
 
           {history.length === 0 ? (
@@ -302,9 +304,9 @@ export default function Dashboard() {
               <div className="inline-flex p-3 rounded-2xl bg-accent/10 mb-4">
                 <Search className="h-8 w-8 text-accent" />
               </div>
-              <h3 className="font-heading font-semibold text-base mb-1">No analyses yet</h3>
+              <h3 className="font-heading font-semibold text-base mb-1">{t("dashboard.noAnalysesTitle")}</h3>
               <p className="text-muted-foreground font-body text-sm max-w-xs mx-auto">
-                Run your first scan from the analyzer or click "Analyze" on a tracked website.
+                {t("dashboard.noAnalysesDesc")}
               </p>
             </div>
           ) : (
@@ -350,7 +352,7 @@ export default function Dashboard() {
                     size="sm"
                     onClick={() => setHistoryVisible((n) => n + HISTORY_PAGE_SIZE)}
                   >
-                    Show {Math.min(HISTORY_PAGE_SIZE, history.length - historyVisible)} more
+                    {t("dashboard.showMore", { count: Math.min(HISTORY_PAGE_SIZE, history.length - historyVisible) })}
                   </Button>
                 </div>
               )}
@@ -361,13 +363,13 @@ export default function Dashboard() {
         {/* Quick Analyze CTA */}
         <div className="bg-card rounded-xl border border-border p-8 text-center shadow-[var(--shadow-sm)]">
           <Sparkles className="h-8 w-8 text-primary mx-auto mb-3" />
-          <h3 className="font-heading font-semibold text-lg mb-2">Quick Analysis</h3>
+          <h3 className="font-heading font-semibold text-lg mb-2">{t("dashboard.quickTitle")}</h3>
           <p className="text-muted-foreground font-body text-sm mb-4">
-            Analyze any website without adding it to your dashboard
+            {t("dashboard.quickDesc")}
           </p>
           <Button variant="hero" onClick={() => navigate("/")} className="rounded-xl">
             <Sparkles className="h-4 w-4" />
-            Go to Analyzer
+            {t("dashboard.goAnalyzer")}
           </Button>
         </div>
       </main>

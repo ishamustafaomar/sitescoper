@@ -12,6 +12,7 @@ import { useAuth } from "@/components/AuthProvider";
 import { supabase } from "@/integrations/supabase/client";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
+import { useTranslation } from "react-i18next";
 
 interface AdminStats {
   totalUsers: number;
@@ -27,6 +28,7 @@ export default function Admin() {
   const { user } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { t } = useTranslation();
   const [stats, setStats] = useState<AdminStats | null>(null);
   const [loading, setLoading] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
@@ -99,10 +101,10 @@ export default function Admin() {
       <div className="min-h-screen bg-background">
         <AppHeader />
         <div className="max-w-lg mx-auto px-4 py-20 text-center">
-          <h2 className="font-heading font-bold text-2xl mb-2">Access Denied</h2>
-          <p className="text-muted-foreground font-body mb-6">You don't have admin privileges.</p>
+          <h2 className="font-heading font-bold text-2xl mb-2">{t("admin.accessDenied")}</h2>
+          <p className="text-muted-foreground font-body mb-6">{t("admin.noPrivileges")}</p>
           <Button variant="outline" onClick={() => navigate("/dashboard")}>
-            <ArrowLeft className="h-4 w-4" /> Back to Dashboard
+            <ArrowLeft className="h-4 w-4" /> {t("admin.backDashboard")}
           </Button>
         </div>
       </div>
@@ -112,10 +114,10 @@ export default function Admin() {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Admin Panel — SiteScoper</title>
+        <title>{t("admin.title")}</title>
         <meta name="description" content="Internal SiteScoper admin dashboard for monitoring users, analyses and platform activity." />
         <link rel="canonical" href="https://sitescoper.com/admin" />
-        <meta property="og:title" content="Admin Panel — SiteScoper" />
+        <meta property="og:title" content={t("admin.title")} />
         <meta property="og:description" content="Internal admin dashboard for SiteScoper platform monitoring." />
         <meta property="og:url" content="https://sitescoper.com/admin" />
         <meta name="robots" content="noindex" />
@@ -124,16 +126,16 @@ export default function Admin() {
 
       <main className="max-w-6xl mx-auto px-4 py-8 space-y-6">
         <div className="flex items-center justify-between">
-          <h1 className="font-heading font-bold text-2xl">Admin Panel</h1>
-          <Badge variant="secondary" className="text-xs">Admin</Badge>
+          <h1 className="font-heading font-bold text-2xl">{t("admin.panel")}</h1>
+          <Badge variant="secondary" className="text-xs">{t("admin.badge")}</Badge>
         </div>
 
         {/* Stats Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           {[
-            { icon: Users, label: "Total Users", value: stats?.totalUsers || 0, color: "text-primary" },
-            { icon: BarChart3, label: "Total Analyses", value: stats?.totalAnalyses || 0, color: "text-accent" },
-            { icon: Globe, label: "Tracked Websites", value: stats?.totalWebsites || 0, color: "text-primary" },
+            { icon: Users, label: t("admin.totalUsers"), value: stats?.totalUsers || 0, color: "text-primary" },
+            { icon: BarChart3, label: t("admin.totalAnalyses"), value: stats?.totalAnalyses || 0, color: "text-accent" },
+            { icon: Globe, label: t("admin.trackedWebsites"), value: stats?.totalWebsites || 0, color: "text-primary" },
           ].map((stat) => (
             <div key={stat.label} className="bg-card rounded-xl border border-border p-5 shadow-[var(--shadow-sm)]">
               <div className="flex items-center gap-3">
@@ -151,7 +153,7 @@ export default function Admin() {
 
         {/* Referral Sources */}
         <Section
-          title="Referral Sources"
+          title={t("admin.referralSources")}
           icon={TrendingUp}
           expanded={expandedSection === "referrals"}
           onToggle={() => toggle("referrals")}
@@ -178,13 +180,13 @@ export default function Admin() {
                 ))}
             </div>
           ) : (
-            <p className="text-muted-foreground text-sm font-body p-4">No referral data yet.</p>
+            <p className="text-muted-foreground text-sm font-body p-4">{t("admin.noReferrals")}</p>
           )}
         </Section>
 
         {/* Onboarding Responses */}
         <Section
-          title="Onboarding Responses"
+          title={t("admin.onboarding")}
           icon={Users}
           expanded={expandedSection === "onboarding"}
           onToggle={() => toggle("onboarding")}
@@ -194,7 +196,7 @@ export default function Admin() {
               {stats.onboardingResponses.map((r: any) => (
                 <div key={r.id} className="py-3 px-3 space-y-1">
                   <div className="flex items-center justify-between">
-                    <span className="text-sm font-heading font-medium">{r.display_name || "Anonymous"}</span>
+                    <span className="text-sm font-heading font-medium">{r.display_name || t("admin.anonymous")}</span>
                     <span className="text-[10px] text-muted-foreground font-body">
                       {new Date(r.created_at).toLocaleDateString()}
                     </span>
@@ -216,13 +218,13 @@ export default function Admin() {
               ))}
             </div>
           ) : (
-            <p className="text-muted-foreground text-sm font-body p-4">No onboarding data yet.</p>
+            <p className="text-muted-foreground text-sm font-body p-4">{t("admin.noOnboarding")}</p>
           )}
         </Section>
 
         {/* Recent Analyses */}
         <Section
-          title="Recent Analyses"
+          title={t("admin.recentAnalyses")}
           icon={Clock}
           expanded={expandedSection === "analyses"}
           onToggle={() => toggle("analyses")}
@@ -244,13 +246,13 @@ export default function Admin() {
               ))}
             </div>
           ) : (
-            <p className="text-muted-foreground text-sm font-body p-4">No analyses yet.</p>
+            <p className="text-muted-foreground text-sm font-body p-4">{t("admin.noAnalyses")}</p>
           )}
         </Section>
 
         {/* Recent Users */}
         <Section
-          title="Recent Users"
+          title={t("admin.recentUsers")}
           icon={Users}
           expanded={expandedSection === "users"}
           onToggle={() => toggle("users")}
@@ -260,19 +262,19 @@ export default function Admin() {
               {stats.recentSignups.map((u: any) => (
                 <div key={u.id} className="flex items-center justify-between py-3 px-3">
                   <div>
-                    <p className="text-sm font-heading font-medium">{u.display_name || "Unnamed"}</p>
+                    <p className="text-sm font-heading font-medium">{u.display_name || t("admin.unnamed")}</p>
                     <p className="text-[10px] text-muted-foreground font-body">
-                      Joined {new Date(u.created_at).toLocaleDateString()}
+                      {t("admin.joined", { date: new Date(u.created_at).toLocaleDateString() })}
                     </p>
                   </div>
                   <Badge variant={u.onboarding_completed ? "default" : "outline"} className="text-[10px]">
-                    {u.onboarding_completed ? "Onboarded" : "Pending"}
+                    {u.onboarding_completed ? t("admin.onboarded") : t("admin.pending")}
                   </Badge>
                 </div>
               ))}
             </div>
           ) : (
-            <p className="text-muted-foreground text-sm font-body p-4">No users yet.</p>
+            <p className="text-muted-foreground text-sm font-body p-4">{t("admin.noUsers")}</p>
           )}
         </Section>
       </main>

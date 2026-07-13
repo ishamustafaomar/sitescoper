@@ -3,6 +3,7 @@ import { Link, Navigate, useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { useQuery } from "@tanstack/react-query";
 import { ArrowLeft } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { AppHeader } from "@/components/AppHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { Button } from "@/components/ui/button";
@@ -98,6 +99,7 @@ function renderBold(text: string, key: number): React.ReactNode {
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
+  const { t } = useTranslation();
 
   const { data: post, isLoading, isError } = useQuery({
     queryKey: ["blog-post", slug],
@@ -198,9 +200,9 @@ const BlogPost = () => {
 
       <main className="flex-1 max-w-3xl mx-auto px-4 py-12 md:py-16 w-full">
         <nav aria-label="Breadcrumb" className="text-xs text-muted-foreground mb-6">
-          <Link to="/" className="hover:text-foreground">Home</Link>
+          <Link to="/" className="hover:text-foreground">{t("blog.home")}</Link>
           <span className="mx-2">/</span>
-          <Link to="/blog" className="hover:text-foreground">Blog</Link>
+          <Link to="/blog" className="hover:text-foreground">{t("blog.blog")}</Link>
         </nav>
 
         <article>
@@ -210,7 +212,7 @@ const BlogPost = () => {
                 {new Date(post.published_at).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
               </time>
               <span aria-hidden>·</span>
-              <span>{post.reading_time} read</span>
+              <span>{post.reading_time} {t("blog.read")}</span>
             </div>
             <h1 className="text-3xl md:text-5xl font-heading font-bold tracking-tight mb-4">{post.title}</h1>
             <p className="text-lg text-muted-foreground">{post.description}</p>
@@ -219,12 +221,12 @@ const BlogPost = () => {
           <div className="prose-like">{renderBody(post.body)}</div>
 
           <section className="mt-12 rounded-2xl border bg-gradient-to-b from-primary/5 to-transparent p-8 text-center">
-            <h2 className="text-2xl font-heading font-bold mb-2">Audit your site in 60 seconds</h2>
+            <h2 className="text-2xl font-heading font-bold mb-2">{t("blog.auditCta")}</h2>
             <p className="text-muted-foreground mb-5 max-w-xl mx-auto text-sm">
-              SiteScoper turns this into a single, prioritised report. Free to try.
+              {t("blog.auditCtaDesc")}
             </p>
             <Button asChild size="lg">
-              <Link to="/">Run a free audit</Link>
+              <Link to="/">{t("blog.runFreeAudit")}</Link>
             </Button>
           </section>
         </article>
@@ -232,7 +234,7 @@ const BlogPost = () => {
         {related.length > 0 && (
           <aside className="mt-16">
             <h2 className="text-sm font-heading font-semibold uppercase tracking-wider text-muted-foreground mb-4">
-              Keep reading
+              {t("blog.keepReading")}
             </h2>
             <ul className="grid sm:grid-cols-3 gap-4">
               {related.map((r: any) => (
@@ -248,7 +250,7 @@ const BlogPost = () => {
               <Button asChild variant="ghost" size="sm">
                 <Link to="/blog">
                   <ArrowLeft className="w-3.5 h-3.5" />
-                  Back to blog
+                  {t("blog.backToBlog")}
                 </Link>
               </Button>
             </div>
