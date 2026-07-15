@@ -1,0 +1,18 @@
+export type ChangelogEntry = {
+  id: string;
+  date: string; // ISO date
+  titleKey: string;
+  descKey: string;
+};
+
+// Add new big changes at the top. `id` must be stable & unique.
+export const CHANGELOG: ChangelogEntry[] = [
+  {
+    id: "2026-07-15-multilanguage",
+    date: "2026-07-15",
+    titleKey: "changelog.entries.multilanguage.title",
+    descKey: "changelog.entries.multilanguage.desc",
+  },
+];
+
+export const LATEST_CHANGELOG_ID = CHANGELOG[0]?.id ?? "";

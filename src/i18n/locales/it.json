@@ -1300,5 +1300,16 @@
     "emptyPlaceholder": "(vuoto)",
     "rawHeadData": "Dati grezzi dell'head",
     "fixLabel": "Correzione:"
+  },
+  "changelog": {
+    "title": "Novità",
+    "empty": "Nessun aggiornamento.",
+    "newBadge": "NOVITÀ",
+    "entries": {
+      "multilanguage": {
+        "title": "Supporto multilingua",
+        "desc": "SiteScoper è ora disponibile in inglese, spagnolo, francese, tedesco e italiano. Cambia lingua in qualsiasi momento dall'intestazione."
+      }
+    }
   }
 }
