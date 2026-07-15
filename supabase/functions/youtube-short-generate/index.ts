@@ -442,7 +442,18 @@ serve(async (req) => {
     });
   } catch (e) {
     console.error("youtube-short-generate error", e);
-    return new Response(JSON.stringify({ ok: false, error: "generation_failed", detail: String((e as Error).message || e).slice(0, 500) }), {
+    const err = e as any;
+    if (err?.code === "elevenlabs_quota_exceeded") {
+      return new Response(
+        JSON.stringify({
+          ok: false,
+          error: "elevenlabs_quota_exceeded",
+          message: "The ElevenLabs voice credit quota is exhausted. Top up or upgrade the ElevenLabs plan to generate more Shorts.",
+        }),
+        { status: 402, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+      );
+    }
+    return new Response(JSON.stringify({ ok: false, error: "generation_failed", detail: String(err?.message || e).slice(0, 500) }), {
       status: 500,
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
