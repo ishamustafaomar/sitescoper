@@ -1300,5 +1300,16 @@
     "emptyPlaceholder": "(leer)",
     "rawHeadData": "Rohe Head-Daten",
     "fixLabel": "Lösung:"
+  },
+  "changelog": {
+    "title": "Neuigkeiten",
+    "empty": "Noch keine Neuigkeiten.",
+    "newBadge": "NEU",
+    "entries": {
+      "multilanguage": {
+        "title": "Mehrsprachige Unterstützung",
+        "desc": "SiteScoper ist jetzt auf Englisch, Spanisch, Französisch, Deutsch und Italienisch verfügbar. Wechsle die Sprache jederzeit über die Kopfzeile."
+      }
+    }
   }
 }
