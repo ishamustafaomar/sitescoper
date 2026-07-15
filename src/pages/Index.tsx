@@ -2,7 +2,7 @@ import { useState, useRef, lazy, Suspense } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, AlertCircle, ExternalLink, Link2, FileText, Download, Lock, ArrowDown, Swords } from "lucide-react";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet-async";
 import { UrlInput } from "@/components/UrlInput";
 import { CustomInstructions } from "@/components/CustomInstructions";
