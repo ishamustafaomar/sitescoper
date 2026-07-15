@@ -61,8 +61,8 @@ const Index = () => {
     // Require sign-in for all scans (prevents API credit abuse)
     if (!user) {
       toast({
-        title: "Sign in to analyze",
-        description: "Create a free account to run a website analysis.",
+        title: t("index.toastSignInTitle"),
+        description: t("index.toastSignInDesc"),
       });
       navigate("/auth");
       return;
@@ -73,7 +73,7 @@ const Index = () => {
     setCurrentUrl(url);
     setScrapeData(null);
     setAnalysis(null);
-    setProgress({ percent: 0, label: "Starting…" });
+    setProgress({ percent: 0, label: t("index.progressStarting") });
     setLiveTechSeo(null);
 
     try {
@@ -88,7 +88,7 @@ const Index = () => {
       setScrapeData(data);
 
       setStep("analyzing");
-      setProgress({ percent: 80, label: "Reading like a real visitor" });
+      setProgress({ percent: 80, label: t("index.progressReadingLikeVisitor") });
       const result = await analyzeWebsite(data.markdown || "", url, data.images, data.detectedSections, customInstructions);
       setAnalysis(result);
       setStep("done");
@@ -141,8 +141,8 @@ const Index = () => {
     } catch (err: any) {
       console.error(err);
       toast({
-        title: "Error",
-        description: err.message || "Something went wrong",
+        title: t("index.toastErrorTitle"),
+        description: err.message || t("index.toastErrorDefault"),
         variant: "destructive",
       });
       setStep("idle");
@@ -223,15 +223,15 @@ const Index = () => {
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
                       <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-primary" />
                     </span>
-                    Built by founders, for founders
+                    {t("hero.badgeFoundersLine")}
                   </motion.div>
                   <h1 className="text-4xl md:text-6xl font-heading font-bold tracking-tight leading-[1.02]">
-                    Stop guessing,
+                    {t("hero.stopGuessingLine1")}
                     <br />
-                    start growing.{" "}
+                    {t("hero.stopGuessingLine2")}{" "}
                     <span className="relative inline-block">
                       <span className="bg-gradient-to-r from-primary via-primary/90 to-primary-alt bg-clip-text text-transparent">
-                        Actionable UX &amp; SEO fixes in 60 seconds.
+                        {t("hero.actionableFixes")}
                       </span>
                       <svg className="absolute left-0 -bottom-2 w-full" viewBox="0 0 200 8" fill="none" preserveAspectRatio="none">
                         <path d="M2 5 Q50 1 100 4 T198 3" stroke="hsl(var(--primary))" strokeWidth="2.5" strokeLinecap="round" fill="none" opacity="0.4" />
@@ -239,7 +239,7 @@ const Index = () => {
                     </span>
                   </h1>
                   <p className="text-muted-foreground font-body text-base md:text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed">
-                    The <strong className="text-foreground/90 font-semibold">AI website auditor</strong> that skips the 200-row checklist and hands you the 3 UX, SEO and copy fixes actually worth shipping this week — with a plain-English action plan a senior product strategist would sign off on.
+                    <Trans i18nKey="hero.description" components={[<strong className="text-foreground/90 font-semibold" />]} />
                   </p>
                   {/* Free plan badge — high-contrast, next to CTA */}
                   <div className="flex justify-center lg:justify-start">
@@ -248,7 +248,7 @@ const Index = () => {
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[hsl(var(--score-good))] opacity-75" />
                         <span className="relative inline-flex rounded-full h-2 w-2 bg-[hsl(var(--score-good))]" />
                       </span>
-                      Free plan · 3 full scans every month · No credit card
+                      {t("hero.freePlanBadge")}
                     </span>
                   </div>
                   {/* URL Input — kept above the fold */}
@@ -263,7 +263,7 @@ const Index = () => {
                     </div>
                   </div>
                   <p className="text-[11px] text-muted-foreground font-body text-center lg:text-left">
-                    3 free scans / month · No credit card · 2,400+ sites scored this month
+                    {t("hero.freeScansFootnote")}
                   </p>
                   <div aria-label="Key features" className="flex items-center justify-center lg:justify-start gap-5 text-[11px] text-muted-foreground font-body flex-wrap pt-1">
                     <div className="flex items-center gap-1.5">
@@ -272,7 +272,7 @@ const Index = () => {
                     </div>
                     <div className="flex items-center gap-1.5">
                       <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                      Multi-page deep crawl
+                      {t("hero.multiPageCrawl")}
                     </div>
                     <div className="flex items-center gap-1.5">
                       <div className="w-1.5 h-1.5 rounded-full bg-primary-alt" />
@@ -304,7 +304,7 @@ const Index = () => {
               step={step as "scraping" | "analyzing"}
               url={currentUrl}
               percent={progress.percent}
-              label={progress.label || (step === "analyzing" ? "AI is reading your site" : "Working…")}
+              label={progress.label || (step === "analyzing" ? t("index.progressAiReading") : t("index.progressWorking"))}
               techSeo={liveTechSeo}
             />
           )}

@@ -21,7 +21,15 @@
     "subtitle": "Get the kind of feedback a senior YC partner would give you — with a 7-day action plan, peer benchmarks, and concrete copy rewrites you can ship today.",
     "signUpForThree": "Sign up for 3 free scans/month",
     "freemium": "Freemium — no card required",
-    "export": "PDF & share-link export"
+    "export": "PDF & share-link export",
+    "badgeFoundersLine": "Built by founders, for founders",
+    "stopGuessingLine1": "Stop guessing,",
+    "stopGuessingLine2": "start growing.",
+    "actionableFixes": "Actionable UX & SEO fixes in 60 seconds.",
+    "description": "The <1>AI website auditor</1> that skips the 200-row checklist and hands you the 3 UX, SEO and copy fixes actually worth shipping this week — with a plain-English action plan a senior product strategist would sign off on.",
+    "freePlanBadge": "Free plan · 3 full scans every month · No credit card",
+    "freeScansFootnote": "3 free scans / month · No credit card · 2,400+ sites scored this month",
+    "multiPageCrawl": "Multi-page deep crawl"
   },
   "signin": {
     "tooltipTitle": "Why create a free account?",
@@ -1196,5 +1204,36 @@
       "trust": "Trust",
       "design": "Design"
     }
+  },
+  "index": {
+    "metaTitle": "Stop Guessing, Start Growing — AI Website Auditor in 60 Seconds | SiteScoper",
+    "metaDescription": "SiteScoper is the AI website auditor that delivers actionable UX & SEO fixes in 60 seconds. Start free — 3 full scans per month, no credit card.",
+    "ogTitle": "AI Website UX Auditor & Instant SEO Checker | SiteScoper",
+    "ogDescription": "Instant AI audit of your site's UX, SEO and conversion. The 3 fixes actually worth shipping this week.",
+    "visitSite": "Visit site",
+    "downloadPdfReport": "Download PDF Report",
+    "downloadPdfPro": "Download PDF · Pro",
+    "websitePreview": "Website Preview",
+    "pageInfo": "Page Info",
+    "titleLabel": "Title:",
+    "linksFoundLabel": "Links found:",
+    "freeAnalysisUsedBadge": "That was your free analysis",
+    "signUpFreeTitle": "Sign up free to keep going",
+    "signUpFreeDesc": "Save your history, track scores over time, and analyze unlimited websites — no credit card required.",
+    "createFreeAccount": "Create free account",
+    "footerTagline": "SiteScoper — AI website audits that tell you the truth.",
+    "footerAriaLabel": "Footer",
+    "footerBlog": "Blog",
+    "footerAiAuditTool": "AI Audit Tool",
+    "footerWhiteLabel": "White Label",
+    "footerDashboard": "Dashboard",
+    "toastSignInTitle": "Sign in to analyze",
+    "toastSignInDesc": "Create a free account to run a website analysis.",
+    "progressStarting": "Starting…",
+    "progressReadingLikeVisitor": "Reading like a real visitor",
+    "progressAiReading": "AI is reading your site",
+    "progressWorking": "Working…",
+    "toastErrorTitle": "Error",
+    "toastErrorDefault": "Something went wrong"
   }
 }

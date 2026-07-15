@@ -21,7 +21,15 @@
     "subtitle": "Hol dir das Feedback eines erfahrenen YC-Partners — mit 7-Tage-Aktionsplan, Branchen-Benchmarks und konkreten Text-Vorschlägen, die du heute live nehmen kannst.",
     "signUpForThree": "Melde dich an für 3 kostenlose Scans/Monat",
     "freemium": "Freemium — keine Karte nötig",
-    "export": "PDF- & Share-Link-Export"
+    "export": "PDF- & Share-Link-Export",
+    "badgeFoundersLine": "Von Gründern für Gründer gemacht",
+    "stopGuessingLine1": "Schluss mit Rätselraten,",
+    "stopGuessingLine2": "fangen Sie an zu wachsen.",
+    "actionableFixes": "Umsetzbare UX- und SEO-Fixes in 60 Sekunden.",
+    "description": "Der <1>KI-Website-Auditor</1>, der die 200-Punkte-Checkliste überspringt und dir die 3 UX-, SEO- und Text-Fixes liefert, die diese Woche wirklich lohnenswert sind – mit einem klaren Aktionsplan, den ein erfahrener Produktstratege absegnen würde.",
+    "freePlanBadge": "Kostenloser Plan · 3 vollständige Scans pro Monat · Keine Kreditkarte",
+    "freeScansFootnote": "3 kostenlose Scans / Monat · Keine Kreditkarte · Über 2.400 Websites diesen Monat bewertet",
+    "multiPageCrawl": "Tiefer Multi-Page-Crawl"
   },
   "signin": {
     "tooltipTitle": "Warum ein kostenloses Konto?",
@@ -1196,5 +1204,36 @@
       "trust": "Vertrauen",
       "design": "Design"
     }
+  },
+  "index": {
+    "metaTitle": "Schluss mit Rätselraten, fangen Sie an zu wachsen — KI-Website-Auditor in 60 Sekunden | SiteScoper",
+    "metaDescription": "SiteScoper ist der KI-Website-Auditor, der in 60 Sekunden umsetzbare UX- und SEO-Fixes liefert. Kostenlos starten – 3 vollständige Scans pro Monat, keine Kreditkarte.",
+    "ogTitle": "KI-UX-Auditor und Sofort-SEO-Checker für Websites | SiteScoper",
+    "ogDescription": "Sofortige KI-Analyse von UX, SEO und Conversion deiner Website. Die 3 Fixes, die diese Woche wirklich lohnenswert sind.",
+    "visitSite": "Website besuchen",
+    "downloadPdfReport": "PDF-Bericht herunterladen",
+    "downloadPdfPro": "PDF herunterladen · Pro",
+    "websitePreview": "Website-Vorschau",
+    "pageInfo": "Seiteninformationen",
+    "titleLabel": "Titel:",
+    "linksFoundLabel": "Gefundene Links:",
+    "freeAnalysisUsedBadge": "Das war deine kostenlose Analyse",
+    "signUpFreeTitle": "Kostenlos registrieren, um weiterzumachen",
+    "signUpFreeDesc": "Speichere deinen Verlauf, verfolge Scores über die Zeit und analysiere unbegrenzt viele Websites – keine Kreditkarte nötig.",
+    "createFreeAccount": "Kostenloses Konto erstellen",
+    "footerTagline": "SiteScoper — KI-Website-Audits, die dir die Wahrheit sagen.",
+    "footerAriaLabel": "Fußzeile",
+    "footerBlog": "Blog",
+    "footerAiAuditTool": "KI-Audit-Tool",
+    "footerWhiteLabel": "White Label",
+    "footerDashboard": "Dashboard",
+    "toastSignInTitle": "Zum Analysieren anmelden",
+    "toastSignInDesc": "Erstelle ein kostenloses Konto, um eine Website-Analyse durchzuführen.",
+    "progressStarting": "Wird gestartet…",
+    "progressReadingLikeVisitor": "Wird wie ein echter Besucher gelesen",
+    "progressAiReading": "Die KI liest deine Website",
+    "progressWorking": "Wird bearbeitet…",
+    "toastErrorTitle": "Fehler",
+    "toastErrorDefault": "Etwas ist schiefgelaufen"
   }
 }

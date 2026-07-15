@@ -21,7 +21,15 @@
     "subtitle": "Ricevi il feedback di un partner senior di YC — con un piano d'azione di 7 giorni, benchmark di settore e riscritture concrete pronte da pubblicare.",
     "signUpForThree": "Registrati per 3 scansioni gratis/mese",
     "freemium": "Freemium — nessuna carta",
-    "export": "Export PDF e link pubblico"
+    "export": "Export PDF e link pubblico",
+    "badgeFoundersLine": "Creato da founder, per founder",
+    "stopGuessingLine1": "Basta indovinare,",
+    "stopGuessingLine2": "inizia a crescere.",
+    "actionableFixes": "Correzioni UX e SEO pratiche in 60 secondi.",
+    "description": "L'<1>auditor AI per siti web</1> che salta la checklist di 200 punti e ti offre le 3 correzioni di UX, SEO e copy davvero utili da fare questa settimana, con un piano d'azione chiaro degno di un senior product strategist.",
+    "freePlanBadge": "Piano gratuito · 3 scansioni complete al mese · Nessuna carta di credito",
+    "freeScansFootnote": "3 scansioni gratuite / mese · Nessuna carta di credito · Oltre 2.400 siti valutati questo mese",
+    "multiPageCrawl": "Scansione approfondita multi-pagina"
   },
   "signin": {
     "tooltipTitle": "Perché creare un account gratuito?",
@@ -1196,5 +1204,36 @@
       "trust": "Fiducia",
       "design": "Design"
     }
+  },
+  "index": {
+    "metaTitle": "Basta indovinare, inizia a crescere — Auditor AI per siti web in 60 secondi | SiteScoper",
+    "metaDescription": "SiteScoper è l'auditor AI per siti web che offre correzioni pratiche di UX e SEO in 60 secondi. Inizia gratis — 3 scansioni complete al mese, nessuna carta di credito.",
+    "ogTitle": "Auditor UX AI e controllo SEO istantaneo | SiteScoper",
+    "ogDescription": "Audit AI istantaneo di UX, SEO e conversioni del tuo sito. Le 3 correzioni davvero utili da fare questa settimana.",
+    "visitSite": "Visita il sito",
+    "downloadPdfReport": "Scarica report PDF",
+    "downloadPdfPro": "Scarica PDF · Pro",
+    "websitePreview": "Anteprima del sito",
+    "pageInfo": "Informazioni sulla pagina",
+    "titleLabel": "Titolo:",
+    "linksFoundLabel": "Link trovati:",
+    "freeAnalysisUsedBadge": "Quella era la tua analisi gratuita",
+    "signUpFreeTitle": "Registrati gratis per continuare",
+    "signUpFreeDesc": "Salva la cronologia, monitora i punteggi nel tempo e analizza siti illimitati, senza carta di credito.",
+    "createFreeAccount": "Crea un account gratuito",
+    "footerTagline": "SiteScoper — Audit di siti web con IA che ti dicono la verità.",
+    "footerAriaLabel": "Piè di pagina",
+    "footerBlog": "Blog",
+    "footerAiAuditTool": "Strumento di audit AI",
+    "footerWhiteLabel": "White Label",
+    "footerDashboard": "Dashboard",
+    "toastSignInTitle": "Accedi per analizzare",
+    "toastSignInDesc": "Crea un account gratuito per eseguire un'analisi del sito web.",
+    "progressStarting": "Avvio in corso…",
+    "progressReadingLikeVisitor": "Lettura come un visitatore reale",
+    "progressAiReading": "L'IA sta leggendo il tuo sito",
+    "progressWorking": "Elaborazione in corso…",
+    "toastErrorTitle": "Errore",
+    "toastErrorDefault": "Qualcosa è andato storto"
   }
 }

@@ -21,7 +21,15 @@
     "subtitle": "Obtenez le retour qu'un partner senior de YC vous donnerait — avec un plan d'action de 7 jours, des benchmarks et des réécritures concrètes prêtes à publier.",
     "signUpForThree": "Inscrivez-vous pour 3 scans gratuits/mois",
     "freemium": "Freemium — sans carte",
-    "export": "Export PDF et lien public"
+    "export": "Export PDF et lien public",
+    "badgeFoundersLine": "Conçu par des fondateurs, pour des fondateurs",
+    "stopGuessingLine1": "Arrêtez de deviner,",
+    "stopGuessingLine2": "commencez à progresser.",
+    "actionableFixes": "Des corrections UX et SEO concrètes en 60 secondes.",
+    "description": "L'<1>auditeur de site web IA</1> qui saute la checklist de 200 lignes et vous livre les 3 corrections UX, SEO et copywriting vraiment utiles cette semaine — avec un plan d'action clair validé par un stratège produit senior.",
+    "freePlanBadge": "Offre gratuite · 3 analyses complètes par mois · Sans carte bancaire",
+    "freeScansFootnote": "3 analyses gratuites / mois · Sans carte bancaire · Plus de 2 400 sites évalués ce mois-ci",
+    "multiPageCrawl": "Exploration multi-pages en profondeur"
   },
   "signin": {
     "tooltipTitle": "Pourquoi créer un compte gratuit ?",
@@ -1196,5 +1204,36 @@
       "trust": "Confiance",
       "design": "Design"
     }
+  },
+  "index": {
+    "metaTitle": "Arrêtez de deviner, commencez à progresser — Auditeur de site web IA en 60 secondes | SiteScoper",
+    "metaDescription": "SiteScoper est l'auditeur de site web IA qui fournit des corrections UX et SEO concrètes en 60 secondes. Commencez gratuitement — 3 analyses complètes par mois, sans carte bancaire.",
+    "ogTitle": "Auditeur UX IA et vérificateur SEO instantané | SiteScoper",
+    "ogDescription": "Audit IA instantané de l'UX, du SEO et de la conversion de votre site. Les 3 corrections vraiment utiles cette semaine.",
+    "visitSite": "Visiter le site",
+    "downloadPdfReport": "Télécharger le rapport PDF",
+    "downloadPdfPro": "Télécharger le PDF · Pro",
+    "websitePreview": "Aperçu du site",
+    "pageInfo": "Infos sur la page",
+    "titleLabel": "Titre :",
+    "linksFoundLabel": "Liens trouvés :",
+    "freeAnalysisUsedBadge": "C'était votre analyse gratuite",
+    "signUpFreeTitle": "Inscrivez-vous gratuitement pour continuer",
+    "signUpFreeDesc": "Sauvegardez votre historique, suivez l'évolution de vos scores et analysez un nombre illimité de sites — sans carte bancaire.",
+    "createFreeAccount": "Créer un compte gratuit",
+    "footerTagline": "SiteScoper — Des audits de site web IA qui vous disent la vérité.",
+    "footerAriaLabel": "Pied de page",
+    "footerBlog": "Blog",
+    "footerAiAuditTool": "Outil d'audit IA",
+    "footerWhiteLabel": "Marque blanche",
+    "footerDashboard": "Tableau de bord",
+    "toastSignInTitle": "Connectez-vous pour analyser",
+    "toastSignInDesc": "Créez un compte gratuit pour lancer une analyse de site web.",
+    "progressStarting": "Démarrage…",
+    "progressReadingLikeVisitor": "Lecture comme un vrai visiteur",
+    "progressAiReading": "L'IA lit votre site",
+    "progressWorking": "Traitement en cours…",
+    "toastErrorTitle": "Erreur",
+    "toastErrorDefault": "Une erreur s'est produite"
   }
 }

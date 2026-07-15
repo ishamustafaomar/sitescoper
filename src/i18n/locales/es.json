@@ -21,7 +21,15 @@
     "subtitle": "Recibe la opinión que te daría un socio sénior de YC — con un plan de acción de 7 días, comparativas y reescrituras concretas listas para publicar hoy.",
     "signUpForThree": "Regístrate para 3 escaneos gratis/mes",
     "freemium": "Freemium — sin tarjeta",
-    "export": "Exportación PDF y enlace público"
+    "export": "Exportación PDF y enlace público",
+    "badgeFoundersLine": "Creado por fundadores, para fundadores",
+    "stopGuessingLine1": "Deja de adivinar,",
+    "stopGuessingLine2": "empieza a crecer.",
+    "actionableFixes": "Correcciones prácticas de UX y SEO en 60 segundos.",
+    "description": "El <1>auditor de sitios web con IA</1> que se salta la lista de 200 puntos y te da las 3 correcciones de UX, SEO y copy que realmente vale la pena implementar esta semana, con un plan de acción claro que aprobaría un estratega de producto senior.",
+    "freePlanBadge": "Plan gratuito · 3 análisis completos al mes · Sin tarjeta de crédito",
+    "freeScansFootnote": "3 análisis gratis / mes · Sin tarjeta de crédito · Más de 2.400 sitios evaluados este mes",
+    "multiPageCrawl": "Rastreo profundo multipágina"
   },
   "signin": {
     "tooltipTitle": "¿Por qué crear una cuenta gratis?",
@@ -1196,5 +1204,36 @@
       "trust": "Confianza",
       "design": "Diseño"
     }
+  },
+  "index": {
+    "metaTitle": "Deja de adivinar, empieza a crecer — Auditor de sitios web con IA en 60 segundos | SiteScoper",
+    "metaDescription": "SiteScoper es el auditor de sitios web con IA que ofrece correcciones prácticas de UX y SEO en 60 segundos. Empieza gratis: 3 análisis completos al mes, sin tarjeta de crédito.",
+    "ogTitle": "Auditor de UX con IA y comprobador SEO instantáneo | SiteScoper",
+    "ogDescription": "Auditoría instantánea con IA de la UX, el SEO y la conversión de tu sitio. Las 3 correcciones que realmente vale la pena implementar esta semana.",
+    "visitSite": "Visitar sitio",
+    "downloadPdfReport": "Descargar informe PDF",
+    "downloadPdfPro": "Descargar PDF · Pro",
+    "websitePreview": "Vista previa del sitio",
+    "pageInfo": "Información de la página",
+    "titleLabel": "Título:",
+    "linksFoundLabel": "Enlaces encontrados:",
+    "freeAnalysisUsedBadge": "Ese fue tu análisis gratuito",
+    "signUpFreeTitle": "Regístrate gratis para continuar",
+    "signUpFreeDesc": "Guarda tu historial, sigue tus puntuaciones a lo largo del tiempo y analiza sitios web ilimitados, sin tarjeta de crédito.",
+    "createFreeAccount": "Crear cuenta gratuita",
+    "footerTagline": "SiteScoper — Auditorías de sitios web con IA que te dicen la verdad.",
+    "footerAriaLabel": "Pie de página",
+    "footerBlog": "Blog",
+    "footerAiAuditTool": "Herramienta de auditoría IA",
+    "footerWhiteLabel": "Marca blanca",
+    "footerDashboard": "Panel",
+    "toastSignInTitle": "Inicia sesión para analizar",
+    "toastSignInDesc": "Crea una cuenta gratuita para ejecutar un análisis de sitio web.",
+    "progressStarting": "Iniciando…",
+    "progressReadingLikeVisitor": "Leyendo como un visitante real",
+    "progressAiReading": "La IA está leyendo tu sitio",
+    "progressWorking": "Trabajando…",
+    "toastErrorTitle": "Error",
+    "toastErrorDefault": "Algo salió mal"
   }
 }
