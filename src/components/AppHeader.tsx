@@ -8,6 +8,7 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 import { useAuth } from "@/components/AuthProvider";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { ChangelogBell } from "@/components/ChangelogBell";
 import { useTranslation } from "react-i18next";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { useSubscription } from "@/hooks/useSubscription";
@@ -114,6 +115,7 @@ export function AppHeader() {
         <div className="flex items-center gap-2">
           <LanguageSwitcher />
           <ThemeToggle />
+          <ChangelogBell />
           {user && !isPro && location.pathname !== "/pricing" && (
             <Button
               size="sm"
