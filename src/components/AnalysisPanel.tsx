@@ -3,6 +3,7 @@ import { AnalysisResult, ScrapeResult } from "@/lib/api";
 import { Badge } from "@/components/ui/badge";
 import { ChevronDown, ChevronUp, LayoutList, Zap, Image as ImageIcon, Calendar, Flame, AlertCircle, ArrowDown, Wand2 } from "lucide-react";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ImpactMatrix } from "@/components/ImpactMatrix";
 import { VisualOverlayView } from "@/components/VisualOverlayView";
@@ -37,6 +38,7 @@ function MiniScoreBar({ score }: { score: number }) {
 }
 
 export function AnalysisPanel({ analysis, scrapeData }: AnalysisPanelProps) {
+  const { t } = useTranslation();
   const [expandedCategory, setExpandedCategory] = useState<number | null>(0);
   const [activeTab, setActiveTab] = useState<string>("impact");
   const [showFull, setShowFull] = useState(false);
@@ -58,7 +60,7 @@ export function AnalysisPanel({ analysis, scrapeData }: AnalysisPanelProps) {
           <AlertCircle className="h-4 w-4 text-primary shrink-0 mt-0.5" />
           <p className="text-xs font-body text-foreground/90 leading-relaxed">
             {scrapeData.partialReason ||
-              "Partial results — we couldn't load all of this site's content."}
+              t("analysisPanel.partialResultsDefault")}
           </p>
         </div>
       )}
@@ -77,11 +79,11 @@ export function AnalysisPanel({ analysis, scrapeData }: AnalysisPanelProps) {
             onClick={() => setShowFull(true)}
             className="gap-2"
           >
-            See full report
+            {t("analysisPanel.seeFullReport")}
             <ArrowDown className="h-4 w-4" />
           </Button>
           <p className="text-[11px] text-muted-foreground font-body">
-            Category scores, action plan, and deep diagnostics
+            {t("analysisPanel.seeFullReportSub")}
           </p>
         </div>
       )}
@@ -92,7 +94,7 @@ export function AnalysisPanel({ analysis, scrapeData }: AnalysisPanelProps) {
 
       {/* Category overview grid */}
       <div className="bg-card rounded-2xl border border-border p-5 shadow-[var(--shadow-sm)]">
-        <div className="text-[10px] font-body uppercase tracking-wider text-muted-foreground mb-3">Category scores</div>
+        <div className="text-[10px] font-body uppercase tracking-wider text-muted-foreground mb-3">{t("analysisPanel.categoryScoresLabel")}</div>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
           {analysis.categories.map((cat) => (
             <div key={cat.name} className="flex flex-col gap-1">
@@ -111,35 +113,35 @@ export function AnalysisPanel({ analysis, scrapeData }: AnalysisPanelProps) {
         <TabsList className="grid w-full grid-cols-6">
           <TabsTrigger value="impact" className="gap-1.5 text-xs">
             <Flame className="h-3.5 w-3.5" />
-            <span className="hidden sm:inline">By Impact</span>
-            <span className="sm:hidden">Impact</span>
+            <span className="hidden sm:inline">{t("analysisPanel.tabs.byImpact")}</span>
+            <span className="sm:hidden">{t("analysisPanel.tabs.impactShort")}</span>
           </TabsTrigger>
           <TabsTrigger value="plan" className="gap-1.5 text-xs" disabled={!hasActionPlan}>
             <Calendar className="h-3.5 w-3.5" />
-            <span className="hidden sm:inline">Plan</span>
-            <span className="sm:hidden">Plan</span>
+            <span className="hidden sm:inline">{t("analysisPanel.tabs.plan")}</span>
+            <span className="sm:hidden">{t("analysisPanel.tabs.plan")}</span>
           </TabsTrigger>
           <TabsTrigger value="rewrite" className="gap-1.5 text-xs">
             <Wand2 className="h-3.5 w-3.5" />
-            <span className="hidden sm:inline">Rewrite</span>
-            <span className="sm:hidden">Copy</span>
+            <span className="hidden sm:inline">{t("analysisPanel.tabs.rewrite")}</span>
+            <span className="sm:hidden">{t("analysisPanel.tabs.rewriteShort")}</span>
           </TabsTrigger>
           <TabsTrigger value="categories" className="gap-1.5 text-xs">
             <LayoutList className="h-3.5 w-3.5" />
-            <span className="hidden sm:inline">By Category</span>
-            <span className="sm:hidden">Cat</span>
+            <span className="hidden sm:inline">{t("analysisPanel.tabs.byCategory")}</span>
+            <span className="sm:hidden">{t("analysisPanel.tabs.byCategoryShort")}</span>
           </TabsTrigger>
           <TabsTrigger value="matrix" className="gap-1.5 text-xs">
             <Zap className="h-3.5 w-3.5" />
-            <span className="hidden sm:inline">Matrix</span>
-            <span className="sm:hidden">Matrix</span>
+            <span className="hidden sm:inline">{t("analysisPanel.tabs.matrix")}</span>
+            <span className="sm:hidden">{t("analysisPanel.tabs.matrix")}</span>
             {totalSuggestions > 0 && (
               <Badge variant="secondary" className="ml-0.5 px-1.5 text-[9px] h-4">{totalSuggestions}</Badge>
             )}
           </TabsTrigger>
           <TabsTrigger value="visual" className="gap-1.5 text-xs" disabled={!hasImageSuggestions}>
             <ImageIcon className="h-3.5 w-3.5" />
-            Visual
+            {t("analysisPanel.tabs.visual")}
           </TabsTrigger>
         </TabsList>
 
@@ -154,7 +156,7 @@ export function AnalysisPanel({ analysis, scrapeData }: AnalysisPanelProps) {
             <ActionPlanView plan={analysis.action_plan} />
           ) : (
             <div className="bg-card rounded-xl border border-border p-6 text-center text-sm text-muted-foreground font-body">
-              No action plan generated for this analysis.
+              {t("analysisPanel.noActionPlan")}
             </div>
           )}
         </TabsContent>
