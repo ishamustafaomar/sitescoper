@@ -306,6 +306,16 @@ async function synthesizeVoice(
   );
   if (!r.ok) {
     const txt = await r.text();
+    // Detect quota exhaustion so the caller can return a clear message instead of a generic 500.
+    let code = "";
+    try { code = JSON.parse(txt)?.code || ""; } catch { /* non-JSON body */ }
+    if (code === "quota_exceeded" || /quota_exceeded/i.test(txt)) {
+      const err: any = new Error("elevenlabs_quota_exceeded");
+      err.code = "elevenlabs_quota_exceeded";
+      err.status = r.status;
+      err.detail = txt.slice(0, 300);
+      throw err;
+    }
     throw new Error(`elevenlabs ${r.status}: ${txt.slice(0, 300)}`);
   }
   const j = await r.json();
