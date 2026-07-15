@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { TrendingUp, Users } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { AnalysisResult } from "@/lib/api";
 
 interface BenchmarkCardProps {
@@ -7,6 +8,7 @@ interface BenchmarkCardProps {
 }
 
 export function BenchmarkCard({ analysis }: BenchmarkCardProps) {
+  const { t } = useTranslation();
   const pct = analysis.benchmark_percentile;
   if (pct === undefined && !analysis.benchmark_label && !analysis.peer_examples?.length) return null;
 
@@ -25,11 +27,11 @@ export function BenchmarkCard({ analysis }: BenchmarkCardProps) {
           <div className="p-1.5 rounded-lg bg-primary/10">
             <TrendingUp className="h-3.5 w-3.5 text-primary" />
           </div>
-          <h4 className="font-heading font-semibold text-sm">Peer benchmark</h4>
+          <h4 className="font-heading font-semibold text-sm">{t("benchmarkCard.title")}</h4>
         </div>
         {pct !== undefined && (
           <span className="text-[11px] font-body text-muted-foreground">
-            Better than <span className="font-heading font-bold text-foreground">{safePct}%</span> of peers
+            {t("benchmarkCard.betterThanPrefix")} <span className="font-heading font-bold text-foreground">{safePct}%</span> {t("benchmarkCard.ofPeersSuffix")}
           </span>
         )}
       </div>
@@ -52,7 +54,7 @@ export function BenchmarkCard({ analysis }: BenchmarkCardProps) {
       {analysis.peer_examples && analysis.peer_examples.length > 0 && (
         <div className="flex items-center gap-2 flex-wrap pt-1 border-t border-border">
           <span className="inline-flex items-center gap-1 text-[10px] text-muted-foreground font-body">
-            <Users className="h-3 w-3" /> Compare to:
+            <Users className="h-3 w-3" /> {t("benchmarkCard.compareTo")}
           </span>
           {analysis.peer_examples.slice(0, 4).map((p) => (
             <a
