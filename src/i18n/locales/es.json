@@ -21,7 +21,15 @@
     "subtitle": "Recibe la opinión que te daría un socio sénior de YC — con un plan de acción de 7 días, comparativas y reescrituras concretas listas para publicar hoy.",
     "signUpForThree": "Regístrate para 3 escaneos gratis/mes",
     "freemium": "Freemium — sin tarjeta",
-    "export": "Exportación PDF y enlace público"
+    "export": "Exportación PDF y enlace público",
+    "badgeFoundersLine": "Creado por fundadores, para fundadores",
+    "stopGuessingLine1": "Deja de adivinar,",
+    "stopGuessingLine2": "empieza a crecer.",
+    "actionableFixes": "Correcciones prácticas de UX y SEO en 60 segundos.",
+    "description": "El <1>auditor de sitios web con IA</1> que se salta la lista de 200 puntos y te da las 3 correcciones de UX, SEO y copy que realmente vale la pena implementar esta semana, con un plan de acción claro que aprobaría un estratega de producto senior.",
+    "freePlanBadge": "Plan gratuito · 3 análisis completos al mes · Sin tarjeta de crédito",
+    "freeScansFootnote": "3 análisis gratis / mes · Sin tarjeta de crédito · Más de 2.400 sitios evaluados este mes",
+    "multiPageCrawl": "Rastreo profundo multipágina"
   },
   "signin": {
     "tooltipTitle": "¿Por qué crear una cuenta gratis?",
@@ -41,7 +49,15 @@
     "memberItem3": "Enlaces públicos",
     "memberItem4": "Comparar escaneos a lo largo del tiempo",
     "ctaCreate": "Crear cuenta gratis",
-    "ctaLogin": "Iniciar sesión"
+    "ctaLogin": "Iniciar sesión",
+    "tryInstantly": "Pruébalo al instante, con funciones limitadas.",
+    "notIncluded": "No incluido",
+    "historyAndTrends": "Historial y tendencias de puntuación",
+    "publicShareLinksLocked": "Enlaces públicos para compartir",
+    "compareScansLocked": "Comparar análisis a lo largo del tiempo",
+    "recommendedBadge": "Recomendado",
+    "everythingAbovePlus": "Todo lo anterior, más todo lo siguiente: gratis, sin tarjeta de crédito.",
+    "noUsageLimits": "Sin límites de uso, nunca."
   },
   "auth": {
     "welcomeBack": "Bienvenido de nuevo",
@@ -1012,7 +1028,8 @@
     "screenshotAltPrefix": "Captura de",
     "pagesCrawled": "Páginas rastreadas",
     "ofSeparator": "de",
-    "discoveredSuffix": "descubiertas"
+    "discoveredSuffix": "descubiertas",
+    "ofDiscovered": "de {{total}} descubiertas"
   },
   "visualOverlay": {
     "imagesOnHomepage": "imágenes en la home",
@@ -1196,5 +1213,92 @@
       "trust": "Confianza",
       "design": "Diseño"
     }
+  },
+  "index": {
+    "metaTitle": "Deja de adivinar, empieza a crecer — Auditor de sitios web con IA en 60 segundos | SiteScoper",
+    "metaDescription": "SiteScoper es el auditor de sitios web con IA que ofrece correcciones prácticas de UX y SEO en 60 segundos. Empieza gratis: 3 análisis completos al mes, sin tarjeta de crédito.",
+    "ogTitle": "Auditor de UX con IA y comprobador SEO instantáneo | SiteScoper",
+    "ogDescription": "Auditoría instantánea con IA de la UX, el SEO y la conversión de tu sitio. Las 3 correcciones que realmente vale la pena implementar esta semana.",
+    "visitSite": "Visitar sitio",
+    "downloadPdfReport": "Descargar informe PDF",
+    "downloadPdfPro": "Descargar PDF · Pro",
+    "websitePreview": "Vista previa del sitio",
+    "pageInfo": "Información de la página",
+    "titleLabel": "Título:",
+    "linksFoundLabel": "Enlaces encontrados:",
+    "freeAnalysisUsedBadge": "Ese fue tu análisis gratuito",
+    "signUpFreeTitle": "Regístrate gratis para continuar",
+    "signUpFreeDesc": "Guarda tu historial, sigue tus puntuaciones a lo largo del tiempo y analiza sitios web ilimitados, sin tarjeta de crédito.",
+    "createFreeAccount": "Crear cuenta gratuita",
+    "footerTagline": "SiteScoper — Auditorías de sitios web con IA que te dicen la verdad.",
+    "footerAriaLabel": "Pie de página",
+    "footerBlog": "Blog",
+    "footerAiAuditTool": "Herramienta de auditoría IA",
+    "footerWhiteLabel": "Marca blanca",
+    "footerDashboard": "Panel",
+    "toastSignInTitle": "Inicia sesión para analizar",
+    "toastSignInDesc": "Crea una cuenta gratuita para ejecutar un análisis de sitio web.",
+    "progressStarting": "Iniciando…",
+    "progressReadingLikeVisitor": "Leyendo como un visitante real",
+    "progressAiReading": "La IA está leyendo tu sitio",
+    "progressWorking": "Trabajando…",
+    "toastErrorTitle": "Error",
+    "toastErrorDefault": "Algo salió mal"
+  },
+  "semrush": {
+    "loading": "Cargando métricas de Semrush…",
+    "errorPrefix": "Error de Semrush:",
+    "errorNoData": "sin datos",
+    "unlockTitle": "Desbloquea tráfico orgánico, palabras clave y backlinks",
+    "unlockDesc": "Conecta Semrush para añadir Authority Score, estimaciones de tráfico orgánico, palabras clave posicionadas y datos de backlinks a cada auditoría.",
+    "connectButton": "Conectar Semrush",
+    "quotaReachedTitle": "Cuota de Semrush alcanzada",
+    "quotaReachedDesc": "Mejora tu plan de Semrush o espera a que se reinicie la cuota para ver métricas en vivo.",
+    "kpiAuthorityScore": "Authority Score",
+    "kpiAuthorityScoreSub": "0–100",
+    "kpiOrganicTraffic": "Tráfico orgánico",
+    "kpiOrganicTrafficSub": "est. mensual",
+    "kpiOrganicKeywords": "Palabras clave orgánicas",
+    "kpiOrganicKeywordsSub": "términos posicionados",
+    "kpiBacklinks": "Backlinks",
+    "refDomainsSuffix": "dominios de referencia",
+    "overviewTitle": "Resumen de Semrush",
+    "sourceLabel": "Fuente: Semrush ·",
+    "topOrganicKeywords": "Principales palabras clave orgánicas",
+    "posVolLabel": "pos · vol",
+    "noKeywordData": "Todavía no hay datos de palabras clave de Semrush.",
+    "topReferringDomains": "Principales dominios de referencia",
+    "asLinksLabel": "AS · enlaces",
+    "noBacklinkData": "Todavía no hay datos de backlinks de Semrush."
+  },
+  "techSeo": {
+    "title": "SEO técnico",
+    "rescanToPopulate": "Vuelve a analizar este sitio para completar las comprobaciones técnicas de SEO.",
+    "healthTitle": "Estado técnico del SEO",
+    "passingLabel": "aprobados"
+  },
+  "scoreTrend": {
+    "title": "Puntuación a lo largo del tiempo",
+    "rescanForProgress": "Vuelve a analizar esta URL tras las mejoras para ver tu gráfico de progreso.",
+    "loading": "Cargando…",
+    "scansCount": "análisis",
+    "ptsSuffix": "pts"
+  },
+  "seoAudit": {
+    "auditingOnPage": "Auditando el SEO en la página…",
+    "auditFailed": "La auditoría falló",
+    "toastFailedTitle": "La auditoría SEO falló",
+    "retry": "Reintentar",
+    "onPageTitle": "Auditoría de SEO en la página",
+    "passedWarnFailedSummary": "{{passed}} aprobados · {{warnings}} advertencias · {{failed}} fallidos",
+    "rerun": "Volver a ejecutar",
+    "failedCount": "Fallidos ({{count}})",
+    "warningsCount": "Advertencias ({{count}})",
+    "passedCount": "Aprobados ({{count}})",
+    "headingsOutline": "Esquema de encabezados ({{count}})",
+    "noHeadingsDetected": "No se detectaron encabezados.",
+    "emptyPlaceholder": "(vacío)",
+    "rawHeadData": "Datos brutos del head",
+    "fixLabel": "Solución:"
   }
 }

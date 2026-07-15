@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { TrendingUp, Search, Link2, Shield, ExternalLink, Loader2, Sparkles, AlertTriangle } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Badge } from "@/components/ui/badge";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 
 interface Props { url: string }
@@ -26,6 +27,7 @@ function fmt(n: number | string | undefined): string {
 }
 
 export function SemrushOverviewPanel({ url }: Props) {
+  const { t } = useTranslation();
   const [data, setData] = useState<SemrushData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -53,7 +55,7 @@ export function SemrushOverviewPanel({ url }: Props) {
     return (
       <div className="rounded-2xl border border-border bg-card p-5 flex items-center gap-3">
         <Loader2 className="h-4 w-4 animate-spin text-primary" />
-        <span className="text-sm text-muted-foreground font-body">Loading Semrush metrics…</span>
+        <span className="text-sm text-muted-foreground font-body">{t("semrush.loading")}</span>
       </div>
     );
   }
@@ -61,7 +63,7 @@ export function SemrushOverviewPanel({ url }: Props) {
   if (error || !data) {
     return (
       <div className="rounded-2xl border border-destructive/30 bg-destructive/5 p-5 text-sm font-body text-destructive">
-        Semrush error: {error || "no data"}
+        {t("semrush.errorPrefix")} {error || t("semrush.errorNoData")}
       </div>
     );
   }
@@ -71,13 +73,13 @@ export function SemrushOverviewPanel({ url }: Props) {
       <div className="rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/5 to-transparent p-5 space-y-3">
         <div className="flex items-center gap-2">
           <Sparkles className="h-4 w-4 text-primary" />
-          <h3 className="font-heading font-semibold text-sm">Unlock organic traffic, keywords & backlinks</h3>
+          <h3 className="font-heading font-semibold text-sm">{t("semrush.unlockTitle")}</h3>
         </div>
         <p className="text-xs text-muted-foreground font-body">
-          Connect Semrush to layer Authority Score, organic traffic estimates, ranking keywords and backlink data on top of every audit.
+          {t("semrush.unlockDesc")}
         </p>
         <Button size="sm" variant="outline" asChild>
-          <a href="/account">Connect Semrush</a>
+          <a href="/account">{t("semrush.connectButton")}</a>
         </Button>
       </div>
     );
@@ -88,8 +90,8 @@ export function SemrushOverviewPanel({ url }: Props) {
       <div className="rounded-2xl border border-primary/30 bg-primary/5 p-5 flex items-start gap-3">
         <AlertTriangle className="h-4 w-4 text-primary mt-0.5" />
         <div className="text-sm font-body">
-          <p className="font-heading font-semibold">Semrush quota reached</p>
-          <p className="text-muted-foreground text-xs mt-1">Upgrade your Semrush plan or wait for the quota to reset to see live metrics.</p>
+          <p className="font-heading font-semibold">{t("semrush.quotaReachedTitle")}</p>
+          <p className="text-muted-foreground text-xs mt-1">{t("semrush.quotaReachedDesc")}</p>
         </div>
       </div>
     );
@@ -99,10 +101,10 @@ export function SemrushOverviewPanel({ url }: Props) {
   const bl = data.backlinks || {};
 
   const kpis = [
-    { icon: Shield, label: "Authority Score", value: fmt(bl.ascore), color: "text-primary", sub: "0–100" },
-    { icon: TrendingUp, label: "Organic Traffic", value: fmt(r.Ot), color: "text-accent", sub: "monthly est." },
-    { icon: Search, label: "Organic Keywords", value: fmt(r.Or), color: "text-primary", sub: "ranking terms" },
-    { icon: Link2, label: "Backlinks", value: fmt(bl.total), color: "text-accent", sub: `${fmt(bl.domains_num)} ref domains` },
+    { icon: Shield, label: t("semrush.kpiAuthorityScore"), value: fmt(bl.ascore), color: "text-primary", sub: t("semrush.kpiAuthorityScoreSub") },
+    { icon: TrendingUp, label: t("semrush.kpiOrganicTraffic"), value: fmt(r.Ot), color: "text-accent", sub: t("semrush.kpiOrganicTrafficSub") },
+    { icon: Search, label: t("semrush.kpiOrganicKeywords"), value: fmt(r.Or), color: "text-primary", sub: t("semrush.kpiOrganicKeywordsSub") },
+    { icon: Link2, label: t("semrush.kpiBacklinks"), value: fmt(bl.total), color: "text-accent", sub: `${fmt(bl.domains_num)} ${t("semrush.refDomainsSuffix")}` },
   ];
 
   return (
@@ -110,9 +112,9 @@ export function SemrushOverviewPanel({ url }: Props) {
       <div className="flex items-center justify-between">
         <h3 className="font-heading font-semibold text-sm flex items-center gap-2">
           <Sparkles className="h-4 w-4 text-primary" />
-          Semrush overview
+          {t("semrush.overviewTitle")}
         </h3>
-        <Badge variant="outline" className="text-[10px]">Source: Semrush · {data.domain}</Badge>
+        <Badge variant="outline" className="text-[10px]">{t("semrush.sourceLabel")} {data.domain}</Badge>
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -131,8 +133,8 @@ export function SemrushOverviewPanel({ url }: Props) {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <div className="rounded-xl border border-border bg-card overflow-hidden">
           <div className="px-4 py-3 border-b border-border flex items-center justify-between">
-            <h4 className="font-heading font-semibold text-xs">Top organic keywords</h4>
-            <span className="text-[10px] text-muted-foreground font-body">pos · vol</span>
+            <h4 className="font-heading font-semibold text-xs">{t("semrush.topOrganicKeywords")}</h4>
+            <span className="text-[10px] text-muted-foreground font-body">{t("semrush.posVolLabel")}</span>
           </div>
           {data.organic && data.organic.length > 0 ? (
             <div className="divide-y divide-border max-h-64 overflow-y-auto">
@@ -154,14 +156,14 @@ export function SemrushOverviewPanel({ url }: Props) {
               ))}
             </div>
           ) : (
-            <p className="p-6 text-xs text-muted-foreground font-body text-center">No keyword data yet from Semrush.</p>
+            <p className="p-6 text-xs text-muted-foreground font-body text-center">{t("semrush.noKeywordData")}</p>
           )}
         </div>
 
         <div className="rounded-xl border border-border bg-card overflow-hidden">
           <div className="px-4 py-3 border-b border-border flex items-center justify-between">
-            <h4 className="font-heading font-semibold text-xs">Top referring domains</h4>
-            <span className="text-[10px] text-muted-foreground font-body">AS · links</span>
+            <h4 className="font-heading font-semibold text-xs">{t("semrush.topReferringDomains")}</h4>
+            <span className="text-[10px] text-muted-foreground font-body">{t("semrush.asLinksLabel")}</span>
           </div>
           {data.refdomains && data.refdomains.length > 0 ? (
             <div className="divide-y divide-border max-h-64 overflow-y-auto">
@@ -183,7 +185,7 @@ export function SemrushOverviewPanel({ url }: Props) {
               ))}
             </div>
           ) : (
-            <p className="p-6 text-xs text-muted-foreground font-body text-center">No backlink data yet from Semrush.</p>
+            <p className="p-6 text-xs text-muted-foreground font-body text-center">{t("semrush.noBacklinkData")}</p>
           )}
         </div>
       </div>

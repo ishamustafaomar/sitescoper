@@ -68,7 +68,7 @@ export function SignInBenefits({ variant = "section" }: SignInBenefitsProps) {
                 {t("signin.anonTitle")}
               </h3>
               <p className="text-xs font-body text-muted-foreground/80">
-                Try it instantly — limited features.
+                {t("signin.tryInstantly")}
               </p>
             </div>
             <ul className="space-y-2">
@@ -81,20 +81,20 @@ export function SignInBenefits({ variant = "section" }: SignInBenefitsProps) {
             </ul>
             <div className="pt-2 border-t border-border/60 space-y-1.5">
               <p className="text-[11px] font-body uppercase tracking-wider text-muted-foreground/70">
-                Not included
+                {t("signin.notIncluded")}
               </p>
               <ul className="space-y-1.5">
                 <li className="flex items-center gap-2 text-xs font-body text-muted-foreground/80">
                   <Lock className="h-3 w-3 shrink-0" />
-                  <span>History &amp; score trends</span>
+                  <span>{t("signin.historyAndTrends")}</span>
                 </li>
                 <li className="flex items-center gap-2 text-xs font-body text-muted-foreground/80">
                   <Lock className="h-3 w-3 shrink-0" />
-                  <span>Public share links</span>
+                  <span>{t("signin.publicShareLinksLocked")}</span>
                 </li>
                 <li className="flex items-center gap-2 text-xs font-body text-muted-foreground/80">
                   <Lock className="h-3 w-3 shrink-0" />
-                  <span>Compare scans over time</span>
+                  <span>{t("signin.compareScansLocked")}</span>
                 </li>
               </ul>
             </div>
@@ -108,7 +108,7 @@ export function SignInBenefits({ variant = "section" }: SignInBenefitsProps) {
             className="rounded-2xl border-2 border-primary/40 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent p-6 space-y-4 relative shadow-glow"
           >
             <div className="absolute -top-3 left-6 px-3 py-0.5 rounded-full bg-primary text-primary-foreground text-[10px] font-body uppercase tracking-wider">
-              Recommended
+              {t("signin.recommendedBadge")}
             </div>
             <div className="space-y-1">
               <h3 className="font-heading font-semibold text-lg flex items-center gap-2">
@@ -116,7 +116,7 @@ export function SignInBenefits({ variant = "section" }: SignInBenefitsProps) {
                 {t("signin.memberTitle")}
               </h3>
               <p className="text-xs font-body text-muted-foreground">
-                Everything above, plus everything below — free, no credit card.
+                {t("signin.everythingAbovePlus")}
               </p>
             </div>
             <ul className="space-y-2">
@@ -129,7 +129,7 @@ export function SignInBenefits({ variant = "section" }: SignInBenefitsProps) {
             </ul>
             <div className="flex items-center gap-2 text-xs font-body text-primary pt-1">
               <InfinityIcon className="h-3.5 w-3.5" />
-              <span>No usage limits — ever.</span>
+              <span>{t("signin.noUsageLimits")}</span>
             </div>
             <div className="flex items-center gap-2 pt-2">
               <Button variant="hero" size="sm" onClick={() => navigate("/auth")}>

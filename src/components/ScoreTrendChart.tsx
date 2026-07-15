@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Area, AreaChart } from "recharts";
 import { TrendingUp, TrendingDown, Minus, Activity } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { useTranslation } from "react-i18next";
 
 interface ScoreTrendChartProps {
   url: string;
@@ -16,6 +17,7 @@ interface Point {
 }
 
 export function ScoreTrendChart({ url, currentId }: ScoreTrendChartProps) {
+  const { t } = useTranslation();
   const [points, setPoints] = useState<Point[] | null>(null);
 
   useEffect(() => {
@@ -43,12 +45,12 @@ export function ScoreTrendChart({ url, currentId }: ScoreTrendChartProps) {
       <div className="rounded-2xl border border-border bg-card p-5">
         <div className="flex items-center gap-2 mb-1">
           <Activity className="h-4 w-4 text-muted-foreground" />
-          <h3 className="font-heading font-semibold text-sm">Score over time</h3>
+          <h3 className="font-heading font-semibold text-sm">{t("scoreTrend.title")}</h3>
         </div>
         <p className="text-xs text-muted-foreground font-body">
           {points?.length === 1
-            ? "Re-scan this URL after improvements to see your progress chart."
-            : "Loading…"}
+            ? t("scoreTrend.rescanForProgress")
+            : t("scoreTrend.loading")}
         </p>
       </div>
     );
@@ -69,12 +71,12 @@ export function ScoreTrendChart({ url, currentId }: ScoreTrendChartProps) {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Activity className="h-4 w-4 text-muted-foreground" />
-          <h3 className="font-heading font-semibold text-sm">Score over time</h3>
-          <span className="text-[10px] text-muted-foreground font-body">{points.length} scans</span>
+          <h3 className="font-heading font-semibold text-sm">{t("scoreTrend.title")}</h3>
+          <span className="text-[10px] text-muted-foreground font-body">{points.length} {t("scoreTrend.scansCount")}</span>
         </div>
         <div className={`flex items-center gap-1 text-xs font-heading font-semibold ${trendColor}`}>
           <TrendIcon className="h-3.5 w-3.5" />
-          {delta > 0 ? "+" : ""}{delta} pts
+          {delta > 0 ? "+" : ""}{delta} {t("scoreTrend.ptsSuffix")}
         </div>
       </div>
 

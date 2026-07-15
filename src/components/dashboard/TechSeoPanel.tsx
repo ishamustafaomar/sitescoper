@@ -1,16 +1,18 @@
 import { CheckCircle2, XCircle, Shield } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 interface Check { name: string; passed: boolean; detail: string }
 interface Props { report?: { score: number; checks: Check[] } | null }
 
 export function TechSeoPanel({ report }: Props) {
+  const { t } = useTranslation();
   if (!report || !report.checks?.length) {
     return (
       <div className="rounded-2xl border border-border bg-card p-5">
         <h3 className="font-heading font-semibold text-sm flex items-center gap-2 mb-2">
-          <Shield className="h-4 w-4 text-primary" /> Technical SEO
+          <Shield className="h-4 w-4 text-primary" /> {t("techSeo.title")}
         </h3>
-        <p className="text-xs text-muted-foreground font-body">Re-scan this site to populate technical SEO checks.</p>
+        <p className="text-xs text-muted-foreground font-body">{t("techSeo.rescanToPopulate")}</p>
       </div>
     );
   }
@@ -23,10 +25,10 @@ export function TechSeoPanel({ report }: Props) {
     <div className="rounded-2xl border border-border bg-card p-5 space-y-4">
       <div className="flex items-center justify-between">
         <h3 className="font-heading font-semibold text-sm flex items-center gap-2">
-          <Shield className="h-4 w-4 text-primary" /> Technical SEO health
+          <Shield className="h-4 w-4 text-primary" /> {t("techSeo.healthTitle")}
         </h3>
         <div className="flex items-center gap-3">
-          <span className="text-[11px] text-muted-foreground font-body">{passed}/{total} passing</span>
+          <span className="text-[11px] text-muted-foreground font-body">{passed}/{total} {t("techSeo.passingLabel")}</span>
           <span className={`font-heading font-bold text-xl ${scoreColor}`}>{score}</span>
         </div>
       </div>
