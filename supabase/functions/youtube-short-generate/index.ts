@@ -306,6 +306,16 @@ async function synthesizeVoice(
   );
   if (!r.ok) {
     const txt = await r.text();
+    // Detect quota exhaustion so the caller can return a clear message instead of a generic 500.
+    let code = "";
+    try { code = JSON.parse(txt)?.code || ""; } catch { /* non-JSON body */ }
+    if (code === "quota_exceeded" || /quota_exceeded/i.test(txt)) {
+      const err: any = new Error("elevenlabs_quota_exceeded");
+      err.code = "elevenlabs_quota_exceeded";
+      err.status = r.status;
+      err.detail = txt.slice(0, 300);
+      throw err;
+    }
     throw new Error(`elevenlabs ${r.status}: ${txt.slice(0, 300)}`);
   }
   const j = await r.json();
@@ -432,7 +442,18 @@ serve(async (req) => {
     });
   } catch (e) {
     console.error("youtube-short-generate error", e);
-    return new Response(JSON.stringify({ ok: false, error: "generation_failed", detail: String((e as Error).message || e).slice(0, 500) }), {
+    const err = e as any;
+    if (err?.code === "elevenlabs_quota_exceeded") {
+      return new Response(
+        JSON.stringify({
+          ok: false,
+          error: "elevenlabs_quota_exceeded",
+          message: "The ElevenLabs voice credit quota is exhausted. Top up or upgrade the ElevenLabs plan to generate more Shorts.",
+        }),
+        { status: 402, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+      );
+    }
+    return new Response(JSON.stringify({ ok: false, error: "generation_failed", detail: String(err?.message || e).slice(0, 500) }), {
       status: 500,
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
