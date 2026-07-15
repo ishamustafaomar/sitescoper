@@ -189,7 +189,7 @@ export function AnalysisPanel({ analysis, scrapeData }: AnalysisPanelProps) {
                     {category.score}/100
                   </Badge>
                   <Badge variant="outline" className="text-[10px] font-body shrink-0 hidden sm:inline-flex">
-                    {category.suggestions.length} tips
+                    {category.suggestions.length} {t("analysisPanel.tipsBadgeSuffix")}
                   </Badge>
                 </div>
                 {expandedCategory === idx ? (
@@ -209,7 +209,7 @@ export function AnalysisPanel({ analysis, scrapeData }: AnalysisPanelProps) {
                   {/* Sub-scores */}
                   {category.sub_scores && category.sub_scores.length > 0 && (
                     <div className="p-4 bg-muted/20 border-b border-border space-y-2">
-                      <div className="text-[10px] font-body uppercase tracking-wider text-muted-foreground">Sub-scores</div>
+                      <div className="text-[10px] font-body uppercase tracking-wider text-muted-foreground">{t("analysisPanel.subScoresLabel")}</div>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1.5">
                         {category.sub_scores.map((s) => (
                           <div key={s.name} className="flex items-center justify-between gap-2 text-xs font-body">
@@ -243,7 +243,7 @@ export function AnalysisPanel({ analysis, scrapeData }: AnalysisPanelProps) {
             <VisualOverlayView scrapeData={scrapeData} analysis={analysis} />
           ) : (
             <div className="bg-card rounded-xl border border-border p-6 text-center text-sm text-muted-foreground font-body">
-              Visual analysis unavailable for this report.
+              {t("analysisPanel.visualUnavailable")}
             </div>
           )}
         </TabsContent>
