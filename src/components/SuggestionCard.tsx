@@ -2,18 +2,12 @@ import { useState } from "react";
 import { TrendingUp, TrendingDown, Minus, Quote, ArrowRight, ChevronDown, Wrench, AlertCircle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { AnalysisSuggestion } from "@/lib/api";
+import { useTranslation } from "react-i18next";
 
 const priorityConfig: Record<string, { class: string; icon: typeof TrendingUp }> = {
   high: { class: "bg-destructive/10 text-destructive border-destructive/20", icon: TrendingUp },
   medium: { class: "bg-primary/10 text-primary border-primary/20", icon: Minus },
   low: { class: "bg-accent/10 text-accent border-accent/20", icon: TrendingDown },
-};
-
-const typeLabels: Record<string, string> = {
-  ux: "UX", content: "Content", seo: "SEO",
-  performance: "Perf", accessibility: "A11y", design: "Design",
-  product: "Product", strategy: "Strategy", business: "Business", growth: "Growth",
-  brand: "Brand", legal: "Legal", analytics: "Analytics",
 };
 
 interface SuggestionCardProps {
@@ -23,6 +17,13 @@ interface SuggestionCardProps {
 }
 
 export function SuggestionCard({ suggestion, categoryLabel, categoryIcon }: SuggestionCardProps) {
+  const { t } = useTranslation();
+  const typeLabels: Record<string, string> = {
+    ux: t("suggestionCard.types.ux"), content: t("suggestionCard.types.content"), seo: t("suggestionCard.types.seo"),
+    performance: t("suggestionCard.types.performance"), accessibility: t("suggestionCard.types.accessibility"), design: t("suggestionCard.types.design"),
+    product: t("suggestionCard.types.product"), strategy: t("suggestionCard.types.strategy"), business: t("suggestionCard.types.business"), growth: t("suggestionCard.types.growth"),
+    brand: t("suggestionCard.types.brand"), legal: t("suggestionCard.types.legal"), analytics: t("suggestionCard.types.analytics"),
+  };
   const config = priorityConfig[suggestion.priority] || priorityConfig.medium;
   const [open, setOpen] = useState(false);
 
@@ -57,7 +58,7 @@ export function SuggestionCard({ suggestion, categoryLabel, categoryIcon }: Sugg
         <div className="flex items-start gap-2 p-2 rounded-md bg-muted/40">
           <AlertCircle className="h-3.5 w-3.5 text-muted-foreground shrink-0 mt-0.5" />
           <div className="min-w-0">
-            <div className="text-[9px] font-body uppercase tracking-wider text-muted-foreground mb-0.5">Why it matters</div>
+            <div className="text-[9px] font-body uppercase tracking-wider text-muted-foreground mb-0.5">{t("suggestionCard.whyItMatters")}</div>
             <p className="text-[11px] font-body leading-snug">
               {suggestion.impact_reason || suggestion.description?.split(/[.!?]/)[0] || "—"}
             </p>
@@ -66,9 +67,9 @@ export function SuggestionCard({ suggestion, categoryLabel, categoryIcon }: Sugg
         <div className="flex items-start gap-2 p-2 rounded-md bg-accent/5 border border-accent/15">
           <Wrench className="h-3.5 w-3.5 text-accent shrink-0 mt-0.5" />
           <div className="min-w-0">
-            <div className="text-[9px] font-body uppercase tracking-wider text-accent/80 mb-0.5">What to do</div>
+            <div className="text-[9px] font-body uppercase tracking-wider text-accent/80 mb-0.5">{t("suggestionCard.whatToDo")}</div>
             <p className="text-[11px] font-body leading-snug font-medium">
-              {suggestion.fix || suggestion.rewrite?.after || "See details below"}
+              {suggestion.fix || suggestion.rewrite?.after || t("suggestionCard.seeDetailsBelow")}
             </p>
           </div>
         </div>
@@ -80,7 +81,7 @@ export function SuggestionCard({ suggestion, categoryLabel, categoryIcon }: Sugg
           className="text-[11px] font-body text-muted-foreground hover:text-foreground inline-flex items-center gap-1"
         >
           <ChevronDown className={`h-3 w-3 transition-transform ${open ? "rotate-180" : ""}`} />
-          {open ? "Hide details" : "Show details"}
+          {open ? t("suggestionCard.hideDetails") : t("suggestionCard.showDetails")}
         </button>
       )}
 
@@ -104,14 +105,14 @@ export function SuggestionCard({ suggestion, categoryLabel, categoryIcon }: Sugg
           {suggestion.rewrite?.before && suggestion.rewrite?.after && (
             <div className="grid grid-cols-1 sm:grid-cols-[1fr_auto_1fr] gap-2 items-center">
               <div className="p-2 rounded-md bg-destructive/5 border border-destructive/15">
-                <div className="text-[9px] font-body uppercase tracking-wider text-destructive/70 mb-0.5">Before</div>
+                <div className="text-[9px] font-body uppercase tracking-wider text-destructive/70 mb-0.5">{t("suggestionCard.before")}</div>
                 <p className="text-[11px] font-body leading-snug line-through decoration-destructive/40">
                   {suggestion.rewrite.before}
                 </p>
               </div>
               <ArrowRight className="h-3.5 w-3.5 text-muted-foreground/60 hidden sm:block justify-self-center" />
               <div className="p-2 rounded-md bg-accent/5 border border-accent/20">
-                <div className="text-[9px] font-body uppercase tracking-wider text-accent/80 mb-0.5">After</div>
+                <div className="text-[9px] font-body uppercase tracking-wider text-accent/80 mb-0.5">{t("suggestionCard.after")}</div>
                 <p className="text-[11px] font-body leading-snug font-medium">
                   {suggestion.rewrite.after}
                 </p>
@@ -121,7 +122,7 @@ export function SuggestionCard({ suggestion, categoryLabel, categoryIcon }: Sugg
 
           {suggestion.tradeoff && (
             <p className="text-[10px] text-muted-foreground/80 font-body italic pt-1 border-t border-border/40">
-              ⚖️ Tradeoff: {suggestion.tradeoff}
+              ⚖️ {t("suggestionCard.tradeoffLabel")} {suggestion.tradeoff}
             </p>
           )}
         </div>

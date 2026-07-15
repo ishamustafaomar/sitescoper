@@ -817,5 +817,384 @@
       "goDashboard": "Go to dashboard",
       "upgradeToPro": "Upgrade to Pro"
     }
+  },
+  "customInstructions": {
+    "presets": {
+      "conversion": "Conversion",
+      "conversionValue": "Focus on conversion rate: CTAs, friction, trust signals, and what would make a visitor sign up or buy.",
+      "seo": "SEO",
+      "seoValue": "Focus on SEO: title, meta description, headings, internal linking, structured data, indexability, keyword targeting.",
+      "accessibility": "Accessibility",
+      "accessibilityValue": "Focus on accessibility: color contrast, alt text, semantic HTML, keyboard navigation, WCAG issues.",
+      "mobileUx": "Mobile UX",
+      "mobileUxValue": "Focus on mobile experience: tap targets, viewport, performance, layout breakage, mobile-only friction.",
+      "trust": "Trust & credibility",
+      "trustValue": "Focus on trust and credibility: social proof, testimonials, security signals, about/team, legal pages.",
+      "copy": "Copy & messaging",
+      "copyValue": "Focus on copy and messaging: clarity of value prop, headlines, voice, persuasion, jargon.",
+      "pricing": "Pricing clarity",
+      "pricingValue": "Focus on pricing and packaging: clarity, anchoring, plan structure, perceived value."
+    },
+    "toggle": {
+      "added": "Custom focus added",
+      "add": "Add custom focus (optional)"
+    },
+    "textareaPlaceholder": "Tell the AI what to focus on most (e.g. 'I care about getting demo bookings — judge the homepage on that').",
+    "helperText": "The AI will weight its analysis toward your focus."
+  },
+  "analysisSkeleton": {
+    "scraping": {
+      "title": "Crawling website",
+      "sub": "Discovering pages, capturing screenshot, extracting content…"
+    },
+    "analyzing": {
+      "title": "AI analyzing",
+      "sub": "Reading every page like a real visitor and forming opinions…"
+    },
+    "websitePreviewHeading": "Website Preview",
+    "aiAnalysisHeading": "AI Analysis"
+  },
+  "analysisPanel": {
+    "partialResultsDefault": "Partial results — we couldn't load all of this site's content.",
+    "seeFullReport": "See full report",
+    "seeFullReportSub": "Category scores, action plan, and deep diagnostics",
+    "categoryScoresLabel": "Category scores",
+    "tabs": {
+      "byImpact": "By Impact",
+      "impactShort": "Impact",
+      "plan": "Plan",
+      "rewrite": "Rewrite",
+      "rewriteShort": "Copy",
+      "byCategory": "By Category",
+      "byCategoryShort": "Cat",
+      "matrix": "Matrix",
+      "visual": "Visual"
+    },
+    "noActionPlan": "No action plan generated for this analysis.",
+    "subScoresLabel": "Sub-scores",
+    "tipsBadgeSuffix": "tips",
+    "visualUnavailable": "Visual analysis unavailable for this report."
+  },
+  "actionPlanView": {
+    "noPlan": "No action plan generated for this analysis.",
+    "headlineBadge": "Your 7-day action plan"
+  },
+  "scanningAnimation": {
+    "scrape": {
+      "connecting": "Connecting to site",
+      "discovering": "Discovering pages",
+      "capturing": "Capturing screenshots",
+      "extracting": "Extracting content",
+      "statusLabel": "Deep scan in progress",
+      "headingPrefix": "Crawling ",
+      "footerNote": "We're loading multiple pages and capturing the visitor experience — this takes about 20–40 seconds."
+    },
+    "analyze": {
+      "reading": "Reading like a real visitor",
+      "detecting": "Detecting patterns & gaps",
+      "forming": "Forming opinions",
+      "writing": "Writing the report",
+      "statusLabel": "AI strategist analyzing",
+      "headingPrefix": "Analyzing ",
+      "footerNote": "An AI product strategist is reviewing every detail. Hang tight, this is the magic part."
+    },
+    "hostnameFallback": "your site"
+  },
+  "chatPanel": {
+    "toast": {
+      "signInTitle": "Sign in to chat",
+      "signInDescription": "Create a free account to chat with your report.",
+      "errorTitle": "Chat error"
+    },
+    "launcherAriaLabel": "Chat with this report",
+    "headerSubtitle": "Has full context · can re-scan if you push back",
+    "newChatTitle": "New chat",
+    "suggestedPrompts": {
+      "fixFirst": "What should I fix first?",
+      "rewriteHero": "Rewrite my hero headline",
+      "whyLowScore": "Why is my score so low?",
+      "recheck": "Are you sure I'm missing testimonials? Recheck."
+    },
+    "introPrefix": "I just audited",
+    "introSuffix": "Ask me anything — what to ship first, why your score is what it is, or push back if I got something wrong.",
+    "rescannedLabel": "Re-scanned the page",
+    "thinking": "Thinking…",
+    "inputPlaceholder": "Ask anything about this report…",
+    "inputPlaceholderSignedOut": "Sign in to chat",
+    "disclaimer": "AI can make mistakes — push back if it does."
+  },
+  "benchmarkCard": {
+    "title": "Peer benchmark",
+    "betterThanPrefix": "Better than",
+    "ofPeersSuffix": "of peers",
+    "compareTo": "Compare to:"
+  },
+  "impactGrouped": {
+    "high": "Critical blockers",
+    "medium": "High-impact improvements",
+    "low": "Low priority",
+    "hide": "Hide",
+    "show": "Show",
+    "empty": "Nothing in this bucket — nice work."
+  },
+  "impactMatrix": {
+    "quickWinSingular": "quick win",
+    "quickWinPlural": "quick wins",
+    "foundSuffix": "found",
+    "quickWinDescription": "High impact, low effort — fix these first.",
+    "sortByLabel": "Sort by:",
+    "sortImpact": "Impact",
+    "sortEffort": "Effort",
+    "sortQuickWins": "Quick wins",
+    "suggestionsCountSuffix": "suggestions",
+    "quickWinBadge": "Quick win",
+    "impactSuffix": "impact",
+    "effortSuffix": "effort",
+    "tradeoffLabel": "Tradeoff:"
+  },
+  "suggestionCard": {
+    "types": {
+      "ux": "UX",
+      "content": "Content",
+      "seo": "SEO",
+      "performance": "Perf",
+      "accessibility": "A11y",
+      "design": "Design",
+      "product": "Product",
+      "strategy": "Strategy",
+      "business": "Business",
+      "growth": "Growth",
+      "brand": "Brand",
+      "legal": "Legal",
+      "analytics": "Analytics"
+    },
+    "whyItMatters": "Why it matters",
+    "whatToDo": "What to do",
+    "seeDetailsBelow": "See details below",
+    "hideDetails": "Hide details",
+    "showDetails": "Show details",
+    "before": "Before",
+    "after": "After",
+    "tradeoffLabel": "Tradeoff:"
+  },
+  "headlineRewrites": {
+    "toastErrorTitle": "Couldn't generate rewrites",
+    "emptyTitle": "AI headline rewrites",
+    "emptyDescription": "Generate 4 stronger headline variants tailored to this site's product and audience.",
+    "generating": "Writing alternatives…",
+    "generate": "Rewrite my headline",
+    "currentHeadline": "Current headline",
+    "notDetected": "Not detected",
+    "ctaIdeas": "CTA ideas",
+    "generateAgain": "Generate again"
+  },
+  "stripeCheckoutError": "Failed to create checkout session",
+  "streamingProgress": {
+    "analyzingLabel": "AI strategist analyzing",
+    "crawlingLabel": "Deep crawl in progress",
+    "analyzingHeadingPrefix": "Analyzing ",
+    "crawlingHeadingPrefix": "Crawling ",
+    "hostnameFallback": "your site",
+    "techSeoPrecheck": "Tech SEO pre-check",
+    "analyzingFooterNote": "An AI product strategist is reading every page. This is the magic part.",
+    "crawlingFooterNote": "Tier 1: fast technical checks. Tier 2: multi-page crawl. Tier 3: deep AI analysis."
+  },
+  "scoreTrendChart": {
+    "title": "Score over time",
+    "singlePointMessage": "Re-scan this URL after improvements to see your progress chart.",
+    "loading": "Loading…",
+    "scansSuffix": "scans",
+    "ptsSuffix": "pts",
+    "tooltipScoreLabel": "Score"
+  },
+  "websitePreview": {
+    "noScreenshot": "No screenshot available",
+    "screenshotAltPrefix": "Screenshot of",
+    "pagesCrawled": "Pages Crawled",
+    "ofSeparator": "of",
+    "discoveredSuffix": "discovered"
+  },
+  "visualOverlay": {
+    "imagesOnHomepage": "images on homepage",
+    "needBetterAltText": "need better alt text",
+    "lookFine": "look fine",
+    "homepageFallback": "Homepage",
+    "screenshotAlt": "Website screenshot",
+    "screenshotUnavailable": "Screenshot unavailable",
+    "noImagesDetected": "No images detected on the homepage.",
+    "okBadge": "OK",
+    "currentLabel": "Current:",
+    "emptyAlt": "(empty)",
+    "altLabel": "Alt:",
+    "emptyDecorativeAlt": "(empty, likely decorative)"
+  },
+  "techSeoPanel": {
+    "title": "Technical SEO",
+    "empty": "Re-scan this site to populate technical SEO checks.",
+    "titleWithData": "Technical SEO health",
+    "passingSuffix": "passing"
+  },
+  "imageAuditPanel": {
+    "title": "Image audit",
+    "totalBadge": "total",
+    "missingAltBadge": "missing alt",
+    "noImages": "No images detected on the page.",
+    "allGood": "All images look properly described."
+  },
+  "semrushPanel": {
+    "loading": "Loading Semrush metrics…",
+    "errorPrefix": "Semrush error:",
+    "noDataFallback": "no data",
+    "notConnectedTitle": "Unlock organic traffic, keywords & backlinks",
+    "notConnectedDescription": "Connect Semrush to layer Authority Score, organic traffic estimates, ranking keywords and backlink data on top of every audit.",
+    "connectButton": "Connect Semrush",
+    "quotaTitle": "Semrush quota reached",
+    "quotaDescription": "Upgrade your Semrush plan or wait for the quota to reset to see live metrics.",
+    "kpi": {
+      "authorityScore": "Authority Score",
+      "authorityScoreSub": "0–100",
+      "organicTraffic": "Organic Traffic",
+      "organicTrafficSub": "monthly est.",
+      "organicKeywords": "Organic Keywords",
+      "organicKeywordsSub": "ranking terms",
+      "backlinks": "Backlinks",
+      "refDomainsSuffix": "ref domains"
+    },
+    "title": "Semrush overview",
+    "sourceBadge": "Source: Semrush ·",
+    "topKeywordsTitle": "Top organic keywords",
+    "posVolLabel": "pos · vol",
+    "noKeywordData": "No keyword data yet from Semrush.",
+    "topDomainsTitle": "Top referring domains",
+    "asLinksLabel": "AS · links",
+    "noBacklinkData": "No backlink data yet from Semrush."
+  },
+  "seoAuditTab": {
+    "defaultErrorMessage": "Audit failed",
+    "toastErrorTitle": "SEO audit failed",
+    "loading": "Auditing on-page SEO…",
+    "retry": "Retry",
+    "title": "On-page SEO audit",
+    "passedLabel": "passed",
+    "warningsLabel": "warnings",
+    "failedLabel": "failed",
+    "rerun": "Re-run",
+    "failedAccordion": "Failed",
+    "warningsAccordion": "Warnings",
+    "passedAccordion": "Passed",
+    "headingsOutline": "Headings outline",
+    "noHeadings": "No headings detected.",
+    "emptyHeading": "(empty)",
+    "rawHeadData": "Raw head data"
+  },
+  "checkRow": {
+    "fixLabel": "Fix:"
+  },
+  "sampleReport": {
+    "categories": {
+      "copy": {
+        "name": "Copy & Messaging",
+        "note": "Hero doesn't say what you do in 3s"
+      },
+      "visual": {
+        "name": "Visual Hierarchy",
+        "note": "CTA competes with 4 other buttons"
+      },
+      "trust": {
+        "name": "Trust & Credibility",
+        "note": "No logos, testimonials below fold"
+      },
+      "conversion": {
+        "name": "Conversion Path",
+        "note": "Pricing takes 3 clicks to reach"
+      },
+      "mobile": {
+        "name": "Mobile UX",
+        "note": "Tap targets and spacing feel native"
+      },
+      "accessibility": {
+        "name": "Accessibility",
+        "note": "Contrast passes, alt text mostly present"
+      }
+    },
+    "findings": {
+      "hero": {
+        "title": "Your hero headline is generic — visitors bounce in 4s",
+        "where": "Above the fold, line 1",
+        "why": "“Build better, faster” could describe 10,000 SaaS sites. A first-time visitor can't tell what you actually do, who it's for, or why they should care. Eye-tracking studies show 79% of users scan rather than read — if the H1 doesn't land, they leave.",
+        "fix": "Rewrite as outcome + audience: e.g. “Ship customer-ready landing pages in a weekend — for solo founders without a designer.” Test against the current copy with a 50/50 split."
+      },
+      "proof": {
+        "title": "No social proof appears before the first CTA",
+        "where": "Hero section, right column",
+        "why": "Your testimonials live at the bottom of the page, but the buy decision happens in the hero. Without logos, ratings, or user counts, the CTA asks for trust you haven't earned yet.",
+        "fix": "Add a 1-line proof strip directly under the CTA: “Trusted by 2,400+ teams” + 4 customer logos in greyscale. Keep it small — it's a confidence cue, not a feature."
+      },
+      "pricing": {
+        "title": "Pricing is hidden behind a dropdown menu",
+        "where": "Top nav → Resources → Pricing",
+        "why": "Visitors who want to evaluate cost have to hunt. Hidden pricing signals “you can't afford us” to SMBs and adds friction for everyone else. Your bounce rate on the homepage is likely inflated by people who left looking for a price.",
+        "fix": "Promote Pricing to a top-level nav item. If you can't show numbers, at least show a “Starts at $X” line on the homepage so visitors can self-qualify."
+      },
+      "ctas": {
+        "title": "5 competing CTAs in the hero create choice paralysis",
+        "where": "Hero + sticky header",
+        "why": "I count: “Start free”, “Book a demo”, “Watch video”, “See features”, and a chat bubble. When everything is primary, nothing is. Hick's Law: more options = slower decisions = lower conversion.",
+        "fix": "Pick one primary action (“Start free — no card”) as a solid filled button. Demote everything else to ghost links or move below the fold."
+      }
+    },
+    "verdict": {
+      "oneLiner": "Beautiful design, unclear pitch — you're losing buyers in the first 5 seconds.",
+      "summary": "The visual craft here is genuinely good — typography, spacing, and motion all feel premium. But the page is selling itself like a portfolio piece, not a product. A first-time visitor can't answer “what is this and is it for me?” before the first scroll, and that's where conversions die.",
+      "wins": {
+        "design": "Visual design and motion feel premium and intentional",
+        "mobile": "Mobile experience is clean and tap-friendly",
+        "performance": "Page weight is reasonable — no obvious performance debt"
+      },
+      "risks": {
+        "hero": "Generic hero copy fails the 5-second test",
+        "trust": "Trust signals are absent at the decision moment",
+        "conversion": "Conversion path has too many competing exits"
+      }
+    },
+    "badge": "Sample report",
+    "heading": "See exactly what you'll get",
+    "description": "This isn't a Lighthouse score or generic ChatGPT advice. It's a structured, opinionated UX audit — the same format you'll get for your site in under 60 seconds.",
+    "mockUrl": "sitescoper.com/report/sample-saas-landing",
+    "generatedTime": "Generated in 47s",
+    "overallVerdictLabel": "Overall verdict",
+    "whatsWorking": "What's working",
+    "whatsCosting": "What's costing you conversions",
+    "scoredDimensions": "Scored across 6 dimensions",
+    "specificFindings": "4 specific findings (with fixes)",
+    "severity": {
+      "critical": "critical",
+      "warning": "warning"
+    },
+    "whyItMatters": "Why it matters",
+    "recommendedFix": "Recommended fix",
+    "footerNote": "Every report is structured the same way — verdict, scored dimensions, specific findings with fixes. No generic “improve your SEO” fluff.",
+    "ctaButton": "Get this report for your site",
+    "proNote": "You're on Pro — unlimited scans included",
+    "freeNote": "Free plan includes 3 scans / month · Upgrade to Pro for unlimited"
+  },
+  "heroPreview": {
+    "trendBadge": "+12 this week",
+    "verdictBadge": "AI verdict ready",
+    "mockUrl": "sitescoper.com/report/acme",
+    "verdictLabel": "Verdict",
+    "verdictTitle": "Solid foundation, weak hero copy.",
+    "verdictDescription": "Your value prop is buried below the fold. Move it up and you'll convert noticeably better.",
+    "criticalBlockersLabel": "Critical blockers",
+    "blockers": {
+      "hero": "Hero headline doesn't say what you do",
+      "proof": "No social proof above the fold",
+      "pricing": "Pricing requires 3 clicks to find"
+    },
+    "categories": {
+      "copy": "Copy",
+      "trust": "Trust",
+      "design": "Design"
+    }
   }
 }

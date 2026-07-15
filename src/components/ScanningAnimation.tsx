@@ -1,27 +1,27 @@
 import { motion } from "framer-motion";
 import { Globe, Search, Sparkles, FileText, Eye, Brain, Layers } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 interface ScanningAnimationProps {
   step: "scraping" | "analyzing";
   url?: string;
 }
 
-const SCRAPE_STEPS = [
-  { icon: Globe, label: "Connecting to site" },
-  { icon: Layers, label: "Discovering pages" },
-  { icon: Eye, label: "Capturing screenshots" },
-  { icon: FileText, label: "Extracting content" },
-];
-
-const ANALYZE_STEPS = [
-  { icon: Brain, label: "Reading like a real visitor" },
-  { icon: Search, label: "Detecting patterns & gaps" },
-  { icon: Sparkles, label: "Forming opinions" },
-  { icon: FileText, label: "Writing the report" },
-];
-
 export function ScanningAnimation({ step, url }: ScanningAnimationProps) {
+  const { t } = useTranslation();
+  const SCRAPE_STEPS = [
+    { icon: Globe, label: t("scanningAnimation.scrape.connecting") },
+    { icon: Layers, label: t("scanningAnimation.scrape.discovering") },
+    { icon: Eye, label: t("scanningAnimation.scrape.capturing") },
+    { icon: FileText, label: t("scanningAnimation.scrape.extracting") },
+  ];
+  const ANALYZE_STEPS = [
+    { icon: Brain, label: t("scanningAnimation.analyze.reading") },
+    { icon: Search, label: t("scanningAnimation.analyze.detecting") },
+    { icon: Sparkles, label: t("scanningAnimation.analyze.forming") },
+    { icon: FileText, label: t("scanningAnimation.analyze.writing") },
+  ];
   const steps = step === "scraping" ? SCRAPE_STEPS : ANALYZE_STEPS;
   const [activeStep, setActiveStep] = useState(0);
 
@@ -98,12 +98,12 @@ export function ScanningAnimation({ step, url }: ScanningAnimationProps) {
         {/* Status text */}
         <div className="space-y-1.5 max-w-md">
           <p className="text-xs font-body uppercase tracking-[0.2em] text-primary">
-            {step === "scraping" ? "Deep scan in progress" : "AI strategist analyzing"}
+            {step === "scraping" ? t("scanningAnimation.scrape.statusLabel") : t("scanningAnimation.analyze.statusLabel")}
           </p>
           <h3 className="text-2xl md:text-3xl font-heading font-bold tracking-tight">
-            {step === "scraping" ? "Crawling " : "Analyzing "}
+            {step === "scraping" ? t("scanningAnimation.scrape.headingPrefix") : t("scanningAnimation.analyze.headingPrefix")}
             <span className="bg-gradient-to-r from-primary to-[hsl(280,70%,60%)] bg-clip-text text-transparent">
-              {hostname || "your site"}
+              {hostname || t("scanningAnimation.hostnameFallback")}
             </span>
           </h3>
         </div>
@@ -175,8 +175,8 @@ export function ScanningAnimation({ step, url }: ScanningAnimationProps) {
 
         <p className="text-xs text-muted-foreground font-body max-w-sm">
           {step === "scraping"
-            ? "We're loading multiple pages and capturing the visitor experience — this takes about 20–40 seconds."
-            : "An AI product strategist is reviewing every detail. Hang tight, this is the magic part."}
+            ? t("scanningAnimation.scrape.footerNote")
+            : t("scanningAnimation.analyze.footerNote")}
         </p>
       </div>
     </motion.div>

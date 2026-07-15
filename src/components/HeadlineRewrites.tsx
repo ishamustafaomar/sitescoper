@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Wand2, Loader2, Copy, Check, Sparkles } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { supabase } from "@/integrations/supabase/client";
@@ -27,6 +28,7 @@ interface Props {
 }
 
 export function HeadlineRewrites({ url, markdown, summary, site_category }: Props) {
+  const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<RewriteResult | null>(null);
   const [copied, setCopied] = useState<number | null>(null);
@@ -42,7 +44,7 @@ export function HeadlineRewrites({ url, markdown, summary, site_category }: Prop
       if (!data?.success) throw new Error(data?.error || "Failed");
       setResult(data.result);
     } catch (e: any) {
-      toast({ title: "Couldn't generate rewrites", description: e.message, variant: "destructive" });
+      toast({ title: t("headlineRewrites.toastErrorTitle"), description: e.message, variant: "destructive" });
     } finally {
       setLoading(false);
     }
@@ -61,14 +63,14 @@ export function HeadlineRewrites({ url, markdown, summary, site_category }: Prop
           <Wand2 className="h-5 w-5 text-primary" />
         </div>
         <div>
-          <h3 className="font-heading font-bold text-base">AI headline rewrites</h3>
+          <h3 className="font-heading font-bold text-base">{t("headlineRewrites.emptyTitle")}</h3>
           <p className="text-xs text-muted-foreground font-body max-w-md mx-auto mt-1">
-            Generate 4 stronger headline variants tailored to this site's product and audience.
+            {t("headlineRewrites.emptyDescription")}
           </p>
         </div>
         <Button onClick={generate} disabled={loading} variant="hero" size="sm">
           {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Sparkles className="h-4 w-4" />}
-          {loading ? "Writing alternatives…" : "Rewrite my headline"}
+          {loading ? t("headlineRewrites.generating") : t("headlineRewrites.generate")}
         </Button>
       </div>
     );
@@ -77,8 +79,8 @@ export function HeadlineRewrites({ url, markdown, summary, site_category }: Prop
   return (
     <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="space-y-3">
       <div className="rounded-2xl border border-border bg-card p-4">
-        <div className="text-[10px] font-body uppercase tracking-wider text-muted-foreground mb-1">Current headline</div>
-        <p className="font-heading font-semibold text-sm">"{result.current_headline || "Not detected"}"</p>
+        <div className="text-[10px] font-body uppercase tracking-wider text-muted-foreground mb-1">{t("headlineRewrites.currentHeadline")}</div>
+        <p className="font-heading font-semibold text-sm">"{result.current_headline || t("headlineRewrites.notDetected")}"</p>
         {result.diagnosis && (
           <p className="text-xs text-muted-foreground font-body mt-2 leading-relaxed">{result.diagnosis}</p>
         )}
@@ -109,7 +111,7 @@ export function HeadlineRewrites({ url, markdown, summary, site_category }: Prop
 
       {result.cta_suggestions?.length > 0 && (
         <div className="rounded-2xl border border-border bg-card p-4">
-          <div className="text-[10px] font-body uppercase tracking-wider text-muted-foreground mb-2">CTA ideas</div>
+          <div className="text-[10px] font-body uppercase tracking-wider text-muted-foreground mb-2">{t("headlineRewrites.ctaIdeas")}</div>
           <div className="flex flex-wrap gap-2">
             {result.cta_suggestions.map((c, i) => (
               <Badge key={i} variant="outline" className="text-xs font-body">{c}</Badge>
@@ -120,7 +122,7 @@ export function HeadlineRewrites({ url, markdown, summary, site_category }: Prop
 
       <div className="text-center">
         <Button variant="ghost" size="sm" onClick={generate} disabled={loading}>
-          <Sparkles className="h-3.5 w-3.5" /> Generate again
+          <Sparkles className="h-3.5 w-3.5" /> {t("headlineRewrites.generateAgain")}
         </Button>
       </div>
     </motion.div>

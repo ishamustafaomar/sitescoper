@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import { useSubscription } from "@/hooks/useSubscription";
 import {
   AlertTriangle,
@@ -22,63 +23,6 @@ import { Button } from "@/components/ui/button";
  * single biggest conversion lever per user feedback.
  */
 
-const categories = [
-  { icon: Type, name: "Copy & Messaging", score: 42, level: "bad", note: "Hero doesn't say what you do in 3s" },
-  { icon: Layout, name: "Visual Hierarchy", score: 71, level: "warn", note: "CTA competes with 4 other buttons" },
-  { icon: ShieldCheck, name: "Trust & Credibility", score: 58, level: "warn", note: "No logos, testimonials below fold" },
-  { icon: MousePointerClick, name: "Conversion Path", score: 49, level: "bad", note: "Pricing takes 3 clicks to reach" },
-  { icon: Smartphone, name: "Mobile UX", score: 84, level: "good", note: "Tap targets and spacing feel native" },
-  { icon: Eye, name: "Accessibility", score: 76, level: "good", note: "Contrast passes, alt text mostly present" },
-];
-
-const findings = [
-  {
-    severity: "critical",
-    title: "Your hero headline is generic — visitors bounce in 4s",
-    where: "Above the fold, line 1",
-    why: "“Build better, faster” could describe 10,000 SaaS sites. A first-time visitor can't tell what you actually do, who it's for, or why they should care. Eye-tracking studies show 79% of users scan rather than read — if the H1 doesn't land, they leave.",
-    fix: "Rewrite as outcome + audience: e.g. “Ship customer-ready landing pages in a weekend — for solo founders without a designer.” Test against the current copy with a 50/50 split.",
-  },
-  {
-    severity: "critical",
-    title: "No social proof appears before the first CTA",
-    where: "Hero section, right column",
-    why: "Your testimonials live at the bottom of the page, but the buy decision happens in the hero. Without logos, ratings, or user counts, the CTA asks for trust you haven't earned yet.",
-    fix: "Add a 1-line proof strip directly under the CTA: “Trusted by 2,400+ teams” + 4 customer logos in greyscale. Keep it small — it's a confidence cue, not a feature.",
-  },
-  {
-    severity: "warning",
-    title: "Pricing is hidden behind a dropdown menu",
-    where: "Top nav → Resources → Pricing",
-    why: "Visitors who want to evaluate cost have to hunt. Hidden pricing signals “you can't afford us” to SMBs and adds friction for everyone else. Your bounce rate on the homepage is likely inflated by people who left looking for a price.",
-    fix: "Promote Pricing to a top-level nav item. If you can't show numbers, at least show a “Starts at $X” line on the homepage so visitors can self-qualify.",
-  },
-  {
-    severity: "warning",
-    title: "5 competing CTAs in the hero create choice paralysis",
-    where: "Hero + sticky header",
-    why: "I count: “Start free”, “Book a demo”, “Watch video”, “See features”, and a chat bubble. When everything is primary, nothing is. Hick's Law: more options = slower decisions = lower conversion.",
-    fix: "Pick one primary action (“Start free — no card”) as a solid filled button. Demote everything else to ghost links or move below the fold.",
-  },
-];
-
-const verdict = {
-  score: 64,
-  oneLiner: "Beautiful design, unclear pitch — you're losing buyers in the first 5 seconds.",
-  summary:
-    "The visual craft here is genuinely good — typography, spacing, and motion all feel premium. But the page is selling itself like a portfolio piece, not a product. A first-time visitor can't answer “what is this and is it for me?” before the first scroll, and that's where conversions die.",
-  topWins: [
-    "Visual design and motion feel premium and intentional",
-    "Mobile experience is clean and tap-friendly",
-    "Page weight is reasonable — no obvious performance debt",
-  ],
-  topRisks: [
-    "Generic hero copy fails the 5-second test",
-    "Trust signals are absent at the decision moment",
-    "Conversion path has too many competing exits",
-  ],
-};
-
 function levelColor(level: string) {
   if (level === "good") return "hsl(var(--score-good))";
   if (level === "warn") return "hsl(var(--score-warn))";
@@ -87,6 +31,25 @@ function levelColor(level: string) {
 
 export function SampleReportSection({ onTryYours }: { onTryYours: () => void }) {
   const { isPro } = useSubscription();
+  const { t } = useTranslation();
+
+  const categories = [
+    { icon: Type, key: "copy", score: 42, level: "bad" },
+    { icon: Layout, key: "visual", score: 71, level: "warn" },
+    { icon: ShieldCheck, key: "trust", score: 58, level: "warn" },
+    { icon: MousePointerClick, key: "conversion", score: 49, level: "bad" },
+    { icon: Smartphone, key: "mobile", score: 84, level: "good" },
+    { icon: Eye, key: "accessibility", score: 76, level: "good" },
+  ];
+  const findings = [
+    { severity: "critical", key: "hero" },
+    { severity: "critical", key: "proof" },
+    { severity: "warning", key: "pricing" },
+    { severity: "warning", key: "ctas" },
+  ];
+  const verdict = { score: 64 };
+  const topWinKeys = ["design", "mobile", "performance"] as const;
+  const topRiskKeys = ["hero", "trust", "conversion"] as const;
   return (
     <section className="py-20 px-4 bg-gradient-to-b from-background via-muted/20 to-background">
       <div className="max-w-5xl mx-auto">
@@ -94,15 +57,14 @@ export function SampleReportSection({ onTryYours }: { onTryYours: () => void }) 
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 mb-4">
             <Sparkles className="h-3.5 w-3.5 text-primary" />
             <span className="text-xs font-body font-semibold text-primary uppercase tracking-wider">
-              Sample report
+              {t("sampleReport.badge")}
             </span>
           </div>
           <h2 className="text-3xl md:text-4xl font-heading font-bold mb-3">
-            See exactly what you'll get
+            {t("sampleReport.heading")}
           </h2>
           <p className="text-muted-foreground font-body max-w-2xl mx-auto">
-            This isn't a Lighthouse score or generic ChatGPT advice. It's a structured,
-            opinionated UX audit — the same format you'll get for your site in under 60 seconds.
+            {t("sampleReport.description")}
           </p>
         </div>
 
@@ -121,11 +83,11 @@ export function SampleReportSection({ onTryYours }: { onTryYours: () => void }) 
             <div className="h-2.5 w-2.5 rounded-full bg-[hsl(var(--score-good))]/60" />
             <div className="ml-3 flex-1 max-w-md h-6 rounded-md bg-background/60 flex items-center px-2 gap-1.5">
               <span className="text-[10px] font-body text-muted-foreground truncate">
-                sitescoper.com/report/sample-saas-landing
+                {t("sampleReport.mockUrl")}
               </span>
             </div>
             <span className="text-[10px] font-body text-muted-foreground hidden sm:inline">
-              Generated in 47s
+              {t("sampleReport.generatedTime")}
             </span>
           </div>
 
@@ -159,13 +121,13 @@ export function SampleReportSection({ onTryYours }: { onTryYours: () => void }) 
               </div>
               <div className="flex-1 min-w-0">
                 <div className="text-[10px] font-body uppercase tracking-wider text-muted-foreground mb-2">
-                  Overall verdict
+                  {t("sampleReport.overallVerdictLabel")}
                 </div>
                 <h3 className="font-heading font-bold text-xl md:text-2xl leading-tight mb-3">
-                  {verdict.oneLiner}
+                  {t("sampleReport.verdict.oneLiner")}
                 </h3>
                 <p className="text-sm text-muted-foreground font-body leading-relaxed">
-                  {verdict.summary}
+                  {t("sampleReport.verdict.summary")}
                 </p>
               </div>
             </div>
@@ -176,14 +138,14 @@ export function SampleReportSection({ onTryYours }: { onTryYours: () => void }) 
                 <div className="flex items-center gap-2 mb-3">
                   <CheckCircle2 className="h-4 w-4 text-[hsl(var(--score-good))]" />
                   <span className="text-xs font-heading font-bold uppercase tracking-wider text-[hsl(var(--score-good))]">
-                    What's working
+                    {t("sampleReport.whatsWorking")}
                   </span>
                 </div>
                 <ul className="space-y-2">
-                  {verdict.topWins.map((w) => (
-                    <li key={w} className="text-xs font-body leading-relaxed flex gap-2">
+                  {topWinKeys.map((k) => (
+                    <li key={k} className="text-xs font-body leading-relaxed flex gap-2">
                       <span className="text-[hsl(var(--score-good))] mt-0.5">✓</span>
-                      <span>{w}</span>
+                      <span>{t(`sampleReport.verdict.wins.${k}`)}</span>
                     </li>
                   ))}
                 </ul>
@@ -192,14 +154,14 @@ export function SampleReportSection({ onTryYours }: { onTryYours: () => void }) 
                 <div className="flex items-center gap-2 mb-3">
                   <XCircle className="h-4 w-4 text-[hsl(var(--score-bad))]" />
                   <span className="text-xs font-heading font-bold uppercase tracking-wider text-[hsl(var(--score-bad))]">
-                    What's costing you conversions
+                    {t("sampleReport.whatsCosting")}
                   </span>
                 </div>
                 <ul className="space-y-2">
-                  {verdict.topRisks.map((r) => (
-                    <li key={r} className="text-xs font-body leading-relaxed flex gap-2">
+                  {topRiskKeys.map((k) => (
+                    <li key={k} className="text-xs font-body leading-relaxed flex gap-2">
                       <span className="text-[hsl(var(--score-bad))] mt-0.5">✗</span>
-                      <span>{r}</span>
+                      <span>{t(`sampleReport.verdict.risks.${k}`)}</span>
                     </li>
                   ))}
                 </ul>
@@ -212,7 +174,7 @@ export function SampleReportSection({ onTryYours }: { onTryYours: () => void }) 
             <div className="flex items-center gap-2 mb-5">
               <TrendingUp className="h-4 w-4 text-primary" />
               <h4 className="font-heading font-bold text-sm uppercase tracking-wider">
-                Scored across 6 dimensions
+                {t("sampleReport.scoredDimensions")}
               </h4>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -221,7 +183,7 @@ export function SampleReportSection({ onTryYours }: { onTryYours: () => void }) 
                 const color = levelColor(c.level);
                 return (
                   <motion.div
-                    key={c.name}
+                    key={c.key}
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -231,7 +193,7 @@ export function SampleReportSection({ onTryYours }: { onTryYours: () => void }) 
                     <div className="flex items-center justify-between mb-2">
                       <div className="flex items-center gap-2 min-w-0">
                         <Icon className="h-3.5 w-3.5 shrink-0" style={{ color }} />
-                        <span className="text-xs font-body font-semibold truncate">{c.name}</span>
+                        <span className="text-xs font-body font-semibold truncate">{t(`sampleReport.categories.${c.key}.name`)}</span>
                       </div>
                       <span
                         className="text-sm font-heading font-bold shrink-0"
@@ -251,7 +213,7 @@ export function SampleReportSection({ onTryYours }: { onTryYours: () => void }) 
                       />
                     </div>
                     <p className="text-[10px] text-muted-foreground font-body leading-snug">
-                      {c.note}
+                      {t(`sampleReport.categories.${c.key}.note`)}
                     </p>
                   </motion.div>
                 );
@@ -264,7 +226,7 @@ export function SampleReportSection({ onTryYours }: { onTryYours: () => void }) 
             <div className="flex items-center gap-2 mb-5">
               <AlertTriangle className="h-4 w-4 text-[hsl(var(--score-warn))]" />
               <h4 className="font-heading font-bold text-sm uppercase tracking-wider">
-                4 specific findings (with fixes)
+                {t("sampleReport.specificFindings")}
               </h4>
             </div>
             <div className="space-y-4">
@@ -272,7 +234,7 @@ export function SampleReportSection({ onTryYours }: { onTryYours: () => void }) 
                 const isCritical = f.severity === "critical";
                 return (
                   <motion.div
-                    key={f.title}
+                    key={f.key}
                     initial={{ opacity: 0, x: -10 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
@@ -293,28 +255,28 @@ export function SampleReportSection({ onTryYours }: { onTryYours: () => void }) 
                             : "bg-[hsl(var(--score-warn))]/20 text-[hsl(var(--score-warn))]"
                         }`}
                       >
-                        {f.severity}
+                        {t(`sampleReport.severity.${f.severity}`)}
                       </span>
                       <span className="text-[10px] font-body text-muted-foreground truncate">
-                        {f.where}
+                        {t(`sampleReport.findings.${f.key}.where`)}
                       </span>
                     </div>
                     <div className="p-4 space-y-3">
-                      <h5 className="font-heading font-bold text-sm leading-snug">{f.title}</h5>
+                      <h5 className="font-heading font-bold text-sm leading-snug">{t(`sampleReport.findings.${f.key}.title`)}</h5>
                       <div>
                         <div className="text-[9px] font-body uppercase tracking-wider text-muted-foreground mb-1">
-                          Why it matters
+                          {t("sampleReport.whyItMatters")}
                         </div>
                         <p className="text-xs font-body text-foreground/80 leading-relaxed">
-                          {f.why}
+                          {t(`sampleReport.findings.${f.key}.why`)}
                         </p>
                       </div>
                       <div className="rounded-md bg-primary/5 border border-primary/20 p-3">
                         <div className="text-[9px] font-body uppercase tracking-wider text-primary mb-1 font-bold">
-                          Recommended fix
+                          {t("sampleReport.recommendedFix")}
                         </div>
                         <p className="text-xs font-body text-foreground/90 leading-relaxed">
-                          {f.fix}
+                          {t(`sampleReport.findings.${f.key}.fix`)}
                         </p>
                       </div>
                     </div>
@@ -328,21 +290,20 @@ export function SampleReportSection({ onTryYours }: { onTryYours: () => void }) 
         {/* CTA below sample */}
         <div className="text-center mt-10 space-y-4">
           <p className="text-sm text-muted-foreground font-body">
-            Every report is structured the same way — verdict, scored dimensions, specific
-            findings with fixes. No generic “improve your SEO” fluff.
+            {t("sampleReport.footerNote")}
           </p>
           <Button
             size="lg"
             onClick={onTryYours}
             className="shadow-glow bg-gradient-to-r from-primary to-accent hover:opacity-90 text-primary-foreground font-body"
           >
-            Get this report for your site
+            {t("sampleReport.ctaButton")}
             <ArrowRight className="h-4 w-4" />
           </Button>
           <p className="text-[11px] text-muted-foreground font-body">
             {isPro
-              ? "You're on Pro — unlimited scans included"
-              : "Free plan includes 3 scans / month · Upgrade to Pro for unlimited"}
+              ? t("sampleReport.proNote")
+              : t("sampleReport.freeNote")}
           </p>
         </div>
       </div>

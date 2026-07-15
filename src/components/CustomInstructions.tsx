@@ -1,17 +1,8 @@
 import { useState } from "react";
 import { ChevronDown, ChevronUp, Sparkles } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
-
-const PRESETS: { label: string; value: string }[] = [
-  { label: "Conversion", value: "Focus on conversion rate: CTAs, friction, trust signals, and what would make a visitor sign up or buy." },
-  { label: "SEO", value: "Focus on SEO: title, meta description, headings, internal linking, structured data, indexability, keyword targeting." },
-  { label: "Accessibility", value: "Focus on accessibility: color contrast, alt text, semantic HTML, keyboard navigation, WCAG issues." },
-  { label: "Mobile UX", value: "Focus on mobile experience: tap targets, viewport, performance, layout breakage, mobile-only friction." },
-  { label: "Trust & credibility", value: "Focus on trust and credibility: social proof, testimonials, security signals, about/team, legal pages." },
-  { label: "Copy & messaging", value: "Focus on copy and messaging: clarity of value prop, headlines, voice, persuasion, jargon." },
-  { label: "Pricing clarity", value: "Focus on pricing and packaging: clarity, anchoring, plan structure, perceived value." },
-];
 
 interface Props {
   value: string;
@@ -22,6 +13,16 @@ interface Props {
 }
 
 export function CustomInstructions({ value, onChange, disabled, className, defaultOpen }: Props) {
+  const { t } = useTranslation();
+  const PRESETS: { label: string; value: string }[] = [
+    { label: t("customInstructions.presets.conversion"), value: t("customInstructions.presets.conversionValue") },
+    { label: t("customInstructions.presets.seo"), value: t("customInstructions.presets.seoValue") },
+    { label: t("customInstructions.presets.accessibility"), value: t("customInstructions.presets.accessibilityValue") },
+    { label: t("customInstructions.presets.mobileUx"), value: t("customInstructions.presets.mobileUxValue") },
+    { label: t("customInstructions.presets.trust"), value: t("customInstructions.presets.trustValue") },
+    { label: t("customInstructions.presets.copy"), value: t("customInstructions.presets.copyValue") },
+    { label: t("customInstructions.presets.pricing"), value: t("customInstructions.presets.pricingValue") },
+  ];
   const [open, setOpen] = useState<boolean>(defaultOpen ?? !!value);
 
   const togglePreset = (preset: string) => {
@@ -39,7 +40,7 @@ export function CustomInstructions({ value, onChange, disabled, className, defau
         className="inline-flex items-center gap-1.5 text-xs font-body text-muted-foreground hover:text-foreground transition-colors"
       >
         <Sparkles className="h-3.5 w-3.5" />
-        {value.trim() ? "Custom focus added" : "Add custom focus (optional)"}
+        {value.trim() ? t("customInstructions.toggle.added") : t("customInstructions.toggle.add")}
         {open ? <ChevronUp className="h-3 w-3" /> : <ChevronDown className="h-3 w-3" />}
       </button>
 
@@ -62,13 +63,13 @@ export function CustomInstructions({ value, onChange, disabled, className, defau
             value={value}
             onChange={(e) => onChange(e.target.value)}
             disabled={disabled}
-            placeholder="Tell the AI what to focus on most (e.g. 'I care about getting demo bookings — judge the homepage on that')."
+            placeholder={t("customInstructions.textareaPlaceholder")}
             rows={3}
             maxLength={1000}
             className="text-sm font-body resize-none"
           />
           <div className="flex items-center justify-between text-[10px] font-body text-muted-foreground">
-            <span>The AI will weight its analysis toward your focus.</span>
+            <span>{t("customInstructions.helperText")}</span>
             <span>{value.length}/1000</span>
           </div>
         </div>

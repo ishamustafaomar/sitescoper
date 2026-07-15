@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import { AnalysisResult, AnalysisSuggestion } from "@/lib/api";
 import { Badge } from "@/components/ui/badge";
 import { Zap, ArrowUpDown, AlertTriangle } from "lucide-react";
@@ -42,6 +43,7 @@ const effortColor: Record<string, string> = {
 type SortMode = "impact" | "effort" | "quickwins";
 
 export function ImpactMatrix({ analysis }: ImpactMatrixProps) {
+  const { t } = useTranslation();
   const [sortMode, setSortMode] = useState<SortMode>("impact");
 
   const flat = useMemo<FlatSuggestion[]>(() => {
@@ -81,11 +83,11 @@ export function ImpactMatrix({ analysis }: ImpactMatrixProps) {
           <div className="flex items-center gap-2">
             <Zap className="h-4 w-4 text-accent" />
             <h4 className="font-heading font-semibold text-sm">
-              {quickWins.length} quick win{quickWins.length > 1 ? "s" : ""} found
+              {quickWins.length} {quickWins.length > 1 ? t("impactMatrix.quickWinPlural") : t("impactMatrix.quickWinSingular")} {t("impactMatrix.foundSuffix")}
             </h4>
           </div>
           <p className="text-xs text-muted-foreground font-body">
-            High impact, low effort — fix these first.
+            {t("impactMatrix.quickWinDescription")}
           </p>
         </div>
       )}
@@ -93,7 +95,7 @@ export function ImpactMatrix({ analysis }: ImpactMatrixProps) {
       {/* Sort controls */}
       <div className="flex items-center gap-2 flex-wrap">
         <span className="text-xs font-body text-muted-foreground flex items-center gap-1">
-          <ArrowUpDown className="h-3 w-3" /> Sort by:
+          <ArrowUpDown className="h-3 w-3" /> {t("impactMatrix.sortByLabel")}
         </span>
         {(["impact", "effort", "quickwins"] as SortMode[]).map((mode) => (
           <Button
@@ -103,11 +105,11 @@ export function ImpactMatrix({ analysis }: ImpactMatrixProps) {
             onClick={() => setSortMode(mode)}
             className="h-7 text-xs px-3"
           >
-            {mode === "impact" ? "Impact" : mode === "effort" ? "Effort" : "Quick wins"}
+            {mode === "impact" ? t("impactMatrix.sortImpact") : mode === "effort" ? t("impactMatrix.sortEffort") : t("impactMatrix.sortQuickWins")}
           </Button>
         ))}
         <span className="text-xs font-body text-muted-foreground ml-auto">
-          {sorted.length} suggestions
+          {sorted.length} {t("impactMatrix.suggestionsCountSuffix")}
         </span>
       </div>
 
@@ -137,7 +139,7 @@ export function ImpactMatrix({ analysis }: ImpactMatrixProps) {
                     {quick && (
                       <Badge variant="outline" className="text-[10px] px-1.5 bg-accent/10 text-accent border-accent/30 gap-1">
                         <Zap className="h-2.5 w-2.5" />
-                        Quick win
+                        {t("impactMatrix.quickWinBadge")}
                       </Badge>
                     )}
                   </div>
@@ -145,10 +147,10 @@ export function ImpactMatrix({ analysis }: ImpactMatrixProps) {
                 </div>
                 <div className="flex flex-col gap-1 shrink-0 items-end">
                   <Badge variant="outline" className={`text-[10px] px-1.5 ${impactColor[s.impact ?? "medium"]}`}>
-                    {s.impact ?? "medium"} impact
+                    {s.impact ?? "medium"} {t("impactMatrix.impactSuffix")}
                   </Badge>
                   <Badge variant="outline" className={`text-[10px] px-1.5 ${effortColor[s.effort ?? "medium"]}`}>
-                    {s.effort ?? "medium"} effort
+                    {s.effort ?? "medium"} {t("impactMatrix.effortSuffix")}
                   </Badge>
                 </div>
               </div>
@@ -161,7 +163,7 @@ export function ImpactMatrix({ analysis }: ImpactMatrixProps) {
               {s.tradeoff && (
                 <div className="flex items-start gap-1.5 text-[11px] text-muted-foreground font-body bg-muted/40 rounded-md px-2 py-1.5 border border-border">
                   <AlertTriangle className="h-3 w-3 shrink-0 mt-0.5 text-primary" />
-                  <span><strong className="text-foreground/80">Tradeoff:</strong> {s.tradeoff}</span>
+                  <span><strong className="text-foreground/80">{t("impactMatrix.tradeoffLabel")}</strong> {s.tradeoff}</span>
                 </div>
               )}
             </motion.div>

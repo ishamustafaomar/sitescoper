@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Globe, Search, Sparkles, FileText, Eye, Brain, Layers, CheckCircle2, Shield } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import type { TechSeoReport } from "@/lib/api";
 
 interface Props {
@@ -21,6 +22,7 @@ const ICONS = {
 };
 
 export function StreamingProgress({ step, url, percent, label, techSeo }: Props) {
+  const { t } = useTranslation();
   const hostname = (() => {
     try { return url ? new URL(url).hostname : ""; } catch { return url || ""; }
   })();
@@ -62,12 +64,12 @@ export function StreamingProgress({ step, url, percent, label, techSeo }: Props)
 
         <div className="space-y-1.5 max-w-md">
           <p className="text-xs font-body uppercase tracking-[0.2em] text-primary">
-            {isAnalyze ? "AI strategist analyzing" : "Deep crawl in progress"}
+            {isAnalyze ? t("streamingProgress.analyzingLabel") : t("streamingProgress.crawlingLabel")}
           </p>
           <h3 className="text-xl md:text-2xl font-heading font-bold tracking-tight">
-            {isAnalyze ? "Analyzing " : "Crawling "}
+            {isAnalyze ? t("streamingProgress.analyzingHeadingPrefix") : t("streamingProgress.crawlingHeadingPrefix")}
             <span className="bg-gradient-to-r from-primary to-[hsl(280,70%,60%)] bg-clip-text text-transparent">
-              {hostname || "your site"}
+              {hostname || t("streamingProgress.hostnameFallback")}
             </span>
           </h3>
         </div>
@@ -98,7 +100,7 @@ export function StreamingProgress({ step, url, percent, label, techSeo }: Props)
             <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-2 text-xs font-body uppercase tracking-wider text-muted-foreground">
                 <Shield className="h-3.5 w-3.5" />
-                Tech SEO pre-check
+                {t("streamingProgress.techSeoPrecheck")}
               </div>
               <span className="text-xs font-heading font-semibold tabular-nums">{techSeo.score}/100</span>
             </div>
@@ -117,8 +119,8 @@ export function StreamingProgress({ step, url, percent, label, techSeo }: Props)
 
         <p className="text-[11px] text-muted-foreground font-body max-w-sm">
           {isAnalyze
-            ? "An AI product strategist is reading every page. This is the magic part."
-            : "Tier 1: fast technical checks. Tier 2: multi-page crawl. Tier 3: deep AI analysis."}
+            ? t("streamingProgress.analyzingFooterNote")
+            : t("streamingProgress.crawlingFooterNote")}
         </p>
       </div>
     </motion.div>

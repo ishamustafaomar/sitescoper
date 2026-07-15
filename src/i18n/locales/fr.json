@@ -817,5 +817,384 @@
       "goDashboard": "Aller au tableau de bord",
       "upgradeToPro": "Passer à Pro"
     }
+  },
+  "customInstructions": {
+    "presets": {
+      "conversion": "Conversion",
+      "conversionValue": "Concentre-toi sur le taux de conversion : CTAs, friction, signaux de confiance et ce qui pousserait un visiteur à s'inscrire ou acheter.",
+      "seo": "SEO",
+      "seoValue": "Concentre-toi sur le SEO : titre, meta description, titres, maillage interne, données structurées, indexabilité, ciblage de mots-clés.",
+      "accessibility": "Accessibilité",
+      "accessibilityValue": "Concentre-toi sur l'accessibilité : contraste des couleurs, texte alternatif, HTML sémantique, navigation clavier, problèmes WCAG.",
+      "mobileUx": "UX mobile",
+      "mobileUxValue": "Concentre-toi sur l'expérience mobile : zones tactiles, viewport, performance, casse du layout, friction propre au mobile.",
+      "trust": "Confiance et crédibilité",
+      "trustValue": "Concentre-toi sur la confiance et la crédibilité : preuve sociale, témoignages, signaux de sécurité, à propos/équipe, pages légales.",
+      "copy": "Copy et messages",
+      "copyValue": "Concentre-toi sur le copy et les messages : clarté de la proposition de valeur, titres, voix, persuasion, jargon.",
+      "pricing": "Clarté des tarifs",
+      "pricingValue": "Concentre-toi sur les tarifs et l'offre : clarté, ancrage, structure des plans, valeur perçue."
+    },
+    "toggle": {
+      "added": "Focus personnalisé ajouté",
+      "add": "Ajouter un focus personnalisé (optionnel)"
+    },
+    "textareaPlaceholder": "Dis à l'IA sur quoi se concentrer en priorité (ex. « Je veux plus de démos réservées — juge la home là-dessus »).",
+    "helperText": "L'IA pondérera son analyse en fonction de ton focus."
+  },
+  "analysisSkeleton": {
+    "scraping": {
+      "title": "Exploration du site",
+      "sub": "Découverte des pages, capture d'écran, extraction du contenu…"
+    },
+    "analyzing": {
+      "title": "IA en analyse",
+      "sub": "Chaque page est lue comme par un visiteur réel, et des avis se forment…"
+    },
+    "websitePreviewHeading": "Aperçu du site",
+    "aiAnalysisHeading": "Analyse IA"
+  },
+  "analysisPanel": {
+    "partialResultsDefault": "Résultats partiels — impossible de charger tout le contenu du site.",
+    "seeFullReport": "Voir le rapport complet",
+    "seeFullReportSub": "Scores par catégorie, plan d'action et diagnostic complet",
+    "categoryScoresLabel": "Scores par catégorie",
+    "tabs": {
+      "byImpact": "Par impact",
+      "impactShort": "Impact",
+      "plan": "Plan",
+      "rewrite": "Réécrire",
+      "rewriteShort": "Copy",
+      "byCategory": "Par catégorie",
+      "byCategoryShort": "Cat",
+      "matrix": "Matrice",
+      "visual": "Visuel"
+    },
+    "noActionPlan": "Aucun plan d'action généré pour cette analyse.",
+    "subScoresLabel": "Sous-scores",
+    "tipsBadgeSuffix": "conseils",
+    "visualUnavailable": "Analyse visuelle indisponible pour ce rapport."
+  },
+  "actionPlanView": {
+    "noPlan": "Aucun plan d'action généré pour cette analyse.",
+    "headlineBadge": "Ton plan d'action sur 7 jours"
+  },
+  "scanningAnimation": {
+    "scrape": {
+      "connecting": "Connexion au site",
+      "discovering": "Découverte des pages",
+      "capturing": "Captures d'écran",
+      "extracting": "Extraction du contenu",
+      "statusLabel": "Analyse approfondie en cours",
+      "headingPrefix": "Exploration de ",
+      "footerNote": "On charge plusieurs pages et on capture l'expérience visiteur — ça prend environ 20–40 secondes."
+    },
+    "analyze": {
+      "reading": "Lecture comme un vrai visiteur",
+      "detecting": "Détection des schémas et manques",
+      "forming": "Formation des avis",
+      "writing": "Rédaction du rapport",
+      "statusLabel": "Stratège IA en analyse",
+      "headingPrefix": "Analyse de ",
+      "footerNote": "Un stratège produit IA passe chaque détail en revue. Patience, c'est la partie magique."
+    },
+    "hostnameFallback": "ton site"
+  },
+  "chatPanel": {
+    "toast": {
+      "signInTitle": "Connecte-toi pour discuter",
+      "signInDescription": "Crée un compte gratuit pour discuter avec ton rapport.",
+      "errorTitle": "Erreur de chat"
+    },
+    "launcherAriaLabel": "Discuter avec ce rapport",
+    "headerSubtitle": "Contexte complet · peut refaire un scan si tu insistes",
+    "newChatTitle": "Nouveau chat",
+    "suggestedPrompts": {
+      "fixFirst": "Qu'est-ce que je devrais corriger en premier ?",
+      "rewriteHero": "Réécris mon titre hero",
+      "whyLowScore": "Pourquoi mon score est-il si bas ?",
+      "recheck": "Tu es sûr qu'il me manque des témoignages ? Revérifie."
+    },
+    "introPrefix": "Je viens d'auditer",
+    "introSuffix": "Demande-moi tout — quoi livrer en premier, pourquoi ton score est ce qu'il est, ou conteste si je me trompe.",
+    "rescannedLabel": "Page re-scannée",
+    "thinking": "Réflexion…",
+    "inputPlaceholder": "Pose n'importe quelle question sur ce rapport…",
+    "inputPlaceholderSignedOut": "Connecte-toi pour discuter",
+    "disclaimer": "L'IA peut se tromper — conteste si c'est le cas."
+  },
+  "benchmarkCard": {
+    "title": "Benchmark entre pairs",
+    "betterThanPrefix": "Mieux que",
+    "ofPeersSuffix": "des pairs",
+    "compareTo": "Comparer à :"
+  },
+  "impactGrouped": {
+    "high": "Blocages critiques",
+    "medium": "Améliorations à fort impact",
+    "low": "Faible priorité",
+    "hide": "Masquer",
+    "show": "Afficher",
+    "empty": "Rien dans ce groupe — beau travail."
+  },
+  "impactMatrix": {
+    "quickWinSingular": "victoire rapide",
+    "quickWinPlural": "victoires rapides",
+    "foundSuffix": "trouvées",
+    "quickWinDescription": "Fort impact, peu d'effort — corrige-les en premier.",
+    "sortByLabel": "Trier par :",
+    "sortImpact": "Impact",
+    "sortEffort": "Effort",
+    "sortQuickWins": "Victoires rapides",
+    "suggestionsCountSuffix": "suggestions",
+    "quickWinBadge": "Victoire rapide",
+    "impactSuffix": "impact",
+    "effortSuffix": "effort",
+    "tradeoffLabel": "Compromis :"
+  },
+  "suggestionCard": {
+    "types": {
+      "ux": "UX",
+      "content": "Contenu",
+      "seo": "SEO",
+      "performance": "Perf",
+      "accessibility": "A11y",
+      "design": "Design",
+      "product": "Produit",
+      "strategy": "Stratégie",
+      "business": "Business",
+      "growth": "Croissance",
+      "brand": "Marque",
+      "legal": "Légal",
+      "analytics": "Analytics"
+    },
+    "whyItMatters": "Pourquoi c'est important",
+    "whatToDo": "Que faire",
+    "seeDetailsBelow": "Voir les détails ci-dessous",
+    "hideDetails": "Masquer les détails",
+    "showDetails": "Afficher les détails",
+    "before": "Avant",
+    "after": "Après",
+    "tradeoffLabel": "Compromis :"
+  },
+  "headlineRewrites": {
+    "toastErrorTitle": "Impossible de générer les réécritures",
+    "emptyTitle": "Réécritures de titres par IA",
+    "emptyDescription": "Génère 4 variantes de titres plus fortes adaptées à ce produit et à son audience.",
+    "generating": "Écriture des alternatives…",
+    "generate": "Réécris mon titre",
+    "currentHeadline": "Titre actuel",
+    "notDetected": "Non détecté",
+    "ctaIdeas": "Idées de CTA",
+    "generateAgain": "Générer à nouveau"
+  },
+  "stripeCheckoutError": "Impossible de créer la session de paiement",
+  "streamingProgress": {
+    "analyzingLabel": "Stratège IA en analyse",
+    "crawlingLabel": "Crawl approfondi en cours",
+    "analyzingHeadingPrefix": "Analyse de ",
+    "crawlingHeadingPrefix": "Exploration de ",
+    "hostnameFallback": "ton site",
+    "techSeoPrecheck": "Pré-vérif Tech SEO",
+    "analyzingFooterNote": "Un stratège produit IA lit chaque page. C'est la partie magique.",
+    "crawlingFooterNote": "Niveau 1 : vérifs techniques rapides. Niveau 2 : crawl multi-pages. Niveau 3 : analyse IA approfondie."
+  },
+  "scoreTrendChart": {
+    "title": "Score dans le temps",
+    "singlePointMessage": "Refais un scan de cette URL après tes améliorations pour voir la courbe de progression.",
+    "loading": "Chargement…",
+    "scansSuffix": "scans",
+    "ptsSuffix": "pts",
+    "tooltipScoreLabel": "Score"
+  },
+  "websitePreview": {
+    "noScreenshot": "Aucune capture disponible",
+    "screenshotAltPrefix": "Capture de",
+    "pagesCrawled": "Pages explorées",
+    "ofSeparator": "sur",
+    "discoveredSuffix": "découvertes"
+  },
+  "visualOverlay": {
+    "imagesOnHomepage": "images sur la home",
+    "needBetterAltText": "ont besoin d'un meilleur texte alt",
+    "lookFine": "sont ok",
+    "homepageFallback": "Accueil",
+    "screenshotAlt": "Capture du site",
+    "screenshotUnavailable": "Capture indisponible",
+    "noImagesDetected": "Aucune image détectée sur la home.",
+    "okBadge": "OK",
+    "currentLabel": "Actuel :",
+    "emptyAlt": "(vide)",
+    "altLabel": "Alt :",
+    "emptyDecorativeAlt": "(vide, probablement décoratif)"
+  },
+  "techSeoPanel": {
+    "title": "SEO technique",
+    "empty": "Refais un scan pour renseigner les vérifs SEO technique.",
+    "titleWithData": "Santé du SEO technique",
+    "passingSuffix": "validés"
+  },
+  "imageAuditPanel": {
+    "title": "Audit des images",
+    "totalBadge": "total",
+    "missingAltBadge": "sans alt",
+    "noImages": "Aucune image détectée sur la page.",
+    "allGood": "Toutes les images sont correctement décrites."
+  },
+  "semrushPanel": {
+    "loading": "Chargement des métriques Semrush…",
+    "errorPrefix": "Erreur Semrush :",
+    "noDataFallback": "aucune donnée",
+    "notConnectedTitle": "Débloque le trafic organique, les mots-clés et les backlinks",
+    "notConnectedDescription": "Connecte Semrush pour superposer Authority Score, estimations de trafic organique, mots-clés positionnés et données de backlinks à chaque audit.",
+    "connectButton": "Connecter Semrush",
+    "quotaTitle": "Quota Semrush atteint",
+    "quotaDescription": "Passe à un plan Semrush supérieur ou attends la réinitialisation du quota pour voir les métriques en direct.",
+    "kpi": {
+      "authorityScore": "Authority Score",
+      "authorityScoreSub": "0–100",
+      "organicTraffic": "Trafic organique",
+      "organicTrafficSub": "est. mensuelle",
+      "organicKeywords": "Mots-clés organiques",
+      "organicKeywordsSub": "termes positionnés",
+      "backlinks": "Backlinks",
+      "refDomainsSuffix": "domaines réf."
+    },
+    "title": "Vue d'ensemble Semrush",
+    "sourceBadge": "Source : Semrush ·",
+    "topKeywordsTitle": "Meilleurs mots-clés organiques",
+    "posVolLabel": "pos · vol",
+    "noKeywordData": "Pas encore de données mots-clés depuis Semrush.",
+    "topDomainsTitle": "Meilleurs domaines référents",
+    "asLinksLabel": "AS · liens",
+    "noBacklinkData": "Pas encore de données backlinks depuis Semrush."
+  },
+  "seoAuditTab": {
+    "defaultErrorMessage": "L'audit a échoué",
+    "toastErrorTitle": "L'audit SEO a échoué",
+    "loading": "Audit du SEO on-page…",
+    "retry": "Réessayer",
+    "title": "Audit SEO on-page",
+    "passedLabel": "validés",
+    "warningsLabel": "avertissements",
+    "failedLabel": "échoués",
+    "rerun": "Relancer",
+    "failedAccordion": "Échoués",
+    "warningsAccordion": "Avertissements",
+    "passedAccordion": "Validés",
+    "headingsOutline": "Plan des titres",
+    "noHeadings": "Aucun titre détecté.",
+    "emptyHeading": "(vide)",
+    "rawHeadData": "Données brutes du <head>"
+  },
+  "checkRow": {
+    "fixLabel": "Correctif :"
+  },
+  "sampleReport": {
+    "categories": {
+      "copy": {
+        "name": "Copy et messages",
+        "note": "Le hero ne dit pas ce que tu fais en 3s"
+      },
+      "visual": {
+        "name": "Hiérarchie visuelle",
+        "note": "Le CTA rivalise avec 4 autres boutons"
+      },
+      "trust": {
+        "name": "Confiance et crédibilité",
+        "note": "Pas de logos, témoignages sous la ligne de flottaison"
+      },
+      "conversion": {
+        "name": "Parcours de conversion",
+        "note": "Les tarifs sont à 3 clics"
+      },
+      "mobile": {
+        "name": "UX mobile",
+        "note": "Zones tactiles et espacements semblent natifs"
+      },
+      "accessibility": {
+        "name": "Accessibilité",
+        "note": "Le contraste passe, texte alt majoritairement présent"
+      }
+    },
+    "findings": {
+      "hero": {
+        "title": "Ton titre hero est générique — les visiteurs rebondissent en 4s",
+        "where": "Au-dessus de la ligne de flottaison, ligne 1",
+        "why": "« Build better, faster » pourrait décrire 10 000 SaaS. Un nouveau visiteur ne peut pas dire ce que tu fais, pour qui c'est, ni pourquoi ça devrait l'intéresser. Les études eye-tracking montrent que 79 % des utilisateurs scannent plutôt que lire — si le H1 ne parle pas, ils partent.",
+        "fix": "Réécris sous forme résultat + cible : ex. « Lance des landing pages prêtes pour tes clients en un week-end — pour les solo founders sans designer. » Teste-le contre la copie actuelle en split 50/50."
+      },
+      "proof": {
+        "title": "Aucune preuve sociale avant le premier CTA",
+        "where": "Section hero, colonne droite",
+        "why": "Tes témoignages sont en bas de page, mais la décision d'achat se joue dans le hero. Sans logos, notes ou nombre d'utilisateurs, le CTA demande une confiance que tu n'as pas encore gagnée.",
+        "fix": "Ajoute une bande de preuve d'une ligne juste sous le CTA : « Utilisé par plus de 2 400 équipes » + 4 logos clients en niveaux de gris. Garde-la petite — c'est un signal de confiance, pas une fonctionnalité."
+      },
+      "pricing": {
+        "title": "Les tarifs sont cachés derrière un menu déroulant",
+        "where": "Nav supérieure → Ressources → Tarifs",
+        "why": "Les visiteurs qui veulent évaluer le coût doivent chercher. Un tarif caché dit aux PME « vous ne pouvez pas nous payer » et ajoute de la friction pour tout le monde. Ton taux de rebond sur la home est probablement gonflé par des gens partis chercher un prix.",
+        "fix": "Promeus Tarifs au niveau supérieur de la nav. Si tu ne peux pas montrer de chiffres, mets au moins « À partir de $X » sur la home pour que les visiteurs se qualifient eux-mêmes."
+      },
+      "ctas": {
+        "title": "5 CTA concurrents dans le hero créent une paralysie du choix",
+        "where": "Hero + header collant",
+        "why": "Je compte : « Commencer gratuit », « Réserver une démo », « Voir la vidéo », « Voir les fonctionnalités » et une bulle de chat. Quand tout est primaire, rien ne l'est. Loi de Hick : plus d'options = décisions plus lentes = conversion plus faible.",
+        "fix": "Choisis une action primaire (« Commencer gratuit — sans carte ») en bouton plein. Rétrograde le reste en liens fantômes ou déplace-le sous la ligne de flottaison."
+      }
+    },
+    "verdict": {
+      "oneLiner": "Design magnifique, pitch flou — tu perds des acheteurs dans les 5 premières secondes.",
+      "summary": "Le travail visuel ici est vraiment bon — typographie, espacements, animations, tout paraît premium. Mais la page se vend comme un morceau de portfolio, pas comme un produit. Un nouveau visiteur ne peut pas répondre « c'est quoi et est-ce pour moi ? » avant le premier scroll, et c'est là que les conversions meurent.",
+      "wins": {
+        "design": "Le design visuel et le motion paraissent premium et volontaires",
+        "mobile": "L'expérience mobile est propre et adaptée au tactile",
+        "performance": "Le poids de la page est raisonnable — pas de dette de perf évidente"
+      },
+      "risks": {
+        "hero": "La copy hero générique échoue au test des 5 secondes",
+        "trust": "Les signaux de confiance manquent au moment de la décision",
+        "conversion": "Le parcours de conversion a trop de sorties concurrentes"
+      }
+    },
+    "badge": "Rapport d'exemple",
+    "heading": "Vois exactement ce que tu vas obtenir",
+    "description": "Ce n'est ni un score Lighthouse, ni un conseil ChatGPT générique. C'est un audit UX structuré et engagé — le même format que tu recevras pour ton site en moins de 60 secondes.",
+    "mockUrl": "sitescoper.com/report/sample-saas-landing",
+    "generatedTime": "Généré en 47 s",
+    "overallVerdictLabel": "Verdict global",
+    "whatsWorking": "Ce qui fonctionne",
+    "whatsCosting": "Ce qui te coûte des conversions",
+    "scoredDimensions": "Noté sur 6 dimensions",
+    "specificFindings": "4 constats précis (avec correctifs)",
+    "severity": {
+      "critical": "critique",
+      "warning": "avertissement"
+    },
+    "whyItMatters": "Pourquoi c'est important",
+    "recommendedFix": "Correctif recommandé",
+    "footerNote": "Chaque rapport est structuré de la même façon — verdict, dimensions notées, constats précis avec correctifs. Pas de bla-bla générique du type « améliore ton SEO ».",
+    "ctaButton": "Obtiens ce rapport pour ton site",
+    "proNote": "Tu es en Pro — scans illimités inclus",
+    "freeNote": "Le plan gratuit inclut 3 scans / mois · Passe à Pro pour l'illimité"
+  },
+  "heroPreview": {
+    "trendBadge": "+12 cette semaine",
+    "verdictBadge": "Verdict IA prêt",
+    "mockUrl": "sitescoper.com/report/acme",
+    "verdictLabel": "Verdict",
+    "verdictTitle": "Base solide, copy hero faible.",
+    "verdictDescription": "Ta proposition de valeur est enterrée sous la ligne de flottaison. Remonte-la et tu convertiras nettement mieux.",
+    "criticalBlockersLabel": "Blocages critiques",
+    "blockers": {
+      "hero": "Le titre hero ne dit pas ce que tu fais",
+      "proof": "Pas de preuve sociale au-dessus de la ligne",
+      "pricing": "Les tarifs demandent 3 clics à trouver"
+    },
+    "categories": {
+      "copy": "Copy",
+      "trust": "Confiance",
+      "design": "Design"
+    }
   }
 }

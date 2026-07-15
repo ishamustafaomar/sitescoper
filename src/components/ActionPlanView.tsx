@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Calendar, Clock, CheckCircle2 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { ActionPlan } from "@/lib/api";
 
 interface ActionPlanViewProps {
@@ -7,10 +8,11 @@ interface ActionPlanViewProps {
 }
 
 export function ActionPlanView({ plan }: ActionPlanViewProps) {
+  const { t } = useTranslation();
   if (!plan?.days?.length) {
     return (
       <div className="bg-card rounded-xl border border-border p-6 text-center text-sm text-muted-foreground font-body">
-        No action plan generated for this analysis.
+        {t("actionPlanView.noPlan")}
       </div>
     );
   }
@@ -21,7 +23,7 @@ export function ActionPlanView({ plan }: ActionPlanViewProps) {
         <div className="bg-gradient-to-br from-primary/10 via-primary/5 to-transparent border border-primary/20 rounded-xl p-5">
           <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-primary/15 text-primary text-[10px] font-body mb-2">
             <Calendar className="h-3 w-3" />
-            Your 7-day action plan
+            {t("actionPlanView.headlineBadge")}
           </div>
           <p className="text-sm font-heading font-semibold leading-snug">{plan.headline}</p>
         </div>
