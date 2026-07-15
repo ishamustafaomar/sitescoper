@@ -49,7 +49,15 @@
     "memberItem3": "Public share links",
     "memberItem4": "Compare scans over time",
     "ctaCreate": "Create free account",
-    "ctaLogin": "Sign in"
+    "ctaLogin": "Sign in",
+    "tryInstantly": "Try it instantly — limited features.",
+    "notIncluded": "Not included",
+    "historyAndTrends": "History & score trends",
+    "publicShareLinksLocked": "Public share links",
+    "compareScansLocked": "Compare scans over time",
+    "recommendedBadge": "Recommended",
+    "everythingAbovePlus": "Everything above, plus everything below — free, no credit card.",
+    "noUsageLimits": "No usage limits — ever."
   },
   "auth": {
     "welcomeBack": "Welcome back",
@@ -1020,7 +1028,8 @@
     "screenshotAltPrefix": "Screenshot of",
     "pagesCrawled": "Pages Crawled",
     "ofSeparator": "of",
-    "discoveredSuffix": "discovered"
+    "discoveredSuffix": "discovered",
+    "ofDiscovered": "of {{total}} discovered"
   },
   "visualOverlay": {
     "imagesOnHomepage": "images on homepage",
@@ -1235,5 +1244,61 @@
     "progressWorking": "Working…",
     "toastErrorTitle": "Error",
     "toastErrorDefault": "Something went wrong"
+  },
+  "semrush": {
+    "loading": "Loading Semrush metrics…",
+    "errorPrefix": "Semrush error:",
+    "errorNoData": "no data",
+    "unlockTitle": "Unlock organic traffic, keywords & backlinks",
+    "unlockDesc": "Connect Semrush to layer Authority Score, organic traffic estimates, ranking keywords and backlink data on top of every audit.",
+    "connectButton": "Connect Semrush",
+    "quotaReachedTitle": "Semrush quota reached",
+    "quotaReachedDesc": "Upgrade your Semrush plan or wait for the quota to reset to see live metrics.",
+    "kpiAuthorityScore": "Authority Score",
+    "kpiAuthorityScoreSub": "0–100",
+    "kpiOrganicTraffic": "Organic Traffic",
+    "kpiOrganicTrafficSub": "monthly est.",
+    "kpiOrganicKeywords": "Organic Keywords",
+    "kpiOrganicKeywordsSub": "ranking terms",
+    "kpiBacklinks": "Backlinks",
+    "refDomainsSuffix": "ref domains",
+    "overviewTitle": "Semrush overview",
+    "sourceLabel": "Source: Semrush ·",
+    "topOrganicKeywords": "Top organic keywords",
+    "posVolLabel": "pos · vol",
+    "noKeywordData": "No keyword data yet from Semrush.",
+    "topReferringDomains": "Top referring domains",
+    "asLinksLabel": "AS · links",
+    "noBacklinkData": "No backlink data yet from Semrush."
+  },
+  "techSeo": {
+    "title": "Technical SEO",
+    "rescanToPopulate": "Re-scan this site to populate technical SEO checks.",
+    "healthTitle": "Technical SEO health",
+    "passingLabel": "passing"
+  },
+  "scoreTrend": {
+    "title": "Score over time",
+    "rescanForProgress": "Re-scan this URL after improvements to see your progress chart.",
+    "loading": "Loading…",
+    "scansCount": "scans",
+    "ptsSuffix": "pts"
+  },
+  "seoAudit": {
+    "auditingOnPage": "Auditing on-page SEO…",
+    "auditFailed": "Audit failed",
+    "toastFailedTitle": "SEO audit failed",
+    "retry": "Retry",
+    "onPageTitle": "On-page SEO audit",
+    "passedWarnFailedSummary": "{{passed}} passed · {{warnings}} warnings · {{failed}} failed",
+    "rerun": "Re-run",
+    "failedCount": "Failed ({{count}})",
+    "warningsCount": "Warnings ({{count}})",
+    "passedCount": "Passed ({{count}})",
+    "headingsOutline": "Headings outline ({{count}})",
+    "noHeadingsDetected": "No headings detected.",
+    "emptyPlaceholder": "(empty)",
+    "rawHeadData": "Raw head data",
+    "fixLabel": "Fix:"
   }
 }

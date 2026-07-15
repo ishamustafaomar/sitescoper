@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { ScrapeResult } from "@/lib/api";
 import { ImageOff, Globe, ExternalLink } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 interface WebsitePreviewProps {
   data: ScrapeResult;
@@ -9,6 +10,7 @@ interface WebsitePreviewProps {
 }
 
 export function WebsitePreview({ data, url }: WebsitePreviewProps) {
+  const { t } = useTranslation();
   const [imgError, setImgError] = useState(false);
 
   const screenshotSrc = data.screenshot
@@ -46,7 +48,7 @@ export function WebsitePreview({ data, url }: WebsitePreviewProps) {
           ) : (
             <div className="flex flex-col items-center justify-center gap-2 p-12 text-muted-foreground">
               <ImageOff className="h-8 w-8 opacity-40" />
-              <span className="text-sm font-body">No screenshot available</span>
+              <span className="text-sm font-body">{t("websitePreview.noScreenshot")}</span>
             </div>
           )}
         </div>
@@ -62,9 +64,9 @@ export function WebsitePreview({ data, url }: WebsitePreviewProps) {
         >
           <h4 className="font-heading font-semibold text-sm flex items-center gap-2">
             <Globe className="h-4 w-4 text-muted-foreground" />
-            Pages Crawled
+            {t("websitePreview.pagesCrawled")}
             <span className="text-xs text-muted-foreground font-body font-normal">
-              ({data.pages.length} of {data.siteUrlsDiscovered || "?"} discovered)
+              ({data.pages.length} {t("websitePreview.ofDiscovered", { total: data.siteUrlsDiscovered || "?" })})
             </span>
           </h4>
           <ul className="space-y-1">

@@ -1,7 +1,9 @@
 import { CheckCircle2, AlertTriangle, XCircle } from "lucide-react";
 import type { SeoCheck } from "@/lib/seoAudit";
+import { useTranslation } from "react-i18next";
 
 export function CheckRow({ check }: { check: SeoCheck }) {
+  const { t } = useTranslation();
   const Icon = check.status === "pass" ? CheckCircle2 : check.status === "warn" ? AlertTriangle : XCircle;
   const tone =
     check.status === "pass"
@@ -18,7 +20,7 @@ export function CheckRow({ check }: { check: SeoCheck }) {
           <p className="text-xs text-muted-foreground font-body break-words">{check.detail}</p>
           {check.fix && check.status !== "pass" && (
             <p className="text-xs font-body text-foreground/80 mt-1">
-              <span className="font-medium">Fix: </span>{check.fix}
+              <span className="font-medium">{t("seoAudit.fixLabel")} </span>{check.fix}
             </p>
           )}
         </div>

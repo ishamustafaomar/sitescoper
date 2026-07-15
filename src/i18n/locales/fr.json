@@ -49,7 +49,15 @@
     "memberItem3": "Liens publics",
     "memberItem4": "Comparer dans le temps",
     "ctaCreate": "Créer un compte gratuit",
-    "ctaLogin": "Se connecter"
+    "ctaLogin": "Se connecter",
+    "tryInstantly": "Essayez instantanément — fonctionnalités limitées.",
+    "notIncluded": "Non inclus",
+    "historyAndTrends": "Historique et évolution des scores",
+    "publicShareLinksLocked": "Liens de partage publics",
+    "compareScansLocked": "Comparer les analyses dans le temps",
+    "recommendedBadge": "Recommandé",
+    "everythingAbovePlus": "Tout ce qui précède, plus tout ce qui suit — gratuit, sans carte bancaire.",
+    "noUsageLimits": "Aucune limite d'utilisation, jamais."
   },
   "auth": {
     "welcomeBack": "Bon retour",
@@ -1020,7 +1028,8 @@
     "screenshotAltPrefix": "Capture de",
     "pagesCrawled": "Pages explorées",
     "ofSeparator": "sur",
-    "discoveredSuffix": "découvertes"
+    "discoveredSuffix": "découvertes",
+    "ofDiscovered": "sur {{total}} découvertes"
   },
   "visualOverlay": {
     "imagesOnHomepage": "images sur la home",
@@ -1235,5 +1244,61 @@
     "progressWorking": "Traitement en cours…",
     "toastErrorTitle": "Erreur",
     "toastErrorDefault": "Une erreur s'est produite"
+  },
+  "semrush": {
+    "loading": "Chargement des métriques Semrush…",
+    "errorPrefix": "Erreur Semrush :",
+    "errorNoData": "aucune donnée",
+    "unlockTitle": "Débloquez le trafic organique, les mots-clés et les backlinks",
+    "unlockDesc": "Connectez Semrush pour ajouter le score d'autorité, les estimations de trafic organique, les mots-clés positionnés et les backlinks à chaque audit.",
+    "connectButton": "Connecter Semrush",
+    "quotaReachedTitle": "Quota Semrush atteint",
+    "quotaReachedDesc": "Améliorez votre offre Semrush ou attendez la réinitialisation du quota pour voir les métriques en direct.",
+    "kpiAuthorityScore": "Score d'autorité",
+    "kpiAuthorityScoreSub": "0-100",
+    "kpiOrganicTraffic": "Trafic organique",
+    "kpiOrganicTrafficSub": "est. mensuelle",
+    "kpiOrganicKeywords": "Mots-clés organiques",
+    "kpiOrganicKeywordsSub": "termes positionnés",
+    "kpiBacklinks": "Backlinks",
+    "refDomainsSuffix": "domaines référents",
+    "overviewTitle": "Aperçu Semrush",
+    "sourceLabel": "Source : Semrush ·",
+    "topOrganicKeywords": "Meilleurs mots-clés organiques",
+    "posVolLabel": "pos · vol",
+    "noKeywordData": "Pas encore de données de mots-clés Semrush.",
+    "topReferringDomains": "Meilleurs domaines référents",
+    "asLinksLabel": "AS · liens",
+    "noBacklinkData": "Pas encore de données de backlinks Semrush."
+  },
+  "techSeo": {
+    "title": "SEO technique",
+    "rescanToPopulate": "Relancez une analyse de ce site pour remplir les contrôles SEO techniques.",
+    "healthTitle": "État de santé SEO technique",
+    "passingLabel": "réussis"
+  },
+  "scoreTrend": {
+    "title": "Score dans le temps",
+    "rescanForProgress": "Relancez une analyse de cette URL après vos améliorations pour voir votre graphique de progression.",
+    "loading": "Chargement…",
+    "scansCount": "analyses",
+    "ptsSuffix": "pts"
+  },
+  "seoAudit": {
+    "auditingOnPage": "Audit du SEO on-page en cours…",
+    "auditFailed": "L'audit a échoué",
+    "toastFailedTitle": "L'audit SEO a échoué",
+    "retry": "Réessayer",
+    "onPageTitle": "Audit SEO on-page",
+    "passedWarnFailedSummary": "{{passed}} réussis · {{warnings}} avertissements · {{failed}} échoués",
+    "rerun": "Relancer",
+    "failedCount": "Échoués ({{count}})",
+    "warningsCount": "Avertissements ({{count}})",
+    "passedCount": "Réussis ({{count}})",
+    "headingsOutline": "Plan des titres ({{count}})",
+    "noHeadingsDetected": "Aucun titre détecté.",
+    "emptyPlaceholder": "(vide)",
+    "rawHeadData": "Données brutes du head",
+    "fixLabel": "Correction :"
   }
 }
