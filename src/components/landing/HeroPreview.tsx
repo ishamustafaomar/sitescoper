@@ -1,11 +1,13 @@
 import { motion } from "framer-motion";
 import { Sparkles, AlertTriangle, TrendingUp, Globe } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 /**
  * Visually-rich mock report preview shown in the hero. Designed to convey
  * "this is a real polished product" without being an actual screenshot.
  */
 export function HeroPreview() {
+  const { t } = useTranslation();
   return (
     <motion.div
       initial={{ opacity: 0, y: 20, rotateX: -5 }}
@@ -21,7 +23,7 @@ export function HeroPreview() {
         className="absolute -top-4 -left-4 z-20 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-card border border-[hsl(var(--score-good))]/30 shadow-[var(--shadow-md)]"
       >
         <div className="h-1.5 w-1.5 rounded-full bg-[hsl(var(--score-good))] animate-pulse" />
-        <span className="text-[10px] font-heading font-semibold text-[hsl(var(--score-good-text))]">+12 this week</span>
+        <span className="text-[10px] font-heading font-semibold text-[hsl(var(--score-good-text))]">{t("heroPreview.trendBadge")}</span>
       </motion.div>
 
       <motion.div
@@ -30,7 +32,7 @@ export function HeroPreview() {
         className="absolute -bottom-3 -right-2 z-20 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-card border border-primary/30 shadow-[var(--shadow-md)]"
       >
         <Sparkles className="h-3 w-3 text-primary" />
-        <span className="text-[10px] font-heading font-semibold text-primary">AI verdict ready</span>
+        <span className="text-[10px] font-heading font-semibold text-primary">{t("heroPreview.verdictBadge")}</span>
       </motion.div>
 
       {/* Main report card */}
@@ -42,7 +44,7 @@ export function HeroPreview() {
           <div className="h-2.5 w-2.5 rounded-full bg-[hsl(var(--score-good))]/60" />
           <div className="ml-3 flex-1 h-5 rounded-md bg-background/60 flex items-center px-2 gap-1.5">
             <Globe className="h-2.5 w-2.5 text-muted-foreground" />
-            <span className="text-[9px] font-body text-muted-foreground">sitescoper.com/report/acme</span>
+            <span className="text-[9px] font-body text-muted-foreground">{t("heroPreview.mockUrl")}</span>
           </div>
         </div>
 
@@ -72,13 +74,13 @@ export function HeroPreview() {
             </div>
             <div className="flex-1 min-w-0">
               <div className="text-[9px] font-body uppercase tracking-wider text-muted-foreground mb-1">
-                Verdict
+                {t("heroPreview.verdictLabel")}
               </div>
               <p className="font-heading font-bold text-sm leading-tight mb-1">
-                Solid foundation, weak hero copy.
+                {t("heroPreview.verdictTitle")}
               </p>
               <p className="text-[10px] text-muted-foreground font-body leading-relaxed line-clamp-2">
-                Your value prop is buried below the fold. Move it up and you'll convert noticeably better.
+                {t("heroPreview.verdictDescription")}
               </p>
             </div>
           </div>
@@ -87,12 +89,12 @@ export function HeroPreview() {
           <div className="space-y-1.5 pt-3 border-t border-border">
             <div className="flex items-center gap-1.5 mb-1.5">
               <AlertTriangle className="h-3 w-3 text-[hsl(var(--score-bad))]" />
-              <span className="text-[9px] font-body uppercase tracking-wider text-muted-foreground">Critical blockers</span>
+              <span className="text-[9px] font-body uppercase tracking-wider text-muted-foreground">{t("heroPreview.criticalBlockersLabel")}</span>
             </div>
             {[
-              { text: "Hero headline doesn't say what you do", level: "bad" },
-              { text: "No social proof above the fold", level: "warn" },
-              { text: "Pricing requires 3 clicks to find", level: "warn" },
+              { text: t("heroPreview.blockers.hero"), level: "bad" },
+              { text: t("heroPreview.blockers.proof"), level: "warn" },
+              { text: t("heroPreview.blockers.pricing"), level: "warn" },
             ].map((item, i) => (
               <motion.div
                 key={i}
@@ -118,9 +120,9 @@ export function HeroPreview() {
           {/* Mini category bars */}
           <div className="grid grid-cols-3 gap-2 pt-3 border-t border-border">
             {[
-              { name: "Copy", score: 45, level: "bad" },
-              { name: "Trust", score: 62, level: "warn" },
-              { name: "Design", score: 88, level: "good" },
+              { name: t("heroPreview.categories.copy"), score: 45, level: "bad" },
+              { name: t("heroPreview.categories.trust"), score: 62, level: "warn" },
+              { name: t("heroPreview.categories.design"), score: 88, level: "good" },
             ].map((c, i) => (
               <motion.div
                 key={c.name}

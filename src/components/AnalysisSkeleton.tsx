@@ -1,24 +1,17 @@
 import { motion } from "framer-motion";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Link2, Sparkles } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 interface AnalysisSkeletonProps {
   step: "scraping" | "analyzing";
 }
 
-const stepCopy = {
-  scraping: {
-    title: "Crawling website",
-    sub: "Discovering pages, capturing screenshot, extracting content…",
-  },
-  analyzing: {
-    title: "AI analyzing",
-    sub: "Reading every page like a real visitor and forming opinions…",
-  },
-};
-
 export function AnalysisSkeleton({ step }: AnalysisSkeletonProps) {
-  const copy = stepCopy[step];
+  const { t } = useTranslation();
+  const copy = step === "scraping"
+    ? { title: t("analysisSkeleton.scraping.title"), sub: t("analysisSkeleton.scraping.sub") }
+    : { title: t("analysisSkeleton.analyzing.title"), sub: t("analysisSkeleton.analyzing.sub") };
 
   return (
     <motion.div
@@ -51,7 +44,7 @@ export function AnalysisSkeleton({ step }: AnalysisSkeletonProps) {
         <div className="space-y-4">
           <h3 className="font-heading font-semibold text-xs text-muted-foreground uppercase tracking-widest flex items-center gap-2">
             <Link2 className="h-3.5 w-3.5" />
-            Website Preview
+            {t("analysisSkeleton.websitePreviewHeading")}
           </h3>
           <div className="bg-card rounded-2xl border border-border overflow-hidden shadow-[var(--shadow-md)]">
             <div className="flex items-center gap-1.5 px-4 py-3 border-b border-border bg-muted/30">
@@ -74,7 +67,7 @@ export function AnalysisSkeleton({ step }: AnalysisSkeletonProps) {
         <div className="space-y-4">
           <h3 className="font-heading font-semibold text-xs text-muted-foreground uppercase tracking-widest flex items-center gap-2">
             <Sparkles className="h-3.5 w-3.5" />
-            AI Analysis
+            {t("analysisSkeleton.aiAnalysisHeading")}
           </h3>
           {/* Score header skeleton */}
           <div className="bg-card rounded-2xl border border-border p-6 shadow-[var(--shadow-md)] space-y-5">

@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import ReactMarkdown from "react-markdown";
 import { MessageCircle, Send, Loader2, Sparkles, X, RefreshCcw, Bot, User as UserIcon } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
@@ -22,14 +23,14 @@ interface ChatPanelProps {
   analysisId?: string;
 }
 
-const SUGGESTED_PROMPTS = [
-  "What should I fix first?",
-  "Rewrite my hero headline",
-  "Why is my score so low?",
-  "Are you sure I'm missing testimonials? Recheck.",
-];
-
 export function ChatPanel({ analysis, scrapeData, url, analysisId }: ChatPanelProps) {
+  const { t } = useTranslation();
+  const SUGGESTED_PROMPTS = [
+    t("chatPanel.suggestedPrompts.fixFirst"),
+    t("chatPanel.suggestedPrompts.rewriteHero"),
+    t("chatPanel.suggestedPrompts.whyLowScore"),
+    t("chatPanel.suggestedPrompts.recheck"),
+  ];
   const { user } = useAuth();
   const { toast } = useToast();
   const [open, setOpen] = useState(false);
@@ -45,7 +46,7 @@ export function ChatPanel({ analysis, scrapeData, url, analysisId }: ChatPanelPr
   const send = async (text: string) => {
     if (!text.trim() || loading) return;
     if (!user) {
-      toast({ title: "Sign in to chat", description: "Create a free account to chat with your report." });
+      toast({ title: t("chatPanel.toast.signInTitle"), description: t("chatPanel.toast.signInDescription") });
       return;
     }
     const userMsg: Msg = { role: "user", content: text };
@@ -68,7 +69,7 @@ export function ChatPanel({ analysis, scrapeData, url, analysisId }: ChatPanelPr
       if (data?.error) throw new Error(data.error);
       setMessages((prev) => [...prev, { role: "assistant", content: data?.content ?? "", used_tools: !!data?.used_tools }]);
     } catch (e: any) {
-      toast({ title: "Chat error", description: e.message, variant: "destructive" });
+      toast({ title: t("chatPanel.toast.errorTitle"), description: e.message, variant: "destructive" });
       setMessages((prev) => prev.slice(0, -1)); // remove the user message that failed
     } finally {
       setLoading(false);
@@ -88,7 +89,7 @@ export function ChatPanel({ analysis, scrapeData, url, analysisId }: ChatPanelPr
             exit={{ scale: 0, opacity: 0 }}
             onClick={() => setOpen(true)}
             className="fixed bottom-6 right-6 z-40 gradient-primary p-4 rounded-full shadow-glow hover:scale-105 transition-transform"
-            aria-label="Chat with this report"
+            aria-label={t("chatPanel.launcherAriaLabel")}
           >
             <MessageCircle className="h-5 w-5 text-primary-foreground" />
             <span className="absolute -top-1 -right-1 h-3 w-3 rounded-full bg-accent animate-pulse border-2 border-background" />
@@ -105,7 +106,7 @@ export function ChatPanel({ analysis, scrapeData, url, analysisId }: ChatPanelPr
             transition={{ type: "spring", stiffness: 260, damping: 26 }}
             className="fixed bottom-4 right-4 left-4 sm:left-auto sm:bottom-6 sm:right-6 sm:w-[420px] h-[min(80vh,640px)] bg-card border border-border rounded-2xl shadow-2xl z-40 flex flex-col overflow-hidden"
             role="dialog"
-            aria-label="Chat with report"
+            aria-label={t("chatPanel.launcherAriaLabel")}
           >
             {/* Header */}
             <div className="flex items-center justify-between p-4 border-b border-border bg-gradient-to-r from-primary/5 to-transparent">
@@ -114,13 +115,13 @@ export function ChatPanel({ analysis, scrapeData, url, analysisId }: ChatPanelPr
                   <Sparkles className="h-3.5 w-3.5 text-primary-foreground" />
                 </div>
                 <div className="min-w-0">
-                  <h3 className="font-heading font-semibold text-sm">Chat with this report</h3>
-                  <p className="text-[10px] text-muted-foreground font-body truncate">Has full context · can re-scan if you push back</p>
+                  <h3 className="font-heading font-semibold text-sm">{t("chatPanel.launcherAriaLabel")}</h3>
+                  <p className="text-[10px] text-muted-foreground font-body truncate">{t("chatPanel.headerSubtitle")}</p>
                 </div>
               </div>
               <div className="flex items-center gap-1">
                 {messages.length > 0 && (
-                  <Button variant="ghost" size="icon" className="h-7 w-7" onClick={reset} title="New chat">
+                  <Button variant="ghost" size="icon" className="h-7 w-7" onClick={reset} title={t("chatPanel.newChatTitle")}>
                     <RefreshCcw className="h-3.5 w-3.5" />
                   </Button>
                 )}
@@ -139,7 +140,7 @@ export function ChatPanel({ analysis, scrapeData, url, analysisId }: ChatPanelPr
                       <Bot className="h-3.5 w-3.5 text-primary" />
                     </div>
                     <div className="text-xs font-body text-muted-foreground leading-relaxed">
-                      I just audited <strong className="text-foreground break-all">{url}</strong>. Ask me anything — what to ship first, why your score is what it is, or push back if I got something wrong.
+                      {t("chatPanel.introPrefix")} <strong className="text-foreground break-all">{url}</strong>. {t("chatPanel.introSuffix")}
                     </div>
                   </div>
                   <div className="space-y-1.5 pt-2">
@@ -175,7 +176,7 @@ export function ChatPanel({ analysis, scrapeData, url, analysisId }: ChatPanelPr
                     )}
                     {m.used_tools && (
                       <div className="mt-1.5 text-[9px] uppercase tracking-wider opacity-70 flex items-center gap-1">
-                        <RefreshCcw className="h-2.5 w-2.5" /> Re-scanned the page
+                        <RefreshCcw className="h-2.5 w-2.5" /> {t("chatPanel.rescannedLabel")}
                       </div>
                     )}
                   </div>
@@ -188,7 +189,7 @@ export function ChatPanel({ analysis, scrapeData, url, analysisId }: ChatPanelPr
                     <Bot className="h-3.5 w-3.5 text-primary" />
                   </div>
                   <Loader2 className="h-3 w-3 animate-spin" />
-                  Thinking…
+                  {t("chatPanel.thinking")}
                 </div>
               )}
             </div>
@@ -208,7 +209,7 @@ export function ChatPanel({ analysis, scrapeData, url, analysisId }: ChatPanelPr
                       send(input);
                     }
                   }}
-                  placeholder={user ? "Ask anything about this report…" : "Sign in to chat"}
+                  placeholder={user ? t("chatPanel.inputPlaceholder") : t("chatPanel.inputPlaceholderSignedOut")}
                   disabled={!user || loading}
                   rows={1}
                   className="resize-none min-h-[40px] max-h-32 text-xs font-body"
@@ -218,7 +219,7 @@ export function ChatPanel({ analysis, scrapeData, url, analysisId }: ChatPanelPr
                 </Button>
               </div>
               <p className="text-[9px] text-muted-foreground font-body mt-1.5 text-center">
-                AI can make mistakes — push back if it does.
+                {t("chatPanel.disclaimer")}
               </p>
             </form>
           </motion.div>
