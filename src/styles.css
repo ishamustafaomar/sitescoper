@@ -1,0 +1,288 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * SiteScoper design system — ported from the pre-migration src/index.css +
+ * tailwind.config.ts. Tokens stay as bare HSL triplets so existing component
+ * code using hsl(var(--token)) arbitrary values keeps working unchanged.
+ */
+
+@theme {
+  --font-heading: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+}
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-primary-alt: hsl(var(--primary-alt));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-ring-offset-background: hsl(var(--background));
+  --color-chart-1: hsl(var(--chart-1));
+  --color-chart-2: hsl(var(--chart-2));
+  --color-chart-3: hsl(var(--chart-3));
+  --color-chart-4: hsl(var(--chart-4));
+  --color-chart-5: hsl(var(--chart-5));
+  --color-sidebar: hsl(var(--sidebar-background));
+  --color-sidebar-foreground: hsl(var(--sidebar-foreground));
+  --color-sidebar-primary: hsl(var(--sidebar-primary));
+  --color-sidebar-primary-foreground: hsl(var(--sidebar-primary-foreground));
+  --color-sidebar-accent: hsl(var(--sidebar-accent));
+  --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
+  --color-sidebar-border: hsl(var(--sidebar-border));
+  --color-sidebar-ring: hsl(var(--sidebar-ring));
+}
+
+:root {
+  --background: 220 20% 97%;
+  --foreground: 220 25% 10%;
+
+  --card: 0 0% 100%;
+  --card-foreground: 220 25% 10%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 220 25% 10%;
+
+  --primary: 250 65% 55%;
+  --primary-foreground: 0 0% 100%;
+  --primary-alt: 280 70% 60%;
+
+  --secondary: 220 15% 92%;
+  --secondary-foreground: 220 25% 20%;
+
+  --muted: 220 15% 94%;
+  --muted-foreground: 220 12% 38%;
+
+  --accent: 165 60% 45%;
+  --accent-foreground: 0 0% 100%;
+
+  --destructive: 0 72% 55%;
+  --destructive-foreground: 0 0% 100%;
+
+  --border: 220 15% 88%;
+  --input: 220 15% 88%;
+  --ring: 250 65% 55%;
+
+  --radius: 0.75rem;
+
+  --gradient-primary: linear-gradient(135deg, hsl(250 65% 55%), hsl(280 70% 60%));
+  --gradient-accent: linear-gradient(135deg, hsl(165 60% 45%), hsl(190 70% 50%));
+  --gradient-surface: linear-gradient(180deg, hsl(220 20% 97%), hsl(220 15% 94%));
+
+  --shadow-sm: 0 1px 3px hsl(220 25% 10% / 0.04);
+  --shadow-md: 0 4px 16px hsl(220 25% 10% / 0.06);
+  --shadow-lg: 0 8px 32px hsl(220 25% 10% / 0.08);
+  --shadow-glow: 0 0 24px hsl(250 65% 55% / 0.15);
+
+  --sidebar-background: 0 0% 98%;
+  --sidebar-foreground: 240 5.3% 26.1%;
+  --sidebar-primary: 240 5.9% 10%;
+  --sidebar-primary-foreground: 0 0% 98%;
+  --sidebar-accent: 240 4.8% 95.9%;
+  --sidebar-accent-foreground: 240 5.9% 10%;
+  --sidebar-border: 220 13% 91%;
+  --sidebar-ring: 217.2 91.2% 59.8%;
+
+  --chart-1: 250 65% 55%;
+  --chart-2: 165 60% 45%;
+  --chart-3: 280 70% 60%;
+  --chart-4: 45 80% 55%;
+  --chart-5: 0 72% 55%;
+
+  /* Traffic light scoring system */
+  --score-good: 145 65% 42%;
+  --score-good-bg: 145 65% 42% / 0.12;
+  --score-warn: 35 95% 50%;
+  --score-warn-bg: 35 95% 50% / 0.14;
+  --score-bad: 0 75% 55%;
+  --score-bad-bg: 0 75% 55% / 0.12;
+  /* Darker text variants that meet WCAG AA (4.5:1) on white backgrounds.
+     Use these for small text labels; keep the brighter base tokens for
+     fills, rings, and large UI accents. */
+  --score-good-text: 145 75% 28%;
+  --score-warn-text: 28 100% 32%;
+  --score-bad-text: 0 78% 42%;
+}
+
+.dark {
+  --background: 224 30% 8%;
+  --foreground: 210 20% 92%;
+
+  --card: 224 25% 12%;
+  --card-foreground: 210 20% 92%;
+
+  --popover: 224 25% 12%;
+  --popover-foreground: 210 20% 92%;
+
+  --primary: 250 65% 60%;
+  --primary-foreground: 0 0% 100%;
+  --primary-alt: 280 70% 65%;
+
+  --secondary: 224 20% 18%;
+  --secondary-foreground: 210 15% 80%;
+
+  --muted: 224 20% 16%;
+  --muted-foreground: 220 10% 55%;
+
+  --accent: 165 55% 50%;
+  --accent-foreground: 0 0% 100%;
+
+  --destructive: 0 72% 55%;
+  --destructive-foreground: 0 0% 100%;
+
+  --border: 224 20% 20%;
+  --input: 224 20% 20%;
+  --ring: 250 65% 60%;
+
+  --gradient-primary: linear-gradient(135deg, hsl(250 65% 60%), hsl(280 70% 65%));
+  --gradient-accent: linear-gradient(135deg, hsl(165 55% 50%), hsl(190 65% 55%));
+  --gradient-surface: linear-gradient(180deg, hsl(224 30% 8%), hsl(224 25% 12%));
+
+  --shadow-sm: 0 1px 3px hsl(0 0% 0% / 0.2);
+  --shadow-md: 0 4px 16px hsl(0 0% 0% / 0.3);
+  --shadow-lg: 0 8px 32px hsl(0 0% 0% / 0.4);
+  --shadow-glow: 0 0 24px hsl(250 65% 60% / 0.25);
+
+  --sidebar-background: 224 25% 10%;
+  --sidebar-foreground: 210 20% 80%;
+  --sidebar-primary: 250 65% 60%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 224 20% 16%;
+  --sidebar-accent-foreground: 210 20% 80%;
+  --sidebar-border: 224 20% 18%;
+  --sidebar-ring: 250 65% 60%;
+
+  --chart-1: 250 65% 60%;
+  --chart-2: 165 55% 50%;
+  --chart-3: 280 70% 65%;
+  --chart-4: 45 80% 55%;
+  --chart-5: 0 72% 55%;
+
+  --score-good: 145 60% 50%;
+  --score-good-bg: 145 60% 50% / 0.18;
+  --score-warn: 35 95% 58%;
+  --score-warn-bg: 35 95% 58% / 0.18;
+  --score-bad: 0 75% 60%;
+  --score-bad-bg: 0 75% 60% / 0.18;
+  --score-good-text: 145 65% 60%;
+  --score-warn-text: 35 95% 62%;
+  --score-bad-text: 0 75% 65%;
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: var(--font-body);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+  }
+
+  /* Prevent accidental horizontal scroll on tablet/mobile */
+  html,
+  body {
+    overflow-x: hidden;
+    max-width: 100%;
+  }
+
+  /* Wrap long URLs / inline code so they don't blow out narrow viewports */
+  a,
+  code {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  /* Touch tap-target floor: ensure interactive controls hit ~44x44 on
+     coarse pointers (touch). Desktop / fine pointers are unaffected so
+     dense UIs (toolbars, table actions) keep their compact look. */
+  @media (pointer: coarse) {
+    button:not([data-no-min-target]),
+    [role="button"]:not([data-no-min-target]),
+    a.btn,
+    .nav a,
+    nav a,
+    input[type="button"],
+    input[type="submit"] {
+      min-height: 44px;
+      min-width: 44px;
+    }
+  }
+}
+
+/* v3 container config port: center, 2rem padding, capped at 1400px */
+@utility container {
+  margin-inline: auto;
+  padding-inline: 2rem;
+  width: 100%;
+  @media (min-width: 1400px) {
+    max-width: 1400px;
+  }
+}
+
+@utility gradient-primary {
+  background: var(--gradient-primary);
+}
+@utility gradient-accent {
+  background: var(--gradient-accent);
+}
+@utility shadow-glow {
+  box-shadow: var(--shadow-glow);
+}
