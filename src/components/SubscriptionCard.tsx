@@ -1,9 +1,10 @@
 import { Sparkles, Crown, ArrowRight, XCircle, RotateCcw, Loader2 } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "@/lib/router-compat";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { useSubscription } from "@/hooks/useSubscription";
-import { supabase } from "@/integrations/supabase/client";
+import { createPortalSession } from "@/lib/create-portal-session.functions";
+import { cancelSubscription } from "@/lib/cancel-subscription.functions";
 import { getStripeEnvironment } from "@/lib/stripe";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
@@ -39,10 +40,10 @@ export function SubscriptionCard() {
   const openPortal = async () => {
     setLoading(true);
     try {
-      const { data, error } = await supabase.functions.invoke("create-portal-session", {
-        body: { returnUrl: window.location.href, environment: getStripeEnvironment() },
+      const data = await createPortalSession({
+        data: { returnUrl: window.location.href, environment: getStripeEnvironment() },
       });
-      if (error || !data?.url) throw new Error(error?.message || "Could not open billing portal");
+      if (!data?.url) throw new Error("Could not open billing portal");
       window.open(data.url, "_blank");
     } catch (e: any) {
       toast({ title: "Error", description: e.message, variant: "destructive" });
@@ -54,11 +55,9 @@ export function SubscriptionCard() {
   const handleCancel = async (resume: boolean) => {
     setCancelling(true);
     try {
-      const { data, error } = await supabase.functions.invoke("cancel-subscription", {
-        body: { environment: getStripeEnvironment(), resume },
+      await cancelSubscription({
+        data: { environment: getStripeEnvironment(), resume },
       });
-      if (error) throw new Error(error.message || "Could not update subscription");
-      if ((data as any)?.error) throw new Error((data as any).error);
       toast({
         title: resume ? t("plan.resumedTitle") : t("plan.canceledTitle"),
         description: resume ? t("plan.resumedDesc") : t("plan.canceledDesc"),

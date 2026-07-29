@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "@/lib/router-compat";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
 import { ArrowLeft, Download, Loader2, Share2, Check, Copy, Home, Lock } from "lucide-react";
@@ -38,6 +38,7 @@ export default function AnalysisDetail() {
   }, [id]);
 
   const loadAnalysis = async () => {
+    if (!id) return;
     const { data } = await supabase
       .from("analysis_history")
       .select("*")

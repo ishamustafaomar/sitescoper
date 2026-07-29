@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "@/lib/router-compat";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
@@ -71,8 +71,8 @@ export default function Account() {
   const handleDelete = async () => {
     setDeleting(true);
     try {
-      const { error } = await supabase.functions.invoke("delete-account");
-      if (error) throw error;
+      const { deleteAccount } = await import("@/lib/delete-account.functions");
+      await deleteAccount();
       toast({ title: t("account.deleted"), description: t("account.deletedDesc") });
       await signOut();
       navigate("/", { replace: true });

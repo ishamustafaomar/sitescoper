@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams } from "@/lib/router-compat";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
 import { ExternalLink, Loader2, Sparkles } from "lucide-react";

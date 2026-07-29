@@ -1,5 +1,5 @@
 import { useState, useRef, lazy, Suspense } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "@/lib/router-compat";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, AlertCircle, ExternalLink, Link2, FileText, Download, Lock, ArrowDown, Swords } from "lucide-react";
 import { Trans, useTranslation } from "react-i18next";
@@ -78,12 +78,15 @@ const Index = () => {
 
     try {
       setStep("scraping");
-      let data: ScrapeResult | null = null;
+      let scraped: ScrapeResult | null = null;
       await scrapeWebsiteStream(url, (ev) => {
         if (ev.type === "progress") setProgress({ percent: ev.percent, label: ev.label });
         else if (ev.type === "tech_seo") setLiveTechSeo(ev.data);
-        else if (ev.type === "result") data = ev.data;
+        else if (ev.type === "result") scraped = ev.data;
       });
+      // Re-bind through a cast: TS can't see the closure assignment above,
+      // so `scraped` would otherwise narrow to `never` after the null check.
+      const data = scraped as ScrapeResult | null;
       if (!data) throw new Error("No scrape result");
       setScrapeData(data);
 

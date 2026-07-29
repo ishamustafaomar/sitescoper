@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { toast } from "@/hooks/use-toast";
 import { Loader2, Send, RefreshCcw } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { redditAutopost, redditAnalytics } from "@/lib/reddit.functions";
 
 export default function AdminReddit() {
   const { t } = useTranslation();
@@ -31,11 +32,15 @@ export default function AdminReddit() {
 
   const run = async (fn: "reddit-autopost" | "reddit-analytics") => {
     setBusy(fn);
-    const { data, error } = await supabase.functions.invoke(fn);
-    setBusy(null);
-    if (error) { toast({ title: "Error", description: error.message, variant: "destructive" }); return; }
-    toast({ title: `${fn} ok`, description: JSON.stringify(data).slice(0, 200) });
-    load();
+    try {
+      const data = fn === "reddit-autopost" ? await redditAutopost() : await redditAnalytics();
+      toast({ title: `${fn} ok`, description: JSON.stringify(data).slice(0, 200) });
+      load();
+    } catch (e) {
+      toast({ title: "Error", description: e instanceof Error ? e.message : String(e), variant: "destructive" });
+    } finally {
+      setBusy(null);
+    }
   };
 
   if (roleLoading) return <div className="p-8"><Loader2 className="animate-spin" /></div>;

@@ -1,0 +1,32 @@
+{
+  "customizations": [
+    { "token": "--primary-alt (light+dark)", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "brand HSL palette (:root overrides: background/foreground/card/popover/primary/secondary/muted/accent/destructive/border/input/ring)", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "dark-mode HSL palette (.dark overrides)", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "--radius: 0.75rem", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "--font-heading (Space Grotesk) + font-heading utility", "source": "src/index.css + tailwind.config.ts", "reappliedIn": "src/styles.css" },
+    { "token": "--font-body (Inter) + font-body utility", "source": "src/index.css + tailwind.config.ts", "reappliedIn": "src/styles.css" },
+    { "token": "--gradient-primary", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "--gradient-accent", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "--gradient-surface", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "--shadow-sm", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "--shadow-md", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "--shadow-lg", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "--shadow-glow", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "sidebar token set (8 vars, light+dark)", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "chart token set (5 vars, light+dark)", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "--score-good / --score-good-bg / --score-good-text", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "--score-warn / --score-warn-bg / --score-warn-text", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "--score-bad / --score-bad-bg / --score-bad-text", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "base rule: * border-color border token", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "base rule: body bg/fg + font-body, h1-h6 font-heading", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "base rule: overflow-x guard + a/code word-break", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "base rule: 44px tap-target floor on coarse pointers", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "utility .gradient-primary", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "utility .gradient-accent", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "utility .shadow-glow", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "accordion-down/up keyframes + animations", "source": "tailwind.config.ts", "reappliedIn": "src/styles.css" },
+    { "token": "container config (center, 2rem padding, 1400px cap)", "source": "tailwind.config.ts", "reappliedIn": "src/styles.css" },
+    { "token": "bg-primary-alt / text-primary-alt color registration", "source": "tailwind.config.ts", "reappliedIn": "src/styles.css" }
+  ]
+}

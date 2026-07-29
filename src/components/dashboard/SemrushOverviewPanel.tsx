@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { TrendingUp, Search, Link2, Shield, ExternalLink, Loader2, Sparkles, AlertTriangle } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
+import { semrushOverview } from "@/lib/semrush-overview.functions";
 import { Badge } from "@/components/ui/badge";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
@@ -38,9 +38,8 @@ export function SemrushOverviewPanel({ url }: Props) {
       setLoading(true);
       setError(null);
       try {
-        const { data: res, error } = await supabase.functions.invoke("semrush-overview", { body: { url } });
+        const res = await semrushOverview({ data: { url } });
         if (cancelled) return;
-        if (error) throw new Error(error.message);
         setData(res as SemrushData);
       } catch (e: any) {
         if (!cancelled) setError(e?.message || "Failed to load Semrush data");

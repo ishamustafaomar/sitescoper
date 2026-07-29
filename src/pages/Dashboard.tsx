@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import { AnimatePresence } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "@/lib/router-compat";
 import { Helmet } from "react-helmet-async";
 import { Globe, Clock, Search, Sparkles, Loader2, Plus, Swords } from "lucide-react";
 import { useTranslation } from "react-i18next";
