@@ -38,6 +38,7 @@ export default function AnalysisDetail() {
   }, [id]);
 
   const loadAnalysis = async () => {
+    if (!id) return;
     const { data } = await supabase
       .from("analysis_history")
       .select("*")

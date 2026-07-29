@@ -78,12 +78,15 @@ const Index = () => {
 
     try {
       setStep("scraping");
-      let data: ScrapeResult | null = null;
+      let scraped: ScrapeResult | null = null;
       await scrapeWebsiteStream(url, (ev) => {
         if (ev.type === "progress") setProgress({ percent: ev.percent, label: ev.label });
         else if (ev.type === "tech_seo") setLiveTechSeo(ev.data);
-        else if (ev.type === "result") data = ev.data;
+        else if (ev.type === "result") scraped = ev.data;
       });
+      // Re-bind through a cast: TS can't see the closure assignment above,
+      // so `scraped` would otherwise narrow to `never` after the null check.
+      const data = scraped as ScrapeResult | null;
       if (!data) throw new Error("No scrape result");
       setScrapeData(data);
 

@@ -3,6 +3,8 @@ import { createServerFn } from "@tanstack/react-start";
 
 type Input = { markdown: string; url?: string; summary?: string; site_category?: string };
 
+type JsonValue = string | number | boolean | null | JsonValue[] | { [key: string]: JsonValue };
+
 const SYSTEM_PROMPT = `You are a senior conversion copywriter (think Harry Dry meets a YC partner). Given a website's content and current positioning, generate stronger headline alternatives.
 
 Output ONLY valid JSON:
@@ -64,9 +66,9 @@ export const rewriteHeadlines = createServerFn({ method: "POST" })
     }
     const aiData = (await response.json()) as { choices?: { message?: { content?: string } }[] };
     const content = aiData.choices?.[0]?.message?.content ?? "";
-    let result: unknown;
+    let result: JsonValue;
     try {
-      result = JSON.parse(content);
+      result = JSON.parse(content) as JsonValue;
     } catch {
       result = { rewrites: [], current_headline: "", diagnosis: content };
     }

@@ -40,8 +40,8 @@ export function HeadlineRewrites({ url, markdown, summary, site_category }: Prop
       const data = await rewriteHeadlines({
         data: { url, markdown: markdown.slice(0, 12000), summary, site_category },
       });
-      if (!data?.success) throw new Error(data?.error || "Failed");
-      setResult(data.result as RewriteResult);
+      if (!data?.success) throw new Error("Failed");
+      setResult(data.result as unknown as RewriteResult);
     } catch (e: any) {
       toast({ title: t("headlineRewrites.toastErrorTitle"), description: e.message, variant: "destructive" });
     } finally {

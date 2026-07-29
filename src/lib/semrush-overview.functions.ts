@@ -5,16 +5,18 @@ const GATEWAY_URL = "https://connector-gateway.lovable.dev/semrush";
 
 type Input = { url: string; database?: string };
 
+type JsonValue = string | number | boolean | null | JsonValue[] | { [key: string]: JsonValue };
+
 type SemrushPayload = {
   data?: { columnNames?: string[]; rows?: unknown[][] };
   error?: string;
   status?: number;
 } | null;
 
-function rowsToObjects(payload: SemrushPayload): Record<string, unknown>[] {
+function rowsToObjects(payload: SemrushPayload): Record<string, JsonValue>[] {
   const cols: string[] = payload?.data?.columnNames ?? [];
   const rows: unknown[][] = payload?.data?.rows ?? [];
-  return rows.map((r) => Object.fromEntries(cols.map((c, i) => [c, r[i]])));
+  return rows.map((r) => Object.fromEntries(cols.map((c, i) => [c, r[i] as JsonValue])));
 }
 
 async function semrushGet(path: string, params: Record<string, string>): Promise<SemrushPayload> {
