@@ -4,7 +4,7 @@ import { Wand2, Loader2, Copy, Check, Sparkles } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { supabase } from "@/integrations/supabase/client";
+import { rewriteHeadlines } from "@/lib/rewrite-headlines.functions";
 import { useToast } from "@/hooks/use-toast";
 
 interface Rewrite {
@@ -37,12 +37,11 @@ export function HeadlineRewrites({ url, markdown, summary, site_category }: Prop
   const generate = async () => {
     setLoading(true);
     try {
-      const { data, error } = await supabase.functions.invoke("rewrite-headlines", {
-        body: { url, markdown: markdown.slice(0, 12000), summary, site_category },
+      const data = await rewriteHeadlines({
+        data: { url, markdown: markdown.slice(0, 12000), summary, site_category },
       });
-      if (error) throw new Error(error.message || "Failed");
       if (!data?.success) throw new Error(data?.error || "Failed");
-      setResult(data.result);
+      setResult(data.result as RewriteResult);
     } catch (e: any) {
       toast({ title: t("headlineRewrites.toastErrorTitle"), description: e.message, variant: "destructive" });
     } finally {

@@ -71,8 +71,8 @@ export default function Account() {
   const handleDelete = async () => {
     setDeleting(true);
     try {
-      const { error } = await supabase.functions.invoke("delete-account");
-      if (error) throw error;
+      const { deleteAccount } = await import("@/lib/delete-account.functions");
+      await deleteAccount();
       toast({ title: t("account.deleted"), description: t("account.deletedDesc") });
       await signOut();
       navigate("/", { replace: true });
