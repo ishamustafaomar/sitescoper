@@ -10,7 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { AppHeader } from "@/components/AppHeader";
 import { useAuth } from "@/components/AuthProvider";
 import { supabase } from "@/integrations/supabase/client";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "@/lib/router-compat";
 import { useToast } from "@/hooks/use-toast";
 import { useTranslation } from "react-i18next";
 

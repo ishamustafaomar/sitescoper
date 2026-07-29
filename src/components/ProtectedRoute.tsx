@@ -1,4 +1,4 @@
-import { Navigate, useLocation } from "react-router-dom";
+import { Navigate, useLocation } from "@/lib/router-compat";
 import { useAuth } from "@/components/AuthProvider";
 import { Loader2 } from "lucide-react";
 

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "@/lib/router-compat";
 import { motion, AnimatePresence } from "framer-motion";
 import { Trans, useTranslation } from "react-i18next";
 import { Cookie, X } from "lucide-react";

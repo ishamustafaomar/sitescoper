@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "@/lib/router-compat";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
 import { CheckCircle2, Loader2, Sparkles } from "lucide-react";

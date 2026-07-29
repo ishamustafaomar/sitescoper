@@ -1,5 +1,5 @@
 import { useState, useRef, lazy, Suspense } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "@/lib/router-compat";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, AlertCircle, ExternalLink, Link2, FileText, Download, Lock, ArrowDown, Swords } from "lucide-react";
 import { Trans, useTranslation } from "react-i18next";

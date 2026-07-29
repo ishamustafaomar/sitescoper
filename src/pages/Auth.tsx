@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "@/lib/router-compat";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
 import { Sparkles, Mail, Lock, User, ArrowRight, Loader2 } from "lucide-react";

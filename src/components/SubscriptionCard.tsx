@@ -1,5 +1,5 @@
 import { Sparkles, Crown, ArrowRight, XCircle, RotateCcw, Loader2 } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "@/lib/router-compat";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { useSubscription } from "@/hooks/useSubscription";
