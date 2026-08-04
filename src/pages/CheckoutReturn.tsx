@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "@/lib/router-compat";
 import { motion } from "framer-motion";
-import { Helmet } from "react-helmet-async";
 import { CheckCircle2, Loader2, Sparkles } from "lucide-react";
 import { AppHeader } from "@/components/AppHeader";
 import { Button } from "@/components/ui/button";
@@ -29,15 +28,6 @@ export default function CheckoutReturn() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Helmet>
-        <title>{t("checkoutReturn.metaTitle")}</title>
-        <meta name="description" content={t("checkoutReturn.metaDesc")} />
-        <link rel="canonical" href="https://sitescoper.com/checkout/return" />
-        <meta property="og:title" content={t("checkoutReturn.metaTitle")} />
-        <meta property="og:description" content={t("checkoutReturn.metaDesc")} />
-        <meta property="og:url" content="https://sitescoper.com/checkout/return" />
-        <meta name="robots" content="noindex" />
-      </Helmet>
       <AppHeader />
       <main className="max-w-xl mx-auto px-4 py-16">
         <motion.div

@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "@/lib/router-compat";
 import { Check, Sparkles, Crown, ArrowRight } from "lucide-react";
-import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { AppHeader } from "@/components/AppHeader";
@@ -47,15 +46,6 @@ export default function Pricing() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Helmet>
-        <title>Pricing — SiteScoper Pro</title>
-        <meta name="description" content="Start free with 3 scans / month. Upgrade to SiteScoper Pro for $19/mo — unlimited AI website audits, deep product simulation, competitor compare, chat with report and PDF exports." />
-        <link rel="canonical" href="https://sitescoper.com/pricing" />
-        <meta property="og:title" content="Pricing — SiteScoper Pro" />
-        <meta property="og:description" content="Free plan with 3 scans / month. Pro at $19/mo for unlimited scans and every advanced feature." />
-        <meta property="og:url" content="https://sitescoper.com/pricing" />
-        <meta property="og:type" content="website" />
-      </Helmet>
       <PaymentTestModeBanner />
       <AppHeader />
       <main className="max-w-5xl mx-auto px-4 py-12">

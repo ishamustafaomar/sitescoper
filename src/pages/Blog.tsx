@@ -1,5 +1,4 @@
 import { Link } from "@/lib/router-compat";
-import { Helmet } from "react-helmet-async";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { AppHeader } from "@/components/AppHeader";
@@ -50,22 +49,6 @@ const Blog = () => {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
-      <Helmet>
-        <title>SEO &amp; Website Audit Blog — SiteScoper</title>
-        <meta
-          name="description"
-          content="Practical SEO, website audit, and conversion guides for founders. New posts every day, written for people who ship the fixes themselves."
-        />
-        <link rel="canonical" href="https://sitescoper.com/blog" />
-        <meta property="og:title" content="SiteScoper Blog — SEO & Website Audit Guides" />
-        <meta
-          property="og:description"
-          content="Practical SEO, website audit, and conversion guides for founders."
-        />
-        <meta property="og:url" content="https://sitescoper.com/blog" />
-        <meta property="og:type" content="website" />
-        <script type="application/ld+json">{JSON.stringify(blogLd)}</script>
-      </Helmet>
       <AppHeader />
 
       <main className="flex-1 max-w-5xl mx-auto px-4 py-12 md:py-20 w-full">

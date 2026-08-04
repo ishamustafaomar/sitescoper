@@ -1,21 +1,11 @@
 import { AppHeader } from "@/components/AppHeader";
 import { motion } from "framer-motion";
-import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 
 const Privacy = () => {
   const { t } = useTranslation();
   return (
     <div className="min-h-screen bg-background">
-      <Helmet>
-        <title>{t("legalPrivacy.title")} — SiteScoper</title>
-        <meta name="description" content="How SiteScoper collects, uses, and protects your data when you analyze websites with our AI audit tool." />
-        <link rel="canonical" href="https://sitescoper.com/privacy" />
-        <meta property="og:title" content="Privacy Policy — SiteScoper" />
-        <meta property="og:description" content="How SiteScoper handles your data." />
-        <meta property="og:url" content="https://sitescoper.com/privacy" />
-        <meta property="og:type" content="article" />
-      </Helmet>
       <AppHeader />
       <main className="max-w-3xl mx-auto px-4 py-12">
         <motion.div

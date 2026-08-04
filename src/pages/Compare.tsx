@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Helmet } from "react-helmet-async";
 import { Swords, Loader2, ArrowRight, Trophy, Minus } from "lucide-react";
 import { AppHeader } from "@/components/AppHeader";
 import { Button } from "@/components/ui/button";
@@ -66,14 +65,6 @@ export default function Compare() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Helmet>
-        <title>{t("compare.metaTitle")}</title>
-        <meta name="description" content={t("compare.metaDesc")} />
-        <link rel="canonical" href="https://sitescoper.com/compare" />
-        <meta property="og:title" content={t("compare.metaTitle")} />
-        <meta property="og:description" content={t("compare.metaDescOg")} />
-        <meta property="og:url" content="https://sitescoper.com/compare" />
-      </Helmet>
       <AppHeader />
       <main className="max-w-6xl mx-auto px-4 py-10 space-y-8">
         <ProGate
