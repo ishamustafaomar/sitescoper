@@ -3,7 +3,6 @@ import { Link, useNavigate } from "@/lib/router-compat";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, AlertCircle, ExternalLink, Link2, FileText, Download, Lock, ArrowDown, Swords } from "lucide-react";
 import { Trans, useTranslation } from "react-i18next";
-import { Helmet } from "react-helmet-async";
 import { UrlInput } from "@/components/UrlInput";
 import { CustomInstructions } from "@/components/CustomInstructions";
 import { HeroPreview } from "@/components/landing/HeroPreview";
@@ -171,28 +170,6 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Helmet>
-        <title>Stop Guessing, Start Growing — AI Website Auditor in 60 Seconds | SiteScoper</title>
-        <meta name="description" content="SiteScoper is the AI website auditor that delivers actionable UX & SEO fixes in 60 seconds. Start free — 3 full scans per month, no credit card." />
-        <link rel="canonical" href="https://sitescoper.com/" />
-        <meta property="og:title" content="AI Website UX Auditor & Instant SEO Checker | SiteScoper" />
-        <meta property="og:description" content="Instant AI audit of your site's UX, SEO and conversion. The 3 fixes actually worth shipping this week." />
-        <meta property="og:url" content="https://sitescoper.com/" />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <script type="application/ld+json">{JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          "mainEntity": [
-            { "@type": "Question", "name": "How is this different from other SEO tools?", "acceptedAnswer": { "@type": "Answer", "text": "Most SEO tools give you a checklist of technical issues. SiteScoper acts like a senior product strategist — it evaluates your messaging, positioning, value proposition, and trust signals alongside the technical stuff. Real, opinionated feedback you can actually use." } },
-            { "@type": "Question", "name": "Do you actually crawl my whole site?", "acceptedAnswer": { "@type": "Answer", "text": "We crawl up to 8 of your most important pages — typically homepage, pricing, features, docs, about, and signup. This gives the AI enough context to understand your product, not just your front door." } },
-            { "@type": "Question", "name": "How much does it cost?", "acceptedAnswer": { "@type": "Answer", "text": "You get 3 free website scans per month with no credit card. Upgrade to SiteScoper Pro for unlimited scans, deep product simulation, competitor compare, PDF exports and chat-with-your-report." } },
-            { "@type": "Question", "name": "How accurate is the AI feedback?", "acceptedAnswer": { "@type": "Answer", "text": "The AI is powered by frontier models (GPT-5 / Gemini Pro) with prompts tuned by experienced product designers. It's not perfect — but it consistently catches issues that even experienced founders miss." } },
-            { "@type": "Question", "name": "Can I export the analysis?", "acceptedAnswer": { "@type": "Answer", "text": "Yes — every analysis can be exported as a clean, professional PDF. Great for sharing with teammates, clients, or stakeholders." } },
-            { "@type": "Question", "name": "What kind of websites does it work on?", "acceptedAnswer": { "@type": "Answer", "text": "Anything publicly accessible — SaaS landing pages, ecommerce stores, portfolios, blogs, marketing sites, documentation. If it's on the web, we can analyze it." } }
-          ]
-        })}</script>
-      </Helmet>
       <AppHeader />
 
       <main className="max-w-6xl mx-auto px-4 py-8 space-y-8">

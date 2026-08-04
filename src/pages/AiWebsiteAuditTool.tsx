@@ -1,5 +1,4 @@
 import { Link } from "@/lib/router-compat";
-import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { Sparkles, Zap, Shield, BarChart3, Check } from "lucide-react";
 import { AppHeader } from "@/components/AppHeader";
@@ -53,16 +52,6 @@ const AiWebsiteAuditTool = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Helmet>
-        <title>{t("pages.aiTool.metaTitle")}</title>
-        <meta name="description" content={t("pages.aiTool.metaDesc")} />
-        <link rel="canonical" href="https://sitescoper.com/ai-website-audit-tool" />
-        <meta property="og:title" content={t("pages.aiTool.ogTitle")} />
-        <meta property="og:description" content={t("pages.aiTool.ogDesc")} />
-        <meta property="og:url" content="https://sitescoper.com/ai-website-audit-tool" />
-        <meta property="og:type" content="website" />
-        <script type="application/ld+json">{JSON.stringify(faqLd)}</script>
-      </Helmet>
       <AppHeader />
 
       <main className="max-w-5xl mx-auto px-4 py-12 md:py-20">

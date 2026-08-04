@@ -1,6 +1,5 @@
 import { useLocation } from "@/lib/router-compat";
 import { useEffect } from "react";
-import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 
 const NotFound = () => {
@@ -13,11 +12,6 @@ const NotFound = () => {
 
   return (
     <>
-      <Helmet>
-        <title>{t("notFound.title")}</title>
-        <meta name="robots" content="noindex, nofollow" />
-        <meta name="description" content={t("notFound.description")} />
-      </Helmet>
     <div className="flex min-h-screen items-center justify-center bg-muted">
       <div className="text-center">
         <h1 className="mb-4 text-4xl font-bold">404</h1>

@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Helmet } from "react-helmet-async";
 import {
   Users, BarChart3, Globe, TrendingUp, Clock, Loader2,
   ChevronDown, ChevronUp, ArrowLeft
@@ -113,15 +112,6 @@ export default function Admin() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Helmet>
-        <title>{t("admin.title")}</title>
-        <meta name="description" content="Internal SiteScoper admin dashboard for monitoring users, analyses and platform activity." />
-        <link rel="canonical" href="https://sitescoper.com/admin" />
-        <meta property="og:title" content={t("admin.title")} />
-        <meta property="og:description" content="Internal admin dashboard for SiteScoper platform monitoring." />
-        <meta property="og:url" content="https://sitescoper.com/admin" />
-        <meta name="robots" content="noindex" />
-      </Helmet>
       <AppHeader />
 
       <main className="max-w-6xl mx-auto px-4 py-8 space-y-6">

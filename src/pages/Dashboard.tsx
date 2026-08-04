@@ -1,7 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import { AnimatePresence } from "framer-motion";
 import { useNavigate } from "@/lib/router-compat";
-import { Helmet } from "react-helmet-async";
 import { Globe, Clock, Search, Sparkles, Loader2, Plus, Swords } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
@@ -199,15 +198,6 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Helmet>
-        <title>{t("dashboard.title")}</title>
-        <meta name="description" content={t("dashboard.metaDesc")} />
-        <link rel="canonical" href="https://sitescoper.com/dashboard" />
-        <meta property="og:title" content={t("dashboard.title")} />
-        <meta property="og:description" content={t("dashboard.metaDesc")} />
-        <meta property="og:url" content="https://sitescoper.com/dashboard" />
-        <meta name="robots" content="noindex" />
-      </Helmet>
       <AppHeader />
 
       <main className="max-w-7xl mx-auto px-4 py-8 space-y-8">

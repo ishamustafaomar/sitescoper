@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "@/lib/router-compat";
 import { motion } from "framer-motion";
-import { Helmet } from "react-helmet-async";
 import { ArrowLeft, Download, Loader2, Share2, Check, Copy, Home, Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AppHeader } from "@/components/AppHeader";
@@ -148,15 +147,6 @@ export default function AnalysisDetail() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Helmet>
-        <title>{record?.url ? t("analysisDetail.title", { url: record.url }) : t("analysisDetail.titleFallback")}</title>
-        <meta name="description" content={record?.summary ? String(record.summary).slice(0, 155) : t("analysisDetail.metaDescriptionFallback")} />
-        <link rel="canonical" href={`https://sitescoper.com/analysis/${id}`} />
-        <meta property="og:title" content={record?.url ? t("analysisDetail.title", { url: record.url }) : t("analysisDetail.titleFallback")} />
-        <meta property="og:description" content={record?.summary ? String(record.summary).slice(0, 155) : t("analysisDetail.metaDescriptionFallback")} />
-        <meta property="og:url" content={`https://sitescoper.com/analysis/${id}`} />
-        <meta name="robots" content="noindex" />
-      </Helmet>
       <AppHeader />
       <main className="max-w-4xl mx-auto px-4 py-8 space-y-6">
         <div className="flex items-center justify-between gap-3 flex-wrap">

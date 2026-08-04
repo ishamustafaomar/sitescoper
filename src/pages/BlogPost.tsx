@@ -1,6 +1,5 @@
 import { useMemo } from "react";
 import { Link, Navigate, useParams } from "@/lib/router-compat";
-import { Helmet } from "react-helmet-async";
 import { useQuery } from "@tanstack/react-query";
 import { ArrowLeft } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -184,18 +183,6 @@ const BlogPost = () => {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
-      <Helmet>
-        <title>{`${post.title} | SiteScoper`}</title>
-        <meta name="description" content={post.description} />
-        <link rel="canonical" href={url} />
-        <meta property="og:title" content={post.title} />
-        <meta property="og:description" content={post.description} />
-        <meta property="og:url" content={url} />
-        <meta property="og:type" content="article" />
-        <meta property="article:published_time" content={post.published_at} />
-        {ld && <script type="application/ld+json">{JSON.stringify(ld.article)}</script>}
-        {ld && <script type="application/ld+json">{JSON.stringify(ld.breadcrumb)}</script>}
-      </Helmet>
       <AppHeader />
 
       <main className="flex-1 max-w-3xl mx-auto px-4 py-12 md:py-16 w-full">

@@ -120,7 +120,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "icon", href: "/favicon.png?v=5", type: "image/png", sizes: "any" },
       { rel: "apple-touch-icon", href: "/favicon.png?v=5" },
       { rel: "manifest", href: "/site.webmanifest" },
-      { rel: "canonical", href: "https://sitescoper.com/" },
       { rel: "dns-prefetch", href: "https://tmdnoailedngafchtaxj.supabase.co" },
     ],
     scripts: [{ type: "application/ld+json", children: JSON_LD }],
