@@ -8,6 +8,7 @@ export function pageHead(opts: {
   image?: string;
   noindex?: boolean;
   publishedTime?: string;
+  jsonLd?: unknown[];
 }) {
   const url = `${SITE}${opts.path}`;
   const meta: Array<Record<string, string>> = [
@@ -31,5 +32,38 @@ export function pageHead(opts: {
   return {
     meta,
     links: opts.noindex ? [] : [{ rel: "canonical", href: url }],
+    ...(opts.jsonLd?.length
+      ? {
+          scripts: opts.jsonLd.map((ld) => ({
+            type: "application/ld+json",
+            children: JSON.stringify(ld),
+          })),
+        }
+      : {}),
+  };
+}
+
+export function faqLd(faqs: Array<{ q: string; a: string }>) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
+}
+
+export function breadcrumbLd(items: Array<{ name: string; path: string }>) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((it, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: it.name,
+      item: `${SITE}${it.path}`,
+    })),
   };
 }
