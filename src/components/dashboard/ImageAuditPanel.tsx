@@ -22,7 +22,7 @@ export function ImageAuditPanel({ images = [], suggestions = [] }: Props) {
         <div className="space-y-2 max-h-64 overflow-y-auto">
           {suggestions.slice(0, 8).map((s, i) => (
             <div key={i} className="flex gap-3 p-2 rounded-lg bg-muted/30">
-              <img src={s.src} alt={s.current_alt || "image"} className="h-12 w-12 rounded object-cover shrink-0 bg-muted" loading="lazy" />
+              <img src={s.src} alt={s.current_alt || ""} className="h-12 w-12 rounded object-cover shrink-0 bg-muted" loading="lazy" />
               <div className="min-w-0 flex-1 space-y-0.5">
                 <p className="text-[11px] text-destructive font-body">{s.issue}</p>
                 <p className="text-xs font-heading font-medium truncate">→ {s.suggested_alt}</p>
