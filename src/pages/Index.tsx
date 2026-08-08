@@ -323,10 +323,10 @@ const Index = () => {
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div className="space-y-4">
-                  <h3 className="font-heading font-semibold text-xs text-muted-foreground uppercase tracking-widest flex items-center gap-2">
+                  <h2 className="font-heading font-semibold text-xs text-muted-foreground uppercase tracking-widest flex items-center gap-2">
                     <Link2 className="h-3.5 w-3.5" />
                     Website Preview
-                  </h3>
+                  </h2>
                   <WebsitePreview data={scrapeData} url={currentUrl} />
 
                   {scrapeData.metadata && (
@@ -362,10 +362,10 @@ const Index = () => {
                 </div>
 
                 <div className="space-y-4">
-                  <h3 className="font-heading font-semibold text-xs text-muted-foreground uppercase tracking-widest flex items-center gap-2">
+                  <h2 className="font-heading font-semibold text-xs text-muted-foreground uppercase tracking-widest flex items-center gap-2">
                     <Sparkles className="h-3.5 w-3.5" />
                     AI Analysis
-                  </h3>
+                  </h2>
                   {analysis ? (
                     <AnalysisPanel analysis={analysis} scrapeData={scrapeData ?? undefined} />
                   ) : step === "analyzing" ? null : (
