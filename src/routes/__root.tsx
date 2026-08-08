@@ -47,11 +47,6 @@ if (typeof window !== "undefined") {
   });
 }
 
-const TITLE = "AI Website UX Auditor & Instant SEO Checker | SiteScoper";
-const DESCRIPTION =
-  "SiteScoper is the AI website UX auditor and instant SEO checker founders use to find what's hurting conversions — full report in 60 seconds, free to start.";
-const SOCIAL_DESCRIPTION =
-  "The AI website UX auditor and instant SEO checker founders use. Full UX, SEO and conversion report in 60 seconds — free to start.";
 const OG_IMAGE =
   "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/e6aaf4ed-72ae-4d3f-bb2f-341eb5731759";
 
