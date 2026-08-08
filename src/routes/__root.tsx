@@ -47,11 +47,6 @@ if (typeof window !== "undefined") {
   });
 }
 
-const TITLE = "AI Website UX Auditor & Instant SEO Checker | SiteScoper";
-const DESCRIPTION =
-  "SiteScoper is the AI website UX auditor and instant SEO checker founders use to find what's hurting conversions — full report in 60 seconds, free to start.";
-const SOCIAL_DESCRIPTION =
-  "The AI website UX auditor and instant SEO checker founders use. Full UX, SEO and conversion report in 60 seconds — free to start.";
 const OG_IMAGE =
   "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/e6aaf4ed-72ae-4d3f-bb2f-341eb5731759";
 
@@ -96,23 +91,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         name: "google-site-verification",
         content: "efmde7OOLbGZIuVPnO_yBB51yBtDthDJkhFaPo_9XjY",
       },
-      { title: TITLE },
-      { name: "description", content: DESCRIPTION },
       { name: "author", content: "SiteScoper" },
       { name: "theme-color", content: "#0b0b0f" },
       { name: "referrer", content: "strict-origin-when-cross-origin" },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://sitescoper.com/" },
       { property: "og:site_name", content: "SiteScoper" },
       { property: "og:locale", content: "en_US" },
       { property: "og:image", content: OG_IMAGE },
-      { property: "og:title", content: TITLE },
-      { property: "og:description", content: SOCIAL_DESCRIPTION },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@SiteScoper" },
       { name: "twitter:image", content: OG_IMAGE },
-      { name: "twitter:title", content: TITLE },
-      { name: "twitter:description", content: SOCIAL_DESCRIPTION },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
