@@ -11,7 +11,8 @@
     "compare": "Vergleichen",
     "pricing": "Preise",
     "upgrade": "Upgrade",
-    "menu": "Menü"
+    "menu": "Menü",
+    "connections": "Verbindungen"
   },
   "hero": {
     "badge": "Powered by Gemini 2.5 Pro · 20+ Analysedimensionen",
@@ -1309,7 +1310,49 @@
       "multilanguage": {
         "title": "Mehrsprachige Unterstützung",
         "desc": "SiteScoper ist jetzt auf Englisch, Spanisch, Französisch, Deutsch und Italienisch verfügbar. Wechsle die Sprache jederzeit über die Kopfzeile."
+      },
+      "connections": {
+        "title": "Verbindungs-Hub",
+        "desc": "Der neue Tab „Verbindungen“ zeigt alle geplanten Integrationen – Slack, Google Sheets, Notion, Linear, HubSpot und mehr. Wähle deine aus und werde beim Start benachrichtigt."
       }
+    }
+  },
+  "connections": {
+    "badge": "Demnächst",
+    "title": "Verbindungen",
+    "subtitle": "Übertrage Audits, Scores und Aufgabenlisten direkt in die Tools, die dein Team bereits nutzt. Wähle aus, was du brauchst – wir melden uns, sobald es verfügbar ist.",
+    "searchPlaceholder": "Verbindungen suchen…",
+    "popular": "Beliebt",
+    "notifyMe": "Benachrichtigen",
+    "onList": "Auf der Liste",
+    "requested": "{{app}} zu deiner Liste hinzugefügt",
+    "requestedDesc": "Wir schicken dir eine E-Mail, sobald diese Verbindung bereit ist.",
+    "noResults": "Keine Verbindung passt zu deiner Suche.",
+    "missingTitle": "Fehlt eine Integration?",
+    "missingDesc": "Sag uns, welches Tool dein Workflow braucht – wir priorisieren es.",
+    "categories": {
+      "all": "Alle",
+      "reporting": "Berichte",
+      "collaboration": "Zusammenarbeit",
+      "productivity": "Produktivität",
+      "data": "Daten",
+      "crm": "CRM"
+    },
+    "status": {
+      "soon": "Demnächst",
+      "beta": "Beta"
+    },
+    "blurbs": {
+      "exportTo": "Audits und Problemlisten nach {{app}} exportieren",
+      "deck": "Kundenfertige Präsentationen in {{app}} erstellen",
+      "docs": "Berichte als {{app}}-Dokumente veröffentlichen",
+      "alerts": "Scan-Ergebnisse und Warnungen in {{app}} erhalten",
+      "tasks": "Fixes in {{app}}-Aufgaben verwandeln",
+      "storage": "PDF-Berichte in {{app}} speichern",
+      "email": "Berichte über dein {{app}}-Konto senden",
+      "schedule": "Neue Scans in {{app}} planen",
+      "warehouse": "Audit-Daten nach {{app}} übertragen",
+      "crm": "Audits an deine {{app}}-Datensätze anhängen"
     }
   }
 }

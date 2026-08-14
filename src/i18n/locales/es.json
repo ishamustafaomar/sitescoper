@@ -11,7 +11,8 @@
     "compare": "Comparar",
     "pricing": "Precios",
     "upgrade": "Mejorar",
-    "menu": "Menú"
+    "menu": "Menú",
+    "connections": "Conexiones"
   },
   "hero": {
     "badge": "Con tecnología de Gemini 2.5 Pro · 20+ dimensiones de análisis",
@@ -1309,7 +1310,49 @@
       "multilanguage": {
         "title": "Soporte multi-idioma",
         "desc": "SiteScoper ya está disponible en inglés, español, francés, alemán e italiano. Cambia de idioma en cualquier momento desde la cabecera."
+      },
+      "connections": {
+        "title": "Centro de conexiones",
+        "desc": "La nueva pestaña Conexiones muestra todas las integraciones previstas: Slack, Google Sheets, Notion, Linear, HubSpot y más. Elige las que quieras y te avisaremos cuando estén listas."
       }
+    }
+  },
+  "connections": {
+    "badge": "Muy pronto",
+    "title": "Conexiones",
+    "subtitle": "Envía tus auditorías, puntuaciones y listas de mejoras directamente a las herramientas que ya usa tu equipo. Elige las que quieras y te avisaremos en cuanto estén disponibles.",
+    "searchPlaceholder": "Buscar conexiones…",
+    "popular": "Popular",
+    "notifyMe": "Avísame",
+    "onList": "En la lista",
+    "requested": "{{app}} añadido a tu lista",
+    "requestedDesc": "Te enviaremos un correo cuando esta conexión esté lista.",
+    "noResults": "Ninguna conexión coincide con tu búsqueda.",
+    "missingTitle": "¿Falta alguna integración?",
+    "missingDesc": "Dinos de qué herramienta depende tu flujo de trabajo y la priorizaremos.",
+    "categories": {
+      "all": "Todas",
+      "reporting": "Informes",
+      "collaboration": "Colaboración",
+      "productivity": "Productividad",
+      "data": "Datos",
+      "crm": "CRM"
+    },
+    "status": {
+      "soon": "Muy pronto",
+      "beta": "Beta"
+    },
+    "blurbs": {
+      "exportTo": "Exporta auditorías y listas de problemas a {{app}}",
+      "deck": "Genera presentaciones para clientes en {{app}}",
+      "docs": "Publica informes como documentos de {{app}}",
+      "alerts": "Recibe resultados y alertas en {{app}}",
+      "tasks": "Convierte las mejoras en tareas de {{app}}",
+      "storage": "Guarda informes PDF en {{app}}",
+      "email": "Envía informes desde tu cuenta de {{app}}",
+      "schedule": "Programa nuevos análisis en {{app}}",
+      "warehouse": "Envía los datos de auditoría a {{app}}",
+      "crm": "Adjunta auditorías a tus registros de {{app}}"
     }
   }
 }
