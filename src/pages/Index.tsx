@@ -11,6 +11,7 @@ import { AnalysisPanel } from "@/components/AnalysisPanel";
 import { ScanningAnimation } from "@/components/ScanningAnimation";
 import { ChatPanel } from "@/components/ChatPanel";
 import { AppHeader } from "@/components/AppHeader";
+import { EarlyAccessBanner } from "@/components/EarlyAccessBanner";
 const WhyPaySection = lazy(() => import("@/components/landing/WhyPaySection").then(m => ({ default: m.WhyPaySection })));
 const FeaturesSection = lazy(() => import("@/components/landing/FeaturesSection").then(m => ({ default: m.FeaturesSection })));
 const HowItWorksSection = lazy(() => import("@/components/landing/HowItWorksSection").then(m => ({ default: m.HowItWorksSection })));
