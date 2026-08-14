@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { useSubscription } from "@/hooks/useSubscription";
 import { useAuth } from "@/components/AuthProvider";
 import { useTranslation } from "react-i18next";
+import { FREE_PRO_MODE } from "@/lib/free-access";
 
 export function WhyPaySection() {
   const navigate = useNavigate();
@@ -83,10 +84,20 @@ export function WhyPaySection() {
               <div className="font-heading text-lg font-bold text-primary inline-flex items-center gap-1.5">
                 <Crown className="h-4 w-4" /> {t("landing.whyPay.pro")}
               </div>
-              <div>
-                <span className="text-3xl font-heading font-bold">$19</span>
-                <span className="text-xs text-muted-foreground font-body ml-1">{t("landing.whyPay.perMonth")}</span>
-              </div>
+              {FREE_PRO_MODE ? (
+                <div className="text-right">
+                  <div className="flex items-baseline gap-2 justify-end">
+                    <span className="text-base font-heading font-bold text-muted-foreground line-through">$19</span>
+                    <span className="text-3xl font-heading font-bold text-primary">$0</span>
+                  </div>
+                  <span className="text-[11px] text-primary font-body">{t("earlyAccess.freeForNow")}</span>
+                </div>
+              ) : (
+                <div>
+                  <span className="text-3xl font-heading font-bold">$19</span>
+                  <span className="text-xs text-muted-foreground font-body ml-1">{t("landing.whyPay.perMonth")}</span>
+                </div>
+              )}
             </div>
             <ul className="space-y-2 mb-6 flex-1">
               {PRO_PERKS.map((p) => (
@@ -97,7 +108,8 @@ export function WhyPaySection() {
               ))}
             </ul>
             <Button size="sm" className="shadow-glow" onClick={() => navigate("/pricing")}>
-              <Sparkles className="h-3.5 w-3.5" /> {t("landing.whyPay.upgrade")}
+              <Sparkles className="h-3.5 w-3.5" />
+              {FREE_PRO_MODE ? t("earlyAccess.claimCta") : t("landing.whyPay.upgrade")}
               <ArrowRight className="h-3.5 w-3.5" />
             </Button>
           </motion.div>

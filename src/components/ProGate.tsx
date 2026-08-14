@@ -6,6 +6,7 @@ import { Card } from "@/components/ui/card";
 import { useSubscription } from "@/hooks/useSubscription";
 import { useAuth } from "@/components/AuthProvider";
 import { useTranslation } from "react-i18next";
+import { FREE_PRO_MODE } from "@/lib/free-access";
 
 interface Props {
   children: ReactNode;
@@ -33,10 +34,10 @@ export function ProGate({
       </div>
       <h3 className="font-heading font-bold text-lg mb-2">{title ?? t("proGate.defaultTitle")}</h3>
       <p className="text-sm text-muted-foreground font-body max-w-md mx-auto mb-5">
-        {description ?? t("proGate.defaultDesc")}
+        {FREE_PRO_MODE ? t("earlyAccess.gateDesc") : description ?? t("proGate.defaultDesc")}
       </p>
       <Button onClick={() => navigate(user ? "/pricing" : "/auth")} className="shadow-glow">
-        <Sparkles className="h-4 w-4" /> {t("proGate.upgradeBtn")}
+        <Sparkles className="h-4 w-4" /> {FREE_PRO_MODE ? t("earlyAccess.claimCta") : t("proGate.upgradeBtn")}
       </Button>
     </Card>
   );

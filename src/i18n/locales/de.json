@@ -1322,6 +1322,10 @@
       "integrationRequests": {
         "title": "Jede Integration anfragen",
         "desc": "Trage dich mit einem Klick in die Warteliste einer Verbindung ein oder nenne uns ein fehlendes Tool – deine Anfrage geht direkt an das SiteScoper-Team."
+      },
+      "freeEarlyAccess": {
+        "title": "Pro ist im Early Access kostenlos",
+        "desc": "Jedes Konto erhält jetzt das volle Pro — unbegrenzte Scans, Konkurrenzmodus, Chat mit deinem Report und PDF-Export — kostenlos während des Early Access. Bestehende Abonnenten behalten alles gratis."
       }
     }
   },
@@ -1378,5 +1382,16 @@
     "missingSubmit": "Anfrage senden",
     "missingSent": "Anfrage gesendet",
     "missingSentDesc": "Danke – wir haben es auf unsere Liste gesetzt."
+  },
+  "earlyAccess": {
+    "badge": "Early Access",
+    "banner": "Pro ist gerade für alle kostenlos — keine Karte, keine Kosten.",
+    "freeForNow": "Vorerst kostenlos",
+    "claimCta": "Pro holen — jetzt kostenlos",
+    "pricingSubtitle": "Pro ist während des Early Access komplett kostenlos. Keine Kreditkarte, keine Kosten — einfach anmelden und alles nutzen.",
+    "pricingFootnote": "Kostenloser Early Access: Alle Pro-Funktionen sind gratis freigeschaltet. Bestehende Abonnenten behalten Pro ebenfalls kostenlos. Wir kündigen rechtzeitig an, bevor Preise starten.",
+    "proFreeBadge": "Pro (gratis)",
+    "accountDesc": "Du hast vollen Pro-Zugang, kostenlos während des Early Access. Aktuell ist nichts zu zahlen.",
+    "gateDesc": "Das ist eine Pro-Funktion — und Pro ist im Early Access für alle kostenlos."
   }
 }

@@ -3,6 +3,7 @@ import { useNavigate } from "@/lib/router-compat";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { useSubscription } from "@/hooks/useSubscription";
+import { FREE_PRO_MODE } from "@/lib/free-access";
 import { createPortalSession } from "@/lib/create-portal-session.functions";
 import { cancelSubscription } from "@/lib/cancel-subscription.functions";
 import { getStripeEnvironment } from "@/lib/stripe";
@@ -21,7 +22,7 @@ import {
 } from "@/components/ui/alert-dialog";
 
 export function SubscriptionCard() {
-  const { isPro, subscription, refetch } = useSubscription();
+  const { isPro, paidPro, subscription, refetch } = useSubscription();
   const navigate = useNavigate();
   const { toast } = useToast();
   const { t, i18n } = useTranslation();
@@ -78,10 +79,21 @@ export function SubscriptionCard() {
           {t("plan.title")}
         </h2>
         <span className={`text-xs font-body px-2 py-0.5 rounded-full inline-flex items-center gap-1 border ${isPro ? "bg-primary/10 text-primary border-primary/20" : "bg-muted text-muted-foreground border-border"}`}>
-          {isPro ? <><Crown className="h-3 w-3" /> Pro</> : t("plan.free")}
+          {isPro ? <><Crown className="h-3 w-3" /> {FREE_PRO_MODE ? t("earlyAccess.proFreeBadge") : "Pro"}</> : t("plan.free")}
         </span>
       </div>
-      {isPro ? (
+      {FREE_PRO_MODE ? (
+        <>
+          <p className="text-sm text-muted-foreground font-body">{t("earlyAccess.accountDesc")}</p>
+          {paidPro && subscription?.stripe_customer_id && (
+            <div className="flex flex-wrap gap-2">
+              <Button variant="outline" size="sm" onClick={openPortal} disabled={loading}>
+                {t("plan.manageBilling")}
+              </Button>
+            </div>
+          )}
+        </>
+      ) : isPro ? (
         <>
           {scheduledToCancel ? (
             <p className="text-sm text-muted-foreground font-body">

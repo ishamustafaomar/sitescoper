@@ -1322,6 +1322,10 @@
       "integrationRequests": {
         "title": "Demandez n'importe quelle intégration",
         "desc": "Rejoignez la liste d'attente d'une connexion en un clic, ou signalez un outil manquant — votre demande arrive directement à l'équipe SiteScoper."
+      },
+      "freeEarlyAccess": {
+        "title": "Pro est gratuit pendant l'accès anticipé",
+        "desc": "Chaque compte bénéficie de Pro complet — analyses illimitées, mode concurrents, chat avec votre rapport et export PDF — gratuitement pendant l'accès anticipé. Les abonnés actuels conservent tout sans frais."
       }
     }
   },
@@ -1378,5 +1382,16 @@
     "missingSubmit": "Envoyer la demande",
     "missingSent": "Demande envoyée",
     "missingSentDesc": "Merci — nous l'avons ajoutée à notre liste."
+  },
+  "earlyAccess": {
+    "badge": "Accès anticipé",
+    "banner": "Pro est gratuit pour tout le monde en ce moment — sans carte, sans frais.",
+    "freeForNow": "Gratuit pour l'instant",
+    "claimCta": "Obtenir Pro — gratuit pour l'instant",
+    "pricingSubtitle": "Pro est entièrement gratuit pendant l'accès anticipé. Aucune carte, aucun frais — connectez-vous et profitez de tout.",
+    "pricingFootnote": "Accès anticipé gratuit : tout Pro est débloqué sans frais. Les abonnés actuels gardent aussi Pro gratuitement. Nous préviendrons largement avant de facturer.",
+    "proFreeBadge": "Pro (gratuit)",
+    "accountDesc": "Vous avez l'accès Pro complet, gratuit pendant l'accès anticipé. Rien à payer pour l'instant.",
+    "gateDesc": "C'est une fonctionnalité Pro — et Pro est gratuit pour tous pendant l'accès anticipé."
   }
 }
