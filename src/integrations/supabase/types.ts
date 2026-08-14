@@ -247,6 +247,39 @@ export type Database = {
           },
         ]
       }
+      integration_requests: {
+        Row: {
+          connector_id: string | null
+          connector_name: string
+          created_at: string
+          id: string
+          note: string | null
+          status: string
+          user_email: string | null
+          user_id: string
+        }
+        Insert: {
+          connector_id?: string | null
+          connector_name: string
+          created_at?: string
+          id?: string
+          note?: string | null
+          status?: string
+          user_email?: string | null
+          user_id: string
+        }
+        Update: {
+          connector_id?: string | null
+          connector_name?: string
+          created_at?: string
+          id?: string
+          note?: string | null
+          status?: string
+          user_email?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
       onboarding_responses: {
         Row: {
           company: string | null

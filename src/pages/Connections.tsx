@@ -1,21 +1,46 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import { Plug, Search, Sparkles, Bell, Check } from "lucide-react";
+import { Plug, Search, Sparkles, Bell, Check, Send, Loader2 } from "lucide-react";
 import { AppHeader } from "@/components/AppHeader";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
+import { useAuth } from "@/components/AuthProvider";
+import { supabase } from "@/integrations/supabase/client";
 import { CONNECTORS, CONNECTOR_CATEGORIES, type ConnectorCategory } from "@/lib/connectors-catalog";
 import { cn } from "@/lib/utils";
 
 export default function Connections() {
   const { t } = useTranslation();
   const { toast } = useToast();
+  const { user } = useAuth();
   const [query, setQuery] = useState("");
   const [cat, setCat] = useState<ConnectorCategory | "all">("all");
   const [requested, setRequested] = useState<string[]>([]);
+  const [pending, setPending] = useState<string | null>(null);
+  const [otherName, setOtherName] = useState("");
+  const [otherNote, setOtherNote] = useState("");
+  const [sending, setSending] = useState(false);
+
+  useEffect(() => {
+    if (!user) return;
+    let active = true;
+    (async () => {
+      const { data } = await supabase
+        .from("integration_requests")
+        .select("connector_id")
+        .eq("user_id", user.id);
+      if (active && data) {
+        setRequested(data.map((r: { connector_id: string | null }) => r.connector_id).filter(Boolean) as string[]);
+      }
+    })();
+    return () => {
+      active = false;
+    };
+  }, [user]);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -24,10 +49,51 @@ export default function Connections() {
     );
   }, [query, cat]);
 
-  const request = (id: string, name: string) => {
-    if (requested.includes(id)) return;
+  const request = async (id: string, name: string) => {
+    if (requested.includes(id) || pending) return;
+    if (!user) {
+      toast({ title: t("connections.signInRequired"), variant: "destructive" });
+      return;
+    }
+    setPending(id);
+    const { error } = await supabase.from("integration_requests").insert({
+      user_id: user.id,
+      user_email: user.email ?? null,
+      connector_id: id,
+      connector_name: name,
+    });
+    setPending(null);
+    if (error) {
+      toast({ title: t("connections.requestFailed"), variant: "destructive" });
+      return;
+    }
     setRequested((r) => [...r, id]);
     toast({ title: t("connections.requested", { app: name }), description: t("connections.requestedDesc") });
+  };
+
+  const submitOther = async () => {
+    const name = otherName.trim();
+    if (!name || sending) return;
+    if (!user) {
+      toast({ title: t("connections.signInRequired"), variant: "destructive" });
+      return;
+    }
+    setSending(true);
+    const { error } = await supabase.from("integration_requests").insert({
+      user_id: user.id,
+      user_email: user.email ?? null,
+      connector_id: null,
+      connector_name: name,
+      note: otherNote.trim() || null,
+    });
+    setSending(false);
+    if (error) {
+      toast({ title: t("connections.requestFailed"), variant: "destructive" });
+      return;
+    }
+    setOtherName("");
+    setOtherNote("");
+    toast({ title: t("connections.missingSent"), description: t("connections.missingSentDesc") });
   };
 
   return (
@@ -117,9 +183,15 @@ export default function Connections() {
                       variant={done ? "secondary" : "outline"}
                       className="text-xs font-body"
                       onClick={() => request(c.id, c.name)}
-                      disabled={done}
+                      disabled={done || pending === c.id}
                     >
-                      {done ? <Check className="h-3.5 w-3.5" /> : <Bell className="h-3.5 w-3.5" />}
+                      {pending === c.id ? (
+                        <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                      ) : done ? (
+                        <Check className="h-3.5 w-3.5" />
+                      ) : (
+                        <Bell className="h-3.5 w-3.5" />
+                      )}
                       {done ? t("connections.onList") : t("connections.notifyMe")}
                     </Button>
                   </div>
@@ -135,6 +207,28 @@ export default function Connections() {
           <section className="bg-card border border-border rounded-2xl p-6 space-y-2">
             <h2 className="font-heading font-semibold">{t("connections.missingTitle")}</h2>
             <p className="text-sm text-muted-foreground font-body">{t("connections.missingDesc")}</p>
+            <div className="pt-3 space-y-3">
+              <Input
+                value={otherName}
+                onChange={(e) => setOtherName(e.target.value)}
+                placeholder={t("connections.missingNamePlaceholder")}
+                className="font-body"
+                maxLength={80}
+                aria-label={t("connections.missingNamePlaceholder")}
+              />
+              <Textarea
+                value={otherNote}
+                onChange={(e) => setOtherNote(e.target.value)}
+                placeholder={t("connections.missingNotePlaceholder")}
+                className="font-body min-h-[80px]"
+                maxLength={1000}
+                aria-label={t("connections.missingNotePlaceholder")}
+              />
+              <Button onClick={submitOther} disabled={!otherName.trim() || sending} className="font-body">
+                {sending ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
+                {t("connections.missingSubmit")}
+              </Button>
+            </div>
           </section>
         </motion.div>
       </main>

@@ -402,7 +402,11 @@
     "unnamed": "Unnamed",
     "joined": "Joined {{date}}",
     "onboarded": "Onboarded",
-    "pending": "Pending"
+    "pending": "Pending",
+    "integrationRequests": "Integration requests",
+    "noIntegrationRequests": "No integration requests yet",
+    "reqWaitlist": "Waitlist",
+    "reqCustom": "Custom"
   },
   "blog": {
     "title": "The SiteScoper Blog",
@@ -1314,6 +1318,10 @@
       "connections": {
         "title": "Connections hub",
         "desc": "A new Connections tab lists every integration on the roadmap — Slack, Google Sheets, Notion, Linear, HubSpot and more. Pick the ones you want and get notified when they launch."
+      },
+      "integrationRequests": {
+        "title": "Request any integration",
+        "desc": "Join the waitlist for any connection with one click, or tell us about a tool we don't list yet — your request goes straight to the SiteScoper team."
       }
     }
   },
@@ -1353,6 +1361,13 @@
       "schedule": "Schedule rescans in {{app}}",
       "warehouse": "Pipe audit data into {{app}}",
       "crm": "Attach audits to your {{app}} records"
-    }
+    },
+    "signInRequired": "Sign in to request a connection",
+    "requestFailed": "Couldn't save your request. Try again.",
+    "missingNamePlaceholder": "Which tool? e.g. Airtable",
+    "missingNotePlaceholder": "How would you use it? (optional)",
+    "missingSubmit": "Send request",
+    "missingSent": "Request sent",
+    "missingSentDesc": "Thanks — we've added it to our list."
   }
 }

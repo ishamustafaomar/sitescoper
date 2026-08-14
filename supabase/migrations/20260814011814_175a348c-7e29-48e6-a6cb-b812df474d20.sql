@@ -1,0 +1,1 @@
+ALTER TABLE public.integration_requests ADD COLUMN user_email text;

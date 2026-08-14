@@ -402,7 +402,11 @@
     "unnamed": "Unbenannt",
     "joined": "Beigetreten am {{date}}",
     "onboarded": "Onboarded",
-    "pending": "Ausstehend"
+    "pending": "Ausstehend",
+    "integrationRequests": "Integrationsanfragen",
+    "noIntegrationRequests": "Noch keine Integrationsanfragen",
+    "reqWaitlist": "Warteliste",
+    "reqCustom": "Individuell"
   },
   "blog": {
     "title": "Der SiteScoper-Blog",
@@ -1314,6 +1318,10 @@
       "connections": {
         "title": "Verbindungs-Hub",
         "desc": "Der neue Tab „Verbindungen“ zeigt alle geplanten Integrationen – Slack, Google Sheets, Notion, Linear, HubSpot und mehr. Wähle deine aus und werde beim Start benachrichtigt."
+      },
+      "integrationRequests": {
+        "title": "Jede Integration anfragen",
+        "desc": "Trage dich mit einem Klick in die Warteliste einer Verbindung ein oder nenne uns ein fehlendes Tool – deine Anfrage geht direkt an das SiteScoper-Team."
       }
     }
   },
@@ -1353,6 +1361,13 @@
       "schedule": "Neue Scans in {{app}} planen",
       "warehouse": "Audit-Daten nach {{app}} übertragen",
       "crm": "Audits an deine {{app}}-Datensätze anhängen"
-    }
+    },
+    "signInRequired": "Melde dich an, um eine Verbindung anzufragen",
+    "requestFailed": "Anfrage konnte nicht gespeichert werden. Bitte erneut versuchen.",
+    "missingNamePlaceholder": "Welches Tool? z. B. Airtable",
+    "missingNotePlaceholder": "Wie würdest du es nutzen? (optional)",
+    "missingSubmit": "Anfrage senden",
+    "missingSent": "Anfrage gesendet",
+    "missingSentDesc": "Danke – wir haben es auf unsere Liste gesetzt."
   }
 }
