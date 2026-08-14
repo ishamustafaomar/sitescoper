@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Users, BarChart3, Globe, TrendingUp, Clock, Loader2,
-  ChevronDown, ChevronUp, ArrowLeft
+  ChevronDown, ChevronUp, ArrowLeft, Plug
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -21,6 +21,7 @@ interface AdminStats {
   onboardingResponses: any[];
   topReferrals: Record<string, number>;
   recentAnalyses: any[];
+  integrationRequests: any[];
 }
 
 export default function Admin() {
@@ -54,11 +55,12 @@ export default function Admin() {
 
     setIsAdmin(true);
 
-    const [profilesRes, analysesRes, websitesRes, onboardingRes] = await Promise.all([
+    const [profilesRes, analysesRes, websitesRes, onboardingRes, requestsRes] = await Promise.all([
       supabase.from("profiles").select("*").order("created_at", { ascending: false }),
       supabase.from("analysis_history").select("*").order("created_at", { ascending: false }).limit(50),
       supabase.from("websites").select("*"),
       supabase.from("onboarding_responses").select("*").order("created_at", { ascending: false }),
+      supabase.from("integration_requests").select("*").order("created_at", { ascending: false }).limit(200),
     ]);
 
     const onboardingData = (onboardingRes.data as any[]) || [];
@@ -76,6 +78,7 @@ export default function Admin() {
       onboardingResponses: onboardingData,
       topReferrals: referralCounts,
       recentAnalyses: (analysesRes.data || []).slice(0, 20),
+      integrationRequests: (requestsRes.data as any[]) || [],
     });
 
     setLoading(false);
@@ -142,6 +145,39 @@ export default function Admin() {
         </div>
 
         {/* Referral Sources */}
+        <Section
+          title={t("admin.integrationRequests")}
+          icon={Plug}
+          expanded={expandedSection === "integrations"}
+          onToggle={() => toggle("integrations")}
+        >
+          {stats && stats.integrationRequests.length > 0 ? (
+            <div className="divide-y divide-border">
+              {stats.integrationRequests.map((r: any) => (
+                <div key={r.id} className="py-3 px-3 space-y-1">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-sm font-heading font-medium truncate">{r.connector_name}</span>
+                    <div className="flex items-center gap-2 shrink-0">
+                      <Badge variant={r.connector_id ? "secondary" : "default"} className="text-[10px]">
+                        {r.connector_id ? t("admin.reqWaitlist") : t("admin.reqCustom")}
+                      </Badge>
+                      <span className="text-[10px] text-muted-foreground font-body">
+                        {new Date(r.created_at).toLocaleDateString()}
+                      </span>
+                    </div>
+                  </div>
+                  {r.user_email && (
+                    <p className="text-[11px] text-muted-foreground font-body">{r.user_email}</p>
+                  )}
+                  {r.note && <p className="text-xs font-body whitespace-pre-wrap">{r.note}</p>}
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p className="text-muted-foreground text-sm font-body p-4">{t("admin.noIntegrationRequests")}</p>
+          )}
+        </Section>
+
         <Section
           title={t("admin.referralSources")}
           icon={TrendingUp}
