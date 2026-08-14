@@ -1344,7 +1344,9 @@
       "collaboration": "Collaboration",
       "productivity": "Productivity",
       "data": "Data",
-      "crm": "CRM"
+      "crm": "CRM",
+      "builders": "Builders & sites",
+      "automation": "Automation"
     },
     "status": {
       "soon": "Coming soon",
@@ -1360,7 +1362,14 @@
       "email": "Send reports from your {{app}} account",
       "schedule": "Schedule rescans in {{app}}",
       "warehouse": "Pipe audit data into {{app}}",
-      "crm": "Attach audits to your {{app}} records"
+      "crm": "Attach audits to your {{app}} records",
+      "aiAssistant": "Analyse and fix your site from {{app}}",
+      "builder": "Send fixes straight to your {{app}} project",
+      "cms": "Apply SEO fixes to your {{app}} site",
+      "repo": "Open fix pull requests in {{app}}",
+      "deploy": "Scan every {{app}} deploy automatically",
+      "automation": "Trigger workflows in {{app}} on every scan",
+      "analytics": "Blend audit scores with your {{app}} data"
     },
     "signInRequired": "Sign in to request a connection",
     "requestFailed": "Couldn't save your request. Try again.",

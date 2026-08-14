@@ -1344,7 +1344,9 @@
       "collaboration": "Collaborazione",
       "productivity": "Produttività",
       "data": "Dati",
-      "crm": "CRM"
+      "crm": "CRM",
+      "builders": "Builder e siti",
+      "automation": "Automazione"
     },
     "status": {
       "soon": "In arrivo",
@@ -1360,7 +1362,14 @@
       "email": "Invia report dal tuo account {{app}}",
       "schedule": "Pianifica nuove scansioni in {{app}}",
       "warehouse": "Invia i dati degli audit a {{app}}",
-      "crm": "Allega gli audit ai tuoi record {{app}}"
+      "crm": "Allega gli audit ai tuoi record {{app}}",
+      "aiAssistant": "Analizza e correggi il tuo sito da {{app}}",
+      "builder": "Invia le correzioni direttamente al tuo progetto {{app}}",
+      "cms": "Applica le correzioni SEO al tuo sito {{app}}",
+      "repo": "Apri pull request di correzione su {{app}}",
+      "deploy": "Analizza automaticamente ogni deploy {{app}}",
+      "automation": "Attiva flussi in {{app}} a ogni scansione",
+      "analytics": "Unisci i punteggi ai tuoi dati {{app}}"
     },
     "signInRequired": "Accedi per richiedere una connessione",
     "requestFailed": "Impossibile salvare la richiesta. Riprova.",

@@ -1344,7 +1344,9 @@
       "collaboration": "Zusammenarbeit",
       "productivity": "Produktivität",
       "data": "Daten",
-      "crm": "CRM"
+      "crm": "CRM",
+      "builders": "Builder & Websites",
+      "automation": "Automatisierung"
     },
     "status": {
       "soon": "Demnächst",
@@ -1360,7 +1362,14 @@
       "email": "Berichte über dein {{app}}-Konto senden",
       "schedule": "Neue Scans in {{app}} planen",
       "warehouse": "Audit-Daten nach {{app}} übertragen",
-      "crm": "Audits an deine {{app}}-Datensätze anhängen"
+      "crm": "Audits an deine {{app}}-Datensätze anhängen",
+      "aiAssistant": "Analysiere und repariere deine Website aus {{app}}",
+      "builder": "Sende Fixes direkt in dein {{app}}-Projekt",
+      "cms": "Wende SEO-Fixes auf deiner {{app}}-Website an",
+      "repo": "Erstelle Fix-Pull-Requests in {{app}}",
+      "deploy": "Jeden {{app}}-Deploy automatisch scannen",
+      "automation": "Löse bei jedem Scan Workflows in {{app}} aus",
+      "analytics": "Verbinde Audit-Scores mit deinen {{app}}-Daten"
     },
     "signInRequired": "Melde dich an, um eine Verbindung anzufragen",
     "requestFailed": "Anfrage konnte nicht gespeichert werden. Bitte erneut versuchen.",
