@@ -10,6 +10,8 @@ import { useSubscription } from "@/hooks/useSubscription";
 import { StripeEmbeddedCheckoutForm } from "@/components/StripeEmbeddedCheckout";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { PaymentTestModeBanner } from "@/components/PaymentTestModeBanner";
+import { EarlyAccessBanner } from "@/components/EarlyAccessBanner";
+import { FREE_PRO_MODE } from "@/lib/free-access";
 import { toast } from "@/hooks/use-toast";
 
 const FREE_PERKS: string[] = [
@@ -37,6 +39,10 @@ export default function Pricing() {
   const [checkoutOpen, setCheckoutOpen] = useState(false);
 
   const startCheckout = () => {
+    if (FREE_PRO_MODE) {
+      navigate(user ? "/dashboard" : "/auth?redirect=/dashboard");
+      return;
+    }
     if (!user) {
       navigate("/auth?redirect=/pricing");
       return;
@@ -46,7 +52,7 @@ export default function Pricing() {
 
   return (
     <div className="min-h-screen bg-background">
-      <PaymentTestModeBanner />
+      {FREE_PRO_MODE ? <EarlyAccessBanner /> : <PaymentTestModeBanner />}
       <AppHeader />
       <main className="max-w-5xl mx-auto px-4 py-12">
         <div className="text-center mb-10">
@@ -54,7 +60,11 @@ export default function Pricing() {
             {t("pricing.title")}
           </h1>
           <p className="text-muted-foreground max-w-xl mx-auto">
-            {isPro ? t("pricing.subtitlePro") : t("pricing.subtitle")}
+            {FREE_PRO_MODE
+              ? t("earlyAccess.pricingSubtitle")
+              : isPro
+                ? t("pricing.subtitlePro")
+                : t("pricing.subtitle")}
           </p>
         </div>
 
@@ -78,13 +88,17 @@ export default function Pricing() {
             <Button
               variant="outline"
               onClick={() => navigate(user ? (isPro ? "/account" : "/dashboard") : "/auth")}
-              disabled={isPro}
+              disabled={isPro && !FREE_PRO_MODE}
             >
-              {isPro
-                ? t("pricing.freeDowngradeHint")
-                : user
+              {FREE_PRO_MODE
+                ? user
                   ? t("pricing.goDashboard")
-                  : t("pricing.startFree")}
+                  : t("pricing.startFree")
+                : isPro
+                  ? t("pricing.freeDowngradeHint")
+                  : user
+                    ? t("pricing.goDashboard")
+                    : t("pricing.startFree")}
             </Button>
           </Card>
 
@@ -96,10 +110,20 @@ export default function Pricing() {
               <div className="font-heading text-xl font-bold text-primary inline-flex items-center gap-1.5">
                 <Crown className="h-5 w-5" /> Pro
               </div>
-              <div>
-                <span className="text-4xl font-heading font-bold">$19</span>
-                <span className="text-xs text-muted-foreground font-body ml-1">/month</span>
-              </div>
+              {FREE_PRO_MODE ? (
+                <div className="text-right">
+                  <div className="flex items-baseline gap-2 justify-end">
+                    <span className="text-lg font-heading font-bold text-muted-foreground line-through">$19</span>
+                    <span className="text-4xl font-heading font-bold text-primary">$0</span>
+                  </div>
+                  <span className="text-[11px] text-primary font-body">{t("earlyAccess.freeForNow")}</span>
+                </div>
+              ) : (
+                <div>
+                  <span className="text-4xl font-heading font-bold">$19</span>
+                  <span className="text-xs text-muted-foreground font-body ml-1">/month</span>
+                </div>
+              )}
             </div>
             <ul className="space-y-2 mb-6 flex-1">
               {PRO_PERKS.map((p) => (
@@ -109,7 +133,12 @@ export default function Pricing() {
                 </li>
               ))}
             </ul>
-            {isPro ? (
+            {FREE_PRO_MODE ? (
+              <Button className="shadow-glow" onClick={startCheckout}>
+                <Sparkles className="h-4 w-4" /> {t("earlyAccess.claimCta")}
+                <ArrowRight className="h-4 w-4" />
+              </Button>
+            ) : isPro ? (
               <Button variant="outline" disabled>
                 <Check className="h-4 w-4" /> {t("pricing.currentPro")}
               </Button>
@@ -123,10 +152,10 @@ export default function Pricing() {
         </div>
 
         <p className="text-center text-xs text-muted-foreground mt-8">
-          {isPro ? t("pricing.footnotePro") : t("pricing.footnote")}
+          {FREE_PRO_MODE ? t("earlyAccess.pricingFootnote") : isPro ? t("pricing.footnotePro") : t("pricing.footnote")}
         </p>
 
-        {isPro && (
+        {isPro && !FREE_PRO_MODE && (
           <div className="mt-6 text-center">
             <Button variant="link" size="sm" onClick={() => navigate("/account")}>
               {t("pricing.manageInAccount")}
@@ -135,7 +164,7 @@ export default function Pricing() {
         )}
       </main>
 
-      <Dialog open={checkoutOpen} onOpenChange={setCheckoutOpen}>
+      <Dialog open={checkoutOpen && !FREE_PRO_MODE} onOpenChange={setCheckoutOpen}>
         <DialogContent className="max-w-3xl p-0 max-h-[90vh] overflow-y-auto overscroll-contain">
           {user && (
             <StripeEmbeddedCheckoutForm
