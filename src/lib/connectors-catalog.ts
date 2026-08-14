@@ -1,4 +1,11 @@
-export type ConnectorCategory = "reporting" | "collaboration" | "productivity" | "data" | "crm";
+export type ConnectorCategory =
+  | "reporting"
+  | "collaboration"
+  | "productivity"
+  | "data"
+  | "crm"
+  | "builders"
+  | "automation";
 
 export type ConnectorDef = {
   id: string;
@@ -18,6 +25,8 @@ export const CONNECTOR_CATEGORIES: ConnectorCategory[] = [
   "productivity",
   "data",
   "crm",
+  "builders",
+  "automation",
 ];
 
 export const CONNECTORS: ConnectorDef[] = [
@@ -48,4 +57,25 @@ export const CONNECTORS: ConnectorDef[] = [
 
   { id: "hubspot", name: "HubSpot", blurb: "crm", category: "crm", color: "#FF7A59", status: "soon", popular: true },
   { id: "salesforce", name: "Salesforce", blurb: "crm", category: "crm", color: "#00A1E0", status: "soon" },
+
+  { id: "claude", name: "Claude", blurb: "aiAssistant", category: "builders", color: "#D97757", status: "soon", popular: true },
+  { id: "lovable", name: "Lovable", blurb: "builder", category: "builders", color: "#F24E1E", status: "soon", popular: true },
+  { id: "base44", name: "Base44", blurb: "builder", category: "builders", color: "#1F6FEB", status: "soon" },
+  { id: "bolt", name: "Bolt", blurb: "builder", category: "builders", color: "#1389FD", status: "soon" },
+  { id: "v0", name: "v0", blurb: "builder", category: "builders", color: "#111111", status: "soon" },
+  { id: "github", name: "GitHub", blurb: "repo", category: "builders", color: "#24292F", status: "soon" },
+  { id: "webflow", name: "Webflow", blurb: "cms", category: "builders", color: "#146EF5", status: "soon" },
+  { id: "framer", name: "Framer", blurb: "cms", category: "builders", color: "#0055FF", status: "soon" },
+  { id: "wordpress", name: "WordPress", blurb: "cms", category: "builders", color: "#21759B", status: "soon" },
+  { id: "shopify", name: "Shopify", blurb: "cms", category: "builders", color: "#95BF47", status: "soon" },
+  { id: "vercel", name: "Vercel", blurb: "deploy", category: "builders", color: "#000000", status: "soon" },
+  { id: "netlify", name: "Netlify", blurb: "deploy", category: "builders", color: "#00AD9F", status: "soon" },
+
+  { id: "zapier", name: "Zapier", blurb: "automation", category: "automation", color: "#FF4F00", status: "soon" },
+  { id: "make", name: "Make", blurb: "automation", category: "automation", color: "#6D00CC", status: "soon" },
+  { id: "n8n", name: "n8n", blurb: "automation", category: "automation", color: "#EA4B71", status: "soon" },
+  { id: "webhooks", name: "Webhooks", blurb: "automation", category: "automation", color: "#475569", status: "soon" },
+  { id: "airtable", name: "Airtable", blurb: "exportTo", category: "data", color: "#FCB400", status: "soon" },
+  { id: "google_analytics", name: "Google Analytics", blurb: "analytics", category: "data", color: "#E8710A", status: "soon" },
+  { id: "google_search_console", name: "Search Console", blurb: "analytics", category: "data", color: "#4285F4", status: "soon", popular: true },
 ];
