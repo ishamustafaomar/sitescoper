@@ -1318,6 +1318,10 @@
       "connections": {
         "title": "Verbindungs-Hub",
         "desc": "Der neue Tab „Verbindungen“ zeigt alle geplanten Integrationen – Slack, Google Sheets, Notion, Linear, HubSpot und mehr. Wähle deine aus und werde beim Start benachrichtigt."
+      },
+      "integrationRequests": {
+        "title": "Jede Integration anfragen",
+        "desc": "Trage dich mit einem Klick in die Warteliste einer Verbindung ein oder nenne uns ein fehlendes Tool – deine Anfrage geht direkt an das SiteScoper-Team."
       }
     }
   },

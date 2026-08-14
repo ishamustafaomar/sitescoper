@@ -1318,6 +1318,10 @@
       "connections": {
         "title": "Connections hub",
         "desc": "A new Connections tab lists every integration on the roadmap — Slack, Google Sheets, Notion, Linear, HubSpot and more. Pick the ones you want and get notified when they launch."
+      },
+      "integrationRequests": {
+        "title": "Request any integration",
+        "desc": "Join the waitlist for any connection with one click, or tell us about a tool we don't list yet — your request goes straight to the SiteScoper team."
       }
     }
   },

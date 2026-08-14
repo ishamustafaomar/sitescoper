@@ -1318,6 +1318,10 @@
       "connections": {
         "title": "Hub connessioni",
         "desc": "La nuova scheda Connessioni elenca tutte le integrazioni in arrivo: Slack, Google Sheets, Notion, Linear, HubSpot e altre. Scegli le tue e ti avviseremo al lancio."
+      },
+      "integrationRequests": {
+        "title": "Richiedi qualsiasi integrazione",
+        "desc": "Iscriviti alla lista d'attesa di una connessione con un clic o segnalaci uno strumento mancante: la richiesta arriva direttamente al team SiteScoper."
       }
     }
   },
