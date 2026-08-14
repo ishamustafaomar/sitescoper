@@ -146,6 +146,9 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(
 
 export function Navigate({ to, replace, state }: { to: string; replace?: boolean; state?: unknown }) {
   const { pathname, search, hash } = parseTo(to);
+  const current = tsLocation();
+  // Guard against redirect loops: never navigate to the path we're already on.
+  if (current.pathname === pathname) return null;
   return <TSNavigate to={pathname as never} search={search as never} hash={hash} state={state as never} replace={replace} />;
 }
 
