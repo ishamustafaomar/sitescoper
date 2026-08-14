@@ -11,7 +11,8 @@
     "compare": "Compare",
     "pricing": "Pricing",
     "upgrade": "Upgrade",
-    "menu": "Menu"
+    "menu": "Menu",
+    "connections": "Connections"
   },
   "hero": {
     "badge": "Powered by Gemini 2.5 Pro · 20+ analysis dimensions",
@@ -1309,7 +1310,49 @@
       "multilanguage": {
         "title": "Multi-language support",
         "desc": "SiteScoper is now available in English, Spanish, French, German and Italian. Switch languages anytime from the header."
+      },
+      "connections": {
+        "title": "Connections hub",
+        "desc": "A new Connections tab lists every integration on the roadmap — Slack, Google Sheets, Notion, Linear, HubSpot and more. Pick the ones you want and get notified when they launch."
       }
+    }
+  },
+  "connections": {
+    "badge": "Coming soon",
+    "title": "Connections",
+    "subtitle": "Push your audits, scores and fix lists straight into the tools your team already uses. Pick the ones you want and we'll notify you the moment they go live.",
+    "searchPlaceholder": "Search connections…",
+    "popular": "Popular",
+    "notifyMe": "Notify me",
+    "onList": "On the list",
+    "requested": "{{app}} added to your list",
+    "requestedDesc": "We'll email you when this connection is ready.",
+    "noResults": "No connections match your search.",
+    "missingTitle": "Missing an integration?",
+    "missingDesc": "Tell us which tool your workflow depends on and we'll prioritise it.",
+    "categories": {
+      "all": "All",
+      "reporting": "Reporting",
+      "collaboration": "Collaboration",
+      "productivity": "Productivity",
+      "data": "Data",
+      "crm": "CRM"
+    },
+    "status": {
+      "soon": "Coming soon",
+      "beta": "Beta"
+    },
+    "blurbs": {
+      "exportTo": "Export audits and issue lists to {{app}}",
+      "deck": "Generate client-ready decks in {{app}}",
+      "docs": "Publish reports as {{app}} documents",
+      "alerts": "Get scan results and alerts in {{app}}",
+      "tasks": "Turn fixes into tasks in {{app}}",
+      "storage": "Save PDF reports to {{app}}",
+      "email": "Send reports from your {{app}} account",
+      "schedule": "Schedule rescans in {{app}}",
+      "warehouse": "Pipe audit data into {{app}}",
+      "crm": "Attach audits to your {{app}} records"
     }
   }
 }

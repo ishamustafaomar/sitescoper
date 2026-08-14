@@ -14,6 +14,7 @@ import { Route as AccountRouteImport } from './routes/account'
 import { Route as AiWebsiteAuditToolRouteImport } from './routes/ai-website-audit-tool'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as CompareRouteImport } from './routes/compare'
+import { Route as ConnectionsRouteImport } from './routes/connections'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as PricingRouteImport } from './routes/pricing'
@@ -53,6 +54,11 @@ const AuthRoute = AuthRouteImport.update({
 const CompareRoute = CompareRouteImport.update({
   id: '/compare',
   path: '/compare',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConnectionsRoute = ConnectionsRouteImport.update({
+  id: '/connections',
+  path: '/connections',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DashboardRoute = DashboardRouteImport.update({
@@ -137,6 +143,7 @@ export interface FileRoutesByFullPath {
   '/ai-website-audit-tool': typeof AiWebsiteAuditToolRoute
   '/auth': typeof AuthRoute
   '/compare': typeof CompareRoute
+  '/connections': typeof ConnectionsRoute
   '/dashboard': typeof DashboardRoute
   '/onboarding': typeof OnboardingRoute
   '/pricing': typeof PricingRoute
@@ -159,6 +166,7 @@ export interface FileRoutesByTo {
   '/ai-website-audit-tool': typeof AiWebsiteAuditToolRoute
   '/auth': typeof AuthRoute
   '/compare': typeof CompareRoute
+  '/connections': typeof ConnectionsRoute
   '/dashboard': typeof DashboardRoute
   '/onboarding': typeof OnboardingRoute
   '/pricing': typeof PricingRoute
@@ -182,6 +190,7 @@ export interface FileRoutesById {
   '/ai-website-audit-tool': typeof AiWebsiteAuditToolRoute
   '/auth': typeof AuthRoute
   '/compare': typeof CompareRoute
+  '/connections': typeof ConnectionsRoute
   '/dashboard': typeof DashboardRoute
   '/onboarding': typeof OnboardingRoute
   '/pricing': typeof PricingRoute
@@ -206,6 +215,7 @@ export interface FileRouteTypes {
     | '/ai-website-audit-tool'
     | '/auth'
     | '/compare'
+    | '/connections'
     | '/dashboard'
     | '/onboarding'
     | '/pricing'
@@ -228,6 +238,7 @@ export interface FileRouteTypes {
     | '/ai-website-audit-tool'
     | '/auth'
     | '/compare'
+    | '/connections'
     | '/dashboard'
     | '/onboarding'
     | '/pricing'
@@ -250,6 +261,7 @@ export interface FileRouteTypes {
     | '/ai-website-audit-tool'
     | '/auth'
     | '/compare'
+    | '/connections'
     | '/dashboard'
     | '/onboarding'
     | '/pricing'
@@ -273,6 +285,7 @@ export interface RootRouteChildren {
   AiWebsiteAuditToolRoute: typeof AiWebsiteAuditToolRoute
   AuthRoute: typeof AuthRoute
   CompareRoute: typeof CompareRoute
+  ConnectionsRoute: typeof ConnectionsRoute
   DashboardRoute: typeof DashboardRoute
   OnboardingRoute: typeof OnboardingRoute
   PricingRoute: typeof PricingRoute
@@ -325,6 +338,13 @@ declare module '@tanstack/react-router' {
       path: '/compare'
       fullPath: '/compare'
       preLoaderRoute: typeof CompareRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/connections': {
+      id: '/connections'
+      path: '/connections'
+      fullPath: '/connections'
+      preLoaderRoute: typeof ConnectionsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dashboard': {
@@ -441,6 +461,7 @@ const rootRouteChildren: RootRouteChildren = {
   AiWebsiteAuditToolRoute: AiWebsiteAuditToolRoute,
   AuthRoute: AuthRoute,
   CompareRoute: CompareRoute,
+  ConnectionsRoute: ConnectionsRoute,
   DashboardRoute: DashboardRoute,
   OnboardingRoute: OnboardingRoute,
   PricingRoute: PricingRoute,

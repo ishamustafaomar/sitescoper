@@ -11,7 +11,8 @@
     "compare": "Comparer",
     "pricing": "Tarifs",
     "upgrade": "Passer Pro",
-    "menu": "Menu"
+    "menu": "Menu",
+    "connections": "Connexions"
   },
   "hero": {
     "badge": "Propulsé par Gemini 2.5 Pro · 20+ dimensions d'analyse",
@@ -1309,7 +1310,49 @@
       "multilanguage": {
         "title": "Prise en charge multilingue",
         "desc": "SiteScoper est désormais disponible en anglais, espagnol, français, allemand et italien. Changez de langue à tout moment depuis l'en-tête."
+      },
+      "connections": {
+        "title": "Hub de connexions",
+        "desc": "Le nouvel onglet Connexions liste toutes les intégrations prévues : Slack, Google Sheets, Notion, Linear, HubSpot et plus. Choisissez les vôtres et soyez prévenu à leur lancement."
       }
+    }
+  },
+  "connections": {
+    "badge": "Bientôt disponible",
+    "title": "Connexions",
+    "subtitle": "Envoyez vos audits, scores et listes de corrections directement dans les outils que votre équipe utilise déjà. Choisissez ceux qui vous intéressent et nous vous préviendrons dès leur lancement.",
+    "searchPlaceholder": "Rechercher des connexions…",
+    "popular": "Populaire",
+    "notifyMe": "Me prévenir",
+    "onList": "Sur la liste",
+    "requested": "{{app}} ajouté à votre liste",
+    "requestedDesc": "Nous vous enverrons un e-mail dès que cette connexion sera prête.",
+    "noResults": "Aucune connexion ne correspond à votre recherche.",
+    "missingTitle": "Une intégration manquante ?",
+    "missingDesc": "Dites-nous de quel outil dépend votre flux de travail et nous le prioriserons.",
+    "categories": {
+      "all": "Toutes",
+      "reporting": "Rapports",
+      "collaboration": "Collaboration",
+      "productivity": "Productivité",
+      "data": "Données",
+      "crm": "CRM"
+    },
+    "status": {
+      "soon": "Bientôt",
+      "beta": "Bêta"
+    },
+    "blurbs": {
+      "exportTo": "Exportez les audits et listes de problèmes vers {{app}}",
+      "deck": "Générez des présentations client dans {{app}}",
+      "docs": "Publiez les rapports en documents {{app}}",
+      "alerts": "Recevez résultats et alertes dans {{app}}",
+      "tasks": "Transformez les correctifs en tâches {{app}}",
+      "storage": "Enregistrez les rapports PDF dans {{app}}",
+      "email": "Envoyez des rapports depuis votre compte {{app}}",
+      "schedule": "Planifiez de nouvelles analyses dans {{app}}",
+      "warehouse": "Envoyez les données d'audit vers {{app}}",
+      "crm": "Associez les audits à vos enregistrements {{app}}"
     }
   }
 }
