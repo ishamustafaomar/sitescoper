@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/components/AuthProvider";
 import { getStripeEnvironment } from "@/lib/stripe";
+import { FREE_PRO_MODE } from "@/lib/free-access";
 
 export interface SubscriptionRow {
   id: string;
@@ -68,6 +69,8 @@ export function useSubscription() {
     };
   }, [fetchSub]);
 
-  const isPro = computeIsActive(subscription);
-  return { subscription, isPro, loading, refetch: fetchSub };
+  // Early access: every signed-in account gets Pro for free.
+  const paidPro = computeIsActive(subscription);
+  const isPro = FREE_PRO_MODE ? !!user : paidPro;
+  return { subscription, isPro, paidPro, freeMode: FREE_PRO_MODE, loading, refetch: fetchSub };
 }
