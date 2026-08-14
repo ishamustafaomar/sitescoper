@@ -402,7 +402,11 @@
     "unnamed": "Senza nome",
     "joined": "Iscritto il {{date}}",
     "onboarded": "Onboarded",
-    "pending": "In attesa"
+    "pending": "In attesa",
+    "integrationRequests": "Richieste di integrazione",
+    "noIntegrationRequests": "Nessuna richiesta di integrazione",
+    "reqWaitlist": "Lista d'attesa",
+    "reqCustom": "Personalizzata"
   },
   "blog": {
     "title": "Il Blog di SiteScoper",
@@ -1353,6 +1357,13 @@
       "schedule": "Pianifica nuove scansioni in {{app}}",
       "warehouse": "Invia i dati degli audit a {{app}}",
       "crm": "Allega gli audit ai tuoi record {{app}}"
-    }
+    },
+    "signInRequired": "Accedi per richiedere una connessione",
+    "requestFailed": "Impossibile salvare la richiesta. Riprova.",
+    "missingNamePlaceholder": "Quale strumento? es. Airtable",
+    "missingNotePlaceholder": "Come lo useresti? (facoltativo)",
+    "missingSubmit": "Invia richiesta",
+    "missingSent": "Richiesta inviata",
+    "missingSentDesc": "Grazie, l'abbiamo aggiunto alla nostra lista."
   }
 }
