@@ -74,6 +74,52 @@ export function SubscriptionCard() {
     }
   };
 
+  const billingControls = (
+    <div className="flex flex-wrap gap-2">
+      {subscription?.stripe_customer_id && (
+        <Button variant="outline" size="sm" onClick={openPortal} disabled={loading}>
+          {t("plan.manageBilling")}
+        </Button>
+      )}
+      {scheduledToCancel ? (
+        <Button variant="outline" size="sm" onClick={() => handleCancel(true)} disabled={cancelling}>
+          {cancelling ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <RotateCcw className="h-3.5 w-3.5" />}
+          {t("plan.resumeBtn")}
+        </Button>
+      ) : (
+        subscription?.stripe_subscription_id && (
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <Button variant="ghost" size="sm" className="text-destructive hover:text-destructive">
+                <XCircle className="h-3.5 w-3.5" />
+                {t("plan.downgradeBtn")}
+              </Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>{t("plan.confirmDowngradeTitle")}</AlertDialogTitle>
+                <AlertDialogDescription>
+                  {periodEnd
+                    ? t("plan.confirmDowngradeDescWithDate", { date: periodEnd })
+                    : t("plan.confirmDowngradeDesc")}
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>{t("plan.keepPro")}</AlertDialogCancel>
+                <AlertDialogAction
+                  onClick={() => handleCancel(false)}
+                  className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                >
+                  {t("plan.confirmDowngrade")}
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
+        )
+      )}
+    </div>
+  );
+
   return (
     <section className="bg-card border border-border rounded-2xl p-6 space-y-4">
       <div className="flex items-center justify-between gap-3">
@@ -88,13 +134,7 @@ export function SubscriptionCard() {
       {FREE_PRO_MODE ? (
         <>
           <p className="text-sm text-muted-foreground font-body">{t("earlyAccess.accountDesc")}</p>
-          {paidPro && subscription?.stripe_customer_id && (
-            <div className="flex flex-wrap gap-2">
-              <Button variant="outline" size="sm" onClick={openPortal} disabled={loading}>
-                {t("plan.manageBilling")}
-              </Button>
-            </div>
-          )}
+          {paidPro && (subscription?.stripe_customer_id || subscription?.stripe_subscription_id) && billingControls}
         </>
       ) : isPro ? (
         <>
@@ -107,47 +147,7 @@ export function SubscriptionCard() {
           ) : (
             <p className="text-sm text-muted-foreground font-body">{t("plan.proDesc")}</p>
           )}
-          <div className="flex flex-wrap gap-2">
-            {subscription?.stripe_customer_id && (
-              <Button variant="outline" size="sm" onClick={openPortal} disabled={loading}>
-                {t("plan.manageBilling")}
-              </Button>
-            )}
-            {scheduledToCancel ? (
-              <Button variant="outline" size="sm" onClick={() => handleCancel(true)} disabled={cancelling}>
-                {cancelling ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <RotateCcw className="h-3.5 w-3.5" />}
-                {t("plan.resumeBtn")}
-              </Button>
-            ) : (
-              <AlertDialog>
-                <AlertDialogTrigger asChild>
-                  <Button variant="ghost" size="sm" className="text-destructive hover:text-destructive">
-                    <XCircle className="h-3.5 w-3.5" />
-                    {t("plan.downgradeBtn")}
-                  </Button>
-                </AlertDialogTrigger>
-                <AlertDialogContent>
-                  <AlertDialogHeader>
-                    <AlertDialogTitle>{t("plan.confirmDowngradeTitle")}</AlertDialogTitle>
-                    <AlertDialogDescription>
-                      {periodEnd
-                        ? t("plan.confirmDowngradeDescWithDate", { date: periodEnd })
-                        : t("plan.confirmDowngradeDesc")}
-                    </AlertDialogDescription>
-                  </AlertDialogHeader>
-                  <AlertDialogFooter>
-                    <AlertDialogCancel>{t("plan.keepPro")}</AlertDialogCancel>
-                    <AlertDialogAction
-                      onClick={() => handleCancel(false)}
-                      className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
-                    >
-                      {t("plan.confirmDowngrade")}
-                    </AlertDialogAction>
-                  </AlertDialogFooter>
-                </AlertDialogContent>
-              </AlertDialog>
-            )}
-          </div>
+          {billingControls}
         </>
       ) : (
         <>
