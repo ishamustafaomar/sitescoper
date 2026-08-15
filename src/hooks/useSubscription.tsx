@@ -12,6 +12,7 @@ export interface SubscriptionRow {
   cancel_at_period_end: boolean;
   stripe_customer_id: string | null;
   stripe_subscription_id: string | null;
+  environment: string;
 }
 
 function computeIsActive(sub: SubscriptionRow | null): boolean {
@@ -37,15 +38,24 @@ export function useSubscription() {
       setLoading(false);
       return;
     }
+    // Look at rows from BOTH environments: after switching the client to
+    // sandbox, users with a real `live` subscription must still be able to
+    // see and manage (or cancel) their paid plan.
     const { data } = await supabase
       .from("subscriptions")
-      .select("id,status,price_id,current_period_end,cancel_at_period_end,stripe_customer_id,stripe_subscription_id")
+      .select("id,status,price_id,current_period_end,cancel_at_period_end,stripe_customer_id,stripe_subscription_id,environment")
       .eq("user_id", user.id)
-      .eq("environment", getStripeEnvironment())
       .order("created_at", { ascending: false })
-      .limit(1)
-      .maybeSingle();
-    setSubscription(data ?? null);
+      .limit(10);
+    const rows = (data ?? []) as SubscriptionRow[];
+    const currentEnv = getStripeEnvironment();
+    // Prefer an active/paid row (any env), then a row from the current env.
+    const best =
+      rows.find((r) => computeIsActive(r)) ??
+      rows.find((r) => r.environment === currentEnv) ??
+      rows[0] ??
+      null;
+    setSubscription(best);
     setLoading(false);
     lastFetchedAt.current = Date.now();
   }, [user?.id]);
