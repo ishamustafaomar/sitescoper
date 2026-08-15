@@ -30,6 +30,9 @@ export function SubscriptionCard() {
   const [cancelling, setCancelling] = useState(false);
 
   const scheduledToCancel = !!subscription?.cancel_at_period_end && isPro;
+  // Use the environment the subscription was actually created in, so live
+  // customers can still manage/cancel while the client runs in sandbox.
+  const subEnv = (subscription?.environment as "live" | "sandbox" | undefined) ?? getStripeEnvironment();
   const periodEnd = subscription?.current_period_end
     ? new Date(subscription.current_period_end).toLocaleDateString(i18n.resolvedLanguage, {
         year: "numeric",
@@ -42,7 +45,7 @@ export function SubscriptionCard() {
     setLoading(true);
     try {
       const data = await createPortalSession({
-        data: { returnUrl: window.location.href, environment: getStripeEnvironment() },
+        data: { returnUrl: window.location.href, environment: subEnv },
       });
       if (!data?.url) throw new Error("Could not open billing portal");
       window.open(data.url, "_blank");
@@ -57,7 +60,7 @@ export function SubscriptionCard() {
     setCancelling(true);
     try {
       await cancelSubscription({
-        data: { environment: getStripeEnvironment(), resume },
+        data: { environment: subEnv, resume },
       });
       toast({
         title: resume ? t("plan.resumedTitle") : t("plan.canceledTitle"),
