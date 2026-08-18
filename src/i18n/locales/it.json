@@ -1326,6 +1326,10 @@
       "freeEarlyAccess": {
         "title": "Pro è gratis durante l'accesso anticipato",
         "desc": "Ogni account ora ottiene Pro completo — scansioni illimitate, modalità concorrenti, chat con il report ed export PDF — gratis durante l'accesso anticipato. Gli abbonati attuali mantengono tutto senza costi."
+      },
+      "proPaid": {
+        "title": "Pro ora è a pagamento",
+        "desc": "L'accesso anticipato è terminato. Pro costa 19 $/mese: gli account gratuiti mantengono 3 scansioni al mese e puoi passare a Pro quando vuoi dalla pagina Prezzi."
       }
     }
   },

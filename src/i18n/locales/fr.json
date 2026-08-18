@@ -1326,6 +1326,10 @@
       "freeEarlyAccess": {
         "title": "Pro est gratuit pendant l'accès anticipé",
         "desc": "Chaque compte bénéficie de Pro complet — analyses illimitées, mode concurrents, chat avec votre rapport et export PDF — gratuitement pendant l'accès anticipé. Les abonnés actuels conservent tout sans frais."
+      },
+      "proPaid": {
+        "title": "Pro est désormais payant",
+        "desc": "L'accès anticipé est terminé. Pro coûte 19 $/mois : les comptes gratuits conservent 3 analyses par mois et vous pouvez passer à Pro à tout moment depuis la page Tarifs."
       }
     }
   },

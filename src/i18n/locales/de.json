@@ -1326,6 +1326,10 @@
       "freeEarlyAccess": {
         "title": "Pro ist im Early Access kostenlos",
         "desc": "Jedes Konto erhält jetzt das volle Pro — unbegrenzte Scans, Konkurrenzmodus, Chat mit deinem Report und PDF-Export — kostenlos während des Early Access. Bestehende Abonnenten behalten alles gratis."
+      },
+      "proPaid": {
+        "title": "Pro ist jetzt kostenpflichtig",
+        "desc": "Der Early Access ist beendet. Pro kostet 19 $/Monat – kostenlose Konten behalten 3 Scans pro Monat, und du kannst jederzeit über die Preisseite upgraden."
       }
     }
   },
