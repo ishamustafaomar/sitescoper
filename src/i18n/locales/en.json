@@ -1326,6 +1326,10 @@
       "freeEarlyAccess": {
         "title": "Pro is free during early access",
         "desc": "Every account now gets full Pro — unlimited scans, competitor mode, chat with your report and PDF export — free while we're in early access. Existing subscribers keep everything at no charge."
+      },
+      "proPaid": {
+        "title": "Pro is now a paid plan",
+        "desc": "Early access has ended. Pro is $19/month — free accounts keep 3 scans a month, and you can upgrade anytime from the Pricing page."
       }
     }
   },

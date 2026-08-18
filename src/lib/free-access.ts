@@ -7,4 +7,4 @@
  *
  * Flip this to `false` to start charging again — no other code changes needed.
  */
-export const FREE_PRO_MODE = true;
+export const FREE_PRO_MODE = false;
