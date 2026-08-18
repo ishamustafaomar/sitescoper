@@ -1,5 +1,5 @@
 import { useNavigate, useLocation } from "@/lib/router-compat";
-import { LayoutDashboard, LogOut, LogIn, Shield, Sparkles, Check, Swords, Crown, User as UserIcon, Menu, Plug } from "lucide-react";
+import { LayoutDashboard, LogOut, LogIn, Shield, Sparkles, Check, Swords, Crown, User as UserIcon, Menu } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import logoMark from "@/assets/logo.png";
@@ -101,15 +101,6 @@ export function AppHeader() {
           >
             {t("nav.pricing")}
           </button>
-          {user && (
-            <button
-              onClick={() => navigate("/connections")}
-              className={cn(pillBase, path.startsWith("/connections") ? pillActive : pillIdle)}
-            >
-              <Plug className="h-3.5 w-3.5" />
-              {t("nav.connections")}
-            </button>
-          )}
           {user && isAdmin && (
             <button
               onClick={() => navigate("/admin")}
@@ -195,7 +186,6 @@ export function AppHeader() {
                   { to: "/dashboard", label: t("nav.dashboard"), icon: LayoutDashboard, show: !!user },
                   { to: "/compare", label: t("nav.compare"), icon: Swords, show: true, pro: !isPro },
                   { to: "/pricing", label: t("nav.pricing"), show: true },
-                  { to: "/connections", label: t("nav.connections"), icon: Plug, show: !!user },
                   { to: "/admin", label: t("nav.admin"), icon: Shield, show: !!user && isAdmin },
                 ]
                   .filter((i) => i.show)
