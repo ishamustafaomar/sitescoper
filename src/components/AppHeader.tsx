@@ -186,7 +186,6 @@ export function AppHeader() {
                   { to: "/dashboard", label: t("nav.dashboard"), icon: LayoutDashboard, show: !!user },
                   { to: "/compare", label: t("nav.compare"), icon: Swords, show: true, pro: !isPro },
                   { to: "/pricing", label: t("nav.pricing"), show: true },
-                  { to: "/connections", label: t("nav.connections"), icon: Plug, show: !!user },
                   { to: "/admin", label: t("nav.admin"), icon: Shield, show: !!user && isAdmin },
                 ]
                   .filter((i) => i.show)
