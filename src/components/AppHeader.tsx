@@ -101,15 +101,6 @@ export function AppHeader() {
           >
             {t("nav.pricing")}
           </button>
-          {user && (
-            <button
-              onClick={() => navigate("/connections")}
-              className={cn(pillBase, path.startsWith("/connections") ? pillActive : pillIdle)}
-            >
-              <Plug className="h-3.5 w-3.5" />
-              {t("nav.connections")}
-            </button>
-          )}
           {user && isAdmin && (
             <button
               onClick={() => navigate("/admin")}
