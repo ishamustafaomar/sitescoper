@@ -15,10 +15,18 @@ export const SUPPORTED_LANGUAGES = [
   { code: "it", label: "Italiano", flag: "🇮🇹" },
 ] as const;
 
+const isBrowser = typeof window !== "undefined";
+
+if (isBrowser) i18n.use(LanguageDetector);
+
 i18n
-  .use(LanguageDetector)
   .use(initReactI18next)
   .init({
+    // Ensure resources are ready synchronously (critical for SSR/prerender,
+    // otherwise raw keys like "sharedAnalysis.visit" get rendered).
+    initImmediate: false,
+    lng: isBrowser ? undefined : "en",
+    react: { useSuspense: false },
     resources: {
       en: { translation: en },
       es: { translation: es },
