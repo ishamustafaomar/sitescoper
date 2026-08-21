@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "@/lib/router-compat";
 import { motion } from "framer-motion";
-import { ExternalLink, Loader2, Sparkles, Lock } from "lucide-react";
+import { ExternalLink, Loader2, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AnalysisPanel } from "@/components/AnalysisPanel";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { supabase } from "@/integrations/supabase/client";
 import { AnalysisResult, ScrapeResult } from "@/lib/api";
 import { useAuth } from "@/components/AuthProvider";
@@ -23,7 +22,6 @@ export default function SharedAnalysis() {
   const { user, loading: authLoading } = useAuth();
   const [record, setRecord] = useState<any>(null);
   const [loading, setLoading] = useState(true);
-  const [showGate, setShowGate] = useState(false);
 
   useEffect(() => {
     if (!token) return;
@@ -36,16 +34,6 @@ export default function SharedAnalysis() {
     })();
   }, [token]);
 
-  // After 5 seconds of viewing, prompt anonymous visitors to sign in.
-  useEffect(() => {
-    if (loading || authLoading || !record || user) {
-      setShowGate(false);
-      return;
-    }
-    const id = setTimeout(() => setShowGate(true), 5000);
-    return () => clearTimeout(id);
-  }, [loading, authLoading, record, user]);
-
   if (loading || authLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
@@ -54,7 +42,7 @@ export default function SharedAnalysis() {
     );
   }
 
-  const authHref = `/auth?redirect=${encodeURIComponent(`/share/${token}`)}`;
+  const homeHref = user ? "/" : `/auth?redirect=${encodeURIComponent("/")}`;
 
 
 
@@ -106,7 +94,7 @@ export default function SharedAnalysis() {
             SiteScoper
           </a>
           <Button asChild size="sm" variant="hero">
-            <a href="/">{text("sharedAnalysis.analyzeSite", "Analyze your site")}</a>
+            <a href={homeHref}>{text("sharedAnalysis.analyzeSite", "Analyze your site")}</a>
           </Button>
         </div>
       </header>
@@ -135,12 +123,6 @@ export default function SharedAnalysis() {
           <AnalysisPanel
             analysis={analysis}
             scrapeData={scrapeData}
-            onRequestFullReport={() => {
-              if (!user) {
-                setShowGate(true);
-                return true;
-              }
-            }}
           />
         </motion.div>
 
@@ -150,7 +132,7 @@ export default function SharedAnalysis() {
             {text("sharedAnalysis.ctaBody", "Free, instant, AI-powered. Get a brutally honest report on your site in seconds.")}
           </p>
           <Button asChild variant="hero">
-            <a href="/">{text("sharedAnalysis.ctaButton", "Analyze a website →")}</a>
+            <a href={homeHref}>{text("sharedAnalysis.ctaButton", "Analyze a website →")}</a>
           </Button>
         </div>
       </main>
@@ -159,30 +141,6 @@ export default function SharedAnalysis() {
         {text("sharedAnalysis.poweredBy", "Powered by")} <a href="/" className="hover:text-foreground transition-colors">SiteScoper</a>
       </footer>
 
-      <Dialog open={showGate} onOpenChange={setShowGate}>
-        <DialogContent className="max-w-md text-center space-y-5">
-          <div className="mx-auto inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-body border border-primary/20">
-            <Lock className="h-3 w-3" />
-            {text("sharedAnalysis.gateBadge", "Private report")}
-          </div>
-          <div className="space-y-1">
-            <div className="text-5xl font-heading font-bold text-primary">
-              {record.overall_score}<span className="text-xl text-muted-foreground">/100</span>
-            </div>
-            <p className="text-sm text-muted-foreground font-body truncate">{record.url}</p>
-          </div>
-          <h2 className="text-2xl font-heading font-bold">{text("sharedAnalysis.gateTitle", "Your SiteScoper report is ready")}</h2>
-          <p className="text-sm text-muted-foreground font-body">{text("sharedAnalysis.gateBody", "Create a free account (or sign in) to unlock the full report — every finding, priority and fix for your site.")}</p>
-          <Button asChild variant="hero" className="w-full">
-            <a href={authHref}>{text("sharedAnalysis.gateButton", "Sign up free to view my report")}</a>
-          </Button>
-          <p className="text-xs text-muted-foreground font-body">
-            <a href={authHref} className="hover:text-foreground underline underline-offset-2">
-              {text("sharedAnalysis.gateSignIn", "Already have an account? Sign in")}
-            </a>
-          </p>
-        </DialogContent>
-      </Dialog>
     </div>
 
   );
