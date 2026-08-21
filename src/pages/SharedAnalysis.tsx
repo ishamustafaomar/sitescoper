@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ExternalLink, Loader2, Sparkles, Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AnalysisPanel } from "@/components/AnalysisPanel";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { supabase } from "@/integrations/supabase/client";
 import { AnalysisResult, ScrapeResult } from "@/lib/api";
 import { useAuth } from "@/components/AuthProvider";
