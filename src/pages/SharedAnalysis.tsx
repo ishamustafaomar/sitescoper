@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { useParams } from "@/lib/router-compat";
 import { motion } from "framer-motion";
-import { ExternalLink, Loader2, Sparkles } from "lucide-react";
+import { ExternalLink, Loader2, Sparkles, Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AnalysisPanel } from "@/components/AnalysisPanel";
 import { supabase } from "@/integrations/supabase/client";
 import { AnalysisResult, ScrapeResult } from "@/lib/api";
+import { useAuth } from "@/components/AuthProvider";
 import { useTranslation } from "react-i18next";
+
 
 export default function SharedAnalysis() {
   const { t } = useTranslation();
