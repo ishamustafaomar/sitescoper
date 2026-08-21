@@ -18,6 +18,8 @@ import { Button } from "@/components/ui/button";
 interface AnalysisPanelProps {
   analysis: AnalysisResult;
   scrapeData?: ScrapeResult;
+  /** Return true to block expanding the full report (e.g. require sign-in). */
+  onRequestFullReport?: () => boolean | void;
 }
 
 function MiniScoreBar({ score }: { score: number }) {
@@ -37,11 +39,16 @@ function MiniScoreBar({ score }: { score: number }) {
   );
 }
 
-export function AnalysisPanel({ analysis, scrapeData }: AnalysisPanelProps) {
+export function AnalysisPanel({ analysis, scrapeData, onRequestFullReport }: AnalysisPanelProps) {
   const { t } = useTranslation();
   const [expandedCategory, setExpandedCategory] = useState<number | null>(0);
   const [activeTab, setActiveTab] = useState<string>("impact");
   const [showFull, setShowFull] = useState(false);
+
+  const openFull = () => {
+    if (onRequestFullReport?.() === true) return;
+    setShowFull(true);
+  };
 
   const totalSuggestions = analysis.categories.reduce((sum, c) => sum + c.suggestions.length, 0);
   const hasImageSuggestions = (analysis.image_suggestions?.length ?? 0) > 0 || (scrapeData?.images?.length ?? 0) > 0;
@@ -68,7 +75,7 @@ export function AnalysisPanel({ analysis, scrapeData }: AnalysisPanelProps) {
       {/* Layer 1: Verdict only — overall + 3 blockers + 3 opportunities */}
       <VerdictCard
         analysis={analysis}
-        onJumpToImpact={() => setShowFull(true)}
+        onJumpToImpact={() => openFull()}
       />
 
       {!showFull && (
@@ -76,7 +83,7 @@ export function AnalysisPanel({ analysis, scrapeData }: AnalysisPanelProps) {
           <Button
             variant="outline"
             size="lg"
-            onClick={() => setShowFull(true)}
+            onClick={() => openFull()}
             className="gap-2"
           >
             {t("analysisPanel.seeFullReport")}

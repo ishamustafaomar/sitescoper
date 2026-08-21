@@ -125,7 +125,16 @@ export default function SharedAnalysis() {
         </div>
 
         <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}>
-          <AnalysisPanel analysis={analysis} scrapeData={scrapeData} />
+          <AnalysisPanel
+            analysis={analysis}
+            scrapeData={scrapeData}
+            onRequestFullReport={() => {
+              if (!user) {
+                setShowGate(true);
+                return true;
+              }
+            }}
+          />
         </motion.div>
 
         <div className="bg-gradient-to-br from-primary/10 via-primary/5 to-transparent border border-primary/20 rounded-2xl p-6 text-center space-y-3 mt-8">
