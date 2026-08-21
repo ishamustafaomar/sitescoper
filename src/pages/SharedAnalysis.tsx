@@ -13,8 +13,10 @@ import { useTranslation } from "react-i18next";
 export default function SharedAnalysis() {
   const { t } = useTranslation();
   const { token } = useParams();
+  const { user, loading: authLoading } = useAuth();
   const [record, setRecord] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+
 
   useEffect(() => {
     if (!token) return;
