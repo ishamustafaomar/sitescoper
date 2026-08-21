@@ -1,0 +1,2 @@
+UPDATE public.analysis_history SET share_token = 'macspotter-2026' WHERE id = '17d581d9-d0b0-4b32-8658-e4f5eeb26478' AND share_token IS NULL;
+UPDATE public.analysis_history SET share_token = 'usewok-2026' WHERE id = 'b743aab2-5957-472c-a9a4-069b5add2a36' AND share_token IS NULL;
