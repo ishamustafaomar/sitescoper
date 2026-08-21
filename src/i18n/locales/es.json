@@ -1335,6 +1335,10 @@
       "proPaid": {
         "title": "Pro ahora es un plan de pago",
         "desc": "El acceso anticipado ha terminado. Pro cuesta 19 $/mes: las cuentas gratuitas conservan 3 análisis al mes y puedes mejorar cuando quieras desde la página de Precios."
+      },
+      "gatedShareLinks": {
+        "title": "Los informes compartidos ahora requieren una cuenta gratuita",
+        "desc": "Envía a cualquiera un enlace de informe: se registra en un paso y llega directamente a su informe en lugar de la página de inicio."
       }
     }
   },

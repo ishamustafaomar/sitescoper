@@ -1335,6 +1335,10 @@
       "proPaid": {
         "title": "Pro est désormais payant",
         "desc": "L'accès anticipé est terminé. Pro coûte 19 $/mois : les comptes gratuits conservent 3 analyses par mois et vous pouvez passer à Pro à tout moment depuis la page Tarifs."
+      },
+      "gatedShareLinks": {
+        "title": "Les rapports partagés nécessitent désormais un compte gratuit",
+        "desc": "Envoyez un lien de rapport : la personne s'inscrit en une étape et arrive directement sur son rapport plutôt que sur la page d'accueil."
       }
     }
   },
