@@ -142,6 +142,32 @@ export default function SharedAnalysis() {
       <footer className="border-t border-border mt-12 py-6 text-center text-xs text-muted-foreground font-body">
         {t("sharedAnalysis.poweredBy")} <a href="/" className="hover:text-foreground transition-colors">SiteScoper</a>
       </footer>
+
+      <Dialog open={showGate} onOpenChange={setShowGate}>
+        <DialogContent className="max-w-md text-center space-y-5">
+          <div className="mx-auto inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-body border border-primary/20">
+            <Lock className="h-3 w-3" />
+            {t("sharedAnalysis.gateBadge")}
+          </div>
+          <div className="space-y-1">
+            <div className="text-5xl font-heading font-bold text-primary">
+              {record.overall_score}<span className="text-xl text-muted-foreground">/100</span>
+            </div>
+            <p className="text-sm text-muted-foreground font-body truncate">{record.url}</p>
+          </div>
+          <h2 className="text-2xl font-heading font-bold">{t("sharedAnalysis.gateTitle")}</h2>
+          <p className="text-sm text-muted-foreground font-body">{t("sharedAnalysis.gateBody")}</p>
+          <Button asChild variant="hero" className="w-full">
+            <a href={authHref}>{t("sharedAnalysis.gateButton")}</a>
+          </Button>
+          <p className="text-xs text-muted-foreground font-body">
+            <a href={authHref} className="hover:text-foreground underline underline-offset-2">
+              {t("sharedAnalysis.gateSignIn")}
+            </a>
+          </p>
+        </DialogContent>
+      </Dialog>
     </div>
+
   );
 }
