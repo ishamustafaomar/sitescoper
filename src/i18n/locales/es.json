@@ -686,7 +686,12 @@
     "ctaTitle": "Ejecuta esto en tu propio sitio",
     "ctaBody": "Gratis, instantáneo e impulsado por IA. Obtén un informe brutalmente honesto de tu sitio en segundos.",
     "ctaButton": "Analizar un sitio web →",
-    "poweredBy": "Desarrollado por"
+    "poweredBy": "Desarrollado por",
+    "gateBadge": "Informe privado",
+    "gateTitle": "Tu informe de SiteScoper está listo",
+    "gateBody": "Crea una cuenta gratuita (o inicia sesión) para desbloquear el informe completo: cada hallazgo, prioridad y solución para tu sitio.",
+    "gateButton": "Regístrate gratis para ver mi informe",
+    "gateSignIn": "¿Ya tienes cuenta? Inicia sesión"
   },
   "pages": {
     "adminReddit": {
@@ -1330,6 +1335,10 @@
       "proPaid": {
         "title": "Pro ahora es un plan de pago",
         "desc": "El acceso anticipado ha terminado. Pro cuesta 19 $/mes: las cuentas gratuitas conservan 3 análisis al mes y puedes mejorar cuando quieras desde la página de Precios."
+      },
+      "gatedShareLinks": {
+        "title": "Los informes compartidos ahora requieren una cuenta gratuita",
+        "desc": "Envía a cualquiera un enlace de informe: se registra en un paso y llega directamente a su informe en lugar de la página de inicio."
       }
     }
   },

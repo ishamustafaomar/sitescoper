@@ -686,7 +686,12 @@
     "ctaTitle": "Run this on your own site",
     "ctaBody": "Free, instant, AI-powered. Get a brutally honest report on your site in seconds.",
     "ctaButton": "Analyze a website →",
-    "poweredBy": "Powered by"
+    "poweredBy": "Powered by",
+    "gateBadge": "Private report",
+    "gateTitle": "Your SiteScoper report is ready",
+    "gateBody": "Create a free account (or sign in) to unlock the full report — every finding, priority and fix for your site.",
+    "gateButton": "Sign up free to view my report",
+    "gateSignIn": "Already have an account? Sign in"
   },
   "pages": {
     "adminReddit": {
@@ -1330,6 +1335,10 @@
       "proPaid": {
         "title": "Pro is now a paid plan",
         "desc": "Early access has ended. Pro is $19/month — free accounts keep 3 scans a month, and you can upgrade anytime from the Pricing page."
+      },
+      "gatedShareLinks": {
+        "title": "Shared reports now require a free account",
+        "desc": "Send anyone a report link — they sign up in one step and land straight on their report instead of the homepage."
       }
     }
   },

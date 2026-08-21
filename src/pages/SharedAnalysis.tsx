@@ -1,18 +1,22 @@
 import { useEffect, useState } from "react";
 import { useParams } from "@/lib/router-compat";
 import { motion } from "framer-motion";
-import { ExternalLink, Loader2, Sparkles } from "lucide-react";
+import { ExternalLink, Loader2, Sparkles, Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AnalysisPanel } from "@/components/AnalysisPanel";
 import { supabase } from "@/integrations/supabase/client";
 import { AnalysisResult, ScrapeResult } from "@/lib/api";
+import { useAuth } from "@/components/AuthProvider";
 import { useTranslation } from "react-i18next";
+
 
 export default function SharedAnalysis() {
   const { t } = useTranslation();
   const { token } = useParams();
+  const { user, loading: authLoading } = useAuth();
   const [record, setRecord] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+
 
   useEffect(() => {
     if (!token) return;
@@ -25,13 +29,40 @@ export default function SharedAnalysis() {
     })();
   }, [token]);
 
-  if (loading) {
+  if (loading || authLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
         <Loader2 className="h-8 w-8 animate-spin text-primary" />
       </div>
     );
   }
+
+  if (record && !user) {
+    const authHref = `/auth?redirect=${encodeURIComponent(`/share/${token}`)}`;
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-background p-4">
+        <div className="max-w-md w-full text-center space-y-5 bg-card border border-border rounded-2xl p-8 shadow-[var(--shadow-sm)]">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-body border border-primary/20">
+            <Lock className="h-3 w-3" />
+            {t("sharedAnalysis.gateBadge")}
+          </div>
+          <div className="space-y-1">
+            <div className="text-5xl font-heading font-bold text-primary">{record.overall_score}<span className="text-xl text-muted-foreground">/100</span></div>
+            <p className="text-sm text-muted-foreground font-body truncate">{record.url}</p>
+          </div>
+          <h1 className="text-2xl font-heading font-bold">{t("sharedAnalysis.gateTitle")}</h1>
+          <p className="text-sm text-muted-foreground font-body">{t("sharedAnalysis.gateBody")}</p>
+          <Button asChild variant="hero" className="w-full">
+            <a href={authHref}>{t("sharedAnalysis.gateButton")}</a>
+          </Button>
+          <p className="text-xs text-muted-foreground font-body">
+            <a href={authHref} className="hover:text-foreground underline underline-offset-2">{t("sharedAnalysis.gateSignIn")}</a>
+          </p>
+        </div>
+      </div>
+    );
+  }
+
 
   if (!record) {
     return (

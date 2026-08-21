@@ -686,7 +686,12 @@
     "ctaTitle": "Lancez ceci sur votre propre site",
     "ctaBody": "Gratuit, instantané, propulsé par l'IA. Obtenez un rapport d'une honnêteté brutale sur votre site en quelques secondes.",
     "ctaButton": "Analyser un site web →",
-    "poweredBy": "Propulsé par"
+    "poweredBy": "Propulsé par",
+    "gateBadge": "Rapport privé",
+    "gateTitle": "Votre rapport SiteScoper est prêt",
+    "gateBody": "Créez un compte gratuit (ou connectez-vous) pour débloquer le rapport complet : chaque constat, priorité et correctif pour votre site.",
+    "gateButton": "S'inscrire gratuitement pour voir mon rapport",
+    "gateSignIn": "Vous avez déjà un compte ? Connectez-vous"
   },
   "pages": {
     "adminReddit": {
@@ -1330,6 +1335,10 @@
       "proPaid": {
         "title": "Pro est désormais payant",
         "desc": "L'accès anticipé est terminé. Pro coûte 19 $/mois : les comptes gratuits conservent 3 analyses par mois et vous pouvez passer à Pro à tout moment depuis la page Tarifs."
+      },
+      "gatedShareLinks": {
+        "title": "Les rapports partagés nécessitent désormais un compte gratuit",
+        "desc": "Envoyez un lien de rapport : la personne s'inscrit en une étape et arrive directement sur son rapport plutôt que sur la page d'accueil."
       }
     }
   },

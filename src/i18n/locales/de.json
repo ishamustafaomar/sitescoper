@@ -686,7 +686,12 @@
     "ctaTitle": "Führen Sie dies auf Ihrer eigenen Website aus",
     "ctaBody": "Kostenlos, sofort, KI-gestützt. Erhalten Sie in Sekunden einen brutal ehrlichen Bericht über Ihre Website.",
     "ctaButton": "Website analysieren →",
-    "poweredBy": "Bereitgestellt von"
+    "poweredBy": "Bereitgestellt von",
+    "gateBadge": "Privater Bericht",
+    "gateTitle": "Dein SiteScoper-Bericht ist fertig",
+    "gateBody": "Erstelle ein kostenloses Konto (oder melde dich an), um den vollständigen Bericht freizuschalten – jeden Befund, jede Priorität und jede Lösung für deine Website.",
+    "gateButton": "Kostenlos registrieren und Bericht ansehen",
+    "gateSignIn": "Bereits ein Konto? Anmelden"
   },
   "pages": {
     "adminReddit": {
@@ -1330,6 +1335,10 @@
       "proPaid": {
         "title": "Pro ist jetzt kostenpflichtig",
         "desc": "Der Early Access ist beendet. Pro kostet 19 $/Monat – kostenlose Konten behalten 3 Scans pro Monat, und du kannst jederzeit über die Preisseite upgraden."
+      },
+      "gatedShareLinks": {
+        "title": "Geteilte Berichte erfordern jetzt ein kostenloses Konto",
+        "desc": "Sende einen Berichtslink: Die Person registriert sich in einem Schritt und landet direkt im Bericht statt auf der Startseite."
       }
     }
   },

@@ -686,7 +686,12 @@
     "ctaTitle": "Esegui questo sul tuo sito",
     "ctaBody": "Gratuito, istantaneo, basato sull'IA. Ottieni un report brutalmente onesto sul tuo sito in pochi secondi.",
     "ctaButton": "Analizza un sito web →",
-    "poweredBy": "Realizzato con"
+    "poweredBy": "Realizzato con",
+    "gateBadge": "Report privato",
+    "gateTitle": "Il tuo report SiteScoper è pronto",
+    "gateBody": "Crea un account gratuito (o accedi) per sbloccare il report completo: ogni problema, priorità e soluzione per il tuo sito.",
+    "gateButton": "Registrati gratis per vedere il report",
+    "gateSignIn": "Hai già un account? Accedi"
   },
   "pages": {
     "adminReddit": {
@@ -1330,6 +1335,10 @@
       "proPaid": {
         "title": "Pro ora è a pagamento",
         "desc": "L'accesso anticipato è terminato. Pro costa 19 $/mese: gli account gratuiti mantengono 3 scansioni al mese e puoi passare a Pro quando vuoi dalla pagina Prezzi."
+      },
+      "gatedShareLinks": {
+        "title": "I report condivisi ora richiedono un account gratuito",
+        "desc": "Invia un link al report: la persona si registra in un passaggio e arriva direttamente al report invece che alla home page."
       }
     }
   },
