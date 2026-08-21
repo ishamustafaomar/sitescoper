@@ -22,9 +22,8 @@ if (isBrowser) i18n.use(LanguageDetector);
 i18n
   .use(initReactI18next)
   .init({
-    // Ensure resources are ready synchronously (critical for SSR/prerender,
-    // otherwise raw keys like "sharedAnalysis.visit" get rendered).
-    initImmediate: false,
+    // Fixed language on the server so SSR/prerender renders real strings
+    // instead of raw keys like "sharedAnalysis.visit".
     lng: isBrowser ? undefined : "en",
     react: { useSuspense: false },
     resources: {
