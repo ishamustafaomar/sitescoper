@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ExternalLink, Loader2, Sparkles, Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AnalysisPanel } from "@/components/AnalysisPanel";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { supabase } from "@/integrations/supabase/client";
 import { AnalysisResult, ScrapeResult } from "@/lib/api";
 import { useAuth } from "@/components/AuthProvider";
@@ -16,7 +17,7 @@ export default function SharedAnalysis() {
   const { user, loading: authLoading } = useAuth();
   const [record, setRecord] = useState<any>(null);
   const [loading, setLoading] = useState(true);
-
+  const [showGate, setShowGate] = useState(false);
 
   useEffect(() => {
     if (!token) return;
@@ -29,6 +30,16 @@ export default function SharedAnalysis() {
     })();
   }, [token]);
 
+  // After 5 seconds of viewing, prompt anonymous visitors to sign in.
+  useEffect(() => {
+    if (loading || authLoading || !record || user) {
+      setShowGate(false);
+      return;
+    }
+    const id = setTimeout(() => setShowGate(true), 5000);
+    return () => clearTimeout(id);
+  }, [loading, authLoading, record, user]);
+
   if (loading || authLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
@@ -37,31 +48,8 @@ export default function SharedAnalysis() {
     );
   }
 
-  if (record && !user) {
-    const authHref = `/auth?redirect=${encodeURIComponent(`/share/${token}`)}`;
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-background p-4">
-        <div className="max-w-md w-full text-center space-y-5 bg-card border border-border rounded-2xl p-8 shadow-[var(--shadow-sm)]">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-body border border-primary/20">
-            <Lock className="h-3 w-3" />
-            {t("sharedAnalysis.gateBadge")}
-          </div>
-          <div className="space-y-1">
-            <div className="text-5xl font-heading font-bold text-primary">{record.overall_score}<span className="text-xl text-muted-foreground">/100</span></div>
-            <p className="text-sm text-muted-foreground font-body truncate">{record.url}</p>
-          </div>
-          <h1 className="text-2xl font-heading font-bold">{t("sharedAnalysis.gateTitle")}</h1>
-          <p className="text-sm text-muted-foreground font-body">{t("sharedAnalysis.gateBody")}</p>
-          <Button asChild variant="hero" className="w-full">
-            <a href={authHref}>{t("sharedAnalysis.gateButton")}</a>
-          </Button>
-          <p className="text-xs text-muted-foreground font-body">
-            <a href={authHref} className="hover:text-foreground underline underline-offset-2">{t("sharedAnalysis.gateSignIn")}</a>
-          </p>
-        </div>
-      </div>
-    );
-  }
+  const authHref = `/auth?redirect=${encodeURIComponent(`/share/${token}`)}`;
+
 
 
   if (!record) {
@@ -154,6 +142,32 @@ export default function SharedAnalysis() {
       <footer className="border-t border-border mt-12 py-6 text-center text-xs text-muted-foreground font-body">
         {t("sharedAnalysis.poweredBy")} <a href="/" className="hover:text-foreground transition-colors">SiteScoper</a>
       </footer>
+
+      <Dialog open={showGate} onOpenChange={setShowGate}>
+        <DialogContent className="max-w-md text-center space-y-5">
+          <div className="mx-auto inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-body border border-primary/20">
+            <Lock className="h-3 w-3" />
+            {t("sharedAnalysis.gateBadge")}
+          </div>
+          <div className="space-y-1">
+            <div className="text-5xl font-heading font-bold text-primary">
+              {record.overall_score}<span className="text-xl text-muted-foreground">/100</span>
+            </div>
+            <p className="text-sm text-muted-foreground font-body truncate">{record.url}</p>
+          </div>
+          <h2 className="text-2xl font-heading font-bold">{t("sharedAnalysis.gateTitle")}</h2>
+          <p className="text-sm text-muted-foreground font-body">{t("sharedAnalysis.gateBody")}</p>
+          <Button asChild variant="hero" className="w-full">
+            <a href={authHref}>{t("sharedAnalysis.gateButton")}</a>
+          </Button>
+          <p className="text-xs text-muted-foreground font-body">
+            <a href={authHref} className="hover:text-foreground underline underline-offset-2">
+              {t("sharedAnalysis.gateSignIn")}
+            </a>
+          </p>
+        </DialogContent>
+      </Dialog>
     </div>
+
   );
 }
