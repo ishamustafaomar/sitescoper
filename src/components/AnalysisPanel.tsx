@@ -75,7 +75,7 @@ export function AnalysisPanel({ analysis, scrapeData, onRequestFullReport }: Ana
       {/* Layer 1: Verdict only — overall + 3 blockers + 3 opportunities */}
       <VerdictCard
         analysis={analysis}
-        onJumpToImpact={() => setShowFull(true)}
+        onJumpToImpact={() => openFull()}
       />
 
       {!showFull && (
@@ -83,7 +83,7 @@ export function AnalysisPanel({ analysis, scrapeData, onRequestFullReport }: Ana
           <Button
             variant="outline"
             size="lg"
-            onClick={() => setShowFull(true)}
+            onClick={() => openFull()}
             className="gap-2"
           >
             {t("analysisPanel.seeFullReport")}
