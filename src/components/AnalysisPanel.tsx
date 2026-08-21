@@ -41,6 +41,10 @@ function MiniScoreBar({ score }: { score: number }) {
 
 export function AnalysisPanel({ analysis, scrapeData, onRequestFullReport }: AnalysisPanelProps) {
   const { t } = useTranslation();
+  const text = (key: string, fallback: string) => {
+    const translated = t(key, { defaultValue: fallback });
+    return translated === key || translated.includes("Panel.") ? fallback : translated;
+  };
   const [expandedCategory, setExpandedCategory] = useState<number | null>(0);
   const [activeTab, setActiveTab] = useState<string>("impact");
   const [showFull, setShowFull] = useState(false);
@@ -67,7 +71,7 @@ export function AnalysisPanel({ analysis, scrapeData, onRequestFullReport }: Ana
           <AlertCircle className="h-4 w-4 text-primary shrink-0 mt-0.5" />
           <p className="text-xs font-body text-foreground/90 leading-relaxed">
             {scrapeData.partialReason ||
-              t("analysisPanel.partialResultsDefault")}
+              text("analysisPanel.partialResultsDefault", "Partial results — we couldn't load all of this site's content.")}
           </p>
         </div>
       )}
@@ -86,11 +90,11 @@ export function AnalysisPanel({ analysis, scrapeData, onRequestFullReport }: Ana
             onClick={() => openFull()}
             className="gap-2"
           >
-            {t("analysisPanel.seeFullReport")}
+            {text("analysisPanel.seeFullReport", "See full report")}
             <ArrowDown className="h-4 w-4" />
           </Button>
           <p className="text-[11px] text-muted-foreground font-body">
-            {t("analysisPanel.seeFullReportSub")}
+            {text("analysisPanel.seeFullReportSub", "Category scores, action plan, and deep diagnostics")}
           </p>
         </div>
       )}

@@ -7,10 +7,14 @@ import { useTranslation } from "react-i18next";
 
 function useCategoryLabels(): Record<string, string> {
   const { t } = useTranslation();
+  const text = (key: string, fallback: string) => {
+    const translated = t(key, { defaultValue: fallback });
+    return translated === key || translated.includes("Card.") ? fallback : translated;
+  };
   return {
-    saas: t("verdictCard.categorySaas"), marketing: t("verdictCard.categoryMarketing"), ecommerce: t("verdictCard.categoryEcommerce"),
-    blog: t("verdictCard.categoryBlog"), docs: t("verdictCard.categoryDocs"), portfolio: t("verdictCard.categoryPortfolio"),
-    community: t("verdictCard.categoryCommunity"), other: t("verdictCard.categoryOther"),
+    saas: text("verdictCard.categorySaas", "SaaS product"), marketing: text("verdictCard.categoryMarketing", "Marketing site"), ecommerce: text("verdictCard.categoryEcommerce", "E-commerce"),
+    blog: text("verdictCard.categoryBlog", "Blog"), docs: text("verdictCard.categoryDocs", "Documentation"), portfolio: text("verdictCard.categoryPortfolio", "Portfolio"),
+    community: text("verdictCard.categoryCommunity", "Community/Directory"), other: text("verdictCard.categoryOther", "Website"),
   };
 }
 
@@ -49,6 +53,10 @@ interface Props {
 
 export function VerdictCard({ analysis, onJumpToImpact }: Props) {
   const { t } = useTranslation();
+  const text = (key: string, fallback: string) => {
+    const translated = t(key, { defaultValue: fallback });
+    return translated === key || translated.includes("Card.") ? fallback : translated;
+  };
   const categoryLabels = useCategoryLabels();
   const all = flattenSuggestions(analysis);
   const ranked = rankSuggestions(all);
@@ -64,11 +72,11 @@ export function VerdictCard({ analysis, onJumpToImpact }: Props) {
 
   const score = analysis.overall_score;
   const verdict =
-    score >= 80 ? t("verdictCard.verdictStrong") :
-    score >= 65 ? t("verdictCard.verdictSolid") :
-    score >= 50 ? t("verdictCard.verdictMixed") :
-    score >= 35 ? t("verdictCard.verdictNeedsWork") :
-    t("verdictCard.verdictCritical");
+    score >= 80 ? text("verdictCard.verdictStrong", "Strong") :
+    score >= 65 ? text("verdictCard.verdictSolid", "Solid, with room to grow") :
+    score >= 50 ? text("verdictCard.verdictMixed", "Mixed — some clear wins to ship") :
+    score >= 35 ? text("verdictCard.verdictNeedsWork", "Needs work — focus on fundamentals") :
+    text("verdictCard.verdictCritical", "Critical issues — start at the top");
 
   return (
     <motion.div
@@ -81,7 +89,7 @@ export function VerdictCard({ analysis, onJumpToImpact }: Props) {
         <ScoreRing score={score} />
         <div className="flex-1 min-w-0 space-y-1.5">
           <div className="flex items-center gap-2 flex-wrap">
-            <span className="text-[10px] font-body uppercase tracking-wider text-muted-foreground">{t("verdictCard.verdict")}</span>
+            <span className="text-[10px] font-body uppercase tracking-wider text-muted-foreground">{text("verdictCard.verdict", "Verdict")}</span>
             {analysis.site_category && (
               <Badge variant="outline" className="text-[10px] font-body">
                 {categoryLabels[analysis.site_category] ?? analysis.site_category}
@@ -97,20 +105,20 @@ export function VerdictCard({ analysis, onJumpToImpact }: Props) {
 
       <div className="grid md:grid-cols-2 gap-4 pt-4 border-t border-border">
         <TopList
-          title={t("verdictCard.criticalBlockers")}
+          title={text("verdictCard.criticalBlockers", "Critical blockers")}
           items={blockers}
           icon={AlertTriangle}
           iconClass="text-destructive"
           chipClass="bg-destructive/10 text-destructive"
-          emptyText={t("verdictCard.noBlockers")}
+          emptyText={text("verdictCard.noBlockers", "No critical blockers — nice.")}
         />
         <TopList
-          title={t("verdictCard.topOpportunities")}
+          title={text("verdictCard.topOpportunities", "Top opportunities")}
           items={opportunities}
           icon={Sparkles}
           iconClass="text-primary"
           chipClass="bg-primary/10 text-primary"
-          emptyText={t("verdictCard.noOpportunities")}
+          emptyText={text("verdictCard.noOpportunities", "No clear growth opportunities surfaced.")}
         />
       </div>
 
@@ -120,7 +128,7 @@ export function VerdictCard({ analysis, onJumpToImpact }: Props) {
             onClick={onJumpToImpact}
             className="text-xs font-body text-primary hover:underline inline-flex items-center gap-1"
           >
-            {t("verdictCard.seeFullReport")} <ArrowRight className="h-3 w-3" />
+            {text("verdictCard.seeFullReport", "See full report")} <ArrowRight className="h-3 w-3" />
           </button>
         </div>
       )}

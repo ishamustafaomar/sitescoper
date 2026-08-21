@@ -13,6 +13,12 @@ import { useTranslation } from "react-i18next";
 
 export default function SharedAnalysis() {
   const { t } = useTranslation();
+  const text = (key: string, fallback: string, values?: Record<string, unknown>) => {
+    const translated = t(key, { defaultValue: fallback, ...values });
+    return translated === key || translated.includes("Analysis.") || translated.includes("Card.") || translated.includes("Panel.")
+      ? fallback.replace("{{date}}", String(values?.date ?? ""))
+      : translated;
+  };
   const { token } = useParams();
   const { user, loading: authLoading } = useAuth();
   const [record, setRecord] = useState<any>(null);
@@ -56,12 +62,12 @@ export default function SharedAnalysis() {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background p-4">
         <div className="text-center space-y-3 max-w-md">
-          <h1 className="text-2xl font-heading font-bold">{t("sharedAnalysis.notFoundTitle")}</h1>
+          <h1 className="text-2xl font-heading font-bold">{text("sharedAnalysis.notFoundTitle", "Report not found")}</h1>
           <p className="text-muted-foreground font-body text-sm">
-            {t("sharedAnalysis.notFoundBody")}
+            {text("sharedAnalysis.notFoundBody", "This shared report link may have expired or been disabled by the owner.")}
           </p>
           <Button asChild variant="hero">
-            <a href="/">{t("sharedAnalysis.analyzeOwnSite")}</a>
+            <a href="/">{text("sharedAnalysis.analyzeOwnSite", "Analyze your own site →")}</a>
           </Button>
         </div>
       </div>
@@ -100,14 +106,14 @@ export default function SharedAnalysis() {
             SiteScoper
           </a>
           <Button asChild size="sm" variant="hero">
-            <a href="/">{t("sharedAnalysis.analyzeSite")}</a>
+            <a href="/">{text("sharedAnalysis.analyzeSite", "Analyze your site")}</a>
           </Button>
         </div>
       </header>
 
       <main className="max-w-4xl mx-auto px-4 py-8 space-y-6">
         <div className="space-y-1">
-          <div className="text-[10px] font-body uppercase tracking-widest text-muted-foreground">{t("sharedAnalysis.sharedReportLabel")}</div>
+          <div className="text-[10px] font-body uppercase tracking-widest text-muted-foreground">{text("sharedAnalysis.sharedReportLabel", "Shared Report")}</div>
           <div className="flex items-center gap-2 flex-wrap">
             <h1 className="font-heading font-bold text-xl truncate">{record.url}</h1>
             <a
@@ -116,11 +122,11 @@ export default function SharedAnalysis() {
               rel="noopener noreferrer"
               className="text-xs text-muted-foreground hover:text-primary font-body inline-flex items-center gap-1"
             >
-              {t("sharedAnalysis.visit")} <ExternalLink className="h-3 w-3" />
+              {text("sharedAnalysis.visit", "Visit")} <ExternalLink className="h-3 w-3" />
             </a>
           </div>
           <p className="text-xs text-muted-foreground font-body">
-            {t("sharedAnalysis.analyzedAt", { date: new Date(record.created_at).toLocaleString() })}
+            {text("sharedAnalysis.analyzedAt", "Analyzed {{date}}", { date: new Date(record.created_at).toLocaleString() })}
           </p>
         </div>
 
@@ -138,25 +144,25 @@ export default function SharedAnalysis() {
         </motion.div>
 
         <div className="bg-gradient-to-br from-primary/10 via-primary/5 to-transparent border border-primary/20 rounded-2xl p-6 text-center space-y-3 mt-8">
-          <h3 className="text-xl font-heading font-bold">{t("sharedAnalysis.ctaTitle")}</h3>
+          <h3 className="text-xl font-heading font-bold">{text("sharedAnalysis.ctaTitle", "Run this on your own site")}</h3>
           <p className="text-sm text-muted-foreground font-body max-w-md mx-auto">
-            {t("sharedAnalysis.ctaBody")}
+            {text("sharedAnalysis.ctaBody", "Free, instant, AI-powered. Get a brutally honest report on your site in seconds.")}
           </p>
           <Button asChild variant="hero">
-            <a href="/">{t("sharedAnalysis.ctaButton")}</a>
+            <a href="/">{text("sharedAnalysis.ctaButton", "Analyze a website →")}</a>
           </Button>
         </div>
       </main>
 
       <footer className="border-t border-border mt-12 py-6 text-center text-xs text-muted-foreground font-body">
-        {t("sharedAnalysis.poweredBy")} <a href="/" className="hover:text-foreground transition-colors">SiteScoper</a>
+        {text("sharedAnalysis.poweredBy", "Powered by")} <a href="/" className="hover:text-foreground transition-colors">SiteScoper</a>
       </footer>
 
       <Dialog open={showGate} onOpenChange={setShowGate}>
         <DialogContent className="max-w-md text-center space-y-5">
           <div className="mx-auto inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-body border border-primary/20">
             <Lock className="h-3 w-3" />
-            {t("sharedAnalysis.gateBadge")}
+            {text("sharedAnalysis.gateBadge", "Private report")}
           </div>
           <div className="space-y-1">
             <div className="text-5xl font-heading font-bold text-primary">
@@ -164,14 +170,14 @@ export default function SharedAnalysis() {
             </div>
             <p className="text-sm text-muted-foreground font-body truncate">{record.url}</p>
           </div>
-          <h2 className="text-2xl font-heading font-bold">{t("sharedAnalysis.gateTitle")}</h2>
-          <p className="text-sm text-muted-foreground font-body">{t("sharedAnalysis.gateBody")}</p>
+          <h2 className="text-2xl font-heading font-bold">{text("sharedAnalysis.gateTitle", "Your SiteScoper report is ready")}</h2>
+          <p className="text-sm text-muted-foreground font-body">{text("sharedAnalysis.gateBody", "Create a free account (or sign in) to unlock the full report — every finding, priority and fix for your site.")}</p>
           <Button asChild variant="hero" className="w-full">
-            <a href={authHref}>{t("sharedAnalysis.gateButton")}</a>
+            <a href={authHref}>{text("sharedAnalysis.gateButton", "Sign up free to view my report")}</a>
           </Button>
           <p className="text-xs text-muted-foreground font-body">
             <a href={authHref} className="hover:text-foreground underline underline-offset-2">
-              {t("sharedAnalysis.gateSignIn")}
+              {text("sharedAnalysis.gateSignIn", "Already have an account? Sign in")}
             </a>
           </p>
         </DialogContent>
