@@ -126,8 +126,9 @@ export default function SharedAnalysis() {
             </a>
           </div>
           <p className="text-xs text-muted-foreground font-body">
-            {text("sharedAnalysis.analyzedAt", "Analyzed {{date}}", { date: new Date(record.created_at).toLocaleString() })}
+            Analyzed {new Date(record.created_at).toLocaleString()}
           </p>
+
         </div>
 
         <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}>
