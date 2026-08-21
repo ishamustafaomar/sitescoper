@@ -686,7 +686,12 @@
     "ctaTitle": "Esegui questo sul tuo sito",
     "ctaBody": "Gratuito, istantaneo, basato sull'IA. Ottieni un report brutalmente onesto sul tuo sito in pochi secondi.",
     "ctaButton": "Analizza un sito web →",
-    "poweredBy": "Realizzato con"
+    "poweredBy": "Realizzato con",
+    "gateBadge": "Report privato",
+    "gateTitle": "Il tuo report SiteScoper è pronto",
+    "gateBody": "Crea un account gratuito (o accedi) per sbloccare il report completo: ogni problema, priorità e soluzione per il tuo sito.",
+    "gateButton": "Registrati gratis per vedere il report",
+    "gateSignIn": "Hai già un account? Accedi"
   },
   "pages": {
     "adminReddit": {

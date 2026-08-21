@@ -686,7 +686,12 @@
     "ctaTitle": "Lancez ceci sur votre propre site",
     "ctaBody": "Gratuit, instantané, propulsé par l'IA. Obtenez un rapport d'une honnêteté brutale sur votre site en quelques secondes.",
     "ctaButton": "Analyser un site web →",
-    "poweredBy": "Propulsé par"
+    "poweredBy": "Propulsé par",
+    "gateBadge": "Rapport privé",
+    "gateTitle": "Votre rapport SiteScoper est prêt",
+    "gateBody": "Créez un compte gratuit (ou connectez-vous) pour débloquer le rapport complet : chaque constat, priorité et correctif pour votre site.",
+    "gateButton": "S'inscrire gratuitement pour voir mon rapport",
+    "gateSignIn": "Vous avez déjà un compte ? Connectez-vous"
   },
   "pages": {
     "adminReddit": {

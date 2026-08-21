@@ -686,7 +686,12 @@
     "ctaTitle": "Führen Sie dies auf Ihrer eigenen Website aus",
     "ctaBody": "Kostenlos, sofort, KI-gestützt. Erhalten Sie in Sekunden einen brutal ehrlichen Bericht über Ihre Website.",
     "ctaButton": "Website analysieren →",
-    "poweredBy": "Bereitgestellt von"
+    "poweredBy": "Bereitgestellt von",
+    "gateBadge": "Privater Bericht",
+    "gateTitle": "Dein SiteScoper-Bericht ist fertig",
+    "gateBody": "Erstelle ein kostenloses Konto (oder melde dich an), um den vollständigen Bericht freizuschalten – jeden Befund, jede Priorität und jede Lösung für deine Website.",
+    "gateButton": "Kostenlos registrieren und Bericht ansehen",
+    "gateSignIn": "Bereits ein Konto? Anmelden"
   },
   "pages": {
     "adminReddit": {
