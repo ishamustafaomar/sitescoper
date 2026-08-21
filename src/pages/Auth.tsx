@@ -28,12 +28,18 @@ export default function Auth() {
   const location = useLocation();
   const { user } = useAuth();
   const { t } = useTranslation();
+  const text = (key: string, fallback: string) => {
+    const translated = t(key, { defaultValue: fallback });
+    return !translated || translated === key || translated.startsWith("auth.") ? fallback : translated;
+  };
   const redirectPath = new URLSearchParams(location.search).get("redirect");
   const nextPath = redirectPath?.startsWith("/") && !redirectPath.startsWith("//") ? redirectPath : "/dashboard";
 
   useEffect(() => {
-    if (user) navigate(nextPath, { replace: true });
-  }, [user, navigate, nextPath]);
+    if (user && typeof window !== "undefined") {
+      window.location.replace(nextPath);
+    }
+  }, [user, nextPath]);
 
   const handleEmailAuth = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -95,7 +101,7 @@ export default function Auth() {
             </h1>
           </div>
           <p className="text-muted-foreground font-body text-sm">
-            {isLogin ? t("auth.welcomeBack") : t("auth.create")}
+            {isLogin ? text("auth.welcomeBack", "Welcome back") : text("auth.create", "Create your account")}
           </p>
         </div>
 
@@ -118,7 +124,7 @@ export default function Auth() {
               <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
             </svg>
           )}
-          {t("auth.google")}
+          {text("auth.google", "Continue with Google")}
         </Button>
 
         <div className="relative">
@@ -126,7 +132,7 @@ export default function Auth() {
             <span className="w-full border-t border-border" />
           </div>
           <div className="relative flex justify-center text-xs uppercase">
-            <span className="bg-background px-2 text-muted-foreground font-body">{t("auth.or")}</span>
+            <span className="bg-background px-2 text-muted-foreground font-body">{text("auth.or", "or")}</span>
           </div>
         </div>
 
@@ -134,7 +140,7 @@ export default function Auth() {
         <form onSubmit={handleEmailAuth} className="space-y-4">
           {!isLogin && (
             <div className="space-y-2">
-              <Label htmlFor="name" className="font-body text-sm">{t("auth.fullName")}</Label>
+              <Label htmlFor="name" className="font-body text-sm">{text("auth.fullName", "Full Name")}</Label>
               <div className="relative">
                 <User className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                 <Input
@@ -151,7 +157,7 @@ export default function Auth() {
           )}
 
           <div className="space-y-2">
-            <Label htmlFor="email" className="font-body text-sm">{t("auth.email")}</Label>
+            <Label htmlFor="email" className="font-body text-sm">{text("auth.email", "Email")}</Label>
             <div className="relative">
               <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
               <Input
@@ -167,7 +173,7 @@ export default function Auth() {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="password" className="font-body text-sm">{t("auth.password")}</Label>
+            <Label htmlFor="password" className="font-body text-sm">{text("auth.password", "Password")}</Label>
             <div className="relative">
               <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
               <Input
@@ -188,7 +194,7 @@ export default function Auth() {
               <Loader2 className="h-4 w-4 animate-spin" />
             ) : (
               <>
-                {isLogin ? t("auth.signIn") : t("auth.signUp")}
+                {isLogin ? text("auth.signIn", "Sign In") : text("auth.signUp", "Create Account")}
                 <ArrowRight className="h-4 w-4 ml-1" />
               </>
             )}
@@ -208,12 +214,12 @@ export default function Auth() {
         </form>
 
         <p className="text-center text-sm text-muted-foreground font-body">
-          {isLogin ? t("auth.noAccount") : t("auth.hasAccount")}{" "}
+          {isLogin ? text("auth.noAccount", "Don't have an account?") : text("auth.hasAccount", "Already have an account?")}{" "}
           <button
             onClick={() => setIsLogin(!isLogin)}
             className="text-primary hover:underline font-medium"
           >
-            {isLogin ? t("auth.switchSignup") : t("auth.switchLogin")}
+            {isLogin ? text("auth.switchSignup", "Sign up") : text("auth.switchLogin", "Sign in")}
           </button>
         </p>
       </motion.div>
