@@ -18,6 +18,8 @@ import { Button } from "@/components/ui/button";
 interface AnalysisPanelProps {
   analysis: AnalysisResult;
   scrapeData?: ScrapeResult;
+  /** Return true to block expanding the full report (e.g. require sign-in). */
+  onRequestFullReport?: () => boolean | void;
 }
 
 function MiniScoreBar({ score }: { score: number }) {
