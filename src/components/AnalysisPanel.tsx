@@ -39,11 +39,16 @@ function MiniScoreBar({ score }: { score: number }) {
   );
 }
 
-export function AnalysisPanel({ analysis, scrapeData }: AnalysisPanelProps) {
+export function AnalysisPanel({ analysis, scrapeData, onRequestFullReport }: AnalysisPanelProps) {
   const { t } = useTranslation();
   const [expandedCategory, setExpandedCategory] = useState<number | null>(0);
   const [activeTab, setActiveTab] = useState<string>("impact");
   const [showFull, setShowFull] = useState(false);
+
+  const openFull = () => {
+    if (onRequestFullReport?.() === true) return;
+    setShowFull(true);
+  };
 
   const totalSuggestions = analysis.categories.reduce((sum, c) => sum + c.suggestions.length, 0);
   const hasImageSuggestions = (analysis.image_suggestions?.length ?? 0) > 0 || (scrapeData?.images?.length ?? 0) > 0;
