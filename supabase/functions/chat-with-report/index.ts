@@ -48,13 +48,21 @@ ${sectionList}
 ## Category findings
 ${categories}
 
+# WHAT YOU CAN DO
+You are not limited to repeating the report. You can reason about anything on the site: brand, logo, colour, typography, copy, pricing, funnel, onboarding, technical SEO, competitors, positioning, growth experiments. When a question needs evidence you don't already have (e.g. "what about my logo?", "is my pricing page confusing?", "what's on /about?"), CALL A TOOL and look before answering.
+
+Tools available:
+- rescan_section: re-fetch the homepage and look for a specific section the user says you missed.
+- fetch_page: fetch any page of the site (or a path like "/pricing") and read its real content, headings, title and meta.
+- inspect_visuals: list the site's images with alt text, dimensions and filenames — use this for logo, imagery, and alt-text questions.
+
 # RULES
-- Be concise (2-5 short paragraphs max unless asked for detail). Use markdown. Real opinions, not generic platitudes.
-- If the user says you got something wrong (e.g. "we DO have testimonials"), believe them and call the rescan_section tool to re-fetch the homepage and look again. Don't be defensive — just verify.
-- If asked "what should I do first?", point to highest-impact / lowest-effort items already in the report.
+- Be concise (2-5 short paragraphs max unless asked for detail). Use markdown. Real opinions, not generic platitudes. No emojis.
+- If the user says you got something wrong (e.g. "we DO have testimonials"), believe them, verify with a tool, and correct yourself without being defensive.
+- For questions about a specific asset or page, fetch it first, then give specific, evidence-backed advice (quote what you saw).
+- If asked "what should I do first?", point to highest-impact / lowest-effort items.
 - If the user asks for a copy rewrite or new headline, give 2-3 concrete options.
-- Never invent data not in the report unless you're explicitly speculating ("My guess: ...").
-- If you used the rescan_section tool, summarize what you actually saw in the new content vs. the original report.`;
+- Never invent data. If a tool returns nothing useful, say what you checked and then clearly label any speculation ("My guess: ...").`;
 }
 
 const tools = [
@@ -76,7 +84,114 @@ const tools = [
       },
     },
   },
+  {
+    type: "function",
+    function: {
+      name: "fetch_page",
+      description: "Fetch and read any page on the audited site. Use for questions about a specific page (pricing, about, docs, a blog post) or to double-check the homepage content.",
+      parameters: {
+        type: "object",
+        properties: {
+          page: {
+            type: "string",
+            description: "A path like '/pricing' or a full URL on the same site. Use '/' for the homepage.",
+          },
+        },
+        required: ["page"],
+        additionalProperties: false,
+      },
+    },
+  },
+  {
+    type: "function",
+    function: {
+      name: "inspect_visuals",
+      description: "List the images on a page with their alt text and filenames, including likely logo assets. Use for logo, branding, imagery or alt-text questions.",
+      parameters: {
+        type: "object",
+        properties: {
+          page: {
+            type: "string",
+            description: "Path or full URL to inspect. Use '/' for the homepage.",
+          },
+        },
+        required: ["page"],
+        additionalProperties: false,
+      },
+    },
+  },
 ];
+
+function resolveTarget(baseUrl: string, page: string): string | null {
+  try {
+    const base = new URL(baseUrl);
+    const target = new URL(page || "/", base);
+    if (!["http:", "https:"].includes(target.protocol)) return null;
+    if (target.hostname.replace(/^www\./, "") !== base.hostname.replace(/^www\./, "")) return null;
+    return target.toString();
+  } catch {
+    return null;
+  }
+}
+
+async function scrapeRaw(url: string): Promise<{ markdown: string; html: string } | string> {
+  const FIRECRAWL_API_KEY = Deno.env.get("FIRECRAWL_API_KEY");
+  if (!FIRECRAWL_API_KEY) return "Unavailable (no Firecrawl key).";
+  try {
+    const res = await fetch("https://api.firecrawl.dev/v2/scrape", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${FIRECRAWL_API_KEY}`, "Content-Type": "application/json" },
+      body: JSON.stringify({ url, formats: ["markdown", "html"], onlyMainContent: false }),
+    });
+    const data = await res.json();
+    if (!res.ok) return `Fetch failed: ${data.error || res.status}`;
+    const result = data.data || data;
+    return { markdown: (result.markdown || "").slice(0, 30000), html: (result.html || "").slice(0, 60000) };
+  } catch (e) {
+    console.error("scrapeRaw error", e);
+    return "Fetch error: request failed";
+  }
+}
+
+async function fetchPageTool(baseUrl: string, page: string): Promise<string> {
+  const target = resolveTarget(baseUrl, page);
+  if (!target) return "Fetch failed: only pages on the audited site can be fetched.";
+  const r = await scrapeRaw(target);
+  if (typeof r === "string") return r;
+  const title = (r.html.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1] || "").trim();
+  const desc = (r.html.match(/<meta[^>]+name=["']description["'][^>]+content=["']([^"']*)["']/i)?.[1] || "").trim();
+  const headings: string[] = [];
+  const hre = /<h([1-3])[^>]*>([\s\S]*?)<\/h\1>/gi;
+  let m;
+  while ((m = hre.exec(r.html)) !== null && headings.length < 25) {
+    const t = m[2].replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
+    if (t) headings.push(`H${m[1]}: ${t}`);
+  }
+  return `PAGE ${target}\nTitle: ${title || "(none)"}\nMeta description: ${desc || "(none)"}\nHeadings:\n${headings.join("\n") || "(none)"}\n\nContent (truncated):\n${r.markdown.slice(0, 8000)}`;
+}
+
+async function inspectVisualsTool(baseUrl: string, page: string): Promise<string> {
+  const target = resolveTarget(baseUrl, page);
+  if (!target) return "Fetch failed: only pages on the audited site can be inspected.";
+  const r = await scrapeRaw(target);
+  if (typeof r === "string") return r;
+  const imgs: string[] = [];
+  const ire = /<img\b[^>]*>/gi;
+  let m;
+  while ((m = ire.exec(r.html)) !== null && imgs.length < 40) {
+    const tag = m[0];
+    const src = tag.match(/src=["']([^"']+)["']/i)?.[1] || "";
+    const alt = tag.match(/alt=["']([^"']*)["']/i)?.[1];
+    const w = tag.match(/width=["']?(\d+)/i)?.[1];
+    const h = tag.match(/height=["']?(\d+)/i)?.[1];
+    const looksLogo = /logo|brand|mark|icon/i.test(src) ? " [likely logo/brand asset]" : "";
+    imgs.push(`- ${src}${looksLogo} | alt: ${alt === undefined ? "(MISSING alt attribute)" : alt === "" ? "(empty)" : alt}${w && h ? ` | ${w}x${h}` : ""}`);
+  }
+  const favicon = r.html.match(/<link[^>]+rel=["'][^"']*icon[^"']*["'][^>]+href=["']([^"']+)["']/i)?.[1];
+  const ogImage = r.html.match(/<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)["']/i)?.[1];
+  return `VISUAL ASSETS on ${target}\nFavicon: ${favicon || "(none found)"}\nOG image: ${ogImage || "(none found)"}\nImages (${imgs.length}):\n${imgs.join("\n") || "(none)"}`;
+}
+
 
 async function rescanSection(url: string, keyword: string): Promise<string> {
   const FIRECRAWL_API_KEY = Deno.env.get("FIRECRAWL_API_KEY");
