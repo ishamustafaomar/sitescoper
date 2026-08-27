@@ -217,8 +217,26 @@ const Index = () => {
                     </div>
 
                     <p className="mt-4 text-[12px] text-muted-foreground font-body">
-                      {t("hero.freePlanBadge")} · {t("hero.freeScansFootnote")}
+                      {t("hero.freeScansFootnote")}
                     </p>
+
+                    {!user && (
+                      <p className="mt-2 text-[12px] font-body">
+                        <Link to="/auth" className="text-foreground underline underline-offset-4 decoration-[hsl(var(--accent))] decoration-2 hover:text-[hsl(var(--accent))] transition-colors">
+                          {t("hero.createAccountCta", "Create a free account")}
+                        </Link>{" "}
+                        <span className="text-muted-foreground">{t("hero.createAccountSub", "— keeps your report history and lets you re-scan after every fix.")}</span>
+                      </p>
+                    )}
+                    {user && !isPro && (
+                      <p className="mt-2 text-[12px] font-body">
+                        <Link to="/pricing" className="text-foreground underline underline-offset-4 decoration-[hsl(var(--accent))] decoration-2 hover:text-[hsl(var(--accent))] transition-colors">
+                          {t("hero.upgradeCta", "Go Pro")}
+                        </Link>{" "}
+                        <span className="text-muted-foreground">{t("hero.upgradeSub", "— unlimited scans, deep multi-page crawls, PDF and share-link exports.")}</span>
+                      </p>
+                    )}
+
                   </div>
 
                   <div className="mt-12 sm:mt-16 pt-6 border-t border-border flex flex-wrap gap-x-8 gap-y-2 text-[11px] uppercase tracking-[0.12em] font-body font-medium text-muted-foreground">
