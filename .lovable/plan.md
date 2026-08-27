@@ -1,64 +1,61 @@
-## Goal
+# SiteScoper logo brief & implementation plan
 
-Port the v2 design bundle (currently sitting untouched at `public/ui-v2.html`) into the real React routes so the live site reflects the new visual system. All existing data flows (auth, scans, subscriptions, Stripe, Supabase queries) stay wired — only presentation changes.
+## Direction I’m choosing for you
 
-## Screens in scope
+- **Style:** Minimal icon + wordmark. A precise, confident mark (not literal clip-art) that reads as “inspection / focus / site review.” Think editorial-tech: simple strokes, no gradients, no shadows, no glow.
+- **Name in logo:** Icon + wordmark together, plus a standalone icon version for favicon / avatar / small spaces.
+- **Palette:** Match the site redesign — warm paper `#f5f3ee`, ink `#0d0d0d`, clay accent `#c65a3e`. Logo must work in single-color ink on paper and reversed (white on dark).
+- **Typography:** Pair with the site’s new editorial type: heading font is *Instrument Serif*, body is *Work Sans*. The logo wordmark can either use *Instrument Serif* (elegant, same as site) or a custom-drawn wordmark if the designer proposes one.
 
-The v2 bundle contains 5 screens; each maps to an existing route:
+## Copy-paste brief for the designer
 
-| v2 screen  | Real route                                | File(s) to rebuild |
-|------------|-------------------------------------------|--------------------|
-| Landing    | `/`                                       | `src/pages/Index.tsx` + landing components |
-| Scanning   | in-progress state of `/` after submit     | `src/components/ScanningAnimation.tsx` + `StreamingProgress.tsx` |
-| Report     | `/analysis/:id`                           | `src/pages/AnalysisDetail.tsx` + `AnalysisPanel.tsx`, `ScoreRing.tsx`, `VerdictCard.tsx`, `ImpactMatrix.tsx`, `SuggestionCard.tsx` |
-| Dashboard  | `/dashboard`                              | `src/pages/Dashboard.tsx` + `dashboard/*` panels, `WebsiteCard.tsx`, `StatsOverview.tsx` |
-| Pricing    | `/pricing`                                | `src/pages/Pricing.tsx` |
+> **Project:** Logo for SiteScoper — an AI website UX auditor and SEO checker.
+>
+> **What we need:**
+> - Primary logo: icon + wordmark (“SiteScoper”)
+> - Standalone icon version
+> - Favicon and app-avatar version
+>
+> **Brand feel:** Editorial, precise, human. Not “AI startup generic.” Avoid gradients, glows, purple/blue tech palettes, pill shapes, and meaningless geometric flourishes. The design should feel like something a craft-led product studio would ship.
+>
+> **Suggested concept (open to refinement):** A magnifying scope / lens / crosshair mark that implies focused inspection of a website. Avoid a literal magnifying glass if it looks clip-arty. We prefer a simplified, geometric abstraction.
+>
+> **Color palette:**
+> - Paper background: `#f5f3ee`
+> - Ink / primary: `#0d0d0d`
+> - Clay accent: `#c65a3e`
+> Logo must work as a single-color mark in ink on paper and reversed on dark.
+>
+> **Typography:** Use or complement *Instrument Serif* and *Work Sans* if you are including the wordmark in type. The wordmark should feel editorial, not sporty or corporate.
+>
+> **Deliverables:**
+> 1. SVG source file(s)
+> 2. PNG exports at 32, 64, 128, 256, 512 px for the mark
+> 3. Favicon `.ico` and `.svg`
+> 4. One-page usage guide (clear space, minimum size, color versions, what not to do)
+>
+> **What to avoid:**
+> - Gradients, shadows, glows, 3D effects
+> - Overly literal robot / AI / rocket / lightning imagery
+> - Thin details that disappear at favicon size
+> - Multiple colors required for the logo to be readable
+>
+> **References we like:** Linear, Notion, Figma, Pitch — simple geometric marks, confident wordmarks, calm color discipline.
 
-Global chrome:
-- `src/components/AppHeader.tsx` — sticky blurred header with pill nav (Analyze / Dashboard / Compare-PRO / Pricing), theme toggle, avatar menu.
-- `src/components/SiteFooter.tsx` — refined footer to match.
+## Files you should upload when the designer sends them back
 
-## Approach
+Upload these and I’ll swap them into the app:
+1. `logo-primary.svg` — main icon + wordmark (for the header)
+2. `logo-mark.svg` — standalone icon (for favicon, avatar, small spaces)
+3. `logo-mark.png` — raster fallback at least 256×256 px
+4. `brand-guide.pdf` or `.png` — usage guide (optional but helpful)
 
-1. **Design tokens (small edit, high leverage).** The v2 bundle uses the same token names we already have (`--background`, `--card`, `--primary`, `--muted`, `--border`, `--font-heading`, `--font-body`) plus one new one (`--primary-alt` for the secondary blur/gradient stop). Update `src/index.css`:
-   - Add `--primary-alt` in light and dark.
-   - Tune `--radius`, shadow tokens, and dark `--background`/`--card` values to match the v2 palette.
-   - Keep Space Grotesk + Inter (already declared). No Google Fonts change needed.
-2. **Rebuild routes top-down.** For each screen:
-   - Replicate the v2 layout using existing shadcn primitives + Tailwind utilities driven by tokens (no hard-coded hex, no `text-white`/`bg-black`).
-   - Wire the same hooks/queries the current page uses (`useAuth`, `useSubscription`, analysis fetch, etc.) into the new markup.
-   - Keep all routes, guards, and side effects (`ProtectedRoute`, `OnboardingGuard`, canonical/SEO tags) unchanged.
-3. **Motion.** Convert v2's `ssRise` / `ssBob` / `ssPing` keyframes into Framer Motion variants where components already use `framer-motion`; keep CSS keyframes for the scanning halo.
-4. **Cleanup.** Delete `public/ui-v2.html` once ports land (leave until final step in case we want to diff).
+## Implementation plan once files are ready
 
-## Non-goals
-
-- No new features, no schema changes, no edge-function edits.
-- No copy rewrites beyond what the v2 design shows.
-- Compare page, blog, admin, onboarding, account, auth — left as-is (not in the v2 bundle).
-- Mobile-specific redesign beyond what v2 already implies via its responsive inline styles.
-
-## Technical notes
-
-- v2 uses heavy inline styles because it was exported from a design tool. In the port we translate those to Tailwind classes + token references so dark mode, theming, and the existing `next-themes` toggle keep working.
-- The header avatar circle currently shows `I` in v2 — we'll wire it to the user's initial from `useAuth`.
-- The "PRO" lock chip on the Compare nav item will use `useSubscription().isPro` to hide/show, matching current behavior.
-- Scanning screen will read from the existing `StreamingProgress` state; no new backend hooks.
-- Report screen keeps `AnalysisPanel`'s data contract; we restyle the sub-cards (`ScoreRing`, `VerdictCard`, `ImpactMatrix`, `SuggestionCard`) rather than replace their props.
-
-## Suggested execution order (each is a self-contained commit)
-
-```text
-1. Tokens + header + footer         (foundation, visible everywhere)
-2. Landing (/)
-3. Scanning state (mid-analysis)
-4. Report (/analysis/:id)
-5. Dashboard (/dashboard)
-6. Pricing (/pricing)
-7. Remove public/ui-v2.html
-```
-
-## Risks
-
-- Large diff surface across ~20 files; visual regressions likely on sub-views not shown in v2 (e.g. shared analysis, PDF export). Will spot-check `/share/:token` and PDF render after the port and patch styling deltas.
-- Framer Motion + `motion` usages in current components need to keep working with the new markup — we reuse existing motion wrappers where possible instead of rewriting them.
+1. Upload the new logo assets to `src/assets/` as Lovable Assets.
+2. Replace `src/assets/logo-mark.png` and update `public/favicon.svg`.
+3. Update `src/components/AppHeader.tsx` to use the new primary logo mark/wordmark.
+4. Update `src/components/SiteFooter.tsx`, `src/pages/SharedAnalysis.tsx`, and any other places the old logo appears.
+5. Update `public/site.webmanifest` if the icon name/shape changes.
+6. Run typecheck + build, then verify the header, favicon, and shared-report header in the preview.
+7. Add a changelog entry for the new logo in `src/data/changelog.ts` and all five locale files.
