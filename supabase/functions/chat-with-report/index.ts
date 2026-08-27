@@ -284,12 +284,12 @@ serve(async (req) => {
     ];
 
     // Loop up to 3 times to allow tool calls
-    for (let iter = 0; iter < 3; iter++) {
+    for (let iter = 0; iter < 5; iter++) {
       const aiResp = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
         method: "POST",
         headers: { Authorization: `Bearer ${LOVABLE_API_KEY}`, "Content-Type": "application/json" },
         body: JSON.stringify({
-          model: "google/gemini-2.5-flash",
+          model: "google/gemini-3.7-flash",
           messages: fullMessages,
           tools,
           tool_choice: "auto",
@@ -342,7 +342,7 @@ serve(async (req) => {
       });
     }
 
-    return new Response(JSON.stringify({ content: "(Stopped after 3 iterations)" }), {
+    return new Response(JSON.stringify({ content: "(Stopped after several tool steps — try asking again more specifically.)" }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   } catch (e: any) {
