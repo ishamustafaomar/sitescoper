@@ -230,14 +230,20 @@
     font-family: var(--font-body);
   }
 
+  /* Instrument Serif ships a single weight. Force 400 so the browser never
+     synthesises a smeared faux-bold, and tighten the optical spacing. */
   h1,
   h2,
   h3,
   h4,
   h5,
-  h6 {
+  h6,
+  .font-heading {
     font-family: var(--font-heading);
+    font-weight: 400 !important;
+    letter-spacing: -0.015em;
   }
+
 
   /* Prevent accidental horizontal scroll on tablet/mobile */
   html,
