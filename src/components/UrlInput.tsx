@@ -1,7 +1,5 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
-import { Globe, ArrowRight, Loader2 } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { ArrowRight, Loader2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useTranslation } from "react-i18next";
 
@@ -23,31 +21,24 @@ export function UrlInput({ onSubmit, isLoading }: UrlInputProps) {
   };
 
   return (
-    <motion.form
-      onSubmit={handleSubmit}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="w-full max-w-2xl mx-auto"
-    >
-      <div className="flex gap-3 items-center bg-card rounded-2xl p-2 shadow-[var(--shadow-md)] border border-border">
-        <div className="flex items-center gap-2 pl-3 text-muted-foreground">
-          <Globe className="h-5 w-5" />
-        </div>
+    <form onSubmit={handleSubmit} className="w-full">
+      <div className="flex flex-col sm:flex-row items-stretch gap-0 border border-foreground bg-card focus-within:shadow-[var(--shadow-md)] transition-shadow">
+        <label htmlFor="scan-url" className="sr-only">
+          {t("urlInput.placeholder")}
+        </label>
         <Input
+          id="scan-url"
           type="text"
           placeholder={t("urlInput.placeholder")}
           value={url}
           onChange={(e) => setUrl(e.target.value)}
-          className="border-0 bg-transparent shadow-none focus-visible:ring-0 text-base font-body"
+          className="rounded-none border-0 bg-transparent shadow-none focus-visible:ring-0 h-14 px-4 text-base font-body"
           disabled={isLoading}
         />
-        <Button
+        <button
           type="submit"
-          variant="hero"
-          size="lg"
           disabled={isLoading || !url.trim()}
-          className="rounded-xl px-6"
+          className="shrink-0 h-14 px-8 bg-primary text-primary-foreground font-body font-medium text-sm inline-flex items-center justify-center gap-2 border-t sm:border-t-0 sm:border-l border-foreground hover:bg-foreground/85 disabled:opacity-40 transition-colors"
         >
           {isLoading ? (
             <Loader2 className="h-4 w-4 animate-spin" />
@@ -57,8 +48,8 @@ export function UrlInput({ onSubmit, isLoading }: UrlInputProps) {
               <ArrowRight className="h-4 w-4" />
             </>
           )}
-        </Button>
+        </button>
       </div>
-    </motion.form>
+    </form>
   );
 }
