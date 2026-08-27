@@ -91,7 +91,7 @@ export function AppHeader() {
             <Swords className="h-3.5 w-3.5" />
             {t("nav.compare")}
             {!isPro && (
-              <span className="ml-1 rounded-full border border-primary/25 bg-primary/10 px-1.5 py-[1px] text-[9px] font-bold tracking-wider text-primary">
+              <span className="ml-1 border border-accent/40 bg-accent/10 px-1.5 py-[1px] text-[9px] font-bold tracking-wider text-accent">
                 PRO
               </span>
             )}
@@ -121,13 +121,13 @@ export function AppHeader() {
             <Button
               size="sm"
               onClick={() => navigate("/pricing")}
-              className="hidden sm:inline-flex text-xs font-body shadow-glow"
+              className="hidden sm:inline-flex text-xs font-body"
             >
               <Crown className="h-3.5 w-3.5" /> {t("nav.upgrade")}
             </Button>
           )}
           {user && isPro && (
-            <span className="hidden sm:inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary/10 text-primary text-[11px] font-heading font-semibold border border-primary/25">
+            <span className="hidden sm:inline-flex items-center gap-1 px-2.5 py-1 border border-foreground text-foreground text-[11px] font-body font-semibold uppercase tracking-widest">
               <Crown className="h-3 w-3" /> Pro
             </span>
           )}
@@ -135,8 +135,8 @@ export function AppHeader() {
             <div className="flex items-center gap-1">
               <button
                 onClick={() => navigate("/account")}
-                className="h-8 w-8 rounded-full font-heading text-[13px] font-semibold text-primary-foreground flex items-center justify-center border border-primary/35 hover:ring-2 hover:ring-primary/40 transition"
-                style={{ background: "var(--gradient-primary)" }}
+                className="h-8 w-8 font-heading text-[13px] text-primary-foreground bg-primary flex items-center justify-center border border-foreground hover:opacity-80 transition"
+                
                 aria-label={t("nav.account")}
               >
                 {user.user_metadata?.avatar_url ? (
@@ -211,7 +211,7 @@ export function AppHeader() {
                         {Icon && <Icon className="h-4 w-4" />}
                         <span>{item.label}</span>
                         {item.pro && (
-                          <span className="ml-auto rounded-full border border-primary/25 bg-primary/10 px-1.5 py-[1px] text-[9px] font-bold tracking-wider text-primary">
+                          <span className="ml-auto border border-accent/40 bg-accent/10 px-1.5 py-[1px] text-[9px] font-bold tracking-wider text-accent">
                             PRO
                           </span>
                         )}

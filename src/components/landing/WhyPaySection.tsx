@@ -27,7 +27,7 @@ export function WhyPaySection() {
           transition={{ duration: 0.4 }}
           className="text-center space-y-3"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-body">
+          <div className="inline-flex items-center gap-2 px-2.5 py-1 border border-foreground text-foreground text-[10px] font-body uppercase tracking-[0.18em] font-semibold">
             <Crown className="h-3 w-3" /> {t("landing.whyPay.badge")}
           </div>
           <h2 className="text-3xl md:text-4xl font-heading font-bold tracking-tight">
