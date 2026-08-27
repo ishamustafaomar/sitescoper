@@ -320,17 +320,16 @@ serve(async (req) => {
         fullMessages.push(msg);
         // Execute each tool call
         for (const call of msg.tool_calls) {
-          if (call.function?.name === "rescan_section") {
-            let args: any = {};
-            try { args = JSON.parse(call.function.arguments || "{}"); } catch { /* ignore */ }
-            const result = await rescanSection(url, args.section_keyword || "");
-            fullMessages.push({
-              role: "tool",
-              tool_call_id: call.id,
-              content: result,
-            });
-          }
+          const name = call.function?.name;
+          let args: any = {};
+          try { args = JSON.parse(call.function?.arguments || "{}"); } catch { /* ignore */ }
+          let result = `Unknown tool: ${name}`;
+          if (name === "rescan_section") result = await rescanSection(url, args.section_keyword || "");
+          else if (name === "fetch_page") result = await fetchPageTool(url, args.page || "/");
+          else if (name === "inspect_visuals") result = await inspectVisualsTool(url, args.page || "/");
+          fullMessages.push({ role: "tool", tool_call_id: call.id, content: result });
         }
+
         continue; // loop again with tool results
       }
 
