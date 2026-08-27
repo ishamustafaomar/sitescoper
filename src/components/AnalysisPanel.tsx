@@ -109,7 +109,7 @@ export function AnalysisPanel({ analysis, scrapeData, onRequestFullReport }: Ana
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
           {analysis.categories.map((cat) => (
             <div key={cat.name} className="flex flex-col gap-1">
-              <span className="text-xs font-body text-muted-foreground truncate">{cat.icon} {cat.name}</span>
+              <span className="text-xs font-body text-muted-foreground truncate">{cat.name}</span>
               <MiniScoreBar score={cat.score} />
             </div>
           ))}
@@ -196,7 +196,6 @@ export function AnalysisPanel({ analysis, scrapeData, onRequestFullReport }: Ana
                 className="w-full flex items-center justify-between p-4 hover:bg-muted/50 transition-colors"
               >
                 <div className="flex items-center gap-3 min-w-0">
-                  <span className="text-lg">{category.icon}</span>
                   <span className="font-heading font-semibold text-sm truncate">{category.name}</span>
                   <Badge variant="secondary" className="text-[10px] font-body shrink-0">
                     {category.score}/100

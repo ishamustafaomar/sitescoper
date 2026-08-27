@@ -1,6 +1,6 @@
 import { Link } from "@/lib/router-compat";
 import { useTranslation } from "react-i18next";
-import logoMark from "@/assets/logo.png";
+import logoMark from "@/assets/logo-mark.png";
 
 // Sitewide footer. Adds internal links to every public page —
 // boosts crawl depth and gives every page a consistent set of

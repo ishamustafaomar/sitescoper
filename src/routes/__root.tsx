@@ -111,9 +111,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { rel: "stylesheet", href: appCss },
 
-      { rel: "icon", href: "/favicon.svg?v=5", type: "image/svg+xml" },
-      { rel: "icon", href: "/favicon.png?v=5", type: "image/png", sizes: "any" },
-      { rel: "apple-touch-icon", href: "/favicon.png?v=5" },
+      { rel: "icon", href: "/favicon.png?v=6", type: "image/png", sizes: "any" },
+      { rel: "apple-touch-icon", href: "/favicon.png?v=6" },
       { rel: "manifest", href: "/site.webmanifest" },
       { rel: "dns-prefetch", href: "https://tmdnoailedngafchtaxj.supabase.co" },
     ],

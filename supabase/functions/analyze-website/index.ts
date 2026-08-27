@@ -178,34 +178,20 @@ Each category should include "sub_scores": an array of 2-4 named facets with the
 ]
 This lets the user see WHY a category scored what it did.
 
-## Categories to evaluate (include ONLY those relevant to site_category)
-1. **Product Mechanics & Core Loop 🎮 (REQUIRED — most important, weight heaviest)**
-2. Product & Value Prop 🎯
-2. Positioning & Market Fit 📊
-3. Copy & Messaging ✍️
-4. Brand & Visual Identity 🎨 (NEW — logo, color, typography, tone consistency)
-5. Trust & Credibility 🛡️
-6. Pricing & Packaging 💵 (NEW — clarity, anchoring, plan structure; skip for blog/docs)
-7. Conversion 💰 (skip for blog/docs)
-8. User Flow 🧭
-9. Onboarding & First-Run 🚀 (skip for blog/marketing)
-10. UI/UX Design 🖌️
-11. Polish & Feel ✨
-12. Mobile Experience 📱
-13. Performance ⚡
-14. Accessibility ♿
-15. SEO & Discovery 🔍 (ALWAYS INCLUDE — never skip; always give 3-5 concrete, actionable suggestions covering: title tag, meta description, H1/heading hierarchy, internal linking, image alt coverage, structured data, canonical/social/OG tags, indexability/sitemap/robots, keyword targeting and on-page copy. Quote the actual title/meta/H1 from the page when relevant.)
-16. Content Quality 📚 (boost for blog/docs)
-17. Email & Lead Capture 📧 (NEW — newsletter, lead magnets, follow-up signals)
-18. Legal & Compliance ⚖️ (NEW — privacy, terms, cookie/consent, GDPR signals)
-19. Internationalization & Localization 🌍 (NEW — language switcher, currency, locale)
-20. Analytics & Measurement 📈 (NEW — visible tracking, event hygiene, attribution clues)
-21. Feature Ideas 💡
-22. Bug & QA Risks 🐛
-23. App Logic & Rules 🧠 (saas + games + interactive products)
-24. Security & Privacy 🔒
+## Categories to evaluate (include ONLY those relevant to site_category — aim for 6-9 categories total, never more than 10)
+Use these consolidated categories. Do NOT invent extra categories and do NOT use emojis anywhere in names, titles or text.
+1. **Product & Core Loop (REQUIRED — most important, weight heaviest)** — what it is, how the user gets value, the loop, app logic and rules
+2. Positioning & Messaging — value prop, copy, headline, market fit
+3. Brand & Design — logo, colour, typography, UI/UX, polish, visual consistency
+4. Trust & Credibility — proof, testimonials, legal/privacy signals, security posture
+5. Conversion & Pricing — CTAs, pricing clarity, lead capture, signup friction (skip for blog/docs)
+6. User Flow & Onboarding — navigation, first-run, activation
+7. SEO & Discovery (ALWAYS INCLUDE — never skip; 3-5 concrete actions covering title tag, meta description, H1/heading hierarchy, internal linking, image alt coverage, structured data, canonical/social/OG tags, indexability/sitemap/robots, keyword targeting. Quote the actual title/meta/H1 when relevant.)
+8. Technical Health — performance, mobile experience, accessibility, bugs and QA risks
+9. Content Quality (only when content is central, e.g. blog/docs)
 
-For each category give 2-4 suggestions. SKIP irrelevant categories rather than padding.
+For each category give 2-4 suggestions. SKIP irrelevant categories rather than padding. Merge overlapping findings instead of splitting them into more categories.
+
 
 ## Image alt-text suggestions
 For images with empty/weak/generic alt, suggest a better alt based on context. Skip decorative images.
@@ -240,7 +226,6 @@ Return ONLY valid JSON:
     {
       "name": "Category Name",
       "score": number,
-      "icon": "emoji",
       "sub_scores": [{ "name": "string", "score": number }],
       "suggestions": [
         {
