@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "@/lib/router-compat";
 import { motion } from "framer-motion";
-import { ExternalLink, Loader2, Sparkles } from "lucide-react";
+import { ExternalLink, Loader2 } from "lucide-react";
+import logoMark from "@/assets/logo-mark.png";
 import { Button } from "@/components/ui/button";
 import { AnalysisPanel } from "@/components/AnalysisPanel";
 import { supabase } from "@/integrations/supabase/client";
@@ -87,10 +88,8 @@ export default function SharedAnalysis() {
     <div className="min-h-screen bg-background">
       <header className="border-b border-border bg-card/50 backdrop-blur sticky top-0 z-30">
         <div className="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
-          <a href="/" className="flex items-center gap-2 font-heading font-bold">
-            <div className="p-1.5 rounded-lg bg-gradient-to-br from-primary to-[hsl(280,70%,60%)]">
-              <Sparkles className="h-3.5 w-3.5 text-primary-foreground" />
-            </div>
+          <a href="/" className="flex items-center gap-2.5 font-heading font-bold hover:opacity-80 transition-opacity">
+            <img src={logoMark} alt="SiteScoper logo" width={30} height={30} className="h-[30px] w-[30px] object-contain" />
             SiteScoper
           </a>
           <Button asChild size="sm" variant="hero">

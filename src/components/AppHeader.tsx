@@ -48,7 +48,13 @@ export function AppHeader() {
     <header className="sticky top-0 z-40 border-b border-border bg-card/80 backdrop-blur-md supports-[backdrop-filter]:bg-card/70">
       <div className="max-w-6xl mx-auto h-[60px] px-4 flex items-center justify-between gap-4">
         <button
-          onClick={() => navigate("/")}
+          onClick={() => {
+            if (location.pathname === "/") {
+              window.location.assign("/");
+            } else {
+              navigate("/");
+            }
+          }}
           className="flex items-center gap-2.5 hover:opacity-80 transition-opacity"
           aria-label="SiteScoper home"
         >
