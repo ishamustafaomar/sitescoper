@@ -1316,6 +1316,10 @@
     "empty": "Aucune mise à jour pour l'instant.",
     "newBadge": "NOUVEAU",
     "entries": {
+      "cleanerReports": {
+        "title": "Des rapports plus clairs et un assistant plus intelligent",
+        "desc": "Les rapports utilisent moins de catégories, plus précises et sans emojis, et l'assistant peut consulter n'importe quelle page de votre site, examiner votre logo et vos images et répondre à des questions bien plus poussées."
+      },
       "editorialRedesign": {
         "title": "Un tout nouveau look",
         "desc": "SiteScoper adopte un design éditorial : tons chauds, titres en serif et une mise en page plus épurée sur tout le site."
