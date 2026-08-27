@@ -135,12 +135,12 @@ export function AppHeader() {
             <div className="flex items-center gap-1">
               <button
                 onClick={() => navigate("/account")}
-                className="h-8 w-8 font-heading text-[13px] text-primary-foreground bg-primary flex items-center justify-center border border-foreground hover:opacity-80 transition"
+                className="h-8 w-8 rounded-full overflow-hidden font-heading text-[13px] text-primary-foreground bg-primary flex items-center justify-center hover:opacity-80 transition"
                 
                 aria-label={t("nav.account")}
               >
                 {user.user_metadata?.avatar_url ? (
-                  <Avatar className="h-8 w-8">
+                  <Avatar className="h-8 w-8 rounded-full">
                     <AvatarImage src={user.user_metadata?.avatar_url} />
                     <AvatarFallback className="text-xs">{initial}</AvatarFallback>
                   </Avatar>

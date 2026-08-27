@@ -47,7 +47,7 @@ export function SuggestionCard({ suggestion, categoryLabel, categoryIcon }: Sugg
           </Badge>
           {categoryLabel && (
             <Badge variant="secondary" className="text-[10px] px-1.5 font-body">
-              {categoryIcon} {categoryLabel}
+              {categoryLabel}
             </Badge>
           )}
         </div>
@@ -122,7 +122,7 @@ export function SuggestionCard({ suggestion, categoryLabel, categoryIcon }: Sugg
 
           {suggestion.tradeoff && (
             <p className="text-[10px] text-muted-foreground/80 font-body italic pt-1 border-t border-border/40">
-              ⚖️ {t("suggestionCard.tradeoffLabel")} {suggestion.tradeoff}
+              {t("suggestionCard.tradeoffLabel")} {suggestion.tradeoff}
             </p>
           )}
         </div>

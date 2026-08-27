@@ -132,7 +132,6 @@ export function ImpactMatrix({ analysis }: ImpactMatrixProps) {
               <div className="flex items-start justify-between gap-3">
                 <div className="flex-1 min-w-0 space-y-1">
                   <div className="flex items-center gap-2 flex-wrap">
-                    <span className="text-xs">{s.categoryIcon}</span>
                     <span className="text-[10px] font-body text-muted-foreground uppercase tracking-wide">
                       {s.category}
                     </span>
