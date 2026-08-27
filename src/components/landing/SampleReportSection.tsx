@@ -51,10 +51,10 @@ export function SampleReportSection({ onTryYours }: { onTryYours: () => void }) 
   const topWinKeys = ["design", "mobile", "performance"] as const;
   const topRiskKeys = ["hero", "trust", "conversion"] as const;
   return (
-    <section className="py-20 px-4 bg-gradient-to-b from-background via-muted/20 to-background">
+    <section className="py-20 px-4 bg-secondary">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 mb-4">
+          <div className="inline-flex items-center gap-2 px-2.5 py-1 border border-foreground mb-4">
             <Sparkles className="h-3.5 w-3.5 text-primary" />
             <span className="text-xs font-body font-semibold text-primary uppercase tracking-wider">
               {t("sampleReport.badge")}

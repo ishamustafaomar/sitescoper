@@ -18,7 +18,7 @@ export function CTASection({ onGetStarted }: CTASectionProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="relative overflow-hidden rounded-3xl p-10 md:p-14 text-center"
+          className="relative overflow-hidden border border-foreground bg-primary p-10 md:p-14 text-center"
           
         >
           <div className="absolute inset-0 bg-grid-pattern opacity-10" />

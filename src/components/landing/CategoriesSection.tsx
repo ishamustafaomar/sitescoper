@@ -51,7 +51,7 @@ export function CategoriesSection() {
                 transition={{ duration: 0.4, delay: i * 0.04 }}
                 className="bg-card border border-border rounded-xl p-6 hover:border-primary/40 hover:shadow-[var(--shadow-md)] transition-all group"
               >
-                <div className={`bg-gradient-to-br ${cat.color} p-3 rounded-xl w-fit mb-4 shadow-[var(--shadow-md)] group-hover:scale-110 transition-transform`}>
+                <div className="bg-primary p-3 w-fit mb-4">
                   <Icon className="h-5 w-5 text-white" />
                 </div>
                 <h3 className="font-heading font-semibold text-lg mb-2">{cat.title}</h3>

@@ -75,9 +75,9 @@ export function WhyPaySection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: 0.1 }}
-            className="rounded-2xl border-2 border-primary/40 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent p-6 md:p-8 flex flex-col relative"
+            className="border-2 border-foreground bg-card p-6 md:p-8 flex flex-col relative"
           >
-            <span className="absolute -top-3 right-6 px-2 py-0.5 rounded-full bg-primary text-primary-foreground text-[10px] font-body font-bold uppercase tracking-wider">
+            <span className="absolute -top-3 right-6 px-2 py-0.5 bg-accent text-primary-foreground text-[10px] font-body font-bold uppercase tracking-wider">
               {t("landing.whyPay.mostPopular")}
             </span>
             <div className="flex items-baseline justify-between mb-4">
