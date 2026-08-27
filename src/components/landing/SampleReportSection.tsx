@@ -295,7 +295,7 @@ export function SampleReportSection({ onTryYours }: { onTryYours: () => void }) 
           <Button
             size="lg"
             onClick={onTryYours}
-            className="shadow-glow bg-gradient-to-r from-primary to-accent hover:opacity-90 text-primary-foreground font-body"
+            className="font-body"
           >
             {t("sampleReport.ctaButton")}
             <ArrowRight className="h-4 w-4" />

@@ -107,7 +107,7 @@ export function WhyPaySection() {
                 </li>
               ))}
             </ul>
-            <Button size="sm" className="shadow-glow" onClick={() => navigate("/pricing")}>
+            <Button size="sm" onClick={() => navigate("/pricing")}>
               <Sparkles className="h-3.5 w-3.5" />
               {FREE_PRO_MODE ? t("earlyAccess.claimCta") : t("landing.whyPay.upgrade")}
               <ArrowRight className="h-3.5 w-3.5" />
