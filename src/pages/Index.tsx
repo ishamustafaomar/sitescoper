@@ -183,92 +183,61 @@ const Index = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.6 }}
-              className="relative pt-6 md:pt-10 pb-8"
+              className="relative border border-border"
             >
-              <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
-                <div className="absolute top-0 left-1/4 w-72 h-72 bg-primary/20 rounded-full blur-3xl opacity-60" />
-                <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-primary-alt/20 rounded-full blur-3xl opacity-60" />
-                {/* Subtle grid */}
-                <div className="absolute inset-0 opacity-[0.04] bg-[linear-gradient(to_right,currentColor_1px,transparent_1px),linear-gradient(to_bottom,currentColor_1px,transparent_1px)] bg-[size:48px_48px]" />
-              </div>
+              <div className="grid lg:grid-cols-[7fr_5fr]">
+                {/* Left column — the argument */}
+                <div className="p-6 sm:p-10 lg:p-14 border-b lg:border-b-0 lg:border-r border-border flex flex-col justify-between">
+                  <div>
+                    <div className="inline-block border border-foreground px-2.5 py-1 text-[10px] uppercase tracking-[0.18em] font-body font-semibold mb-8 sm:mb-12">
+                      {t("hero.badgeFoundersLine")}
+                    </div>
 
-              <div className="grid lg:grid-cols-[1.1fr_1fr] gap-10 items-center">
-                {/* Left column — headline */}
-                <div className="space-y-6 text-center lg:text-left">
-                  <motion.div
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.1 }}
-                    className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-body border border-primary/20"
-                  >
-                    <span className="relative flex h-1.5 w-1.5">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
-                      <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-primary" />
-                    </span>
-                    {t("hero.badgeFoundersLine")}
-                  </motion.div>
-                  <h1 className="text-4xl md:text-6xl font-heading font-bold tracking-tight leading-[1.02]">
-                    {t("hero.stopGuessingLine1")}
-                    <br />
-                    {t("hero.stopGuessingLine2")}{" "}
-                    <span className="relative inline-block">
-                      <span className="bg-gradient-to-r from-primary via-primary/90 to-primary-alt bg-clip-text text-transparent">
-                        {t("hero.actionableFixes")}
-                      </span>
-                      <svg className="absolute left-0 -bottom-2 w-full" viewBox="0 0 200 8" fill="none" preserveAspectRatio="none">
-                        <path d="M2 5 Q50 1 100 4 T198 3" stroke="hsl(var(--primary))" strokeWidth="2.5" strokeLinecap="round" fill="none" opacity="0.4" />
-                      </svg>
-                    </span>
-                  </h1>
-                  <p className="text-muted-foreground font-body text-base md:text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed">
-                    <Trans i18nKey="hero.description" components={[<strong className="text-foreground/90 font-semibold" />]} />
-                  </p>
-                  {/* Free plan badge — high-contrast, next to CTA */}
-                  <div className="flex justify-center lg:justify-start">
-                    <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[hsl(var(--score-good))]/15 text-[hsl(var(--score-good))] border border-[hsl(var(--score-good))]/30 text-xs font-heading font-semibold">
-                      <span className="relative flex h-2 w-2">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[hsl(var(--score-good))] opacity-75" />
-                        <span className="relative inline-flex rounded-full h-2 w-2 bg-[hsl(var(--score-good))]" />
-                      </span>
-                      {t("hero.freePlanBadge")}
-                    </span>
+                    <h1 className="font-heading text-5xl sm:text-6xl lg:text-7xl leading-[0.92] mb-6">
+                      {t("hero.stopGuessingLine1")}
+                      <br />
+                      {t("hero.stopGuessingLine2")}{" "}
+                      <em className="italic">{t("hero.actionableFixes")}</em>
+                    </h1>
+
+                    <p className="text-muted-foreground font-body text-base sm:text-lg max-w-xl leading-relaxed mb-8">
+                      <Trans i18nKey="hero.description" components={[<strong className="text-foreground font-semibold" />]} />
+                    </p>
+
+                    {/* URL Input — the page's primary object */}
+                    <div ref={inputRef}>
+                      <UrlInput onSubmit={handleAnalyze} isLoading={isLoading} />
+                      <div className="mt-3">
+                        <CustomInstructions
+                          value={customInstructions}
+                          onChange={setCustomInstructions}
+                          disabled={isLoading}
+                        />
+                      </div>
+                    </div>
+
+                    <p className="mt-4 text-[12px] text-muted-foreground font-body">
+                      {t("hero.freePlanBadge")} · {t("hero.freeScansFootnote")}
+                    </p>
                   </div>
-                  {/* URL Input — kept above the fold */}
-                  <div ref={inputRef} className="pt-2">
-                    <UrlInput onSubmit={handleAnalyze} isLoading={isLoading} />
-                    <div className="mt-3">
-                      <CustomInstructions
-                        value={customInstructions}
-                        onChange={setCustomInstructions}
-                        disabled={isLoading}
-                      />
-                    </div>
-                  </div>
-                  <p className="text-[11px] text-muted-foreground font-body text-center lg:text-left">
-                    {t("hero.freeScansFootnote")}
-                  </p>
-                  <div aria-label="Key features" className="flex items-center justify-center lg:justify-start gap-5 text-[11px] text-muted-foreground font-body flex-wrap pt-1">
-                    <div className="flex items-center gap-1.5">
-                      <div className="w-1.5 h-1.5 rounded-full bg-[hsl(var(--score-good))]" />
-                      {t("hero.signUpForThree")}
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                      <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                      {t("hero.multiPageCrawl")}
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                      <div className="w-1.5 h-1.5 rounded-full bg-primary-alt" />
-                      {t("hero.export")}
-                    </div>
+
+                  <div className="mt-12 sm:mt-16 pt-6 border-t border-border flex flex-wrap gap-x-8 gap-y-2 text-[11px] uppercase tracking-[0.12em] font-body font-medium text-muted-foreground">
+                    <span>{t("hero.signUpForThree")}</span>
+                    <span>{t("hero.multiPageCrawl")}</span>
+                    <span>{t("hero.export")}</span>
                   </div>
                 </div>
 
-                {/* Right column — visual mock */}
-                <div className="relative hidden lg:block">
+                {/* Right column — the evidence */}
+                <div className="bg-secondary p-6 sm:p-10 lg:p-12 flex flex-col justify-center">
                   <HeroPreview />
+                  <p className="mt-8 font-heading italic text-[13px] leading-snug text-muted-foreground">
+                    {t("hero.evidenceCaption", "A real verdict, not a checklist. Every scan is scored the same way.")}
+                  </p>
                 </div>
               </div>
             </motion.div>
+
           )}
         </AnimatePresence>
 
