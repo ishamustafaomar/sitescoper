@@ -38,9 +38,10 @@ export function AppHeader() {
 
   const path = location.pathname;
   const pillBase =
-    "inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[13px] font-body transition-colors";
-  const pillActive = "bg-muted text-foreground";
-  const pillIdle = "text-muted-foreground hover:bg-muted/70 hover:text-foreground";
+    "inline-flex items-center gap-1.5 px-3 py-1.5 text-[13px] font-body border-b-2 transition-colors";
+  const pillActive = "border-foreground text-foreground";
+  const pillIdle = "border-transparent text-muted-foreground hover:text-foreground";
+
   const initial = ((user?.user_metadata?.full_name || user?.email || "U") as string)[0].toUpperCase();
 
   return (
