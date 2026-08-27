@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "@/lib/router-compat";
 import { motion } from "framer-motion";
-import { ExternalLink, Loader2, Sparkles } from "lucide-react";
+import { ExternalLink, Loader2 } from "lucide-react";
+import logoMark from "@/assets/logo-mark.png";
 import { Button } from "@/components/ui/button";
 import { AnalysisPanel } from "@/components/AnalysisPanel";
 import { supabase } from "@/integrations/supabase/client";
