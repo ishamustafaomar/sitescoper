@@ -18,7 +18,7 @@ export function FAQSection() {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-body mb-4">
+          <div className="inline-flex items-center gap-2 px-2.5 py-1 border border-foreground text-foreground text-[10px] font-body uppercase tracking-[0.18em] font-semibold mb-4">
             {t("landing.faq.badge")}
           </div>
           <h2 className="text-3xl md:text-4xl font-heading font-bold tracking-tight mb-4">

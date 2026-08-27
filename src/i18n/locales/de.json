@@ -1316,6 +1316,10 @@
     "empty": "Noch keine Neuigkeiten.",
     "newBadge": "NEU",
     "entries": {
+      "editorialRedesign": {
+        "title": "Ein ganz neuer Look",
+        "desc": "SiteScoper hat ein neues, redaktionelles Design: warme Papiertöne, Serifen-Überschriften und ein aufgeräumteres Layout auf der gesamten Website."
+      },
       "multilanguage": {
         "title": "Mehrsprachige Unterstützung",
         "desc": "SiteScoper ist jetzt auf Englisch, Spanisch, Französisch, Deutsch und Italienisch verfügbar. Wechsle die Sprache jederzeit über die Kopfzeile."

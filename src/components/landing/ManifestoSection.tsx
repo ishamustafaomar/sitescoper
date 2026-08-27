@@ -15,7 +15,7 @@ export function ManifestoSection() {
           className="rounded-3xl px-8 py-12 md:px-10 md:py-14 text-center border border-primary/20"
           style={{
             background:
-              "linear-gradient(160deg, hsl(var(--primary) / 0.08), transparent)",
+              "hsl(var(--secondary))",
           }}
         >
           <Quote className="h-7 w-7 mx-auto mb-4 text-primary/50" aria-hidden="true" />

@@ -22,7 +22,7 @@ export function UseCasesSection() {
           transition={{ duration: 0.5 }}
           className="text-center mb-14"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-body mb-4">
+          <div className="inline-flex items-center gap-2 px-2.5 py-1 border border-foreground text-foreground text-[10px] font-body uppercase tracking-[0.18em] font-semibold mb-4">
             {t("landing.useCases.badge")}
           </div>
           <h2 className="text-3xl md:text-4xl font-heading font-bold tracking-tight mb-4">

@@ -19,7 +19,7 @@ export function HowItWorksSection() {
           transition={{ duration: 0.5 }}
           className="text-center mb-14"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-body mb-4">
+          <div className="inline-flex items-center gap-2 px-2.5 py-1 border border-foreground text-foreground text-[10px] font-body uppercase tracking-[0.18em] font-semibold mb-4">
             <Workflow className="h-3 w-3" />
             {t("landing.howItWorks.badge")}
           </div>
@@ -42,7 +42,7 @@ export function HowItWorksSection() {
               >
                 <div className="bg-card border border-border rounded-xl p-6 h-full">
                   <div className="flex items-start justify-between mb-4">
-                    <div className="gradient-primary p-2.5 rounded-lg shadow-glow">
+                    <div className="bg-primary p-2.5">
                       <Icon className="h-4 w-4 text-primary-foreground" />
                     </div>
                     <span className="font-heading font-bold text-3xl text-muted-foreground/20">

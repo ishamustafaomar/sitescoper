@@ -11,8 +11,9 @@
  */
 
 @theme {
-  --font-heading: "Space Grotesk", sans-serif;
-  --font-body: "Inter", sans-serif;
+  --font-heading: "Instrument Serif", Georgia, serif;
+  --font-body: "Work Sans", system-ui, sans-serif;
+
 
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
@@ -80,141 +81,143 @@
   --color-sidebar-ring: hsl(var(--sidebar-ring));
 }
 
+/* ── Paper & Ink ───────────────────────────────────────────────────────────
+   Warm paper ground, ink type, one restrained clay accent. Deliberately no
+   gradients, no glow: colour carries meaning, never decoration.            */
 :root {
-  --background: 220 20% 97%;
-  --foreground: 220 25% 10%;
+  --background: 43 26% 95%;      /* #f5f3ee paper */
+  --foreground: 0 0% 5%;         /* #0d0d0d ink   */
 
-  --card: 0 0% 100%;
-  --card-foreground: 220 25% 10%;
+  --card: 44 40% 98%;
+  --card-foreground: 0 0% 5%;
 
-  --popover: 0 0% 100%;
-  --popover-foreground: 220 25% 10%;
+  --popover: 44 40% 98%;
+  --popover-foreground: 0 0% 5%;
 
-  --primary: 250 65% 55%;
-  --primary-foreground: 0 0% 100%;
-  --primary-alt: 280 70% 60%;
+  --primary: 0 0% 5%;            /* ink — the primary action is black */
+  --primary-foreground: 43 26% 95%;
+  --primary-alt: 14 53% 51%;     /* #c65a3e clay accent */
 
-  --secondary: 220 15% 92%;
-  --secondary-foreground: 220 25% 20%;
+  --secondary: 40 18% 89%;       /* #e8e4dd */
+  --secondary-foreground: 0 0% 18%;
 
-  --muted: 220 15% 94%;
-  --muted-foreground: 220 12% 38%;
+  --muted: 40 18% 90%;
+  --muted-foreground: 30 6% 38%;
 
-  --accent: 165 60% 45%;
-  --accent-foreground: 0 0% 100%;
+  --accent: 14 53% 51%;
+  --accent-foreground: 43 26% 97%;
 
-  --destructive: 0 72% 55%;
-  --destructive-foreground: 0 0% 100%;
+  --destructive: 8 62% 44%;
+  --destructive-foreground: 43 26% 97%;
 
-  --border: 220 15% 88%;
-  --input: 220 15% 88%;
-  --ring: 250 65% 55%;
+  --border: 38 12% 84%;
+  --input: 38 12% 80%;
+  --ring: 0 0% 5%;
 
-  --radius: 0.75rem;
+  --radius: 0.25rem;
 
-  --gradient-primary: linear-gradient(135deg, hsl(250 65% 55%), hsl(280 70% 60%));
-  --gradient-accent: linear-gradient(135deg, hsl(165 60% 45%), hsl(190 70% 50%));
-  --gradient-surface: linear-gradient(180deg, hsl(220 20% 97%), hsl(220 15% 94%));
+  /* Kept for API compatibility — flattened to solid ink/clay, no gradients. */
+  --gradient-primary: hsl(0 0% 5%);
+  --gradient-accent: hsl(14 53% 51%);
+  --gradient-surface: hsl(43 26% 95%);
 
-  --shadow-sm: 0 1px 3px hsl(220 25% 10% / 0.04);
-  --shadow-md: 0 4px 16px hsl(220 25% 10% / 0.06);
-  --shadow-lg: 0 8px 32px hsl(220 25% 10% / 0.08);
-  --shadow-glow: 0 0 24px hsl(250 65% 55% / 0.15);
+  --shadow-sm: 0 1px 0 hsl(30 10% 20% / 0.08);
+  --shadow-md: 3px 3px 0 hsl(30 10% 20% / 0.1);
+  --shadow-lg: 6px 6px 0 hsl(30 10% 20% / 0.12);
+  --shadow-glow: none;
 
-  --sidebar-background: 0 0% 98%;
-  --sidebar-foreground: 240 5.3% 26.1%;
-  --sidebar-primary: 240 5.9% 10%;
-  --sidebar-primary-foreground: 0 0% 98%;
-  --sidebar-accent: 240 4.8% 95.9%;
-  --sidebar-accent-foreground: 240 5.9% 10%;
-  --sidebar-border: 220 13% 91%;
-  --sidebar-ring: 217.2 91.2% 59.8%;
+  --sidebar-background: 43 26% 95%;
+  --sidebar-foreground: 30 6% 30%;
+  --sidebar-primary: 0 0% 5%;
+  --sidebar-primary-foreground: 43 26% 97%;
+  --sidebar-accent: 40 18% 90%;
+  --sidebar-accent-foreground: 0 0% 10%;
+  --sidebar-border: 38 12% 84%;
+  --sidebar-ring: 0 0% 5%;
 
-  --chart-1: 250 65% 55%;
-  --chart-2: 165 60% 45%;
-  --chart-3: 280 70% 60%;
-  --chart-4: 45 80% 55%;
-  --chart-5: 0 72% 55%;
+  --chart-1: 0 0% 12%;
+  --chart-2: 14 53% 51%;
+  --chart-3: 30 8% 55%;
+  --chart-4: 92 30% 34%;
+  --chart-5: 38 12% 74%;
 
-  /* Traffic light scoring system */
-  --score-good: 145 65% 42%;
-  --score-good-bg: 145 65% 42% / 0.12;
-  --score-warn: 35 95% 50%;
-  --score-warn-bg: 35 95% 50% / 0.14;
-  --score-bad: 0 75% 55%;
-  --score-bad-bg: 0 75% 55% / 0.12;
-  /* Darker text variants that meet WCAG AA (4.5:1) on white backgrounds.
-     Use these for small text labels; keep the brighter base tokens for
-     fills, rings, and large UI accents. */
-  --score-good-text: 145 75% 28%;
-  --score-warn-text: 28 100% 32%;
-  --score-bad-text: 0 78% 42%;
+  /* Scoring — muted, print-like, never neon */
+  --score-good: 92 32% 33%;
+  --score-good-bg: 92 32% 33% / 0.12;
+  --score-warn: 33 68% 42%;
+  --score-warn-bg: 33 68% 42% / 0.14;
+  --score-bad: 8 62% 44%;
+  --score-bad-bg: 8 62% 44% / 0.12;
+  --score-good-text: 92 38% 25%;
+  --score-warn-text: 30 72% 30%;
+  --score-bad-text: 8 66% 38%;
 }
 
 .dark {
-  --background: 224 30% 8%;
-  --foreground: 210 20% 92%;
+  --background: 30 6% 8%;
+  --foreground: 43 22% 92%;
 
-  --card: 224 25% 12%;
-  --card-foreground: 210 20% 92%;
+  --card: 30 6% 11%;
+  --card-foreground: 43 22% 92%;
 
-  --popover: 224 25% 12%;
-  --popover-foreground: 210 20% 92%;
+  --popover: 30 6% 11%;
+  --popover-foreground: 43 22% 92%;
 
-  --primary: 250 65% 60%;
-  --primary-foreground: 0 0% 100%;
-  --primary-alt: 280 70% 65%;
+  --primary: 43 22% 92%;
+  --primary-foreground: 30 6% 8%;
+  --primary-alt: 14 58% 58%;
 
-  --secondary: 224 20% 18%;
-  --secondary-foreground: 210 15% 80%;
+  --secondary: 30 6% 16%;
+  --secondary-foreground: 43 18% 82%;
 
-  --muted: 224 20% 16%;
-  --muted-foreground: 220 10% 55%;
+  --muted: 30 6% 15%;
+  --muted-foreground: 38 8% 60%;
 
-  --accent: 165 55% 50%;
-  --accent-foreground: 0 0% 100%;
+  --accent: 14 58% 58%;
+  --accent-foreground: 30 6% 8%;
 
-  --destructive: 0 72% 55%;
-  --destructive-foreground: 0 0% 100%;
+  --destructive: 8 62% 54%;
+  --destructive-foreground: 43 22% 95%;
 
-  --border: 224 20% 20%;
-  --input: 224 20% 20%;
-  --ring: 250 65% 60%;
+  --border: 30 6% 20%;
+  --input: 30 6% 24%;
+  --ring: 43 22% 92%;
 
-  --gradient-primary: linear-gradient(135deg, hsl(250 65% 60%), hsl(280 70% 65%));
-  --gradient-accent: linear-gradient(135deg, hsl(165 55% 50%), hsl(190 65% 55%));
-  --gradient-surface: linear-gradient(180deg, hsl(224 30% 8%), hsl(224 25% 12%));
+  --gradient-primary: hsl(43 22% 92%);
+  --gradient-accent: hsl(14 58% 58%);
+  --gradient-surface: hsl(30 6% 8%);
 
-  --shadow-sm: 0 1px 3px hsl(0 0% 0% / 0.2);
-  --shadow-md: 0 4px 16px hsl(0 0% 0% / 0.3);
-  --shadow-lg: 0 8px 32px hsl(0 0% 0% / 0.4);
-  --shadow-glow: 0 0 24px hsl(250 65% 60% / 0.25);
+  --shadow-sm: 0 1px 0 hsl(0 0% 0% / 0.4);
+  --shadow-md: 3px 3px 0 hsl(0 0% 0% / 0.45);
+  --shadow-lg: 6px 6px 0 hsl(0 0% 0% / 0.5);
+  --shadow-glow: none;
 
-  --sidebar-background: 224 25% 10%;
-  --sidebar-foreground: 210 20% 80%;
-  --sidebar-primary: 250 65% 60%;
-  --sidebar-primary-foreground: 0 0% 100%;
-  --sidebar-accent: 224 20% 16%;
-  --sidebar-accent-foreground: 210 20% 80%;
-  --sidebar-border: 224 20% 18%;
-  --sidebar-ring: 250 65% 60%;
+  --sidebar-background: 30 6% 10%;
+  --sidebar-foreground: 43 18% 80%;
+  --sidebar-primary: 43 22% 92%;
+  --sidebar-primary-foreground: 30 6% 8%;
+  --sidebar-accent: 30 6% 15%;
+  --sidebar-accent-foreground: 43 18% 85%;
+  --sidebar-border: 30 6% 20%;
+  --sidebar-ring: 43 22% 92%;
 
-  --chart-1: 250 65% 60%;
-  --chart-2: 165 55% 50%;
-  --chart-3: 280 70% 65%;
-  --chart-4: 45 80% 55%;
-  --chart-5: 0 72% 55%;
+  --chart-1: 43 22% 88%;
+  --chart-2: 14 58% 58%;
+  --chart-3: 38 8% 55%;
+  --chart-4: 92 28% 50%;
+  --chart-5: 30 6% 30%;
 
-  --score-good: 145 60% 50%;
-  --score-good-bg: 145 60% 50% / 0.18;
-  --score-warn: 35 95% 58%;
-  --score-warn-bg: 35 95% 58% / 0.18;
-  --score-bad: 0 75% 60%;
-  --score-bad-bg: 0 75% 60% / 0.18;
-  --score-good-text: 145 65% 60%;
-  --score-warn-text: 35 95% 62%;
-  --score-bad-text: 0 75% 65%;
+  --score-good: 92 30% 48%;
+  --score-good-bg: 92 30% 48% / 0.18;
+  --score-warn: 33 72% 55%;
+  --score-warn-bg: 33 72% 55% / 0.18;
+  --score-bad: 8 65% 58%;
+  --score-bad-bg: 8 65% 58% / 0.18;
+  --score-good-text: 92 34% 62%;
+  --score-warn-text: 33 76% 62%;
+  --score-bad-text: 8 70% 66%;
 }
+
 
 @layer base {
   * {
@@ -227,14 +230,20 @@
     font-family: var(--font-body);
   }
 
+  /* Instrument Serif ships a single weight. Force 400 so the browser never
+     synthesises a smeared faux-bold, and tighten the optical spacing. */
   h1,
   h2,
   h3,
   h4,
   h5,
-  h6 {
+  h6,
+  .font-heading {
     font-family: var(--font-heading);
+    font-weight: 400 !important;
+    letter-spacing: -0.015em;
   }
+
 
   /* Prevent accidental horizontal scroll on tablet/mobile */
   html,

@@ -24,7 +24,7 @@ export function FeaturesSection() {
           transition={{ duration: 0.5 }}
           className="text-center mb-14"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-body mb-4">
+          <div className="inline-flex items-center gap-2 px-2.5 py-1 border border-foreground text-foreground text-[10px] font-body uppercase tracking-[0.18em] font-semibold mb-4">
             <Sparkles className="h-3 w-3" />
             {t("landing.features.badge")}
           </div>
@@ -48,7 +48,7 @@ export function FeaturesSection() {
                 transition={{ duration: 0.4, delay: i * 0.05 }}
                 className="bg-card border border-border rounded-xl p-5 hover:shadow-[var(--shadow-md)] hover:border-primary/30 transition-all"
               >
-                <div className="gradient-primary p-2 rounded-lg w-fit mb-3 shadow-glow">
+                <div className="bg-primary p-2 w-fit mb-3">
                   <Icon className="h-4 w-4 text-primary-foreground" />
                 </div>
                 <h3 className="font-heading font-semibold text-base mb-2">{feature.title}</h3>

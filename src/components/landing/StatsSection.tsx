@@ -22,7 +22,7 @@ export function StatsSection() {
               transition={{ duration: 0.4, delay: i * 0.1 }}
               className="text-center"
             >
-              <div className="text-4xl md:text-5xl font-heading font-bold bg-gradient-to-r from-primary to-[hsl(280,70%,60%)] bg-clip-text text-transparent mb-2">
+              <div className="text-5xl md:text-6xl font-heading mb-2">
                 {stat.value}
               </div>
               <div className="text-sm text-muted-foreground font-body">{stat.label}</div>
