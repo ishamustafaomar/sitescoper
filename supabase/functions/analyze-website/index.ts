@@ -226,7 +226,6 @@ Return ONLY valid JSON:
     {
       "name": "Category Name",
       "score": number,
-      "icon": "emoji",
       "sub_scores": [{ "name": "string", "score": number }],
       "suggestions": [
         {
