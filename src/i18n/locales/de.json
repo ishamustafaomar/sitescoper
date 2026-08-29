@@ -30,7 +30,12 @@
     "description": "Der <1>KI-Website-Auditor</1>, der die 200-Punkte-Checkliste überspringt und dir die 3 UX-, SEO- und Text-Fixes liefert, die diese Woche wirklich lohnenswert sind – mit einem klaren Aktionsplan, den ein erfahrener Produktstratege absegnen würde.",
     "freePlanBadge": "Kostenloser Plan · 3 vollständige Scans pro Monat · Keine Kreditkarte",
     "freeScansFootnote": "3 kostenlose Scans / Monat · Keine Kreditkarte · Über 2.400 Websites diesen Monat bewertet",
-    "multiPageCrawl": "Tiefer Multi-Page-Crawl"
+    "multiPageCrawl": "Tiefer Multi-Page-Crawl",
+    "createAccountCta": "Kostenloses Konto erstellen",
+    "createAccountSub": "— speichert deinen Berichtsverlauf und lässt dich nach jeder Korrektur erneut scannen.",
+    "upgradeCta": "Auf Pro upgraden",
+    "upgradeSub": "— unbegrenzte Scans, tiefe Multi-Page-Crawls, PDF- und Share-Link-Exporte.",
+    "evidenceCaption": "Ein echtes Urteil, keine Checkliste. Jeder Scan wird nach demselben Maßstab bewertet."
   },
   "signin": {
     "tooltipTitle": "Warum ein kostenloses Konto?",
