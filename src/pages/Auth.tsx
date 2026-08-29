@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "@/lib/router-compat";
 import { motion } from "framer-motion";
-import { Sparkles, Mail, Lock, User, ArrowRight, Loader2 } from "lucide-react";
+import { Mail, Lock, User, ArrowRight, Loader2 } from "lucide-react";
 import { Trans, useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -12,6 +12,8 @@ import { lovable } from "@/integrations/lovable/index";
 import { useAuth } from "@/components/AuthProvider";
 import { useEffect } from "react";
 import { SignInBenefits } from "@/components/SignInBenefits";
+import logoMark from "@/assets/logo-mark.png";
+import logoWordmark from "@/assets/logo-wordmark.png";
 
 const getErrorMessage = (error: unknown) =>
   error instanceof Error ? error.message : "Something went wrong. Please try again.";
@@ -93,12 +95,23 @@ export default function Auth() {
         {/* Logo */}
         <div className="text-center space-y-2">
           <div className="inline-flex items-center gap-3">
-            <div className="gradient-primary p-2.5 rounded-xl shadow-glow">
-              <Sparkles className="h-6 w-6 text-primary-foreground" />
+            <img
+              src={logoMark}
+              alt=""
+              width={42}
+              height={42}
+              className="h-[42px] w-[42px] object-contain"
+            />
+            <div className="flex flex-col items-start gap-1">
+              <img
+                src={logoWordmark}
+                alt="SiteScoper"
+                className="h-[23px] w-auto object-contain dark:invert"
+              />
+              <span className="text-[9px] uppercase tracking-[0.18em] text-muted-foreground">
+                AI Website Analyzer
+              </span>
             </div>
-            <h1 className="font-heading font-bold text-2xl">
-              SiteScoper <span className="text-muted-foreground font-normal text-base">— AI Website Analyzer</span>
-            </h1>
           </div>
           <p className="text-muted-foreground font-body text-sm">
             {isLogin ? text("auth.welcomeBack", "Welcome back") : text("auth.create", "Create your account")}
