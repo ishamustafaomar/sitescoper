@@ -1321,6 +1321,10 @@
     "empty": "Aucune mise à jour pour l'instant.",
     "newBadge": "NOUVEAU",
     "entries": {
+      "newLogo": {
+        "title": "Nouveau logo et nouvelle marque",
+        "desc": "SiteScoper adopte un symbole de visée dessiné à la main et un logotype serif, avec un favicon assorti sur tout le site."
+      },
       "cleanerReports": {
         "title": "Des rapports plus clairs et un assistant plus intelligent",
         "desc": "Les rapports utilisent moins de catégories, plus précises et sans emojis, et l'assistant peut consulter n'importe quelle page de votre site, examiner votre logo et vos images et répondre à des questions bien plus poussées."

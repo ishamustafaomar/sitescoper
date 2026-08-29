@@ -1321,6 +1321,10 @@
     "empty": "Noch keine Neuigkeiten.",
     "newBadge": "NEU",
     "entries": {
+      "newLogo": {
+        "title": "Neues Logo und Wortmarke",
+        "desc": "SiteScoper hat ein handgezeichnetes Ziel-Markenzeichen und eine Serifen-Wortmarke, plus passendes Favicon auf der gesamten Seite."
+      },
       "cleanerReports": {
         "title": "Klarere Berichte und ein smarterer Assistent",
         "desc": "Berichte nutzen weniger, präzisere Kategorien ohne Emoji-Ballast, und der Assistent kann jede Seite deiner Website abrufen, Logo und Bilder prüfen und deutlich tiefere Fragen beantworten."
