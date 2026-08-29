@@ -58,7 +58,7 @@ const JSON_LD = JSON.stringify({
       "@type": "Organization",
       name: "SiteScoper",
       url: "https://sitescoper.com/",
-      logo: "https://sitescoper.com/favicon.png",
+      logo: "https://sitescoper.com/sitescoper-icon-v9.png",
       sameAs: ["https://twitter.com/SiteScoper", "https://x.com/SiteScoper"],
     },
     {
@@ -111,10 +111,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { rel: "stylesheet", href: appCss },
 
-      { rel: "icon", href: "/favicon.svg?v=8", type: "image/svg+xml" },
-      { rel: "icon", href: "/favicon.png?v=8", type: "image/png", sizes: "any" },
-      { rel: "apple-touch-icon", href: "/apple-touch-icon.png?v=8" },
-      { rel: "manifest", href: "/site.webmanifest" },
+      { rel: "icon", href: "/sitescoper-scope-v9.png", type: "image/png", sizes: "64x64" },
+      { rel: "shortcut icon", href: "/favicon.ico" },
+      { rel: "apple-touch-icon", href: "/sitescoper-touch-v9.png", sizes: "180x180" },
+      { rel: "manifest", href: "/sitescoper-v9.webmanifest" },
       { rel: "dns-prefetch", href: "https://tmdnoailedngafchtaxj.supabase.co" },
     ],
     scripts: [{ type: "application/ld+json", children: JSON_LD }],
