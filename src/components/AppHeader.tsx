@@ -3,6 +3,7 @@ import { LayoutDashboard, LogOut, LogIn, Shield, Sparkles, Check, Swords, Crown,
 import { useEffect, useState } from "react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import logoMark from "@/assets/logo-mark.png";
+import logoWordmark from "@/assets/logo-wordmark.png";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { useAuth } from "@/components/AuthProvider";
@@ -60,13 +61,17 @@ export function AppHeader() {
         >
           <img
             src={logoMark}
-            alt="SiteScoper logo"
+            alt=""
             width={34}
             height={34}
             className="h-[34px] w-[34px] object-contain"
           />
-          <div className="flex flex-col items-start gap-[1px]">
-            <span className="font-heading font-bold text-base leading-none">SiteScoper</span>
+          <div className="flex flex-col items-start gap-[2px]">
+            <img
+              src={logoWordmark}
+              alt="SiteScoper"
+              className="h-[17px] w-auto object-contain dark:invert"
+            />
             <span className="text-[8.5px] text-muted-foreground font-body tracking-[0.18em] uppercase">
               AI Website Analyzer
             </span>
