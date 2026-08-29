@@ -30,7 +30,12 @@
     "description": "L'<1>auditeur de site web IA</1> qui saute la checklist de 200 lignes et vous livre les 3 corrections UX, SEO et copywriting vraiment utiles cette semaine — avec un plan d'action clair validé par un stratège produit senior.",
     "freePlanBadge": "Offre gratuite · 3 analyses complètes par mois · Sans carte bancaire",
     "freeScansFootnote": "3 analyses gratuites / mois · Sans carte bancaire · Plus de 2 400 sites évalués ce mois-ci",
-    "multiPageCrawl": "Exploration multi-pages en profondeur"
+    "multiPageCrawl": "Exploration multi-pages en profondeur",
+    "createAccountCta": "Créez un compte gratuit",
+    "createAccountSub": "— conserve l'historique de vos rapports et vous permet de relancer une analyse après chaque correction.",
+    "upgradeCta": "Passez à Pro",
+    "upgradeSub": "— analyses illimitées, explorations multi-pages approfondies, exports PDF et liens de partage.",
+    "evidenceCaption": "Un verdict réel, pas une simple liste de contrôle. Chaque analyse est notée de la même façon."
   },
   "signin": {
     "tooltipTitle": "Pourquoi créer un compte gratuit ?",

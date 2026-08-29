@@ -30,7 +30,12 @@
     "description": "The <1>AI website auditor</1> that skips the 200-row checklist and hands you the 3 UX, SEO and copy fixes actually worth shipping this week — with a plain-English action plan a senior product strategist would sign off on.",
     "freePlanBadge": "Free plan · 3 full scans every month · No credit card",
     "freeScansFootnote": "3 free scans / month · No credit card · 2,400+ sites scored this month",
-    "multiPageCrawl": "Multi-page deep crawl"
+    "multiPageCrawl": "Multi-page deep crawl",
+    "createAccountCta": "Create a free account",
+    "createAccountSub": "— keeps your report history and lets you re-scan after every fix.",
+    "upgradeCta": "Go Pro",
+    "upgradeSub": "— unlimited scans, deep multi-page crawls, PDF and share-link exports.",
+    "evidenceCaption": "A real verdict, not a checklist. Every scan is scored the same way."
   },
   "signin": {
     "tooltipTitle": "Why create a free account?",

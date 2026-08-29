@@ -30,7 +30,12 @@
     "description": "El <1>auditor de sitios web con IA</1> que se salta la lista de 200 puntos y te da las 3 correcciones de UX, SEO y copy que realmente vale la pena implementar esta semana, con un plan de acción claro que aprobaría un estratega de producto senior.",
     "freePlanBadge": "Plan gratuito · 3 análisis completos al mes · Sin tarjeta de crédito",
     "freeScansFootnote": "3 análisis gratis / mes · Sin tarjeta de crédito · Más de 2.400 sitios evaluados este mes",
-    "multiPageCrawl": "Rastreo profundo multipágina"
+    "multiPageCrawl": "Rastreo profundo multipágina",
+    "createAccountCta": "Crea una cuenta gratuita",
+    "createAccountSub": "— guarda tu historial de informes y te permite volver a analizar después de cada corrección.",
+    "upgradeCta": "Pasa a Pro",
+    "upgradeSub": "— análisis ilimitados, rastreos profundos multipágina, exportaciones en PDF y enlaces para compartir.",
+    "evidenceCaption": "Un veredicto real, no una lista de verificación. Cada análisis se puntúa de la misma manera."
   },
   "signin": {
     "tooltipTitle": "¿Por qué crear una cuenta gratis?",

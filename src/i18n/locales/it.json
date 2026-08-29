@@ -30,7 +30,12 @@
     "description": "L'<1>auditor AI per siti web</1> che salta la checklist di 200 punti e ti offre le 3 correzioni di UX, SEO e copy davvero utili da fare questa settimana, con un piano d'azione chiaro degno di un senior product strategist.",
     "freePlanBadge": "Piano gratuito · 3 scansioni complete al mese · Nessuna carta di credito",
     "freeScansFootnote": "3 scansioni gratuite / mese · Nessuna carta di credito · Oltre 2.400 siti valutati questo mese",
-    "multiPageCrawl": "Scansione approfondita multi-pagina"
+    "multiPageCrawl": "Scansione approfondita multi-pagina",
+    "createAccountCta": "Crea un account gratuito",
+    "createAccountSub": "— conserva la cronologia dei tuoi report e ti permette di rianalizzare dopo ogni correzione.",
+    "upgradeCta": "Passa a Pro",
+    "upgradeSub": "— analisi illimitate, scansioni multi-pagina approfondite, esportazioni PDF e link condivisibili.",
+    "evidenceCaption": "Un verdetto reale, non una checklist. Ogni analisi viene valutata allo stesso modo."
   },
   "signin": {
     "tooltipTitle": "Perché creare un account gratuito?",
