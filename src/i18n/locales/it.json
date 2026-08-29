@@ -1321,6 +1321,10 @@
     "empty": "Nessun aggiornamento.",
     "newBadge": "NOVITÀ",
     "entries": {
+      "newLogo": {
+        "title": "Nuovo logo e marchio",
+        "desc": "SiteScoper ha un nuovo simbolo a mirino disegnato a mano e un logotipo serif, con una favicon coordinata in tutto il sito."
+      },
       "cleanerReports": {
         "title": "Report più puliti e un assistente più intelligente",
         "desc": "I report usano categorie meno numerose e più precise, senza emoji, e l'assistente può consultare qualsiasi pagina del sito, esaminare logo e immagini e rispondere a domande molto più approfondite."

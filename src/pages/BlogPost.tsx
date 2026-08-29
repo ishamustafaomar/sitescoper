@@ -146,7 +146,7 @@ const BlogPost = () => {
         publisher: {
           "@type": "Organization",
           name: "SiteScoper",
-          logo: { "@type": "ImageObject", url: "https://sitescoper.com/favicon.ico" },
+          logo: { "@type": "ImageObject", url: "https://sitescoper.com/favicon.png" },
         },
         mainEntityOfPage: url,
         url,
