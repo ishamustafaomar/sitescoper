@@ -85,7 +85,16 @@ export const createCheckout = createServerFn({ method: "POST" })
       customer: customerId,
       metadata: { userId: user.id },
       allow_promotion_codes: true,
-      ...(isRecurring && { subscription_data: { metadata: { userId: user.id } } }),
+      ...(isRecurring && {
+        subscription_data: {
+          metadata: { userId: user.id },
+          // 7-day free trial on every recurring plan. Card is collected up
+          // front, so the subscription converts automatically unless the
+          // customer cancels — the highest-converting trial shape for a
+          // low-ticket self-serve plan.
+          trial_period_days: 7,
+        },
+      }),
     });
 
     return { clientSecret: session.client_secret };
