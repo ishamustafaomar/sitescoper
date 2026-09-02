@@ -1389,6 +1389,10 @@
       "gatedShareLinks": {
         "title": "Les rapports partagés nécessitent désormais un compte gratuit",
         "desc": "Envoyez un lien de rapport : la personne s'inscrit en une étape et arrive directement sur son rapport plutôt que sur la page d'accueil."
+      },
+      "trialAndAnnual": {
+        "title": "Essai gratuit de 7 jours, facturation annuelle et garantie de remboursement",
+        "desc": "Pro démarre désormais par un essai gratuit de 7 jours. Un plan annuel à 180 $ est disponible (deux mois offerts, 15 $/mois) et toutes les formules payantes sont couvertes par une garantie de remboursement de 30 jours. Deux pages de référence sont également en ligne : un comparatif des outils d'audit de site par IA et une page de statistiques sourcées."
       }
     }
   },

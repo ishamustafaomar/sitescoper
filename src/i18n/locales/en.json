@@ -1389,6 +1389,10 @@
       "gatedShareLinks": {
         "title": "Shared reports now require a free account",
         "desc": "Send anyone a report link — they sign up in one step and land straight on their report instead of the homepage."
+      },
+      "trialAndAnnual": {
+        "title": "A 7-day free trial, yearly billing and a refund promise",
+        "desc": "Pro now starts with a 7-day free trial. There's a yearly plan at $180 (two months free, $15/month), and every paid plan is covered by a 30-day money-back guarantee. Two new reference pages went live too: a compared list of AI website audit tools and a sourced website audit statistics page."
       }
     }
   },

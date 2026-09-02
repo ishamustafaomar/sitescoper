@@ -1389,6 +1389,10 @@
       "gatedShareLinks": {
         "title": "Geteilte Berichte erfordern jetzt ein kostenloses Konto",
         "desc": "Sende einen Berichtslink: Die Person registriert sich in einem Schritt und landet direkt im Bericht statt auf der Startseite."
+      },
+      "trialAndAnnual": {
+        "title": "7 Tage kostenlos testen, Jahresabrechnung und Geld-zurück-Garantie",
+        "desc": "Pro startet jetzt mit einer 7-tägigen kostenlosen Testphase. Es gibt einen Jahresplan für 180 $ (zwei Monate gratis, 15 $/Monat), und jeder bezahlte Plan ist durch eine 30-Tage-Geld-zurück-Garantie abgedeckt. Außerdem sind zwei neue Referenzseiten online: ein Vergleich von KI-Website-Audit-Tools und eine Statistikseite mit Quellenangaben."
       }
     }
   },

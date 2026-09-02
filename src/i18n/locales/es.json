@@ -1389,6 +1389,10 @@
       "gatedShareLinks": {
         "title": "Los informes compartidos ahora requieren una cuenta gratuita",
         "desc": "Envía a cualquiera un enlace de informe: se registra en un paso y llega directamente a su informe en lugar de la página de inicio."
+      },
+      "trialAndAnnual": {
+        "title": "Prueba gratis de 7 días, pago anual y garantía de reembolso",
+        "desc": "Pro empieza ahora con una prueba gratuita de 7 días. Hay un plan anual de 180 $ (dos meses gratis, 15 $/mes) y todos los planes de pago incluyen garantía de devolución de 30 días. También publicamos dos páginas de referencia: una comparativa de herramientas de auditoría web con IA y una página de estadísticas con fuentes."
       }
     }
   },
