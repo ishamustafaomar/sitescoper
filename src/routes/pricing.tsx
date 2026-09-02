@@ -19,6 +19,7 @@ export const Route = createFileRoute("/pricing")({
         {
           "@context": "https://schema.org",
           "@type": "SoftwareApplication",
+          "@id": "https://sitescoper.com/#software",
           name: "SiteScoper",
           applicationCategory: "BusinessApplication",
           operatingSystem: "Web",
