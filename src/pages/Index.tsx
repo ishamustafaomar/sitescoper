@@ -405,6 +405,49 @@ const Index = () => {
                   </Button>
                 </motion.div>
               )}
+
+              {/* Upgrade offer at the aha moment — shown only once a signed-in
+                  free user is actually looking at their own finished report. */}
+              {user && !isPro && analysis && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                  className="border border-foreground bg-secondary p-6 md:p-8"
+                >
+                  <h3 className="font-heading text-2xl mb-2">
+                    {t("index.upsellTitle", "You have the verdict. Now go deeper.")}
+                  </h3>
+                  <p className="text-sm text-muted-foreground font-body max-w-2xl leading-relaxed mb-4">
+                    {t(
+                      "index.upsellBody",
+                      "Pro re-scans this site as often as you like, crawls the pages behind the homepage, lets you ask the report questions in plain English, exports a client-ready PDF, and puts you side by side with a competitor.",
+                    )}
+                  </p>
+                  <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-1.5 text-sm font-body mb-5">
+                    {[
+                      t("index.upsellP1", "Unlimited re-scans after every fix"),
+                      t("index.upsellP2", "Chat with this report"),
+                      t("index.upsellP3", "PDF export and share links"),
+                      t("index.upsellP4", "Competitor side-by-side"),
+                    ].map((p) => (
+                      <li key={p} className="flex items-start gap-2">
+                        <Sparkles className="h-3.5 w-3.5 text-primary mt-1 shrink-0" />
+                        <span>{p}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="flex flex-wrap items-center gap-3">
+                    <Button variant="hero" onClick={() => navigate("/pricing")}>
+                      {t("index.upsellCta", "Start 7-day free trial")}
+                      <ArrowRight className="h-4 w-4" />
+                    </Button>
+                    <span className="text-[12px] font-body text-muted-foreground">
+                      {t("index.upsellSub", "Then $15/mo billed yearly. Cancel any time, 30-day refund.")}
+                    </span>
+                  </div>
+                </motion.div>
+              )}
             </motion.div>
           )}
         </AnimatePresence>
