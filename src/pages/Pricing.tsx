@@ -205,7 +205,7 @@ export default function Pricing() {
                   <ArrowRight className="h-4 w-4" />
                 </Button>
                 <p className="mt-2 text-center text-[11px] font-body text-muted-foreground">
-                  {t("pricing.trialSub")}
+                  {t(interval === "annual" ? "pricing.trialSubAnnual" : "pricing.trialSubMonthly")}
                 </p>
               </>
             )}
