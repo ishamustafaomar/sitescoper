@@ -1,7 +1,7 @@
 import { useState, useRef, lazy, Suspense } from "react";
 import { Link, useNavigate } from "@/lib/router-compat";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, AlertCircle, ExternalLink, Link2, FileText, Download, Lock, ArrowDown, Swords } from "lucide-react";
+import { Sparkles, AlertCircle, ExternalLink, Link2, FileText, Download, Lock, ArrowDown, Swords, Star, ShieldCheck, Clock, ArrowRight } from "lucide-react";
 import { Trans, useTranslation } from "react-i18next";
 import { UrlInput } from "@/components/UrlInput";
 import { CustomInstructions } from "@/components/CustomInstructions";
@@ -219,6 +219,24 @@ const Index = () => {
                     <p className="mt-4 text-[12px] text-muted-foreground font-body">
                       {t("hero.freeScansFootnote")}
                     </p>
+
+                    {/* Proof placed beside the primary action, where it can
+                        actually influence the decision — not buried in a
+                        testimonial section further down the page. */}
+                    <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px] font-body text-muted-foreground">
+                      <span className="inline-flex items-center gap-1.5">
+                        <Star className="h-3 w-3 fill-[hsl(45,90%,52%)] text-[hsl(45,90%,52%)]" aria-hidden="true" />
+                        {t("hero.proofRated", "Loved by founders and indie hackers")}
+                      </span>
+                      <span className="inline-flex items-center gap-1.5">
+                        <ShieldCheck className="h-3 w-3" aria-hidden="true" />
+                        {t("hero.proofNoCard", "No credit card — 3 full audits every month")}
+                      </span>
+                      <span className="inline-flex items-center gap-1.5">
+                        <Clock className="h-3 w-3" aria-hidden="true" />
+                        {t("hero.proofSpeed", "Full report in about 60 seconds")}
+                      </span>
+                    </div>
 
                     {!user && (
                       <p className="mt-2 text-[12px] font-body">
