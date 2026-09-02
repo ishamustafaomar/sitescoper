@@ -1,7 +1,7 @@
 import { useState, useRef, lazy, Suspense } from "react";
 import { Link, useNavigate } from "@/lib/router-compat";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, AlertCircle, ExternalLink, Link2, FileText, Download, Lock, ArrowDown, Swords } from "lucide-react";
+import { Sparkles, AlertCircle, ExternalLink, Link2, FileText, Download, Lock, ArrowDown, Swords, Star, ShieldCheck, Clock, ArrowRight } from "lucide-react";
 import { Trans, useTranslation } from "react-i18next";
 import { UrlInput } from "@/components/UrlInput";
 import { CustomInstructions } from "@/components/CustomInstructions";
@@ -220,6 +220,24 @@ const Index = () => {
                       {t("hero.freeScansFootnote")}
                     </p>
 
+                    {/* Proof placed beside the primary action, where it can
+                        actually influence the decision — not buried in a
+                        testimonial section further down the page. */}
+                    <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px] font-body text-muted-foreground">
+                      <span className="inline-flex items-center gap-1.5">
+                        <Star className="h-3 w-3 fill-[hsl(45,90%,52%)] text-[hsl(45,90%,52%)]" aria-hidden="true" />
+                        {t("hero.proofRated", "Loved by founders and indie hackers")}
+                      </span>
+                      <span className="inline-flex items-center gap-1.5">
+                        <ShieldCheck className="h-3 w-3" aria-hidden="true" />
+                        {t("hero.proofNoCard", "No credit card — 3 full audits every month")}
+                      </span>
+                      <span className="inline-flex items-center gap-1.5">
+                        <Clock className="h-3 w-3" aria-hidden="true" />
+                        {t("hero.proofSpeed", "Full report in about 60 seconds")}
+                      </span>
+                    </div>
+
                     {!user && (
                       <p className="mt-2 text-[12px] font-body">
                         <Link to="/auth" className="text-foreground underline underline-offset-4 decoration-[hsl(var(--accent))] decoration-2 hover:text-[hsl(var(--accent))] transition-colors">
@@ -385,6 +403,49 @@ const Index = () => {
                   <Button variant="hero" onClick={() => navigate("/auth")} className="mt-2">
                     Create free account
                   </Button>
+                </motion.div>
+              )}
+
+              {/* Upgrade offer at the aha moment — shown only once a signed-in
+                  free user is actually looking at their own finished report. */}
+              {user && !isPro && analysis && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                  className="border border-foreground bg-secondary p-6 md:p-8"
+                >
+                  <h3 className="font-heading text-2xl mb-2">
+                    {t("index.upsellTitle", "You have the verdict. Now go deeper.")}
+                  </h3>
+                  <p className="text-sm text-muted-foreground font-body max-w-2xl leading-relaxed mb-4">
+                    {t(
+                      "index.upsellBody",
+                      "Pro re-scans this site as often as you like, crawls the pages behind the homepage, lets you ask the report questions in plain English, exports a client-ready PDF, and puts you side by side with a competitor.",
+                    )}
+                  </p>
+                  <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-1.5 text-sm font-body mb-5">
+                    {[
+                      t("index.upsellP1", "Unlimited re-scans after every fix"),
+                      t("index.upsellP2", "Chat with this report"),
+                      t("index.upsellP3", "PDF export and share links"),
+                      t("index.upsellP4", "Competitor side-by-side"),
+                    ].map((p) => (
+                      <li key={p} className="flex items-start gap-2">
+                        <Sparkles className="h-3.5 w-3.5 text-primary mt-1 shrink-0" />
+                        <span>{p}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="flex flex-wrap items-center gap-3">
+                    <Button variant="hero" onClick={() => navigate("/pricing")}>
+                      {t("index.upsellCta", "Start 7-day free trial")}
+                      <ArrowRight className="h-4 w-4" />
+                    </Button>
+                    <span className="text-[12px] font-body text-muted-foreground">
+                      {t("index.upsellSub", "Then $15/mo billed yearly. Cancel any time, 30-day refund.")}
+                    </span>
+                  </div>
                 </motion.div>
               )}
             </motion.div>

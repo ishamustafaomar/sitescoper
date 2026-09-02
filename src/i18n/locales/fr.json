@@ -35,7 +35,10 @@
     "createAccountSub": "— conserve l'historique de vos rapports et vous permet de relancer une analyse après chaque correction.",
     "upgradeCta": "Passez à Pro",
     "upgradeSub": "— analyses illimitées, explorations multi-pages approfondies, exports PDF et liens de partage.",
-    "evidenceCaption": "Un verdict réel, pas une simple liste de contrôle. Chaque analyse est notée de la même façon."
+    "evidenceCaption": "Un verdict réel, pas une simple liste de contrôle. Chaque analyse est notée de la même façon.",
+    "proofRated": "Adopté par les fondateurs et les indie hackers",
+    "proofNoCard": "Sans carte bancaire — 3 audits complets par mois",
+    "proofSpeed": "Rapport complet en 60 secondes environ"
   },
   "signin": {
     "tooltipTitle": "Pourquoi créer un compte gratuit ?",
@@ -148,7 +151,29 @@
     "upgradeCta": "Passer à Pro",
     "footnote": "Annulez à tout moment — votre accès Pro dure jusqu'à la fin de la période de facturation.",
     "footnotePro": "Vous pouvez annuler à tout moment depuis votre compte — l'accès Pro continue jusqu'à la fin de la période.",
-    "manageInAccount": "Gérer ou annuler depuis votre compte →"
+    "manageInAccount": "Gérer ou annuler depuis votre compte →",
+    "billingInterval": "Périodicité de facturation",
+    "monthly": "Mensuel",
+    "annual": "Annuel",
+    "annualSaving": "Payez à l'année et économisez {{amount}} — deux mois offerts.",
+    "billedAnnually": "facturé {{amount}}/an",
+    "billedMonthly": "facturé mensuellement",
+    "trialCta": "Démarrer l'essai gratuit de 7 jours",
+    "trialSub": "Gratuit 7 jours, puis 19 $/mois. Annulez à tout moment avant la fin.",
+    "freeNoChat": "Pas de chat IA, d'export PDF ni de comparaison concurrentielle",
+    "guaranteeTitle": "Garantie satisfait ou remboursé 30 jours",
+    "guaranteeBody": "Si SiteScoper ne trouve pas au moins trois correctifs utiles, écrivez-nous sous 30 jours et nous remboursons tout. Sans formulaire ni question.",
+    "faqTitle": "Questions sur les tarifs",
+    "faq1q": "Faut-il une carte bancaire pour essayer SiteScoper ?",
+    "faq1a": "Non. Le plan gratuit offre trois audits complets par mois sans carte. La carte n'est requise que pour l'essai Pro de 7 jours.",
+    "faq2q": "Que se passe-t-il à la fin de l'essai ?",
+    "faq2a": "La facturation Pro démarre automatiquement selon le plan choisi. Annulez pendant l'essai depuis votre compte et rien ne vous est facturé.",
+    "faq3q": "Puis-je annuler à tout moment ?",
+    "faq3a": "Oui, en un clic depuis votre compte. L'accès Pro continue jusqu'à la fin de la période déjà payée.",
+    "faq4q": "Quelle différence entre mensuel et annuel ?",
+    "faq4a": "Exactement les mêmes fonctionnalités. L'annuel coûte 180 $ par an, soit 15 $ par mois : deux mois offerts par rapport au mensuel.",
+    "faq5q": "Proposez-vous des remboursements ?",
+    "faq5a": "Oui — 30 jours, sans question. Écrivez-nous et nous remboursons intégralement."
   },
   "landing": {
     "cta": {
@@ -1258,7 +1283,15 @@
     "progressAiReading": "L'IA lit votre site",
     "progressWorking": "Traitement en cours…",
     "toastErrorTitle": "Erreur",
-    "toastErrorDefault": "Une erreur s'est produite"
+    "toastErrorDefault": "Une erreur s'est produite",
+    "upsellTitle": "Vous avez le verdict. Allez plus loin.",
+    "upsellBody": "Pro réanalyse ce site autant de fois que vous voulez, explore les pages derrière l'accueil, vous laisse interroger le rapport en langage naturel, exporte un PDF prêt pour le client et vous compare à un concurrent.",
+    "upsellP1": "Réanalyses illimitées après chaque correctif",
+    "upsellP2": "Discuter avec ce rapport",
+    "upsellP3": "Export PDF et liens de partage",
+    "upsellP4": "Comparaison avec un concurrent",
+    "upsellCta": "Démarrer l'essai gratuit de 7 jours",
+    "upsellSub": "Puis 15 $/mois en facturation annuelle. Annulable à tout moment, remboursé 30 jours."
   },
   "semrush": {
     "loading": "Chargement des métriques Semrush…",
@@ -1356,6 +1389,10 @@
       "gatedShareLinks": {
         "title": "Les rapports partagés nécessitent désormais un compte gratuit",
         "desc": "Envoyez un lien de rapport : la personne s'inscrit en une étape et arrive directement sur son rapport plutôt que sur la page d'accueil."
+      },
+      "trialAndAnnual": {
+        "title": "Essai gratuit de 7 jours, facturation annuelle et garantie de remboursement",
+        "desc": "Pro démarre désormais par un essai gratuit de 7 jours. Un plan annuel à 180 $ est disponible (deux mois offerts, 15 $/mois) et toutes les formules payantes sont couvertes par une garantie de remboursement de 30 jours. Deux pages de référence sont également en ligne : un comparatif des outils d'audit de site par IA et une page de statistiques sourcées."
       }
     }
   },

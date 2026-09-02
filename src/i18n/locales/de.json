@@ -35,7 +35,10 @@
     "createAccountSub": "— speichert deinen Berichtsverlauf und lässt dich nach jeder Korrektur erneut scannen.",
     "upgradeCta": "Auf Pro upgraden",
     "upgradeSub": "— unbegrenzte Scans, tiefe Multi-Page-Crawls, PDF- und Share-Link-Exporte.",
-    "evidenceCaption": "Ein echtes Urteil, keine Checkliste. Jeder Scan wird nach demselben Maßstab bewertet."
+    "evidenceCaption": "Ein echtes Urteil, keine Checkliste. Jeder Scan wird nach demselben Maßstab bewertet.",
+    "proofRated": "Beliebt bei Gründern und Indie Hackern",
+    "proofNoCard": "Keine Kreditkarte — 3 vollständige Audits pro Monat",
+    "proofSpeed": "Vollständiger Bericht in etwa 60 Sekunden"
   },
   "signin": {
     "tooltipTitle": "Warum ein kostenloses Konto?",
@@ -148,7 +151,29 @@
     "upgradeCta": "Auf Pro upgraden",
     "footnote": "Jederzeit kündbar — dein Pro-Zugriff läuft bis zum Ende des Abrechnungszeitraums.",
     "footnotePro": "Du kannst jederzeit im Konto kündigen — Pro-Zugriff läuft bis zum Ende des Zeitraums.",
-    "manageInAccount": "Im Konto verwalten oder kündigen →"
+    "manageInAccount": "Im Konto verwalten oder kündigen →",
+    "billingInterval": "Abrechnungszeitraum",
+    "monthly": "Monatlich",
+    "annual": "Jährlich",
+    "annualSaving": "Jährlich zahlen und {{amount}} sparen — zwei Monate gratis.",
+    "billedAnnually": "{{amount}}/Jahr abgerechnet",
+    "billedMonthly": "monatlich abgerechnet",
+    "trialCta": "7 Tage kostenlos testen",
+    "trialSub": "7 Tage gratis, danach 19 $/Monat. Jederzeit vor Ablauf kündbar.",
+    "freeNoChat": "Kein KI-Chat, kein PDF-Export, kein Wettbewerbsvergleich",
+    "guaranteeTitle": "30 Tage Geld-zurück-Garantie",
+    "guaranteeBody": "Wenn SiteScoper nicht mindestens drei lohnende Verbesserungen findet, schreib uns innerhalb von 30 Tagen — wir erstatten alles. Ohne Formulare, ohne Rückfragen.",
+    "faqTitle": "Fragen zum Preis",
+    "faq1q": "Brauche ich eine Kreditkarte zum Testen?",
+    "faq1a": "Nein. Der kostenlose Plan enthält drei vollständige Audits pro Monat ohne Karte. Eine Karte ist nur für die 7-tägige Pro-Testphase nötig.",
+    "faq2q": "Was passiert nach der Testphase?",
+    "faq2a": "Die Pro-Abrechnung startet automatisch mit dem gewählten Plan. Kündige während der Testphase in deinem Konto — dann wird nichts berechnet.",
+    "faq3q": "Kann ich jederzeit kündigen?",
+    "faq3a": "Ja, mit einem Klick im Konto. Der Pro-Zugang läuft bis zum Ende des bereits bezahlten Zeitraums.",
+    "faq4q": "Was ist der Unterschied zwischen monatlich und jährlich?",
+    "faq4a": "Exakt dieselben Funktionen. Jährlich kostet 180 $ pro Jahr, also 15 $ im Monat — zwei Monate gratis gegenüber der monatlichen Zahlung.",
+    "faq5q": "Gibt es Rückerstattungen?",
+    "faq5a": "Ja — 30 Tage, ohne Rückfragen. Schreib uns und wir erstatten den vollen Betrag."
   },
   "landing": {
     "cta": {
@@ -1258,7 +1283,15 @@
     "progressAiReading": "Die KI liest deine Website",
     "progressWorking": "Wird bearbeitet…",
     "toastErrorTitle": "Fehler",
-    "toastErrorDefault": "Etwas ist schiefgelaufen"
+    "toastErrorDefault": "Etwas ist schiefgelaufen",
+    "upsellTitle": "Du hast das Urteil. Jetzt geh tiefer.",
+    "upsellBody": "Pro scannt diese Seite so oft du willst, crawlt die Seiten hinter der Startseite, lässt dich dem Bericht Fragen in normaler Sprache stellen, exportiert ein kundenfertiges PDF und stellt dich direkt neben einen Wettbewerber.",
+    "upsellP1": "Unbegrenzte Re-Scans nach jedem Fix",
+    "upsellP2": "Mit diesem Bericht chatten",
+    "upsellP3": "PDF-Export und Share-Links",
+    "upsellP4": "Direktvergleich mit Wettbewerbern",
+    "upsellCta": "7 Tage kostenlos testen",
+    "upsellSub": "Danach 15 $/Monat bei jährlicher Zahlung. Jederzeit kündbar, 30 Tage Rückgabe."
   },
   "semrush": {
     "loading": "Semrush-Kennzahlen werden geladen…",
@@ -1356,6 +1389,10 @@
       "gatedShareLinks": {
         "title": "Geteilte Berichte erfordern jetzt ein kostenloses Konto",
         "desc": "Sende einen Berichtslink: Die Person registriert sich in einem Schritt und landet direkt im Bericht statt auf der Startseite."
+      },
+      "trialAndAnnual": {
+        "title": "7 Tage kostenlos testen, Jahresabrechnung und Geld-zurück-Garantie",
+        "desc": "Pro startet jetzt mit einer 7-tägigen kostenlosen Testphase. Es gibt einen Jahresplan für 180 $ (zwei Monate gratis, 15 $/Monat), und jeder bezahlte Plan ist durch eine 30-Tage-Geld-zurück-Garantie abgedeckt. Außerdem sind zwei neue Referenzseiten online: ein Vergleich von KI-Website-Audit-Tools und eine Statistikseite mit Quellenangaben."
       }
     }
   },

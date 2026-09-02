@@ -35,7 +35,10 @@
     "createAccountSub": "— keeps your report history and lets you re-scan after every fix.",
     "upgradeCta": "Go Pro",
     "upgradeSub": "— unlimited scans, deep multi-page crawls, PDF and share-link exports.",
-    "evidenceCaption": "A real verdict, not a checklist. Every scan is scored the same way."
+    "evidenceCaption": "A real verdict, not a checklist. Every scan is scored the same way.",
+    "proofRated": "Loved by founders and indie hackers",
+    "proofNoCard": "No credit card — 3 full audits every month",
+    "proofSpeed": "Full report in about 60 seconds"
   },
   "signin": {
     "tooltipTitle": "Why create a free account?",
@@ -148,7 +151,29 @@
     "upgradeCta": "Upgrade to Pro",
     "footnote": "Cancel any time — your Pro access lasts until the end of the billing period.",
     "footnotePro": "You can cancel any time from your account — Pro access continues until the end of the billing period.",
-    "manageInAccount": "Manage or cancel from your account →"
+    "manageInAccount": "Manage or cancel from your account →",
+    "billingInterval": "Billing interval",
+    "monthly": "Monthly",
+    "annual": "Annual",
+    "annualSaving": "Pay yearly and save {{amount}} — two months free.",
+    "billedAnnually": "billed {{amount}}/year",
+    "billedMonthly": "billed monthly",
+    "trialCta": "Start 7-day free trial",
+    "trialSub": "Free for 7 days, then $19/mo. Cancel any time before it ends.",
+    "freeNoChat": "No AI chat, PDF export or competitor compare",
+    "guaranteeTitle": "30-day money-back guarantee",
+    "guaranteeBody": "If SiteScoper doesn't find at least three fixes worth shipping, email us within 30 days and we refund the whole thing. No forms, no questions.",
+    "faqTitle": "Pricing questions",
+    "faq1q": "Do I need a credit card to try SiteScoper?",
+    "faq1a": "No. The free plan gives you three full audits a month with no card. A card is only needed if you start the 7-day Pro trial.",
+    "faq2q": "What happens when the free trial ends?",
+    "faq2a": "Pro billing starts automatically at the plan you picked. Cancel any time during the trial from your account and you are never charged.",
+    "faq3q": "Can I cancel at any time?",
+    "faq3a": "Yes. Cancel in one click from your account page. Pro access continues until the end of the period you already paid for.",
+    "faq4q": "What is the difference between monthly and annual?",
+    "faq4a": "Exactly the same features. Annual is $180 for the year, which works out at $15 a month — two months free versus paying monthly.",
+    "faq5q": "Do you offer refunds?",
+    "faq5a": "Yes — 30 days, no questions asked. Email us and we refund in full."
   },
   "landing": {
     "cta": {
@@ -1258,7 +1283,15 @@
     "progressAiReading": "AI is reading your site",
     "progressWorking": "Working…",
     "toastErrorTitle": "Error",
-    "toastErrorDefault": "Something went wrong"
+    "toastErrorDefault": "Something went wrong",
+    "upsellTitle": "You have the verdict. Now go deeper.",
+    "upsellBody": "Pro re-scans this site as often as you like, crawls the pages behind the homepage, lets you ask the report questions in plain English, exports a client-ready PDF, and puts you side by side with a competitor.",
+    "upsellP1": "Unlimited re-scans after every fix",
+    "upsellP2": "Chat with this report",
+    "upsellP3": "PDF export and share links",
+    "upsellP4": "Competitor side-by-side",
+    "upsellCta": "Start 7-day free trial",
+    "upsellSub": "Then $15/mo billed yearly. Cancel any time, 30-day refund."
   },
   "semrush": {
     "loading": "Loading Semrush metrics…",
@@ -1356,6 +1389,10 @@
       "gatedShareLinks": {
         "title": "Shared reports now require a free account",
         "desc": "Send anyone a report link — they sign up in one step and land straight on their report instead of the homepage."
+      },
+      "trialAndAnnual": {
+        "title": "A 7-day free trial, yearly billing and a refund promise",
+        "desc": "Pro now starts with a 7-day free trial. There's a yearly plan at $180 (two months free, $15/month), and every paid plan is covered by a 30-day money-back guarantee. Two new reference pages went live too: a compared list of AI website audit tools and a sourced website audit statistics page."
       }
     }
   },

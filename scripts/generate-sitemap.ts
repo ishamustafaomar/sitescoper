@@ -37,6 +37,8 @@ const entries: SitemapEntry[] = [
     changefreq: "monthly" as const,
     priority: "0.7",
   })),
+  { path: "/best-ai-website-audit-tools", lastmod: TODAY, changefreq: "monthly", priority: "0.9" },
+  { path: "/website-audit-statistics", lastmod: TODAY, changefreq: "monthly", priority: "0.9" },
   { path: "/compare", lastmod: TODAY, changefreq: "monthly", priority: "0.7" },
   { path: "/auth", lastmod: TODAY, changefreq: "monthly", priority: "0.5" },
   { path: "/privacy", lastmod: TODAY, changefreq: "yearly", priority: "0.3" },

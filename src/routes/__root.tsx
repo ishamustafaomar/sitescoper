@@ -71,6 +71,7 @@ const JSON_LD = JSON.stringify({
     },
     {
       "@type": "SoftwareApplication",
+      "@id": "https://sitescoper.com/#software",
       name: "SiteScoper",
       applicationCategory: "DeveloperApplication",
       operatingSystem: "Web",
