@@ -37,6 +37,8 @@ export function SiteFooter() {
           <h2 className="font-heading font-semibold text-xs uppercase tracking-wider text-muted-foreground mb-3">{t("siteFooter.resources")}</h2>
           <ul className="space-y-2">
             <li><Link to="/blog" className="hover:text-primary">{t("siteFooter.blog")}</Link></li>
+            <li><Link to="/best-ai-website-audit-tools" className="hover:text-primary">Best AI audit tools</Link></li>
+            <li><Link to="/website-audit-statistics" className="hover:text-primary">Website audit statistics</Link></li>
             <li><Link to="/blog/how-to-audit-a-website-for-seo" className="hover:text-primary">{t("siteFooter.howToAudit")}</Link></li>
             <li><Link to="/blog/free-website-audit-checklist" className="hover:text-primary">{t("siteFooter.checklist")}</Link></li>
             <li><Link to="/blog/core-web-vitals-explained-for-founders" className="hover:text-primary">{t("siteFooter.coreWebVitals")}</Link></li>

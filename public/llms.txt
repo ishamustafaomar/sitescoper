@@ -7,7 +7,10 @@ SiteScoper crawls up to 8 of your most important pages and uses frontier AI mode
 ## Pages
 
 - [Home](/): Run a free AI website audit and see the SiteScoper product overview.
-- [Pricing](/pricing): Free vs Pro plans — unlimited audits, deep product simulation, competitor compare, PDF export.
+- [Best AI website audit tools 2026](/best-ai-website-audit-tools): Honest comparison of SiteScoper, Lighthouse, Semrush, Ahrefs, Screaming Frog and Clarity, with pricing and what each is best at.
+- [Website audit statistics](/website-audit-statistics): 21 sourced statistics on page speed, mobile UX, SEO, conversion, accessibility and AI search, each with a named source and year.
+- [Blog](/blog): Practical guides on website audits, SEO and Core Web Vitals for founders.
+- [Pricing](/pricing): Free plan: 3 audits/month, no card. Pro: $19/month or $180/year with a 7-day free trial and a 30-day refund — unlimited audits, deep product simulation, competitor compare, chat with report, PDF export.
 - [Privacy Policy](/privacy): How SiteScoper collects and protects your data.
 - [Terms of Service](/terms): Terms governing use of SiteScoper.
 
