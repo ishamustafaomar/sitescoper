@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AccountRouteImport } from './routes/account'
 import { Route as AiWebsiteAuditToolRouteImport } from './routes/ai-website-audit-tool'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as BestAiWebsiteAuditToolsRouteImport } from './routes/best-ai-website-audit-tools'
 import { Route as CompareRouteImport } from './routes/compare'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
@@ -20,6 +21,7 @@ import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as UnsubscribeRouteImport } from './routes/unsubscribe'
+import { Route as WebsiteAuditStatisticsRouteImport } from './routes/website-audit-statistics'
 import { Route as WhiteLabelSeoReportsRouteImport } from './routes/white-label-seo-reports'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as AdminRedditRouteImport } from './routes/admin/reddit'
@@ -48,6 +50,11 @@ const AiWebsiteAuditToolRoute = AiWebsiteAuditToolRouteImport.update({
 const AuthRoute = AuthRouteImport.update({
   id: '/auth',
   path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BestAiWebsiteAuditToolsRoute = BestAiWebsiteAuditToolsRouteImport.update({
+  id: '/best-ai-website-audit-tools',
+  path: '/best-ai-website-audit-tools',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CompareRoute = CompareRouteImport.update({
@@ -83,6 +90,11 @@ const TermsRoute = TermsRouteImport.update({
 const UnsubscribeRoute = UnsubscribeRouteImport.update({
   id: '/unsubscribe',
   path: '/unsubscribe',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WebsiteAuditStatisticsRoute = WebsiteAuditStatisticsRouteImport.update({
+  id: '/website-audit-statistics',
+  path: '/website-audit-statistics',
   getParentRoute: () => rootRouteImport,
 } as any)
 const WhiteLabelSeoReportsRoute = WhiteLabelSeoReportsRouteImport.update({
@@ -136,6 +148,7 @@ export interface FileRoutesByFullPath {
   '/account': typeof AccountRoute
   '/ai-website-audit-tool': typeof AiWebsiteAuditToolRoute
   '/auth': typeof AuthRoute
+  '/best-ai-website-audit-tools': typeof BestAiWebsiteAuditToolsRoute
   '/compare': typeof CompareRoute
   '/dashboard': typeof DashboardRoute
   '/onboarding': typeof OnboardingRoute
@@ -143,6 +156,7 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PrivacyRoute
   '/terms': typeof TermsRoute
   '/unsubscribe': typeof UnsubscribeRoute
+  '/website-audit-statistics': typeof WebsiteAuditStatisticsRoute
   '/white-label-seo-reports': typeof WhiteLabelSeoReportsRoute
   '/admin/reddit': typeof AdminRedditRoute
   '/admin/youtube': typeof AdminYoutubeRoute
@@ -158,6 +172,7 @@ export interface FileRoutesByTo {
   '/account': typeof AccountRoute
   '/ai-website-audit-tool': typeof AiWebsiteAuditToolRoute
   '/auth': typeof AuthRoute
+  '/best-ai-website-audit-tools': typeof BestAiWebsiteAuditToolsRoute
   '/compare': typeof CompareRoute
   '/dashboard': typeof DashboardRoute
   '/onboarding': typeof OnboardingRoute
@@ -165,6 +180,7 @@ export interface FileRoutesByTo {
   '/privacy': typeof PrivacyRoute
   '/terms': typeof TermsRoute
   '/unsubscribe': typeof UnsubscribeRoute
+  '/website-audit-statistics': typeof WebsiteAuditStatisticsRoute
   '/white-label-seo-reports': typeof WhiteLabelSeoReportsRoute
   '/admin/reddit': typeof AdminRedditRoute
   '/admin/youtube': typeof AdminYoutubeRoute
@@ -181,6 +197,7 @@ export interface FileRoutesById {
   '/account': typeof AccountRoute
   '/ai-website-audit-tool': typeof AiWebsiteAuditToolRoute
   '/auth': typeof AuthRoute
+  '/best-ai-website-audit-tools': typeof BestAiWebsiteAuditToolsRoute
   '/compare': typeof CompareRoute
   '/dashboard': typeof DashboardRoute
   '/onboarding': typeof OnboardingRoute
@@ -188,6 +205,7 @@ export interface FileRoutesById {
   '/privacy': typeof PrivacyRoute
   '/terms': typeof TermsRoute
   '/unsubscribe': typeof UnsubscribeRoute
+  '/website-audit-statistics': typeof WebsiteAuditStatisticsRoute
   '/white-label-seo-reports': typeof WhiteLabelSeoReportsRoute
   '/admin/reddit': typeof AdminRedditRoute
   '/admin/youtube': typeof AdminYoutubeRoute
@@ -205,6 +223,7 @@ export interface FileRouteTypes {
     | '/account'
     | '/ai-website-audit-tool'
     | '/auth'
+    | '/best-ai-website-audit-tools'
     | '/compare'
     | '/dashboard'
     | '/onboarding'
@@ -212,6 +231,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/terms'
     | '/unsubscribe'
+    | '/website-audit-statistics'
     | '/white-label-seo-reports'
     | '/admin/reddit'
     | '/admin/youtube'
@@ -227,6 +247,7 @@ export interface FileRouteTypes {
     | '/account'
     | '/ai-website-audit-tool'
     | '/auth'
+    | '/best-ai-website-audit-tools'
     | '/compare'
     | '/dashboard'
     | '/onboarding'
@@ -234,6 +255,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/terms'
     | '/unsubscribe'
+    | '/website-audit-statistics'
     | '/white-label-seo-reports'
     | '/admin/reddit'
     | '/admin/youtube'
@@ -249,6 +271,7 @@ export interface FileRouteTypes {
     | '/account'
     | '/ai-website-audit-tool'
     | '/auth'
+    | '/best-ai-website-audit-tools'
     | '/compare'
     | '/dashboard'
     | '/onboarding'
@@ -256,6 +279,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/terms'
     | '/unsubscribe'
+    | '/website-audit-statistics'
     | '/white-label-seo-reports'
     | '/admin/reddit'
     | '/admin/youtube'
@@ -272,6 +296,7 @@ export interface RootRouteChildren {
   AccountRoute: typeof AccountRoute
   AiWebsiteAuditToolRoute: typeof AiWebsiteAuditToolRoute
   AuthRoute: typeof AuthRoute
+  BestAiWebsiteAuditToolsRoute: typeof BestAiWebsiteAuditToolsRoute
   CompareRoute: typeof CompareRoute
   DashboardRoute: typeof DashboardRoute
   OnboardingRoute: typeof OnboardingRoute
@@ -279,6 +304,7 @@ export interface RootRouteChildren {
   PrivacyRoute: typeof PrivacyRoute
   TermsRoute: typeof TermsRoute
   UnsubscribeRoute: typeof UnsubscribeRoute
+  WebsiteAuditStatisticsRoute: typeof WebsiteAuditStatisticsRoute
   WhiteLabelSeoReportsRoute: typeof WhiteLabelSeoReportsRoute
   AdminRedditRoute: typeof AdminRedditRoute
   AdminYoutubeRoute: typeof AdminYoutubeRoute
@@ -318,6 +344,13 @@ declare module '@tanstack/react-router' {
       path: '/auth'
       fullPath: '/auth'
       preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/best-ai-website-audit-tools': {
+      id: '/best-ai-website-audit-tools'
+      path: '/best-ai-website-audit-tools'
+      fullPath: '/best-ai-website-audit-tools'
+      preLoaderRoute: typeof BestAiWebsiteAuditToolsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/compare': {
@@ -367,6 +400,13 @@ declare module '@tanstack/react-router' {
       path: '/unsubscribe'
       fullPath: '/unsubscribe'
       preLoaderRoute: typeof UnsubscribeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/website-audit-statistics': {
+      id: '/website-audit-statistics'
+      path: '/website-audit-statistics'
+      fullPath: '/website-audit-statistics'
+      preLoaderRoute: typeof WebsiteAuditStatisticsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/white-label-seo-reports': {
@@ -440,6 +480,7 @@ const rootRouteChildren: RootRouteChildren = {
   AccountRoute: AccountRoute,
   AiWebsiteAuditToolRoute: AiWebsiteAuditToolRoute,
   AuthRoute: AuthRoute,
+  BestAiWebsiteAuditToolsRoute: BestAiWebsiteAuditToolsRoute,
   CompareRoute: CompareRoute,
   DashboardRoute: DashboardRoute,
   OnboardingRoute: OnboardingRoute,
@@ -447,6 +488,7 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyRoute: PrivacyRoute,
   TermsRoute: TermsRoute,
   UnsubscribeRoute: UnsubscribeRoute,
+  WebsiteAuditStatisticsRoute: WebsiteAuditStatisticsRoute,
   WhiteLabelSeoReportsRoute: WhiteLabelSeoReportsRoute,
   AdminRedditRoute: AdminRedditRoute,
   AdminYoutubeRoute: AdminYoutubeRoute,
