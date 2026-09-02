@@ -35,7 +35,10 @@
     "createAccountSub": "— speichert deinen Berichtsverlauf und lässt dich nach jeder Korrektur erneut scannen.",
     "upgradeCta": "Auf Pro upgraden",
     "upgradeSub": "— unbegrenzte Scans, tiefe Multi-Page-Crawls, PDF- und Share-Link-Exporte.",
-    "evidenceCaption": "Ein echtes Urteil, keine Checkliste. Jeder Scan wird nach demselben Maßstab bewertet."
+    "evidenceCaption": "Ein echtes Urteil, keine Checkliste. Jeder Scan wird nach demselben Maßstab bewertet.",
+    "proofRated": "Beliebt bei Gründern und Indie Hackern",
+    "proofNoCard": "Keine Kreditkarte — 3 vollständige Audits pro Monat",
+    "proofSpeed": "Vollständiger Bericht in etwa 60 Sekunden"
   },
   "signin": {
     "tooltipTitle": "Warum ein kostenloses Konto?",
@@ -1280,7 +1283,15 @@
     "progressAiReading": "Die KI liest deine Website",
     "progressWorking": "Wird bearbeitet…",
     "toastErrorTitle": "Fehler",
-    "toastErrorDefault": "Etwas ist schiefgelaufen"
+    "toastErrorDefault": "Etwas ist schiefgelaufen",
+    "upsellTitle": "Du hast das Urteil. Jetzt geh tiefer.",
+    "upsellBody": "Pro scannt diese Seite so oft du willst, crawlt die Seiten hinter der Startseite, lässt dich dem Bericht Fragen in normaler Sprache stellen, exportiert ein kundenfertiges PDF und stellt dich direkt neben einen Wettbewerber.",
+    "upsellP1": "Unbegrenzte Re-Scans nach jedem Fix",
+    "upsellP2": "Mit diesem Bericht chatten",
+    "upsellP3": "PDF-Export und Share-Links",
+    "upsellP4": "Direktvergleich mit Wettbewerbern",
+    "upsellCta": "7 Tage kostenlos testen",
+    "upsellSub": "Danach 15 $/Monat bei jährlicher Zahlung. Jederzeit kündbar, 30 Tage Rückgabe."
   },
   "semrush": {
     "loading": "Semrush-Kennzahlen werden geladen…",

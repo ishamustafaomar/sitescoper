@@ -35,7 +35,10 @@
     "createAccountSub": "— guarda tu historial de informes y te permite volver a analizar después de cada corrección.",
     "upgradeCta": "Pasa a Pro",
     "upgradeSub": "— análisis ilimitados, rastreos profundos multipágina, exportaciones en PDF y enlaces para compartir.",
-    "evidenceCaption": "Un veredicto real, no una lista de verificación. Cada análisis se puntúa de la misma manera."
+    "evidenceCaption": "Un veredicto real, no una lista de verificación. Cada análisis se puntúa de la misma manera.",
+    "proofRated": "Adorado por fundadores e indie hackers",
+    "proofNoCard": "Sin tarjeta — 3 auditorías completas al mes",
+    "proofSpeed": "Informe completo en unos 60 segundos"
   },
   "signin": {
     "tooltipTitle": "¿Por qué crear una cuenta gratis?",
@@ -1280,7 +1283,15 @@
     "progressAiReading": "La IA está leyendo tu sitio",
     "progressWorking": "Trabajando…",
     "toastErrorTitle": "Error",
-    "toastErrorDefault": "Algo salió mal"
+    "toastErrorDefault": "Algo salió mal",
+    "upsellTitle": "Ya tienes el veredicto. Ahora ve más a fondo.",
+    "upsellBody": "Pro reanaliza este sitio tantas veces como quieras, rastrea las páginas detrás de la portada, te deja preguntarle al informe en lenguaje natural, exporta un PDF listo para el cliente y te compara con un competidor.",
+    "upsellP1": "Reanálisis ilimitados tras cada mejora",
+    "upsellP2": "Chatea con este informe",
+    "upsellP3": "Exportación en PDF y enlaces para compartir",
+    "upsellP4": "Comparativa con la competencia",
+    "upsellCta": "Empezar prueba gratis de 7 días",
+    "upsellSub": "Luego 15 $/mes con pago anual. Cancela cuando quieras, reembolso 30 días."
   },
   "semrush": {
     "loading": "Cargando métricas de Semrush…",

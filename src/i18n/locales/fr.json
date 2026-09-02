@@ -35,7 +35,10 @@
     "createAccountSub": "— conserve l'historique de vos rapports et vous permet de relancer une analyse après chaque correction.",
     "upgradeCta": "Passez à Pro",
     "upgradeSub": "— analyses illimitées, explorations multi-pages approfondies, exports PDF et liens de partage.",
-    "evidenceCaption": "Un verdict réel, pas une simple liste de contrôle. Chaque analyse est notée de la même façon."
+    "evidenceCaption": "Un verdict réel, pas une simple liste de contrôle. Chaque analyse est notée de la même façon.",
+    "proofRated": "Adopté par les fondateurs et les indie hackers",
+    "proofNoCard": "Sans carte bancaire — 3 audits complets par mois",
+    "proofSpeed": "Rapport complet en 60 secondes environ"
   },
   "signin": {
     "tooltipTitle": "Pourquoi créer un compte gratuit ?",
@@ -1280,7 +1283,15 @@
     "progressAiReading": "L'IA lit votre site",
     "progressWorking": "Traitement en cours…",
     "toastErrorTitle": "Erreur",
-    "toastErrorDefault": "Une erreur s'est produite"
+    "toastErrorDefault": "Une erreur s'est produite",
+    "upsellTitle": "Vous avez le verdict. Allez plus loin.",
+    "upsellBody": "Pro réanalyse ce site autant de fois que vous voulez, explore les pages derrière l'accueil, vous laisse interroger le rapport en langage naturel, exporte un PDF prêt pour le client et vous compare à un concurrent.",
+    "upsellP1": "Réanalyses illimitées après chaque correctif",
+    "upsellP2": "Discuter avec ce rapport",
+    "upsellP3": "Export PDF et liens de partage",
+    "upsellP4": "Comparaison avec un concurrent",
+    "upsellCta": "Démarrer l'essai gratuit de 7 jours",
+    "upsellSub": "Puis 15 $/mois en facturation annuelle. Annulable à tout moment, remboursé 30 jours."
   },
   "semrush": {
     "loading": "Chargement des métriques Semrush…",
