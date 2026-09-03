@@ -6,6 +6,10 @@ import es from "./locales/es.json";
 import fr from "./locales/fr.json";
 import de from "./locales/de.json";
 import it from "./locales/it.json";
+import pt from "./locales/pt.json";
+import ja from "./locales/ja.json";
+import nl from "./locales/nl.json";
+import pl from "./locales/pl.json";
 
 export const SUPPORTED_LANGUAGES = [
   { code: "en", label: "English", flag: "🇬🇧" },
@@ -13,6 +17,10 @@ export const SUPPORTED_LANGUAGES = [
   { code: "fr", label: "Français", flag: "🇫🇷" },
   { code: "de", label: "Deutsch", flag: "🇩🇪" },
   { code: "it", label: "Italiano", flag: "🇮🇹" },
+  { code: "pt", label: "Português", flag: "🇵🇹" },
+  { code: "ja", label: "日本語", flag: "🇯🇵" },
+  { code: "nl", label: "Nederlands", flag: "🇳🇱" },
+  { code: "pl", label: "Polski", flag: "🇵🇱" },
 ] as const;
 
 const isBrowser = typeof window !== "undefined";
@@ -32,9 +40,13 @@ i18n
       fr: { translation: fr },
       de: { translation: de },
       it: { translation: it },
+      pt: { translation: pt },
+      ja: { translation: ja },
+      nl: { translation: nl },
+      pl: { translation: pl },
     },
     fallbackLng: "en",
-    supportedLngs: ["en", "es", "fr", "de", "it"],
+    supportedLngs: ["en", "es", "fr", "de", "it", "pt", "ja", "nl", "pl"],
     interpolation: { escapeValue: false },
     detection: {
       order: ["localStorage", "navigator"],

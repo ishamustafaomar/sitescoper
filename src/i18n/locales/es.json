@@ -1394,6 +1394,10 @@
       "trialAndAnnual": {
         "title": "Prueba gratis de 7 días, pago anual y garantía de reembolso",
         "desc": "Pro empieza ahora con una prueba gratuita de 7 días. Hay un plan anual de 180 $ (dos meses gratis, 15 $/mes) y todos los planes de pago incluyen garantía de devolución de 30 días. También publicamos dos páginas de referencia: una comparativa de herramientas de auditoría web con IA y una página de estadísticas con fuentes."
+      },
+      "moreLanguages": {
+        "title": "SiteScoper ahora habla 9 idiomas",
+        "desc": "Toda la aplicación ya está disponible en portugués, japonés, neerlandés y polaco, además de inglés, español, francés, alemán e italiano. Cámbiala desde el icono del globo en el encabezado."
       }
     }
   },
