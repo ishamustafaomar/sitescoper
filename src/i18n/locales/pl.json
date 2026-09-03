@@ -1394,6 +1394,10 @@
       "trialAndAnnual": {
         "title": "7-dniowy darmowy okres próbny, rozliczenie roczne i obietnica zwrotu pieniędzy",
         "desc": "Pro zaczyna się teraz od 7-dniowego darmowego okresu próbnego. Jest plan roczny za 180 USD (dwa miesiące gratis, 15 USD/miesiąc), a każdy płatny plan jest objęty 30-dniową gwarancją zwrotu pieniędzy. Uruchomiono też dwie nowe strony referencyjne: porównanie narzędzi do audytu stron AI oraz stronę ze statystykami audytu stron opartymi na źródłach."
+      },
+      "moreLanguages": {
+        "title": "SiteScoper mówi teraz w 9 językach",
+        "desc": "Cała aplikacja jest teraz dostępna po portugalsku, japońsku, niderlandzku i polsku — oprócz angielskiego, hiszpańskiego, francuskiego, niemieckiego i włoskiego. Zmień język za pomocą ikony globusa w nagłówku."
       }
     }
   },

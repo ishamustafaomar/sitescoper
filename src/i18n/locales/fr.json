@@ -1394,6 +1394,10 @@
       "trialAndAnnual": {
         "title": "Essai gratuit de 7 jours, facturation annuelle et garantie de remboursement",
         "desc": "Pro démarre désormais par un essai gratuit de 7 jours. Un plan annuel à 180 $ est disponible (deux mois offerts, 15 $/mois) et toutes les formules payantes sont couvertes par une garantie de remboursement de 30 jours. Deux pages de référence sont également en ligne : un comparatif des outils d'audit de site par IA et une page de statistiques sourcées."
+      },
+      "moreLanguages": {
+        "title": "SiteScoper parle désormais 9 langues",
+        "desc": "Toute l'application est maintenant disponible en portugais, japonais, néerlandais et polonais — en plus de l'anglais, l'espagnol, le français, l'allemand et l'italien. Changez de langue via l'icône globe dans l'en-tête."
       }
     }
   },

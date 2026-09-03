@@ -1394,6 +1394,10 @@
       "trialAndAnnual": {
         "title": "A 7-day free trial, yearly billing and a refund promise",
         "desc": "Pro now starts with a 7-day free trial. There's a yearly plan at $180 (two months free, $15/month), and every paid plan is covered by a 30-day money-back guarantee. Two new reference pages went live too: a compared list of AI website audit tools and a sourced website audit statistics page."
+      },
+      "moreLanguages": {
+        "title": "SiteScoper now speaks 9 languages",
+        "desc": "The entire app is now available in Portuguese, Japanese, Dutch and Polish — in addition to English, Spanish, French, German and Italian. Switch from the globe icon in the header."
       }
     }
   },

@@ -1179,31 +1179,31 @@
       "hero": {
         "title": "Je hero-kop is generiek — bezoekers haken binnen 4s af",
         "where": "Boven de vouw, regel 1",
-        "why": "\u201cBouw beter, sneller\u201d zou 10.000 SaaS-sites kunnen beschrijven. Een eerste bezoeker kan niet zien wat je precies doet, voor wie het is, of waarom het ertoe doet. Eye-tracking-onderzoek toont aan dat 79% van de gebruikers scant in plaats van leest — als de H1 niet landt, vertrekken ze.",
-        "fix": "Herschrijf als resultaat + doelgroep: bijv. \u201cLever klantklare landingspagina's in een weekend — voor solo-founders zonder designer.\u201d Test tegen de huidige tekst met een 50/50-split."
+        "why": "“Bouw beter, sneller” zou 10.000 SaaS-sites kunnen beschrijven. Een eerste bezoeker kan niet zien wat je precies doet, voor wie het is, of waarom het ertoe doet. Eye-tracking-onderzoek toont aan dat 79% van de gebruikers scant in plaats van leest — als de H1 niet landt, vertrekken ze.",
+        "fix": "Herschrijf als resultaat + doelgroep: bijv. “Lever klantklare landingspagina's in een weekend — voor solo-founders zonder designer.” Test tegen de huidige tekst met een 50/50-split."
       },
       "proof": {
         "title": "Geen sociaal bewijs zichtbaar vóór de eerste CTA",
         "where": "Herosectie, rechterkolom",
         "why": "Je testimonials staan onderaan de pagina, maar de koopbeslissing gebeurt in de hero. Zonder logo's, beoordelingen of gebruikersaantallen vraagt de CTA om vertrouwen dat je nog niet hebt verdiend.",
-        "fix": "Voeg een bewijsstrook van 1 regel direct onder de CTA toe: \u201cVertrouwd door 2.400+ teams\u201d + 4 klantlogo's in grijstinten. Houd het klein — het is een vertrouwenssignaal, geen functie."
+        "fix": "Voeg een bewijsstrook van 1 regel direct onder de CTA toe: “Vertrouwd door 2.400+ teams” + 4 klantlogo's in grijstinten. Houd het klein — het is een vertrouwenssignaal, geen functie."
       },
       "pricing": {
         "title": "Prijzen verstopt achter een dropdownmenu",
         "where": "Topnavigatie → Bronnen → Prijzen",
-        "why": "Bezoekers die de kosten willen beoordelen, moeten ernaar zoeken. Verborgen prijzen signaleren \u201cje kunt ons niet betalen\u201d aan mkb'ers en voegt wrijving toe voor iedereen. Je bouncepercentage op de homepage is waarschijnlijk opgeblazen door mensen die vertrokken op zoek naar een prijs.",
-        "fix": "Promoveer Prijzen tot een navigatie-item op het hoogste niveau. Kun je geen cijfers tonen, laat dan minstens een regel \u201cVanaf $X\u201d op de homepage zien zodat bezoekers zichzelf kunnen kwalificeren."
+        "why": "Bezoekers die de kosten willen beoordelen, moeten ernaar zoeken. Verborgen prijzen signaleren “je kunt ons niet betalen” aan mkb'ers en voegt wrijving toe voor iedereen. Je bouncepercentage op de homepage is waarschijnlijk opgeblazen door mensen die vertrokken op zoek naar een prijs.",
+        "fix": "Promoveer Prijzen tot een navigatie-item op het hoogste niveau. Kun je geen cijfers tonen, laat dan minstens een regel “Vanaf $X” op de homepage zien zodat bezoekers zichzelf kunnen kwalificeren."
       },
       "ctas": {
         "title": "5 concurrerende CTA's in de hero veroorzaken keuzestress",
         "where": "Hero + sticky header",
-        "why": "Ik tel: \u201cGratis starten\u201d, \u201cDemo boeken\u201d, \u201cVideo bekijken\u201d, \u201cFuncties bekijken\u201d en een chatbubbel. Als alles primair is, is niets primair. Wet van Hick: meer opties = tragere beslissingen = lagere conversie.",
-        "fix": "Kies één primaire actie (\u201cGratis starten — geen kaart\u201d) als een solide, gevulde knop. Degradeer al het andere naar ghost-links of verplaats het onder de vouw."
+        "why": "Ik tel: “Gratis starten”, “Demo boeken”, “Video bekijken”, “Functies bekijken” en een chatbubbel. Als alles primair is, is niets primair. Wet van Hick: meer opties = tragere beslissingen = lagere conversie.",
+        "fix": "Kies één primaire actie (“Gratis starten — geen kaart”) als een solide, gevulde knop. Degradeer al het andere naar ghost-links of verplaats het onder de vouw."
       }
     },
     "verdict": {
       "oneLiner": "Mooi ontwerp, onduidelijke pitch — je verliest kopers in de eerste 5 seconden.",
-      "summary": "Het visuele vakmanschap hier is oprecht goed — typografie, spacing en beweging voelen allemaal premium. Maar de pagina verkoopt zichzelf als een portfoliostuk, niet als een product. Een eerste bezoeker kan niet beantwoorden \u201cwat is dit en is het voor mij?\u201d vóór de eerste scroll, en dat is waar conversies sterven.",
+      "summary": "Het visuele vakmanschap hier is oprecht goed — typografie, spacing en beweging voelen allemaal premium. Maar de pagina verkoopt zichzelf als een portfoliostuk, niet als een product. Een eerste bezoeker kan niet beantwoorden “wat is dit en is het voor mij?” vóór de eerste scroll, en dat is waar conversies sterven.",
       "wins": {
         "design": "Visueel ontwerp en beweging voelen premium en doordacht",
         "mobile": "Mobiele ervaring is netjes en tapvriendelijk",
@@ -1231,7 +1231,7 @@
     },
     "whyItMatters": "Waarom het ertoe doet",
     "recommendedFix": "Aanbevolen fix",
-    "footerNote": "Elk rapport is op dezelfde manier gestructureerd — oordeel, beoordeelde dimensies, specifieke bevindingen met fixes. Geen generieke \u201cverbeter je SEO\u201d-onzin.",
+    "footerNote": "Elk rapport is op dezelfde manier gestructureerd — oordeel, beoordeelde dimensies, specifieke bevindingen met fixes. Geen generieke “verbeter je SEO”-onzin.",
     "ctaButton": "Krijg dit rapport voor jouw site",
     "proNote": "Je hebt Pro — onbeperkte scans inbegrepen",
     "freeNote": "Gratis plan omvat 3 scans / maand · Upgrade naar Pro voor onbeperkt"
@@ -1394,6 +1394,10 @@
       "trialAndAnnual": {
         "title": "Een gratis proefperiode van 7 dagen, jaarlijkse facturering en een terugbetalingsbelofte",
         "desc": "Pro start nu met een gratis proefperiode van 7 dagen. Er is een jaarabonnement van $180 (twee maanden gratis, $15/maand), en elk betaald abonnement wordt gedekt door een niet-goed-geld-terug-garantie van 30 dagen. Ook zijn er twee nieuwe referentiepagina's live gegaan: een vergelijkende lijst van AI-websiteaudittools en een onderbouwde pagina met website-auditstatistieken."
+      },
+      "moreLanguages": {
+        "title": "SiteScoper spreekt nu 9 talen",
+        "desc": "De hele app is nu beschikbaar in het Portugees, Japans, Nederlands en Pools — naast Engels, Spaans, Frans, Duits en Italiaans. Wissel van taal via het wereldbol-icoon in de koptekst."
       }
     }
   },

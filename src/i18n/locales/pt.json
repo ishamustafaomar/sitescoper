@@ -1394,6 +1394,10 @@
       "trialAndAnnual": {
         "title": "Teste gratuito de 7 dias, faturação anual e promessa de reembolso",
         "desc": "O Pro agora começa com um teste gratuito de 7 dias. Existe um plano anual de $180 (dois meses grátis, $15/mês), e todos os planos pagos estão cobertos por uma garantia de reembolso de 30 dias. Também entraram no ar duas novas páginas de referência: uma lista comparada de ferramentas de auditoria de sites com IA e uma página de estatísticas de auditoria de sites com fontes."
+      },
+      "moreLanguages": {
+        "title": "O SiteScoper agora fala 9 idiomas",
+        "desc": "Toda a aplicação está agora disponível em português, japonês, neerlandês e polaco — além de inglês, espanhol, francês, alemão e italiano. Mude de idioma no ícone do globo no cabeçalho."
       }
     }
   },
