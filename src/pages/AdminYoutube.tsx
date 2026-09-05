@@ -558,7 +558,7 @@ export default function AdminYoutube() {
   const rest = shorts.slice(1);
 
   return (
-    <div className="container mx-auto py-8 space-y-6 max-w-5xl">
+    <main className="container mx-auto py-8 space-y-6 max-w-5xl">
       <div className="flex items-center justify-between flex-wrap gap-3">
         <div>
           <h1 className="text-2xl font-heading font-bold">{t("pages.adminYoutube.title")}</h1>
@@ -592,6 +592,6 @@ export default function AdminYoutube() {
           )}
         </>
       )}
-    </div>
+    </main>
   );
 }

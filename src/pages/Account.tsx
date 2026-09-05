@@ -159,6 +159,7 @@ export default function Account() {
                   <Input
                     value={confirmText}
                     onChange={(e) => setConfirmText(e.target.value)}
+                    aria-label={t("account.confirmPlaceholder")}
                     placeholder={t("account.confirmPlaceholder")}
                     className="font-body"
                   />

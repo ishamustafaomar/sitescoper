@@ -121,11 +121,11 @@ export function ChatPanel({ analysis, scrapeData, url, analysisId }: ChatPanelPr
               </div>
               <div className="flex items-center gap-1">
                 {messages.length > 0 && (
-                  <Button variant="ghost" size="icon" className="h-7 w-7" onClick={reset} title={t("chatPanel.newChatTitle")}>
+                  <Button variant="ghost" size="icon" className="h-7 w-7" onClick={reset} title={t("chatPanel.newChatTitle")} aria-label={t("chatPanel.newChatTitle")}>
                     <RefreshCcw className="h-3.5 w-3.5" />
                   </Button>
                 )}
-                <Button variant="ghost" size="icon" className="h-7 w-7" onClick={() => setOpen(false)}>
+                <Button variant="ghost" size="icon" className="h-7 w-7" onClick={() => setOpen(false)} aria-label={t("chatPanel.closeAria", { defaultValue: "Close chat" })}>
                   <X className="h-3.5 w-3.5" />
                 </Button>
               </div>
@@ -214,7 +214,7 @@ export function ChatPanel({ analysis, scrapeData, url, analysisId }: ChatPanelPr
                   rows={1}
                   className="resize-none min-h-[40px] max-h-32 text-xs font-body"
                 />
-                <Button type="submit" size="icon" variant="hero" disabled={!input.trim() || loading || !user}>
+                <Button type="submit" size="icon" variant="hero" disabled={!input.trim() || loading || !user} aria-label={t("chatPanel.sendAria", { defaultValue: "Send message" })}>
                   {loading ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Send className="h-3.5 w-3.5" />}
                 </Button>
               </div>

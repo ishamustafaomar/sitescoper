@@ -34,6 +34,7 @@ export function AddWebsiteForm({ onAdd }: AddWebsiteFormProps) {
       <form onSubmit={handleSubmit} className="flex gap-3">
         <Input
           type="text"
+          aria-label={t("dashboard.addForm.placeholder")}
           placeholder={t("dashboard.addForm.placeholder")}
           value={url}
           onChange={(e) => setUrl(e.target.value)}
