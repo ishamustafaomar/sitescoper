@@ -592,6 +592,6 @@ export default function AdminYoutube() {
           )}
         </>
       )}
-    </div>
+    </main>
   );
 }

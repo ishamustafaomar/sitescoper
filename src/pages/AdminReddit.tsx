@@ -108,6 +108,6 @@ export default function AdminReddit() {
           {loading && <Loader2 className="animate-spin" />}
         </div>
       </Card>
-    </div>
+    </main>
   );
 }

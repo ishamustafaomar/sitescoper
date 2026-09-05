@@ -236,6 +236,6 @@ export default function Auth() {
           </button>
         </p>
       </motion.div>
-    </div>
+    </main>
   );
 }
