@@ -47,7 +47,7 @@ export default function AdminReddit() {
   if (!isAdmin) return <div className="p-8">{t("pages.adminReddit.adminOnly")}</div>;
 
   return (
-    <div className="container mx-auto py-8 space-y-6 max-w-6xl">
+    <main className="container mx-auto py-8 space-y-6 max-w-6xl">
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-heading font-bold">{t("pages.adminReddit.title")}</h1>
         <div className="flex gap-2">

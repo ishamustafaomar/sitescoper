@@ -92,6 +92,7 @@ export default function Compare() {
           <form onSubmit={handleCompare} className="grid md:grid-cols-[1fr_auto_1fr] gap-3 items-stretch max-w-4xl mx-auto">
             <Input
               type="text"
+              aria-label={t("compare.yourSitePlaceholder")}
               placeholder={t("compare.yourSitePlaceholder")}
               value={a.url}
               onChange={(e) => setA((s) => ({ ...s, url: e.target.value }))}
@@ -104,6 +105,7 @@ export default function Compare() {
             </div>
             <Input
               type="text"
+              aria-label={t("compare.competitorPlaceholder")}
               placeholder={t("compare.competitorPlaceholder")}
               value={b.url}
               onChange={(e) => setB((s) => ({ ...s, url: e.target.value }))}

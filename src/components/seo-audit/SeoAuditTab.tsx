@@ -36,7 +36,7 @@ export function SeoAuditTab({ url }: { url: string }) {
 
   if (loading) {
     return (
-      <div className="flex flex-col items-center justify-center py-16 gap-3">
+      <div className="flex flex-col items-center justify-center py-16 gap-3" role="status" aria-live="polite">
         <Loader2 className="h-8 w-8 animate-spin text-primary" />
         <p className="text-sm text-muted-foreground font-body">{t("seoAudit.auditingOnPage")}</p>
       </div>
