@@ -25,6 +25,7 @@ serve(async (req) => {
       const { data: userData } = await sb.auth.getUser();
       if (userData?.user) authorized = true;
     }
+    let anonAuthorized = false;
     if (!authorized) {
       // Anonymous callers are allowed only right after a recorded free scrape.
       if (anonSession.length >= 16 && anonSession.length <= 100) {
@@ -39,6 +40,7 @@ serve(async (req) => {
           .eq("session_id", anonSession)
           .gte("created_at", since);
         authorized = (count ?? 0) > 0;
+        anonAuthorized = authorized;
       }
       if (!authorized) {
         return new Response(JSON.stringify({ error: "Unauthorized" }), {
@@ -47,6 +49,26 @@ serve(async (req) => {
         });
       }
     }
+
+    // If the analysis never completes, the guest never saw a report — give their
+    // one free audit back so they can retry instead of hitting the 24h lockout.
+    const releaseAnonScan = async () => {
+      if (!anonAuthorized) return;
+      try {
+        const admin = createClient(
+          Deno.env.get("SUPABASE_URL")!,
+          Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
+        );
+        const since = new Date(Date.now() - 30 * 60 * 1000).toISOString();
+        await admin
+          .from("anon_scan_usage")
+          .delete()
+          .eq("session_id", anonSession)
+          .gte("created_at", since);
+      } catch (e) {
+        console.error("anon usage rollback failed:", e);
+      }
+    };
 
     const { markdown, url, images, detectedSections, customInstructions } = await req.json();
     if (!markdown || typeof markdown !== "string") {
