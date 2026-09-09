@@ -298,12 +298,14 @@ Be a real advisor. Quote actual content. Be specific. Be honest.`,
 
     if (!response.ok) {
       if (response.status === 429) {
+        await releaseAnonScan();
         return new Response(
           JSON.stringify({ error: "Rate limited. Please try again in a moment." }),
           { status: 429, headers: { ...corsHeaders, "Content-Type": "application/json" } }
         );
       }
       if (response.status === 402) {
+        await releaseAnonScan();
         return new Response(
           JSON.stringify({ error: "AI credits exhausted. Please add funds in Settings > Workspace > Usage." }),
           { status: 402, headers: { ...corsHeaders, "Content-Type": "application/json" } }
@@ -311,6 +313,7 @@ Be a real advisor. Quote actual content. Be specific. Be honest.`,
       }
       const text = await response.text();
       console.error("AI gateway error:", response.status, text);
+      await releaseAnonScan();
       throw new Error("AI analysis failed");
     }
 
