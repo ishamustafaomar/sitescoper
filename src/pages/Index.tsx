@@ -347,8 +347,12 @@ const Index = () => {
                     )}
                   </div>
                   <Button variant="hero" size="default" onClick={handleExportPDF} className="rounded-xl">
-                    {isPro ? <Download className="h-4 w-4" /> : <Lock className="h-4 w-4" />}
-                    {isPro ? "Download PDF Report" : "Download PDF · Pro"}
+                    {user && isPro ? <Download className="h-4 w-4" /> : <Lock className="h-4 w-4" />}
+                    {!user
+                      ? t("index.downloadNeedsAccount", "Download this report — free account")
+                      : isPro
+                        ? "Download PDF Report"
+                        : "Download PDF · Pro"}
                   </Button>
                 </div>
               )}
