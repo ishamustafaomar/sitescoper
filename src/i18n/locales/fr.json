@@ -1409,6 +1409,10 @@
       "moreLanguages": {
         "title": "SiteScoper parle désormais 9 langues",
         "desc": "Toute l'application est maintenant disponible en portugais, japonais, néerlandais et polonais — en plus de l'anglais, l'espagnol, le français, l'allemand et l'italien. Changez de langue via l'icône globe dans l'en-tête."
+      },
+      "freeFirstAudit": {
+        "title": "Le premier audit ne demande aucun compte",
+        "desc": "Collez une URL et obtenez le rapport complet immédiatement. Inscrivez-vous ensuite pour le télécharger, l'enregistrer et analyser d'autres sites."
       }
     }
   },
