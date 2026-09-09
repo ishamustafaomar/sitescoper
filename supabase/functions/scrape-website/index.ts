@@ -274,27 +274,25 @@ serve(async (req) => {
   let userId: string | null = null;
   let inputUrl: string | null = null;
   try {
-    // Require authentication
+    // Either an authenticated user, OR one free anonymous audit per browser session.
     const authHeader = req.headers.get("Authorization");
-    if (!authHeader?.startsWith("Bearer ")) {
+    const anonSession = (req.headers.get("x-anon-session") || "").trim();
+    if (authHeader?.startsWith("Bearer ")) {
+      const sb = createClient(
+        Deno.env.get("SUPABASE_URL")!,
+        Deno.env.get("SUPABASE_ANON_KEY")!,
+        { global: { headers: { Authorization: authHeader } } },
+      );
+      const { data: userData } = await sb.auth.getUser();
+      if (userData?.user) userId = userData.user.id;
+    }
+    const isAnonymous = !userId;
+    if (isAnonymous && (anonSession.length < 16 || anonSession.length > 100)) {
       return new Response(JSON.stringify({ error: "Unauthorized" }), {
         status: 401,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
-    const sb = createClient(
-      Deno.env.get("SUPABASE_URL")!,
-      Deno.env.get("SUPABASE_ANON_KEY")!,
-      { global: { headers: { Authorization: authHeader } } },
-    );
-    const { data: userData, error: authErr } = await sb.auth.getUser();
-    if (authErr || !userData?.user) {
-      return new Response(JSON.stringify({ error: "Unauthorized" }), {
-        status: 401,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      });
-    }
-    userId = userData.user.id;
 
     // Free tier is limited to N scans per rolling 30 days. Pro is unlimited.
     const admin = createClient(
