@@ -181,6 +181,10 @@ const Index = () => {
   };
 
   const handleExportPDF = () => {
+    if (!user) {
+      navigate("/auth");
+      return;
+    }
     if (analysis && currentUrl) {
       import("@/lib/pdf").then(({ generateAnalysisPDF }) => {
         generateAnalysisPDF(analysis, currentUrl, scrapeData ? { metadata: scrapeData.metadata } : undefined);
