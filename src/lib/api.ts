@@ -130,18 +130,19 @@ export async function scrapeWebsiteStream(
   onEvent: (ev: ScrapeStreamEvent) => void,
 ): Promise<void> {
   const { data: { session } } = await supabase.auth.getSession();
-  if (!session) throw new Error("Not authenticated");
 
   const projectId = (import.meta as { env: Record<string, string> }).env.VITE_SUPABASE_PROJECT_ID;
   const apikey = (import.meta as { env: Record<string, string> }).env.VITE_SUPABASE_PUBLISHABLE_KEY;
   const fnUrl = `https://${projectId}.supabase.co/functions/v1/scrape-website`;
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${session?.access_token ?? apikey}`,
+    apikey,
+  };
+  if (!session) headers["x-anon-session"] = getAnonSessionId();
   const res = await fetch(fnUrl, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${session.access_token}`,
-      apikey,
-    },
+    headers,
     body: JSON.stringify({ url }),
   });
   if (!res.ok || !res.body) {
