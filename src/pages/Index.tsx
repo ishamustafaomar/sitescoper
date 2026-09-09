@@ -49,9 +49,12 @@ const Index = () => {
   const { t } = useTranslation();
   const inputRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
-  const [hasUsedFreeAnalysis, setHasUsedFreeAnalysis] = useState(
-    () => typeof window !== "undefined" && localStorage.getItem(FREE_ANALYSIS_KEY) === "true"
-  );
+  const [hasUsedFreeAnalysis, setHasUsedFreeAnalysis] = useState(false);
+
+  // Read after mount so server and client render the same markup.
+  useEffect(() => {
+    if (!user) setHasUsedFreeAnalysis(hasUsedFreeAudit());
+  }, [user]);
 
   const scrollToInput = () => {
     inputRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
