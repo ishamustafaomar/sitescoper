@@ -300,33 +300,77 @@ serve(async (req) => {
       Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
     );
 
-    // Server-side quota enforcement. Duplicated intentionally so callers can't
-    // skip the check-scan-quota function by invoking scrape-website directly.
-    const FREE_SCANS_PER_MONTH = 3;
-    const { data: subRow } = await admin
-      .from("subscriptions")
-      .select("status,current_period_end")
-      .eq("user_id", userId)
-      .order("created_at", { ascending: false })
-      .limit(1)
-      .maybeSingle();
-    const isPro = !!subRow && ["active", "trialing", "past_due"].includes(subRow.status) &&
-      (!subRow.current_period_end || new Date(subRow.current_period_end).getTime() > Date.now());
-    if (!isPro) {
-      const since = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString();
-      const { count } = await admin
-        .from("scan_usage")
+    // Hash of the caller IP — used only for anonymous abuse control.
+    const rawIp = (req.headers.get("x-forwarded-for") || "").split(",")[0].trim() ||
+      req.headers.get("cf-connecting-ip") || "unknown";
+    const ipDigest = await crypto.subtle.digest(
+      "SHA-256",
+      new TextEncoder().encode(`sitescoper-anon:${rawIp}`),
+    );
+    const ipHash = Array.from(new Uint8Array(ipDigest)).map((b) => b.toString(16).padStart(2, "0")).join("");
+
+    if (isAnonymous) {
+      // Anonymous audits never touch paid plan credits. One per browser session,
+      // plus an IP ceiling so the endpoint can't be scripted.
+      const ANON_PER_IP_PER_DAY = 5;
+      const since = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
+      const { count: sessionCount } = await admin
+        .from("anon_scan_usage")
         .select("*", { count: "exact", head: true })
-        .eq("user_id", userId)
+        .eq("session_id", anonSession)
         .gte("created_at", since);
-      if ((count ?? 0) >= FREE_SCANS_PER_MONTH) {
+      if ((sessionCount ?? 0) >= 1) {
         return new Response(
           JSON.stringify({
-            error: "Free scan limit reached. Upgrade to SiteScoper Pro for unlimited scans.",
-            reason: "quota_exceeded",
+            error: "You've used your free audit. Create a free account to run more.",
+            reason: "anon_limit",
           }),
           { status: 402, headers: { ...corsHeaders, "Content-Type": "application/json" } },
         );
+      }
+      const { count: ipCount } = await admin
+        .from("anon_scan_usage")
+        .select("*", { count: "exact", head: true })
+        .eq("ip_hash", ipHash)
+        .gte("created_at", since);
+      if ((ipCount ?? 0) >= ANON_PER_IP_PER_DAY) {
+        return new Response(
+          JSON.stringify({
+            error: "Too many free audits from this network. Create a free account to continue.",
+            reason: "anon_rate_limited",
+          }),
+          { status: 429, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+        );
+      }
+    } else {
+      // Server-side quota enforcement. Duplicated intentionally so callers can't
+      // skip the check-scan-quota function by invoking scrape-website directly.
+      const FREE_SCANS_PER_MONTH = 3;
+      const { data: subRow } = await admin
+        .from("subscriptions")
+        .select("status,current_period_end")
+        .eq("user_id", userId)
+        .order("created_at", { ascending: false })
+        .limit(1)
+        .maybeSingle();
+      const isPro = !!subRow && ["active", "trialing", "past_due"].includes(subRow.status) &&
+        (!subRow.current_period_end || new Date(subRow.current_period_end).getTime() > Date.now());
+      if (!isPro) {
+        const since = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString();
+        const { count } = await admin
+          .from("scan_usage")
+          .select("*", { count: "exact", head: true })
+          .eq("user_id", userId)
+          .gte("created_at", since);
+        if ((count ?? 0) >= FREE_SCANS_PER_MONTH) {
+          return new Response(
+            JSON.stringify({
+              error: "Free scan limit reached. Upgrade to SiteScoper Pro for unlimited scans.",
+              reason: "quota_exceeded",
+            }),
+            { status: 402, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+          );
+        }
       }
     }
 
