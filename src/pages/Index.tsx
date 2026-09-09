@@ -31,7 +31,7 @@ import { Button } from "@/components/ui/button";
 import { useSubscription } from "@/hooks/useSubscription";
 import { StreamingProgress } from "@/components/StreamingProgress";
 
-const FREE_ANALYSIS_KEY = "sitescoper_free_analysis_used";
+
 
 type Step = "idle" | "scraping" | "analyzing" | "done";
 
