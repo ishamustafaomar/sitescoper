@@ -43,7 +43,7 @@ const Frame: React.FC<{ children: React.ReactNode; justify?: string }> = ({
   <AbsoluteFill
     style={{
       backgroundColor: c.paper,
-      padding: "140px 80px",
+      padding: "120px 80px",
       justifyContent: justify,
       gap: 40,
     }}
@@ -61,7 +61,7 @@ const Hook: React.FC = () => {
         style={{
           fontFamily: sans,
           fontWeight: 700,
-          fontSize: 104,
+          fontSize: 126,
           lineHeight: 1.02,
           letterSpacing: -3,
           color: c.ink,
@@ -77,7 +77,7 @@ const Hook: React.FC = () => {
       <div
         style={{
           fontFamily: sans,
-          fontSize: 46,
+          fontSize: 54,
           fontWeight: 500,
           color: c.inkSoft,
           opacity: interpolate(frame, [10, 24], [0, 1], { extrapolateRight: "clamp" }),
@@ -97,7 +97,7 @@ const Scan: React.FC = () => {
   const steps = ["Reading your copy", "Measuring load weight", "Checking the first screen", "Scoring conversion"];
   return (
     <Frame>
-      <Caption size={72}>Paste your URL.</Caption>
+      <Caption size={90}>Paste your URL.</Caption>
       <div
         style={{
           border: `4px solid ${c.ink}`,
@@ -123,7 +123,7 @@ const Scan: React.FC = () => {
               key={s}
               style={{
                 fontFamily: sans,
-                fontSize: 40,
+                fontSize: 48,
                 fontWeight: 600,
                 color: on ? c.ink : c.line,
               }}
@@ -144,11 +144,11 @@ const Score: React.FC = () => {
   const n = Math.round(interpolate(frame, [0, 40], [0, 41], { extrapolateRight: "clamp" }));
   return (
     <Frame>
-      <Caption size={64}>It scored</Caption>
+      <Caption size={80}>It scored</Caption>
       <div
         style={{
           fontFamily: serif,
-          fontSize: 420,
+          fontSize: 500,
           lineHeight: 0.9,
           color: c.clay,
           letterSpacing: -12,
@@ -201,13 +201,13 @@ const Findings: React.FC = () => {
               transform: `translateX(${interpolate(s, [0, 1], [-60, 0])}px)`,
               borderLeft: `10px solid ${c.clay}`,
               paddingLeft: 34,
-              marginBottom: 56,
+              marginBottom: 84,
             }}
           >
-            <div style={{ fontFamily: sans, fontSize: 68, fontWeight: 700, color: c.ink, letterSpacing: -2 }}>
+            <div style={{ fontFamily: sans, fontSize: 92, fontWeight: 700, color: c.ink, letterSpacing: -2 }}>
               {title}
             </div>
-            <div style={{ fontFamily: sans, fontSize: 42, fontWeight: 500, color: c.inkSoft, marginTop: 12 }}>
+            <div style={{ fontFamily: sans, fontSize: 52, fontWeight: 500, color: c.inkSoft, marginTop: 12 }}>
               {sub}
             </div>
           </div>
