@@ -14,23 +14,38 @@ serve(async (req) => {
 
   try {
     const authHeader = req.headers.get("Authorization");
-    if (!authHeader?.startsWith("Bearer ")) {
-      return new Response(JSON.stringify({ error: "Unauthorized" }), {
-        status: 401,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      });
+    const anonSession = (req.headers.get("x-anon-session") || "").trim();
+    let authorized = false;
+    if (authHeader?.startsWith("Bearer ")) {
+      const sb = createClient(
+        Deno.env.get("SUPABASE_URL")!,
+        Deno.env.get("SUPABASE_ANON_KEY")!,
+        { global: { headers: { Authorization: authHeader } } },
+      );
+      const { data: userData } = await sb.auth.getUser();
+      if (userData?.user) authorized = true;
     }
-    const sb = createClient(
-      Deno.env.get("SUPABASE_URL")!,
-      Deno.env.get("SUPABASE_ANON_KEY")!,
-      { global: { headers: { Authorization: authHeader } } },
-    );
-    const { data: userData, error: authErr } = await sb.auth.getUser();
-    if (authErr || !userData?.user) {
-      return new Response(JSON.stringify({ error: "Unauthorized" }), {
-        status: 401,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      });
+    if (!authorized) {
+      // Anonymous callers are allowed only right after a recorded free scrape.
+      if (anonSession.length >= 16 && anonSession.length <= 100) {
+        const admin = createClient(
+          Deno.env.get("SUPABASE_URL")!,
+          Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
+        );
+        const since = new Date(Date.now() - 30 * 60 * 1000).toISOString();
+        const { count } = await admin
+          .from("anon_scan_usage")
+          .select("*", { count: "exact", head: true })
+          .eq("session_id", anonSession)
+          .gte("created_at", since);
+        authorized = (count ?? 0) > 0;
+      }
+      if (!authorized) {
+        return new Response(JSON.stringify({ error: "Unauthorized" }), {
+          status: 401,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
     }
 
     const { markdown, url, images, detectedSections, customInstructions } = await req.json();
