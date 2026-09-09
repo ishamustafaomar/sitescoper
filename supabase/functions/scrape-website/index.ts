@@ -4,7 +4,7 @@ import { createClient } from "npm:@supabase/supabase-js@2";
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers":
-    "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
+    "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version, x-anon-session",
 };
 
 const FIRECRAWL_V2 = "https://api.firecrawl.dev/v2";
@@ -274,27 +274,25 @@ serve(async (req) => {
   let userId: string | null = null;
   let inputUrl: string | null = null;
   try {
-    // Require authentication
+    // Either an authenticated user, OR one free anonymous audit per browser session.
     const authHeader = req.headers.get("Authorization");
-    if (!authHeader?.startsWith("Bearer ")) {
+    const anonSession = (req.headers.get("x-anon-session") || "").trim();
+    if (authHeader?.startsWith("Bearer ")) {
+      const sb = createClient(
+        Deno.env.get("SUPABASE_URL")!,
+        Deno.env.get("SUPABASE_ANON_KEY")!,
+        { global: { headers: { Authorization: authHeader } } },
+      );
+      const { data: userData } = await sb.auth.getUser();
+      if (userData?.user) userId = userData.user.id;
+    }
+    const isAnonymous = !userId;
+    if (isAnonymous && (anonSession.length < 16 || anonSession.length > 100)) {
       return new Response(JSON.stringify({ error: "Unauthorized" }), {
         status: 401,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
-    const sb = createClient(
-      Deno.env.get("SUPABASE_URL")!,
-      Deno.env.get("SUPABASE_ANON_KEY")!,
-      { global: { headers: { Authorization: authHeader } } },
-    );
-    const { data: userData, error: authErr } = await sb.auth.getUser();
-    if (authErr || !userData?.user) {
-      return new Response(JSON.stringify({ error: "Unauthorized" }), {
-        status: 401,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      });
-    }
-    userId = userData.user.id;
 
     // Free tier is limited to N scans per rolling 30 days. Pro is unlimited.
     const admin = createClient(
@@ -302,33 +300,77 @@ serve(async (req) => {
       Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
     );
 
-    // Server-side quota enforcement. Duplicated intentionally so callers can't
-    // skip the check-scan-quota function by invoking scrape-website directly.
-    const FREE_SCANS_PER_MONTH = 3;
-    const { data: subRow } = await admin
-      .from("subscriptions")
-      .select("status,current_period_end")
-      .eq("user_id", userId)
-      .order("created_at", { ascending: false })
-      .limit(1)
-      .maybeSingle();
-    const isPro = !!subRow && ["active", "trialing", "past_due"].includes(subRow.status) &&
-      (!subRow.current_period_end || new Date(subRow.current_period_end).getTime() > Date.now());
-    if (!isPro) {
-      const since = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString();
-      const { count } = await admin
-        .from("scan_usage")
+    // Hash of the caller IP — used only for anonymous abuse control.
+    const rawIp = (req.headers.get("x-forwarded-for") || "").split(",")[0].trim() ||
+      req.headers.get("cf-connecting-ip") || "unknown";
+    const ipDigest = await crypto.subtle.digest(
+      "SHA-256",
+      new TextEncoder().encode(`sitescoper-anon:${rawIp}`),
+    );
+    const ipHash = Array.from(new Uint8Array(ipDigest)).map((b) => b.toString(16).padStart(2, "0")).join("");
+
+    if (isAnonymous) {
+      // Anonymous audits never touch paid plan credits. One per browser session,
+      // plus an IP ceiling so the endpoint can't be scripted.
+      const ANON_PER_IP_PER_DAY = 5;
+      const since = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
+      const { count: sessionCount } = await admin
+        .from("anon_scan_usage")
         .select("*", { count: "exact", head: true })
-        .eq("user_id", userId)
+        .eq("session_id", anonSession)
         .gte("created_at", since);
-      if ((count ?? 0) >= FREE_SCANS_PER_MONTH) {
+      if ((sessionCount ?? 0) >= 1) {
         return new Response(
           JSON.stringify({
-            error: "Free scan limit reached. Upgrade to SiteScoper Pro for unlimited scans.",
-            reason: "quota_exceeded",
+            error: "You've used your free audit. Create a free account to run more.",
+            reason: "anon_limit",
           }),
           { status: 402, headers: { ...corsHeaders, "Content-Type": "application/json" } },
         );
+      }
+      const { count: ipCount } = await admin
+        .from("anon_scan_usage")
+        .select("*", { count: "exact", head: true })
+        .eq("ip_hash", ipHash)
+        .gte("created_at", since);
+      if ((ipCount ?? 0) >= ANON_PER_IP_PER_DAY) {
+        return new Response(
+          JSON.stringify({
+            error: "Too many free audits from this network. Create a free account to continue.",
+            reason: "anon_rate_limited",
+          }),
+          { status: 429, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+        );
+      }
+    } else {
+      // Server-side quota enforcement. Duplicated intentionally so callers can't
+      // skip the check-scan-quota function by invoking scrape-website directly.
+      const FREE_SCANS_PER_MONTH = 3;
+      const { data: subRow } = await admin
+        .from("subscriptions")
+        .select("status,current_period_end")
+        .eq("user_id", userId)
+        .order("created_at", { ascending: false })
+        .limit(1)
+        .maybeSingle();
+      const isPro = !!subRow && ["active", "trialing", "past_due"].includes(subRow.status) &&
+        (!subRow.current_period_end || new Date(subRow.current_period_end).getTime() > Date.now());
+      if (!isPro) {
+        const since = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString();
+        const { count } = await admin
+          .from("scan_usage")
+          .select("*", { count: "exact", head: true })
+          .eq("user_id", userId)
+          .gte("created_at", since);
+        if ((count ?? 0) >= FREE_SCANS_PER_MONTH) {
+          return new Response(
+            JSON.stringify({
+              error: "Free scan limit reached. Upgrade to SiteScoper Pro for unlimited scans.",
+              reason: "quota_exceeded",
+            }),
+            { status: 402, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+          );
+        }
       }
     }
 
@@ -389,7 +431,11 @@ serve(async (req) => {
     // the free-tier quota self-enforcing: callers cannot skip the client-side
     // analysis_history insert (e.g. direct invoke, Compare page) to get unlimited scans.
     try {
-      await admin.from("scan_usage").insert({ user_id: userId, url: inputUrl });
+      if (isAnonymous) {
+        await admin.from("anon_scan_usage").insert({ session_id: anonSession, ip_hash: ipHash, url: inputUrl });
+      } else {
+        await admin.from("scan_usage").insert({ user_id: userId, url: inputUrl });
+      }
     } catch (logErr) {
       console.error("scan_usage insert failed:", logErr);
     }

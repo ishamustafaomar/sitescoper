@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 import { User, Session } from "@supabase/supabase-js";
 import { supabase } from "@/integrations/supabase/client";
+import { claimAnonymousAudit } from "@/lib/anon-audit";
 
 interface AuthContextType {
   user: User | null;
@@ -36,6 +37,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       (event, nextSession) => {
         applySession(nextSession);
+        if (event === "SIGNED_IN" && nextSession) {
+          // Attach any audit run before signing up to the new account.
+          void claimAnonymousAudit();
+        }
         if (initialSessionChecked || event === "SIGNED_IN" || event === "SIGNED_OUT") {
           setLoading(false);
         }

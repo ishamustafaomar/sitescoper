@@ -1,4 +1,5 @@
 import { supabase } from "@/integrations/supabase/client";
+import { getAnonSessionId } from "@/lib/anon-audit";
 
 export interface CrawledPage {
   url: string;
@@ -130,18 +131,19 @@ export async function scrapeWebsiteStream(
   onEvent: (ev: ScrapeStreamEvent) => void,
 ): Promise<void> {
   const { data: { session } } = await supabase.auth.getSession();
-  if (!session) throw new Error("Not authenticated");
 
   const projectId = (import.meta as { env: Record<string, string> }).env.VITE_SUPABASE_PROJECT_ID;
   const apikey = (import.meta as { env: Record<string, string> }).env.VITE_SUPABASE_PUBLISHABLE_KEY;
   const fnUrl = `https://${projectId}.supabase.co/functions/v1/scrape-website`;
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${session?.access_token ?? apikey}`,
+    apikey,
+  };
+  if (!session) headers["x-anon-session"] = getAnonSessionId();
   const res = await fetch(fnUrl, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${session.access_token}`,
-      apikey,
-    },
+    headers,
     body: JSON.stringify({ url }),
   });
   if (!res.ok || !res.body) {
@@ -175,8 +177,10 @@ export async function analyzeWebsite(
   detectedSections?: { name: string; evidence: string }[],
   customInstructions?: string
 ): Promise<AnalysisResult> {
+  const { data: { session } } = await supabase.auth.getSession();
   const { data, error } = await supabase.functions.invoke("analyze-website", {
     body: { markdown, url, images, detectedSections, customInstructions },
+    headers: session ? undefined : { "x-anon-session": getAnonSessionId() },
   });
 
   if (error) throw new Error(error.message || "Failed to analyze website");

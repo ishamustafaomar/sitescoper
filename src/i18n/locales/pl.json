@@ -20,7 +20,7 @@
     "title2": "audyt Twojej strony",
     "title3": "w mniej niż 30 sekund.",
     "subtitle": "Otrzymaj taką opinię, jaką dałby doświadczony partner YC — z 7-dniowym planem działania, porównaniem do konkurencji i konkretnymi propozycjami tekstów, które możesz wdrożyć już dziś.",
-    "signUpForThree": "Zarejestruj się i zyskaj 3 darmowe skany/miesiąc",
+    "signUpForThree": "Wykonaj pierwszy audyt — bez konta",
     "freemium": "Freemium — bez karty",
     "export": "Eksport do PDF i link do udostępnienia",
     "badgeFoundersLine": "Stworzone przez założycieli, dla założycieli",
@@ -29,7 +29,7 @@
     "actionableFixes": "Konkretne poprawki UX i SEO w 60 sekund.",
     "description": "<1>Audytor stron opartych na AI</1>, który pomija 200-punktową listę kontrolną i podaje 3 poprawki UX, SEO i copy, które faktycznie warto wdrożyć w tym tygodniu — z planem działania w prostym języku, jaki zatwierdziłby doświadczony strateg produktu.",
     "freePlanBadge": "Plan darmowy · 3 pełne skany miesięcznie · Bez karty kredytowej",
-    "freeScansFootnote": "3 darmowe skany / miesiąc · Bez karty kredytowej · 2400+ stron ocenionych w tym miesiącu",
+    "freeScansFootnote": "Pierwszy audyt bez konta · Bez karty · 2400+ stron ocenionych w tym miesiącu",
     "multiPageCrawl": "Głębokie skanowanie wielu podstron",
     "createAccountCta": "Załóż darmowe konto",
     "createAccountSub": "— zachowuje historię raportów i pozwala ponownie skanować po każdej poprawce.",
@@ -37,7 +37,7 @@
     "upgradeSub": "— nielimitowane skany, głębokie skanowanie wielu podstron, eksport do PDF i linki do udostępnienia.",
     "evidenceCaption": "Prawdziwy werdykt, nie lista kontrolna. Każdy skan oceniany jest w ten sam sposób.",
     "proofRated": "Uwielbiane przez założycieli i indie hackerów",
-    "proofNoCard": "Bez karty kredytowej — 3 pełne audyty każdego miesiąca",
+    "proofNoCard": "Bez konta przy pierwszym audycie — 3 pełne audyty miesięcznie po rejestracji",
     "proofSpeed": "Pełny raport w około 60 sekund"
   },
   "signin": {
@@ -1292,7 +1292,18 @@
     "upsellP3": "Eksport do PDF i linki do udostępniania",
     "upsellP4": "Porównanie z konkurencją obok siebie",
     "upsellCta": "Rozpocznij 7-dniowy okres próbny",
-    "upsellSub": "Potem 15 USD/mies. rozliczane rocznie. Anuluj w dowolnym momencie, zwrot w 30 dni."
+    "upsellSub": "Potem 15 USD/mies. rozliczane rocznie. Anuluj w dowolnym momencie, zwrot w 30 dni.",
+    "anonUsedTitle": "Wykorzystałeś darmowy audyt",
+    "anonUsedDesc": "Załóż darmowe konto, aby wykonywać kolejne audyty i zachować raporty.",
+    "downloadNeedsAccount": "Pobierz ten raport — darmowe konto",
+    "guestGateTitle": "Twój raport jest gotowy. Zachowaj go.",
+    "guestGateBody": "Ten audyt jest przechowywany przez 24 godziny. Załóż darmowe konto, a trafi prosto do panelu — nic nie przepadnie.",
+    "guestGateP1": "Pobierz ten raport w PDF",
+    "guestGateP2": "Zapisz go w panelu i skanuj ponownie po poprawkach",
+    "guestGateP3": "Raporty z Twoją marką dla klientów",
+    "guestGateP4": "Audytuj kolejne strony",
+    "guestGateCta": "Załóż darmowe konto, aby zapisać i pobrać ten raport",
+    "guestGateSub": "Bez karty. Zajmuje około 20 sekund."
   },
   "semrush": {
     "loading": "Ładowanie metryk Semrush…",
@@ -1398,6 +1409,10 @@
       "moreLanguages": {
         "title": "SiteScoper mówi teraz w 9 językach",
         "desc": "Cała aplikacja jest teraz dostępna po portugalsku, japońsku, niderlandzku i polsku — oprócz angielskiego, hiszpańskiego, francuskiego, niemieckiego i włoskiego. Zmień język za pomocą ikony globusa w nagłówku."
+      },
+      "freeFirstAudit": {
+        "title": "Pierwszy audyt bez konta",
+        "desc": "Wklej adres i od razu otrzymaj pełny raport. Zarejestruj się później, aby go pobrać, zapisać i audytować kolejne strony."
       }
     }
   },

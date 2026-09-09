@@ -20,7 +20,7 @@
     "title2": "brutalmente honesta de tu sitio",
     "title3": "en menos de 30 segundos.",
     "subtitle": "Recibe la opinión que te daría un socio sénior de YC — con un plan de acción de 7 días, comparativas y reescrituras concretas listas para publicar hoy.",
-    "signUpForThree": "Regístrate para 3 escaneos gratis/mes",
+    "signUpForThree": "Haz tu primera auditoría — sin cuenta",
     "freemium": "Freemium — sin tarjeta",
     "export": "Exportación PDF y enlace público",
     "badgeFoundersLine": "Creado por fundadores, para fundadores",
@@ -29,7 +29,7 @@
     "actionableFixes": "Correcciones prácticas de UX y SEO en 60 segundos.",
     "description": "El <1>auditor de sitios web con IA</1> que se salta la lista de 200 puntos y te da las 3 correcciones de UX, SEO y copy que realmente vale la pena implementar esta semana, con un plan de acción claro que aprobaría un estratega de producto senior.",
     "freePlanBadge": "Plan gratuito · 3 análisis completos al mes · Sin tarjeta de crédito",
-    "freeScansFootnote": "3 análisis gratis / mes · Sin tarjeta de crédito · Más de 2.400 sitios evaluados este mes",
+    "freeScansFootnote": "La primera auditoría no requiere cuenta · Sin tarjeta · Más de 2.400 sitios evaluados este mes",
     "multiPageCrawl": "Rastreo profundo multipágina",
     "createAccountCta": "Crea una cuenta gratuita",
     "createAccountSub": "— guarda tu historial de informes y te permite volver a analizar después de cada corrección.",
@@ -37,7 +37,7 @@
     "upgradeSub": "— análisis ilimitados, rastreos profundos multipágina, exportaciones en PDF y enlaces para compartir.",
     "evidenceCaption": "Un veredicto real, no una lista de verificación. Cada análisis se puntúa de la misma manera.",
     "proofRated": "Adorado por fundadores e indie hackers",
-    "proofNoCard": "Sin tarjeta — 3 auditorías completas al mes",
+    "proofNoCard": "Sin cuenta para la primera auditoría — 3 auditorías completas al mes al registrarte",
     "proofSpeed": "Informe completo en unos 60 segundos"
   },
   "signin": {
@@ -1292,7 +1292,18 @@
     "upsellP3": "Exportación en PDF y enlaces para compartir",
     "upsellP4": "Comparativa con la competencia",
     "upsellCta": "Empezar prueba gratis de 7 días",
-    "upsellSub": "Luego 15 $/mes con pago anual. Cancela cuando quieras, reembolso 30 días."
+    "upsellSub": "Luego 15 $/mes con pago anual. Cancela cuando quieras, reembolso 30 días.",
+    "anonUsedTitle": "Ya usaste tu auditoría gratuita",
+    "anonUsedDesc": "Crea una cuenta gratuita para hacer más auditorías y guardar tus informes.",
+    "downloadNeedsAccount": "Descargar este informe — cuenta gratuita",
+    "guestGateTitle": "Tu informe está listo. Consérvalo.",
+    "guestGateBody": "Esta auditoría se guarda 24 horas. Crea una cuenta gratuita y pasará directamente a tu panel: no perderás nada.",
+    "guestGateP1": "Descarga este informe en PDF",
+    "guestGateP2": "Guárdalo en tu panel y vuelve a analizar tras las correcciones",
+    "guestGateP3": "Informes con tu marca para clientes",
+    "guestGateP4": "Analiza más sitios",
+    "guestGateCta": "Crea una cuenta gratuita para guardar y descargar este informe",
+    "guestGateSub": "Sin tarjeta. Tarda unos 20 segundos."
   },
   "semrush": {
     "loading": "Cargando métricas de Semrush…",
@@ -1398,6 +1409,10 @@
       "moreLanguages": {
         "title": "SiteScoper ahora habla 9 idiomas",
         "desc": "Toda la aplicación ya está disponible en portugués, japonés, neerlandés y polaco, además de inglés, español, francés, alemán e italiano. Cámbiala desde el icono del globo en el encabezado."
+      },
+      "freeFirstAudit": {
+        "title": "La primera auditoría no requiere cuenta",
+        "desc": "Pega una URL y obtén el informe completo al instante. Regístrate después para descargarlo, guardarlo y analizar más sitios."
       }
     }
   },

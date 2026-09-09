@@ -1,4 +1,4 @@
-import { useState, useRef, lazy, Suspense } from "react";
+import { useState, useRef, useEffect, lazy, Suspense } from "react";
 import { Link, useNavigate } from "@/lib/router-compat";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, AlertCircle, ExternalLink, Link2, FileText, Download, Lock, ArrowDown, Swords, Star, ShieldCheck, Clock, ArrowRight } from "lucide-react";
@@ -30,8 +30,9 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { useSubscription } from "@/hooks/useSubscription";
 import { StreamingProgress } from "@/components/StreamingProgress";
+import { hasUsedFreeAudit, markFreeAuditUsed, saveAnonymousAudit } from "@/lib/anon-audit";
 
-const FREE_ANALYSIS_KEY = "sitescoper_free_analysis_used";
+
 
 type Step = "idle" | "scraping" | "analyzing" | "done";
 
@@ -49,26 +50,29 @@ const Index = () => {
   const { t } = useTranslation();
   const inputRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
-  const [hasUsedFreeAnalysis, setHasUsedFreeAnalysis] = useState(
-    () => typeof window !== "undefined" && localStorage.getItem(FREE_ANALYSIS_KEY) === "true"
-  );
+  const [hasUsedFreeAnalysis, setHasUsedFreeAnalysis] = useState(false);
+
+  // Read after mount so server and client render the same markup.
+  useEffect(() => {
+    if (!user) setHasUsedFreeAnalysis(hasUsedFreeAudit());
+  }, [user]);
 
   const scrollToInput = () => {
     inputRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
   };
 
   const handleAnalyze = async (url: string) => {
-    // Require sign-in for all scans (prevents API credit abuse)
-    if (!user) {
+    // Signed-out visitors get exactly one free audit, no account needed.
+    // Additional audits require an account (enforced server-side too).
+    if (!user && hasUsedFreeAnalysis) {
       toast({
-        title: t("index.toastSignInTitle"),
-        description: t("index.toastSignInDesc"),
+        title: t("index.anonUsedTitle", "You've used your free audit"),
+        description: t("index.anonUsedDesc", "Create a free account to run more audits and keep your reports."),
       });
       navigate("/auth");
       return;
     }
 
-    // Early-access: scanning is free and unlimited. No quota check needed.
 
     setCurrentUrl(url);
     setScrapeData(null);
@@ -95,6 +99,35 @@ const Index = () => {
       const result = await analyzeWebsite(data.markdown || "", url, data.images, data.detectedSections, customInstructions);
       setAnalysis(result);
       setStep("done");
+
+      const scrapePayload = {
+        screenshot: data.screenshot,
+        metadata: data.metadata,
+        links: data.links,
+        images: data.images,
+        image_suggestions: result.image_suggestions,
+        site_category: result.site_category,
+        category_rationale: result.category_rationale,
+        benchmark_percentile: result.benchmark_percentile,
+        benchmark_label: result.benchmark_label,
+        peer_examples: result.peer_examples,
+        action_plan: result.action_plan,
+      };
+
+      if (!user) {
+        // Guest audit: held for 24 hours, attached to the account if they sign up.
+        markFreeAuditUsed();
+        setHasUsedFreeAnalysis(true);
+        await saveAnonymousAudit({
+          url,
+          overall_score: result.overall_score,
+          summary: result.summary,
+          categories: result.categories,
+          scrape_data: scrapePayload,
+          custom_instructions: customInstructions.trim() || undefined,
+        });
+        return;
+      }
 
       // Link to a tracked website if one matches this URL, so the dashboard
       // shows the latest score instead of "Not analyzed yet".
@@ -127,19 +160,7 @@ const Index = () => {
           summary: result.summary,
           categories: result.categories as any,
           custom_instructions: customInstructions.trim() || null,
-          scrape_data: {
-            screenshot: data.screenshot,
-            metadata: data.metadata,
-            links: data.links,
-            images: data.images,
-            image_suggestions: result.image_suggestions,
-            site_category: result.site_category,
-            category_rationale: result.category_rationale,
-            benchmark_percentile: result.benchmark_percentile,
-            benchmark_label: result.benchmark_label,
-            peer_examples: result.peer_examples,
-            action_plan: result.action_plan,
-          } as any,
+          scrape_data: scrapePayload as any,
         } as any);
     } catch (err: any) {
       console.error(err);
@@ -160,6 +181,10 @@ const Index = () => {
   };
 
   const handleExportPDF = () => {
+    if (!user) {
+      navigate("/auth");
+      return;
+    }
     if (analysis && currentUrl) {
       import("@/lib/pdf").then(({ generateAnalysisPDF }) => {
         generateAnalysisPDF(analysis, currentUrl, scrapeData ? { metadata: scrapeData.metadata } : undefined);
@@ -322,8 +347,12 @@ const Index = () => {
                     )}
                   </div>
                   <Button variant="hero" size="default" onClick={handleExportPDF} className="rounded-xl">
-                    {isPro ? <Download className="h-4 w-4" /> : <Lock className="h-4 w-4" />}
-                    {isPro ? "Download PDF Report" : "Download PDF · Pro"}
+                    {user && isPro ? <Download className="h-4 w-4" /> : <Lock className="h-4 w-4" />}
+                    {!user
+                      ? t("index.downloadNeedsAccount", "Download this report — free account")
+                      : isPro
+                        ? "Download PDF Report"
+                        : "Download PDF · Pro"}
                   </Button>
                 </div>
               )}
@@ -384,25 +413,46 @@ const Index = () => {
                 </div>
               </div>
 
-              {/* Free-analysis upsell — only when anon user just completed their free analysis */}
-              {!user && hasUsedFreeAnalysis && analysis && (
+              {/* Guest gate — the report above stays fully readable; only the
+                  follow-on actions need an account. */}
+              {!user && analysis && (
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 }}
-                  className="border border-foreground bg-secondary p-6 text-center space-y-3"
+                  className="border border-foreground bg-secondary p-6 md:p-8"
                 >
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/15 text-primary text-xs font-body">
-                    <Lock className="h-3 w-3" />
-                    That was your free analysis
-                  </div>
-                  <h3 className="text-xl font-heading font-bold">Sign up free to keep going</h3>
-                  <p className="text-sm text-muted-foreground font-body max-w-md mx-auto">
-                    Save your history, track scores over time, and analyze unlimited websites — no credit card required.
+                  <h3 className="font-heading text-2xl mb-2">
+                    {t("index.guestGateTitle", "Your report is ready. Keep it.")}
+                  </h3>
+                  <p className="text-sm text-muted-foreground font-body max-w-2xl leading-relaxed mb-4">
+                    {t(
+                      "index.guestGateBody",
+                      "This audit is held for 24 hours. Create a free account and it moves straight into your dashboard — nothing you just ran is lost.",
+                    )}
                   </p>
-                  <Button variant="hero" onClick={() => navigate("/auth")} className="mt-2">
-                    Create free account
-                  </Button>
+                  <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-1.5 text-sm font-body mb-5">
+                    {[
+                      t("index.guestGateP1", "Download this report as a PDF"),
+                      t("index.guestGateP2", "Save it to a dashboard and re-scan after fixes"),
+                      t("index.guestGateP3", "Branded, white-label reports for clients"),
+                      t("index.guestGateP4", "Run audits on more sites"),
+                    ].map((p) => (
+                      <li key={p} className="flex items-start gap-2">
+                        <Lock className="h-3.5 w-3.5 text-primary mt-1 shrink-0" />
+                        <span>{p}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="flex flex-wrap items-center gap-3">
+                    <Button variant="hero" onClick={() => navigate("/auth")}>
+                      {t("index.guestGateCta", "Create a free account to save and download this report")}
+                      <ArrowRight className="h-4 w-4" />
+                    </Button>
+                    <span className="text-[12px] font-body text-muted-foreground">
+                      {t("index.guestGateSub", "No credit card. Takes about 20 seconds.")}
+                    </span>
+                  </div>
                 </motion.div>
               )}
 

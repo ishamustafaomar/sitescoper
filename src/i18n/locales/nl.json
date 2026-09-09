@@ -20,7 +20,7 @@
     "title2": "audit van je site",
     "title3": "in minder dan 30 seconden.",
     "subtitle": "Krijg het soort feedback dat een ervaren YC-partner je zou geven — met een 7-dagen actieplan, benchmarks van vergelijkbare sites en concrete tekstherschrijvingen die je vandaag nog kunt doorvoeren.",
-    "signUpForThree": "Meld je aan voor 3 gratis scans/maand",
+    "signUpForThree": "Doe je eerste audit — geen account nodig",
     "freemium": "Freemium — geen kaart nodig",
     "export": "PDF- & deel-link-export",
     "badgeFoundersLine": "Gebouwd door founders, voor founders",
@@ -29,7 +29,7 @@
     "actionableFixes": "Direct toepasbare UX- en SEO-fixes in 60 seconden.",
     "description": "De <1>AI-website-auditor</1> die de checklist van 200 regels overslaat en je de 3 UX-, SEO- en tekstfixes geeft die deze week écht de moeite waard zijn — met een actieplan in gewone taal dat een senior productstrateeg zou goedkeuren.",
     "freePlanBadge": "Gratis plan · 3 volledige scans per maand · Geen creditcard",
-    "freeScansFootnote": "3 gratis scans / maand · Geen creditcard · 2.400+ sites gescoord deze maand",
+    "freeScansFootnote": "Eerste audit zonder account · Geen creditcard · 2.400+ sites gescoord deze maand",
     "multiPageCrawl": "Diepe multi-pagina crawl",
     "createAccountCta": "Maak een gratis account aan",
     "createAccountSub": "— bewaart je rapportgeschiedenis en laat je opnieuw scannen na elke fix.",
@@ -37,7 +37,7 @@
     "upgradeSub": "— onbeperkte scans, diepe multi-pagina crawls, PDF- en deel-link-exports.",
     "evidenceCaption": "Een echt oordeel, geen checklist. Elke scan wordt op dezelfde manier beoordeeld.",
     "proofRated": "Geliefd bij founders en indie hackers",
-    "proofNoCard": "Geen creditcard — 3 volledige audits per maand",
+    "proofNoCard": "Geen account voor je eerste audit — 3 volledige audits per maand na aanmelden",
     "proofSpeed": "Volledig rapport in ongeveer 60 seconden"
   },
   "signin": {
@@ -1292,7 +1292,18 @@
     "upsellP3": "PDF-export en deel-links",
     "upsellP4": "Zij-aan-zij met concurrent",
     "upsellCta": "Start gratis proefperiode van 7 dagen",
-    "upsellSub": "Daarna $15/mnd jaarlijks gefactureerd. Op elk moment op te zeggen, 30 dagen terugbetaling."
+    "upsellSub": "Daarna $15/mnd jaarlijks gefactureerd. Op elk moment op te zeggen, 30 dagen terugbetaling.",
+    "anonUsedTitle": "Je gratis audit is gebruikt",
+    "anonUsedDesc": "Maak een gratis account om meer audits te draaien en je rapporten te bewaren.",
+    "downloadNeedsAccount": "Dit rapport downloaden — gratis account",
+    "guestGateTitle": "Je rapport is klaar. Bewaar het.",
+    "guestGateBody": "Deze audit wordt 24 uur bewaard. Maak een gratis account en hij verhuist direct naar je dashboard — je verliest niets.",
+    "guestGateP1": "Download dit rapport als pdf",
+    "guestGateP2": "Bewaar het in je dashboard en scan opnieuw na fixes",
+    "guestGateP3": "Rapporten met je eigen merk voor klanten",
+    "guestGateP4": "Audits op meer sites draaien",
+    "guestGateCta": "Maak een gratis account om dit rapport te bewaren en downloaden",
+    "guestGateSub": "Geen creditcard. Duurt zo'n 20 seconden."
   },
   "semrush": {
     "loading": "Semrush-statistieken laden…",
@@ -1398,6 +1409,10 @@
       "moreLanguages": {
         "title": "SiteScoper spreekt nu 9 talen",
         "desc": "De hele app is nu beschikbaar in het Portugees, Japans, Nederlands en Pools — naast Engels, Spaans, Frans, Duits en Italiaans. Wissel van taal via het wereldbol-icoon in de koptekst."
+      },
+      "freeFirstAudit": {
+        "title": "Je eerste audit heeft geen account nodig",
+        "desc": "Plak een URL en krijg direct het volledige rapport. Meld je daarna aan om het te downloaden, te bewaren en meer sites te auditen."
       }
     }
   },
