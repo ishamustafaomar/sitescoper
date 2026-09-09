@@ -176,8 +176,10 @@ export async function analyzeWebsite(
   detectedSections?: { name: string; evidence: string }[],
   customInstructions?: string
 ): Promise<AnalysisResult> {
+  const { data: { session } } = await supabase.auth.getSession();
   const { data, error } = await supabase.functions.invoke("analyze-website", {
     body: { markdown, url, images, detectedSections, customInstructions },
+    headers: session ? undefined : { "x-anon-session": getAnonSessionId() },
   });
 
   if (error) throw new Error(error.message || "Failed to analyze website");
