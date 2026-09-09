@@ -58,17 +58,17 @@ const Index = () => {
   };
 
   const handleAnalyze = async (url: string) => {
-    // Require sign-in for all scans (prevents API credit abuse)
-    if (!user) {
+    // Signed-out visitors get exactly one free audit, no account needed.
+    // Additional audits require an account (enforced server-side too).
+    if (!user && hasUsedFreeAnalysis) {
       toast({
-        title: t("index.toastSignInTitle"),
-        description: t("index.toastSignInDesc"),
+        title: t("index.anonUsedTitle", "You've used your free audit"),
+        description: t("index.anonUsedDesc", "Create a free account to run more audits and keep your reports."),
       });
       navigate("/auth");
       return;
     }
 
-    // Early-access: scanning is free and unlimited. No quota check needed.
 
     setCurrentUrl(url);
     setScrapeData(null);
