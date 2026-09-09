@@ -20,7 +20,6 @@ import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as TermsRouteImport } from './routes/terms'
-import { Route as UnsubscribeRouteImport } from './routes/unsubscribe'
 import { Route as WebsiteAuditStatisticsRouteImport } from './routes/website-audit-statistics'
 import { Route as WhiteLabelSeoReportsRouteImport } from './routes/white-label-seo-reports'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
@@ -90,11 +89,6 @@ const PrivacyRoute = PrivacyRouteImport.update({
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const UnsubscribeRoute = UnsubscribeRouteImport.update({
-  id: '/unsubscribe',
-  path: '/unsubscribe',
   getParentRoute: () => rootRouteImport,
 } as any)
 const WebsiteAuditStatisticsRoute = WebsiteAuditStatisticsRouteImport.update({
@@ -187,7 +181,6 @@ export interface FileRoutesByFullPath {
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/terms': typeof TermsRoute
-  '/unsubscribe': typeof UnsubscribeRoute
   '/website-audit-statistics': typeof WebsiteAuditStatisticsRoute
   '/white-label-seo-reports': typeof WhiteLabelSeoReportsRoute
   '/admin/reddit': typeof AdminRedditRoute
@@ -216,7 +209,6 @@ export interface FileRoutesByTo {
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/terms': typeof TermsRoute
-  '/unsubscribe': typeof UnsubscribeRoute
   '/website-audit-statistics': typeof WebsiteAuditStatisticsRoute
   '/white-label-seo-reports': typeof WhiteLabelSeoReportsRoute
   '/admin/reddit': typeof AdminRedditRoute
@@ -246,7 +238,6 @@ export interface FileRoutesById {
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/terms': typeof TermsRoute
-  '/unsubscribe': typeof UnsubscribeRoute
   '/website-audit-statistics': typeof WebsiteAuditStatisticsRoute
   '/white-label-seo-reports': typeof WhiteLabelSeoReportsRoute
   '/admin/reddit': typeof AdminRedditRoute
@@ -277,7 +268,6 @@ export interface FileRouteTypes {
     | '/pricing'
     | '/privacy'
     | '/terms'
-    | '/unsubscribe'
     | '/website-audit-statistics'
     | '/white-label-seo-reports'
     | '/admin/reddit'
@@ -306,7 +296,6 @@ export interface FileRouteTypes {
     | '/pricing'
     | '/privacy'
     | '/terms'
-    | '/unsubscribe'
     | '/website-audit-statistics'
     | '/white-label-seo-reports'
     | '/admin/reddit'
@@ -335,7 +324,6 @@ export interface FileRouteTypes {
     | '/pricing'
     | '/privacy'
     | '/terms'
-    | '/unsubscribe'
     | '/website-audit-statistics'
     | '/white-label-seo-reports'
     | '/admin/reddit'
@@ -365,7 +353,6 @@ export interface RootRouteChildren {
   PricingRoute: typeof PricingRoute
   PrivacyRoute: typeof PrivacyRoute
   TermsRoute: typeof TermsRoute
-  UnsubscribeRoute: typeof UnsubscribeRoute
   WebsiteAuditStatisticsRoute: typeof WebsiteAuditStatisticsRoute
   WhiteLabelSeoReportsRoute: typeof WhiteLabelSeoReportsRoute
   AdminRedditRoute: typeof AdminRedditRoute
@@ -460,13 +447,6 @@ declare module '@tanstack/react-router' {
       path: '/terms'
       fullPath: '/terms'
       preLoaderRoute: typeof TermsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/unsubscribe': {
-      id: '/unsubscribe'
-      path: '/unsubscribe'
-      fullPath: '/unsubscribe'
-      preLoaderRoute: typeof UnsubscribeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/website-audit-statistics': {
@@ -589,7 +569,6 @@ const rootRouteChildren: RootRouteChildren = {
   PricingRoute: PricingRoute,
   PrivacyRoute: PrivacyRoute,
   TermsRoute: TermsRoute,
-  UnsubscribeRoute: UnsubscribeRoute,
   WebsiteAuditStatisticsRoute: WebsiteAuditStatisticsRoute,
   WhiteLabelSeoReportsRoute: WhiteLabelSeoReportsRoute,
   AdminRedditRoute: AdminRedditRoute,
