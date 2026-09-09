@@ -431,7 +431,11 @@ serve(async (req) => {
     // the free-tier quota self-enforcing: callers cannot skip the client-side
     // analysis_history insert (e.g. direct invoke, Compare page) to get unlimited scans.
     try {
-      await admin.from("scan_usage").insert({ user_id: userId, url: inputUrl });
+      if (isAnonymous) {
+        await admin.from("anon_scan_usage").insert({ session_id: anonSession, ip_hash: ipHash, url: inputUrl });
+      } else {
+        await admin.from("scan_usage").insert({ user_id: userId, url: inputUrl });
+      }
     } catch (logErr) {
       console.error("scan_usage insert failed:", logErr);
     }
