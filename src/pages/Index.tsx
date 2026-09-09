@@ -96,6 +96,35 @@ const Index = () => {
       setAnalysis(result);
       setStep("done");
 
+      const scrapePayload = {
+        screenshot: data.screenshot,
+        metadata: data.metadata,
+        links: data.links,
+        images: data.images,
+        image_suggestions: result.image_suggestions,
+        site_category: result.site_category,
+        category_rationale: result.category_rationale,
+        benchmark_percentile: result.benchmark_percentile,
+        benchmark_label: result.benchmark_label,
+        peer_examples: result.peer_examples,
+        action_plan: result.action_plan,
+      };
+
+      if (!user) {
+        // Guest audit: held for 24 hours, attached to the account if they sign up.
+        markFreeAuditUsed();
+        setHasUsedFreeAnalysis(true);
+        await saveAnonymousAudit({
+          url,
+          overall_score: result.overall_score,
+          summary: result.summary,
+          categories: result.categories,
+          scrape_data: scrapePayload,
+          custom_instructions: customInstructions.trim() || undefined,
+        });
+        return;
+      }
+
       // Link to a tracked website if one matches this URL, so the dashboard
       // shows the latest score instead of "Not analyzed yet".
       let linkedWebsiteId: string | null = null;
@@ -127,19 +156,7 @@ const Index = () => {
           summary: result.summary,
           categories: result.categories as any,
           custom_instructions: customInstructions.trim() || null,
-          scrape_data: {
-            screenshot: data.screenshot,
-            metadata: data.metadata,
-            links: data.links,
-            images: data.images,
-            image_suggestions: result.image_suggestions,
-            site_category: result.site_category,
-            category_rationale: result.category_rationale,
-            benchmark_percentile: result.benchmark_percentile,
-            benchmark_label: result.benchmark_label,
-            peer_examples: result.peer_examples,
-            action_plan: result.action_plan,
-          } as any,
+          scrape_data: scrapePayload as any,
         } as any);
     } catch (err: any) {
       console.error(err);
