@@ -20,7 +20,7 @@
     "title2": "ao seu site",
     "title3": "em menos de 30 segundos.",
     "subtitle": "Receba o tipo de feedback que um sócio sénior da YC lhe daria — com um plano de ação de 7 dias, comparações com pares e reescritas de texto concretas que pode publicar hoje.",
-    "signUpForThree": "Registe-se para 3 análises gratuitas/mês",
+    "signUpForThree": "Faça a sua primeira auditoria — sem conta",
     "freemium": "Gratuito — sem cartão necessário",
     "export": "Exportação em PDF e link partilhável",
     "badgeFoundersLine": "Criado por fundadores, para fundadores",
@@ -29,7 +29,7 @@
     "actionableFixes": "Correções práticas de UX e SEO em 60 segundos.",
     "description": "O <1>auditor de sites com IA</1> que ignora a lista de verificação de 200 linhas e entrega as 3 correções de UX, SEO e texto que realmente valem a pena implementar esta semana — com um plano de ação em linguagem simples que um estratega de produto sénior aprovaria.",
     "freePlanBadge": "Plano gratuito · 3 análises completas por mês · Sem cartão de crédito",
-    "freeScansFootnote": "3 análises gratuitas / mês · Sem cartão de crédito · Mais de 2400 sites avaliados este mês",
+    "freeScansFootnote": "A primeira auditoria não precisa de conta · Sem cartão · Mais de 2400 sites avaliados este mês",
     "multiPageCrawl": "Rastreio profundo multi-página",
     "createAccountCta": "Crie uma conta gratuita",
     "createAccountSub": "— mantém o histórico de relatórios e permite reanalisar após cada correção.",
@@ -37,7 +37,7 @@
     "upgradeSub": "— análises ilimitadas, rastreios multi-página profundos, exportação em PDF e links partilháveis.",
     "evidenceCaption": "Um veredicto real, não uma checklist. Todas as análises são pontuadas da mesma forma.",
     "proofRated": "Adorado por fundadores e indie hackers",
-    "proofNoCard": "Sem cartão de crédito — 3 auditorias completas todos os meses",
+    "proofNoCard": "Sem conta na primeira auditoria — 3 auditorias completas por mês após o registo",
     "proofSpeed": "Relatório completo em cerca de 60 segundos"
   },
   "signin": {
@@ -1292,7 +1292,18 @@
     "upsellP3": "Exportação em PDF e links de partilha",
     "upsellP4": "Comparação lado a lado com concorrentes",
     "upsellCta": "Começar teste gratuito de 7 dias",
-    "upsellSub": "Depois $15/mês faturado anualmente. Cancele a qualquer momento, reembolso em 30 dias."
+    "upsellSub": "Depois $15/mês faturado anualmente. Cancele a qualquer momento, reembolso em 30 dias.",
+    "anonUsedTitle": "Já usou a sua auditoria gratuita",
+    "anonUsedDesc": "Crie uma conta gratuita para fazer mais auditorias e guardar os seus relatórios.",
+    "downloadNeedsAccount": "Descarregar este relatório — conta gratuita",
+    "guestGateTitle": "O seu relatório está pronto. Guarde-o.",
+    "guestGateBody": "Esta auditoria fica guardada 24 horas. Crie uma conta gratuita e ela passa diretamente para o seu painel — não perde nada.",
+    "guestGateP1": "Descarregue este relatório em PDF",
+    "guestGateP2": "Guarde-o no painel e reanalise após as correções",
+    "guestGateP3": "Relatórios com a sua marca para clientes",
+    "guestGateP4": "Analise mais sites",
+    "guestGateCta": "Crie uma conta gratuita para guardar e descarregar este relatório",
+    "guestGateSub": "Sem cartão. Demora cerca de 20 segundos."
   },
   "semrush": {
     "loading": "A carregar métricas do Semrush…",

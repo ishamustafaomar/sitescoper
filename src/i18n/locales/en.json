@@ -20,7 +20,7 @@
     "title2": "audit of your site",
     "title3": "in under 30 seconds.",
     "subtitle": "Get the kind of feedback a senior YC partner would give you — with a 7-day action plan, peer benchmarks, and concrete copy rewrites you can ship today.",
-    "signUpForThree": "Sign up for 3 free scans/month",
+    "signUpForThree": "Run your first audit — no account needed",
     "freemium": "Freemium — no card required",
     "export": "PDF & share-link export",
     "badgeFoundersLine": "Built by founders, for founders",
@@ -29,7 +29,7 @@
     "actionableFixes": "Actionable UX & SEO fixes in 60 seconds.",
     "description": "The <1>AI website auditor</1> that skips the 200-row checklist and hands you the 3 UX, SEO and copy fixes actually worth shipping this week — with a plain-English action plan a senior product strategist would sign off on.",
     "freePlanBadge": "Free plan · 3 full scans every month · No credit card",
-    "freeScansFootnote": "3 free scans / month · No credit card · 2,400+ sites scored this month",
+    "freeScansFootnote": "First audit needs no account · No credit card · 2,400+ sites scored this month",
     "multiPageCrawl": "Multi-page deep crawl",
     "createAccountCta": "Create a free account",
     "createAccountSub": "— keeps your report history and lets you re-scan after every fix.",
@@ -37,7 +37,7 @@
     "upgradeSub": "— unlimited scans, deep multi-page crawls, PDF and share-link exports.",
     "evidenceCaption": "A real verdict, not a checklist. Every scan is scored the same way.",
     "proofRated": "Loved by founders and indie hackers",
-    "proofNoCard": "No credit card — 3 full audits every month",
+    "proofNoCard": "No account for your first audit — 3 full audits a month once you sign up",
     "proofSpeed": "Full report in about 60 seconds"
   },
   "signin": {
@@ -1292,7 +1292,18 @@
     "upsellP3": "PDF export and share links",
     "upsellP4": "Competitor side-by-side",
     "upsellCta": "Start 7-day free trial",
-    "upsellSub": "Then $15/mo billed yearly. Cancel any time, 30-day refund."
+    "upsellSub": "Then $15/mo billed yearly. Cancel any time, 30-day refund.",
+    "anonUsedTitle": "You've used your free audit",
+    "anonUsedDesc": "Create a free account to run more audits and keep your reports.",
+    "downloadNeedsAccount": "Download this report — free account",
+    "guestGateTitle": "Your report is ready. Keep it.",
+    "guestGateBody": "This audit is held for 24 hours. Create a free account and it moves straight into your dashboard — nothing you just ran is lost.",
+    "guestGateP1": "Download this report as a PDF",
+    "guestGateP2": "Save it to a dashboard and re-scan after fixes",
+    "guestGateP3": "Branded, white-label reports for clients",
+    "guestGateP4": "Run audits on more sites",
+    "guestGateCta": "Create a free account to save and download this report",
+    "guestGateSub": "No credit card. Takes about 20 seconds."
   },
   "semrush": {
     "loading": "Loading Semrush metrics…",

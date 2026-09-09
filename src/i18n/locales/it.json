@@ -20,7 +20,7 @@
     "title2": "brutalmente onesto del tuo sito",
     "title3": "in meno di 30 secondi.",
     "subtitle": "Ricevi il feedback di un partner senior di YC — con un piano d'azione di 7 giorni, benchmark di settore e riscritture concrete pronte da pubblicare.",
-    "signUpForThree": "Registrati per 3 scansioni gratis/mese",
+    "signUpForThree": "Fai il tuo primo audit — senza account",
     "freemium": "Freemium — nessuna carta",
     "export": "Export PDF e link pubblico",
     "badgeFoundersLine": "Creato da founder, per founder",
@@ -29,7 +29,7 @@
     "actionableFixes": "Correzioni UX e SEO pratiche in 60 secondi.",
     "description": "L'<1>auditor AI per siti web</1> che salta la checklist di 200 punti e ti offre le 3 correzioni di UX, SEO e copy davvero utili da fare questa settimana, con un piano d'azione chiaro degno di un senior product strategist.",
     "freePlanBadge": "Piano gratuito · 3 scansioni complete al mese · Nessuna carta di credito",
-    "freeScansFootnote": "3 scansioni gratuite / mese · Nessuna carta di credito · Oltre 2.400 siti valutati questo mese",
+    "freeScansFootnote": "Il primo audit non richiede un account · Nessuna carta · Oltre 2.400 siti valutati questo mese",
     "multiPageCrawl": "Scansione approfondita multi-pagina",
     "createAccountCta": "Crea un account gratuito",
     "createAccountSub": "— conserva la cronologia dei tuoi report e ti permette di rianalizzare dopo ogni correzione.",
@@ -37,7 +37,7 @@
     "upgradeSub": "— analisi illimitate, scansioni multi-pagina approfondite, esportazioni PDF e link condivisibili.",
     "evidenceCaption": "Un verdetto reale, non una checklist. Ogni analisi viene valutata allo stesso modo.",
     "proofRated": "Amato da founder e indie hacker",
-    "proofNoCard": "Senza carta — 3 audit completi al mese",
+    "proofNoCard": "Nessun account per il primo audit — 3 audit completi al mese dopo la registrazione",
     "proofSpeed": "Report completo in circa 60 secondi"
   },
   "signin": {
@@ -1292,7 +1292,18 @@
     "upsellP3": "Export PDF e link di condivisione",
     "upsellP4": "Confronto diretto con i concorrenti",
     "upsellCta": "Inizia la prova gratuita di 7 giorni",
-    "upsellSub": "Poi 15 $/mese con pagamento annuale. Disdici quando vuoi, rimborso 30 giorni."
+    "upsellSub": "Poi 15 $/mese con pagamento annuale. Disdici quando vuoi, rimborso 30 giorni.",
+    "anonUsedTitle": "Hai già usato il tuo audit gratuito",
+    "anonUsedDesc": "Crea un account gratuito per fare altri audit e conservare i tuoi report.",
+    "downloadNeedsAccount": "Scarica questo report — account gratuito",
+    "guestGateTitle": "Il tuo report è pronto. Conservalo.",
+    "guestGateBody": "Questo audit resta disponibile 24 ore. Crea un account gratuito e finirà direttamente nella tua dashboard: non perdi nulla.",
+    "guestGateP1": "Scarica questo report in PDF",
+    "guestGateP2": "Salvalo nella dashboard e rianalizza dopo le correzioni",
+    "guestGateP3": "Report personalizzati con il tuo marchio",
+    "guestGateP4": "Analizza altri siti",
+    "guestGateCta": "Crea un account gratuito per salvare e scaricare questo report",
+    "guestGateSub": "Nessuna carta. Ci vogliono circa 20 secondi."
   },
   "semrush": {
     "loading": "Caricamento delle metriche Semrush…",
