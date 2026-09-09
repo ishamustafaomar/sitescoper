@@ -1,4 +1,5 @@
 import { supabase } from "@/integrations/supabase/client";
+import { getAnonSessionId } from "@/lib/anon-audit";
 
 export interface CrawledPage {
   url: string;
