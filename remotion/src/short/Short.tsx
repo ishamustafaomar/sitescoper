@@ -8,7 +8,7 @@ import {
 } from "remotion";
 import { c, sans, serif } from "./theme";
 
-export const SHORT_FRAMES = 660; // 22s @ 30fps
+export const SHORT_FRAMES = 732; // 24.4s @ 30fps (matched to narration)
 
 const Caption: React.FC<{ children: React.ReactNode; delay?: number; size?: number }> = ({
   children,
@@ -276,19 +276,19 @@ const CTA: React.FC = () => {
 
 export const Short: React.FC = () => (
   <AbsoluteFill style={{ backgroundColor: c.paper }}>
-    <Sequence durationInFrames={90}>
+    <Sequence durationInFrames={96}>
       <Hook />
     </Sequence>
-    <Sequence from={90} durationInFrames={120}>
+    <Sequence from={96} durationInFrames={162}>
       <Scan />
     </Sequence>
-    <Sequence from={210} durationInFrames={120}>
+    <Sequence from={258} durationInFrames={141}>
       <Score />
     </Sequence>
-    <Sequence from={330} durationInFrames={240}>
+    <Sequence from={399} durationInFrames={213}>
       <Findings />
     </Sequence>
-    <Sequence from={570} durationInFrames={90}>
+    <Sequence from={612} durationInFrames={120}>
       <CTA />
     </Sequence>
   </AbsoluteFill>

@@ -1,4 +1,4 @@
 # Roadmap
 
 - [x] Email sending update: rewritten to managed delivery, build green (awaiting user publish)
-- [x] YouTube Short promoting SiteScoper (22s vertical, rendered)
+- [x] YouTube Short with narration, sound effects and ambient bed (24s vertical, rendered)
