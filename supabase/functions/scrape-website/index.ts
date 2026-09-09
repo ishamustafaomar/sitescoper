@@ -575,6 +575,11 @@ serve(async (req) => {
           });
         } catch (e: any) {
           console.error("stream error:", e);
+          // The audit never produced a report — give the guest their free try back.
+          if (anonUsageId) {
+            try { await admin.from("anon_scan_usage").delete().eq("id", anonUsageId); }
+            catch (delErr) { console.error("anon usage rollback failed:", delErr); }
+          }
           const status = e?.status || 500;
           const message = [402, 422, 502, 504].includes(status) && typeof e?.message === "string"
             ? e.message
