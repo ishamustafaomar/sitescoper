@@ -64,6 +64,78 @@ export type Database = {
           },
         ]
       }
+      anon_scan_usage: {
+        Row: {
+          created_at: string
+          id: string
+          ip_hash: string | null
+          session_id: string
+          url: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          ip_hash?: string | null
+          session_id: string
+          url?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          ip_hash?: string | null
+          session_id?: string
+          url?: string | null
+        }
+        Relationships: []
+      }
+      anonymous_audits: {
+        Row: {
+          categories: Json
+          claimed_at: string | null
+          claimed_by: string | null
+          created_at: string
+          custom_instructions: string | null
+          expires_at: string
+          id: string
+          ip_hash: string | null
+          overall_score: number
+          scrape_data: Json | null
+          session_id: string
+          summary: string | null
+          url: string
+        }
+        Insert: {
+          categories?: Json
+          claimed_at?: string | null
+          claimed_by?: string | null
+          created_at?: string
+          custom_instructions?: string | null
+          expires_at?: string
+          id?: string
+          ip_hash?: string | null
+          overall_score: number
+          scrape_data?: Json | null
+          session_id: string
+          summary?: string | null
+          url: string
+        }
+        Update: {
+          categories?: Json
+          claimed_at?: string | null
+          claimed_by?: string | null
+          created_at?: string
+          custom_instructions?: string | null
+          expires_at?: string
+          id?: string
+          ip_hash?: string | null
+          overall_score?: number
+          scrape_data?: Json | null
+          session_id?: string
+          summary?: string | null
+          url?: string
+        }
+        Relationships: []
+      }
       blog_posts: {
         Row: {
           body: string
@@ -746,6 +818,28 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      claim_anonymous_audit: {
+        Args: { p_session_id: string }
+        Returns: {
+          categories: Json
+          created_at: string
+          custom_instructions: string | null
+          id: string
+          overall_score: number
+          scrape_data: Json | null
+          share_token: string | null
+          summary: string | null
+          url: string
+          user_id: string
+          website_id: string | null
+        }[]
+        SetofOptions: {
+          from: "*"
+          to: "analysis_history"
+          isOneToOne: false
+          isSetofReturn: true
+        }
+      }
       delete_email: {
         Args: { message_id: number; queue_name: string }
         Returns: boolean
