@@ -1,5 +1,6 @@
 import { Composition } from "remotion";
 import { MainVideo } from "./MainVideo";
+import { Short, SHORT_FRAMES } from "./short/Short";
 
 // Ultra fast-paced cut: 13 scenes incl. 3 flash interstitials, 6-frame transitions
 // 80+24+100+70+24+110+120+130+110+24+130+130+160 = 1212
@@ -7,6 +8,7 @@ import { MainVideo } from "./MainVideo";
 export const TOTAL_FRAMES = 1140;
 
 export const RemotionRoot = () => (
+  <>
   <Composition
     id="main"
     component={MainVideo}
@@ -15,4 +17,13 @@ export const RemotionRoot = () => (
     width={1920}
     height={1080}
   />
+  <Composition
+    id="short"
+    component={Short}
+    durationInFrames={SHORT_FRAMES}
+    fps={30}
+    width={1080}
+    height={1920}
+  />
+  </>
 );
