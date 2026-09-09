@@ -1,4 +1,4 @@
-import { useState, useRef, lazy, Suspense } from "react";
+import { useState, useRef, useEffect, lazy, Suspense } from "react";
 import { Link, useNavigate } from "@/lib/router-compat";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, AlertCircle, ExternalLink, Link2, FileText, Download, Lock, ArrowDown, Swords, Star, ShieldCheck, Clock, ArrowRight } from "lucide-react";
@@ -30,6 +30,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { useSubscription } from "@/hooks/useSubscription";
 import { StreamingProgress } from "@/components/StreamingProgress";
+import { hasUsedFreeAudit, markFreeAuditUsed, saveAnonymousAudit } from "@/lib/anon-audit";
 
 
 
