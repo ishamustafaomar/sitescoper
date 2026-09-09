@@ -1,4 +1,4 @@
 # Roadmap
 
-- [ ] Email sending update: finish rewrite to managed delivery, keep build green (in progress)
-- [ ] Draft a YouTube Short promoting SiteScoper, optimized for views and click-through to the site
+- [x] Email sending update: rewritten to managed delivery, build green (awaiting user publish)
+- [x] YouTube Short promoting SiteScoper (22s vertical, rendered)
