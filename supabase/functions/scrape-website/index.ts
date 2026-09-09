@@ -430,9 +430,15 @@ serve(async (req) => {
     // Record the scan attempt server-side BEFORE any external API call. This makes
     // the free-tier quota self-enforcing: callers cannot skip the client-side
     // analysis_history insert (e.g. direct invoke, Compare page) to get unlimited scans.
+    let anonUsageId: string | null = null;
     try {
       if (isAnonymous) {
-        await admin.from("anon_scan_usage").insert({ session_id: anonSession, ip_hash: ipHash, url: inputUrl });
+        const { data: usageRow } = await admin
+          .from("anon_scan_usage")
+          .insert({ session_id: anonSession, ip_hash: ipHash, url: inputUrl })
+          .select("id")
+          .maybeSingle();
+        anonUsageId = usageRow?.id ?? null;
       } else {
         await admin.from("scan_usage").insert({ user_id: userId, url: inputUrl });
       }
@@ -569,6 +575,11 @@ serve(async (req) => {
           });
         } catch (e: any) {
           console.error("stream error:", e);
+          // The audit never produced a report — give the guest their free try back.
+          if (anonUsageId) {
+            try { await admin.from("anon_scan_usage").delete().eq("id", anonUsageId); }
+            catch (delErr) { console.error("anon usage rollback failed:", delErr); }
+          }
           const status = e?.status || 500;
           const message = [402, 422, 502, 504].includes(status) && typeof e?.message === "string"
             ? e.message

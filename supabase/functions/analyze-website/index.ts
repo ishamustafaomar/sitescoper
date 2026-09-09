@@ -25,6 +25,7 @@ serve(async (req) => {
       const { data: userData } = await sb.auth.getUser();
       if (userData?.user) authorized = true;
     }
+    let anonAuthorized = false;
     if (!authorized) {
       // Anonymous callers are allowed only right after a recorded free scrape.
       if (anonSession.length >= 16 && anonSession.length <= 100) {
@@ -39,6 +40,7 @@ serve(async (req) => {
           .eq("session_id", anonSession)
           .gte("created_at", since);
         authorized = (count ?? 0) > 0;
+        anonAuthorized = authorized;
       }
       if (!authorized) {
         return new Response(JSON.stringify({ error: "Unauthorized" }), {
@@ -47,6 +49,26 @@ serve(async (req) => {
         });
       }
     }
+
+    // If the analysis never completes, the guest never saw a report — give their
+    // one free audit back so they can retry instead of hitting the 24h lockout.
+    const releaseAnonScan = async () => {
+      if (!anonAuthorized) return;
+      try {
+        const admin = createClient(
+          Deno.env.get("SUPABASE_URL")!,
+          Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
+        );
+        const since = new Date(Date.now() - 30 * 60 * 1000).toISOString();
+        await admin
+          .from("anon_scan_usage")
+          .delete()
+          .eq("session_id", anonSession)
+          .gte("created_at", since);
+      } catch (e) {
+        console.error("anon usage rollback failed:", e);
+      }
+    };
 
     const { markdown, url, images, detectedSections, customInstructions } = await req.json();
     if (!markdown || typeof markdown !== "string") {
@@ -276,12 +298,14 @@ Be a real advisor. Quote actual content. Be specific. Be honest.`,
 
     if (!response.ok) {
       if (response.status === 429) {
+        await releaseAnonScan();
         return new Response(
           JSON.stringify({ error: "Rate limited. Please try again in a moment." }),
           { status: 429, headers: { ...corsHeaders, "Content-Type": "application/json" } }
         );
       }
       if (response.status === 402) {
+        await releaseAnonScan();
         return new Response(
           JSON.stringify({ error: "AI credits exhausted. Please add funds in Settings > Workspace > Usage." }),
           { status: 402, headers: { ...corsHeaders, "Content-Type": "application/json" } }
@@ -289,6 +313,7 @@ Be a real advisor. Quote actual content. Be specific. Be honest.`,
       }
       const text = await response.text();
       console.error("AI gateway error:", response.status, text);
+      await releaseAnonScan();
       throw new Error("AI analysis failed");
     }
 
