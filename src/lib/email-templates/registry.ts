@@ -7,6 +7,8 @@ export interface TemplateEntry {
   previewData?: Record<string, any>
   /** Fixed recipient — overrides caller-provided recipientEmail when set. */
   to?: string
+  /** Overrides the default site name in the From header. */
+  fromName?: string
 }
 
 /**
