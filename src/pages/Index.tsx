@@ -413,25 +413,46 @@ const Index = () => {
                 </div>
               </div>
 
-              {/* Free-analysis upsell — only when anon user just completed their free analysis */}
-              {!user && hasUsedFreeAnalysis && analysis && (
+              {/* Guest gate — the report above stays fully readable; only the
+                  follow-on actions need an account. */}
+              {!user && analysis && (
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 }}
-                  className="border border-foreground bg-secondary p-6 text-center space-y-3"
+                  className="border border-foreground bg-secondary p-6 md:p-8"
                 >
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/15 text-primary text-xs font-body">
-                    <Lock className="h-3 w-3" />
-                    That was your free analysis
-                  </div>
-                  <h3 className="text-xl font-heading font-bold">Sign up free to keep going</h3>
-                  <p className="text-sm text-muted-foreground font-body max-w-md mx-auto">
-                    Save your history, track scores over time, and analyze unlimited websites — no credit card required.
+                  <h3 className="font-heading text-2xl mb-2">
+                    {t("index.guestGateTitle", "Your report is ready. Keep it.")}
+                  </h3>
+                  <p className="text-sm text-muted-foreground font-body max-w-2xl leading-relaxed mb-4">
+                    {t(
+                      "index.guestGateBody",
+                      "This audit is held for 24 hours. Create a free account and it moves straight into your dashboard — nothing you just ran is lost.",
+                    )}
                   </p>
-                  <Button variant="hero" onClick={() => navigate("/auth")} className="mt-2">
-                    Create free account
-                  </Button>
+                  <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-1.5 text-sm font-body mb-5">
+                    {[
+                      t("index.guestGateP1", "Download this report as a PDF"),
+                      t("index.guestGateP2", "Save it to a dashboard and re-scan after fixes"),
+                      t("index.guestGateP3", "Branded, white-label reports for clients"),
+                      t("index.guestGateP4", "Run audits on more sites"),
+                    ].map((p) => (
+                      <li key={p} className="flex items-start gap-2">
+                        <Lock className="h-3.5 w-3.5 text-primary mt-1 shrink-0" />
+                        <span>{p}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="flex flex-wrap items-center gap-3">
+                    <Button variant="hero" onClick={() => navigate("/auth")}>
+                      {t("index.guestGateCta", "Create a free account to save and download this report")}
+                      <ArrowRight className="h-4 w-4" />
+                    </Button>
+                    <span className="text-[12px] font-body text-muted-foreground">
+                      {t("index.guestGateSub", "No credit card. Takes about 20 seconds.")}
+                    </span>
+                  </div>
                 </motion.div>
               )}
 
