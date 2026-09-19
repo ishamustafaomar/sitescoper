@@ -16,6 +16,7 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as BestAiWebsiteAuditToolsRouteImport } from './routes/best-ai-website-audit-tools'
 import { Route as CompareRouteImport } from './routes/compare'
 import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as MonitoringRouteImport } from './routes/monitoring'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as PrivacyRouteImport } from './routes/privacy'
@@ -71,6 +72,11 @@ const CompareRoute = CompareRouteImport.update({
 const DashboardRoute = DashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MonitoringRoute = MonitoringRouteImport.update({
+  id: '/monitoring',
+  path: '/monitoring',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OnboardingRoute = OnboardingRouteImport.update({
@@ -191,6 +197,7 @@ export interface FileRoutesByFullPath {
   '/best-ai-website-audit-tools': typeof BestAiWebsiteAuditToolsRoute
   '/compare': typeof CompareRoute
   '/dashboard': typeof DashboardRoute
+  '/monitoring': typeof MonitoringRoute
   '/onboarding': typeof OnboardingRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
@@ -221,6 +228,7 @@ export interface FileRoutesByTo {
   '/best-ai-website-audit-tools': typeof BestAiWebsiteAuditToolsRoute
   '/compare': typeof CompareRoute
   '/dashboard': typeof DashboardRoute
+  '/monitoring': typeof MonitoringRoute
   '/onboarding': typeof OnboardingRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
@@ -252,6 +260,7 @@ export interface FileRoutesById {
   '/best-ai-website-audit-tools': typeof BestAiWebsiteAuditToolsRoute
   '/compare': typeof CompareRoute
   '/dashboard': typeof DashboardRoute
+  '/monitoring': typeof MonitoringRoute
   '/onboarding': typeof OnboardingRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
@@ -284,6 +293,7 @@ export interface FileRouteTypes {
     | '/best-ai-website-audit-tools'
     | '/compare'
     | '/dashboard'
+    | '/monitoring'
     | '/onboarding'
     | '/pricing'
     | '/privacy'
@@ -314,6 +324,7 @@ export interface FileRouteTypes {
     | '/best-ai-website-audit-tools'
     | '/compare'
     | '/dashboard'
+    | '/monitoring'
     | '/onboarding'
     | '/pricing'
     | '/privacy'
@@ -344,6 +355,7 @@ export interface FileRouteTypes {
     | '/best-ai-website-audit-tools'
     | '/compare'
     | '/dashboard'
+    | '/monitoring'
     | '/onboarding'
     | '/pricing'
     | '/privacy'
@@ -375,6 +387,7 @@ export interface RootRouteChildren {
   BestAiWebsiteAuditToolsRoute: typeof BestAiWebsiteAuditToolsRoute
   CompareRoute: typeof CompareRoute
   DashboardRoute: typeof DashboardRoute
+  MonitoringRoute: typeof MonitoringRoute
   OnboardingRoute: typeof OnboardingRoute
   PricingRoute: typeof PricingRoute
   PrivacyRoute: typeof PrivacyRoute
@@ -447,6 +460,13 @@ declare module '@tanstack/react-router' {
       path: '/dashboard'
       fullPath: '/dashboard'
       preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/monitoring': {
+      id: '/monitoring'
+      path: '/monitoring'
+      fullPath: '/monitoring'
+      preLoaderRoute: typeof MonitoringRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/onboarding': {
@@ -607,6 +627,7 @@ const rootRouteChildren: RootRouteChildren = {
   BestAiWebsiteAuditToolsRoute: BestAiWebsiteAuditToolsRoute,
   CompareRoute: CompareRoute,
   DashboardRoute: DashboardRoute,
+  MonitoringRoute: MonitoringRoute,
   OnboardingRoute: OnboardingRoute,
   PricingRoute: PricingRoute,
   PrivacyRoute: PrivacyRoute,
