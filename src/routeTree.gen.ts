@@ -32,6 +32,7 @@ import { Route as CheckoutReturnRouteImport } from './routes/checkout/return'
 import { Route as ShareTokenRouteImport } from './routes/share/$token'
 import { Route as ApiPublicSaveAnonymousAuditRouteImport } from './routes/api/public/save-anonymous-audit'
 import { Route as LovableEmailEventsRouteImport } from './routes/lovable/email/events'
+import { Route as ApiPublicHooksAbEvaluateRouteImport } from './routes/api/public/hooks/ab-evaluate'
 import { Route as ApiPublicHooksMonitorRunRouteImport } from './routes/api/public/hooks/monitor-run'
 import { Route as LovableEmailAuthPreviewRouteImport } from './routes/lovable/email/auth/preview'
 import { Route as LovableEmailAuthWebhookRouteImport } from './routes/lovable/email/auth/webhook'
@@ -153,6 +154,12 @@ const LovableEmailEventsRoute = LovableEmailEventsRouteImport.update({
   path: '/lovable/email/events',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicHooksAbEvaluateRoute =
+  ApiPublicHooksAbEvaluateRouteImport.update({
+    id: '/api/public/hooks/ab-evaluate',
+    path: '/api/public/hooks/ab-evaluate',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ApiPublicHooksMonitorRunRoute =
   ApiPublicHooksMonitorRunRouteImport.update({
     id: '/api/public/hooks/monitor-run',
@@ -200,6 +207,7 @@ export interface FileRoutesByFullPath {
   '/blog/': typeof BlogIndexRoute
   '/api/public/save-anonymous-audit': typeof ApiPublicSaveAnonymousAuditRoute
   '/lovable/email/events': typeof LovableEmailEventsRoute
+  '/api/public/hooks/ab-evaluate': typeof ApiPublicHooksAbEvaluateRoute
   '/api/public/hooks/monitor-run': typeof ApiPublicHooksMonitorRunRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
@@ -229,6 +237,7 @@ export interface FileRoutesByTo {
   '/blog': typeof BlogIndexRoute
   '/api/public/save-anonymous-audit': typeof ApiPublicSaveAnonymousAuditRoute
   '/lovable/email/events': typeof LovableEmailEventsRoute
+  '/api/public/hooks/ab-evaluate': typeof ApiPublicHooksAbEvaluateRoute
   '/api/public/hooks/monitor-run': typeof ApiPublicHooksMonitorRunRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
@@ -259,6 +268,7 @@ export interface FileRoutesById {
   '/blog/': typeof BlogIndexRoute
   '/api/public/save-anonymous-audit': typeof ApiPublicSaveAnonymousAuditRoute
   '/lovable/email/events': typeof LovableEmailEventsRoute
+  '/api/public/hooks/ab-evaluate': typeof ApiPublicHooksAbEvaluateRoute
   '/api/public/hooks/monitor-run': typeof ApiPublicHooksMonitorRunRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
@@ -290,6 +300,7 @@ export interface FileRouteTypes {
     | '/blog/'
     | '/api/public/save-anonymous-audit'
     | '/lovable/email/events'
+    | '/api/public/hooks/ab-evaluate'
     | '/api/public/hooks/monitor-run'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
@@ -319,6 +330,7 @@ export interface FileRouteTypes {
     | '/blog'
     | '/api/public/save-anonymous-audit'
     | '/lovable/email/events'
+    | '/api/public/hooks/ab-evaluate'
     | '/api/public/hooks/monitor-run'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
@@ -348,6 +360,7 @@ export interface FileRouteTypes {
     | '/blog/'
     | '/api/public/save-anonymous-audit'
     | '/lovable/email/events'
+    | '/api/public/hooks/ab-evaluate'
     | '/api/public/hooks/monitor-run'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
@@ -378,6 +391,7 @@ export interface RootRouteChildren {
   BlogIndexRoute: typeof BlogIndexRoute
   ApiPublicSaveAnonymousAuditRoute: typeof ApiPublicSaveAnonymousAuditRoute
   LovableEmailEventsRoute: typeof LovableEmailEventsRoute
+  ApiPublicHooksAbEvaluateRoute: typeof ApiPublicHooksAbEvaluateRoute
   ApiPublicHooksMonitorRunRoute: typeof ApiPublicHooksMonitorRunRoute
   LovableEmailAuthPreviewRoute: typeof LovableEmailAuthPreviewRoute
   LovableEmailAuthWebhookRoute: typeof LovableEmailAuthWebhookRoute
@@ -547,6 +561,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LovableEmailEventsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/hooks/ab-evaluate': {
+      id: '/api/public/hooks/ab-evaluate'
+      path: '/api/public/hooks/ab-evaluate'
+      fullPath: '/api/public/hooks/ab-evaluate'
+      preLoaderRoute: typeof ApiPublicHooksAbEvaluateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/hooks/monitor-run': {
       id: '/api/public/hooks/monitor-run'
       path: '/api/public/hooks/monitor-run'
@@ -602,6 +623,7 @@ const rootRouteChildren: RootRouteChildren = {
   BlogIndexRoute: BlogIndexRoute,
   ApiPublicSaveAnonymousAuditRoute: ApiPublicSaveAnonymousAuditRoute,
   LovableEmailEventsRoute: LovableEmailEventsRoute,
+  ApiPublicHooksAbEvaluateRoute: ApiPublicHooksAbEvaluateRoute,
   ApiPublicHooksMonitorRunRoute: ApiPublicHooksMonitorRunRoute,
   LovableEmailAuthPreviewRoute: LovableEmailAuthPreviewRoute,
   LovableEmailAuthWebhookRoute: LovableEmailAuthWebhookRoute,
