@@ -219,14 +219,24 @@ const Index = () => {
                     </div>
 
                     <h1 className="font-heading text-5xl sm:text-6xl lg:text-7xl leading-[0.92] mb-6">
-                      {t("hero.stopGuessingLine1")}
-                      <br />
-                      {t("hero.stopGuessingLine2")}{" "}
-                      <em className="italic">{t("hero.actionableFixes")}</em>
+                      {heroHeadline ? (
+                        heroHeadline
+                      ) : (
+                        <>
+                          {t("hero.stopGuessingLine1")}
+                          <br />
+                          {t("hero.stopGuessingLine2")}{" "}
+                          <em className="italic">{t("hero.actionableFixes")}</em>
+                        </>
+                      )}
                     </h1>
 
                     <p className="text-muted-foreground font-body text-base sm:text-lg max-w-xl leading-relaxed mb-8">
-                      <Trans i18nKey="hero.description" components={[<strong className="text-foreground font-semibold" />]} />
+                      {heroSub ? (
+                        heroSub
+                      ) : (
+                        <Trans i18nKey="hero.description" components={[<strong className="text-foreground font-semibold" />]} />
+                      )}
                     </p>
 
                     {/* URL Input — the page's primary object */}
