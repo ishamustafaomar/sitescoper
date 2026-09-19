@@ -1,5 +1,5 @@
 import { useNavigate, useLocation } from "@/lib/router-compat";
-import { LayoutDashboard, LogOut, LogIn, Shield, Sparkles, Check, Swords, Crown, User as UserIcon, Menu } from "lucide-react";
+import { LayoutDashboard, LogOut, LogIn, Shield, Sparkles, Check, Swords, Crown, User as UserIcon, Menu, Eye } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import logoMark from "@/assets/logo-mark.png";
@@ -107,6 +107,20 @@ export function AppHeader() {
               </span>
             )}
           </button>
+          {user && (
+            <button
+              onClick={() => navigate("/monitoring")}
+              className={cn(pillBase, path.startsWith("/monitoring") ? pillActive : pillIdle)}
+            >
+              <Eye className="h-3.5 w-3.5" />
+              {t("nav.monitoring")}
+              {!isPro && (
+                <span className="ml-1 border border-accent/40 bg-accent/10 px-1.5 py-[1px] text-[9px] font-bold tracking-wider text-accent">
+                  PRO
+                </span>
+              )}
+            </button>
+          )}
           <button
             onClick={() => navigate("/pricing")}
             className={cn(pillBase, path === "/pricing" ? pillActive : pillIdle)}
