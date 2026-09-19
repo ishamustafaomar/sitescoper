@@ -93,7 +93,7 @@ export const Route = createFileRoute("/api/public/hooks/monitor-run")({
               status_code: snapshot.statusCode,
               response_ms: snapshot.responseMs,
               content_hash: snapshot.contentHash,
-              signals: snapshot.signals as unknown as Record<string, unknown>,
+              signals: snapshot.signals as never,
             });
 
             if (previous && previous.content_hash !== snapshot.contentHash) {
@@ -111,7 +111,7 @@ export const Route = createFileRoute("/api/public/hooks/monitor-run")({
                   user_id: monitor.user_id,
                   severity: worstSeverity(changes),
                   summary: changes[0]!.label,
-                  changes: changes as unknown as Record<string, unknown>[],
+                  changes: changes as never,
                 });
               }
             }
