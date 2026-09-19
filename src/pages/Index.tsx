@@ -31,6 +31,7 @@ import { Button } from "@/components/ui/button";
 import { useSubscription } from "@/hooks/useSubscription";
 import { StreamingProgress } from "@/components/StreamingProgress";
 import { hasUsedFreeAudit, markFreeAuditUsed, saveAnonymousAudit } from "@/lib/anon-audit";
+import { useExperiment } from "@/lib/ab";
 
 
 
@@ -51,6 +52,12 @@ const Index = () => {
   const inputRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const [hasUsedFreeAnalysis, setHasUsedFreeAnalysis] = useState(false);
+
+  // Continuously running headline test. When a test finishes, its winning
+  // headline stays on permanently without any code change.
+  const heroTest = useExperiment<{ id: string; headline?: string; sub?: string }>("home_hero");
+  const heroHeadline = heroTest.config?.headline ?? null;
+  const heroSub = heroTest.config?.sub ?? null;
 
   // Read after mount so server and client render the same markup.
   useEffect(() => {
