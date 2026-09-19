@@ -211,6 +211,7 @@ export function AppHeader() {
                   { to: "/", label: t("nav.analyze"), icon: Sparkles, show: true },
                   { to: "/dashboard", label: t("nav.dashboard"), icon: LayoutDashboard, show: !!user },
                   { to: "/compare", label: t("nav.compare"), icon: Swords, show: true, pro: !isPro },
+                  { to: "/monitoring", label: t("nav.monitoring"), icon: Eye, show: !!user, pro: !isPro },
                   { to: "/pricing", label: t("nav.pricing"), show: true },
                   { to: "/admin", label: t("nav.admin"), icon: Shield, show: !!user && isAdmin },
                 ]
