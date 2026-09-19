@@ -81,6 +81,7 @@ const Index = () => {
     }
 
 
+    heroTest.convert();
     setCurrentUrl(url);
     setScrapeData(null);
     setAnalysis(null);
