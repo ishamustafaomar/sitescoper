@@ -12,7 +12,8 @@
     "pricing": "Tarifs",
     "upgrade": "Passer Pro",
     "menu": "Menu",
-    "connections": "Connexions"
+    "connections": "Connexions",
+    "monitoring": "Veille"
   },
   "hero": {
     "badge": "Propulsé par Gemini 2.5 Pro · 20+ dimensions d'analyse",
@@ -1413,6 +1414,10 @@
       "freeFirstAudit": {
         "title": "Le premier audit ne demande aucun compte",
         "desc": "Collez une URL et obtenez le rapport complet immédiatement. Inscrivez-vous ensuite pour le télécharger, l'enregistrer et analyser d'autres sites."
+      },
+      "siteWatch": {
+        "title": "Veille de pages et suivi des concurrents",
+        "desc": "Pro vérifie désormais vos pages et celles de vos concurrents chaque semaine ou chaque jour, et ne vous écrit que lorsqu'un titre, un tarif, une description ou une vignette de partage change vraiment."
       }
     }
   },
@@ -1480,5 +1485,48 @@
     "proFreeBadge": "Pro (gratuit)",
     "accountDesc": "Vous avez l'accès Pro complet, gratuit pendant l'accès anticipé. Rien à payer pour l'instant.",
     "gateDesc": "C'est une fonctionnalité Pro — et Pro est gratuit pour tous pendant l'accès anticipé."
+  },
+  "monitoring": {
+    "title": "Veille de pages",
+    "subtitle": "Nous vérifions vos pages et celles de vos concurrents à intervalles réguliers et ne vous écrivons que lorsqu'un vrai changement survient.",
+    "gateTitle": "La veille fait partie de Pro",
+    "gateDesc": "Surveillez vos propres pages et jusqu'à trois concurrents, et recevez un récapitulatif dès qu'il y a du nouveau.",
+    "cadenceTitle": "À quelle fréquence vérifier ?",
+    "cadenceDesc": "Choisissez votre rythme. Nous restons silencieux quand rien ne bouge.",
+    "weekly": "Chaque semaine",
+    "daily": "Chaque jour",
+    "emailToggle": "M'envoyer le récapitulatif par e-mail",
+    "yourSites": "Vos pages",
+    "yourSitesDesc": "Soyez prévenu quand un titre, un prix, une description ou la vignette de partage change, ou quand la page ne se charge plus.",
+    "yourSitePlaceholder": "votresite.com",
+    "watch": "Surveiller",
+    "competitors": "Concurrents",
+    "competitorsDesc": "Suivez jusqu'à trois concurrents et voyez quand ils changent de discours ou de tarifs.",
+    "competitorPlaceholder": "concurrent.com",
+    "track": "Suivre",
+    "emptySelf": "Aucune page surveillée pour l'instant.",
+    "emptyCompetitors": "Aucun concurrent suivi pour l'instant.",
+    "lastChecked": "Dernière vérification : {{when}}",
+    "notCheckedYet": "En attente de la première vérification",
+    "checkNow": "Vérifier maintenant",
+    "remove": "Retirer",
+    "added": "Ajouté à votre liste",
+    "addFailed": "Impossible d'ajouter cette adresse",
+    "checkFailed": "Impossible de vérifier cette page",
+    "settingsFailed": "Impossible d'enregistrer votre choix",
+    "baselineSaved": "Premier relevé enregistré — nous vous dirons ce qui change",
+    "foundChanges": "{{count}} changement détecté",
+    "foundChanges_other": "{{count}} changements détectés",
+    "noChanges": "Rien n'a changé",
+    "sideBySide": "Comparaison",
+    "colSite": "Page",
+    "colHeadline": "Titre",
+    "colPrices": "Tarifs",
+    "colWords": "Mots",
+    "colAlt": "Images sans texte alternatif",
+    "competitorTag": "Concurrent",
+    "timeline": "Ce qui a changé",
+    "timelineEmpty": "Rien n'a encore changé. Chaque changement apparaîtra ici.",
+    "unknownSite": "Page supprimée"
   }
 }

@@ -12,7 +12,8 @@
     "pricing": "Precios",
     "upgrade": "Mejorar",
     "menu": "Menú",
-    "connections": "Conexiones"
+    "connections": "Conexiones",
+    "monitoring": "Vigilancia"
   },
   "hero": {
     "badge": "Con tecnología de Gemini 2.5 Pro · 20+ dimensiones de análisis",
@@ -1413,6 +1414,10 @@
       "freeFirstAudit": {
         "title": "La primera auditoría no requiere cuenta",
         "desc": "Pega una URL y obtén el informe completo al instante. Regístrate después para descargarlo, guardarlo y analizar más sitios."
+      },
+      "siteWatch": {
+        "title": "Vigilancia de páginas y competencia",
+        "desc": "Pro ahora revisa tus páginas y las de tu competencia cada semana o cada día, y te escribe solo cuando cambia de verdad un titular, un precio, una descripción o la tarjeta para redes."
       }
     }
   },
@@ -1480,5 +1485,48 @@
     "proFreeBadge": "Pro (gratis)",
     "accountDesc": "Tienes acceso Pro completo, gratis durante el acceso anticipado. No hay nada que pagar.",
     "gateDesc": "Esta es una función Pro, y Pro es gratis para todos durante el acceso anticipado."
+  },
+  "monitoring": {
+    "title": "Vigilancia de páginas",
+    "subtitle": "Revisamos tus páginas y las de tu competencia con regularidad y solo te escribimos cuando cambia algo importante.",
+    "gateTitle": "La vigilancia es parte de Pro",
+    "gateDesc": "Vigila tus propias páginas y hasta tres competidores, y recibe un resumen cuando algo cambie.",
+    "cadenceTitle": "¿Cada cuánto revisamos?",
+    "cadenceDesc": "Elige tu ritmo. Si no cambia nada, no te molestamos.",
+    "weekly": "Semanal",
+    "daily": "Diario",
+    "emailToggle": "Enviarme el informe por correo",
+    "yourSites": "Tus páginas",
+    "yourSitesDesc": "Te avisamos cuando cambia un titular, un precio, una descripción o la tarjeta para redes, o si la página deja de cargar.",
+    "yourSitePlaceholder": "tusitio.com",
+    "watch": "Vigilar",
+    "competitors": "Competencia",
+    "competitorsDesc": "Sigue hasta tres rivales y entérate cuando cambien su mensaje o sus precios.",
+    "competitorPlaceholder": "competidor.com",
+    "track": "Seguir",
+    "emptySelf": "Todavía no vigilas ninguna página.",
+    "emptyCompetitors": "Todavía no sigues a ningún competidor.",
+    "lastChecked": "Última revisión: {{when}}",
+    "notCheckedYet": "Esperando la primera revisión",
+    "checkNow": "Revisar ahora",
+    "remove": "Quitar",
+    "added": "Añadido a tu lista",
+    "addFailed": "No se pudo añadir esa dirección",
+    "checkFailed": "No se pudo revisar esa página",
+    "settingsFailed": "No se pudo guardar tu preferencia",
+    "baselineSaved": "Primera lectura guardada: te avisaremos de lo que cambie",
+    "foundChanges": "{{count}} cambio detectado",
+    "foundChanges_other": "{{count}} cambios detectados",
+    "noChanges": "No cambió nada",
+    "sideBySide": "Comparativa",
+    "colSite": "Página",
+    "colHeadline": "Titular",
+    "colPrices": "Precios",
+    "colWords": "Palabras",
+    "colAlt": "Imágenes sin texto alternativo",
+    "competitorTag": "Rival",
+    "timeline": "Qué cambió",
+    "timelineEmpty": "Todavía no ha cambiado nada. Aquí verás cada cambio.",
+    "unknownSite": "Página eliminada"
   }
 }

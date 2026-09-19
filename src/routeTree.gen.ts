@@ -16,6 +16,7 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as BestAiWebsiteAuditToolsRouteImport } from './routes/best-ai-website-audit-tools'
 import { Route as CompareRouteImport } from './routes/compare'
 import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as MonitoringRouteImport } from './routes/monitoring'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as PrivacyRouteImport } from './routes/privacy'
@@ -32,6 +33,8 @@ import { Route as CheckoutReturnRouteImport } from './routes/checkout/return'
 import { Route as ShareTokenRouteImport } from './routes/share/$token'
 import { Route as ApiPublicSaveAnonymousAuditRouteImport } from './routes/api/public/save-anonymous-audit'
 import { Route as LovableEmailEventsRouteImport } from './routes/lovable/email/events'
+import { Route as ApiPublicHooksAbEvaluateRouteImport } from './routes/api/public/hooks/ab-evaluate'
+import { Route as ApiPublicHooksMonitorRunRouteImport } from './routes/api/public/hooks/monitor-run'
 import { Route as LovableEmailAuthPreviewRouteImport } from './routes/lovable/email/auth/preview'
 import { Route as LovableEmailAuthWebhookRouteImport } from './routes/lovable/email/auth/webhook'
 import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
@@ -69,6 +72,11 @@ const CompareRoute = CompareRouteImport.update({
 const DashboardRoute = DashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MonitoringRoute = MonitoringRouteImport.update({
+  id: '/monitoring',
+  path: '/monitoring',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OnboardingRoute = OnboardingRouteImport.update({
@@ -152,6 +160,18 @@ const LovableEmailEventsRoute = LovableEmailEventsRouteImport.update({
   path: '/lovable/email/events',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicHooksAbEvaluateRoute =
+  ApiPublicHooksAbEvaluateRouteImport.update({
+    id: '/api/public/hooks/ab-evaluate',
+    path: '/api/public/hooks/ab-evaluate',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiPublicHooksMonitorRunRoute =
+  ApiPublicHooksMonitorRunRouteImport.update({
+    id: '/api/public/hooks/monitor-run',
+    path: '/api/public/hooks/monitor-run',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const LovableEmailAuthPreviewRoute = LovableEmailAuthPreviewRouteImport.update({
   id: '/lovable/email/auth/preview',
   path: '/lovable/email/auth/preview',
@@ -177,6 +197,7 @@ export interface FileRoutesByFullPath {
   '/best-ai-website-audit-tools': typeof BestAiWebsiteAuditToolsRoute
   '/compare': typeof CompareRoute
   '/dashboard': typeof DashboardRoute
+  '/monitoring': typeof MonitoringRoute
   '/onboarding': typeof OnboardingRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
@@ -193,6 +214,8 @@ export interface FileRoutesByFullPath {
   '/blog/': typeof BlogIndexRoute
   '/api/public/save-anonymous-audit': typeof ApiPublicSaveAnonymousAuditRoute
   '/lovable/email/events': typeof LovableEmailEventsRoute
+  '/api/public/hooks/ab-evaluate': typeof ApiPublicHooksAbEvaluateRoute
+  '/api/public/hooks/monitor-run': typeof ApiPublicHooksMonitorRunRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
@@ -205,6 +228,7 @@ export interface FileRoutesByTo {
   '/best-ai-website-audit-tools': typeof BestAiWebsiteAuditToolsRoute
   '/compare': typeof CompareRoute
   '/dashboard': typeof DashboardRoute
+  '/monitoring': typeof MonitoringRoute
   '/onboarding': typeof OnboardingRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
@@ -221,6 +245,8 @@ export interface FileRoutesByTo {
   '/blog': typeof BlogIndexRoute
   '/api/public/save-anonymous-audit': typeof ApiPublicSaveAnonymousAuditRoute
   '/lovable/email/events': typeof LovableEmailEventsRoute
+  '/api/public/hooks/ab-evaluate': typeof ApiPublicHooksAbEvaluateRoute
+  '/api/public/hooks/monitor-run': typeof ApiPublicHooksMonitorRunRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
@@ -234,6 +260,7 @@ export interface FileRoutesById {
   '/best-ai-website-audit-tools': typeof BestAiWebsiteAuditToolsRoute
   '/compare': typeof CompareRoute
   '/dashboard': typeof DashboardRoute
+  '/monitoring': typeof MonitoringRoute
   '/onboarding': typeof OnboardingRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
@@ -250,6 +277,8 @@ export interface FileRoutesById {
   '/blog/': typeof BlogIndexRoute
   '/api/public/save-anonymous-audit': typeof ApiPublicSaveAnonymousAuditRoute
   '/lovable/email/events': typeof LovableEmailEventsRoute
+  '/api/public/hooks/ab-evaluate': typeof ApiPublicHooksAbEvaluateRoute
+  '/api/public/hooks/monitor-run': typeof ApiPublicHooksMonitorRunRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
@@ -264,6 +293,7 @@ export interface FileRouteTypes {
     | '/best-ai-website-audit-tools'
     | '/compare'
     | '/dashboard'
+    | '/monitoring'
     | '/onboarding'
     | '/pricing'
     | '/privacy'
@@ -280,6 +310,8 @@ export interface FileRouteTypes {
     | '/blog/'
     | '/api/public/save-anonymous-audit'
     | '/lovable/email/events'
+    | '/api/public/hooks/ab-evaluate'
+    | '/api/public/hooks/monitor-run'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
     | '/lovable/email/transactional/preview'
@@ -292,6 +324,7 @@ export interface FileRouteTypes {
     | '/best-ai-website-audit-tools'
     | '/compare'
     | '/dashboard'
+    | '/monitoring'
     | '/onboarding'
     | '/pricing'
     | '/privacy'
@@ -308,6 +341,8 @@ export interface FileRouteTypes {
     | '/blog'
     | '/api/public/save-anonymous-audit'
     | '/lovable/email/events'
+    | '/api/public/hooks/ab-evaluate'
+    | '/api/public/hooks/monitor-run'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
     | '/lovable/email/transactional/preview'
@@ -320,6 +355,7 @@ export interface FileRouteTypes {
     | '/best-ai-website-audit-tools'
     | '/compare'
     | '/dashboard'
+    | '/monitoring'
     | '/onboarding'
     | '/pricing'
     | '/privacy'
@@ -336,6 +372,8 @@ export interface FileRouteTypes {
     | '/blog/'
     | '/api/public/save-anonymous-audit'
     | '/lovable/email/events'
+    | '/api/public/hooks/ab-evaluate'
+    | '/api/public/hooks/monitor-run'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
     | '/lovable/email/transactional/preview'
@@ -349,6 +387,7 @@ export interface RootRouteChildren {
   BestAiWebsiteAuditToolsRoute: typeof BestAiWebsiteAuditToolsRoute
   CompareRoute: typeof CompareRoute
   DashboardRoute: typeof DashboardRoute
+  MonitoringRoute: typeof MonitoringRoute
   OnboardingRoute: typeof OnboardingRoute
   PricingRoute: typeof PricingRoute
   PrivacyRoute: typeof PrivacyRoute
@@ -365,6 +404,8 @@ export interface RootRouteChildren {
   BlogIndexRoute: typeof BlogIndexRoute
   ApiPublicSaveAnonymousAuditRoute: typeof ApiPublicSaveAnonymousAuditRoute
   LovableEmailEventsRoute: typeof LovableEmailEventsRoute
+  ApiPublicHooksAbEvaluateRoute: typeof ApiPublicHooksAbEvaluateRoute
+  ApiPublicHooksMonitorRunRoute: typeof ApiPublicHooksMonitorRunRoute
   LovableEmailAuthPreviewRoute: typeof LovableEmailAuthPreviewRoute
   LovableEmailAuthWebhookRoute: typeof LovableEmailAuthWebhookRoute
   LovableEmailTransactionalPreviewRoute: typeof LovableEmailTransactionalPreviewRoute
@@ -419,6 +460,13 @@ declare module '@tanstack/react-router' {
       path: '/dashboard'
       fullPath: '/dashboard'
       preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/monitoring': {
+      id: '/monitoring'
+      path: '/monitoring'
+      fullPath: '/monitoring'
+      preLoaderRoute: typeof MonitoringRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/onboarding': {
@@ -533,6 +581,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LovableEmailEventsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/hooks/ab-evaluate': {
+      id: '/api/public/hooks/ab-evaluate'
+      path: '/api/public/hooks/ab-evaluate'
+      fullPath: '/api/public/hooks/ab-evaluate'
+      preLoaderRoute: typeof ApiPublicHooksAbEvaluateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/hooks/monitor-run': {
+      id: '/api/public/hooks/monitor-run'
+      path: '/api/public/hooks/monitor-run'
+      fullPath: '/api/public/hooks/monitor-run'
+      preLoaderRoute: typeof ApiPublicHooksMonitorRunRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/lovable/email/auth/preview': {
       id: '/lovable/email/auth/preview'
       path: '/lovable/email/auth/preview'
@@ -565,6 +627,7 @@ const rootRouteChildren: RootRouteChildren = {
   BestAiWebsiteAuditToolsRoute: BestAiWebsiteAuditToolsRoute,
   CompareRoute: CompareRoute,
   DashboardRoute: DashboardRoute,
+  MonitoringRoute: MonitoringRoute,
   OnboardingRoute: OnboardingRoute,
   PricingRoute: PricingRoute,
   PrivacyRoute: PrivacyRoute,
@@ -581,6 +644,8 @@ const rootRouteChildren: RootRouteChildren = {
   BlogIndexRoute: BlogIndexRoute,
   ApiPublicSaveAnonymousAuditRoute: ApiPublicSaveAnonymousAuditRoute,
   LovableEmailEventsRoute: LovableEmailEventsRoute,
+  ApiPublicHooksAbEvaluateRoute: ApiPublicHooksAbEvaluateRoute,
+  ApiPublicHooksMonitorRunRoute: ApiPublicHooksMonitorRunRoute,
   LovableEmailAuthPreviewRoute: LovableEmailAuthPreviewRoute,
   LovableEmailAuthWebhookRoute: LovableEmailAuthWebhookRoute,
   LovableEmailTransactionalPreviewRoute: LovableEmailTransactionalPreviewRoute,

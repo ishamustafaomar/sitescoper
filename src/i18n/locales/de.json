@@ -12,7 +12,8 @@
     "pricing": "Preise",
     "upgrade": "Upgrade",
     "menu": "Menü",
-    "connections": "Verbindungen"
+    "connections": "Verbindungen",
+    "monitoring": "Beobachten"
   },
   "hero": {
     "badge": "Powered by Gemini 2.5 Pro · 20+ Analysedimensionen",
@@ -1413,6 +1414,10 @@
       "freeFirstAudit": {
         "title": "Das erste Audit braucht kein Konto",
         "desc": "URL einfügen und den vollständigen Bericht sofort erhalten. Danach anmelden, um ihn herunterzuladen, zu speichern und weitere Websites zu prüfen."
+      },
+      "siteWatch": {
+        "title": "Seitenbeobachtung und Wettbewerber im Blick",
+        "desc": "Pro prüft deine Seiten und die deiner Wettbewerber jetzt wöchentlich oder täglich und schreibt nur, wenn sich Überschrift, Preis, Beschreibung oder Vorschaubild wirklich ändern."
       }
     }
   },
@@ -1480,5 +1485,48 @@
     "proFreeBadge": "Pro (gratis)",
     "accountDesc": "Du hast vollen Pro-Zugang, kostenlos während des Early Access. Aktuell ist nichts zu zahlen.",
     "gateDesc": "Das ist eine Pro-Funktion — und Pro ist im Early Access für alle kostenlos."
+  },
+  "monitoring": {
+    "title": "Seiten im Blick",
+    "subtitle": "Wir prüfen deine Seiten und die deiner Wettbewerber regelmäßig und melden uns nur, wenn sich wirklich etwas ändert.",
+    "gateTitle": "Seitenbeobachtung gehört zu Pro",
+    "gateDesc": "Behalte deine eigenen Seiten und bis zu drei Wettbewerber im Blick und erhalte eine Zusammenfassung, sobald sich etwas ändert.",
+    "cadenceTitle": "Wie oft sollen wir prüfen?",
+    "cadenceDesc": "Wähle deinen Rhythmus. Wenn nichts passiert, bleiben wir still.",
+    "weekly": "Wöchentlich",
+    "daily": "Täglich",
+    "emailToggle": "Bericht per E-Mail schicken",
+    "yourSites": "Deine Seiten",
+    "yourSitesDesc": "Wir sagen Bescheid, wenn sich Überschrift, Preis, Beschreibung oder Vorschaubild ändern – oder die Seite nicht mehr lädt.",
+    "yourSitePlaceholder": "deineseite.de",
+    "watch": "Beobachten",
+    "competitors": "Wettbewerber",
+    "competitorsDesc": "Verfolge bis zu drei Wettbewerber und sieh, wann sie Botschaft oder Preise ändern.",
+    "competitorPlaceholder": "wettbewerber.de",
+    "track": "Verfolgen",
+    "emptySelf": "Noch keine Seite beobachtet.",
+    "emptyCompetitors": "Noch kein Wettbewerber verfolgt.",
+    "lastChecked": "Zuletzt geprüft: {{when}}",
+    "notCheckedYet": "Warte auf die erste Prüfung",
+    "checkNow": "Jetzt prüfen",
+    "remove": "Entfernen",
+    "added": "Zur Liste hinzugefügt",
+    "addFailed": "Diese Adresse konnte nicht hinzugefügt werden",
+    "checkFailed": "Diese Seite konnte nicht geprüft werden",
+    "settingsFailed": "Einstellung konnte nicht gespeichert werden",
+    "baselineSaved": "Erster Stand gespeichert – wir melden jede Änderung",
+    "foundChanges": "{{count}} Änderung gefunden",
+    "foundChanges_other": "{{count}} Änderungen gefunden",
+    "noChanges": "Nichts hat sich geändert",
+    "sideBySide": "Direktvergleich",
+    "colSite": "Seite",
+    "colHeadline": "Überschrift",
+    "colPrices": "Preise",
+    "colWords": "Wörter",
+    "colAlt": "Bilder ohne Alternativtext",
+    "competitorTag": "Wettbewerb",
+    "timeline": "Was sich geändert hat",
+    "timelineEmpty": "Bisher hat sich nichts geändert. Jede Änderung erscheint hier.",
+    "unknownSite": "Entfernte Seite"
   }
 }

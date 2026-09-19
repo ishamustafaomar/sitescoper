@@ -12,7 +12,8 @@
     "pricing": "Pricing",
     "upgrade": "Upgrade",
     "menu": "Menu",
-    "connections": "Connections"
+    "connections": "Connections",
+    "monitoring": "Watch"
   },
   "hero": {
     "badge": "Powered by Gemini 2.5 Pro · 20+ analysis dimensions",
@@ -1413,6 +1414,10 @@
       "freeFirstAudit": {
         "title": "Your first audit needs no account",
         "desc": "Paste a URL and get the full report straight away. Sign up afterwards to download it, save it and audit more sites."
+      },
+      "siteWatch": {
+        "title": "Site watch and competitor tracking",
+        "desc": "Pro now checks your pages and your competitors' pages every week or every day, and emails you only when a headline, price, description or share card actually changes."
       }
     }
   },
@@ -1480,5 +1485,48 @@
     "proFreeBadge": "Pro (free)",
     "accountDesc": "You have full Pro access, free during early access. Nothing to pay right now.",
     "gateDesc": "This is a Pro feature — and Pro is free for everyone during early access."
+  },
+  "monitoring": {
+    "title": "Site watch",
+    "subtitle": "We check your pages and your competitors' pages on a schedule and only email you when something meaningful changes.",
+    "gateTitle": "Site watch is part of Pro",
+    "gateDesc": "Keep an eye on your own pages and up to three competitors, and get a digest whenever something changes.",
+    "cadenceTitle": "How often should we check?",
+    "cadenceDesc": "Pick your rhythm. We stay quiet when nothing has changed.",
+    "weekly": "Weekly",
+    "daily": "Daily",
+    "emailToggle": "Email me the report",
+    "yourSites": "Your pages",
+    "yourSitesDesc": "Get told when a headline, price, description or share card changes — or when a page stops loading.",
+    "yourSitePlaceholder": "yoursite.com",
+    "watch": "Watch",
+    "competitors": "Competitors",
+    "competitorsDesc": "Track up to three rivals and see when they change their message or their prices.",
+    "competitorPlaceholder": "competitor.com",
+    "track": "Track",
+    "emptySelf": "No pages watched yet.",
+    "emptyCompetitors": "No competitors tracked yet.",
+    "lastChecked": "Last checked {{when}}",
+    "notCheckedYet": "Waiting for the first check",
+    "checkNow": "Check now",
+    "remove": "Remove",
+    "added": "Added to your watch list",
+    "addFailed": "Could not add that address",
+    "checkFailed": "Could not check that page",
+    "settingsFailed": "Could not save your preference",
+    "baselineSaved": "First look saved — we'll tell you what changes next",
+    "foundChanges": "Found {{count}} change",
+    "foundChanges_other": "Found {{count}} changes",
+    "noChanges": "Nothing changed",
+    "sideBySide": "Side by side",
+    "colSite": "Page",
+    "colHeadline": "Headline",
+    "colPrices": "Prices",
+    "colWords": "Words",
+    "colAlt": "Images without alt text",
+    "competitorTag": "Rival",
+    "timeline": "What changed",
+    "timelineEmpty": "Nothing has changed yet. We'll list every change here.",
+    "unknownSite": "Removed page"
   }
 }

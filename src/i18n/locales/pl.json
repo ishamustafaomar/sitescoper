@@ -12,7 +12,8 @@
     "pricing": "Cennik",
     "upgrade": "Ulepsz",
     "menu": "Menu",
-    "connections": "Połączenia"
+    "connections": "Połączenia",
+    "monitoring": "Obserwacja"
   },
   "hero": {
     "badge": "Napędzane przez Gemini 2.5 Pro · 20+ wymiarów analizy",
@@ -1413,6 +1414,10 @@
       "freeFirstAudit": {
         "title": "Pierwszy audyt bez konta",
         "desc": "Wklej adres i od razu otrzymaj pełny raport. Zarejestruj się później, aby go pobrać, zapisać i audytować kolejne strony."
+      },
+      "siteWatch": {
+        "title": "Obserwacja stron i konkurencji",
+        "desc": "Pro sprawdza teraz Twoje strony i strony konkurencji co tydzień lub codziennie i pisze tylko wtedy, gdy naprawdę zmieni się nagłówek, cena, opis lub obrazek do udostępniania."
       }
     }
   },
@@ -1480,5 +1485,48 @@
     "proFreeBadge": "Pro (darmowe)",
     "accountDesc": "Masz pełny dostęp do Pro, darmowy w okresie wczesnego dostępu. Nic do zapłacenia w tej chwili.",
     "gateDesc": "To funkcja Pro — a Pro jest darmowe dla wszystkich w okresie wczesnego dostępu."
+  },
+  "monitoring": {
+    "title": "Obserwacja stron",
+    "subtitle": "Regularnie sprawdzamy Twoje strony i strony konkurencji i piszemy tylko wtedy, gdy zmieni się coś istotnego.",
+    "gateTitle": "Obserwacja jest częścią Pro",
+    "gateDesc": "Miej na oku własne strony i maksymalnie trzech konkurentów oraz otrzymuj podsumowanie, gdy coś się zmieni.",
+    "cadenceTitle": "Jak często sprawdzać?",
+    "cadenceDesc": "Wybierz swój rytm. Gdy nic się nie dzieje, milczymy.",
+    "weekly": "Co tydzień",
+    "daily": "Codziennie",
+    "emailToggle": "Wyślij mi podsumowanie e-mailem",
+    "yourSites": "Twoje strony",
+    "yourSitesDesc": "Powiadomimy Cię, gdy zmieni się nagłówek, cena, opis lub obrazek do udostępniania albo gdy strona przestanie się otwierać.",
+    "yourSitePlaceholder": "twojastrona.pl",
+    "watch": "Obserwuj",
+    "competitors": "Konkurencja",
+    "competitorsDesc": "Śledź do trzech konkurentów i zobacz, kiedy zmieniają przekaz lub ceny.",
+    "competitorPlaceholder": "konkurent.pl",
+    "track": "Śledź",
+    "emptySelf": "Nie obserwujesz jeszcze żadnej strony.",
+    "emptyCompetitors": "Nie śledzisz jeszcze żadnego konkurenta.",
+    "lastChecked": "Ostatnie sprawdzenie: {{when}}",
+    "notCheckedYet": "Czekamy na pierwsze sprawdzenie",
+    "checkNow": "Sprawdź teraz",
+    "remove": "Usuń",
+    "added": "Dodano do listy",
+    "addFailed": "Nie udało się dodać tego adresu",
+    "checkFailed": "Nie udało się sprawdzić tej strony",
+    "settingsFailed": "Nie udało się zapisać ustawienia",
+    "baselineSaved": "Zapisano pierwszy odczyt — powiemy, co się zmieni",
+    "foundChanges": "Znaleziono {{count}} zmianę",
+    "foundChanges_other": "Znaleziono {{count}} zmian",
+    "noChanges": "Nic się nie zmieniło",
+    "sideBySide": "Porównanie",
+    "colSite": "Strona",
+    "colHeadline": "Nagłówek",
+    "colPrices": "Ceny",
+    "colWords": "Słowa",
+    "colAlt": "Obrazy bez tekstu alternatywnego",
+    "competitorTag": "Rywal",
+    "timeline": "Co się zmieniło",
+    "timelineEmpty": "Nic się jeszcze nie zmieniło. Każda zmiana pojawi się tutaj.",
+    "unknownSite": "Usunięta strona"
   }
 }

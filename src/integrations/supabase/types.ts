@@ -14,6 +14,93 @@ export type Database = {
   }
   public: {
     Tables: {
+      ab_events: {
+        Row: {
+          created_at: string
+          event: string
+          experiment_key: string
+          id: number
+          value: number
+          variant: string
+          visitor_id: string
+        }
+        Insert: {
+          created_at?: string
+          event: string
+          experiment_key: string
+          id?: number
+          value?: number
+          variant: string
+          visitor_id: string
+        }
+        Update: {
+          created_at?: string
+          event?: string
+          experiment_key?: string
+          id?: number
+          value?: number
+          variant?: string
+          visitor_id?: string
+        }
+        Relationships: []
+      }
+      ab_experiments: {
+        Row: {
+          auto_promote: boolean
+          created_at: string
+          ended_at: string | null
+          goal: string
+          hypothesis: string | null
+          id: string
+          key: string
+          min_sample: number
+          name: string
+          priority: number
+          result_note: string | null
+          started_at: string | null
+          status: string
+          surface: string
+          variants: Json
+          winner: string | null
+        }
+        Insert: {
+          auto_promote?: boolean
+          created_at?: string
+          ended_at?: string | null
+          goal?: string
+          hypothesis?: string | null
+          id?: string
+          key: string
+          min_sample?: number
+          name: string
+          priority?: number
+          result_note?: string | null
+          started_at?: string | null
+          status?: string
+          surface: string
+          variants: Json
+          winner?: string | null
+        }
+        Update: {
+          auto_promote?: boolean
+          created_at?: string
+          ended_at?: string | null
+          goal?: string
+          hypothesis?: string | null
+          id?: string
+          key?: string
+          min_sample?: number
+          name?: string
+          priority?: number
+          result_note?: string | null
+          started_at?: string | null
+          status?: string
+          surface?: string
+          variants?: Json
+          winner?: string | null
+        }
+        Relationships: []
+      }
       analysis_history: {
         Row: {
           categories: Json
@@ -348,6 +435,178 @@ export type Database = {
           note?: string | null
           status?: string
           user_email?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      job_leases: {
+        Row: {
+          job_name: string
+          last_run_at: string | null
+          locked_until: string
+          paused_reason: string | null
+          updated_at: string
+        }
+        Insert: {
+          job_name: string
+          last_run_at?: string | null
+          locked_until?: string
+          paused_reason?: string | null
+          updated_at?: string
+        }
+        Update: {
+          job_name?: string
+          last_run_at?: string | null
+          locked_until?: string
+          paused_reason?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      monitor_changes: {
+        Row: {
+          changes: Json
+          created_at: string
+          id: string
+          monitor_id: string
+          notified_at: string | null
+          severity: string
+          summary: string | null
+          user_id: string
+        }
+        Insert: {
+          changes?: Json
+          created_at?: string
+          id?: string
+          monitor_id: string
+          notified_at?: string | null
+          severity?: string
+          summary?: string | null
+          user_id: string
+        }
+        Update: {
+          changes?: Json
+          created_at?: string
+          id?: string
+          monitor_id?: string
+          notified_at?: string | null
+          severity?: string
+          summary?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "monitor_changes_monitor_id_fkey"
+            columns: ["monitor_id"]
+            isOneToOne: false
+            referencedRelation: "monitors"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      monitor_settings: {
+        Row: {
+          email_enabled: boolean
+          frequency: string
+          last_digest_at: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          email_enabled?: boolean
+          frequency?: string
+          last_digest_at?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          email_enabled?: boolean
+          frequency?: string
+          last_digest_at?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      monitor_snapshots: {
+        Row: {
+          content_hash: string
+          created_at: string
+          id: string
+          monitor_id: string
+          response_ms: number | null
+          signals: Json
+          status_code: number | null
+          user_id: string
+        }
+        Insert: {
+          content_hash: string
+          created_at?: string
+          id?: string
+          monitor_id: string
+          response_ms?: number | null
+          signals?: Json
+          status_code?: number | null
+          user_id: string
+        }
+        Update: {
+          content_hash?: string
+          created_at?: string
+          id?: string
+          monitor_id?: string
+          response_ms?: number | null
+          signals?: Json
+          status_code?: number | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "monitor_snapshots_monitor_id_fkey"
+            columns: ["monitor_id"]
+            isOneToOne: false
+            referencedRelation: "monitors"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      monitors: {
+        Row: {
+          active: boolean
+          consecutive_failures: number
+          created_at: string
+          id: string
+          kind: string
+          label: string | null
+          last_checked_at: string | null
+          next_run_at: string
+          updated_at: string
+          url: string
+          user_id: string
+        }
+        Insert: {
+          active?: boolean
+          consecutive_failures?: number
+          created_at?: string
+          id?: string
+          kind?: string
+          label?: string | null
+          last_checked_at?: string | null
+          next_run_at?: string
+          updated_at?: string
+          url: string
+          user_id: string
+        }
+        Update: {
+          active?: boolean
+          consecutive_failures?: number
+          created_at?: string
+          id?: string
+          kind?: string
+          label?: string | null
+          last_checked_at?: string | null
+          next_run_at?: string
+          updated_at?: string
+          url?: string
           user_id?: string
         }
         Relationships: []
@@ -818,6 +1077,15 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      ab_results: {
+        Args: never
+        Returns: {
+          conversions: number
+          experiment_key: string
+          exposures: number
+          variant: string
+        }[]
+      }
       claim_anonymous_audit: {
         Args: { p_session_id: string }
         Returns: {

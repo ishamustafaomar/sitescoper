@@ -12,7 +12,8 @@
     "pricing": "Prijzen",
     "upgrade": "Upgraden",
     "menu": "Menu",
-    "connections": "Koppelingen"
+    "connections": "Koppelingen",
+    "monitoring": "Bewaking"
   },
   "hero": {
     "badge": "Aangedreven door Gemini 2.5 Pro · 20+ analysedimensies",
@@ -1413,6 +1414,10 @@
       "freeFirstAudit": {
         "title": "Je eerste audit heeft geen account nodig",
         "desc": "Plak een URL en krijg direct het volledige rapport. Meld je daarna aan om het te downloaden, te bewaren en meer sites te auditen."
+      },
+      "siteWatch": {
+        "title": "Paginabewaking en concurrenten volgen",
+        "desc": "Pro controleert nu jouw pagina's en die van je concurrenten elke week of elke dag, en mailt alleen als een kop, prijs, omschrijving of deelafbeelding echt verandert."
       }
     }
   },
@@ -1480,5 +1485,48 @@
     "proFreeBadge": "Pro (gratis)",
     "accountDesc": "Je hebt volledige Pro-toegang, gratis tijdens early access. Op dit moment niets te betalen.",
     "gateDesc": "Dit is een Pro-functie — en Pro is gratis voor iedereen tijdens early access."
+  },
+  "monitoring": {
+    "title": "Pagina's in de gaten",
+    "subtitle": "We controleren jouw pagina's en die van je concurrenten volgens een schema en mailen alleen als er echt iets verandert.",
+    "gateTitle": "Bewaking hoort bij Pro",
+    "gateDesc": "Houd je eigen pagina's en maximaal drie concurrenten in de gaten en krijg een samenvatting zodra er iets verandert.",
+    "cadenceTitle": "Hoe vaak controleren we?",
+    "cadenceDesc": "Kies je ritme. Als er niets verandert, blijven we stil.",
+    "weekly": "Wekelijks",
+    "daily": "Dagelijks",
+    "emailToggle": "Stuur me het overzicht per e-mail",
+    "yourSites": "Jouw pagina's",
+    "yourSitesDesc": "We waarschuwen je als een kop, prijs, omschrijving of deelafbeelding verandert, of als de pagina niet meer laadt.",
+    "yourSitePlaceholder": "jouwsite.nl",
+    "watch": "Bewaken",
+    "competitors": "Concurrenten",
+    "competitorsDesc": "Volg maximaal drie concurrenten en zie wanneer ze hun boodschap of prijzen wijzigen.",
+    "competitorPlaceholder": "concurrent.nl",
+    "track": "Volgen",
+    "emptySelf": "Nog geen pagina's bewaakt.",
+    "emptyCompetitors": "Nog geen concurrenten gevolgd.",
+    "lastChecked": "Laatst gecontroleerd: {{when}}",
+    "notCheckedYet": "Wacht op de eerste controle",
+    "checkNow": "Nu controleren",
+    "remove": "Verwijderen",
+    "added": "Toegevoegd aan je lijst",
+    "addFailed": "Dat adres kon niet worden toegevoegd",
+    "checkFailed": "Die pagina kon niet worden gecontroleerd",
+    "settingsFailed": "Je voorkeur kon niet worden opgeslagen",
+    "baselineSaved": "Eerste meting bewaard — we melden wat er verandert",
+    "foundChanges": "{{count}} wijziging gevonden",
+    "foundChanges_other": "{{count}} wijzigingen gevonden",
+    "noChanges": "Er is niets veranderd",
+    "sideBySide": "Naast elkaar",
+    "colSite": "Pagina",
+    "colHeadline": "Kop",
+    "colPrices": "Prijzen",
+    "colWords": "Woorden",
+    "colAlt": "Afbeeldingen zonder alt-tekst",
+    "competitorTag": "Concurrent",
+    "timeline": "Wat er veranderde",
+    "timelineEmpty": "Er is nog niets veranderd. Elke wijziging verschijnt hier.",
+    "unknownSite": "Verwijderde pagina"
   }
 }
