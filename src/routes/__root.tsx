@@ -13,6 +13,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { AuthProvider } from "@/components/AuthProvider";
+import { AbProvider } from "@/lib/ab";
 import { CookieConsent } from "@/components/CookieConsent";
 import NotFound from "@/pages/NotFound";
 import { reportLovableError } from "@/lib/lovable-error-reporting";
@@ -147,12 +148,14 @@ function RootComponent() {
       <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
         <QueryClientProvider client={queryClient}>
           <AuthProvider>
-            <TooltipProvider>
-              <Toaster />
-              <Sonner />
-              <Outlet />
-              <CookieConsent />
-            </TooltipProvider>
+            <AbProvider>
+              <TooltipProvider>
+                <Toaster />
+                <Sonner />
+                <Outlet />
+                <CookieConsent />
+              </TooltipProvider>
+            </AbProvider>
           </AuthProvider>
         </QueryClientProvider>
       </ThemeProvider>
