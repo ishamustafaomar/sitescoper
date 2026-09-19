@@ -12,7 +12,8 @@
     "pricing": "料金プラン",
     "upgrade": "アップグレード",
     "menu": "メニュー",
-    "connections": "連携"
+    "connections": "連携",
+    "monitoring": "見張り"
   },
   "hero": {
     "badge": "Gemini 2.5 Pro搭載・20以上の分析項目",
@@ -1413,6 +1414,10 @@
       "freeFirstAudit": {
         "title": "最初の診断はアカウント不要",
         "desc": "URLを貼るだけで完全なレポートをすぐに取得できます。ダウンロードや保存、他サイトの診断は登録後に。"
+      },
+      "siteWatch": {
+        "title": "ページと競合の見張り",
+        "desc": "Proでは、あなたのページと競合のページを毎週または毎日確認し、見出し・価格・説明文・共有カードが実際に変わったときだけメールでお知らせします。"
       }
     }
   },
@@ -1480,5 +1485,47 @@
     "proFreeBadge": "Pro（無料）",
     "accountDesc": "アーリーアクセス期間中はフルPro機能を無料でご利用いただけます。現時点でのお支払いは不要です。",
     "gateDesc": "これはPro機能です — そしてアーリーアクセス期間中はProが全員無料です。"
+  },
+  "monitoring": {
+    "title": "ページの見張り",
+    "subtitle": "あなたのページと競合のページを定期的に確認し、意味のある変化があったときだけお知らせします。",
+    "gateTitle": "見張り機能はProの一部です",
+    "gateDesc": "自分のページと最大3つの競合を見張り、変化があれば要約をお届けします。",
+    "cadenceTitle": "確認の頻度は？",
+    "cadenceDesc": "好きなペースを選んでください。変化がなければ通知しません。",
+    "weekly": "毎週",
+    "daily": "毎日",
+    "emailToggle": "メールで受け取る",
+    "yourSites": "あなたのページ",
+    "yourSitesDesc": "見出し・価格・説明文・共有カードが変わったとき、またはページが開かなくなったときにお知らせします。",
+    "yourSitePlaceholder": "example.com",
+    "watch": "見張る",
+    "competitors": "競合",
+    "competitorsDesc": "最大3社を追跡し、訴求や価格が変わったタイミングを把握できます。",
+    "competitorPlaceholder": "competitor.com",
+    "track": "追跡",
+    "emptySelf": "まだ見張っているページはありません。",
+    "emptyCompetitors": "まだ追跡している競合はありません。",
+    "lastChecked": "最終確認: {{when}}",
+    "notCheckedYet": "最初の確認を待っています",
+    "checkNow": "今すぐ確認",
+    "remove": "削除",
+    "added": "リストに追加しました",
+    "addFailed": "そのアドレスを追加できませんでした",
+    "checkFailed": "そのページを確認できませんでした",
+    "settingsFailed": "設定を保存できませんでした",
+    "baselineSaved": "最初の状態を保存しました。次からの変化をお知らせします",
+    "foundChanges": "{{count}}件の変更が見つかりました",
+    "noChanges": "変化はありませんでした",
+    "sideBySide": "横並び比較",
+    "colSite": "ページ",
+    "colHeadline": "見出し",
+    "colPrices": "価格",
+    "colWords": "語数",
+    "colAlt": "代替テキストのない画像",
+    "competitorTag": "競合",
+    "timeline": "変わった内容",
+    "timelineEmpty": "まだ変化はありません。変化はここに一覧表示されます。",
+    "unknownSite": "削除されたページ"
   }
 }

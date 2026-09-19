@@ -12,7 +12,8 @@
     "pricing": "Prezzi",
     "upgrade": "Upgrade",
     "menu": "Menu",
-    "connections": "Connessioni"
+    "connections": "Connessioni",
+    "monitoring": "Sorveglianza"
   },
   "hero": {
     "badge": "Powered by Gemini 2.5 Pro · 20+ dimensioni di analisi",
@@ -1413,6 +1414,10 @@
       "freeFirstAudit": {
         "title": "Il primo audit non richiede un account",
         "desc": "Incolla un URL e ottieni subito il report completo. Registrati dopo per scaricarlo, salvarlo e analizzare altri siti."
+      },
+      "siteWatch": {
+        "title": "Controllo delle pagine e dei concorrenti",
+        "desc": "Pro ora controlla le tue pagine e quelle dei concorrenti ogni settimana o ogni giorno e ti scrive solo quando cambiano davvero titolo, prezzo, descrizione o anteprima social."
       }
     }
   },
@@ -1480,5 +1485,48 @@
     "proFreeBadge": "Pro (gratis)",
     "accountDesc": "Hai accesso Pro completo, gratis durante l'accesso anticipato. Nulla da pagare ora.",
     "gateDesc": "Questa è una funzione Pro — e Pro è gratis per tutti durante l'accesso anticipato."
+  },
+  "monitoring": {
+    "title": "Pagine sotto controllo",
+    "subtitle": "Controlliamo le tue pagine e quelle dei concorrenti a intervalli regolari e ti scriviamo solo quando cambia qualcosa di importante.",
+    "gateTitle": "Il controllo delle pagine è incluso in Pro",
+    "gateDesc": "Tieni d'occhio le tue pagine e fino a tre concorrenti e ricevi un riepilogo quando qualcosa cambia.",
+    "cadenceTitle": "Ogni quanto controlliamo?",
+    "cadenceDesc": "Scegli il tuo ritmo. Se non cambia nulla, restiamo in silenzio.",
+    "weekly": "Ogni settimana",
+    "daily": "Ogni giorno",
+    "emailToggle": "Inviami il riepilogo via email",
+    "yourSites": "Le tue pagine",
+    "yourSitesDesc": "Ti avvisiamo quando cambiano titolo, prezzo, descrizione o anteprima social, o se la pagina non si carica più.",
+    "yourSitePlaceholder": "tuosito.com",
+    "watch": "Controlla",
+    "competitors": "Concorrenti",
+    "competitorsDesc": "Segui fino a tre concorrenti e scopri quando cambiano messaggio o prezzi.",
+    "competitorPlaceholder": "concorrente.com",
+    "track": "Segui",
+    "emptySelf": "Nessuna pagina sotto controllo.",
+    "emptyCompetitors": "Nessun concorrente seguito.",
+    "lastChecked": "Ultimo controllo: {{when}}",
+    "notCheckedYet": "In attesa del primo controllo",
+    "checkNow": "Controlla ora",
+    "remove": "Rimuovi",
+    "added": "Aggiunto al tuo elenco",
+    "addFailed": "Impossibile aggiungere questo indirizzo",
+    "checkFailed": "Impossibile controllare questa pagina",
+    "settingsFailed": "Impossibile salvare la preferenza",
+    "baselineSaved": "Prima rilevazione salvata: ti diremo cosa cambia",
+    "foundChanges": "{{count}} cambiamento trovato",
+    "foundChanges_other": "{{count}} cambiamenti trovati",
+    "noChanges": "Nulla è cambiato",
+    "sideBySide": "Confronto",
+    "colSite": "Pagina",
+    "colHeadline": "Titolo",
+    "colPrices": "Prezzi",
+    "colWords": "Parole",
+    "colAlt": "Immagini senza testo alternativo",
+    "competitorTag": "Rivale",
+    "timeline": "Cosa è cambiato",
+    "timelineEmpty": "Non è ancora cambiato nulla. Ogni cambiamento comparirà qui.",
+    "unknownSite": "Pagina rimossa"
   }
 }

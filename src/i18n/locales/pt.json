@@ -12,7 +12,8 @@
     "pricing": "Preços",
     "upgrade": "Atualizar",
     "menu": "Menu",
-    "connections": "Ligações"
+    "connections": "Ligações",
+    "monitoring": "Monitorização"
   },
   "hero": {
     "badge": "Com tecnologia Gemini 2.5 Pro · 20+ dimensões de análise",
@@ -1413,6 +1414,10 @@
       "freeFirstAudit": {
         "title": "A primeira auditoria não precisa de conta",
         "desc": "Cole um URL e receba o relatório completo de imediato. Registe-se depois para o descarregar, guardar e analisar mais sites."
+      },
+      "siteWatch": {
+        "title": "Observação de páginas e da concorrência",
+        "desc": "O Pro passa a verificar as suas páginas e as da concorrência todas as semanas ou todos os dias, e só lhe escreve quando um título, preço, descrição ou imagem de partilha muda mesmo."
       }
     }
   },
@@ -1480,5 +1485,48 @@
     "proFreeBadge": "Pro (grátis)",
     "accountDesc": "Tem acesso Pro completo, gratuito durante o acesso antecipado. Não há nada a pagar agora.",
     "gateDesc": "Esta é uma funcionalidade Pro — e o Pro é gratuito para todos durante o acesso antecipado."
+  },
+  "monitoring": {
+    "title": "Páginas sob observação",
+    "subtitle": "Verificamos as suas páginas e as da concorrência com regularidade e só lhe escrevemos quando muda algo relevante.",
+    "gateTitle": "A observação faz parte do Pro",
+    "gateDesc": "Fique atento às suas páginas e a até três concorrentes e receba um resumo sempre que algo mudar.",
+    "cadenceTitle": "Com que frequência verificamos?",
+    "cadenceDesc": "Escolha o seu ritmo. Se nada mudar, ficamos calados.",
+    "weekly": "Semanal",
+    "daily": "Diária",
+    "emailToggle": "Enviar-me o resumo por email",
+    "yourSites": "As suas páginas",
+    "yourSitesDesc": "Avisamos quando muda um título, um preço, uma descrição ou a imagem de partilha, ou quando a página deixa de abrir.",
+    "yourSitePlaceholder": "oseusite.com",
+    "watch": "Observar",
+    "competitors": "Concorrentes",
+    "competitorsDesc": "Acompanhe até três concorrentes e veja quando mudam a mensagem ou os preços.",
+    "competitorPlaceholder": "concorrente.com",
+    "track": "Acompanhar",
+    "emptySelf": "Ainda não observa nenhuma página.",
+    "emptyCompetitors": "Ainda não acompanha nenhum concorrente.",
+    "lastChecked": "Última verificação: {{when}}",
+    "notCheckedYet": "À espera da primeira verificação",
+    "checkNow": "Verificar agora",
+    "remove": "Remover",
+    "added": "Adicionado à sua lista",
+    "addFailed": "Não foi possível adicionar esse endereço",
+    "checkFailed": "Não foi possível verificar essa página",
+    "settingsFailed": "Não foi possível guardar a sua preferência",
+    "baselineSaved": "Primeira leitura guardada — avisamos do que mudar",
+    "foundChanges": "{{count}} alteração encontrada",
+    "foundChanges_other": "{{count}} alterações encontradas",
+    "noChanges": "Nada mudou",
+    "sideBySide": "Lado a lado",
+    "colSite": "Página",
+    "colHeadline": "Título",
+    "colPrices": "Preços",
+    "colWords": "Palavras",
+    "colAlt": "Imagens sem texto alternativo",
+    "competitorTag": "Rival",
+    "timeline": "O que mudou",
+    "timelineEmpty": "Ainda não mudou nada. Cada alteração aparecerá aqui.",
+    "unknownSite": "Página removida"
   }
 }
