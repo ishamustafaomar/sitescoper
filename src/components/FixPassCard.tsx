@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Check, Copy, Loader2, Lock, Wrench } from "lucide-react";
+import { Check, Copy, Lock, Wrench } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
@@ -174,10 +174,11 @@ export function FixPassCard({ url, analysisId, title, description }: Props) {
             <DialogTitle className="font-heading">{t("fixPass.title")}</DialogTitle>
           </DialogHeader>
           {checkoutOpen && (
-            <FixPassCheckout
-              url={url}
-              analysisId={analysisId}
-              onError={(msg) =>
+            <StripeEmbeddedCheckoutForm
+              priceId="fix_pass_onetime"
+              fixPass={{ url, analysisId }}
+              returnUrl={`${window.location.origin}/checkout/return?session_id={CHECKOUT_SESSION_ID}`}
+              onError={(_code, msg) =>
                 toast({ title: t("fixPass.errorTitle"), description: msg, variant: "destructive" })
               }
             />
@@ -185,42 +186,5 @@ export function FixPassCard({ url, analysisId, title, description }: Props) {
         </DialogContent>
       </Dialog>
     </>
-  );
-}
-
-function FixPassCheckout({
-  url,
-  analysisId,
-  onError,
-}: {
-  url: string;
-  analysisId?: string;
-  onError: (msg: string) => void;
-}) {
-  const [clientSecretReady, setReady] = useState(false);
-  useEffect(() => setReady(true), []);
-  if (!clientSecretReady) return <Loader2 className="h-5 w-5 animate-spin mx-auto" />;
-  return (
-    <FixPassEmbedded url={url} analysisId={analysisId} onError={onError} />
-  );
-}
-
-function FixPassEmbedded({
-  url,
-  analysisId,
-  onError,
-}: {
-  url: string;
-  analysisId?: string;
-  onError: (msg: string) => void;
-}) {
-  // Reuses the shared embedded form, but with the one-time pass session.
-  return (
-    <StripeEmbeddedCheckoutForm
-      priceId="fix_pass_onetime"
-      fixPass={{ url, analysisId }}
-      returnUrl={`${window.location.origin}/checkout/return?session_id={CHECKOUT_SESSION_ID}`}
-      onError={(_code, msg) => onError(msg)}
-    />
   );
 }
