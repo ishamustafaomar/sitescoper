@@ -48,14 +48,18 @@ const Index = () => {
   const { toast } = useToast();
   const { user } = useAuth();
   const { isPro } = useSubscription();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const inputRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const [hasUsedFreeAnalysis, setHasUsedFreeAnalysis] = useState(false);
 
   // Continuously running headline test. When a test finishes, its winning
   // headline stays on permanently without any code change.
-  const heroTest = useExperiment<{ id: string; headline?: string; sub?: string }>("home_hero");
+  // Variant copy is authored in English only, so only English visitors take
+  // part — everyone else keeps the fully translated headline.
+  const heroTest = useExperiment<{ id: string; headline?: string; sub?: string }>("home_hero", {
+    enabled: (i18n.resolvedLanguage ?? i18n.language ?? "en").startsWith("en"),
+  });
   const heroHeadline = heroTest.config?.headline ?? null;
   const heroSub = heroTest.config?.sub ?? null;
 
