@@ -1,11 +1,11 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Check, Copy, Lock, Wrench } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { StripeEmbeddedCheckoutForm } from "@/components/StripeEmbeddedCheckout";
-import { listFixPasses } from "@/lib/fix-pass.functions";
+import { useFixPass } from "@/hooks/useFixPass";
 import { useAuth } from "@/components/AuthProvider";
 import { useToast } from "@/hooks/use-toast";
 
@@ -90,25 +90,8 @@ export function FixPassCard({ url, analysisId, title, description }: Props) {
   const { t } = useTranslation();
   const { user } = useAuth();
   const { toast } = useToast();
-  const [unlocked, setUnlocked] = useState<boolean | null>(null);
+  const { hasPass, loading } = useFixPass(url);
   const [checkoutOpen, setCheckoutOpen] = useState(false);
-
-  useEffect(() => {
-    let cancelled = false;
-    if (!user) {
-      setUnlocked(false);
-      return;
-    }
-    listFixPasses()
-      .then((passes) => {
-        if (cancelled) return;
-        setUnlocked(passes.some((p) => hostOf(p.url) === hostOf(url)));
-      })
-      .catch(() => !cancelled && setUnlocked(false));
-    return () => {
-      cancelled = true;
-    };
-  }, [user?.id, url]);
 
   const headTitle = title || `${hostOf(url)} — clear value, fast pages`;
   const headDesc =
@@ -122,9 +105,9 @@ export function FixPassCard({ url, analysisId, title, description }: Props) {
     [url, headTitle, headDesc],
   );
 
-  if (unlocked === null) return null;
+  if (loading) return null;
 
-  if (unlocked) {
+  if (hasPass) {
     return (
       <Card className="p-5 md:p-6 space-y-5">
         <div className="flex items-center gap-2">

@@ -50,7 +50,7 @@ export default function AnalysisDetail() {
 
   const handleExportPDF = () => {
     if (!record) return;
-    if (!isPro) {
+    if (!isPro && !hasPass) {
       toast({ title: t("analysisDetail.proFeatureToast"), description: t("analysisDetail.upgradeToDownload") });
       navigate("/pricing");
       return;
