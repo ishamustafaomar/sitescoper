@@ -16,15 +16,36 @@ export default function CheckoutReturn() {
   const { user, loading: authLoading } = useAuth();
   const { isPro, refetch } = useSubscription();
   const [waited, setWaited] = useState(0);
+  const [fixPassDone, setFixPassDone] = useState(false);
+
+  // A one-time Audit & Fix Pass does not create a subscription, so confirm it
+  // explicitly before falling back to waiting for the plan to sync.
+  useEffect(() => {
+    if (!sessionId || !user || fixPassDone) return;
+    let cancelled = false;
+    (async () => {
+      try {
+        const { confirmFixPass } = await import("@/lib/fix-pass.functions");
+        const { getStripeEnvironment } = await import("@/lib/stripe");
+        const res = await confirmFixPass({ data: { sessionId, environment: getStripeEnvironment() } });
+        if (!cancelled && res?.ok) setFixPassDone(true);
+      } catch {
+        /* not a fix-pass session — the subscription path below handles it */
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [sessionId, user?.id, fixPassDone]);
 
   useEffect(() => {
-    if (isPro || waited > 20) return;
+    if (isPro || fixPassDone || waited > 20) return;
     const t = setTimeout(() => {
       refetch();
       setWaited((w) => w + 1);
     }, 1500);
     return () => clearTimeout(t);
-  }, [isPro, waited, refetch]);
+  }, [isPro, fixPassDone, waited, refetch]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -35,7 +56,21 @@ export default function CheckoutReturn() {
           animate={{ opacity: 1, y: 0 }}
           className="bg-card border border-border rounded-3xl p-8 text-center space-y-5"
         >
-          {isPro ? (
+          {fixPassDone ? (
+            <>
+              <div className="inline-flex p-4 rounded-full bg-[hsl(var(--score-good))]/10">
+                <CheckCircle2 className="h-10 w-10 text-[hsl(var(--score-good))]" />
+              </div>
+              <h1 className="font-heading text-3xl font-bold">{t("fixPass.returnTitle")}</h1>
+              <p className="text-muted-foreground font-body">{t("fixPass.returnDesc")}</p>
+              <div className="flex gap-2 justify-center pt-2">
+                <Button onClick={() => navigate("/dashboard")}>{t("checkoutReturn.goDashboard")}</Button>
+                <Button variant="outline" onClick={() => navigate("/monitoring")}>
+                  {t("fixPass.returnWatch")}
+                </Button>
+              </div>
+            </>
+          ) : isPro ? (
             <>
               <div className="inline-flex p-4 rounded-full bg-[hsl(var(--score-good))]/10">
                 <CheckCircle2 className="h-10 w-10 text-[hsl(var(--score-good))]" />
