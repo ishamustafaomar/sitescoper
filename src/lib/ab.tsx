@@ -132,13 +132,22 @@ export interface UseExperimentResult<T> {
  */
 export function useExperiment<T extends VariantConfig = VariantConfig>(
   surface: Surface,
+  options?: { enabled?: boolean },
 ): UseExperimentResult<T> {
   const { experiments, ready } = useContext(AbContext);
+  // A visitor who cannot be shown the test copy (e.g. the variants are only
+  // written in one language) must stay out of the test entirely, so they see
+  // the normal translated page and never skew the results.
+  const enabled = options?.enabled !== false;
 
-  const live = experiments.find((e) => e.surface === surface && e.status === "running");
-  const settled = experiments.find(
-    (e) => e.surface === surface && e.status === "completed" && e.winner,
-  );
+  const live = enabled
+    ? experiments.find((e) => e.surface === surface && e.status === "running")
+    : undefined;
+  const settled = enabled
+    ? experiments.find(
+        (e) => e.surface === surface && e.status === "completed" && e.winner,
+      )
+    : undefined;
 
   const active = live ?? null;
   const variant = active
