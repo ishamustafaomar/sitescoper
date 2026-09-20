@@ -1418,6 +1418,10 @@
       "siteWatch": {
         "title": "Seitenbeobachtung und Wettbewerber im Blick",
         "desc": "Pro prüft deine Seiten und die deiner Wettbewerber jetzt wöchentlich oder täglich und schreibt nur, wenn sich Überschrift, Preis, Beschreibung oder Vorschaubild wirklich ändern."
+      },
+      "fixPass": {
+        "title": "Fix-Pass",
+        "desc": "Schalte fertige Korrekturen, den PDF-Bericht und 30 Tage automatische Prüfungen für eine Adresse frei — einmalig 9 $, ohne Abo."
       }
     }
   },
@@ -1528,5 +1532,23 @@
     "timeline": "Was sich geändert hat",
     "timelineEmpty": "Bisher hat sich nichts geändert. Jede Änderung erscheint hier.",
     "unknownSite": "Entfernte Seite"
+  },
+  "fixPass": {
+    "title": "Jetzt beheben — 9 $ einmalig",
+    "subtitle": "Schalte alles frei, um diesen Bericht für eine Adresse umzusetzen. Ohne Abo.",
+    "benefitMeta": "Fertige Titel-, Beschreibungs- und Social-Vorschau-Tags",
+    "benefitSchema": "Vorgefertigte strukturierte Daten für Suchmaschinen",
+    "benefitPdf": "Vollständiger PDF-Bericht für Kundinnen und Kunden",
+    "benefitWatch": "30 Tage automatische Prüfungen dieser Adresse",
+    "cta": "Alles freischalten — 9 $",
+    "note": "Einmalige Zahlung. Gilt 30 Tage für diese Adresse.",
+    "errorTitle": "Zahlung konnte nicht starten",
+    "unlockedTitle": "Dein Fix-Paket",
+    "unlockedDesc": "Füge das in den <head> deiner Seite ein und lade oben das PDF herunter.",
+    "metaLabel": "Titel, Beschreibung und Social-Tags",
+    "schemaLabel": "Strukturierte Daten",
+    "returnTitle": "Fix-Paket freigeschaltet",
+    "returnDesc": "Code-Korrekturen, PDF-Export und 30 Tage Prüfungen sind bereit.",
+    "returnWatch": "Überwachung ansehen"
   }
 }

@@ -1418,6 +1418,10 @@
       "siteWatch": {
         "title": "Vigilancia de páginas y competencia",
         "desc": "Pro ahora revisa tus páginas y las de tu competencia cada semana o cada día, y te escribe solo cuando cambia de verdad un titular, un precio, una descripción o la tarjeta para redes."
+      },
+      "fixPass": {
+        "title": "Pase de arreglos",
+        "desc": "Desbloquea arreglos listos para pegar, el informe PDF con marca y 30 días de revisiones automáticas para una dirección — un pago único de 9 $, sin suscripción."
       }
     }
   },
@@ -1528,5 +1532,23 @@
     "timeline": "Qué cambió",
     "timelineEmpty": "Todavía no ha cambiado nada. Aquí verás cada cambio.",
     "unknownSite": "Página eliminada"
+  },
+  "fixPass": {
+    "title": "Arréglalo ahora — 9 $ pago único",
+    "subtitle": "Desbloquea todo lo necesario para actuar sobre este informe en una dirección. Sin suscripción.",
+    "benefitMeta": "Etiquetas de título, descripción y vista previa social listas para pegar",
+    "benefitSchema": "Datos estructurados ya escritos para buscadores",
+    "benefitPdf": "Informe PDF con marca que puedes enviar a un cliente",
+    "benefitWatch": "30 días de revisiones automáticas de esta dirección",
+    "cta": "Desbloquear todo — 9 $",
+    "note": "Pago único. Cubre esta dirección durante 30 días.",
+    "errorTitle": "No se pudo iniciar el pago",
+    "unlockedTitle": "Tu paquete de arreglos",
+    "unlockedDesc": "Pega esto en el <head> de tu página y descarga el PDF de arriba.",
+    "metaLabel": "Título, descripción y etiquetas sociales",
+    "schemaLabel": "Datos estructurados",
+    "returnTitle": "Paquete desbloqueado",
+    "returnDesc": "Tus arreglos de código, el PDF y 30 días de revisiones ya están listos.",
+    "returnWatch": "Ver seguimiento"
   }
 }
