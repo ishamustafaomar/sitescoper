@@ -8,6 +8,13 @@
       "when": 1789776028400,
       "tag": "0000_monitoring_competitors_and_ab_tests",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1789917416535,
+      "tag": "0001_create_fix_passes",
+      "breakpoints": true
     }
   ]
 }
