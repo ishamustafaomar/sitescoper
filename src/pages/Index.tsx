@@ -48,7 +48,7 @@ const Index = () => {
   const { toast } = useToast();
   const { user } = useAuth();
   const { isPro } = useSubscription();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const inputRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const [hasUsedFreeAnalysis, setHasUsedFreeAnalysis] = useState(false);
