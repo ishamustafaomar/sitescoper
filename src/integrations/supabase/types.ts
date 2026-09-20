@@ -346,6 +346,48 @@ export type Database = {
         }
         Relationships: []
       }
+      fix_passes: {
+        Row: {
+          amount_cents: number | null
+          analysis_id: string | null
+          created_at: string
+          environment: string
+          expires_at: string
+          id: string
+          price_id: string | null
+          status: string
+          stripe_session_id: string | null
+          url: string
+          user_id: string
+        }
+        Insert: {
+          amount_cents?: number | null
+          analysis_id?: string | null
+          created_at?: string
+          environment?: string
+          expires_at?: string
+          id?: string
+          price_id?: string | null
+          status?: string
+          stripe_session_id?: string | null
+          url: string
+          user_id: string
+        }
+        Update: {
+          amount_cents?: number | null
+          analysis_id?: string | null
+          created_at?: string
+          environment?: string
+          expires_at?: string
+          id?: string
+          price_id?: string | null
+          status?: string
+          stripe_session_id?: string | null
+          url?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       fix_pull_requests: {
         Row: {
           analysis_history_id: string | null

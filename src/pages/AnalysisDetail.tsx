@@ -13,6 +13,8 @@ import { supabase } from "@/integrations/supabase/client";
 import { AnalysisResult, ScrapeResult } from "@/lib/api";
 import { useToast } from "@/hooks/use-toast";
 import { useSubscription } from "@/hooks/useSubscription";
+import { useFixPass } from "@/hooks/useFixPass";
+import { FixPassCard } from "@/components/FixPassCard";
 import { useTranslation } from "react-i18next";
 
 function genToken() {
@@ -27,10 +29,12 @@ export default function AnalysisDetail() {
   const navigate = useNavigate();
   const { toast } = useToast();
   const { isPro } = useSubscription();
+  const [recordUrl, setRecordUrl] = useState<string | undefined>(undefined);
   const [record, setRecord] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [sharing, setSharing] = useState(false);
   const [copied, setCopied] = useState(false);
+  const { hasPass } = useFixPass(recordUrl);
 
   useEffect(() => {
     if (id) loadAnalysis();
@@ -44,13 +48,16 @@ export default function AnalysisDetail() {
       .eq("id", id)
       .single();
 
-    if (data) setRecord(data);
+    if (data) {
+      setRecord(data);
+      setRecordUrl(data.url);
+    }
     setLoading(false);
   };
 
   const handleExportPDF = () => {
     if (!record) return;
-    if (!isPro) {
+    if (!isPro && !hasPass) {
       toast({ title: t("analysisDetail.proFeatureToast"), description: t("analysisDetail.upgradeToDownload") });
       navigate("/pricing");
       return;
@@ -171,8 +178,8 @@ export default function AnalysisDetail() {
               {copied ? t("analysisDetail.copied") : t("analysisDetail.share")}
             </Button>
             <Button variant="outline" size="sm" onClick={handleExportPDF}>
-              {isPro ? <Download className="h-3.5 w-3.5" /> : <Lock className="h-3.5 w-3.5" />}
-              {isPro ? t("analysisDetail.exportPdf") : t("analysisDetail.exportPdfPro")}
+              {isPro || hasPass ? <Download className="h-3.5 w-3.5" /> : <Lock className="h-3.5 w-3.5" />}
+              {isPro || hasPass ? t("analysisDetail.exportPdf") : t("analysisDetail.exportPdfPro")}
             </Button>
           </div>
         </div>
@@ -215,6 +222,15 @@ export default function AnalysisDetail() {
             </TabsContent>
           </Tabs>
         </motion.div>
+
+        {!isPro && (
+          <FixPassCard
+            url={record.url}
+            analysisId={record.id}
+            title={record.scrape_data?.metadata?.title}
+            description={record.scrape_data?.metadata?.description}
+          />
+        )}
 
         <ScoreTrendChart url={record.url} currentId={record.id} />
       </main>

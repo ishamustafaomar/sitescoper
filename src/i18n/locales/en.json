@@ -1418,6 +1418,10 @@
       "siteWatch": {
         "title": "Site watch and competitor tracking",
         "desc": "Pro now checks your pages and your competitors' pages every week or every day, and emails you only when a headline, price, description or share card actually changes."
+      },
+      "fixPass": {
+        "title": "Audit & Fix Pass",
+        "desc": "Unlock ready-to-paste fixes, the branded PDF report and 30 days of automatic checks for one address — a single $9 payment, no subscription."
       }
     }
   },
@@ -1528,5 +1532,23 @@
     "timeline": "What changed",
     "timelineEmpty": "Nothing has changed yet. We'll list every change here.",
     "unknownSite": "Removed page"
+  },
+  "fixPass": {
+    "title": "Fix it now — $9 one-time",
+    "subtitle": "Unlock everything you need to act on this report for one address. No subscription.",
+    "benefitMeta": "Ready-to-paste title, description and social preview tags",
+    "benefitSchema": "Pre-written structured data for search engines",
+    "benefitPdf": "Full branded PDF report you can send to a client",
+    "benefitWatch": "30 days of automatic checks on this address",
+    "cta": "Unlock all fixes — $9",
+    "note": "One-time payment. Covers this address for 30 days.",
+    "errorTitle": "Payment could not start",
+    "unlockedTitle": "Your fix pack",
+    "unlockedDesc": "Paste these into the <head> of your page, then download the PDF above.",
+    "metaLabel": "Title, description and social tags",
+    "schemaLabel": "Structured data",
+    "returnTitle": "Fix pack unlocked",
+    "returnDesc": "Your code fixes, PDF export and 30 days of automatic checks are ready.",
+    "returnWatch": "See Watch"
   }
 }

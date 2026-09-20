@@ -1418,6 +1418,10 @@
       "siteWatch": {
         "title": "Obserwacja stron i konkurencji",
         "desc": "Pro sprawdza teraz Twoje strony i strony konkurencji co tydzień lub codziennie i pisze tylko wtedy, gdy naprawdę zmieni się nagłówek, cena, opis lub obrazek do udostępniania."
+      },
+      "fixPass": {
+        "title": "Pakiet poprawek",
+        "desc": "Odblokuj gotowe poprawki, raport PDF i 30 dni automatycznych kontroli dla jednego adresu — jednorazowo 9 $, bez subskrypcji."
       }
     }
   },
@@ -1528,5 +1532,23 @@
     "timeline": "Co się zmieniło",
     "timelineEmpty": "Nic się jeszcze nie zmieniło. Każda zmiana pojawi się tutaj.",
     "unknownSite": "Usunięta strona"
+  },
+  "fixPass": {
+    "title": "Napraw teraz — 9 $ jednorazowo",
+    "subtitle": "Odblokuj wszystko, czego potrzebujesz, aby wdrożyć ten raport dla jednego adresu. Bez subskrypcji.",
+    "benefitMeta": "Gotowe do wklejenia znaczniki tytułu, opisu i podglądu społecznościowego",
+    "benefitSchema": "Gotowe dane strukturalne dla wyszukiwarek",
+    "benefitPdf": "Pełny raport PDF do wysłania klientowi",
+    "benefitWatch": "30 dni automatycznych kontroli tego adresu",
+    "cta": "Odblokuj wszystko — 9 $",
+    "note": "Płatność jednorazowa. Obejmuje ten adres przez 30 dni.",
+    "errorTitle": "Nie udało się rozpocząć płatności",
+    "unlockedTitle": "Twój pakiet poprawek",
+    "unlockedDesc": "Wklej to w sekcji <head> strony, a następnie pobierz PDF powyżej.",
+    "metaLabel": "Tytuł, opis i znaczniki społecznościowe",
+    "schemaLabel": "Dane strukturalne",
+    "returnTitle": "Pakiet odblokowany",
+    "returnDesc": "Poprawki kodu, eksport PDF i 30 dni kontroli są gotowe.",
+    "returnWatch": "Zobacz Watch"
   }
 }

@@ -1418,6 +1418,10 @@
       "siteWatch": {
         "title": "Observação de páginas e da concorrência",
         "desc": "O Pro passa a verificar as suas páginas e as da concorrência todas as semanas ou todos os dias, e só lhe escreve quando um título, preço, descrição ou imagem de partilha muda mesmo."
+      },
+      "fixPass": {
+        "title": "Passe de correções",
+        "desc": "Desbloqueie correções prontas a colar, o relatório PDF e 30 dias de verificações automáticas para um endereço — 9 $ únicos, sem subscrição."
       }
     }
   },
@@ -1528,5 +1532,23 @@
     "timeline": "O que mudou",
     "timelineEmpty": "Ainda não mudou nada. Cada alteração aparecerá aqui.",
     "unknownSite": "Página removida"
+  },
+  "fixPass": {
+    "title": "Corrija agora — 9 $ pagamento único",
+    "subtitle": "Desbloqueie tudo o que precisa para agir sobre este relatório num endereço. Sem subscrição.",
+    "benefitMeta": "Etiquetas de título, descrição e pré-visualização social prontas a colar",
+    "benefitSchema": "Dados estruturados prontos para os motores de busca",
+    "benefitPdf": "Relatório PDF completo para enviar a um cliente",
+    "benefitWatch": "30 dias de verificações automáticas deste endereço",
+    "cta": "Desbloquear tudo — 9 $",
+    "note": "Pagamento único. Cobre este endereço durante 30 dias.",
+    "errorTitle": "Não foi possível iniciar o pagamento",
+    "unlockedTitle": "O seu pacote de correções",
+    "unlockedDesc": "Cole isto no <head> da sua página e descarregue o PDF acima.",
+    "metaLabel": "Título, descrição e etiquetas sociais",
+    "schemaLabel": "Dados estruturados",
+    "returnTitle": "Pacote desbloqueado",
+    "returnDesc": "As correções, o PDF e 30 dias de verificações estão prontos.",
+    "returnWatch": "Ver monitorização"
   }
 }

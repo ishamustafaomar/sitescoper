@@ -1418,6 +1418,10 @@
       "siteWatch": {
         "title": "Veille de pages et suivi des concurrents",
         "desc": "Pro vérifie désormais vos pages et celles de vos concurrents chaque semaine ou chaque jour, et ne vous écrit que lorsqu'un titre, un tarif, une description ou une vignette de partage change vraiment."
+      },
+      "fixPass": {
+        "title": "Pass correction",
+        "desc": "Débloquez des correctifs prêts à coller, le rapport PDF et 30 jours de vérifications automatiques pour une adresse — 9 $ une fois, sans abonnement."
       }
     }
   },
@@ -1528,5 +1532,23 @@
     "timeline": "Ce qui a changé",
     "timelineEmpty": "Rien n'a encore changé. Chaque changement apparaîtra ici.",
     "unknownSite": "Page supprimée"
+  },
+  "fixPass": {
+    "title": "Corrigez-le — 9 $ une seule fois",
+    "subtitle": "Débloquez tout ce qu’il faut pour agir sur ce rapport pour une adresse. Sans abonnement.",
+    "benefitMeta": "Balises de titre, description et aperçu social prêtes à coller",
+    "benefitSchema": "Données structurées prêtes pour les moteurs de recherche",
+    "benefitPdf": "Rapport PDF complet à envoyer à un client",
+    "benefitWatch": "30 jours de vérifications automatiques de cette adresse",
+    "cta": "Tout débloquer — 9 $",
+    "note": "Paiement unique. Couvre cette adresse pendant 30 jours.",
+    "errorTitle": "Le paiement n’a pas pu démarrer",
+    "unlockedTitle": "Votre kit de correction",
+    "unlockedDesc": "Collez ceci dans le <head> de votre page, puis téléchargez le PDF ci-dessus.",
+    "metaLabel": "Titre, description et balises sociales",
+    "schemaLabel": "Données structurées",
+    "returnTitle": "Kit débloqué",
+    "returnDesc": "Vos correctifs, l’export PDF et 30 jours de vérifications sont prêts.",
+    "returnWatch": "Voir le suivi"
   }
 }

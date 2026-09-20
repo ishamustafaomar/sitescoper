@@ -1418,6 +1418,10 @@
       "siteWatch": {
         "title": "Paginabewaking en concurrenten volgen",
         "desc": "Pro controleert nu jouw pagina's en die van je concurrenten elke week of elke dag, en mailt alleen als een kop, prijs, omschrijving of deelafbeelding echt verandert."
+      },
+      "fixPass": {
+        "title": "Fixpas",
+        "desc": "Ontgrendel kant-en-klare fixes, het PDF-rapport en 30 dagen automatische controles voor één adres — eenmalig $9, geen abonnement."
       }
     }
   },
@@ -1528,5 +1532,23 @@
     "timeline": "Wat er veranderde",
     "timelineEmpty": "Er is nog niets veranderd. Elke wijziging verschijnt hier.",
     "unknownSite": "Verwijderde pagina"
+  },
+  "fixPass": {
+    "title": "Los het nu op — $9 eenmalig",
+    "subtitle": "Ontgrendel alles wat je nodig hebt om dit rapport voor één adres uit te voeren. Geen abonnement.",
+    "benefitMeta": "Kant-en-klare titel-, beschrijvings- en social-previewtags",
+    "benefitSchema": "Voorgeschreven gestructureerde data voor zoekmachines",
+    "benefitPdf": "Volledig PDF-rapport dat je naar een klant kunt sturen",
+    "benefitWatch": "30 dagen automatische controles op dit adres",
+    "cta": "Alles ontgrendelen — $9",
+    "note": "Eenmalige betaling. Geldt 30 dagen voor dit adres.",
+    "errorTitle": "Betaling kon niet starten",
+    "unlockedTitle": "Je fixpakket",
+    "unlockedDesc": "Plak dit in de <head> van je pagina en download hierboven de PDF.",
+    "metaLabel": "Titel, beschrijving en socialtags",
+    "schemaLabel": "Gestructureerde data",
+    "returnTitle": "Fixpakket ontgrendeld",
+    "returnDesc": "Je codefixes, PDF-export en 30 dagen controles staan klaar.",
+    "returnWatch": "Bekijk Watch"
   }
 }

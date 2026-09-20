@@ -1418,6 +1418,10 @@
       "siteWatch": {
         "title": "Controllo delle pagine e dei concorrenti",
         "desc": "Pro ora controlla le tue pagine e quelle dei concorrenti ogni settimana o ogni giorno e ti scrive solo quando cambiano davvero titolo, prezzo, descrizione o anteprima social."
+      },
+      "fixPass": {
+        "title": "Pass correzioni",
+        "desc": "Sblocca correzioni pronte da incollare, il report PDF e 30 giorni di controlli automatici per un indirizzo — 9 $ una tantum, senza abbonamento."
       }
     }
   },
@@ -1528,5 +1532,23 @@
     "timeline": "Cosa è cambiato",
     "timelineEmpty": "Non è ancora cambiato nulla. Ogni cambiamento comparirà qui.",
     "unknownSite": "Pagina rimossa"
+  },
+  "fixPass": {
+    "title": "Sistemalo ora — 9 $ una tantum",
+    "subtitle": "Sblocca tutto il necessario per agire su questo report per un indirizzo. Senza abbonamento.",
+    "benefitMeta": "Tag di titolo, descrizione e anteprima social pronti da incollare",
+    "benefitSchema": "Dati strutturati già pronti per i motori di ricerca",
+    "benefitPdf": "Report PDF completo da inviare a un cliente",
+    "benefitWatch": "30 giorni di controlli automatici su questo indirizzo",
+    "cta": "Sblocca tutto — 9 $",
+    "note": "Pagamento unico. Copre questo indirizzo per 30 giorni.",
+    "errorTitle": "Pagamento non avviato",
+    "unlockedTitle": "Il tuo pacchetto di correzioni",
+    "unlockedDesc": "Incolla questo nel <head> della pagina, poi scarica il PDF qui sopra.",
+    "metaLabel": "Titolo, descrizione e tag social",
+    "schemaLabel": "Dati strutturati",
+    "returnTitle": "Pacchetto sbloccato",
+    "returnDesc": "Correzioni, esportazione PDF e 30 giorni di controlli sono pronti.",
+    "returnWatch": "Vedi monitoraggio"
   }
 }
