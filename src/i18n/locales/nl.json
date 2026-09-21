@@ -527,7 +527,17 @@
     "terms": "Voorwaarden",
     "signIn": "Inloggen",
     "rights": "© {{year}} SiteScoper. Alle rechten voorbehouden.",
-    "builtFor": "Gebouwd voor founders die de fixes ook echt doorvoeren."
+    "builtFor": "Gebouwd voor founders die de fixes ook echt doorvoeren.",
+    "audits": "Audits",
+    "uxAudit": "UX-audit",
+    "croAudit": "CRO-audit",
+    "landingPageAudit": "Landingspagina-audit",
+    "seoAuditReport": "SEO-auditrapport",
+    "tools": "Gratis tools",
+    "ogChecker": "Open Graph-checker",
+    "llmsTxt": "llms.txt-generator",
+    "allTools": "Alle gratis tools",
+    "openGraphGuide": "Gids voor Open Graph-tags"
   },
   "urlInput": {
     "placeholder": "Voer een website-URL in...",

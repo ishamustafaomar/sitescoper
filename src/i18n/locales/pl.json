@@ -527,7 +527,17 @@
     "terms": "Warunki",
     "signIn": "Zaloguj się",
     "rights": "© {{year}} SiteScoper. Wszelkie prawa zastrzeżone.",
-    "builtFor": "Stworzone dla założycieli, którzy naprawdę wdrażają poprawki."
+    "builtFor": "Stworzone dla założycieli, którzy naprawdę wdrażają poprawki.",
+    "audits": "Audyty",
+    "uxAudit": "Audyt UX",
+    "croAudit": "Audyt CRO",
+    "landingPageAudit": "Audyt landing page",
+    "seoAuditReport": "Raport audytu SEO",
+    "tools": "Darmowe narzędzia",
+    "ogChecker": "Sprawdzanie Open Graph",
+    "llmsTxt": "Generator llms.txt",
+    "allTools": "Wszystkie narzędzia",
+    "openGraphGuide": "Przewodnik po tagach Open Graph"
   },
   "urlInput": {
     "placeholder": "Wpisz adres URL strony...",

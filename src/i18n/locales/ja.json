@@ -527,7 +527,17 @@
     "terms": "利用規約",
     "signIn": "サインイン",
     "rights": "© {{year}} SiteScoper. All rights reserved.",
-    "builtFor": "実際に改善を実行する創業者のために作られました。"
+    "builtFor": "実際に改善を実行する創業者のために作られました。",
+    "audits": "監査",
+    "uxAudit": "UX監査",
+    "croAudit": "CRO監査",
+    "landingPageAudit": "ランディングページ監査",
+    "seoAuditReport": "SEO監査レポート",
+    "tools": "無料ツール",
+    "ogChecker": "Open Graphチェッカー",
+    "llmsTxt": "llms.txtジェネレーター",
+    "allTools": "すべての無料ツール",
+    "openGraphGuide": "Open Graphタグ ガイド"
   },
   "urlInput": {
     "placeholder": "ウェブサイトのURLを入力…",

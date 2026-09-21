@@ -527,7 +527,17 @@
     "terms": "Terms",
     "signIn": "Sign in",
     "rights": "© {{year}} SiteScoper. All rights reserved.",
-    "builtFor": "Built for founders who actually ship the fixes."
+    "builtFor": "Built for founders who actually ship the fixes.",
+    "audits": "Audits",
+    "uxAudit": "UX audit",
+    "croAudit": "CRO audit",
+    "landingPageAudit": "Landing page audit",
+    "seoAuditReport": "SEO audit report",
+    "tools": "Free tools",
+    "ogChecker": "Open Graph checker",
+    "llmsTxt": "llms.txt generator",
+    "allTools": "All free tools",
+    "openGraphGuide": "Open Graph tags guide"
   },
   "urlInput": {
     "placeholder": "Enter a website URL...",
