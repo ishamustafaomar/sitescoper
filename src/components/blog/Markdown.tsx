@@ -61,6 +61,26 @@ function stripInline(text: string): string {
 }
 
 function renderInline(text: string): ReactNode[] {
+  // Inline code spans are literal: never parse links inside `...`.
+  if (/`[^`]+`/.test(text)) {
+    const out: ReactNode[] = [];
+    text.split(/(`[^`]+`)/g).filter(Boolean).forEach((seg, i) => {
+      if (seg.startsWith("`") && seg.endsWith("`")) {
+        out.push(
+          <code key={`c${i}`} className="rounded bg-muted px-1.5 py-0.5 font-mono text-[0.9em]">
+            {seg.slice(1, -1)}
+          </code>,
+        );
+      } else {
+        out.push(...renderLinks(seg, i));
+      }
+    });
+    return out;
+  }
+  return renderLinks(text, 0);
+}
+
+function renderLinks(text: string, keyBase: number): ReactNode[] {
   // Tokenise links first, then bold/italic/code inside plain segments.
   const linkRe = /\[([^\]]+)\]\(([^)\s]+)\)/g;
   const parts: ReactNode[] = [];
