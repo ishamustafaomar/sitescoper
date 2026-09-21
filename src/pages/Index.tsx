@@ -558,6 +558,7 @@ const Index = () => {
           <StatsSection />
           <FeaturesSection />
           <HowItWorksSection />
+          <ScopeSection />
           <SampleReportSection onTryYours={scrollToInput} />
           <ManifestoSection />
           <CategoriesSection />
