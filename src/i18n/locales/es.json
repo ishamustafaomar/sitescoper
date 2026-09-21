@@ -1381,6 +1381,10 @@
     "empty": "Aún no hay novedades.",
     "newBadge": "NUEVO",
     "entries": {
+      "easierNav": {
+        "title": "Todo es más fácil de encontrar",
+        "desc": "Una barra de menú completa muestra Analizar, Panel, Comparar, Vigilancia, Herramientas, Blog, el Pase de arreglos de $9 y Precios en todas las páginas."
+      },
       "freeTools": {
         "title": "Herramientas gratis y guías de auditoría",
         "desc": "Nuevo comprobador de Open Graph y generador de llms.txt gratis (sin cuenta), una página Acerca de que explica cómo se puntúan las auditorías, páginas dedicadas de auditoría UX, CRO, landing page y SEO, y guías ampliadas."

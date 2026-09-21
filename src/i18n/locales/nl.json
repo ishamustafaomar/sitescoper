@@ -1381,6 +1381,10 @@
     "empty": "Nog geen updates.",
     "newBadge": "NIEUW",
     "entries": {
+      "easierNav": {
+        "title": "Alles is makkelijker te vinden",
+        "desc": "Een volledige menubalk toont Analyseren, Dashboard, Vergelijken, Monitoring, Tools, Blog, de Fix Pass van $9 en Prijzen op elke pagina."
+      },
       "freeTools": {
         "title": "Gratis tools en auditgidsen",
         "desc": "Nieuwe gratis Open Graph-checker en llms.txt-generator (zonder account), een Over-pagina die uitlegt hoe audits worden gescoord, aparte pagina’s voor UX-, CRO-, landingspagina- en SEO-audits, en flink uitgebreide gidsen."
