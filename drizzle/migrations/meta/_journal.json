@@ -15,6 +15,13 @@
       "when": 1789917416535,
       "tag": "0001_create_fix_passes",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1790005294520,
+      "tag": "0002_blog_seo_autopilot",
+      "breakpoints": true
     }
   ]
 }

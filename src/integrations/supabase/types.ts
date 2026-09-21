@@ -225,37 +225,55 @@ export type Database = {
       }
       blog_posts: {
         Row: {
+          author: string
           body: string
+          category: string
           created_at: string
           description: string
+          faq: Json
           id: string
           keyword: string
           published_at: string
           reading_time: string
           slug: string
+          source: string
+          status: string
           title: string
+          updated_at: string
         }
         Insert: {
+          author?: string
           body: string
+          category?: string
           created_at?: string
           description: string
+          faq?: Json
           id?: string
           keyword: string
           published_at?: string
           reading_time?: string
           slug: string
+          source?: string
+          status?: string
           title: string
+          updated_at?: string
         }
         Update: {
+          author?: string
           body?: string
+          category?: string
           created_at?: string
           description?: string
+          faq?: Json
           id?: string
           keyword?: string
           published_at?: string
           reading_time?: string
           slug?: string
+          source?: string
+          status?: string
           title?: string
+          updated_at?: string
         }
         Relationships: []
       }
@@ -913,6 +931,87 @@ export type Database = {
           id?: string
           url?: string | null
           user_id?: string
+        }
+        Relationships: []
+      }
+      seo_autopilot_runs: {
+        Row: {
+          action: string
+          detail: string | null
+          id: string
+          keyword: string | null
+          ok: boolean
+          post_slug: string | null
+          ran_at: string
+          words: number | null
+        }
+        Insert: {
+          action: string
+          detail?: string | null
+          id?: string
+          keyword?: string | null
+          ok?: boolean
+          post_slug?: string | null
+          ran_at?: string
+          words?: number | null
+        }
+        Update: {
+          action?: string
+          detail?: string | null
+          id?: string
+          keyword?: string | null
+          ok?: boolean
+          post_slug?: string | null
+          ran_at?: string
+          words?: number | null
+        }
+        Relationships: []
+      }
+      seo_topics: {
+        Row: {
+          angle: string
+          attempts: number
+          created_at: string
+          difficulty: number | null
+          done_at: string | null
+          id: string
+          intent: string
+          keyword: string
+          last_error: string | null
+          monthly_volume: number | null
+          post_slug: string | null
+          priority: number
+          status: string
+        }
+        Insert: {
+          angle?: string
+          attempts?: number
+          created_at?: string
+          difficulty?: number | null
+          done_at?: string | null
+          id?: string
+          intent?: string
+          keyword: string
+          last_error?: string | null
+          monthly_volume?: number | null
+          post_slug?: string | null
+          priority?: number
+          status?: string
+        }
+        Update: {
+          angle?: string
+          attempts?: number
+          created_at?: string
+          difficulty?: number | null
+          done_at?: string | null
+          id?: string
+          intent?: string
+          keyword?: string
+          last_error?: string | null
+          monthly_volume?: number | null
+          post_slug?: string | null
+          priority?: number
+          status?: string
         }
         Relationships: []
       }
