@@ -4,6 +4,7 @@ import Onboarding from "@/pages/Onboarding";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
 
 export const Route = createFileRoute("/onboarding")({
+  staticData: { sitemap: false },
   head: () => pageHead({ path: "/onboarding", title: 'Get started — SiteScoper', description: 'Set up your SiteScoper workspace.', noindex: true }),
   component: () => (
     <ProtectedRoute>

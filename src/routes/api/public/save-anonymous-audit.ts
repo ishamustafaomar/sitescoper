@@ -6,6 +6,7 @@ import { createFileRoute } from "@tanstack/react-router";
  * matching the browser session id against a recently recorded free scrape.
  */
 export const Route = createFileRoute("/api/public/save-anonymous-audit")({
+  staticData: { sitemap: false },
   server: {
     handlers: {
       POST: async ({ request }) => {

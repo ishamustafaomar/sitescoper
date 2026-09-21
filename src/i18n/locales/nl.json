@@ -30,7 +30,7 @@
     "actionableFixes": "AI-websiteaudit: UX- en SEO-fixes in 60 seconden.",
     "description": "De <1>AI-website-auditor</1> die de checklist van 200 regels overslaat en je de 3 UX-, SEO- en tekstfixes geeft die deze week écht de moeite waard zijn — met een actieplan in gewone taal dat een senior productstrateeg zou goedkeuren.",
     "freePlanBadge": "Gratis plan · 3 volledige scans per maand · Geen creditcard",
-    "freeScansFootnote": "Eerste audit zonder account · Geen creditcard · 2.400+ sites gescoord deze maand",
+    "freeScansFootnote": "Eerste audit zonder account · Geen creditcard · Resultaat in ongeveer 60 seconden",
     "multiPageCrawl": "Diepe multi-pagina crawl",
     "createAccountCta": "Maak een gratis account aan",
     "createAccountSub": "— bewaart je rapportgeschiedenis en laat je opnieuw scannen na elke fix.",
@@ -182,7 +182,7 @@
       "title": "Klaar om de waarheid te horen?",
       "subtitle": "Voer een gratis audit uit en krijg de 3 fixes die deze week de moeite waard zijn. Geen creditcard, 60 seconden.",
       "button": "Analyseer mijn website",
-      "footer": "Gebruikt door 2.400+ founders deze maand · ",
+      "footer": "Gratis beginnen · Geen creditcard · ",
       "battle": "daag een concurrent uit"
     },
     "faq": {

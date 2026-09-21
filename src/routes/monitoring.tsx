@@ -4,6 +4,7 @@ import Monitoring from "@/pages/Monitoring";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
 
 export const Route = createFileRoute("/monitoring")({
+  staticData: { sitemap: false },
   head: () =>
     pageHead({
       path: "/monitoring",

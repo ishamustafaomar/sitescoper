@@ -4,6 +4,7 @@ import Account from "@/pages/Account";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
 
 export const Route = createFileRoute("/account")({
+  staticData: { sitemap: false },
   head: () => pageHead({ path: "/account", title: 'Account — SiteScoper', description: 'Manage your SiteScoper account and billing.', noindex: true }),
   component: () => (
     <ProtectedRoute>

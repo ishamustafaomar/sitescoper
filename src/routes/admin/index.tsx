@@ -4,6 +4,7 @@ import Admin from "@/pages/Admin";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
 
 export const Route = createFileRoute("/admin/")({
+  staticData: { sitemap: false },
   head: () => pageHead({ path: "/admin", title: 'Admin — SiteScoper', description: 'SiteScoper admin console.', noindex: true }),
   component: () => (
     <ProtectedRoute>

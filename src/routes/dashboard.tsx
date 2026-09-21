@@ -5,6 +5,7 @@ import { ProtectedRoute } from "@/components/ProtectedRoute";
 import { OnboardingGuard } from "@/components/OnboardingGuard";
 
 export const Route = createFileRoute("/dashboard")({
+  staticData: { sitemap: false },
   head: () => pageHead({ path: "/dashboard", title: 'Dashboard — SiteScoper', description: 'Your SiteScoper website audit dashboard.', noindex: true }),
   component: () => (
     <ProtectedRoute>

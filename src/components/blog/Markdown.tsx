@@ -24,8 +24,21 @@ export interface TocItem {
   text: string;
 }
 
+/**
+ * Some older posts were written with ### as their top level. Promote them so
+ * every article has a proper H2 outline (better for readers and crawlers).
+ */
+export function normalizeBody(body: string): string {
+  const text = body.replace(/\r\n/g, "\n");
+  const hasH2 = /^## /m.test(text);
+  const hasH3 = /^### /m.test(text);
+  if (hasH2 || !hasH3) return text;
+  return text.replace(/^#### /gm, "### ").replace(/^### /gm, "## ");
+}
+
 /** H2 headings, used for the table of contents. */
-export function extractToc(body: string): TocItem[] {
+export function extractToc(rawBody: string): TocItem[] {
+  const body = normalizeBody(rawBody);
   const out: TocItem[] = [];
   for (const line of body.split("\n")) {
     if (line.startsWith("## ")) {
@@ -127,10 +140,10 @@ function renderTable(block: string, key: number): ReactNode {
   );
 }
 
-export function renderMarkdown(body: string): ReactNode[] {
+export function renderMarkdown(rawBody: string): ReactNode[] {
   // Split into blocks but keep fenced code blocks intact.
   const blocks: string[] = [];
-  const lines = body.replace(/\r\n/g, "\n").split("\n");
+  const lines = normalizeBody(rawBody).split("\n");
   let buf: string[] = [];
   let inFence = false;
   const flush = () => {

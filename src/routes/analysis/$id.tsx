@@ -4,6 +4,7 @@ import AnalysisDetail from "@/pages/AnalysisDetail";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
 
 export const Route = createFileRoute("/analysis/$id")({
+  staticData: { sitemap: false },
   head: () => pageHead({ path: "/analysis/$id", title: 'Analysis — SiteScoper', description: 'Your SiteScoper website analysis report.', noindex: true }),
   component: () => (
     <ProtectedRoute>

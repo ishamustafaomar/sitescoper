@@ -8,6 +8,7 @@ export function pageHead(opts: {
   image?: string;
   noindex?: boolean;
   publishedTime?: string;
+  modifiedTime?: string;
   jsonLd?: unknown[];
 }) {
   const url = `${SITE}${opts.path}`;
@@ -28,7 +29,17 @@ export function pageHead(opts: {
   if (opts.publishedTime) {
     meta.push({ property: "article:published_time", content: opts.publishedTime });
   }
-  if (opts.noindex) meta.push({ name: "robots", content: "noindex, nofollow" });
+  if (opts.modifiedTime) {
+    meta.push({ property: "article:modified_time", content: opts.modifiedTime });
+  }
+  if (opts.ogType === "article") {
+    meta.push({ property: "article:author", content: "Omar, founder of SiteScoper" });
+  }
+  meta.push(
+    opts.noindex
+      ? { name: "robots", content: "noindex, nofollow" }
+      : { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" },
+  );
   return {
     meta,
     links: opts.noindex ? [] : [{ rel: "canonical", href: url }],
