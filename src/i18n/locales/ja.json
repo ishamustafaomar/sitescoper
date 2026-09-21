@@ -27,7 +27,7 @@
     "badgeFoundersLine": "創業者による、創業者のためのツール",
     "stopGuessingLine1": "推測はもうやめて、",
     "stopGuessingLine2": "成長を始めよう。",
-    "actionableFixes": "60秒で分かる、実行できるUX・SEO改善策。",
+    "actionableFixes": "AIウェブサイト診断：60秒でUX・SEOの改善策。",
     "description": "<1>AIウェブサイト診断ツール</1>が、200項目のチェックリストを省いて、今週こそ取り組む価値のあるUX・SEO・コピーの改善策を3つに絞ってお届けします。シニアプロダクト戦略家が承認するような、平易な言葉でのアクションプランです。",
     "freePlanBadge": "無料プラン・毎月3回のフルスキャン・クレジットカード不要",
     "freeScansFootnote": "最初の診断はアカウント不要・カード不要・今月2,400件以上のサイトを診断",
@@ -531,7 +531,8 @@
   },
   "urlInput": {
     "placeholder": "ウェブサイトのURLを入力…",
-    "analyze": "分析"
+    "analyze": "分析",
+    "analyzing": "ウェブサイトを分析中"
   },
   "proGate": {
     "defaultTitle": "これはPro機能です",

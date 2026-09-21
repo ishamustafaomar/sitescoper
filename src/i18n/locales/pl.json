@@ -27,7 +27,7 @@
     "badgeFoundersLine": "Stworzone przez założycieli, dla założycieli",
     "stopGuessingLine1": "Przestań zgadywać,",
     "stopGuessingLine2": "zacznij rosnąć.",
-    "actionableFixes": "Konkretne poprawki UX i SEO w 60 sekund.",
+    "actionableFixes": "Audyt strony z AI: poprawki UX i SEO w 60 sekund.",
     "description": "<1>Audytor stron opartych na AI</1>, który pomija 200-punktową listę kontrolną i podaje 3 poprawki UX, SEO i copy, które faktycznie warto wdrożyć w tym tygodniu — z planem działania w prostym języku, jaki zatwierdziłby doświadczony strateg produktu.",
     "freePlanBadge": "Plan darmowy · 3 pełne skany miesięcznie · Bez karty kredytowej",
     "freeScansFootnote": "Pierwszy audyt bez konta · Bez karty · 2400+ stron ocenionych w tym miesiącu",
@@ -531,7 +531,8 @@
   },
   "urlInput": {
     "placeholder": "Wpisz adres URL strony...",
-    "analyze": "Analizuj"
+    "analyze": "Analizuj",
+    "analyzing": "Analizowanie strony"
   },
   "proGate": {
     "defaultTitle": "To funkcja Pro",

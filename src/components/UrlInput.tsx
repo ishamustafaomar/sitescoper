@@ -38,14 +38,19 @@ export function UrlInput({ onSubmit, isLoading }: UrlInputProps) {
         <button
           type="submit"
           disabled={isLoading || !url.trim()}
+          aria-label={isLoading ? t("urlInput.analyzing") : t("urlInput.analyze")}
+          aria-busy={isLoading}
           className="shrink-0 h-14 px-8 bg-primary text-primary-foreground font-body font-medium text-sm inline-flex items-center justify-center gap-2 border-t sm:border-t-0 sm:border-l border-foreground hover:bg-foreground/85 disabled:opacity-40 transition-colors"
         >
           {isLoading ? (
-            <Loader2 className="h-4 w-4 animate-spin" />
+            <>
+              <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+              <span className="sr-only">{t("urlInput.analyzing")}</span>
+            </>
           ) : (
             <>
               {t("urlInput.analyze")}
-              <ArrowRight className="h-4 w-4" />
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </>
           )}
         </button>

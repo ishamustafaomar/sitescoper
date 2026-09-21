@@ -27,7 +27,7 @@
     "badgeFoundersLine": "Built by founders, for founders",
     "stopGuessingLine1": "Stop guessing,",
     "stopGuessingLine2": "start growing.",
-    "actionableFixes": "Actionable UX & SEO fixes in 60 seconds.",
+    "actionableFixes": "AI website audit: UX & SEO fixes in 60 seconds.",
     "description": "The <1>AI website auditor</1> that skips the 200-row checklist and hands you the 3 UX, SEO and copy fixes actually worth shipping this week — with a plain-English action plan a senior product strategist would sign off on.",
     "freePlanBadge": "Free plan · 3 full scans every month · No credit card",
     "freeScansFootnote": "First audit needs no account · No credit card · 2,400+ sites scored this month",
@@ -531,7 +531,8 @@
   },
   "urlInput": {
     "placeholder": "Enter a website URL...",
-    "analyze": "Analyze"
+    "analyze": "Analyze",
+    "analyzing": "Analyzing website"
   },
   "proGate": {
     "defaultTitle": "This is a Pro feature",
