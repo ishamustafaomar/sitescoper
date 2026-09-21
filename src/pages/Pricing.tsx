@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "@/lib/router-compat";
 import { Check, Sparkles, Crown, ArrowRight, ShieldCheck, X, Zap } from "lucide-react";
