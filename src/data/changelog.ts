@@ -8,6 +8,13 @@ export type ChangelogEntry = {
 // Add new big changes at the top. `id` must be stable & unique.
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    id: "2026-09-21-easier-nav",
+    date: "2026-09-21",
+    titleKey: "changelog.entries.easierNav.title",
+    descKey: "changelog.entries.easierNav.desc",
+  },
+  {
+
     id: "2026-09-21-free-tools",
     date: "2026-09-21",
     titleKey: "changelog.entries.freeTools.title",
