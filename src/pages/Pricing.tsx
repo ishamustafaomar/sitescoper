@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "@/lib/router-compat";
-import { Check, Sparkles, Crown, ArrowRight, ShieldCheck, X } from "lucide-react";
+import { Check, Sparkles, Crown, ArrowRight, ShieldCheck, X, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { AppHeader } from "@/components/AppHeader";
