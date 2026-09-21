@@ -29,7 +29,12 @@ export const Route = createFileRoute("/website-audit-statistics")({
               url: "https://sitescoper.com/sitescoper-icon-v9.png",
             },
           },
-          mainEntityOfPage: "https://sitescoper.com/website-audit-statistics",
+          mainEntityOfPage: {
+            "@type": "WebPage",
+            "@id": "https://sitescoper.com/website-audit-statistics",
+          },
+          image: ["https://sitescoper.com/og-default.jpg"],
+          datePublished: "2026-09-01",
           dateModified: "2026-09-01",
           citation: Array.from(new Set(allStats.map((s) => s.url))),
         },
