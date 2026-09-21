@@ -39,7 +39,7 @@ export const Route = createFileRoute("/api/public/hooks/seo-autopilot")({
           { onConflict: "job_name" },
         );
 
-        let topic: auto.TopicRow | null = null;
+        let topic: TopicRow | null = null;
         try {
           const { data } = await supabaseAdmin
             .from("seo_topics")
@@ -49,7 +49,7 @@ export const Route = createFileRoute("/api/public/hooks/seo-autopilot")({
             .order("created_at", { ascending: true })
             .limit(1)
             .maybeSingle();
-          topic = (data as auto.TopicRow | null) ?? null;
+          topic = (data as TopicRow | null) ?? null;
 
           if (topic) {
             await supabaseAdmin.from("seo_topics").update({ status: "writing", attempts: topic.attempts + 1 }).eq("id", topic.id);
