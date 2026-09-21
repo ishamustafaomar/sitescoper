@@ -45,6 +45,25 @@ export function AppHeader() {
 
   const initial = ((user?.user_metadata?.full_name || user?.email || "U") as string)[0].toUpperCase();
 
+  const navItems = [
+    { to: "/", label: t("nav.analyze"), icon: Sparkles, show: true, exact: true },
+    { to: "/dashboard", label: t("nav.dashboard"), icon: LayoutDashboard, show: !!user },
+    { to: "/compare", label: t("nav.compare"), icon: Swords, show: true, pro: !isPro },
+    { to: "/monitoring", label: t("nav.monitoring"), icon: Eye, show: !!user, pro: !isPro },
+    { to: "/tools", label: t("nav.tools"), icon: Wrench, show: true },
+    { to: "/blog", label: t("nav.blog"), icon: BookOpen, show: true },
+    { to: "/pricing#fix-pass", label: t("nav.fixPass"), icon: Zap, show: true, match: "/pricing#fix-pass" },
+    { to: "/pricing", label: t("nav.pricing"), icon: Tag, show: true, exact: true },
+    { to: "/admin", label: t("nav.admin"), icon: Shield, show: !!user && isAdmin },
+  ].filter((i) => i.show);
+
+  const isItemActive = (item: (typeof navItems)[number]) => {
+    if (item.match) return `${path}${location.hash}` === item.match;
+    if (item.exact) return path === item.to && !location.hash;
+    return path.startsWith(item.to);
+  };
+
+
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-card/80 backdrop-blur-md supports-[backdrop-filter]:bg-card/70">
       <div className="max-w-6xl mx-auto h-[60px] px-4 flex items-center justify-between gap-2 sm:gap-4">
