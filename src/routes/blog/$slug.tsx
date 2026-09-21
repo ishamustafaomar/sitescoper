@@ -77,7 +77,7 @@ export const Route = createFileRoute("/blog/$slug")({
     if (post.faq.length) jsonLd.push(faqLd(post.faq));
     return pageHead({
       path: `/blog/${post.slug}`,
-      title: post.title.length > 50 ? post.title : `${post.title} | SiteScoper`,
+      title: metaTitle(post.title),
       description: post.description,
       ogType: "article",
       publishedTime: post.published_at,
