@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { AppHeader } from "@/components/AppHeader";
 import { ProGate } from "@/components/ProGate";
+import { useAnyFixPass } from "@/hooks/useFixPass";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
@@ -415,6 +416,7 @@ function MonitoringInner() {
 
 export default function Monitoring() {
   const { t } = useTranslation();
+  const { hasPass, loading: passLoading } = useAnyFixPass();
   return (
     <div className="min-h-screen bg-background">
       <AppHeader />
@@ -423,9 +425,13 @@ export default function Monitoring() {
           <h1 className="font-heading text-3xl md:text-4xl mb-2">{t("monitoring.title")}</h1>
           <p className="text-muted-foreground font-body max-w-2xl">{t("monitoring.subtitle")}</p>
         </header>
-        <ProGate title={t("monitoring.gateTitle")} description={t("monitoring.gateDesc")}>
+        {passLoading ? null : hasPass ? (
           <MonitoringInner />
-        </ProGate>
+        ) : (
+          <ProGate title={t("monitoring.gateTitle")} description={t("monitoring.gateDesc")}>
+            <MonitoringInner />
+          </ProGate>
+        )}
       </main>
     </div>
   );

@@ -35,3 +35,29 @@ export function useFixPass(url?: string) {
 
   return { hasPass: !!hasPass, loading: hasPass === null };
 }
+
+/** True when the signed-in user holds any active Audit & Fix Pass. */
+export function useAnyFixPass() {
+  const { user } = useAuth();
+  const [hasPass, setHasPass] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    if (!user) {
+      setHasPass(false);
+      return;
+    }
+    listFixPasses()
+      .then((passes) => {
+        if (!cancelled) setHasPass(passes.length > 0);
+      })
+      .catch(() => {
+        if (!cancelled) setHasPass(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [user?.id]);
+
+  return { hasPass: !!hasPass, loading: hasPass === null };
+}
