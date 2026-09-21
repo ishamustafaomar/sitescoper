@@ -43,6 +43,7 @@ import { Route as ApiPublicSaveAnonymousAuditRouteImport } from './routes/api/pu
 import { Route as LovableEmailEventsRouteImport } from './routes/lovable/email/events'
 import { Route as ApiPublicHooksAbEvaluateRouteImport } from './routes/api/public/hooks/ab-evaluate'
 import { Route as ApiPublicHooksMonitorRunRouteImport } from './routes/api/public/hooks/monitor-run'
+import { Route as ApiPublicHooksSeoAutopilotRouteImport } from './routes/api/public/hooks/seo-autopilot'
 import { Route as LovableEmailAuthPreviewRouteImport } from './routes/lovable/email/auth/preview'
 import { Route as LovableEmailAuthWebhookRouteImport } from './routes/lovable/email/auth/webhook'
 import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
@@ -220,6 +221,12 @@ const ApiPublicHooksMonitorRunRoute =
     path: '/api/public/hooks/monitor-run',
     getParentRoute: () => rootRouteImport,
   } as any)
+const ApiPublicHooksSeoAutopilotRoute =
+  ApiPublicHooksSeoAutopilotRouteImport.update({
+    id: '/api/public/hooks/seo-autopilot',
+    path: '/api/public/hooks/seo-autopilot',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const LovableEmailAuthPreviewRoute = LovableEmailAuthPreviewRouteImport.update({
   id: '/lovable/email/auth/preview',
   path: '/lovable/email/auth/preview',
@@ -272,6 +279,7 @@ export interface FileRoutesByFullPath {
   '/lovable/email/events': typeof LovableEmailEventsRoute
   '/api/public/hooks/ab-evaluate': typeof ApiPublicHooksAbEvaluateRoute
   '/api/public/hooks/monitor-run': typeof ApiPublicHooksMonitorRunRoute
+  '/api/public/hooks/seo-autopilot': typeof ApiPublicHooksSeoAutopilotRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
@@ -311,6 +319,7 @@ export interface FileRoutesByTo {
   '/lovable/email/events': typeof LovableEmailEventsRoute
   '/api/public/hooks/ab-evaluate': typeof ApiPublicHooksAbEvaluateRoute
   '/api/public/hooks/monitor-run': typeof ApiPublicHooksMonitorRunRoute
+  '/api/public/hooks/seo-autopilot': typeof ApiPublicHooksSeoAutopilotRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
@@ -351,6 +360,7 @@ export interface FileRoutesById {
   '/lovable/email/events': typeof LovableEmailEventsRoute
   '/api/public/hooks/ab-evaluate': typeof ApiPublicHooksAbEvaluateRoute
   '/api/public/hooks/monitor-run': typeof ApiPublicHooksMonitorRunRoute
+  '/api/public/hooks/seo-autopilot': typeof ApiPublicHooksSeoAutopilotRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
@@ -392,6 +402,7 @@ export interface FileRouteTypes {
     | '/lovable/email/events'
     | '/api/public/hooks/ab-evaluate'
     | '/api/public/hooks/monitor-run'
+    | '/api/public/hooks/seo-autopilot'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
     | '/lovable/email/transactional/preview'
@@ -431,6 +442,7 @@ export interface FileRouteTypes {
     | '/lovable/email/events'
     | '/api/public/hooks/ab-evaluate'
     | '/api/public/hooks/monitor-run'
+    | '/api/public/hooks/seo-autopilot'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
     | '/lovable/email/transactional/preview'
@@ -470,6 +482,7 @@ export interface FileRouteTypes {
     | '/lovable/email/events'
     | '/api/public/hooks/ab-evaluate'
     | '/api/public/hooks/monitor-run'
+    | '/api/public/hooks/seo-autopilot'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
     | '/lovable/email/transactional/preview'
@@ -510,6 +523,7 @@ export interface RootRouteChildren {
   LovableEmailEventsRoute: typeof LovableEmailEventsRoute
   ApiPublicHooksAbEvaluateRoute: typeof ApiPublicHooksAbEvaluateRoute
   ApiPublicHooksMonitorRunRoute: typeof ApiPublicHooksMonitorRunRoute
+  ApiPublicHooksSeoAutopilotRoute: typeof ApiPublicHooksSeoAutopilotRoute
   LovableEmailAuthPreviewRoute: typeof LovableEmailAuthPreviewRoute
   LovableEmailAuthWebhookRoute: typeof LovableEmailAuthWebhookRoute
   LovableEmailTransactionalPreviewRoute: typeof LovableEmailTransactionalPreviewRoute
@@ -755,6 +769,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicHooksMonitorRunRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/hooks/seo-autopilot': {
+      id: '/api/public/hooks/seo-autopilot'
+      path: '/api/public/hooks/seo-autopilot'
+      fullPath: '/api/public/hooks/seo-autopilot'
+      preLoaderRoute: typeof ApiPublicHooksSeoAutopilotRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/lovable/email/auth/preview': {
       id: '/lovable/email/auth/preview'
       path: '/lovable/email/auth/preview'
@@ -814,6 +835,7 @@ const rootRouteChildren: RootRouteChildren = {
   LovableEmailEventsRoute: LovableEmailEventsRoute,
   ApiPublicHooksAbEvaluateRoute: ApiPublicHooksAbEvaluateRoute,
   ApiPublicHooksMonitorRunRoute: ApiPublicHooksMonitorRunRoute,
+  ApiPublicHooksSeoAutopilotRoute: ApiPublicHooksSeoAutopilotRoute,
   LovableEmailAuthPreviewRoute: LovableEmailAuthPreviewRoute,
   LovableEmailAuthWebhookRoute: LovableEmailAuthWebhookRoute,
   LovableEmailTransactionalPreviewRoute: LovableEmailTransactionalPreviewRoute,
