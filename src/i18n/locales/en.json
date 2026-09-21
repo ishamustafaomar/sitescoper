@@ -319,6 +319,28 @@
       "pro5": "1-click PDF export",
       "pro6": "Unlimited, searchable history",
       "pro7": "Priority Gemini-powered scans"
+    },
+    "scope": {
+      "title": "What a SiteScoper audit actually covers",
+      "intro": "Every scan runs the same four passes over your page — the same ground a consultant covers in a paid audit, done in about a minute and written in plain language.",
+      "seo": {
+        "title": "SEO audits that name the fix",
+        "body": "Titles, meta descriptions, heading structure, canonical tags, internal links, structured data and indexability. Instead of a pass/fail grid you get the rewritten title tag, the missing schema block and the reason each one matters for the pages you actually want ranked."
+      },
+      "technical": {
+        "title": "Technical SEO and page speed",
+        "body": "Core Web Vitals, render-blocking assets, oversized images, broken links, redirect chains, robots and sitemap problems. We flag only the technical SEO issues large enough to move rankings or lose visitors, ranked by the effort each one takes."
+      },
+      "ux": {
+        "title": "UX and conversion path",
+        "body": "The audit reads your page the way a first-time visitor does: is the offer clear in five seconds, is the call to action obvious, does the mobile layout hold up, is there proof near the decision point. Every finding comes with the specific change to make."
+      },
+      "content": {
+        "title": "Content, clarity and trust",
+        "body": "Vague headlines, jargon, generic testimonials, missing pricing, thin pages and contradictions between what you promise and what the page shows. This is usually where the biggest conversion wins hide, and it is what checklist tools cannot see."
+      },
+      "outro": "Want to work through the same checks by hand first? Read our step-by-step guide to",
+      "link": "auditing a website for SEO"
     }
   },
   "dashboard": {

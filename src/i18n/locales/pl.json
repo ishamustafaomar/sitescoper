@@ -319,6 +319,28 @@
       "pro5": "Eksport do PDF jednym kliknięciem",
       "pro6": "Nielimitowana, przeszukiwalna historia",
       "pro7": "Priorytetowe skany napędzane przez Gemini"
+    },
+    "scope": {
+      "title": "Co naprawdę obejmuje audyt SiteScoper",
+      "intro": "Każde skanowanie wykonuje te same cztery przejścia po stronie — ten sam zakres, który konsultant pokrywa w płatnym audycie, w około minutę i prostym językiem.",
+      "seo": {
+        "title": "Audyty SEO, które wskazują poprawkę",
+        "body": "Tytuły, metaopisy, struktura nagłówków, tagi kanoniczne, linkowanie wewnętrzne, dane strukturalne i indeksowalność. Zamiast tabeli zaliczone/niezaliczone dostajesz przepisany tytuł, brakujący blok schema i powód, dla którego to ma znaczenie."
+      },
+      "technical": {
+        "title": "Techniczne SEO i szybkość strony",
+        "body": "Core Web Vitals, zasoby blokujące renderowanie, zbyt duże obrazy, uszkodzone linki, łańcuchy przekierowań oraz problemy z robots i mapą witryny. Zgłaszamy tylko te problemy technicznego SEO, które realnie wpływają na pozycje."
+      },
+      "ux": {
+        "title": "UX i ścieżka konwersji",
+        "body": "Audyt czyta stronę jak nowy odwiedzający: czy oferta jest jasna w pięć sekund, czy wezwanie do działania jest oczywiste, czy układ mobilny się trzyma, czy dowód jest blisko momentu decyzji. Każde ustalenie ma konkretną zmianę."
+      },
+      "content": {
+        "title": "Treść, jasność i zaufanie",
+        "body": "Ogólnikowe nagłówki, żargon, sztampowe opinie, brak cen, ubogie strony i sprzeczności między obietnicą a tym, co pokazuje strona. To tu zwykle kryją się największe zyski konwersji."
+      },
+      "outro": "Chcesz najpierw przejść te kontrole ręcznie? Przeczytaj nasz przewodnik krok po kroku, jak",
+      "link": "zrobić audyt SEO strony"
     }
   },
   "dashboard": {

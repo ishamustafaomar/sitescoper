@@ -319,6 +319,28 @@
       "pro5": "Exportación PDF en un clic",
       "pro6": "Historial ilimitado y con búsqueda",
       "pro7": "Escaneos prioritarios con Gemini"
+    },
+    "scope": {
+      "title": "Qué cubre realmente una auditoría de SiteScoper",
+      "intro": "Cada análisis realiza las mismas cuatro pasadas sobre tu página: el mismo terreno que cubre un consultor en una auditoría de pago, en aproximadamente un minuto y en lenguaje claro.",
+      "seo": {
+        "title": "Auditorías SEO que indican la solución",
+        "body": "Títulos, metadescripciones, estructura de encabezados, etiquetas canónicas, enlaces internos, datos estructurados e indexabilidad. En lugar de una tabla de aprobado/suspenso, obtienes el título reescrito, el bloque de schema que falta y por qué importa cada punto."
+      },
+      "technical": {
+        "title": "SEO técnico y velocidad de página",
+        "body": "Core Web Vitals, recursos que bloquean el renderizado, imágenes demasiado grandes, enlaces rotos, cadenas de redirecciones y problemas de robots y sitemap. Solo señalamos los problemas de SEO técnico lo bastante grandes como para afectar al posicionamiento, ordenados por esfuerzo."
+      },
+      "ux": {
+        "title": "UX y ruta de conversión",
+        "body": "La auditoría lee tu página como lo haría un visitante nuevo: ¿se entiende la oferta en cinco segundos?, ¿la llamada a la acción es evidente?, ¿el diseño móvil aguanta?, ¿hay pruebas cerca del punto de decisión? Cada hallazgo viene con el cambio concreto."
+      },
+      "content": {
+        "title": "Contenido, claridad y confianza",
+        "body": "Titulares vagos, jerga, testimonios genéricos, precios ausentes, páginas pobres y contradicciones entre lo que prometes y lo que muestra la página. Aquí suelen esconderse las mayores mejoras de conversión."
+      },
+      "outro": "¿Prefieres hacer primero estas comprobaciones a mano? Lee nuestra guía paso a paso para",
+      "link": "auditar un sitio web para SEO"
     }
   },
   "dashboard": {

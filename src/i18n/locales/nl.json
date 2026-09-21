@@ -319,6 +319,28 @@
       "pro5": "PDF-export met één klik",
       "pro6": "Onbeperkte, doorzoekbare geschiedenis",
       "pro7": "Prioritaire, Gemini-aangedreven scans"
+    },
+    "scope": {
+      "title": "Wat een SiteScoper-audit echt bekijkt",
+      "intro": "Elke scan doet vier passages over je pagina — hetzelfde terrein dat een consultant in een betaalde audit afloopt, in ongeveer een minuut en in gewone taal.",
+      "seo": {
+        "title": "SEO-audits die de oplossing benoemen",
+        "body": "Titels, metabeschrijvingen, kopstructuur, canonieke tags, interne links, gestructureerde data en indexeerbaarheid. In plaats van een geslaagd/niet-geslaagd-tabel krijg je de herschreven titeltag, het ontbrekende schema-blok en waarom het uitmaakt."
+      },
+      "technical": {
+        "title": "Technische SEO en paginasnelheid",
+        "body": "Core Web Vitals, render-blokkerende bestanden, te grote afbeeldingen, kapotte links, redirectketens en problemen met robots en sitemap. We melden alleen de technische SEO-problemen die groot genoeg zijn om je posities te verschuiven."
+      },
+      "ux": {
+        "title": "UX en conversiepad",
+        "body": "De audit leest je pagina zoals een nieuwe bezoeker: is het aanbod in vijf seconden duidelijk, is de call to action vanzelfsprekend, houdt de mobiele lay-out stand, staat er bewijs bij het beslismoment? Elke bevinding komt met de concrete wijziging."
+      },
+      "content": {
+        "title": "Inhoud, duidelijkheid en vertrouwen",
+        "body": "Vage koppen, jargon, algemene testimonials, ontbrekende prijzen, dunne pagina's en tegenstrijdigheden tussen belofte en pagina. Hier zitten meestal de grootste conversiewinsten."
+      },
+      "outro": "Wil je deze checks eerst zelf doen? Lees onze stapsgewijze gids over",
+      "link": "een website auditen voor SEO"
     }
   },
   "dashboard": {
