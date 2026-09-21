@@ -28,7 +28,6 @@ export function pageHead(opts: {
   meta.push({ property: "og:image:width", content: "1200" });
   meta.push({ property: "og:image:height", content: "630" });
   meta.push({ name: "twitter:image", content: image });
-  meta.push({ name: "twitter:card", content: "summary_large_image" });
   if (opts.publishedTime) {
     meta.push({ property: "article:published_time", content: opts.publishedTime });
   }
