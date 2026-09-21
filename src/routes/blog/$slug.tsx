@@ -1,6 +1,6 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
 import BlogPost from "@/pages/BlogPost";
-import { pageHead, breadcrumbLd, faqLd } from "@/lib/seo-head";
+import { pageHead, breadcrumbLd, faqLd, DEFAULT_OG_IMAGE } from "@/lib/seo-head";
 import { fetchBlogPost, fetchRelatedPosts } from "@/lib/blog-queries";
 
 const SUFFIX = " | SiteScoper";
