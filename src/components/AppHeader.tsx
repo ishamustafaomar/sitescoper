@@ -45,7 +45,7 @@ export function AppHeader() {
 
   const initial = ((user?.user_metadata?.full_name || user?.email || "U") as string)[0].toUpperCase();
 
-  const navItems = [
+  const navItems: NavItem[] = [
     { to: "/", label: t("nav.analyze"), icon: Sparkles, show: true, exact: true },
     { to: "/dashboard", label: t("nav.dashboard"), icon: LayoutDashboard, show: !!user },
     { to: "/compare", label: t("nav.compare"), icon: Swords, show: true, pro: !isPro },
