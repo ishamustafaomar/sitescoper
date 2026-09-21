@@ -14,7 +14,9 @@
     "menu": "Menu",
     "connections": "Ligações",
     "monitoring": "Monitorização",
-    "tools": "Ferramentas"
+    "tools": "Ferramentas",
+    "blog": "Blog",
+    "fixPass": "Passe de correções $9"
   },
   "hero": {
     "badge": "Com tecnologia Gemini 2.5 Pro · 20+ dimensões de análise",
@@ -1379,6 +1381,10 @@
     "empty": "Ainda sem atualizações.",
     "newBadge": "NOVO",
     "entries": {
+      "easierNav": {
+        "title": "Tudo ficou mais fácil de encontrar",
+        "desc": "Uma barra de menu completa mostra Analisar, Painel, Comparar, Monitorização, Ferramentas, Blog, o Passe de correções de $9 e Preços em todas as páginas."
+      },
       "freeTools": {
         "title": "Ferramentas gratuitas e guias de auditoria",
         "desc": "Novo verificador de Open Graph e gerador de llms.txt gratuitos (sem conta), uma página Sobre que explica como as auditorias são pontuadas, páginas dedicadas a auditorias de UX, CRO, landing page e SEO, e guias ampliados."

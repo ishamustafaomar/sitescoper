@@ -1,5 +1,16 @@
 import { Link, useNavigate, useLocation } from "@/lib/router-compat";
-import { LayoutDashboard, LogOut, LogIn, Shield, Sparkles, Check, Swords, Crown, User as UserIcon, Menu, Eye, Wrench } from "lucide-react";
+import { LayoutDashboard, LogOut, LogIn, Shield, Sparkles, Check, Swords, Crown, Menu, Eye, Wrench, BookOpen, Zap, Tag } from "lucide-react";
+
+type NavItem = {
+  to: string;
+  label: string;
+  icon?: React.ComponentType<{ className?: string }>;
+  show: boolean;
+  pro?: boolean;
+  exact?: boolean;
+  match?: string;
+};
+
 import { useEffect, useState } from "react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import logoMark from "@/assets/logo-mark.png";
@@ -45,6 +56,26 @@ export function AppHeader() {
 
   const initial = ((user?.user_metadata?.full_name || user?.email || "U") as string)[0].toUpperCase();
 
+  const navItems: NavItem[] = [
+    { to: "/", label: t("nav.analyze"), icon: Sparkles, show: true, exact: true },
+    { to: "/dashboard", label: t("nav.dashboard"), icon: LayoutDashboard, show: !!user },
+    { to: "/compare", label: t("nav.compare"), icon: Swords, show: true, pro: !isPro },
+    { to: "/monitoring", label: t("nav.monitoring"), icon: Eye, show: !!user, pro: !isPro },
+    { to: "/tools", label: t("nav.tools"), icon: Wrench, show: true },
+    { to: "/blog", label: t("nav.blog"), icon: BookOpen, show: true },
+    { to: "/pricing#fix-pass", label: t("nav.fixPass"), icon: Zap, show: true, match: "/pricing#fix-pass" },
+    { to: "/pricing", label: t("nav.pricing"), icon: Tag, show: true, exact: true },
+    { to: "/admin", label: t("nav.admin"), icon: Shield, show: !!user && isAdmin },
+  ].filter((i) => i.show);
+
+  const isItemActive = (item: NavItem) => {
+    if (item.match) return false;
+    if (item.exact) return path === item.to;
+    return path.startsWith(item.to);
+  };
+
+
+
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-card/80 backdrop-blur-md supports-[backdrop-filter]:bg-card/70">
       <div className="max-w-6xl mx-auto h-[60px] px-4 flex items-center justify-between gap-2 sm:gap-4">
@@ -78,74 +109,8 @@ export function AppHeader() {
           </div>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-1" aria-label="Primary">
-          <Link
-            to="/"
-            className={cn(pillBase, path === "/" ? pillActive : pillIdle)}
-          >
-            <Sparkles className="h-3.5 w-3.5" />
-            {t("nav.analyze")}
-          </Link>
-          {user && (
-            <Link
-              to="/dashboard"
-              className={cn(pillBase, path.startsWith("/dashboard") ? pillActive : pillIdle)}
-            >
-              <LayoutDashboard className="h-3.5 w-3.5" />
-              {t("nav.dashboard")}
-            </Link>
-          )}
-          <Link
-            to="/compare"
-            className={cn(pillBase, path === "/compare" ? pillActive : pillIdle)}
-          >
-            <Swords className="h-3.5 w-3.5" />
-            {t("nav.compare")}
-            {!isPro && (
-              <span className="ml-1 border border-accent/40 bg-accent/10 px-1.5 py-[1px] text-[9px] font-bold tracking-wider text-accent">
-                PRO
-              </span>
-            )}
-          </Link>
-          {user && (
-            <Link
-              to="/monitoring"
-              className={cn(pillBase, path.startsWith("/monitoring") ? pillActive : pillIdle)}
-            >
-              <Eye className="h-3.5 w-3.5" />
-              {t("nav.monitoring")}
-              {!isPro && (
-                <span className="ml-1 border border-accent/40 bg-accent/10 px-1.5 py-[1px] text-[9px] font-bold tracking-wider text-accent">
-                  PRO
-                </span>
-              )}
-            </Link>
-          )}
-          <Link
-            to="/tools"
-            className={cn(pillBase, path.startsWith("/tools") ? pillActive : pillIdle)}
-          >
-            <Wrench className="h-3.5 w-3.5" />
-            {t("nav.tools")}
-          </Link>
-          <Link
-            to="/pricing"
-            className={cn(pillBase, path === "/pricing" ? pillActive : pillIdle)}
-          >
-            {t("nav.pricing")}
-          </Link>
-          {user && isAdmin && (
-            <Link
-              to="/admin"
-              className={cn(pillBase, path.startsWith("/admin") ? pillActive : pillIdle)}
-            >
-              <Shield className="h-3.5 w-3.5" />
-              {t("nav.admin")}
-            </Link>
-          )}
-        </nav>
-
         <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
+
           <LanguageSwitcher />
           <ThemeToggle />
           <ChangelogBell />
@@ -214,47 +179,61 @@ export function AppHeader() {
                 <SheetTitle className="font-heading">{t("nav.menu")}</SheetTitle>
               </SheetHeader>
               <nav className="mt-6 flex flex-col gap-1">
-                {[
-                  { to: "/", label: t("nav.analyze"), icon: Sparkles, show: true },
-                  { to: "/dashboard", label: t("nav.dashboard"), icon: LayoutDashboard, show: !!user },
-                  { to: "/compare", label: t("nav.compare"), icon: Swords, show: true, pro: !isPro },
-                  { to: "/monitoring", label: t("nav.monitoring"), icon: Eye, show: !!user, pro: !isPro },
-                  { to: "/tools", label: t("nav.tools"), icon: Wrench, show: true },
-                  { to: "/pricing", label: t("nav.pricing"), show: true },
-                  { to: "/admin", label: t("nav.admin"), icon: Shield, show: !!user && isAdmin },
-                ]
-                  .filter((i) => i.show)
-                  .map((item) => {
-                    const Icon = item.icon;
-                    const active =
-                      item.to === "/"
-                        ? path === "/"
-                        : path.startsWith(item.to);
-                    return (
-                      <Link
-                        key={item.to}
-                        to={item.to}
-                        onClick={() => setMobileOpen(false)}
-                        className={cn(
-                          "flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-body text-left transition-colors",
-                          active ? "bg-muted text-foreground" : "text-muted-foreground hover:bg-muted/70 hover:text-foreground",
-                        )}
-                      >
-                        {Icon && <Icon className="h-4 w-4" />}
-                        <span>{item.label}</span>
-                        {item.pro && (
-                          <span className="ml-auto border border-accent/40 bg-accent/10 px-1.5 py-[1px] text-[9px] font-bold tracking-wider text-accent">
-                            PRO
-                          </span>
-                        )}
-                      </Link>
-                    );
-                  })}
+                {navItems.map((item) => {
+                  const Icon = item.icon;
+                  const active = isItemActive(item);
+                  return (
+                    <Link
+                      key={item.to}
+                      to={item.to}
+                      onClick={() => setMobileOpen(false)}
+                      className={cn(
+                        "flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-body text-left transition-colors",
+                        active ? "bg-muted text-foreground" : "text-muted-foreground hover:bg-muted/70 hover:text-foreground",
+                      )}
+                    >
+                      {Icon && <Icon className="h-4 w-4" />}
+                      <span>{item.label}</span>
+                      {item.pro && (
+                        <span className="ml-auto border border-accent/40 bg-accent/10 px-1.5 py-[1px] text-[9px] font-bold tracking-wider text-accent">
+                          PRO
+                        </span>
+                      )}
+                    </Link>
+                  );
+                })}
               </nav>
             </SheetContent>
           </Sheet>
         </div>
       </div>
+
+      <div className="hidden md:block border-t border-border/70">
+        <nav
+          className="max-w-6xl mx-auto px-4 py-1 flex flex-wrap items-center gap-x-1 gap-y-0.5"
+          aria-label="Primary"
+        >
+          {navItems.map((item) => {
+            const Icon = item.icon;
+            return (
+              <Link
+                key={item.to}
+                to={item.to}
+                className={cn(pillBase, "whitespace-nowrap", isItemActive(item) ? pillActive : pillIdle)}
+              >
+                {Icon && <Icon className="h-3.5 w-3.5" />}
+                {item.label}
+                {item.pro && (
+                  <span className="ml-1 border border-accent/40 bg-accent/10 px-1.5 py-[1px] text-[9px] font-bold tracking-wider text-accent">
+                    PRO
+                  </span>
+                )}
+              </Link>
+            );
+          })}
+        </nav>
+      </div>
     </header>
   );
+
 }

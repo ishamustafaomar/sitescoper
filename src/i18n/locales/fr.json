@@ -14,7 +14,9 @@
     "menu": "Menu",
     "connections": "Connexions",
     "monitoring": "Veille",
-    "tools": "Outils"
+    "tools": "Outils",
+    "blog": "Blog",
+    "fixPass": "Pass correctifs 9 $"
   },
   "hero": {
     "badge": "Propulsé par Gemini 2.5 Pro · 20+ dimensions d'analyse",
@@ -1379,6 +1381,10 @@
     "empty": "Aucune mise à jour pour l'instant.",
     "newBadge": "NOUVEAU",
     "entries": {
+      "easierNav": {
+        "title": "Tout est plus facile à trouver",
+        "desc": "Une barre de menu complète affiche Analyser, Tableau de bord, Comparer, Surveillance, Outils, Blog, le Pass correctifs à 9 $ et Tarifs sur chaque page."
+      },
       "freeTools": {
         "title": "Outils gratuits et guides d’audit",
         "desc": "Nouveau vérificateur Open Graph et générateur de llms.txt gratuits (sans compte), une page À propos expliquant la notation des audits, des pages dédiées aux audits UX, CRO, landing page et SEO, et des guides étoffés."

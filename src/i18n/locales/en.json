@@ -14,7 +14,9 @@
     "menu": "Menu",
     "connections": "Connections",
     "monitoring": "Watch",
-    "tools": "Tools"
+    "tools": "Tools",
+    "blog": "Blog",
+    "fixPass": "$9 Fix Pass"
   },
   "hero": {
     "badge": "Powered by Gemini 2.5 Pro · 20+ analysis dimensions",
@@ -1379,6 +1381,10 @@
     "empty": "No updates yet.",
     "newBadge": "NEW",
     "entries": {
+      "easierNav": {
+        "title": "Everything is easier to find",
+        "desc": "A full menu bar now shows Analyze, Dashboard, Compare, Watch, Tools, Blog, the $9 Fix Pass and Pricing on every page."
+      },
       "freeTools": {
         "title": "Free tools and audit guides",
         "desc": "New free Open Graph checker and llms.txt generator (no account needed), an About page explaining how audits are scored, dedicated UX, CRO, landing page and SEO audit pages, and fully expanded guides."

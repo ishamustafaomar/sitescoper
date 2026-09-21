@@ -14,7 +14,9 @@
     "menu": "Menü",
     "connections": "Verbindungen",
     "monitoring": "Beobachten",
-    "tools": "Tools"
+    "tools": "Tools",
+    "blog": "Blog",
+    "fixPass": "Fix-Pass 9 $"
   },
   "hero": {
     "badge": "Powered by Gemini 2.5 Pro · 20+ Analysedimensionen",
@@ -1379,6 +1381,10 @@
     "empty": "Noch keine Neuigkeiten.",
     "newBadge": "NEU",
     "entries": {
+      "easierNav": {
+        "title": "Alles ist leichter zu finden",
+        "desc": "Eine vollständige Menüleiste zeigt Analyse, Dashboard, Vergleich, Überwachung, Tools, Blog, den 9-$-Fix-Pass und Preise auf jeder Seite."
+      },
       "freeTools": {
         "title": "Kostenlose Tools und Audit-Leitfäden",
         "desc": "Neuer kostenloser Open-Graph-Checker und llms.txt-Generator (ohne Konto), eine Über-uns-Seite zur Bewertungsmethodik, eigene Seiten für UX-, CRO-, Landingpage- und SEO-Audits sowie deutlich erweiterte Leitfäden."

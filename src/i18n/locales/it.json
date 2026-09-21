@@ -14,7 +14,9 @@
     "menu": "Menu",
     "connections": "Connessioni",
     "monitoring": "Sorveglianza",
-    "tools": "Strumenti"
+    "tools": "Strumenti",
+    "blog": "Blog",
+    "fixPass": "Fix Pass 9 $"
   },
   "hero": {
     "badge": "Powered by Gemini 2.5 Pro · 20+ dimensioni di analisi",
@@ -1379,6 +1381,10 @@
     "empty": "Nessun aggiornamento.",
     "newBadge": "NOVITÀ",
     "entries": {
+      "easierNav": {
+        "title": "Tutto è più facile da trovare",
+        "desc": "Una barra dei menu completa mostra Analizza, Dashboard, Confronta, Monitoraggio, Strumenti, Blog, il Fix Pass da 9 $ e Prezzi su ogni pagina."
+      },
       "freeTools": {
         "title": "Strumenti gratuiti e guide agli audit",
         "desc": "Nuovi strumenti gratuiti: verifica Open Graph e generatore di llms.txt (senza account), una pagina Chi siamo che spiega come vengono assegnati i punteggi, pagine dedicate agli audit UX, CRO, landing page e SEO e guide ampliate."
