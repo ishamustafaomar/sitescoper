@@ -319,6 +319,28 @@
       "pro5": "1-Klick PDF-Export",
       "pro6": "Unbegrenzte, durchsuchbare Historie",
       "pro7": "Priorisierte Gemini-Scans"
+    },
+    "scope": {
+      "title": "Was ein SiteScoper-Audit wirklich abdeckt",
+      "intro": "Jeder Scan macht vier Durchgänge über deine Seite — dasselbe Terrain, das ein Berater in einem bezahlten Audit abdeckt, in etwa einer Minute und in klarer Sprache.",
+      "seo": {
+        "title": "SEO-Audits, die die Lösung benennen",
+        "body": "Titel, Meta-Beschreibungen, Überschriftenstruktur, Canonical-Tags, interne Links, strukturierte Daten und Indexierbarkeit. Statt einer Bestanden/Nicht-bestanden-Tabelle bekommst du den neu formulierten Title-Tag, den fehlenden Schema-Block und den Grund dahinter."
+      },
+      "technical": {
+        "title": "Technisches SEO und Seitengeschwindigkeit",
+        "body": "Core Web Vitals, renderblockierende Ressourcen, zu große Bilder, defekte Links, Weiterleitungsketten sowie Robots- und Sitemap-Probleme. Wir melden nur die technischen SEO-Probleme, die groß genug sind, um Rankings zu bewegen — sortiert nach Aufwand."
+      },
+      "ux": {
+        "title": "UX und Conversion-Pfad",
+        "body": "Das Audit liest deine Seite wie ein Erstbesucher: Ist das Angebot in fünf Sekunden klar, ist der Call-to-Action offensichtlich, hält das Mobil-Layout stand, gibt es Belege nahe am Entscheidungspunkt? Jeder Befund kommt mit der konkreten Änderung."
+      },
+      "content": {
+        "title": "Inhalt, Klarheit und Vertrauen",
+        "body": "Vage Überschriften, Fachjargon, generische Testimonials, fehlende Preise, dünne Seiten und Widersprüche zwischen Versprechen und Seiteninhalt. Hier verstecken sich meist die größten Conversion-Gewinne."
+      },
+      "outro": "Willst du diese Checks erst selbst durchgehen? Lies unsere Schritt-für-Schritt-Anleitung zum",
+      "link": "SEO-Audit einer Website"
     }
   },
   "dashboard": {

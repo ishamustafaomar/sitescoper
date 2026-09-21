@@ -319,6 +319,28 @@
       "pro5": "Exportação em PDF com um clique",
       "pro6": "Histórico ilimitado e pesquisável",
       "pro7": "Análises prioritárias com tecnologia Gemini"
+    },
+    "scope": {
+      "title": "O que uma auditoria da SiteScoper cobre de facto",
+      "intro": "Cada análise faz as mesmas quatro passagens pela tua página — o mesmo terreno que um consultor cobre numa auditoria paga, em cerca de um minuto e em linguagem simples.",
+      "seo": {
+        "title": "Auditorias de SEO que indicam a correção",
+        "body": "Títulos, meta descrições, estrutura de cabeçalhos, tags canónicas, links internos, dados estruturados e indexabilidade. Em vez de uma grelha de aprovado/reprovado, recebes o título reescrito, o bloco de schema em falta e a razão de cada ponto."
+      },
+      "technical": {
+        "title": "SEO técnico e velocidade da página",
+        "body": "Core Web Vitals, recursos que bloqueiam a renderização, imagens demasiado pesadas, links partidos, cadeias de redirecionamento e problemas de robots e sitemap. Assinalamos apenas os problemas de SEO técnico grandes o suficiente para mexer no ranking."
+      },
+      "ux": {
+        "title": "UX e caminho de conversão",
+        "body": "A auditoria lê a página como um visitante novo: a oferta é clara em cinco segundos, o call to action é óbvio, o layout móvel aguenta, há prova junto ao ponto de decisão? Cada conclusão vem com a alteração concreta a fazer."
+      },
+      "content": {
+        "title": "Conteúdo, clareza e confiança",
+        "body": "Títulos vagos, jargão, testemunhos genéricos, preços em falta, páginas pobres e contradições entre o que prometes e o que a página mostra. É aqui que costumam estar os maiores ganhos de conversão."
+      },
+      "outro": "Queres primeiro fazer estas verificações à mão? Lê o nosso guia passo a passo para",
+      "link": "auditar um site para SEO"
     }
   },
   "dashboard": {

@@ -23,6 +23,7 @@ const CTASection = lazy(() => import("@/components/landing/CTASection").then(m =
 const SampleReportSection = lazy(() => import("@/components/landing/SampleReportSection").then(m => ({ default: m.SampleReportSection })));
 const SocialProofBar = lazy(() => import("@/components/landing/SocialProofBar").then(m => ({ default: m.SocialProofBar })));
 const ManifestoSection = lazy(() => import("@/components/landing/ManifestoSection").then(m => ({ default: m.ManifestoSection })));
+const ScopeSection = lazy(() => import("@/components/landing/ScopeSection").then(m => ({ default: m.ScopeSection })));
 import { scrapeWebsiteStream, analyzeWebsite, ScrapeResult, AnalysisResult, TechSeoReport } from "@/lib/api";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/components/AuthProvider";
@@ -557,6 +558,7 @@ const Index = () => {
           <StatsSection />
           <FeaturesSection />
           <HowItWorksSection />
+          <ScopeSection />
           <SampleReportSection onTryYours={scrollToInput} />
           <ManifestoSection />
           <CategoriesSection />

@@ -319,6 +319,28 @@
       "pro5": "Export PDF con un click",
       "pro6": "Cronologia illimitata e ricercabile",
       "pro7": "Scansioni prioritarie con Gemini"
+    },
+    "scope": {
+      "title": "Cosa copre davvero un audit di SiteScoper",
+      "intro": "Ogni scansione esegue gli stessi quattro passaggi sulla tua pagina: lo stesso terreno che un consulente copre in un audit a pagamento, in circa un minuto e in linguaggio chiaro.",
+      "seo": {
+        "title": "Audit SEO che indicano la correzione",
+        "body": "Title, meta description, struttura dei titoli, tag canonici, link interni, dati strutturati e indicizzabilità. Invece di una tabella superato/non superato ottieni il title riscritto, il blocco schema mancante e il motivo per cui conta."
+      },
+      "technical": {
+        "title": "SEO tecnico e velocità della pagina",
+        "body": "Core Web Vitals, risorse che bloccano il rendering, immagini troppo pesanti, link rotti, catene di redirect, problemi di robots e sitemap. Segnaliamo solo i problemi di SEO tecnico abbastanza rilevanti da spostare il posizionamento, ordinati per sforzo."
+      },
+      "ux": {
+        "title": "UX e percorso di conversione",
+        "body": "L'audit legge la pagina come farebbe un nuovo visitatore: l'offerta è chiara in cinque secondi, la call to action è evidente, il layout mobile regge, ci sono prove vicino al punto di decisione? Ogni rilievo arriva con la modifica precisa."
+      },
+      "content": {
+        "title": "Contenuto, chiarezza e fiducia",
+        "body": "Titoli vaghi, gergo, testimonianze generiche, prezzi assenti, pagine povere e contraddizioni tra ciò che prometti e ciò che la pagina mostra. Qui si nascondono di solito i maggiori guadagni di conversione."
+      },
+      "outro": "Vuoi prima fare questi controlli a mano? Leggi la nostra guida passo passo per",
+      "link": "fare l'audit SEO di un sito"
     }
   },
   "dashboard": {
