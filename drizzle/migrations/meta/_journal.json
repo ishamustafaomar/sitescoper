@@ -22,6 +22,13 @@
       "when": 1790005294520,
       "tag": "0002_blog_seo_autopilot",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1790011674281,
+      "tag": "0003_restrict_user_roles_self_delete",
+      "breakpoints": true
     }
   ]
 }
