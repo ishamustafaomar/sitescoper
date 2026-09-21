@@ -13,7 +13,8 @@
     "upgrade": "Passer Pro",
     "menu": "Menu",
     "connections": "Connexions",
-    "monitoring": "Veille"
+    "monitoring": "Veille",
+    "tools": "Outils"
   },
   "hero": {
     "badge": "Propulsé par Gemini 2.5 Pro · 20+ dimensions d'analyse",

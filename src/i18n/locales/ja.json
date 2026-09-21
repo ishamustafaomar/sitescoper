@@ -13,7 +13,8 @@
     "upgrade": "アップグレード",
     "menu": "メニュー",
     "connections": "連携",
-    "monitoring": "見張り"
+    "monitoring": "見張り",
+    "tools": "ツール"
   },
   "hero": {
     "badge": "Gemini 2.5 Pro搭載・20以上の分析項目",

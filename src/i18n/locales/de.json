@@ -13,7 +13,8 @@
     "upgrade": "Upgrade",
     "menu": "Menü",
     "connections": "Verbindungen",
-    "monitoring": "Beobachten"
+    "monitoring": "Beobachten",
+    "tools": "Tools"
   },
   "hero": {
     "badge": "Powered by Gemini 2.5 Pro · 20+ Analysedimensionen",
