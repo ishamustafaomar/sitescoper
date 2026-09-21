@@ -69,11 +69,11 @@ export function AppHeader() {
   ].filter((i) => i.show);
 
   const isItemActive = (item: NavItem) => {
-
-    if (item.match) return `${path}${location.hash}` === item.match;
-    if (item.exact) return path === item.to && !location.hash;
+    if (item.match) return false;
+    if (item.exact) return path === item.to;
     return path.startsWith(item.to);
   };
+
 
 
   return (
