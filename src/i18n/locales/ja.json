@@ -443,7 +443,7 @@
   },
   "blog": {
     "title": "SiteScoperブログ",
-    "subtitle": "ウェブサイト診断、SEO、Core Web Vitals、コンバージョンに関する実践的なガイドを毎日更新。",
+    "subtitle": "ウェブサイト監査、SEO、UX、Core Web Vitals、コンバージョンに関する実践ガイド。毎週新しいガイドを公開しています。",
     "backToBlog": "ブログに戻る",
     "keepReading": "続きを読む",
     "auditCta": "60秒でサイトを診断",
