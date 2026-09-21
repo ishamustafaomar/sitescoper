@@ -8,7 +8,7 @@ export const Route = createFileRoute("/tools/open-graph-checker")({
   head: () =>
     pageHead({
       path: "/tools/open-graph-checker",
-      title: "Free Open Graph Checker: preview & validate OG and Twitter card tags",
+      title: "Free Open Graph Checker & Preview Tool | SiteScoper",
       description:
         "Check any URL's Open Graph, Twitter card and meta tags. See the real Facebook, LinkedIn, X, Slack and WhatsApp preview, validate image size and weight, and copy fixed head tags. Free, no signup.",
       jsonLd: [
