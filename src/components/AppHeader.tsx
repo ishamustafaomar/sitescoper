@@ -56,7 +56,7 @@ export function AppHeader() {
               window.location.assign("/");
             }
           }}
-          className="flex items-center gap-2.5 hover:opacity-80 transition-opacity"
+          className="flex shrink-0 items-center gap-2.5 hover:opacity-80 transition-opacity"
           aria-label="SiteScoper home"
         >
           <img
@@ -66,13 +66,13 @@ export function AppHeader() {
             height={34}
             className="h-[34px] w-[34px] object-contain"
           />
-          <div className="flex flex-col items-start gap-[2px]">
+          <div className="flex shrink-0 flex-col items-start gap-[2px]">
             <img
               src={logoWordmark}
               alt="SiteScoper"
               className="h-[17px] w-auto object-contain dark:invert"
             />
-            <span className="text-[8.5px] text-muted-foreground font-body tracking-[0.18em] uppercase">
+            <span className="hidden xs:block sm:block whitespace-nowrap text-[8.5px] text-muted-foreground font-body tracking-[0.18em] uppercase">
               AI Website Analyzer
             </span>
           </div>
