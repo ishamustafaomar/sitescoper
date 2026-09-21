@@ -36,6 +36,9 @@ import { Route as BlogIndexRouteImport } from './routes/blog/index'
 import { Route as BlogSlugRouteImport } from './routes/blog/$slug'
 import { Route as CheckoutReturnRouteImport } from './routes/checkout/return'
 import { Route as ShareTokenRouteImport } from './routes/share/$token'
+import { Route as ToolsIndexRouteImport } from './routes/tools/index'
+import { Route as ToolsLlmsTxtGeneratorRouteImport } from './routes/tools/llms-txt-generator'
+import { Route as ToolsOpenGraphCheckerRouteImport } from './routes/tools/open-graph-checker'
 import { Route as ApiPublicSaveAnonymousAuditRouteImport } from './routes/api/public/save-anonymous-audit'
 import { Route as LovableEmailEventsRouteImport } from './routes/lovable/email/events'
 import { Route as ApiPublicHooksAbEvaluateRouteImport } from './routes/api/public/hooks/ab-evaluate'
@@ -179,6 +182,21 @@ const ShareTokenRoute = ShareTokenRouteImport.update({
   path: '/share/$token',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ToolsIndexRoute = ToolsIndexRouteImport.update({
+  id: '/tools/',
+  path: '/tools/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ToolsLlmsTxtGeneratorRoute = ToolsLlmsTxtGeneratorRouteImport.update({
+  id: '/tools/llms-txt-generator',
+  path: '/tools/llms-txt-generator',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ToolsOpenGraphCheckerRoute = ToolsOpenGraphCheckerRouteImport.update({
+  id: '/tools/open-graph-checker',
+  path: '/tools/open-graph-checker',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiPublicSaveAnonymousAuditRoute =
   ApiPublicSaveAnonymousAuditRouteImport.update({
     id: '/api/public/save-anonymous-audit',
@@ -245,8 +263,11 @@ export interface FileRoutesByFullPath {
   '/blog/$slug': typeof BlogSlugRoute
   '/checkout/return': typeof CheckoutReturnRoute
   '/share/$token': typeof ShareTokenRoute
+  '/tools/llms-txt-generator': typeof ToolsLlmsTxtGeneratorRoute
+  '/tools/open-graph-checker': typeof ToolsOpenGraphCheckerRoute
   '/admin/': typeof AdminIndexRoute
   '/blog/': typeof BlogIndexRoute
+  '/tools/': typeof ToolsIndexRoute
   '/api/public/save-anonymous-audit': typeof ApiPublicSaveAnonymousAuditRoute
   '/lovable/email/events': typeof LovableEmailEventsRoute
   '/api/public/hooks/ab-evaluate': typeof ApiPublicHooksAbEvaluateRoute
@@ -281,8 +302,11 @@ export interface FileRoutesByTo {
   '/blog/$slug': typeof BlogSlugRoute
   '/checkout/return': typeof CheckoutReturnRoute
   '/share/$token': typeof ShareTokenRoute
+  '/tools/llms-txt-generator': typeof ToolsLlmsTxtGeneratorRoute
+  '/tools/open-graph-checker': typeof ToolsOpenGraphCheckerRoute
   '/admin': typeof AdminIndexRoute
   '/blog': typeof BlogIndexRoute
+  '/tools': typeof ToolsIndexRoute
   '/api/public/save-anonymous-audit': typeof ApiPublicSaveAnonymousAuditRoute
   '/lovable/email/events': typeof LovableEmailEventsRoute
   '/api/public/hooks/ab-evaluate': typeof ApiPublicHooksAbEvaluateRoute
@@ -318,8 +342,11 @@ export interface FileRoutesById {
   '/blog/$slug': typeof BlogSlugRoute
   '/checkout/return': typeof CheckoutReturnRoute
   '/share/$token': typeof ShareTokenRoute
+  '/tools/llms-txt-generator': typeof ToolsLlmsTxtGeneratorRoute
+  '/tools/open-graph-checker': typeof ToolsOpenGraphCheckerRoute
   '/admin/': typeof AdminIndexRoute
   '/blog/': typeof BlogIndexRoute
+  '/tools/': typeof ToolsIndexRoute
   '/api/public/save-anonymous-audit': typeof ApiPublicSaveAnonymousAuditRoute
   '/lovable/email/events': typeof LovableEmailEventsRoute
   '/api/public/hooks/ab-evaluate': typeof ApiPublicHooksAbEvaluateRoute
@@ -356,8 +383,11 @@ export interface FileRouteTypes {
     | '/blog/$slug'
     | '/checkout/return'
     | '/share/$token'
+    | '/tools/llms-txt-generator'
+    | '/tools/open-graph-checker'
     | '/admin/'
     | '/blog/'
+    | '/tools/'
     | '/api/public/save-anonymous-audit'
     | '/lovable/email/events'
     | '/api/public/hooks/ab-evaluate'
@@ -392,8 +422,11 @@ export interface FileRouteTypes {
     | '/blog/$slug'
     | '/checkout/return'
     | '/share/$token'
+    | '/tools/llms-txt-generator'
+    | '/tools/open-graph-checker'
     | '/admin'
     | '/blog'
+    | '/tools'
     | '/api/public/save-anonymous-audit'
     | '/lovable/email/events'
     | '/api/public/hooks/ab-evaluate'
@@ -428,8 +461,11 @@ export interface FileRouteTypes {
     | '/blog/$slug'
     | '/checkout/return'
     | '/share/$token'
+    | '/tools/llms-txt-generator'
+    | '/tools/open-graph-checker'
     | '/admin/'
     | '/blog/'
+    | '/tools/'
     | '/api/public/save-anonymous-audit'
     | '/lovable/email/events'
     | '/api/public/hooks/ab-evaluate'
@@ -465,8 +501,11 @@ export interface RootRouteChildren {
   BlogSlugRoute: typeof BlogSlugRoute
   CheckoutReturnRoute: typeof CheckoutReturnRoute
   ShareTokenRoute: typeof ShareTokenRoute
+  ToolsLlmsTxtGeneratorRoute: typeof ToolsLlmsTxtGeneratorRoute
+  ToolsOpenGraphCheckerRoute: typeof ToolsOpenGraphCheckerRoute
   AdminIndexRoute: typeof AdminIndexRoute
   BlogIndexRoute: typeof BlogIndexRoute
+  ToolsIndexRoute: typeof ToolsIndexRoute
   ApiPublicSaveAnonymousAuditRoute: typeof ApiPublicSaveAnonymousAuditRoute
   LovableEmailEventsRoute: typeof LovableEmailEventsRoute
   ApiPublicHooksAbEvaluateRoute: typeof ApiPublicHooksAbEvaluateRoute
@@ -667,6 +706,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ShareTokenRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/tools/': {
+      id: '/tools/'
+      path: '/tools'
+      fullPath: '/tools/'
+      preLoaderRoute: typeof ToolsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tools/llms-txt-generator': {
+      id: '/tools/llms-txt-generator'
+      path: '/tools/llms-txt-generator'
+      fullPath: '/tools/llms-txt-generator'
+      preLoaderRoute: typeof ToolsLlmsTxtGeneratorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tools/open-graph-checker': {
+      id: '/tools/open-graph-checker'
+      path: '/tools/open-graph-checker'
+      fullPath: '/tools/open-graph-checker'
+      preLoaderRoute: typeof ToolsOpenGraphCheckerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/save-anonymous-audit': {
       id: '/api/public/save-anonymous-audit'
       path: '/api/public/save-anonymous-audit'
@@ -745,8 +805,11 @@ const rootRouteChildren: RootRouteChildren = {
   BlogSlugRoute: BlogSlugRoute,
   CheckoutReturnRoute: CheckoutReturnRoute,
   ShareTokenRoute: ShareTokenRoute,
+  ToolsLlmsTxtGeneratorRoute: ToolsLlmsTxtGeneratorRoute,
+  ToolsOpenGraphCheckerRoute: ToolsOpenGraphCheckerRoute,
   AdminIndexRoute: AdminIndexRoute,
   BlogIndexRoute: BlogIndexRoute,
+  ToolsIndexRoute: ToolsIndexRoute,
   ApiPublicSaveAnonymousAuditRoute: ApiPublicSaveAnonymousAuditRoute,
   LovableEmailEventsRoute: LovableEmailEventsRoute,
   ApiPublicHooksAbEvaluateRoute: ApiPublicHooksAbEvaluateRoute,
