@@ -44,8 +44,9 @@ export const Route = createFileRoute("/blog/$slug")({
       {
         "@context": "https://schema.org",
         "@type": "BlogPosting",
-        headline: post.title,
+        headline: post.title.slice(0, 110),
         description: post.description,
+        image: [DEFAULT_OG_IMAGE],
         datePublished: post.published_at,
         dateModified: post.updated_at,
         author: {
