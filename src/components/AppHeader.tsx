@@ -47,7 +47,7 @@ export function AppHeader() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-card/80 backdrop-blur-md supports-[backdrop-filter]:bg-card/70">
-      <div className="max-w-6xl mx-auto h-[60px] px-4 flex items-center justify-between gap-4">
+      <div className="max-w-6xl mx-auto h-[60px] px-4 flex items-center justify-between gap-2 sm:gap-4">
         <Link
           to="/"
           onClick={(e) => {
@@ -56,7 +56,7 @@ export function AppHeader() {
               window.location.assign("/");
             }
           }}
-          className="flex items-center gap-2.5 hover:opacity-80 transition-opacity"
+          className="flex shrink-0 items-center gap-2.5 hover:opacity-80 transition-opacity"
           aria-label="SiteScoper home"
         >
           <img
@@ -66,13 +66,13 @@ export function AppHeader() {
             height={34}
             className="h-[34px] w-[34px] object-contain"
           />
-          <div className="flex flex-col items-start gap-[2px]">
+          <div className="flex shrink-0 flex-col items-start gap-[2px]">
             <img
               src={logoWordmark}
               alt="SiteScoper"
               className="h-[17px] w-auto object-contain dark:invert"
             />
-            <span className="text-[8.5px] text-muted-foreground font-body tracking-[0.18em] uppercase">
+            <span className="hidden xs:block sm:block whitespace-nowrap text-[8.5px] text-muted-foreground font-body tracking-[0.18em] uppercase">
               AI Website Analyzer
             </span>
           </div>
@@ -145,7 +145,7 @@ export function AppHeader() {
           )}
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
           <LanguageSwitcher />
           <ThemeToggle />
           <ChangelogBell />
@@ -187,9 +187,9 @@ export function AppHeader() {
           ) : (
             <Tooltip>
               <TooltipTrigger asChild>
-                <Button variant="outline" size="sm" onClick={() => navigate(authPath)} className="text-xs font-body">
+                <Button variant="outline" size="sm" onClick={() => navigate(authPath)} className="text-xs font-body" aria-label={t("nav.signIn")}>
                   <LogIn className="h-3.5 w-3.5" />
-                  {t("nav.signIn")}
+                  <span className="hidden sm:inline">{t("nav.signIn")}</span>
                 </Button>
               </TooltipTrigger>
               <TooltipContent side="bottom" align="end" className="max-w-[240px]">

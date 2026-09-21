@@ -1379,6 +1379,10 @@
     "empty": "Aún no hay novedades.",
     "newBadge": "NUEVO",
     "entries": {
+      "freeTools": {
+        "title": "Herramientas gratis y guías de auditoría",
+        "desc": "Nuevo comprobador de Open Graph y generador de llms.txt gratis (sin cuenta), una página Acerca de que explica cómo se puntúan las auditorías, páginas dedicadas de auditoría UX, CRO, landing page y SEO, y guías ampliadas."
+      },
       "newLogo": {
         "title": "Nuevo logotipo y marca",
         "desc": "SiteScoper estrena un símbolo de mira dibujado a mano y una marca tipográfica serif, con un favicon a juego en todo el sitio."

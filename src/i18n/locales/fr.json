@@ -1379,6 +1379,10 @@
     "empty": "Aucune mise à jour pour l'instant.",
     "newBadge": "NOUVEAU",
     "entries": {
+      "freeTools": {
+        "title": "Outils gratuits et guides d’audit",
+        "desc": "Nouveau vérificateur Open Graph et générateur de llms.txt gratuits (sans compte), une page À propos expliquant la notation des audits, des pages dédiées aux audits UX, CRO, landing page et SEO, et des guides étoffés."
+      },
       "newLogo": {
         "title": "Nouveau logo et nouvelle marque",
         "desc": "SiteScoper adopte un symbole de visée dessiné à la main et un logotype serif, avec un favicon assorti sur tout le site."

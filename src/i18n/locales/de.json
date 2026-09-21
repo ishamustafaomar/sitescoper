@@ -1379,6 +1379,10 @@
     "empty": "Noch keine Neuigkeiten.",
     "newBadge": "NEU",
     "entries": {
+      "freeTools": {
+        "title": "Kostenlose Tools und Audit-Leitfäden",
+        "desc": "Neuer kostenloser Open-Graph-Checker und llms.txt-Generator (ohne Konto), eine Über-uns-Seite zur Bewertungsmethodik, eigene Seiten für UX-, CRO-, Landingpage- und SEO-Audits sowie deutlich erweiterte Leitfäden."
+      },
       "newLogo": {
         "title": "Neues Logo und Wortmarke",
         "desc": "SiteScoper hat ein handgezeichnetes Ziel-Markenzeichen und eine Serifen-Wortmarke, plus passendes Favicon auf der gesamten Seite."
