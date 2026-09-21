@@ -18,7 +18,7 @@ function formatDate(iso: string) {
 
 const BlogPost = () => {
   const { t } = useTranslation();
-  const { post, related } = routeApi.useLoaderData();
+  const { post, related, ring } = routeApi.useLoaderData();
   const navigate = useNavigate();
 
   const toc = extractToc(post.body);
