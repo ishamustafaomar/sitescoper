@@ -24,7 +24,16 @@ export function ProGate({
   const { user } = useAuth();
   const navigate = useNavigate();
 
-  if (loading) return null;
+  // Never flash the upgrade prompt while the plan is still being resolved.
+  if (loading) {
+    return (
+      <Card className="p-6 md:p-8 border-2 border-primary/20 bg-muted/20">
+        <div className="mx-auto w-12 h-12 rounded-2xl bg-muted animate-pulse mb-4" />
+        <div className="mx-auto h-4 w-48 bg-muted animate-pulse rounded mb-3" />
+        <div className="mx-auto h-3 w-72 max-w-full bg-muted animate-pulse rounded" />
+      </Card>
+    );
+  }
   if (isPro) return <>{children}</>;
 
   return (

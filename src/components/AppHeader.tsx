@@ -32,7 +32,7 @@ export function AppHeader() {
   const location = useLocation();
   const { user, signOut } = useAuth();
   const { t, i18n } = useTranslation();
-  const { isPro } = useSubscription();
+  const { isPro, loading: planLoading } = useSubscription();
   const { isAdmin } = useIsAdmin();
   const [mobileOpen, setMobileOpen] = useState(false);
   useEffect(() => {
@@ -114,7 +114,7 @@ export function AppHeader() {
           <LanguageSwitcher />
           <ThemeToggle />
           <ChangelogBell />
-          {user && !isPro && location.pathname !== "/pricing" && (
+          {user && !isPro && !planLoading && location.pathname !== "/pricing" && (
             <Button
               size="sm"
               onClick={() => navigate("/pricing")}
