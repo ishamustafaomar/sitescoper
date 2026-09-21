@@ -26,8 +26,23 @@ export const Route = createFileRoute("/blog/$slug")({
   loader: async ({ params }) => {
     const post = await fetchBlogPost(params.slug);
     if (!post) throw notFound();
-    const related = await fetchRelatedPosts(post.slug, post.category, 3);
-    return { post, related };
+    // Category-based "related" always surfaces the same newest posts, which left
+    // older guides with a single incoming link. The neighbour ring guarantees
+    // every post is linked from several others.
+    const [related, all] = await Promise.all([
+      fetchRelatedPosts(post.slug, post.category, 3),
+      fetchAllPosts(),
+    ]);
+    const idx = all.findIndex((p) => p.slug === post.slug);
+    const ring =
+      idx === -1 || all.length < 2
+        ? []
+        : [1, 2, 3, -1, -2, -3]
+            .map((o) => all[(idx + o + all.length * 3) % all.length]!)
+            .filter((p, i, arr) => p.slug !== post.slug && arr.findIndex((q) => q.slug === p.slug) === i)
+            .filter((p) => !related.some((r) => r.slug === p.slug))
+            .slice(0, 6);
+    return { post, related, ring };
   },
   head: ({ params, loaderData }) => {
     const post = loaderData?.post;
