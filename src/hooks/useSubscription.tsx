@@ -25,7 +25,7 @@ function computeIsActive(sub: SubscriptionRow | null): boolean {
 }
 
 export function useSubscription() {
-  const { user } = useAuth();
+  const { user, loading: authLoading } = useAuth();
   const [subscription, setSubscription] = useState<SubscriptionRow | null>(null);
   const [loading, setLoading] = useState(true);
   // Track the last successful fetch so we don't hammer the database every
@@ -33,6 +33,9 @@ export function useSubscription() {
   const lastFetchedAt = useRef<number>(0);
 
   const fetchSub = useCallback(async () => {
+    // Session not resolved yet — stay in "loading" so gated UI doesn't flash
+    // an upgrade prompt at a user who actually has Pro.
+    if (authLoading) return;
     if (!user) {
       setSubscription(null);
       setLoading(false);
@@ -58,7 +61,7 @@ export function useSubscription() {
     setSubscription(best);
     setLoading(false);
     lastFetchedAt.current = Date.now();
-  }, [user?.id]);
+  }, [user?.id, authLoading]);
 
   useEffect(() => {
     fetchSub();
@@ -82,5 +85,12 @@ export function useSubscription() {
   // Early access: every signed-in account gets Pro for free.
   const paidPro = computeIsActive(subscription);
   const isPro = FREE_PRO_MODE ? !!user : paidPro;
-  return { subscription, isPro, paidPro, freeMode: FREE_PRO_MODE, loading, refetch: fetchSub };
+  return {
+    subscription,
+    isPro,
+    paidPro,
+    freeMode: FREE_PRO_MODE,
+    loading: loading || authLoading,
+    refetch: fetchSub,
+  };
 }

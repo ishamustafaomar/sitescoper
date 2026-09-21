@@ -34,11 +34,30 @@ export default function Auth() {
     const translated = t(key, { defaultValue: fallback });
     return !translated || translated === key || translated.startsWith("auth.") ? fallback : translated;
   };
-  const redirectPath = new URLSearchParams(location.search).get("redirect");
-  const nextPath = redirectPath?.startsWith("/") && !redirectPath.startsWith("//") ? redirectPath : "/dashboard";
+  const REDIRECT_KEY = "sitescoper:auth-redirect";
+  const sanitize = (raw: string | null | undefined) => {
+    if (!raw) return null;
+    // Guard against malformed values like "/account??x=1" and open redirects.
+    const cleaned = raw.replace(/\?{2,}/g, "?");
+    return cleaned.startsWith("/") && !cleaned.startsWith("//") ? cleaned : null;
+  };
+
+  const redirectParam = sanitize(new URLSearchParams(location.search).get("redirect"));
+
+  // Remember where the visitor was headed: OAuth round-trips can drop the
+  // query string, which used to dump everyone on the dashboard instead.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (redirectParam) sessionStorage.setItem(REDIRECT_KEY, redirectParam);
+  }, [redirectParam]);
+
+  const storedRedirect =
+    typeof window !== "undefined" ? sanitize(sessionStorage.getItem(REDIRECT_KEY)) : null;
+  const nextPath = redirectParam ?? storedRedirect ?? "/dashboard";
 
   useEffect(() => {
     if (user && typeof window !== "undefined") {
+      sessionStorage.removeItem(REDIRECT_KEY);
       window.location.replace(nextPath);
     }
   }, [user, nextPath]);
