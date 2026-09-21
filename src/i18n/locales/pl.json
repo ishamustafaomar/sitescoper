@@ -30,7 +30,7 @@
     "actionableFixes": "Audyt strony z AI: poprawki UX i SEO w 60 sekund.",
     "description": "<1>Audytor stron opartych na AI</1>, który pomija 200-punktową listę kontrolną i podaje 3 poprawki UX, SEO i copy, które faktycznie warto wdrożyć w tym tygodniu — z planem działania w prostym języku, jaki zatwierdziłby doświadczony strateg produktu.",
     "freePlanBadge": "Plan darmowy · 3 pełne skany miesięcznie · Bez karty kredytowej",
-    "freeScansFootnote": "Pierwszy audyt bez konta · Bez karty · 2400+ stron ocenionych w tym miesiącu",
+    "freeScansFootnote": "Pierwszy audyt bez konta · Bez karty · Wynik w około 60 sekund",
     "multiPageCrawl": "Głębokie skanowanie wielu podstron",
     "createAccountCta": "Załóż darmowe konto",
     "createAccountSub": "— zachowuje historię raportów i pozwala ponownie skanować po każdej poprawce.",
@@ -182,7 +182,7 @@
       "title": "Gotowy poznać prawdę?",
       "subtitle": "Uruchom darmowy audyt i otrzymaj 3 poprawki warte wdrożenia w tym tygodniu. Bez karty kredytowej, 60 sekund.",
       "button": "Przeanalizuj moją stronę",
-      "footer": "Używane przez 2400+ założycieli w tym miesiącu · ",
+      "footer": "Zacznij za darmo · Bez karty · ",
       "battle": "zmierz się z konkurencją"
     },
     "faq": {

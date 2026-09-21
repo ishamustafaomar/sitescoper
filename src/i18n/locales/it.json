@@ -30,7 +30,7 @@
     "actionableFixes": "Audit del sito con IA: correzioni UX e SEO in 60 secondi.",
     "description": "L'<1>auditor AI per siti web</1> che salta la checklist di 200 punti e ti offre le 3 correzioni di UX, SEO e copy davvero utili da fare questa settimana, con un piano d'azione chiaro degno di un senior product strategist.",
     "freePlanBadge": "Piano gratuito · 3 scansioni complete al mese · Nessuna carta di credito",
-    "freeScansFootnote": "Il primo audit non richiede un account · Nessuna carta · Oltre 2.400 siti valutati questo mese",
+    "freeScansFootnote": "Il primo audit non richiede un account · Nessuna carta · Risultati in circa 60 secondi",
     "multiPageCrawl": "Scansione approfondita multi-pagina",
     "createAccountCta": "Crea un account gratuito",
     "createAccountSub": "— conserva la cronologia dei tuoi report e ti permette di rianalizzare dopo ogni correzione.",
@@ -182,7 +182,7 @@
       "title": "Pronto a sentire la verità?",
       "subtitle": "Fai un audit gratuito e ottieni le 3 modifiche da fare questa settimana. Senza carta, 60 secondi.",
       "button": "Analizza il mio sito",
-      "footer": "Usato da oltre 2.400 founder questo mese · ",
+      "footer": "Gratis per iniziare · Nessuna carta · ",
       "battle": "sfida un competitor"
     },
     "faq": {

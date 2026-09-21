@@ -30,7 +30,7 @@
     "actionableFixes": "KI-Website-Audit: UX- und SEO-Fixes in 60 Sekunden.",
     "description": "Der <1>KI-Website-Auditor</1>, der die 200-Punkte-Checkliste überspringt und dir die 3 UX-, SEO- und Text-Fixes liefert, die diese Woche wirklich lohnenswert sind – mit einem klaren Aktionsplan, den ein erfahrener Produktstratege absegnen würde.",
     "freePlanBadge": "Kostenloser Plan · 3 vollständige Scans pro Monat · Keine Kreditkarte",
-    "freeScansFootnote": "Erstes Audit ohne Konto · Keine Kreditkarte · Über 2.400 Websites diesen Monat bewertet",
+    "freeScansFootnote": "Erstes Audit ohne Konto · Keine Kreditkarte · Ergebnis in etwa 60 Sekunden",
     "multiPageCrawl": "Tiefer Multi-Page-Crawl",
     "createAccountCta": "Kostenloses Konto erstellen",
     "createAccountSub": "— speichert deinen Berichtsverlauf und lässt dich nach jeder Korrektur erneut scannen.",
@@ -182,7 +182,7 @@
       "title": "Bereit für die Wahrheit?",
       "subtitle": "Starte ein kostenloses Audit und erhalte die 3 Fixes, die diese Woche zählen. Keine Karte, 60 Sekunden.",
       "button": "Meine Website analysieren",
-      "footer": "Diesen Monat von 2.400+ Gründern genutzt · ",
+      "footer": "Kostenlos starten · Keine Kreditkarte · ",
       "battle": "Konkurrent duellieren"
     },
     "faq": {
