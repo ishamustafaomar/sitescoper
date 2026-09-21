@@ -14,7 +14,9 @@
     "menu": "メニュー",
     "connections": "連携",
     "monitoring": "見張り",
-    "tools": "ツール"
+    "tools": "ツール",
+    "blog": "ブログ",
+    "fixPass": "$9 修正パス"
   },
   "hero": {
     "badge": "Gemini 2.5 Pro搭載・20以上の分析項目",

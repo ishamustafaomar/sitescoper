@@ -14,7 +14,9 @@
     "menu": "Menu",
     "connections": "Koppelingen",
     "monitoring": "Bewaking",
-    "tools": "Tools"
+    "tools": "Tools",
+    "blog": "Blog",
+    "fixPass": "Fix Pass $9"
   },
   "hero": {
     "badge": "Aangedreven door Gemini 2.5 Pro · 20+ analysedimensies",

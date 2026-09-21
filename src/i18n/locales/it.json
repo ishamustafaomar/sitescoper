@@ -14,7 +14,9 @@
     "menu": "Menu",
     "connections": "Connessioni",
     "monitoring": "Sorveglianza",
-    "tools": "Strumenti"
+    "tools": "Strumenti",
+    "blog": "Blog",
+    "fixPass": "Fix Pass 9 $"
   },
   "hero": {
     "badge": "Powered by Gemini 2.5 Pro · 20+ dimensioni di analisi",
