@@ -1,4 +1,5 @@
 const SITE = "https://sitescoper.com";
+export const DEFAULT_OG_IMAGE = `${SITE}/og-default.jpg`;
 
 export function pageHead(opts: {
   path: string;
