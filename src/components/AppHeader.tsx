@@ -78,74 +78,8 @@ export function AppHeader() {
           </div>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-1" aria-label="Primary">
-          <Link
-            to="/"
-            className={cn(pillBase, path === "/" ? pillActive : pillIdle)}
-          >
-            <Sparkles className="h-3.5 w-3.5" />
-            {t("nav.analyze")}
-          </Link>
-          {user && (
-            <Link
-              to="/dashboard"
-              className={cn(pillBase, path.startsWith("/dashboard") ? pillActive : pillIdle)}
-            >
-              <LayoutDashboard className="h-3.5 w-3.5" />
-              {t("nav.dashboard")}
-            </Link>
-          )}
-          <Link
-            to="/compare"
-            className={cn(pillBase, path === "/compare" ? pillActive : pillIdle)}
-          >
-            <Swords className="h-3.5 w-3.5" />
-            {t("nav.compare")}
-            {!isPro && (
-              <span className="ml-1 border border-accent/40 bg-accent/10 px-1.5 py-[1px] text-[9px] font-bold tracking-wider text-accent">
-                PRO
-              </span>
-            )}
-          </Link>
-          {user && (
-            <Link
-              to="/monitoring"
-              className={cn(pillBase, path.startsWith("/monitoring") ? pillActive : pillIdle)}
-            >
-              <Eye className="h-3.5 w-3.5" />
-              {t("nav.monitoring")}
-              {!isPro && (
-                <span className="ml-1 border border-accent/40 bg-accent/10 px-1.5 py-[1px] text-[9px] font-bold tracking-wider text-accent">
-                  PRO
-                </span>
-              )}
-            </Link>
-          )}
-          <Link
-            to="/tools"
-            className={cn(pillBase, path.startsWith("/tools") ? pillActive : pillIdle)}
-          >
-            <Wrench className="h-3.5 w-3.5" />
-            {t("nav.tools")}
-          </Link>
-          <Link
-            to="/pricing"
-            className={cn(pillBase, path === "/pricing" ? pillActive : pillIdle)}
-          >
-            {t("nav.pricing")}
-          </Link>
-          {user && isAdmin && (
-            <Link
-              to="/admin"
-              className={cn(pillBase, path.startsWith("/admin") ? pillActive : pillIdle)}
-            >
-              <Shield className="h-3.5 w-3.5" />
-              {t("nav.admin")}
-            </Link>
-          )}
-        </nav>
-
         <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
+
           <LanguageSwitcher />
           <ThemeToggle />
           <ChangelogBell />
