@@ -3,6 +3,24 @@ import BlogPost from "@/pages/BlogPost";
 import { pageHead, breadcrumbLd, faqLd } from "@/lib/seo-head";
 import { fetchBlogPost, fetchRelatedPosts } from "@/lib/blog-queries";
 
+const SUFFIX = " | SiteScoper";
+
+/**
+ * The <title> must never be byte-identical to the on-page H1 (Semrush flags it
+ * as over-optimisation) and must stay under 70 characters so Google doesn't
+ * truncate it. Long headlines are cut at their natural colon break first.
+ */
+function metaTitle(headline: string): string {
+  let base = headline.trim();
+  if (base.length + SUFFIX.length > 70 && base.includes(": ")) {
+    base = base.split(": ")[0]!.trim();
+  }
+  if (base.length + SUFFIX.length > 70) {
+    base = base.slice(0, 70 - SUFFIX.length - 1).replace(/\s+\S*$/, "").trim();
+  }
+  return `${base}${SUFFIX}`;
+}
+
 export const Route = createFileRoute("/blog/$slug")({
   staticData: { sitemap: true },
   loader: async ({ params }) => {
