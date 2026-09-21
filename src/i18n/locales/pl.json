@@ -1379,6 +1379,10 @@
     "empty": "Brak jeszcze aktualizacji.",
     "newBadge": "NOWOŚĆ",
     "entries": {
+      "freeTools": {
+        "title": "Darmowe narzędzia i przewodniki po audytach",
+        "desc": "Nowe darmowe narzędzia: sprawdzanie Open Graph i generator llms.txt (bez konta), strona O nas wyjaśniająca sposób oceniania audytów, osobne strony audytów UX, CRO, landing page i SEO oraz znacznie rozszerzone przewodniki."
+      },
       "newLogo": {
         "title": "Nowe logo i wordmark",
         "desc": "SiteScoper ma nowy odręczny znak lupy i szeryfowy wordmark, a także pasujący favicon w całym serwisie."

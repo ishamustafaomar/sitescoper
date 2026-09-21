@@ -1379,6 +1379,10 @@
     "empty": "No updates yet.",
     "newBadge": "NEW",
     "entries": {
+      "freeTools": {
+        "title": "Free tools and audit guides",
+        "desc": "New free Open Graph checker and llms.txt generator (no account needed), an About page explaining how audits are scored, dedicated UX, CRO, landing page and SEO audit pages, and fully expanded guides."
+      },
       "newLogo": {
         "title": "A new logo and wordmark",
         "desc": "SiteScoper has a new hand-drawn scope mark and serif wordmark, plus a matching favicon across the whole site."

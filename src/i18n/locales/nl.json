@@ -1379,6 +1379,10 @@
     "empty": "Nog geen updates.",
     "newBadge": "NIEUW",
     "entries": {
+      "freeTools": {
+        "title": "Gratis tools en auditgidsen",
+        "desc": "Nieuwe gratis Open Graph-checker en llms.txt-generator (zonder account), een Over-pagina die uitlegt hoe audits worden gescoord, aparte pagina’s voor UX-, CRO-, landingspagina- en SEO-audits, en flink uitgebreide gidsen."
+      },
       "newLogo": {
         "title": "Een nieuw logo en woordmerk",
         "desc": "SiteScoper heeft een nieuw handgetekend scope-teken en een serif-woordmerk, plus een bijpassend favicon op de hele site."
