@@ -45,6 +45,15 @@ export default function Pricing() {
   const [checkoutOpen, setCheckoutOpen] = useState(false);
   const [interval, setInterval] = useState<"monthly" | "annual">("annual");
 
+  useEffect(() => {
+    if (typeof window === "undefined" || window.location.hash !== "#fix-pass") return;
+    const id = window.setTimeout(() => {
+      document.getElementById("fix-pass")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 120);
+    return () => window.clearTimeout(id);
+  }, []);
+
+
   const priceId = interval === "annual" ? "pro_annual" : "pro_monthly";
 
   const startCheckout = () => {
