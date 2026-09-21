@@ -7,7 +7,7 @@ export const Route = createFileRoute("/tools/")({
   head: () =>
     pageHead({
       path: "/tools",
-      title: "Free SEO & website tools: Open Graph checker, llms.txt generator | SiteScoper",
+      title: "Free SEO & Website Tools — No Signup | SiteScoper",
       description:
         "Free, no-signup tools from SiteScoper: check Open Graph and Twitter card tags with real image validation, generate a spec-compliant llms.txt, and run a full AI website audit.",
       jsonLd: [
