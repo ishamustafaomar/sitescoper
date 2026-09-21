@@ -36,10 +36,14 @@ import { Route as BlogIndexRouteImport } from './routes/blog/index'
 import { Route as BlogSlugRouteImport } from './routes/blog/$slug'
 import { Route as CheckoutReturnRouteImport } from './routes/checkout/return'
 import { Route as ShareTokenRouteImport } from './routes/share/$token'
+import { Route as ToolsIndexRouteImport } from './routes/tools/index'
+import { Route as ToolsLlmsTxtGeneratorRouteImport } from './routes/tools/llms-txt-generator'
+import { Route as ToolsOpenGraphCheckerRouteImport } from './routes/tools/open-graph-checker'
 import { Route as ApiPublicSaveAnonymousAuditRouteImport } from './routes/api/public/save-anonymous-audit'
 import { Route as LovableEmailEventsRouteImport } from './routes/lovable/email/events'
 import { Route as ApiPublicHooksAbEvaluateRouteImport } from './routes/api/public/hooks/ab-evaluate'
 import { Route as ApiPublicHooksMonitorRunRouteImport } from './routes/api/public/hooks/monitor-run'
+import { Route as ApiPublicHooksSeoAutopilotRouteImport } from './routes/api/public/hooks/seo-autopilot'
 import { Route as LovableEmailAuthPreviewRouteImport } from './routes/lovable/email/auth/preview'
 import { Route as LovableEmailAuthWebhookRouteImport } from './routes/lovable/email/auth/webhook'
 import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
@@ -179,6 +183,21 @@ const ShareTokenRoute = ShareTokenRouteImport.update({
   path: '/share/$token',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ToolsIndexRoute = ToolsIndexRouteImport.update({
+  id: '/tools/',
+  path: '/tools/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ToolsLlmsTxtGeneratorRoute = ToolsLlmsTxtGeneratorRouteImport.update({
+  id: '/tools/llms-txt-generator',
+  path: '/tools/llms-txt-generator',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ToolsOpenGraphCheckerRoute = ToolsOpenGraphCheckerRouteImport.update({
+  id: '/tools/open-graph-checker',
+  path: '/tools/open-graph-checker',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiPublicSaveAnonymousAuditRoute =
   ApiPublicSaveAnonymousAuditRouteImport.update({
     id: '/api/public/save-anonymous-audit',
@@ -200,6 +219,12 @@ const ApiPublicHooksMonitorRunRoute =
   ApiPublicHooksMonitorRunRouteImport.update({
     id: '/api/public/hooks/monitor-run',
     path: '/api/public/hooks/monitor-run',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiPublicHooksSeoAutopilotRoute =
+  ApiPublicHooksSeoAutopilotRouteImport.update({
+    id: '/api/public/hooks/seo-autopilot',
+    path: '/api/public/hooks/seo-autopilot',
     getParentRoute: () => rootRouteImport,
   } as any)
 const LovableEmailAuthPreviewRoute = LovableEmailAuthPreviewRouteImport.update({
@@ -245,12 +270,16 @@ export interface FileRoutesByFullPath {
   '/blog/$slug': typeof BlogSlugRoute
   '/checkout/return': typeof CheckoutReturnRoute
   '/share/$token': typeof ShareTokenRoute
+  '/tools/llms-txt-generator': typeof ToolsLlmsTxtGeneratorRoute
+  '/tools/open-graph-checker': typeof ToolsOpenGraphCheckerRoute
   '/admin/': typeof AdminIndexRoute
   '/blog/': typeof BlogIndexRoute
+  '/tools/': typeof ToolsIndexRoute
   '/api/public/save-anonymous-audit': typeof ApiPublicSaveAnonymousAuditRoute
   '/lovable/email/events': typeof LovableEmailEventsRoute
   '/api/public/hooks/ab-evaluate': typeof ApiPublicHooksAbEvaluateRoute
   '/api/public/hooks/monitor-run': typeof ApiPublicHooksMonitorRunRoute
+  '/api/public/hooks/seo-autopilot': typeof ApiPublicHooksSeoAutopilotRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
@@ -281,12 +310,16 @@ export interface FileRoutesByTo {
   '/blog/$slug': typeof BlogSlugRoute
   '/checkout/return': typeof CheckoutReturnRoute
   '/share/$token': typeof ShareTokenRoute
+  '/tools/llms-txt-generator': typeof ToolsLlmsTxtGeneratorRoute
+  '/tools/open-graph-checker': typeof ToolsOpenGraphCheckerRoute
   '/admin': typeof AdminIndexRoute
   '/blog': typeof BlogIndexRoute
+  '/tools': typeof ToolsIndexRoute
   '/api/public/save-anonymous-audit': typeof ApiPublicSaveAnonymousAuditRoute
   '/lovable/email/events': typeof LovableEmailEventsRoute
   '/api/public/hooks/ab-evaluate': typeof ApiPublicHooksAbEvaluateRoute
   '/api/public/hooks/monitor-run': typeof ApiPublicHooksMonitorRunRoute
+  '/api/public/hooks/seo-autopilot': typeof ApiPublicHooksSeoAutopilotRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
@@ -318,12 +351,16 @@ export interface FileRoutesById {
   '/blog/$slug': typeof BlogSlugRoute
   '/checkout/return': typeof CheckoutReturnRoute
   '/share/$token': typeof ShareTokenRoute
+  '/tools/llms-txt-generator': typeof ToolsLlmsTxtGeneratorRoute
+  '/tools/open-graph-checker': typeof ToolsOpenGraphCheckerRoute
   '/admin/': typeof AdminIndexRoute
   '/blog/': typeof BlogIndexRoute
+  '/tools/': typeof ToolsIndexRoute
   '/api/public/save-anonymous-audit': typeof ApiPublicSaveAnonymousAuditRoute
   '/lovable/email/events': typeof LovableEmailEventsRoute
   '/api/public/hooks/ab-evaluate': typeof ApiPublicHooksAbEvaluateRoute
   '/api/public/hooks/monitor-run': typeof ApiPublicHooksMonitorRunRoute
+  '/api/public/hooks/seo-autopilot': typeof ApiPublicHooksSeoAutopilotRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
@@ -356,12 +393,16 @@ export interface FileRouteTypes {
     | '/blog/$slug'
     | '/checkout/return'
     | '/share/$token'
+    | '/tools/llms-txt-generator'
+    | '/tools/open-graph-checker'
     | '/admin/'
     | '/blog/'
+    | '/tools/'
     | '/api/public/save-anonymous-audit'
     | '/lovable/email/events'
     | '/api/public/hooks/ab-evaluate'
     | '/api/public/hooks/monitor-run'
+    | '/api/public/hooks/seo-autopilot'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
     | '/lovable/email/transactional/preview'
@@ -392,12 +433,16 @@ export interface FileRouteTypes {
     | '/blog/$slug'
     | '/checkout/return'
     | '/share/$token'
+    | '/tools/llms-txt-generator'
+    | '/tools/open-graph-checker'
     | '/admin'
     | '/blog'
+    | '/tools'
     | '/api/public/save-anonymous-audit'
     | '/lovable/email/events'
     | '/api/public/hooks/ab-evaluate'
     | '/api/public/hooks/monitor-run'
+    | '/api/public/hooks/seo-autopilot'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
     | '/lovable/email/transactional/preview'
@@ -428,12 +473,16 @@ export interface FileRouteTypes {
     | '/blog/$slug'
     | '/checkout/return'
     | '/share/$token'
+    | '/tools/llms-txt-generator'
+    | '/tools/open-graph-checker'
     | '/admin/'
     | '/blog/'
+    | '/tools/'
     | '/api/public/save-anonymous-audit'
     | '/lovable/email/events'
     | '/api/public/hooks/ab-evaluate'
     | '/api/public/hooks/monitor-run'
+    | '/api/public/hooks/seo-autopilot'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
     | '/lovable/email/transactional/preview'
@@ -465,12 +514,16 @@ export interface RootRouteChildren {
   BlogSlugRoute: typeof BlogSlugRoute
   CheckoutReturnRoute: typeof CheckoutReturnRoute
   ShareTokenRoute: typeof ShareTokenRoute
+  ToolsLlmsTxtGeneratorRoute: typeof ToolsLlmsTxtGeneratorRoute
+  ToolsOpenGraphCheckerRoute: typeof ToolsOpenGraphCheckerRoute
   AdminIndexRoute: typeof AdminIndexRoute
   BlogIndexRoute: typeof BlogIndexRoute
+  ToolsIndexRoute: typeof ToolsIndexRoute
   ApiPublicSaveAnonymousAuditRoute: typeof ApiPublicSaveAnonymousAuditRoute
   LovableEmailEventsRoute: typeof LovableEmailEventsRoute
   ApiPublicHooksAbEvaluateRoute: typeof ApiPublicHooksAbEvaluateRoute
   ApiPublicHooksMonitorRunRoute: typeof ApiPublicHooksMonitorRunRoute
+  ApiPublicHooksSeoAutopilotRoute: typeof ApiPublicHooksSeoAutopilotRoute
   LovableEmailAuthPreviewRoute: typeof LovableEmailAuthPreviewRoute
   LovableEmailAuthWebhookRoute: typeof LovableEmailAuthWebhookRoute
   LovableEmailTransactionalPreviewRoute: typeof LovableEmailTransactionalPreviewRoute
@@ -667,6 +720,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ShareTokenRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/tools/': {
+      id: '/tools/'
+      path: '/tools'
+      fullPath: '/tools/'
+      preLoaderRoute: typeof ToolsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tools/llms-txt-generator': {
+      id: '/tools/llms-txt-generator'
+      path: '/tools/llms-txt-generator'
+      fullPath: '/tools/llms-txt-generator'
+      preLoaderRoute: typeof ToolsLlmsTxtGeneratorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tools/open-graph-checker': {
+      id: '/tools/open-graph-checker'
+      path: '/tools/open-graph-checker'
+      fullPath: '/tools/open-graph-checker'
+      preLoaderRoute: typeof ToolsOpenGraphCheckerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/save-anonymous-audit': {
       id: '/api/public/save-anonymous-audit'
       path: '/api/public/save-anonymous-audit'
@@ -693,6 +767,13 @@ declare module '@tanstack/react-router' {
       path: '/api/public/hooks/monitor-run'
       fullPath: '/api/public/hooks/monitor-run'
       preLoaderRoute: typeof ApiPublicHooksMonitorRunRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/hooks/seo-autopilot': {
+      id: '/api/public/hooks/seo-autopilot'
+      path: '/api/public/hooks/seo-autopilot'
+      fullPath: '/api/public/hooks/seo-autopilot'
+      preLoaderRoute: typeof ApiPublicHooksSeoAutopilotRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/lovable/email/auth/preview': {
@@ -745,12 +826,16 @@ const rootRouteChildren: RootRouteChildren = {
   BlogSlugRoute: BlogSlugRoute,
   CheckoutReturnRoute: CheckoutReturnRoute,
   ShareTokenRoute: ShareTokenRoute,
+  ToolsLlmsTxtGeneratorRoute: ToolsLlmsTxtGeneratorRoute,
+  ToolsOpenGraphCheckerRoute: ToolsOpenGraphCheckerRoute,
   AdminIndexRoute: AdminIndexRoute,
   BlogIndexRoute: BlogIndexRoute,
+  ToolsIndexRoute: ToolsIndexRoute,
   ApiPublicSaveAnonymousAuditRoute: ApiPublicSaveAnonymousAuditRoute,
   LovableEmailEventsRoute: LovableEmailEventsRoute,
   ApiPublicHooksAbEvaluateRoute: ApiPublicHooksAbEvaluateRoute,
   ApiPublicHooksMonitorRunRoute: ApiPublicHooksMonitorRunRoute,
+  ApiPublicHooksSeoAutopilotRoute: ApiPublicHooksSeoAutopilotRoute,
   LovableEmailAuthPreviewRoute: LovableEmailAuthPreviewRoute,
   LovableEmailAuthWebhookRoute: LovableEmailAuthWebhookRoute,
   LovableEmailTransactionalPreviewRoute: LovableEmailTransactionalPreviewRoute,
