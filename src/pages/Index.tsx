@@ -47,7 +47,7 @@ const Index = () => {
   const [progress, setProgress] = useState<{ percent: number; label: string }>({ percent: 0, label: "" });
   const [liveTechSeo, setLiveTechSeo] = useState<TechSeoReport | null>(null);
   const { toast } = useToast();
-  const { user } = useAuth();
+  const { user, loading: authLoading } = useAuth();
   const { isPro } = useSubscription();
   const { t, i18n } = useTranslation();
   const inputRef = useRef<HTMLDivElement>(null);
