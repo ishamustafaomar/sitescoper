@@ -1,5 +1,16 @@
 import { Link, useNavigate, useLocation } from "@/lib/router-compat";
-import { LayoutDashboard, LogOut, LogIn, Shield, Sparkles, Check, Swords, Crown, User as UserIcon, Menu, Eye, Wrench } from "lucide-react";
+import { LayoutDashboard, LogOut, LogIn, Shield, Sparkles, Check, Swords, Crown, Menu, Eye, Wrench, BookOpen, Zap, Tag } from "lucide-react";
+
+type NavItem = {
+  to: string;
+  label: string;
+  icon?: React.ComponentType<{ className?: string }>;
+  show: boolean;
+  pro?: boolean;
+  exact?: boolean;
+  match?: string;
+};
+
 import { useEffect, useState } from "react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import logoMark from "@/assets/logo-mark.png";
