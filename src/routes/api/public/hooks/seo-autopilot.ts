@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import type { TopicRow } from "@/lib/seo-autopilot.server";
 
 /**
  * SEO content autopilot. Publishes one quality-gated article per run from the
