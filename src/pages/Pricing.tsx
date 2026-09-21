@@ -212,7 +212,40 @@ export default function Pricing() {
           </Card>
         </div>
 
+        <section id="fix-pass" className="mt-10 scroll-mt-28 max-w-3xl mx-auto border-2 border-accent/40 bg-accent/5 p-6 md:p-8">
+          <div className="flex items-start gap-3">
+            <Zap className="h-6 w-6 text-accent shrink-0 mt-1" />
+            <div className="flex-1">
+              <div className="flex flex-wrap items-baseline justify-between gap-2">
+                <h2 className="font-heading text-2xl font-bold">{t("fixPass.title")}</h2>
+                <span className="text-[11px] uppercase tracking-[0.14em] font-body text-muted-foreground">
+                  {t("fixPass.note")}
+                </span>
+              </div>
+              <p className="mt-1 text-sm text-muted-foreground font-body">{t("fixPass.subtitle")}</p>
+              <ul className="mt-4 grid sm:grid-cols-2 gap-2">
+                {["benefitMeta", "benefitSchema", "benefitPdf", "benefitWatch"].map((k) => (
+                  <li key={k} className="flex items-start gap-2 text-sm font-body">
+                    <Check className="h-4 w-4 text-accent mt-0.5 shrink-0" />
+                    <span>{t(`fixPass.${k}`)}</span>
+                  </li>
+                ))}
+              </ul>
+              <Button className="mt-5" onClick={() => navigate("/")}>
+                {t("fixPass.cta")} <ArrowRight className="h-4 w-4" />
+              </Button>
+              <p className="mt-2 text-[12px] font-body text-muted-foreground">
+                {t("fixPass.howTo", {
+                  defaultValue:
+                    "Run a free audit of your address first — the $9 Fix Pass appears at the bottom of that report.",
+                })}
+              </p>
+            </div>
+          </div>
+        </section>
+
         {!isPro && !FREE_PRO_MODE && (
+
           <div className="mt-8 border border-border p-5 flex items-start gap-3 max-w-2xl mx-auto">
             <ShieldCheck className="h-5 w-5 text-primary shrink-0 mt-0.5" />
             <div>
