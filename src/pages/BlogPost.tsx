@@ -115,6 +115,17 @@ const BlogPost = () => {
                     </li>
                   ))}
                 </ul>
+                {ring.length > 0 && (
+                  <ul className="mt-6 grid sm:grid-cols-2 gap-x-6 gap-y-2 text-sm">
+                    {ring.map((r) => (
+                      <li key={r.slug}>
+                        <Link to={`/blog/${r.slug}`} className="text-primary underline underline-offset-4 hover:opacity-80">
+                          {r.title}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
                 <div className="mt-6">
                   <Button asChild variant="ghost" size="sm">
                     <Link to="/blog">
