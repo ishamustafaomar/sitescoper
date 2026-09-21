@@ -59,8 +59,8 @@ export function AppHeader() {
   const navItems: NavItem[] = [
     { to: "/", label: t("nav.analyze"), icon: Sparkles, show: true, exact: true },
     { to: "/dashboard", label: t("nav.dashboard"), icon: LayoutDashboard, show: !!user },
-    { to: "/compare", label: t("nav.compare"), icon: Swords, show: true, pro: !isPro },
-    { to: "/monitoring", label: t("nav.monitoring"), icon: Eye, show: !!user, pro: !isPro },
+    { to: "/compare", label: t("nav.compare"), icon: Swords, show: true, pro: !isPro && !planLoading },
+    { to: "/monitoring", label: t("nav.monitoring"), icon: Eye, show: !!user, pro: !isPro && !planLoading },
     { to: "/tools", label: t("nav.tools"), icon: Wrench, show: true },
     { to: "/blog", label: t("nav.blog"), icon: BookOpen, show: true },
     { to: "/pricing#fix-pass", label: t("nav.fixPass"), icon: Zap, show: true, match: "/pricing#fix-pass" },
