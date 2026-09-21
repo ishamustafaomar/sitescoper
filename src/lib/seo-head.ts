@@ -1,4 +1,5 @@
 const SITE = "https://sitescoper.com";
+export const DEFAULT_OG_IMAGE = `${SITE}/og-default.jpg`;
 
 export function pageHead(opts: {
   path: string;
@@ -22,10 +23,11 @@ export function pageHead(opts: {
     { name: "twitter:title", content: opts.title },
     { name: "twitter:description", content: opts.description },
   ];
-  if (opts.image) {
-    meta.push({ property: "og:image", content: opts.image });
-    meta.push({ name: "twitter:image", content: opts.image });
-  }
+  const image = opts.image ?? DEFAULT_OG_IMAGE;
+  meta.push({ property: "og:image", content: image });
+  meta.push({ property: "og:image:width", content: "1200" });
+  meta.push({ property: "og:image:height", content: "630" });
+  meta.push({ name: "twitter:image", content: image });
   if (opts.publishedTime) {
     meta.push({ property: "article:published_time", content: opts.publishedTime });
   }

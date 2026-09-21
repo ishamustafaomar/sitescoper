@@ -61,16 +61,43 @@ function stripInline(text: string): string {
 }
 
 function renderInline(text: string): ReactNode[] {
+  // Inline code spans are literal: never parse links inside `...`.
+  if (/`[^`]+`/.test(text)) {
+    const out: ReactNode[] = [];
+    text.split(/(`[^`]+`)/g).filter(Boolean).forEach((seg, i) => {
+      if (seg.startsWith("`") && seg.endsWith("`")) {
+        out.push(
+          <code key={`c${i}`} className="rounded bg-muted px-1.5 py-0.5 font-mono text-[0.9em]">
+            {seg.slice(1, -1)}
+          </code>,
+        );
+      } else {
+        out.push(...renderLinks(seg, i));
+      }
+    });
+    return out;
+  }
+  return renderLinks(text, 0);
+}
+
+function renderLinks(text: string, keyBase: number): ReactNode[] {
   // Tokenise links first, then bold/italic/code inside plain segments.
   const linkRe = /\[([^\]]+)\]\(([^)\s]+)\)/g;
   const parts: ReactNode[] = [];
   let last = 0;
   let m: RegExpExecArray | null;
-  let key = 0;
+  let key = keyBase * 1000;
   while ((m = linkRe.exec(text)) !== null) {
     if (m.index > last) parts.push(...renderEmphasis(text.slice(last, m.index), key++));
-    const href = m[2];
-    const label = m[1];
+    const href = m[2]!;
+    const label = m[1]!;
+    // Anything that isn't an absolute URL, a root-relative path, a mailto or an
+    // anchor is not a real link — render it as text so crawlers never see a 404.
+    if (!/^(https?:\/\/|\/|#|mailto:)/.test(href)) {
+      parts.push(...renderEmphasis(m[0], key++));
+      last = m.index + m[0].length;
+      continue;
+    }
     const isExternal = /^https?:\/\//.test(href) && !href.startsWith("https://sitescoper.com");
     const internalHref = href.replace(/^https:\/\/sitescoper\.com/, "") || "/";
     parts.push(

@@ -115,7 +115,7 @@ A UX score, a per-category breakdown, a ranked action plan, side-by-side "before
     ctaTitle: "Audit your website's UX now",
     ctaBody: "Paste any URL. You will have a scored, prioritised UX report in about a minute — no account required for the first one.",
     related: [
-      { label: "What is a UX audit? Definition, process and template", path: "/blog/what-is-a-ux-audit" },
+      { label: "What is a UX audit? A plain-English DIY guide", path: "/blog/what-is-a-ux-audit-a-plain-english-diy-guide" },
       { label: "CRO audit: find the leaks in your conversion path", path: "/cro-audit" },
       { label: "Landing page audit", path: "/landing-page-audit" },
       { label: "How to do a website audit (step by step)", path: "/blog/how-to-audit-a-website-for-seo" },
@@ -186,7 +186,7 @@ If you would rather do it by hand first, this is the sequence that finds the mos
 5. Read every testimonial. Delete the ones that could be about any product.
 6. Search the page for your competitors' names. If they are absent, your visitors are comparing you somewhere else.
 
-Our [CRO audit checklist](/blog/cro-audit-checklist) expands this into 32 checks grouped by page type.
+Our [free website audit checklist](/blog/free-website-audit-checklist) expands this into 24 checks you can run by hand.
 
 ## What to do with the findings
 
@@ -212,7 +212,7 @@ Sort by impact, not by ease. Ship the top three, wait two weeks, look at the num
     ctaTitle: "Run a free CRO audit on your site",
     ctaBody: "Paste your homepage URL. We follow the conversion path from there and rank what is costing you signups or sales.",
     related: [
-      { label: "CRO audit checklist: 32 checks by page type", path: "/blog/cro-audit-checklist" },
+      { label: "Free website audit checklist: 24 checks you can run", path: "/blog/free-website-audit-checklist" },
       { label: "UX audit tool", path: "/ux-audit" },
       { label: "Landing page audit", path: "/landing-page-audit" },
       { label: "Pricing page and plan structure", path: "/pricing" },
@@ -221,7 +221,7 @@ Sort by impact, not by ease. Ship the top three, wait two weeks, look at the num
 
   "landing-page-audit": {
     path: "/landing-page-audit",
-    title: "Free Landing Page Audit — Score Your Page Before You Send Traffic | SiteScoper",
+    title: "Free Landing Page Audit Tool | SiteScoper",
     description:
       "Audit any landing page in 60 seconds: headline, offer, proof, CTA, speed and SEO. SiteScoper scores the page like a conversion strategist and tells you what to fix before you spend on ads.",
     breadcrumb: "Landing page audit",
