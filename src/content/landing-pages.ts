@@ -186,7 +186,7 @@ If you would rather do it by hand first, this is the sequence that finds the mos
 5. Read every testimonial. Delete the ones that could be about any product.
 6. Search the page for your competitors' names. If they are absent, your visitors are comparing you somewhere else.
 
-Our [CRO audit checklist](/blog/cro-audit-checklist) expands this into 32 checks grouped by page type.
+Our [free website audit checklist](/blog/free-website-audit-checklist) expands this into 24 checks you can run by hand.
 
 ## What to do with the findings
 
