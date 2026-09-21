@@ -86,11 +86,18 @@ function renderLinks(text: string, keyBase: number): ReactNode[] {
   const parts: ReactNode[] = [];
   let last = 0;
   let m: RegExpExecArray | null;
-  let key = 0;
+  let key = keyBase * 1000;
   while ((m = linkRe.exec(text)) !== null) {
     if (m.index > last) parts.push(...renderEmphasis(text.slice(last, m.index), key++));
-    const href = m[2];
-    const label = m[1];
+    const href = m[2]!;
+    const label = m[1]!;
+    // Anything that isn't an absolute URL, a root-relative path, a mailto or an
+    // anchor is not a real link — render it as text so crawlers never see a 404.
+    if (!/^(https?:\/\/|\/|#|mailto:)/.test(href)) {
+      parts.push(...renderEmphasis(m[0], key++));
+      last = m.index + m[0].length;
+      continue;
+    }
     const isExternal = /^https?:\/\//.test(href) && !href.startsWith("https://sitescoper.com");
     const internalHref = href.replace(/^https:\/\/sitescoper\.com/, "") || "/";
     parts.push(
