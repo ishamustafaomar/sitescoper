@@ -47,7 +47,7 @@ const Index = () => {
   const [progress, setProgress] = useState<{ percent: number; label: string }>({ percent: 0, label: "" });
   const [liveTechSeo, setLiveTechSeo] = useState<TechSeoReport | null>(null);
   const { toast } = useToast();
-  const { user } = useAuth();
+  const { user, loading: authLoading } = useAuth();
   const { isPro } = useSubscription();
   const { t, i18n } = useTranslation();
   const inputRef = useRef<HTMLDivElement>(null);
@@ -73,7 +73,8 @@ const Index = () => {
     inputRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
   };
 
-  const handleAnalyze = async (url: string) => {
+  const handleAnalyze = async (url: string, instructionsOverride?: string) => {
+    const instructions = instructionsOverride ?? customInstructions;
     // Signed-out visitors get exactly one free audit, no account needed.
     // Additional audits require an account (enforced server-side too).
     if (!user && hasUsedFreeAnalysis) {
@@ -109,7 +110,7 @@ const Index = () => {
 
       setStep("analyzing");
       setProgress({ percent: 80, label: t("index.progressReadingLikeVisitor") });
-      const result = await analyzeWebsite(data.markdown || "", url, data.images, data.detectedSections, customInstructions);
+      const result = await analyzeWebsite(data.markdown || "", url, data.images, data.detectedSections, instructions);
       setAnalysis(result);
       setStep("done");
 
@@ -137,7 +138,7 @@ const Index = () => {
           summary: result.summary,
           categories: result.categories,
           scrape_data: scrapePayload,
-          custom_instructions: customInstructions.trim() || undefined,
+          custom_instructions: instructions.trim() || undefined,
         });
         return;
       }
@@ -172,7 +173,7 @@ const Index = () => {
           overall_score: result.overall_score,
           summary: result.summary,
           categories: result.categories as any,
-          custom_instructions: customInstructions.trim() || null,
+          custom_instructions: instructions.trim() || null,
           scrape_data: scrapePayload as any,
         } as any);
     } catch (err: any) {
@@ -190,7 +191,9 @@ const Index = () => {
   // who typed their address there lands straight in a running audit.
   const autoStarted = useRef(false);
   useEffect(() => {
-    if (autoStarted.current || typeof window === "undefined") return;
+    // Wait for the session to resolve: starting early would treat a signed-in
+    // visitor as a guest and drop the report from their history.
+    if (authLoading || autoStarted.current || typeof window === "undefined") return;
     const params = new URLSearchParams(window.location.search);
     const handoff = params.get("url");
     if (!handoff) return;
@@ -202,12 +205,12 @@ const Index = () => {
     } catch {
       return;
     }
-    const focus = params.get("focus");
-    if (focus) setCustomInstructions(focus.slice(0, 500));
+    const focus = params.get("focus")?.slice(0, 500) ?? "";
+    if (focus) setCustomInstructions(focus);
     window.history.replaceState({}, "", window.location.pathname);
-    void handleAnalyze(normalized);
+    void handleAnalyze(normalized, focus);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [authLoading]);
 
 
 
