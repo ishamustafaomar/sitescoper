@@ -115,7 +115,7 @@ A UX score, a per-category breakdown, a ranked action plan, side-by-side "before
     ctaTitle: "Audit your website's UX now",
     ctaBody: "Paste any URL. You will have a scored, prioritised UX report in about a minute — no account required for the first one.",
     related: [
-      { label: "What is a UX audit? Definition, process and template", path: "/blog/what-is-a-ux-audit" },
+      { label: "What is a UX audit? A plain-English DIY guide", path: "/blog/what-is-a-ux-audit-a-plain-english-diy-guide" },
       { label: "CRO audit: find the leaks in your conversion path", path: "/cro-audit" },
       { label: "Landing page audit", path: "/landing-page-audit" },
       { label: "How to do a website audit (step by step)", path: "/blog/how-to-audit-a-website-for-seo" },
