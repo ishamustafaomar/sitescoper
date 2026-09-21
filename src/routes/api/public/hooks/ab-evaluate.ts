@@ -39,6 +39,7 @@ function zScore(a: Tally, b: Tally): number {
 }
 
 export const Route = createFileRoute("/api/public/hooks/ab-evaluate")({
+  staticData: { sitemap: false },
   server: {
     handlers: {
       POST: async () => {

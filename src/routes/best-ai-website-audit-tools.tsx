@@ -3,6 +3,7 @@ import { pageHead, faqLd, breadcrumbLd } from "@/lib/seo-head";
 import BestAiWebsiteAuditTools, { tools, faqs } from "@/pages/BestAiWebsiteAuditTools";
 
 export const Route = createFileRoute("/best-ai-website-audit-tools")({
+  staticData: { sitemap: true },
   head: () =>
     pageHead({
       path: "/best-ai-website-audit-tools",

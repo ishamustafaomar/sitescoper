@@ -5,6 +5,7 @@ import WebsiteAuditStatistics, { statSections } from "@/pages/WebsiteAuditStatis
 const allStats = statSections.flatMap((s) => s.stats);
 
 export const Route = createFileRoute("/website-audit-statistics")({
+  staticData: { sitemap: true },
   head: () =>
     pageHead({
       path: "/website-audit-statistics",

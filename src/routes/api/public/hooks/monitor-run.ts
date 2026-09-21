@@ -17,6 +17,7 @@ const MAX_DIGESTS = 25;
 const LEASE_MINUTES = 10;
 
 export const Route = createFileRoute("/api/public/hooks/monitor-run")({
+  staticData: { sitemap: false },
   server: {
     handlers: {
       POST: async () => {

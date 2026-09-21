@@ -9,6 +9,7 @@ const pricingFaqs = [1, 2, 3, 4, 5].map((n) => ({
 }));
 
 export const Route = createFileRoute("/pricing")({
+  staticData: { sitemap: true },
   head: () =>
     pageHead({
       path: "/pricing",

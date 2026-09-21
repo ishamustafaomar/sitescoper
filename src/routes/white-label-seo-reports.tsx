@@ -4,6 +4,7 @@ import { faqsFrom } from "@/lib/seo-faqs";
 import WhiteLabelSeoReports from "@/pages/WhiteLabelSeoReports";
 
 export const Route = createFileRoute("/white-label-seo-reports")({
+  staticData: { sitemap: true },
   head: () => pageHead({ path: "/white-label-seo-reports", title: "White-Label SEO Reports for Agencies | SiteScoper", description: "Deliver branded, client-ready SEO audits in minutes. White-label exports, custom logos, agency pricing.", jsonLd: [faqLd(faqsFrom("pages.whiteLabel", 6, "page"))] }),
   component: WhiteLabelSeoReports,
 });

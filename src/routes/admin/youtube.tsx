@@ -4,6 +4,7 @@ import AdminYoutube from "@/pages/AdminYoutube";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
 
 export const Route = createFileRoute("/admin/youtube")({
+  staticData: { sitemap: false },
   head: () => pageHead({ path: "/admin/youtube", title: 'Admin · YouTube — SiteScoper', description: 'SiteScoper admin console.', noindex: true }),
   component: () => (
     <ProtectedRoute>
