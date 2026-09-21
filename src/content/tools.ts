@@ -114,7 +114,7 @@ Only the H1 is required. The blockquote summary, the H2 sections and the special
 Honest answer: not directly, and not yet. As of 2026 none of Google, Bing, OpenAI, Anthropic or Perplexity has publicly committed to reading llms.txt as a ranking or citation signal, and Google's John Mueller has compared it to the keywords meta tag. What it does do:
 
 - **Costs nothing and cannot hurt.** It is a static text file with no effect on your HTML, crawl budget or Core Web Vitals.
-- **Is read by developer tooling today.** Cursor, Windsurf, Claude Code and several documentation platforms (Mintlify, Fern, GitBook) already generate or consume it, so if you sell to developers it is genuinely used.
+- **Is read by developer tooling today.** Documentation hosts such as Mintlify, Fern and GitBook generate it automatically, and code editors that index documentation (Cursor, for example) consume it, so if you sell to developers it is genuinely used.
 - **Forces a useful exercise.** Writing a one-line description for each important page is the same work as fixing your meta descriptions and internal linking, which *do* affect search.
 - **Positions you for adoption.** If answer engines start reading it, sites that have one get the benefit on day one.
 
@@ -135,9 +135,9 @@ The result is a solid first draft. You should still read it once: delete login, 
 The file must be served at the site root as plain text. Where that lives depends on your stack:
 
 - **Static sites, Vite, Next.js, Astro, TanStack Start:** drop \`llms.txt\` into the \`public/\` folder.
-- **WordPress:** upload to the web root via SFTP or use a plugin such as "LLMs.txt" by Website LLM. Yoast and Rank Math also generate one.
-- **Webflow, Framer, Squarespace, Wix:** no native support; use a redirect rule to a hosted text file, or a 301 to a page that returns text/plain.
-- **Shopify:** Shopify generates \`/llms.txt\` automatically for every store as of 2025; you cannot edit it.
+- **WordPress:** upload to the web root via SFTP, or use a dedicated llms.txt plugin; recent versions of Yoast SEO and Rank Math can generate one for you.
+- **Webflow, Framer, Squarespace, Wix:** no native file hosting at the root; use a redirect rule to a hosted text file, or a 301 to a page that returns text/plain.
+- **Shopify and other hosted commerce platforms:** check the platform's documentation; where the root is locked, a theme-level redirect is usually the only option.
 
 Verify by opening \`https://yourdomain.com/llms.txt\` in a browser. You should see raw markdown with a \`text/plain\` content type, not your app shell or a 404.
 

@@ -13,7 +13,8 @@
     "upgrade": "Atualizar",
     "menu": "Menu",
     "connections": "Ligações",
-    "monitoring": "Monitorização"
+    "monitoring": "Monitorização",
+    "tools": "Ferramentas"
   },
   "hero": {
     "badge": "Com tecnologia Gemini 2.5 Pro · 20+ dimensões de análise",
@@ -442,7 +443,7 @@
   },
   "blog": {
     "title": "O blogue do SiteScoper",
-    "subtitle": "Guias práticos sobre auditorias de sites, SEO, Core Web Vitals e conversão — uma nova publicação todos os dias.",
+    "subtitle": "Guias práticos sobre auditorias de sites, SEO, UX, Core Web Vitals e conversão, com novos guias todas as semanas.",
     "backToBlog": "Voltar ao blogue",
     "keepReading": "Continuar a ler",
     "auditCta": "Audite o seu site em 60 segundos",
@@ -527,7 +528,17 @@
     "terms": "Termos",
     "signIn": "Iniciar sessão",
     "rights": "© {{year}} SiteScoper. Todos os direitos reservados.",
-    "builtFor": "Criado para fundadores que realmente implementam as correções."
+    "builtFor": "Criado para fundadores que realmente implementam as correções.",
+    "audits": "Auditorias",
+    "uxAudit": "Auditoria de UX",
+    "croAudit": "Auditoria de CRO",
+    "landingPageAudit": "Auditoria de landing page",
+    "seoAuditReport": "Relatório de auditoria SEO",
+    "tools": "Ferramentas gratuitas",
+    "ogChecker": "Verificador de Open Graph",
+    "llmsTxt": "Gerador de llms.txt",
+    "allTools": "Todas as ferramentas",
+    "openGraphGuide": "Guia de tags Open Graph"
   },
   "urlInput": {
     "placeholder": "Introduza o URL de um site...",

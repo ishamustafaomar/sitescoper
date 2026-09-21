@@ -13,7 +13,8 @@
     "upgrade": "アップグレード",
     "menu": "メニュー",
     "connections": "連携",
-    "monitoring": "見張り"
+    "monitoring": "見張り",
+    "tools": "ツール"
   },
   "hero": {
     "badge": "Gemini 2.5 Pro搭載・20以上の分析項目",
@@ -442,7 +443,7 @@
   },
   "blog": {
     "title": "SiteScoperブログ",
-    "subtitle": "ウェブサイト診断、SEO、Core Web Vitals、コンバージョンに関する実践的なガイドを毎日更新。",
+    "subtitle": "ウェブサイト監査、SEO、UX、Core Web Vitals、コンバージョンに関する実践ガイド。毎週新しいガイドを公開しています。",
     "backToBlog": "ブログに戻る",
     "keepReading": "続きを読む",
     "auditCta": "60秒でサイトを診断",
@@ -527,7 +528,17 @@
     "terms": "利用規約",
     "signIn": "サインイン",
     "rights": "© {{year}} SiteScoper. All rights reserved.",
-    "builtFor": "実際に改善を実行する創業者のために作られました。"
+    "builtFor": "実際に改善を実行する創業者のために作られました。",
+    "audits": "監査",
+    "uxAudit": "UX監査",
+    "croAudit": "CRO監査",
+    "landingPageAudit": "ランディングページ監査",
+    "seoAuditReport": "SEO監査レポート",
+    "tools": "無料ツール",
+    "ogChecker": "Open Graphチェッカー",
+    "llmsTxt": "llms.txtジェネレーター",
+    "allTools": "すべての無料ツール",
+    "openGraphGuide": "Open Graphタグ ガイド"
   },
   "urlInput": {
     "placeholder": "ウェブサイトのURLを入力…",

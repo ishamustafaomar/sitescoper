@@ -46,7 +46,7 @@ const BlogPost = () => {
               <h1 className="text-3xl md:text-5xl font-heading font-bold tracking-tight mb-4 text-balance">{post.title}</h1>
               <p className="text-lg text-muted-foreground leading-relaxed">{post.description}</p>
               <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-muted-foreground">
-                <span className="font-medium text-foreground/80">{post.author}</span>
+                <Link to="/about" rel="author" className="font-medium text-foreground/80 hover:text-primary">{post.author}</Link>
                 <span className="inline-flex items-center gap-1">
                   <CalendarDays className="h-3.5 w-3.5" aria-hidden />
                   <time dateTime={post.published_at}>{formatDate(post.published_at)}</time>

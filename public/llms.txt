@@ -1,19 +1,44 @@
 # SiteScoper
 
-> AI-powered website audits that tell you the 3 things actually worth fixing this week — UX, SEO, copy, conversion, and accessibility, scored like a senior product strategist would.
+> AI website audit tool: paste a URL and get a scored report on UX, SEO, copy, conversion and speed in about 60 seconds, with fixes ranked by impact. First audit is free with no account.
 
-SiteScoper crawls up to 8 of your most important pages and uses frontier AI models (GPT-5, Gemini Pro) to deliver opinionated, prioritized recommendations. Built for founders, indie hackers, and product teams who want signal, not a 200-row checklist.
+SiteScoper crawls up to 8 of a site's most important pages and uses frontier AI models to produce opinionated, prioritized recommendations rather than a 200-row checklist. Built for founders, indie hackers, marketers and small agencies. Pro ($19/month) adds unlimited audits, weekly Site Watch monitoring, Competitor Radar, PDF export and white-label reports. A $9 one-time Audit & Fix Pass unlocks generated fixes and 30 days of monitoring for a single site.
 
 ## Pages
 
-- [Home](/): Run a free AI website audit and see the SiteScoper product overview.
-- [Best AI website audit tools 2026](/best-ai-website-audit-tools): Honest comparison of SiteScoper, Lighthouse, Semrush, Ahrefs, Screaming Frog and Clarity, with pricing and what each is best at.
-- [Website audit statistics](/website-audit-statistics): 21 sourced statistics on page speed, mobile UX, SEO, conversion, accessibility and AI search, each with a named source and year.
-- [Blog](/blog): Practical guides on website audits, SEO and Core Web Vitals for founders.
-- [Pricing](/pricing): Free plan: 3 audits/month, no card. Pro: $19/month or $180/year with a 7-day free trial and a 30-day refund — unlimited audits, deep product simulation, competitor compare, chat with report, PDF export.
-- [Privacy Policy](/privacy): How SiteScoper collects and protects your data.
-- [Terms of Service](/terms): Terms governing use of SiteScoper.
+- [Home](/): Run a free AI website audit and see the product overview.
+- [Pricing](/pricing): Free plan with no card. Pro: $19/month or $180/year with a 7-day trial and 30-day refund. Audit & Fix Pass: $9 one-time.
+- [AI website audit tool](/ai-website-audit-tool): What the audit checks, how scoring works, and how it compares with Lighthouse and SEO crawlers.
+- [Best AI website audit tools 2026](/best-ai-website-audit-tools): Comparison of SiteScoper, Lighthouse, Semrush, Ahrefs, Screaming Frog and Clarity, with pricing and what each is best at.
+- [White-label SEO reports](/white-label-seo-reports): Branded PDF audit reports for agencies and freelancers.
+- [Compare two websites](/compare): Side-by-side audit of two URLs.
+- [Website audit statistics](/website-audit-statistics): 21 sourced statistics on page speed, mobile UX, SEO, conversion, accessibility and AI search.
+
+## Audits
+
+- [UX audit](/ux-audit): What a UX audit covers, how to run one, and how SiteScoper scores clarity, navigation, conversion path, trust, mobile and accessibility.
+- [CRO audit](/cro-audit): Conversion rate optimization audit: the friction points between landing and signup or purchase, and how to fix them.
+- [Landing page audit](/landing-page-audit): Message match, proof, call to action, speed and tracking checks for a single landing page.
+- [SEO audit report](/seo-audit-report): What a useful SEO audit report contains, an annotated structure, and what to ignore.
+
+## Free tools
+
+- [Free tools](/tools): Index of SiteScoper's free, no-signup utilities.
+- [Open Graph & meta tag checker](/tools/open-graph-checker): Preview how a link renders on Google, Facebook, LinkedIn, X, Slack and WhatsApp; validates real image size and weight and generates corrected head tags.
+- [llms.txt generator](/tools/llms-txt-generator): Builds a spec-compliant llms.txt from a site's sitemap and page metadata.
+
+## Guides
+
+- [Blog](/blog): Practical guides on website audits, SEO, UX, Core Web Vitals and AI search for founders.
+- [Open Graph tags: the complete guide](/blog/open-graph-tags-guide): Every OG and Twitter card tag, exact image sizes, a copy-paste template and how to refresh cached previews.
+- [What is llms.txt?](/blog/what-is-llms-txt): What the file contains, who reads it, whether it helps SEO or AI visibility, and how to write one.
+- [How to audit a website for SEO](/blog/how-to-audit-a-website-for-seo): Step-by-step SEO audit for founders.
+- [Schema markup for SEO](/blog/schema-markup-for-seo-your-essential-guide): Which schema types matter and how to add them.
+- [Meta description best practices](/blog/meta-description-best-practices-for-more-clicks): The rules that lift click-through rate.
+- [Website redesign SEO migration checklist](/blog/website-redesign-seo-migration-checklist): How to redesign without losing rankings.
 
 ## Optional
 
+- [Privacy Policy](/privacy): How SiteScoper collects and protects data.
+- [Terms of Service](/terms): Terms governing use of SiteScoper.
 - [Sign in](/auth): Create an account or sign in.

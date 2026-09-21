@@ -14,6 +14,11 @@ import { landingPages } from "@/content/landing-pages";
 import { pingIndexNow } from "@/lib/indexnow";
 
 const MODEL = "openai/gpt-6-astra";
+
+/** Thrown when the gateway says the workspace may not spend: the job must pause, not retry. */
+export class PauseError extends Error {
+  pause = true as const;
+}
 const MIN_WORDS = 1000;
 const MAX_WORDS = 2600;
 const MIN_H2 = 4;
@@ -140,12 +145,16 @@ async function callModel(system: string, user: string): Promise<string> {
         { role: "system", content: system },
         { role: "user", content: user },
       ],
+      reasoning_effort: "medium",
       response_format: { type: "json_object" },
     }),
     signal: AbortSignal.timeout(170_000),
   });
   if (!res.ok) {
     const body = await res.text();
+    // 402 (no credits) and 403 (workspace/provider block) must pause the whole job
+    // until the owner acts; 429/5xx simply wait for the next scheduled run.
+    if (res.status === 402 || res.status === 403) throw new PauseError(`AI gateway ${res.status}: ${body.slice(0, 200)}`);
     throw new Error(`AI gateway ${res.status}: ${body.slice(0, 200)}`);
   }
   const json = (await res.json()) as { choices?: { message?: { content?: string } }[] };

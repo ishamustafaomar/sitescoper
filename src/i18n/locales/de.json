@@ -13,7 +13,8 @@
     "upgrade": "Upgrade",
     "menu": "Menü",
     "connections": "Verbindungen",
-    "monitoring": "Beobachten"
+    "monitoring": "Beobachten",
+    "tools": "Tools"
   },
   "hero": {
     "badge": "Powered by Gemini 2.5 Pro · 20+ Analysedimensionen",
@@ -442,7 +443,7 @@
   },
   "blog": {
     "title": "Der SiteScoper-Blog",
-    "subtitle": "Praktische Guides zu Website-Audits, SEO, Core Web Vitals und Conversion — jeden Tag ein neuer Beitrag.",
+    "subtitle": "Praxisnahe Leitfäden zu Website-Audits, SEO, UX, Core Web Vitals und Conversion – jede Woche neue Beiträge.",
     "backToBlog": "Zurück zum Blog",
     "keepReading": "Weiterlesen",
     "auditCta": "Audit deine Website in 60 Sekunden",
@@ -527,7 +528,17 @@
     "terms": "AGB",
     "signIn": "Anmelden",
     "rights": "© {{year}} SiteScoper. Alle Rechte vorbehalten.",
-    "builtFor": "Entwickelt für Gründer, die die Fixes tatsächlich umsetzen."
+    "builtFor": "Entwickelt für Gründer, die die Fixes tatsächlich umsetzen.",
+    "audits": "Audits",
+    "uxAudit": "UX-Audit",
+    "croAudit": "CRO-Audit",
+    "landingPageAudit": "Landingpage-Audit",
+    "seoAuditReport": "SEO-Audit-Bericht",
+    "tools": "Kostenlose Tools",
+    "ogChecker": "Open-Graph-Checker",
+    "llmsTxt": "llms.txt-Generator",
+    "allTools": "Alle Tools",
+    "openGraphGuide": "Leitfaden zu Open-Graph-Tags"
   },
   "urlInput": {
     "placeholder": "Website-URL eingeben...",

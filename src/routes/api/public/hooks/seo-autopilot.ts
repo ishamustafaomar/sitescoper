@@ -39,7 +39,7 @@ export const Route = createFileRoute("/api/public/hooks/seo-autopilot")({
           { onConflict: "job_name" },
         );
 
-        let topic: auto.TopicRow | null = null;
+        let topic: TopicRow | null = null;
         try {
           const { data } = await supabaseAdmin
             .from("seo_topics")
@@ -49,7 +49,7 @@ export const Route = createFileRoute("/api/public/hooks/seo-autopilot")({
             .order("created_at", { ascending: true })
             .limit(1)
             .maybeSingle();
-          topic = (data as auto.TopicRow | null) ?? null;
+          topic = (data as TopicRow | null) ?? null;
 
           if (topic) {
             await supabaseAdmin.from("seo_topics").update({ status: "writing", attempts: topic.attempts + 1 }).eq("id", topic.id);
@@ -70,6 +70,10 @@ export const Route = createFileRoute("/api/public/hooks/seo-autopilot")({
           return Response.json({ action: "refresh", slug: refreshed.slug, words: refreshed.words, indexnow: ping.status });
         } catch (err) {
           const message = err instanceof Error ? err.message : String(err);
+          if (err instanceof auto.PauseError) {
+            // Circuit breaker: stop every future run until the owner clears paused_reason.
+            await supabaseAdmin.from("job_leases").update({ paused_reason: message.slice(0, 300) }).eq("job_name", JOB);
+          }
           if (topic) {
             const exhausted = topic.attempts + 1 >= 3;
             await supabaseAdmin

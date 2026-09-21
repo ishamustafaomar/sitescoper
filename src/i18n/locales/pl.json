@@ -13,7 +13,8 @@
     "upgrade": "Ulepsz",
     "menu": "Menu",
     "connections": "Połączenia",
-    "monitoring": "Obserwacja"
+    "monitoring": "Obserwacja",
+    "tools": "Narzędzia"
   },
   "hero": {
     "badge": "Napędzane przez Gemini 2.5 Pro · 20+ wymiarów analizy",
@@ -442,7 +443,7 @@
   },
   "blog": {
     "title": "Blog SiteScoper",
-    "subtitle": "Praktyczne poradniki o audytach stron, SEO, Core Web Vitals i konwersji — nowy wpis publikowany codziennie.",
+    "subtitle": "Praktyczne przewodniki o audytach stron, SEO, UX, Core Web Vitals i konwersji – nowe przewodniki co tydzień.",
     "backToBlog": "Powrót do bloga",
     "keepReading": "Czytaj dalej",
     "auditCta": "Przeaudytuj swoją stronę w 60 sekund",
@@ -527,7 +528,17 @@
     "terms": "Warunki",
     "signIn": "Zaloguj się",
     "rights": "© {{year}} SiteScoper. Wszelkie prawa zastrzeżone.",
-    "builtFor": "Stworzone dla założycieli, którzy naprawdę wdrażają poprawki."
+    "builtFor": "Stworzone dla założycieli, którzy naprawdę wdrażają poprawki.",
+    "audits": "Audyty",
+    "uxAudit": "Audyt UX",
+    "croAudit": "Audyt CRO",
+    "landingPageAudit": "Audyt landing page",
+    "seoAuditReport": "Raport audytu SEO",
+    "tools": "Darmowe narzędzia",
+    "ogChecker": "Sprawdzanie Open Graph",
+    "llmsTxt": "Generator llms.txt",
+    "allTools": "Wszystkie narzędzia",
+    "openGraphGuide": "Przewodnik po tagach Open Graph"
   },
   "urlInput": {
     "placeholder": "Wpisz adres URL strony...",

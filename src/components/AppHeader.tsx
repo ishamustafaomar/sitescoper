@@ -1,5 +1,5 @@
-import { useNavigate, useLocation } from "@/lib/router-compat";
-import { LayoutDashboard, LogOut, LogIn, Shield, Sparkles, Check, Swords, Crown, User as UserIcon, Menu, Eye } from "lucide-react";
+import { Link, useNavigate, useLocation } from "@/lib/router-compat";
+import { LayoutDashboard, LogOut, LogIn, Shield, Sparkles, Check, Swords, Crown, User as UserIcon, Menu, Eye, Wrench } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import logoMark from "@/assets/logo-mark.png";
@@ -48,12 +48,12 @@ export function AppHeader() {
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-card/80 backdrop-blur-md supports-[backdrop-filter]:bg-card/70">
       <div className="max-w-6xl mx-auto h-[60px] px-4 flex items-center justify-between gap-4">
-        <button
-          onClick={() => {
+        <Link
+          to="/"
+          onClick={(e) => {
             if (location.pathname === "/") {
+              e.preventDefault();
               window.location.assign("/");
-            } else {
-              navigate("/");
             }
           }}
           className="flex items-center gap-2.5 hover:opacity-80 transition-opacity"
@@ -76,27 +76,27 @@ export function AppHeader() {
               AI Website Analyzer
             </span>
           </div>
-        </button>
+        </Link>
 
-        <nav className="hidden md:flex items-center gap-1">
-          <button
-            onClick={() => navigate("/")}
+        <nav className="hidden md:flex items-center gap-1" aria-label="Primary">
+          <Link
+            to="/"
             className={cn(pillBase, path === "/" ? pillActive : pillIdle)}
           >
             <Sparkles className="h-3.5 w-3.5" />
             {t("nav.analyze")}
-          </button>
+          </Link>
           {user && (
-            <button
-              onClick={() => navigate("/dashboard")}
+            <Link
+              to="/dashboard"
               className={cn(pillBase, path.startsWith("/dashboard") ? pillActive : pillIdle)}
             >
               <LayoutDashboard className="h-3.5 w-3.5" />
               {t("nav.dashboard")}
-            </button>
+            </Link>
           )}
-          <button
-            onClick={() => navigate("/compare")}
+          <Link
+            to="/compare"
             className={cn(pillBase, path === "/compare" ? pillActive : pillIdle)}
           >
             <Swords className="h-3.5 w-3.5" />
@@ -106,10 +106,10 @@ export function AppHeader() {
                 PRO
               </span>
             )}
-          </button>
+          </Link>
           {user && (
-            <button
-              onClick={() => navigate("/monitoring")}
+            <Link
+              to="/monitoring"
               className={cn(pillBase, path.startsWith("/monitoring") ? pillActive : pillIdle)}
             >
               <Eye className="h-3.5 w-3.5" />
@@ -119,22 +119,29 @@ export function AppHeader() {
                   PRO
                 </span>
               )}
-            </button>
+            </Link>
           )}
-          <button
-            onClick={() => navigate("/pricing")}
+          <Link
+            to="/tools"
+            className={cn(pillBase, path.startsWith("/tools") ? pillActive : pillIdle)}
+          >
+            <Wrench className="h-3.5 w-3.5" />
+            {t("nav.tools")}
+          </Link>
+          <Link
+            to="/pricing"
             className={cn(pillBase, path === "/pricing" ? pillActive : pillIdle)}
           >
             {t("nav.pricing")}
-          </button>
+          </Link>
           {user && isAdmin && (
-            <button
-              onClick={() => navigate("/admin")}
+            <Link
+              to="/admin"
               className={cn(pillBase, path.startsWith("/admin") ? pillActive : pillIdle)}
             >
               <Shield className="h-3.5 w-3.5" />
               {t("nav.admin")}
-            </button>
+            </Link>
           )}
         </nav>
 
@@ -212,6 +219,7 @@ export function AppHeader() {
                   { to: "/dashboard", label: t("nav.dashboard"), icon: LayoutDashboard, show: !!user },
                   { to: "/compare", label: t("nav.compare"), icon: Swords, show: true, pro: !isPro },
                   { to: "/monitoring", label: t("nav.monitoring"), icon: Eye, show: !!user, pro: !isPro },
+                  { to: "/tools", label: t("nav.tools"), icon: Wrench, show: true },
                   { to: "/pricing", label: t("nav.pricing"), show: true },
                   { to: "/admin", label: t("nav.admin"), icon: Shield, show: !!user && isAdmin },
                 ]
@@ -223,12 +231,10 @@ export function AppHeader() {
                         ? path === "/"
                         : path.startsWith(item.to);
                     return (
-                      <button
+                      <Link
                         key={item.to}
-                        onClick={() => {
-                          setMobileOpen(false);
-                          navigate(item.to);
-                        }}
+                        to={item.to}
+                        onClick={() => setMobileOpen(false)}
                         className={cn(
                           "flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-body text-left transition-colors",
                           active ? "bg-muted text-foreground" : "text-muted-foreground hover:bg-muted/70 hover:text-foreground",
@@ -241,7 +247,7 @@ export function AppHeader() {
                             PRO
                           </span>
                         )}
-                      </button>
+                      </Link>
                     );
                   })}
               </nav>
