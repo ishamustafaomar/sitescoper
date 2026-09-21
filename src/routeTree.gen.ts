@@ -15,13 +15,17 @@ import { Route as AiWebsiteAuditToolRouteImport } from './routes/ai-website-audi
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as BestAiWebsiteAuditToolsRouteImport } from './routes/best-ai-website-audit-tools'
 import { Route as CompareRouteImport } from './routes/compare'
+import { Route as CroAuditRouteImport } from './routes/cro-audit'
 import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as LandingPageAuditRouteImport } from './routes/landing-page-audit'
 import { Route as MonitoringRouteImport } from './routes/monitoring'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as SeoAuditReportRouteImport } from './routes/seo-audit-report'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as TermsRouteImport } from './routes/terms'
+import { Route as UxAuditRouteImport } from './routes/ux-audit'
 import { Route as WebsiteAuditStatisticsRouteImport } from './routes/website-audit-statistics'
 import { Route as WhiteLabelSeoReportsRouteImport } from './routes/white-label-seo-reports'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
@@ -70,9 +74,19 @@ const CompareRoute = CompareRouteImport.update({
   path: '/compare',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CroAuditRoute = CroAuditRouteImport.update({
+  id: '/cro-audit',
+  path: '/cro-audit',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DashboardRoute = DashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LandingPageAuditRoute = LandingPageAuditRouteImport.update({
+  id: '/landing-page-audit',
+  path: '/landing-page-audit',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MonitoringRoute = MonitoringRouteImport.update({
@@ -95,6 +109,11 @@ const PrivacyRoute = PrivacyRouteImport.update({
   path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SeoAuditReportRoute = SeoAuditReportRouteImport.update({
+  id: '/seo-audit-report',
+  path: '/seo-audit-report',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
@@ -103,6 +122,11 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UxAuditRoute = UxAuditRouteImport.update({
+  id: '/ux-audit',
+  path: '/ux-audit',
   getParentRoute: () => rootRouteImport,
 } as any)
 const WebsiteAuditStatisticsRoute = WebsiteAuditStatisticsRouteImport.update({
@@ -202,13 +226,17 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/best-ai-website-audit-tools': typeof BestAiWebsiteAuditToolsRoute
   '/compare': typeof CompareRoute
+  '/cro-audit': typeof CroAuditRoute
   '/dashboard': typeof DashboardRoute
+  '/landing-page-audit': typeof LandingPageAuditRoute
   '/monitoring': typeof MonitoringRoute
   '/onboarding': typeof OnboardingRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
+  '/seo-audit-report': typeof SeoAuditReportRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
+  '/ux-audit': typeof UxAuditRoute
   '/website-audit-statistics': typeof WebsiteAuditStatisticsRoute
   '/white-label-seo-reports': typeof WhiteLabelSeoReportsRoute
   '/admin/reddit': typeof AdminRedditRoute
@@ -234,13 +262,17 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/best-ai-website-audit-tools': typeof BestAiWebsiteAuditToolsRoute
   '/compare': typeof CompareRoute
+  '/cro-audit': typeof CroAuditRoute
   '/dashboard': typeof DashboardRoute
+  '/landing-page-audit': typeof LandingPageAuditRoute
   '/monitoring': typeof MonitoringRoute
   '/onboarding': typeof OnboardingRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
+  '/seo-audit-report': typeof SeoAuditReportRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
+  '/ux-audit': typeof UxAuditRoute
   '/website-audit-statistics': typeof WebsiteAuditStatisticsRoute
   '/white-label-seo-reports': typeof WhiteLabelSeoReportsRoute
   '/admin/reddit': typeof AdminRedditRoute
@@ -267,13 +299,17 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/best-ai-website-audit-tools': typeof BestAiWebsiteAuditToolsRoute
   '/compare': typeof CompareRoute
+  '/cro-audit': typeof CroAuditRoute
   '/dashboard': typeof DashboardRoute
+  '/landing-page-audit': typeof LandingPageAuditRoute
   '/monitoring': typeof MonitoringRoute
   '/onboarding': typeof OnboardingRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
+  '/seo-audit-report': typeof SeoAuditReportRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
+  '/ux-audit': typeof UxAuditRoute
   '/website-audit-statistics': typeof WebsiteAuditStatisticsRoute
   '/white-label-seo-reports': typeof WhiteLabelSeoReportsRoute
   '/admin/reddit': typeof AdminRedditRoute
@@ -301,13 +337,17 @@ export interface FileRouteTypes {
     | '/auth'
     | '/best-ai-website-audit-tools'
     | '/compare'
+    | '/cro-audit'
     | '/dashboard'
+    | '/landing-page-audit'
     | '/monitoring'
     | '/onboarding'
     | '/pricing'
     | '/privacy'
+    | '/seo-audit-report'
     | '/sitemap.xml'
     | '/terms'
+    | '/ux-audit'
     | '/website-audit-statistics'
     | '/white-label-seo-reports'
     | '/admin/reddit'
@@ -333,13 +373,17 @@ export interface FileRouteTypes {
     | '/auth'
     | '/best-ai-website-audit-tools'
     | '/compare'
+    | '/cro-audit'
     | '/dashboard'
+    | '/landing-page-audit'
     | '/monitoring'
     | '/onboarding'
     | '/pricing'
     | '/privacy'
+    | '/seo-audit-report'
     | '/sitemap.xml'
     | '/terms'
+    | '/ux-audit'
     | '/website-audit-statistics'
     | '/white-label-seo-reports'
     | '/admin/reddit'
@@ -365,13 +409,17 @@ export interface FileRouteTypes {
     | '/auth'
     | '/best-ai-website-audit-tools'
     | '/compare'
+    | '/cro-audit'
     | '/dashboard'
+    | '/landing-page-audit'
     | '/monitoring'
     | '/onboarding'
     | '/pricing'
     | '/privacy'
+    | '/seo-audit-report'
     | '/sitemap.xml'
     | '/terms'
+    | '/ux-audit'
     | '/website-audit-statistics'
     | '/white-label-seo-reports'
     | '/admin/reddit'
@@ -398,13 +446,17 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRoute
   BestAiWebsiteAuditToolsRoute: typeof BestAiWebsiteAuditToolsRoute
   CompareRoute: typeof CompareRoute
+  CroAuditRoute: typeof CroAuditRoute
   DashboardRoute: typeof DashboardRoute
+  LandingPageAuditRoute: typeof LandingPageAuditRoute
   MonitoringRoute: typeof MonitoringRoute
   OnboardingRoute: typeof OnboardingRoute
   PricingRoute: typeof PricingRoute
   PrivacyRoute: typeof PrivacyRoute
+  SeoAuditReportRoute: typeof SeoAuditReportRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
+  UxAuditRoute: typeof UxAuditRoute
   WebsiteAuditStatisticsRoute: typeof WebsiteAuditStatisticsRoute
   WhiteLabelSeoReportsRoute: typeof WhiteLabelSeoReportsRoute
   AdminRedditRoute: typeof AdminRedditRoute
@@ -468,11 +520,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CompareRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cro-audit': {
+      id: '/cro-audit'
+      path: '/cro-audit'
+      fullPath: '/cro-audit'
+      preLoaderRoute: typeof CroAuditRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/dashboard': {
       id: '/dashboard'
       path: '/dashboard'
       fullPath: '/dashboard'
       preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/landing-page-audit': {
+      id: '/landing-page-audit'
+      path: '/landing-page-audit'
+      fullPath: '/landing-page-audit'
+      preLoaderRoute: typeof LandingPageAuditRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/monitoring': {
@@ -503,6 +569,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/seo-audit-report': {
+      id: '/seo-audit-report'
+      path: '/seo-audit-report'
+      fullPath: '/seo-audit-report'
+      preLoaderRoute: typeof SeoAuditReportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sitemap.xml': {
       id: '/sitemap.xml'
       path: '/sitemap.xml'
@@ -515,6 +588,13 @@ declare module '@tanstack/react-router' {
       path: '/terms'
       fullPath: '/terms'
       preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ux-audit': {
+      id: '/ux-audit'
+      path: '/ux-audit'
+      fullPath: '/ux-audit'
+      preLoaderRoute: typeof UxAuditRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/website-audit-statistics': {
@@ -646,13 +726,17 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRoute,
   BestAiWebsiteAuditToolsRoute: BestAiWebsiteAuditToolsRoute,
   CompareRoute: CompareRoute,
+  CroAuditRoute: CroAuditRoute,
   DashboardRoute: DashboardRoute,
+  LandingPageAuditRoute: LandingPageAuditRoute,
   MonitoringRoute: MonitoringRoute,
   OnboardingRoute: OnboardingRoute,
   PricingRoute: PricingRoute,
   PrivacyRoute: PrivacyRoute,
+  SeoAuditReportRoute: SeoAuditReportRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
+  UxAuditRoute: UxAuditRoute,
   WebsiteAuditStatisticsRoute: WebsiteAuditStatisticsRoute,
   WhiteLabelSeoReportsRoute: WhiteLabelSeoReportsRoute,
   AdminRedditRoute: AdminRedditRoute,
