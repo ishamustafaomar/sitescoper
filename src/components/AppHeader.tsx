@@ -57,7 +57,8 @@ export function AppHeader() {
     { to: "/admin", label: t("nav.admin"), icon: Shield, show: !!user && isAdmin },
   ].filter((i) => i.show);
 
-  const isItemActive = (item: (typeof navItems)[number]) => {
+  const isItemActive = (item: NavItem) => {
+
     if (item.match) return `${path}${location.hash}` === item.match;
     if (item.exact) return path === item.to && !location.hash;
     return path.startsWith(item.to);
