@@ -27,7 +27,7 @@
     "badgeFoundersLine": "Criado por fundadores, para fundadores",
     "stopGuessingLine1": "Pare de adivinhar,",
     "stopGuessingLine2": "comece a crescer.",
-    "actionableFixes": "Correções práticas de UX e SEO em 60 segundos.",
+    "actionableFixes": "Auditoria de site com IA: correções de UX e SEO em 60 segundos.",
     "description": "O <1>auditor de sites com IA</1> que ignora a lista de verificação de 200 linhas e entrega as 3 correções de UX, SEO e texto que realmente valem a pena implementar esta semana — com um plano de ação em linguagem simples que um estratega de produto sénior aprovaria.",
     "freePlanBadge": "Plano gratuito · 3 análises completas por mês · Sem cartão de crédito",
     "freeScansFootnote": "A primeira auditoria não precisa de conta · Sem cartão · Mais de 2400 sites avaliados este mês",
@@ -531,7 +531,8 @@
   },
   "urlInput": {
     "placeholder": "Introduza o URL de um site...",
-    "analyze": "Analisar"
+    "analyze": "Analisar",
+    "analyzing": "A analisar o site"
   },
   "proGate": {
     "defaultTitle": "Esta é uma funcionalidade Pro",

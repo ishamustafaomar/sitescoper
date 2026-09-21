@@ -27,7 +27,7 @@
     "badgeFoundersLine": "Gebouwd door founders, voor founders",
     "stopGuessingLine1": "Stop met gokken,",
     "stopGuessingLine2": "begin met groeien.",
-    "actionableFixes": "Direct toepasbare UX- en SEO-fixes in 60 seconden.",
+    "actionableFixes": "AI-websiteaudit: UX- en SEO-fixes in 60 seconden.",
     "description": "De <1>AI-website-auditor</1> die de checklist van 200 regels overslaat en je de 3 UX-, SEO- en tekstfixes geeft die deze week écht de moeite waard zijn — met een actieplan in gewone taal dat een senior productstrateeg zou goedkeuren.",
     "freePlanBadge": "Gratis plan · 3 volledige scans per maand · Geen creditcard",
     "freeScansFootnote": "Eerste audit zonder account · Geen creditcard · 2.400+ sites gescoord deze maand",
@@ -531,7 +531,8 @@
   },
   "urlInput": {
     "placeholder": "Voer een website-URL in...",
-    "analyze": "Analyseren"
+    "analyze": "Analyseren",
+    "analyzing": "Website wordt geanalyseerd"
   },
   "proGate": {
     "defaultTitle": "Dit is een Pro-functie",
