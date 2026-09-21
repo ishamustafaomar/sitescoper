@@ -97,11 +97,7 @@ const BlogPost = () => {
               <h2 id="audit-cta" className="text-2xl font-heading font-semibold mb-2">{t("blog.auditCta")}</h2>
               <p className="text-muted-foreground mb-5 max-w-xl text-sm">{t("blog.auditCtaDesc")}</p>
               <UrlInput
-                onAnalyze={(url, focus) => {
-                  const params = new URLSearchParams({ url });
-                  if (focus) params.set("focus", focus);
-                  navigate(`/?${params.toString()}`);
-                }}
+                onSubmit={(url) => navigate(`/?${new URLSearchParams({ url }).toString()}`)}
                 isLoading={false}
               />
             </section>

@@ -185,6 +185,31 @@ const Index = () => {
     }
   };
 
+  // Landing pages, tools and guides hand off a URL via /?url=… so a visitor
+  // who typed their address there lands straight in a running audit.
+  const autoStarted = useRef(false);
+  useEffect(() => {
+    if (autoStarted.current || typeof window === "undefined") return;
+    const params = new URLSearchParams(window.location.search);
+    const handoff = params.get("url");
+    if (!handoff) return;
+    autoStarted.current = true;
+    let normalized = handoff.trim();
+    if (!/^https?:\/\//i.test(normalized)) normalized = "https://" + normalized;
+    try {
+      new URL(normalized);
+    } catch {
+      return;
+    }
+    const focus = params.get("focus");
+    if (focus) setCustomInstructions(focus.slice(0, 500));
+    window.history.replaceState({}, "", window.location.pathname);
+    void handleAnalyze(normalized);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+
+
   const handleReset = () => {
     setStep("idle");
     setScrapeData(null);
