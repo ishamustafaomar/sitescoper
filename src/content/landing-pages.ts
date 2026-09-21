@@ -221,7 +221,7 @@ Sort by impact, not by ease. Ship the top three, wait two weeks, look at the num
 
   "landing-page-audit": {
     path: "/landing-page-audit",
-    title: "Free Landing Page Audit — Score Your Page Before You Send Traffic | SiteScoper",
+    title: "Free Landing Page Audit Tool | SiteScoper",
     description:
       "Audit any landing page in 60 seconds: headline, offer, proof, CTA, speed and SEO. SiteScoper scores the page like a conversion strategist and tells you what to fix before you spend on ads.",
     breadcrumb: "Landing page audit",
