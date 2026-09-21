@@ -212,7 +212,7 @@ Sort by impact, not by ease. Ship the top three, wait two weeks, look at the num
     ctaTitle: "Run a free CRO audit on your site",
     ctaBody: "Paste your homepage URL. We follow the conversion path from there and rank what is costing you signups or sales.",
     related: [
-      { label: "CRO audit checklist: 32 checks by page type", path: "/blog/cro-audit-checklist" },
+      { label: "Free website audit checklist: 24 checks you can run", path: "/blog/free-website-audit-checklist" },
       { label: "UX audit tool", path: "/ux-audit" },
       { label: "Landing page audit", path: "/landing-page-audit" },
       { label: "Pricing page and plan structure", path: "/pricing" },
