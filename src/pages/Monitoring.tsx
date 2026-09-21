@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { AppHeader } from "@/components/AppHeader";
 import { ProGate } from "@/components/ProGate";
+import { useAnyFixPass } from "@/hooks/useFixPass";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
@@ -415,6 +416,7 @@ function MonitoringInner() {
 
 export default function Monitoring() {
   const { t } = useTranslation();
+  const { hasPass, loading: passLoading } = useAnyFixPass();
   return (
     <div className="min-h-screen bg-background">
       <AppHeader />
