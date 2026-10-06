@@ -3,6 +3,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/components/AuthProvider";
 import { getStripeEnvironment } from "@/lib/stripe";
 import { FREE_PRO_MODE } from "@/lib/free-access";
+import { useIsAdmin } from "@/hooks/useIsAdmin";
 
 export interface SubscriptionRow {
   id: string;
@@ -26,6 +27,7 @@ function computeIsActive(sub: SubscriptionRow | null): boolean {
 
 export function useSubscription() {
   const { user, loading: authLoading } = useAuth();
+  const { isAdmin, loading: adminLoading } = useIsAdmin();
   const [subscription, setSubscription] = useState<SubscriptionRow | null>(null);
   const [loading, setLoading] = useState(true);
   // Track the last successful fetch so we don't hammer the database every
@@ -84,13 +86,14 @@ export function useSubscription() {
 
   // Early access: every signed-in account gets Pro for free.
   const paidPro = computeIsActive(subscription);
-  const isPro = FREE_PRO_MODE ? !!user : paidPro;
+  // Admins get every paid feature so they can test them.
+  const isPro = FREE_PRO_MODE ? !!user : paidPro || isAdmin;
   return {
     subscription,
     isPro,
     paidPro,
     freeMode: FREE_PRO_MODE,
-    loading: loading || authLoading,
+    loading: loading || authLoading || (!!user && adminLoading),
     refetch: fetchSub,
   };
 }

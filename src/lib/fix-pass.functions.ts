@@ -143,6 +143,9 @@ export const listFixPasses = createServerFn({ method: "GET" }).handler(
   async (): Promise<{ url: string; expires_at: string }[]> => {
     const { requireSupabaseAuth, adminClient } = await import("@/lib/supabase.server");
     const { user } = await requireSupabaseAuth();
+    const { isAdminUser } = await import("@/lib/supabase.server");
+    // Admins can test every paid feature: "*" unlocks the pass for any address.
+    if (await isAdminUser(adminClient(), user.id)) return [{ url: "*", expires_at: "2099-01-01T00:00:00Z" }];
     const { data } = await adminClient()
       .from("fix_passes")
       .select("url,expires_at")

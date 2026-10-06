@@ -167,6 +167,12 @@ Apply category-specific weighting (don't penalize a blog for missing pricing, et
 ## STEP 2: Score with peer context
 The overall_score must be calibrated against typical sites in the SAME category. Most real sites land 40-65. Be honest. A score of 80+ means "genuinely excellent vs. peers", not "no obvious bugs".
 
+Precision rules (scores are compared side by side, so they must discriminate):
+- Use the full integer range. Do NOT round to multiples of 5 or 10 — 63, 71, 58, 77 are expected; avoid defaulting to 60/65/70/75/80/85.
+- Derive each category score from its sub_scores (roughly their average, adjusted by the most severe issue), and overall_score from the weighted category scores — never pick a round number first.
+- Two different sites should almost never get identical scores in a category unless they are genuinely equivalent; break ties based on concrete evidence.
+- Always return EVERY required category with exactly the same category names on every audit — never skip, merge or rename one — so audits can be compared.
+
 You MUST output:
 - "benchmark_percentile": estimated percentile vs. peer sites of the same category (e.g. 35 means "better than 35% of peer sites").
 - "benchmark_label": short comparison phrase (e.g. "Roughly middle-of-the-pack vs other early-stage SaaS landing pages").

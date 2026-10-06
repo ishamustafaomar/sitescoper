@@ -153,16 +153,22 @@ function BattleResults({ a, b, onReset }: { a: Side; b: Side; onReset: () => voi
         ? "a"
         : "b";
 
-  // Build category comparison map
-  const categoryMap = new Map<string, { a?: number; b?: number; icon?: string }>();
+  // Build category comparison map. Match on the first meaningful word so
+  // "Product Mechanics & Core Loop" and "Product & Core Loop" line up.
+  const catKey = (n: string) =>
+    n.toLowerCase().replace(/&|and|the|mechanics/g, " ").replace(/[^a-z ]/g, " ").trim().split(/\s+/)[0] ?? n;
+  const categoryMap = new Map<string, { name: string; a?: number; b?: number; icon?: string }>();
   a.analysis.categories.forEach((c) => {
-    categoryMap.set(c.name, { ...categoryMap.get(c.name), a: c.score, icon: c.icon });
+    const k = catKey(c.name);
+    categoryMap.set(k, { ...categoryMap.get(k), name: categoryMap.get(k)?.name ?? c.name, a: c.score, icon: c.icon });
   });
   b.analysis.categories.forEach((c) => {
-    categoryMap.set(c.name, { ...categoryMap.get(c.name), b: c.score, icon: c.icon });
+    const k = catKey(c.name);
+    const prev = categoryMap.get(k);
+    categoryMap.set(k, { ...prev, name: prev?.name ?? c.name, b: c.score, icon: prev?.icon ?? c.icon });
   });
 
-  const categories = Array.from(categoryMap.entries()).map(([name, vals]) => ({ name, ...vals }));
+  const categories = Array.from(categoryMap.values());
 
   // Wins per side
   const wins = { a: 0, b: 0, tie: 0 };

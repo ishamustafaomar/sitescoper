@@ -4,13 +4,14 @@ import { createClient, type SupabaseClient, type User } from "@supabase/supabase
 import { getRequestHeader } from "@tanstack/react-start/server";
 
 function supabaseUrl(): string {
-  const url = process.env.SUPABASE_URL ?? process.env.VITE_SUPABASE_URL;
+  const url = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL || import.meta.env.VITE_SUPABASE_URL;
   if (!url) throw new Error("SUPABASE_URL is not configured");
   return url;
 }
 
 function anonKey(): string {
-  const key = process.env.SUPABASE_ANON_KEY ?? process.env.VITE_SUPABASE_PUBLISHABLE_KEY;
+  // The publishable key is public; fall back to the build-time value so auth checks never break.
+  const key = process.env.SUPABASE_ANON_KEY || process.env.SUPABASE_PUBLISHABLE_KEY || process.env.VITE_SUPABASE_PUBLISHABLE_KEY || import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
   if (!key) throw new Error("SUPABASE_ANON_KEY is not configured");
   return key;
 }
@@ -47,4 +48,9 @@ export async function requireAdmin(): Promise<User> {
     .maybeSingle();
   if (!data) throw new Error("Admin only");
   return user;
+}
+/** True when the user holds the admin role. Admins get every paid feature for testing. */
+export async function isAdminUser(admin: SupabaseClient, userId: string): Promise<boolean> {
+  const { data } = await admin.from("user_roles").select("id").eq("user_id", userId).eq("role", "admin").maybeSingle();
+  return !!data;
 }
