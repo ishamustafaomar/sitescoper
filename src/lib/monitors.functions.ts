@@ -16,6 +16,8 @@ async function requirePro() {
   const { requireSupabaseAuth, adminClient } = await import("@/lib/supabase.server");
   const { user } = await requireSupabaseAuth();
   const admin = adminClient();
+  const { isAdminUser } = await import("@/lib/supabase.server");
+  if (await isAdminUser(admin, user.id)) return { user, admin };
 
   // A paid Audit & Fix Pass includes 30 days of watching, so it unlocks this too.
   const { data: passes } = await admin

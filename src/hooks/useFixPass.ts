@@ -23,7 +23,7 @@ export function useFixPass(url?: string) {
     }
     listFixPasses()
       .then((passes) => {
-        if (!cancelled) setHasPass(passes.some((p) => hostOf(p.url) === hostOf(url)));
+        if (!cancelled) setHasPass(passes.some((p) => p.url === "*" || hostOf(p.url) === hostOf(url)));
       })
       .catch(() => {
         if (!cancelled) setHasPass(false);
