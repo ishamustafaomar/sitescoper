@@ -1069,7 +1069,10 @@
     "showDetails": "Show details",
     "before": "Before",
     "after": "After",
-    "tradeoffLabel": "Tradeoff:"
+    "tradeoffLabel": "Tradeoff:",
+    "fixCode": "Copy-paste fix",
+    "copy": "Copy",
+    "copied": "Copied"
   },
   "headlineRewrites": {
     "toastErrorTitle": "Couldn't generate rewrites",
@@ -1466,6 +1469,10 @@
       "fixPass": {
         "title": "Audit & Fix Pass",
         "desc": "Unlock ready-to-paste fixes, the branded PDF report and 30 days of automatic checks for one address — a single $9 payment, no subscription."
+      },
+      "fixSnippets": {
+        "title": "Copy-paste fixes",
+        "desc": "Common findings like meta tags, image alt text and structured data now come with ready-to-paste code."
       }
     }
   },

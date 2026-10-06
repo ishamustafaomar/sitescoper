@@ -1069,7 +1069,10 @@
     "showDetails": "Details tonen",
     "before": "Voor",
     "after": "Na",
-    "tradeoffLabel": "Afweging:"
+    "tradeoffLabel": "Afweging:",
+    "fixCode": "Fix om te plakken",
+    "copy": "Kopiëren",
+    "copied": "Gekopieerd"
   },
   "headlineRewrites": {
     "toastErrorTitle": "Kon geen herschrijvingen genereren",
@@ -1466,6 +1469,10 @@
       "fixPass": {
         "title": "Fixpas",
         "desc": "Ontgrendel kant-en-klare fixes, het PDF-rapport en 30 dagen automatische controles voor één adres — eenmalig $9, geen abonnement."
+      },
+      "fixSnippets": {
+        "title": "Fixes om te plakken",
+        "desc": "Veelvoorkomende bevindingen zoals metatags, alt-tekst en gestructureerde data bevatten nu kant-en-klare code."
       }
     }
   },

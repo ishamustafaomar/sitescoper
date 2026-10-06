@@ -1069,7 +1069,10 @@
     "showDetails": "Mostrar detalles",
     "before": "Antes",
     "after": "Después",
-    "tradeoffLabel": "Contrapartida:"
+    "tradeoffLabel": "Contrapartida:",
+    "fixCode": "Código listo para pegar",
+    "copy": "Copiar",
+    "copied": "Copiado"
   },
   "headlineRewrites": {
     "toastErrorTitle": "No se pudieron generar reescrituras",
@@ -1466,6 +1469,10 @@
       "fixPass": {
         "title": "Pase de arreglos",
         "desc": "Desbloquea arreglos listos para pegar, el informe PDF con marca y 30 días de revisiones automáticas para una dirección — un pago único de 9 $, sin suscripción."
+      },
+      "fixSnippets": {
+        "title": "Correcciones para copiar y pegar",
+        "desc": "Hallazgos comunes como metaetiquetas, texto alternativo y datos estructurados ahora incluyen código listo para pegar."
       }
     }
   },

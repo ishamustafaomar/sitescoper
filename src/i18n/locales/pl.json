@@ -1069,7 +1069,10 @@
     "showDetails": "Pokaż szczegóły",
     "before": "Przed",
     "after": "Po",
-    "tradeoffLabel": "Kompromis:"
+    "tradeoffLabel": "Kompromis:",
+    "fixCode": "Poprawka do wklejenia",
+    "copy": "Kopiuj",
+    "copied": "Skopiowano"
   },
   "headlineRewrites": {
     "toastErrorTitle": "Nie udało się wygenerować przeróbek",
@@ -1466,6 +1469,10 @@
       "fixPass": {
         "title": "Pakiet poprawek",
         "desc": "Odblokuj gotowe poprawki, raport PDF i 30 dni automatycznych kontroli dla jednego adresu — jednorazowo 9 $, bez subskrypcji."
+      },
+      "fixSnippets": {
+        "title": "Poprawki do wklejenia",
+        "desc": "Typowe problemy, jak metatagi, tekst alternatywny i dane strukturalne, mają teraz gotowy kod do wklejenia."
       }
     }
   },

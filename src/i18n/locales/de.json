@@ -1069,7 +1069,10 @@
     "showDetails": "Details anzeigen",
     "before": "Vorher",
     "after": "Nachher",
-    "tradeoffLabel": "Kompromiss:"
+    "tradeoffLabel": "Kompromiss:",
+    "fixCode": "Fix zum Einfügen",
+    "copy": "Kopieren",
+    "copied": "Kopiert"
   },
   "headlineRewrites": {
     "toastErrorTitle": "Umschreibungen konnten nicht erstellt werden",
@@ -1466,6 +1469,10 @@
       "fixPass": {
         "title": "Fix-Pass",
         "desc": "Schalte fertige Korrekturen, den PDF-Bericht und 30 Tage automatische Prüfungen für eine Adresse frei — einmalig 9 $, ohne Abo."
+      },
+      "fixSnippets": {
+        "title": "Fixes zum Einfügen",
+        "desc": "Häufige Befunde wie Meta-Tags, Alt-Texte und strukturierte Daten enthalten jetzt fertigen Code zum Einfügen."
       }
     }
   },

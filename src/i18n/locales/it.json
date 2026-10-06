@@ -1069,7 +1069,10 @@
     "showDetails": "Mostra dettagli",
     "before": "Prima",
     "after": "Dopo",
-    "tradeoffLabel": "Compromesso:"
+    "tradeoffLabel": "Compromesso:",
+    "fixCode": "Correzione da copiare",
+    "copy": "Copia",
+    "copied": "Copiato"
   },
   "headlineRewrites": {
     "toastErrorTitle": "Impossibile generare le riscritture",
@@ -1466,6 +1469,10 @@
       "fixPass": {
         "title": "Pass correzioni",
         "desc": "Sblocca correzioni pronte da incollare, il report PDF e 30 giorni di controlli automatici per un indirizzo — 9 $ una tantum, senza abbonamento."
+      },
+      "fixSnippets": {
+        "title": "Correzioni da copiare",
+        "desc": "I problemi comuni come meta tag, testo alternativo e dati strutturati ora includono codice pronto da incollare."
       }
     }
   },
