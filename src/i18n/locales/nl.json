@@ -1473,6 +1473,10 @@
       "fixSnippets": {
         "title": "Fixes om te plakken",
         "desc": "Veelvoorkomende bevindingen zoals metatags, alt-tekst en gestructureerde data bevatten nu kant-en-klare code."
+      },
+      "copywriter": {
+        "title": "AI-copywriter",
+        "desc": "Plak je link bij Tools en krijg nieuwe koppen, knopteksten en een Google-titel op basis van je pagina. Eerste poging gratis."
       }
     }
   },

@@ -1473,6 +1473,10 @@
       "fixSnippets": {
         "title": "Correctifs à copier-coller",
         "desc": "Les problèmes courants (balises meta, texte alternatif, données structurées) incluent désormais du code prêt à coller."
+      },
+      "copywriter": {
+        "title": "Rédacteur IA",
+        "desc": "Collez votre lien dans Outils et obtenez de nouveaux titres, boutons et un titre Google rédigés à partir de votre page. Premier essai gratuit."
       }
     }
   },

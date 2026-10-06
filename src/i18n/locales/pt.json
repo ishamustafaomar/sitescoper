@@ -1473,6 +1473,10 @@
       "fixSnippets": {
         "title": "Correções para copiar e colar",
         "desc": "Problemas comuns como meta tags, texto alternativo e dados estruturados agora vêm com código pronto para colar."
+      },
+      "copywriter": {
+        "title": "Redator com IA",
+        "desc": "Cole seu link em Ferramentas e receba novos títulos, botões e um título para o Google escritos a partir da sua página. Primeira tentativa grátis."
       }
     }
   },

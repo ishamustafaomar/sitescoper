@@ -175,6 +175,12 @@ export const llmsTxtFaq: ToolFaq[] = [
 
 export const toolsHub = [
   {
+    href: "/tools/copywriter",
+    name: "AI website copywriter",
+    description: "Paste your link and get new headlines, button labels, value points and a Google title and description written from your page. First try free.",
+    eyebrow: "Copy",
+  },
+  {
     href: "/tools/open-graph-checker",
     name: "Open Graph & meta tag checker",
     description: "Preview how a link looks on Google, Facebook, LinkedIn, X, Slack and WhatsApp. Checks real image size and weight and generates the fixed head tags.",

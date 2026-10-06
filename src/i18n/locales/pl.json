@@ -1473,6 +1473,10 @@
       "fixSnippets": {
         "title": "Poprawki do wklejenia",
         "desc": "Typowe problemy, jak metatagi, tekst alternatywny i dane strukturalne, mają teraz gotowy kod do wklejenia."
+      },
+      "copywriter": {
+        "title": "Copywriter AI",
+        "desc": "Wklej link w Narzędziach i otrzymaj nowe nagłówki, przyciski i tytuł do Google napisane na podstawie Twojej strony. Pierwsza próba za darmo."
       }
     }
   },
