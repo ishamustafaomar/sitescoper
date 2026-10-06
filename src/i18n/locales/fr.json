@@ -1469,6 +1469,10 @@
       "fixPass": {
         "title": "Pass correction",
         "desc": "Débloquez des correctifs prêts à coller, le rapport PDF et 30 jours de vérifications automatiques pour une adresse — 9 $ une fois, sans abonnement."
+      },
+      "fixSnippets": {
+        "title": "Correctifs à copier-coller",
+        "desc": "Les problèmes courants (balises meta, texte alternatif, données structurées) incluent désormais du code prêt à coller."
       }
     }
   },

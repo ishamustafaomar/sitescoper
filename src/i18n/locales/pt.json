@@ -1469,6 +1469,10 @@
       "fixPass": {
         "title": "Passe de correções",
         "desc": "Desbloqueie correções prontas a colar, o relatório PDF e 30 dias de verificações automáticas para um endereço — 9 $ únicos, sem subscrição."
+      },
+      "fixSnippets": {
+        "title": "Correções para copiar e colar",
+        "desc": "Problemas comuns como meta tags, texto alternativo e dados estruturados agora vêm com código pronto para colar."
       }
     }
   },

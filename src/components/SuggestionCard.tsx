@@ -3,6 +3,8 @@ import { TrendingUp, TrendingDown, Minus, Quote, ArrowRight, ChevronDown, Wrench
 import { Badge } from "@/components/ui/badge";
 import { AnalysisSuggestion } from "@/lib/api";
 import { useTranslation } from "react-i18next";
+import { snippetFor } from "@/lib/fix-snippets";
+import { Copy, Check } from "lucide-react";
 
 const priorityConfig: Record<string, { class: string; icon: typeof TrendingUp }> = {
   high: { class: "bg-destructive/10 text-destructive border-destructive/20", icon: TrendingUp },
@@ -26,8 +28,15 @@ export function SuggestionCard({ suggestion, categoryLabel, categoryIcon }: Sugg
   };
   const config = priorityConfig[suggestion.priority] || priorityConfig.medium;
   const [open, setOpen] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const snippet = snippetFor(suggestion);
+  const copySnippet = async () => {
+    if (!snippet) return;
+    try { await navigator.clipboard.writeText(snippet.code); setCopied(true); setTimeout(() => setCopied(false), 1500); } catch { /* clipboard blocked */ }
+  };
 
   const hasDetails =
+    !!snippet ||
     !!suggestion.evidence ||
     !!(suggestion.rewrite?.before && suggestion.rewrite?.after) ||
     !!suggestion.tradeoff ||
@@ -117,6 +126,19 @@ export function SuggestionCard({ suggestion, categoryLabel, categoryIcon }: Sugg
                   {suggestion.rewrite.after}
                 </p>
               </div>
+            </div>
+          )}
+
+          {snippet && (
+            <div className="rounded-md border border-border bg-muted/30">
+              <div className="flex items-center justify-between px-2 py-1 border-b border-border/60">
+                <span className="text-[9px] font-body uppercase tracking-wider text-muted-foreground">{t("suggestionCard.fixCode")}</span>
+                <button onClick={copySnippet} className="text-[10px] font-body inline-flex items-center gap-1 text-muted-foreground hover:text-foreground">
+                  {copied ? <Check className="h-3 w-3" /> : <Copy className="h-3 w-3" />}
+                  {copied ? t("suggestionCard.copied") : t("suggestionCard.copy")}
+                </button>
+              </div>
+              <pre className="p-2 text-[10.5px] leading-snug overflow-x-auto whitespace-pre font-mono"><code>{snippet.code}</code></pre>
             </div>
           )}
 

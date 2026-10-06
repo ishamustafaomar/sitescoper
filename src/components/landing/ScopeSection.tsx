@@ -45,7 +45,7 @@ export function ScopeSection() {
 
           <p className="text-sm text-muted-foreground mt-8 font-body max-w-2xl">
             {t("landing.scope.outro")}{" "}
-            <Link to="/blog/how-to-audit-a-website-for-seo" className="text-primary underline underline-offset-4">
+            <Link to="/blog/free-website-audit-checklist" className="text-primary underline underline-offset-4">
               {t("landing.scope.link")}
             </Link>
             .
