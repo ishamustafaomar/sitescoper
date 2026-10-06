@@ -11,6 +11,7 @@ import { TrafficDot, TrafficChip, getTrafficLevel, getTrafficStyles, getTrafficL
 import { scrapeWebsite, analyzeWebsite, AnalysisResult } from "@/lib/api";
 import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
+import { CompareInsights } from "@/components/CompareInsights";
 import { useTranslation } from "react-i18next";
 
 interface Side {
@@ -216,6 +217,8 @@ function BattleResults({ a, b, onReset }: { a: Side; b: Side; onReset: () => voi
         <ScoreCard side={a} highlight={winnerOverall === "a"} label={t("compare.siteA")} />
         <ScoreCard side={b} highlight={winnerOverall === "b"} label={t("compare.siteB")} />
       </div>
+
+      <CompareInsights a={a.analysis} b={b.analysis} nameA={hostnameOf(a.url)} nameB={hostnameOf(b.url)} />
 
       {/* Category-by-category */}
       <div className="rounded-2xl border border-border bg-card overflow-hidden shadow-[var(--shadow-sm)]">

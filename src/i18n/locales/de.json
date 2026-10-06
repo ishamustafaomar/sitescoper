@@ -1492,6 +1492,10 @@
       "copywriter": {
         "title": "KI-Texter",
         "desc": "Link unter Tools einfügen und neue Überschriften, Button-Texte und einen Google-Titel aus deiner Seite erhalten. Erster Versuch gratis."
+      },
+      "compareInsights": {
+        "title": "Smarter Vergleich",
+        "desc": "Überholplan, was Sie vom Wettbewerber übernehmen, gemeinsame Schwächen und Kategorie-Details."
       }
     }
   },

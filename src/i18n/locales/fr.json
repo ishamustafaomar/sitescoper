@@ -1492,6 +1492,10 @@
       "copywriter": {
         "title": "Rédacteur IA",
         "desc": "Collez votre lien dans Outils et obtenez de nouveaux titres, boutons et un titre Google rédigés à partir de votre page. Premier essai gratuit."
+      },
+      "compareInsights": {
+        "title": "Comparaison plus intelligente",
+        "desc": "Plan pour dépasser, quoi reprendre du concurrent, angles morts communs et détail par catégorie."
       }
     }
   },

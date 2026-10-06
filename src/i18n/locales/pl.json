@@ -1492,6 +1492,10 @@
       "copywriter": {
         "title": "Copywriter AI",
         "desc": "Wklej link w Narzędziach i otrzymaj nowe nagłówki, przyciski i tytuł do Google napisane na podstawie Twojej strony. Pierwsza próba za darmo."
+      },
+      "compareInsights": {
+        "title": "Mądrzejsze porównanie",
+        "desc": "Plan wyprzedzenia, co przejąć od konkurenta, wspólne słabe punkty i szczegóły kategorii."
       }
     }
   },

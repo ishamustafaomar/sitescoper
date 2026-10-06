@@ -1492,6 +1492,10 @@
       "copywriter": {
         "title": "AI copywriter",
         "desc": "Paste your link under Tools and get new headlines, button labels and a Google title written from your page. First try free."
+      },
+      "compareInsights": {
+        "title": "Smarter Compare",
+        "desc": "Get an overtake plan, what to copy from your competitor, shared blind spots and a category drill-down."
       }
     }
   },

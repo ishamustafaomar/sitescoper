@@ -1492,6 +1492,10 @@
       "copywriter": {
         "title": "Copywriter IA",
         "desc": "Incolla il link in Strumenti e ottieni nuovi titoli, pulsanti e un titolo per Google scritti dalla tua pagina. Prima prova gratis."
+      },
+      "compareInsights": {
+        "title": "Confronto più smart",
+        "desc": "Piano per superare, cosa copiare dal concorrente, punti ciechi comuni e dettaglio per categoria."
       }
     }
   },

@@ -1492,6 +1492,10 @@
       "copywriter": {
         "title": "AI-copywriter",
         "desc": "Plak je link bij Tools en krijg nieuwe koppen, knopteksten en een Google-titel op basis van je pagina. Eerste poging gratis."
+      },
+      "compareInsights": {
+        "title": "Slimmer vergelijken",
+        "desc": "Inhaalplan, wat je van de concurrent overneemt, gedeelde blinde vlekken en categoriedetails."
       }
     }
   },

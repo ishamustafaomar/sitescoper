@@ -1492,6 +1492,10 @@
       "copywriter": {
         "title": "Redactor con IA",
         "desc": "Pega tu enlace en Herramientas y obtén nuevos titulares, botones y un título para Google escritos a partir de tu página. Primera prueba gratis."
+      },
+      "compareInsights": {
+        "title": "Comparar más inteligente",
+        "desc": "Plan para adelantar, qué copiar del competidor, puntos ciegos compartidos y detalle por categoría."
       }
     }
   },
