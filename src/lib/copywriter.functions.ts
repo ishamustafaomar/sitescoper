@@ -134,13 +134,30 @@ export const writeCopy = createServerFn({ method: "POST" })
     } catch (e) {
       return { ok: false, error: e instanceof Error ? e.message : "That doesn't look like a website address." };
     }
-    let page: Awaited<ReturnType<typeof tools.fetchText>>;
+    // Read the page directly; if the site blocks simple fetches, use the same
+    // browser-grade reader the full audit uses.
+    let html = "";
     try {
-      page = await tools.fetchText(target.toString(), 10_000);
+      const page = await tools.fetchText(target.toString(), 10_000);
+      if (page.ok) html = page.text;
     } catch {
-      return { ok: false, error: "We couldn't load that page. Check the address and try again." };
+      html = "";
     }
-    if (!page.ok) return { ok: false, error: `That page returned an error (HTTP ${page.status}).` };
+    if (!html && process.env.FIRECRAWL_API_KEY) {
+      try {
+        const fc = await fetch("https://api.firecrawl.dev/v2/scrape", {
+          method: "POST",
+          headers: { Authorization: `Bearer ${process.env.FIRECRAWL_API_KEY}`, "Content-Type": "application/json" },
+          body: JSON.stringify({ url: target.toString(), formats: ["html"], onlyMainContent: false, waitFor: 1500 }),
+        });
+        const j = (await fc.json().catch(() => null)) as { data?: { html?: string } } | null;
+        html = j?.data?.html ?? "";
+      } catch {
+        html = "";
+      }
+    }
+    if (!html) return { ok: false, error: "We couldn't load that page. Check the address and try again." };
+    const page = { text: html };
 
     const head = tools.parseHead(page.text);
     const current = {
