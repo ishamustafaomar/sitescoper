@@ -1069,7 +1069,10 @@
     "showDetails": "詳細を表示",
     "before": "改善前",
     "after": "改善後",
-    "tradeoffLabel": "トレードオフ："
+    "tradeoffLabel": "トレードオフ：",
+    "fixCode": "コピペ用の修正コード",
+    "copy": "コピー",
+    "copied": "コピーしました"
   },
   "headlineRewrites": {
     "toastErrorTitle": "書き換え案を生成できませんでした",

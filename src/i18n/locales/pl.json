@@ -1069,7 +1069,10 @@
     "showDetails": "Pokaż szczegóły",
     "before": "Przed",
     "after": "Po",
-    "tradeoffLabel": "Kompromis:"
+    "tradeoffLabel": "Kompromis:",
+    "fixCode": "Poprawka do wklejenia",
+    "copy": "Kopiuj",
+    "copied": "Skopiowano"
   },
   "headlineRewrites": {
     "toastErrorTitle": "Nie udało się wygenerować przeróbek",

@@ -1069,7 +1069,10 @@
     "showDetails": "Details anzeigen",
     "before": "Vorher",
     "after": "Nachher",
-    "tradeoffLabel": "Kompromiss:"
+    "tradeoffLabel": "Kompromiss:",
+    "fixCode": "Fix zum Einfügen",
+    "copy": "Kopieren",
+    "copied": "Kopiert"
   },
   "headlineRewrites": {
     "toastErrorTitle": "Umschreibungen konnten nicht erstellt werden",

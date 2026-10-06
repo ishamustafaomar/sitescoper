@@ -1069,7 +1069,10 @@
     "showDetails": "Mostra dettagli",
     "before": "Prima",
     "after": "Dopo",
-    "tradeoffLabel": "Compromesso:"
+    "tradeoffLabel": "Compromesso:",
+    "fixCode": "Correzione da copiare",
+    "copy": "Copia",
+    "copied": "Copiato"
   },
   "headlineRewrites": {
     "toastErrorTitle": "Impossibile generare le riscritture",

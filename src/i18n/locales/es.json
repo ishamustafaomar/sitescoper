@@ -1069,7 +1069,10 @@
     "showDetails": "Mostrar detalles",
     "before": "Antes",
     "after": "Después",
-    "tradeoffLabel": "Contrapartida:"
+    "tradeoffLabel": "Contrapartida:",
+    "fixCode": "Código listo para pegar",
+    "copy": "Copiar",
+    "copied": "Copiado"
   },
   "headlineRewrites": {
     "toastErrorTitle": "No se pudieron generar reescrituras",

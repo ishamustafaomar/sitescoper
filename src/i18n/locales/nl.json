@@ -1069,7 +1069,10 @@
     "showDetails": "Details tonen",
     "before": "Voor",
     "after": "Na",
-    "tradeoffLabel": "Afweging:"
+    "tradeoffLabel": "Afweging:",
+    "fixCode": "Fix om te plakken",
+    "copy": "Kopiëren",
+    "copied": "Gekopieerd"
   },
   "headlineRewrites": {
     "toastErrorTitle": "Kon geen herschrijvingen genereren",

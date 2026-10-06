@@ -1069,7 +1069,10 @@
     "showDetails": "Afficher les détails",
     "before": "Avant",
     "after": "Après",
-    "tradeoffLabel": "Compromis :"
+    "tradeoffLabel": "Compromis :",
+    "fixCode": "Correctif à copier-coller",
+    "copy": "Copier",
+    "copied": "Copié"
   },
   "headlineRewrites": {
     "toastErrorTitle": "Impossible de générer les réécritures",

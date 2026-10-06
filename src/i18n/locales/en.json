@@ -1069,7 +1069,10 @@
     "showDetails": "Show details",
     "before": "Before",
     "after": "After",
-    "tradeoffLabel": "Tradeoff:"
+    "tradeoffLabel": "Tradeoff:",
+    "fixCode": "Copy-paste fix",
+    "copy": "Copy",
+    "copied": "Copied"
   },
   "headlineRewrites": {
     "toastErrorTitle": "Couldn't generate rewrites",
