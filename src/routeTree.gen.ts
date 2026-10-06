@@ -38,6 +38,7 @@ import { Route as BlogSlugRouteImport } from './routes/blog/$slug'
 import { Route as CheckoutReturnRouteImport } from './routes/checkout/return'
 import { Route as ShareTokenRouteImport } from './routes/share/$token'
 import { Route as ToolsIndexRouteImport } from './routes/tools/index'
+import { Route as ToolsCopywriterRouteImport } from './routes/tools/copywriter'
 import { Route as ToolsLlmsTxtGeneratorRouteImport } from './routes/tools/llms-txt-generator'
 import { Route as ToolsOpenGraphCheckerRouteImport } from './routes/tools/open-graph-checker'
 import { Route as ApiPublicSaveAnonymousAuditRouteImport } from './routes/api/public/save-anonymous-audit'
@@ -194,6 +195,11 @@ const ToolsIndexRoute = ToolsIndexRouteImport.update({
   path: '/tools/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ToolsCopywriterRoute = ToolsCopywriterRouteImport.update({
+  id: '/tools/copywriter',
+  path: '/tools/copywriter',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ToolsLlmsTxtGeneratorRoute = ToolsLlmsTxtGeneratorRouteImport.update({
   id: '/tools/llms-txt-generator',
   path: '/tools/llms-txt-generator',
@@ -277,6 +283,7 @@ export interface FileRoutesByFullPath {
   '/blog/$slug': typeof BlogSlugRoute
   '/checkout/return': typeof CheckoutReturnRoute
   '/share/$token': typeof ShareTokenRoute
+  '/tools/copywriter': typeof ToolsCopywriterRoute
   '/tools/llms-txt-generator': typeof ToolsLlmsTxtGeneratorRoute
   '/tools/open-graph-checker': typeof ToolsOpenGraphCheckerRoute
   '/admin/': typeof AdminIndexRoute
@@ -318,6 +325,7 @@ export interface FileRoutesByTo {
   '/blog/$slug': typeof BlogSlugRoute
   '/checkout/return': typeof CheckoutReturnRoute
   '/share/$token': typeof ShareTokenRoute
+  '/tools/copywriter': typeof ToolsCopywriterRoute
   '/tools/llms-txt-generator': typeof ToolsLlmsTxtGeneratorRoute
   '/tools/open-graph-checker': typeof ToolsOpenGraphCheckerRoute
   '/admin': typeof AdminIndexRoute
@@ -360,6 +368,7 @@ export interface FileRoutesById {
   '/blog/$slug': typeof BlogSlugRoute
   '/checkout/return': typeof CheckoutReturnRoute
   '/share/$token': typeof ShareTokenRoute
+  '/tools/copywriter': typeof ToolsCopywriterRoute
   '/tools/llms-txt-generator': typeof ToolsLlmsTxtGeneratorRoute
   '/tools/open-graph-checker': typeof ToolsOpenGraphCheckerRoute
   '/admin/': typeof AdminIndexRoute
@@ -403,6 +412,7 @@ export interface FileRouteTypes {
     | '/blog/$slug'
     | '/checkout/return'
     | '/share/$token'
+    | '/tools/copywriter'
     | '/tools/llms-txt-generator'
     | '/tools/open-graph-checker'
     | '/admin/'
@@ -444,6 +454,7 @@ export interface FileRouteTypes {
     | '/blog/$slug'
     | '/checkout/return'
     | '/share/$token'
+    | '/tools/copywriter'
     | '/tools/llms-txt-generator'
     | '/tools/open-graph-checker'
     | '/admin'
@@ -485,6 +496,7 @@ export interface FileRouteTypes {
     | '/blog/$slug'
     | '/checkout/return'
     | '/share/$token'
+    | '/tools/copywriter'
     | '/tools/llms-txt-generator'
     | '/tools/open-graph-checker'
     | '/admin/'
@@ -527,6 +539,7 @@ export interface RootRouteChildren {
   BlogSlugRoute: typeof BlogSlugRoute
   CheckoutReturnRoute: typeof CheckoutReturnRoute
   ShareTokenRoute: typeof ShareTokenRoute
+  ToolsCopywriterRoute: typeof ToolsCopywriterRoute
   ToolsLlmsTxtGeneratorRoute: typeof ToolsLlmsTxtGeneratorRoute
   ToolsOpenGraphCheckerRoute: typeof ToolsOpenGraphCheckerRoute
   AdminIndexRoute: typeof AdminIndexRoute
@@ -747,6 +760,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ToolsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/tools/copywriter': {
+      id: '/tools/copywriter'
+      path: '/tools/copywriter'
+      fullPath: '/tools/copywriter'
+      preLoaderRoute: typeof ToolsCopywriterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/tools/llms-txt-generator': {
       id: '/tools/llms-txt-generator'
       path: '/tools/llms-txt-generator'
@@ -847,6 +867,7 @@ const rootRouteChildren: RootRouteChildren = {
   BlogSlugRoute: BlogSlugRoute,
   CheckoutReturnRoute: CheckoutReturnRoute,
   ShareTokenRoute: ShareTokenRoute,
+  ToolsCopywriterRoute: ToolsCopywriterRoute,
   ToolsLlmsTxtGeneratorRoute: ToolsLlmsTxtGeneratorRoute,
   ToolsOpenGraphCheckerRoute: ToolsOpenGraphCheckerRoute,
   AdminIndexRoute: AdminIndexRoute,

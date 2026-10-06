@@ -1473,6 +1473,10 @@
       "fixSnippets": {
         "title": "Correcciones para copiar y pegar",
         "desc": "Hallazgos comunes como metaetiquetas, texto alternativo y datos estructurados ahora incluyen código listo para pegar."
+      },
+      "copywriter": {
+        "title": "Redactor con IA",
+        "desc": "Pega tu enlace en Herramientas y obtén nuevos titulares, botones y un título para Google escritos a partir de tu página. Primera prueba gratis."
       }
     }
   },

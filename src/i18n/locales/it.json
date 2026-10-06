@@ -1473,6 +1473,10 @@
       "fixSnippets": {
         "title": "Correzioni da copiare",
         "desc": "I problemi comuni come meta tag, testo alternativo e dati strutturati ora includono codice pronto da incollare."
+      },
+      "copywriter": {
+        "title": "Copywriter IA",
+        "desc": "Incolla il link in Strumenti e ottieni nuovi titoli, pulsanti e un titolo per Google scritti dalla tua pagina. Prima prova gratis."
       }
     }
   },

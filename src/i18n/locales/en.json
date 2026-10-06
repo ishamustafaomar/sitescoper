@@ -1473,6 +1473,10 @@
       "fixSnippets": {
         "title": "Copy-paste fixes",
         "desc": "Common findings like meta tags, image alt text and structured data now come with ready-to-paste code."
+      },
+      "copywriter": {
+        "title": "AI copywriter",
+        "desc": "Paste your link under Tools and get new headlines, button labels and a Google title written from your page. First try free."
       }
     }
   },

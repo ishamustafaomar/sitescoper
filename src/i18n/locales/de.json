@@ -1473,6 +1473,10 @@
       "fixSnippets": {
         "title": "Fixes zum Einfügen",
         "desc": "Häufige Befunde wie Meta-Tags, Alt-Texte und strukturierte Daten enthalten jetzt fertigen Code zum Einfügen."
+      },
+      "copywriter": {
+        "title": "KI-Texter",
+        "desc": "Link unter Tools einfügen und neue Überschriften, Button-Texte und einen Google-Titel aus deiner Seite erhalten. Erster Versuch gratis."
       }
     }
   },
