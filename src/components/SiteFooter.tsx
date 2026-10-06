@@ -47,6 +47,7 @@ export function SiteFooter() {
         <nav aria-label="Free tools" className="text-sm">
           <h2 className="font-heading font-semibold text-xs uppercase tracking-wider text-muted-foreground mb-3">{t("siteFooter.tools")}</h2>
           <ul className="space-y-2">
+            <li><Link to="/tools/copywriter" className="hover:text-primary">AI copywriter</Link></li>
             <li><Link to="/tools/open-graph-checker" className="hover:text-primary">{t("siteFooter.ogChecker")}</Link></li>
             <li><Link to="/tools/llms-txt-generator" className="hover:text-primary">{t("siteFooter.llmsTxt")}</Link></li>
             <li><Link to="/tools" className="hover:text-primary">{t("siteFooter.allTools")}</Link></li>

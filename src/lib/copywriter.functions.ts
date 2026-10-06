@@ -166,7 +166,7 @@ export const writeCopy = createServerFn({ method: "POST" })
       h1: tools.firstHeading(page.text),
       ctas: Array.from(page.text.matchAll(/<(?:button|a)\b[^>]*>([\s\S]{1,80}?)<\/(?:button|a)>/gi))
         .map((m) => tools.decodeEntities(m[1]!.replace(/<[^>]*>/g, " ")).replace(/\s+/g, " ").trim())
-        .filter((t) => t.length >= 3 && t.length <= 30)
+        .filter((t) => t.length >= 3 && t.length <= 30 && !/skip to|privacy|terms|cookie|community|blog|careers|about|log ?in|sign ?in|menu/i.test(t))
         .slice(0, 40)
         .filter((t, i, a) => a.indexOf(t) === i)
         .slice(0, 8),
