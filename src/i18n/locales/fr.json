@@ -531,7 +531,22 @@
     "siteB": "Site B",
     "categoryByCategory": "Catégorie par catégorie",
     "higherIsBetter": "Plus élevé = meilleur",
-    "tied": "Égalité"
+    "tied": "Égalité",
+    "insights": {
+      "overtakeTitle": "Combler l'écart de {{gap}} points : comment {{name}} dépasse",
+      "defendTitle": "Comment {{name}} garde l'avance",
+      "noLosses": "Vous menez ou êtes à égalité partout.",
+      "stealTitle": "À reprendre de {{name}}",
+      "nothingToSteal": "Rien à copier : vous menez partout.",
+      "stealLine": "{{name}} a {{a}} problèmes ici contre vos {{b}} — étudiez leur approche.",
+      "yourEdge": "Votre avantage :",
+      "sharedTitle": "Angles morts communs",
+      "sharedDesc": "Les deux sites sont faibles ici — corrigez d'abord et gagnez le marché.",
+      "sharedNone": "Aucun point faible commun.",
+      "issueLoad": "Problèmes (élevé · moyen · faible)",
+      "drillTitle": "Détail par catégorie",
+      "noIssues": "Aucun problème."
+    }
   },
   "siteFooter": {
     "tagline": "L'outil d'audit de site web instantané basé sur l'IA pour les fondateurs, indie hackers et petites entreprises.",

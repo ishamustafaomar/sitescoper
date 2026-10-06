@@ -531,7 +531,22 @@
     "siteB": "Site B",
     "categoryByCategory": "Category-by-category",
     "higherIsBetter": "Higher = better",
-    "tied": "Tied"
+    "tied": "Tied",
+    "insights": {
+      "overtakeTitle": "Close the {{gap}}-point gap: how {{name}} overtakes",
+      "defendTitle": "How {{name}} stays ahead",
+      "noLosses": "You lead or tie in every category.",
+      "stealTitle": "What to steal from {{name}}",
+      "nothingToSteal": "Nothing to copy — you lead everywhere.",
+      "stealLine": "{{name}} has {{a}} open issues here vs your {{b}} — study their approach.",
+      "yourEdge": "Your edge:",
+      "sharedTitle": "Shared blind spots",
+      "sharedDesc": "Both sites score low here — fix it first and you win the whole market.",
+      "sharedNone": "No shared weak spots found.",
+      "issueLoad": "Issue load (high · medium · low)",
+      "drillTitle": "Category drill-down",
+      "noIssues": "No issues found."
+    }
   },
   "siteFooter": {
     "tagline": "The instant AI website audit tool for founders, indie hackers, and small business owners.",

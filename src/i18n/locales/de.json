@@ -531,7 +531,22 @@
     "siteB": "Seite B",
     "categoryByCategory": "Kategorie für Kategorie",
     "higherIsBetter": "Höher = besser",
-    "tied": "Unentschieden"
+    "tied": "Unentschieden",
+    "insights": {
+      "overtakeTitle": "{{gap}} Punkte aufholen: so überholt {{name}}",
+      "defendTitle": "So bleibt {{name}} vorn",
+      "noLosses": "Sie führen oder liegen gleichauf in jeder Kategorie.",
+      "stealTitle": "Was Sie von {{name}} übernehmen können",
+      "nothingToSteal": "Nichts zu kopieren – Sie führen überall.",
+      "stealLine": "{{name}} hat hier {{a}} offene Probleme, Sie {{b}} – studieren Sie den Ansatz.",
+      "yourEdge": "Ihr Vorsprung:",
+      "sharedTitle": "Gemeinsame blinde Flecken",
+      "sharedDesc": "Beide Seiten schwach – zuerst beheben und den Markt gewinnen.",
+      "sharedNone": "Keine gemeinsamen Schwächen.",
+      "issueLoad": "Probleme (hoch · mittel · niedrig)",
+      "drillTitle": "Kategorie-Details",
+      "noIssues": "Keine Probleme."
+    }
   },
   "siteFooter": {
     "tagline": "Das sofortige KI-Website-Audit-Tool für Gründer, Indie-Hacker und kleine Unternehmen.",

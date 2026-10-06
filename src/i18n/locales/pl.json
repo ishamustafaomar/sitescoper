@@ -531,7 +531,22 @@
     "siteB": "Strona B",
     "categoryByCategory": "Kategoria po kategorii",
     "higherIsBetter": "Wyższy = lepszy",
-    "tied": "Remis"
+    "tied": "Remis",
+    "insights": {
+      "overtakeTitle": "Nadrób {{gap}} pkt: jak {{name}} wyprzedza",
+      "defendTitle": "Jak {{name}} utrzymuje przewagę",
+      "noLosses": "Prowadzisz lub remisujesz w każdej kategorii.",
+      "stealTitle": "Co przejąć od {{name}}",
+      "nothingToSteal": "Nic do skopiowania — prowadzisz wszędzie.",
+      "stealLine": "{{name}} ma tu {{a}} problemów, ty {{b}} — przeanalizuj ich podejście.",
+      "yourEdge": "Twoja przewaga:",
+      "sharedTitle": "Wspólne słabe punkty",
+      "sharedDesc": "Obie strony słabe — napraw to pierwszy i wygraj rynek.",
+      "sharedNone": "Brak wspólnych słabych punktów.",
+      "issueLoad": "Problemy (wysoki · średni · niski)",
+      "drillTitle": "Szczegóły kategorii",
+      "noIssues": "Brak problemów."
+    }
   },
   "siteFooter": {
     "tagline": "Natychmiastowe narzędzie do audytu stron oparte na AI dla założycieli, indie hackerów i małych firm.",
