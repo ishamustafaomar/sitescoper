@@ -531,7 +531,22 @@
     "siteB": "Site B",
     "categoryByCategory": "Per categorie",
     "higherIsBetter": "Hoger = beter",
-    "tied": "Gelijk"
+    "tied": "Gelijk",
+    "insights": {
+      "overtakeTitle": "Haal {{gap}} punten in: zo haalt {{name}} in",
+      "defendTitle": "Zo blijft {{name}} voor",
+      "noLosses": "Je leidt of staat gelijk in elke categorie.",
+      "stealTitle": "Wat je van {{name}} kunt overnemen",
+      "nothingToSteal": "Niets te kopiëren — je leidt overal.",
+      "stealLine": "{{name}} heeft hier {{a}} problemen tegen jouw {{b}} — bestudeer hun aanpak.",
+      "yourEdge": "Jouw voorsprong:",
+      "sharedTitle": "Gedeelde blinde vlekken",
+      "sharedDesc": "Beide sites scoren laag — los het eerst op en win de markt.",
+      "sharedNone": "Geen gedeelde zwakke plekken.",
+      "issueLoad": "Problemen (hoog · middel · laag)",
+      "drillTitle": "Details per categorie",
+      "noIssues": "Geen problemen."
+    }
   },
   "siteFooter": {
     "tagline": "Het directe AI-websiteaudittool voor founders, indie hackers en kleine ondernemers.",
@@ -1477,6 +1492,10 @@
       "copywriter": {
         "title": "AI-copywriter",
         "desc": "Plak je link bij Tools en krijg nieuwe koppen, knopteksten en een Google-titel op basis van je pagina. Eerste poging gratis."
+      },
+      "compareInsights": {
+        "title": "Slimmer vergelijken",
+        "desc": "Inhaalplan, wat je van de concurrent overneemt, gedeelde blinde vlekken en categoriedetails."
       }
     }
   },

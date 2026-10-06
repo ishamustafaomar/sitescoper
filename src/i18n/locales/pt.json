@@ -531,7 +531,22 @@
     "siteB": "Site B",
     "categoryByCategory": "Categoria a categoria",
     "higherIsBetter": "Mais alto = melhor",
-    "tied": "Empatado"
+    "tied": "Empatado",
+    "insights": {
+      "overtakeTitle": "Feche a diferença de {{gap}} pontos: como {{name}} ultrapassa",
+      "defendTitle": "Como {{name}} continua à frente",
+      "noLosses": "Você lidera ou empata em todas as categorias.",
+      "stealTitle": "O que copiar de {{name}}",
+      "nothingToSteal": "Nada a copiar: você lidera em tudo.",
+      "stealLine": "{{name}} tem {{a}} problemas aqui contra seus {{b}} — estude a abordagem.",
+      "yourEdge": "Sua vantagem:",
+      "sharedTitle": "Pontos cegos em comum",
+      "sharedDesc": "Ambos fracos aqui — corrija primeiro e ganhe o mercado.",
+      "sharedNone": "Nenhum ponto fraco em comum.",
+      "issueLoad": "Problemas (alta · média · baixa)",
+      "drillTitle": "Detalhe por categoria",
+      "noIssues": "Sem problemas."
+    }
   },
   "siteFooter": {
     "tagline": "A ferramenta instantânea de auditoria de sites com IA para fundadores, indie hackers e pequenos negócios.",
@@ -1477,6 +1492,10 @@
       "copywriter": {
         "title": "Redator com IA",
         "desc": "Cole seu link em Ferramentas e receba novos títulos, botões e um título para o Google escritos a partir da sua página. Primeira tentativa grátis."
+      },
+      "compareInsights": {
+        "title": "Comparação mais inteligente",
+        "desc": "Plano para ultrapassar, o que copiar do concorrente, pontos cegos comuns e detalhe por categoria."
       }
     }
   },

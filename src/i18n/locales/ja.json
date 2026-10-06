@@ -531,7 +531,22 @@
     "siteB": "サイトB",
     "categoryByCategory": "カテゴリー別",
     "higherIsBetter": "数値が高いほど良い",
-    "tied": "引き分け"
+    "tied": "引き分け",
+    "insights": {
+      "overtakeTitle": "{{gap}}点差を縮める：{{name}}が逆転する方法",
+      "defendTitle": "{{name}}がリードを保つ方法",
+      "noLosses": "すべてのカテゴリーで優勢または同点です。",
+      "stealTitle": "{{name}}から学ぶべき点",
+      "nothingToSteal": "真似る点はありません。全項目でリード中です。",
+      "stealLine": "{{name}}はここで{{a}}件、あなたは{{b}}件 — 相手の手法を研究しましょう。",
+      "yourEdge": "あなたの強み：",
+      "sharedTitle": "共通の弱点",
+      "sharedDesc": "両サイトとも低スコア — 先に直せば市場で勝てます。",
+      "sharedNone": "共通の弱点はありません。",
+      "issueLoad": "課題数（高・中・低）",
+      "drillTitle": "カテゴリー詳細",
+      "noIssues": "課題なし。"
+    }
   },
   "siteFooter": {
     "tagline": "創業者、インディーハッカー、中小事業者のための即時AIウェブサイト診断ツール。",
@@ -1477,6 +1492,10 @@
       "copywriter": {
         "title": "AIコピーライター",
         "desc": "ツールでリンクを貼るだけで、ページ内容から新しい見出し、ボタン文言、Googleタイトルを作成。初回は無料。"
+      },
+      "compareInsights": {
+        "title": "比較機能を強化",
+        "desc": "逆転プラン、競合から学ぶ点、共通の弱点、カテゴリー詳細を表示。"
       }
     }
   },
