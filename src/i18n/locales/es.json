@@ -1496,6 +1496,10 @@
       "compareInsights": {
         "title": "Comparar más inteligente",
         "desc": "Plan para adelantar, qué copiar del competidor, puntos ciegos compartidos y detalle por categoría."
+      },
+      "fixPassPage": {
+        "title": "El Fix Pass tiene su propia página",
+        "desc": "El Fix Pass de 9 $ ahora tiene una página dedicada: consulta tus pases activos, copia las correcciones listas para pegar y accede a Site Watch o a tu informe PDF."
       }
     }
   },
@@ -1624,5 +1628,20 @@
     "returnTitle": "Paquete desbloqueado",
     "returnDesc": "Tus arreglos de código, el PDF y 30 días de revisiones ya están listos.",
     "returnWatch": "Ver seguimiento"
+  },
+  "fixPassPage": {
+    "title": "Tu Fix Pass",
+    "subtitle": "Todo lo que desbloquea tu pase de 9 $, en un solo lugar.",
+    "activeUntil": "Activo hasta el {{date}}",
+    "step1": "Copia las etiquetas de abajo.",
+    "step2": "Pégalas en el <head> de tu página.",
+    "step3": "Activa Watch para recibir avisos si algo vuelve a fallar.",
+    "openWatch": "Abrir Site Watch",
+    "openReport": "Abrir informe y PDF",
+    "emptyTitle": "Aún no tienes un Fix Pass activo",
+    "emptyDesc": "Ejecuta una auditoría en cualquier dirección y desbloquea el Fix Pass de 9 $ en el informe para obtener correcciones listas para pegar, la exportación en PDF y 30 días de Site Watch.",
+    "emptyCta": "Ejecutar una auditoría gratis",
+    "wildcardTitle": "Prueba cualquier dirección",
+    "wildcardDesc": "Tu cuenta puede desbloquear las herramientas del Fix Pass para cualquier dirección. Introduce una abajo."
   }
 }

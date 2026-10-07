@@ -1496,6 +1496,10 @@
       "compareInsights": {
         "title": "Mądrzejsze porównanie",
         "desc": "Plan wyprzedzenia, co przejąć od konkurenta, wspólne słabe punkty i szczegóły kategorii."
+      },
+      "fixPassPage": {
+        "title": "Fix Pass ma własną stronę",
+        "desc": "Fix Pass za 9 USD ma teraz dedykowaną stronę: zobacz aktywne karnety, skopiuj gotowe poprawki i przejdź do Site Watch lub raportu PDF."
       }
     }
   },
@@ -1624,5 +1628,20 @@
     "returnTitle": "Pakiet odblokowany",
     "returnDesc": "Poprawki kodu, eksport PDF i 30 dni kontroli są gotowe.",
     "returnWatch": "Zobacz Watch"
+  },
+  "fixPassPage": {
+    "title": "Twój Fix Pass",
+    "subtitle": "Wszystko, co odblokowuje Twój karnet za 9 USD, w jednym miejscu.",
+    "activeUntil": "Aktywny do {{date}}",
+    "step1": "Skopiuj poniższe tagi.",
+    "step2": "Wklej je do sekcji <head> swojej strony.",
+    "step3": "Włącz Watch, aby otrzymać powiadomienie, gdy coś znów się zepsuje.",
+    "openWatch": "Otwórz Site Watch",
+    "openReport": "Otwórz raport i PDF",
+    "emptyTitle": "Brak aktywnego Fix Pass",
+    "emptyDesc": "Uruchom audyt dla dowolnego adresu, a następnie odblokuj Fix Pass za 9 USD w raporcie, aby uzyskać gotowe poprawki, eksport PDF i 30 dni Site Watch.",
+    "emptyCta": "Uruchom darmowy audyt",
+    "wildcardTitle": "Przetestuj dowolny adres",
+    "wildcardDesc": "Twoje konto może odblokować narzędzia Fix Pass dla dowolnego adresu. Wpisz go poniżej."
   }
 }

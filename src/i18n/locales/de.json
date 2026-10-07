@@ -1496,6 +1496,10 @@
       "compareInsights": {
         "title": "Smarter Vergleich",
         "desc": "Überholplan, was Sie vom Wettbewerber übernehmen, gemeinsame Schwächen und Kategorie-Details."
+      },
+      "fixPassPage": {
+        "title": "Fix Pass bekommt eine eigene Seite",
+        "desc": "Der 9-$-Fix-Pass hat jetzt eine eigene Seite: Sieh deine aktiven Pässe, kopiere die fertigen Fixes und springe zu Site Watch oder deinem PDF-Bericht."
       }
     }
   },
@@ -1624,5 +1628,20 @@
     "returnTitle": "Fix-Paket freigeschaltet",
     "returnDesc": "Code-Korrekturen, PDF-Export und 30 Tage Prüfungen sind bereit.",
     "returnWatch": "Überwachung ansehen"
+  },
+  "fixPassPage": {
+    "title": "Dein Fix Pass",
+    "subtitle": "Alles, was dein 9-$-Pass freischaltet, an einem Ort.",
+    "activeUntil": "Aktiv bis {{date}}",
+    "step1": "Kopiere die Tags unten.",
+    "step2": "Füge sie in den <head> deiner Seite ein.",
+    "step3": "Aktiviere Watch, um benachrichtigt zu werden, wenn wieder etwas kaputt geht.",
+    "openWatch": "Site Watch öffnen",
+    "openReport": "Bericht & PDF öffnen",
+    "emptyTitle": "Noch kein aktiver Fix Pass",
+    "emptyDesc": "Führe ein Audit für eine beliebige Adresse aus und schalte dann den 9-$-Fix-Pass im Bericht frei, um fertige Code-Fixes, den PDF-Export und 30 Tage Site Watch zu erhalten.",
+    "emptyCta": "Kostenloses Audit starten",
+    "wildcardTitle": "Beliebige Adresse testen",
+    "wildcardDesc": "Dein Konto kann die Fix-Pass-Tools für jede Adresse freischalten. Gib unten eine ein."
   }
 }

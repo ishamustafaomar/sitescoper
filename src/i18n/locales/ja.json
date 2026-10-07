@@ -1496,6 +1496,10 @@
       "compareInsights": {
         "title": "比較機能を強化",
         "desc": "逆転プラン、競合から学ぶ点、共通の弱点、カテゴリー詳細を表示。"
+      },
+      "fixPassPage": {
+        "title": "Fix Pass に専用ページができました",
+        "desc": "9ドルの Fix Pass に専用ページが追加されました。有効なパスの確認、貼り付け可能な修正のコピー、Site Watch や PDF レポートへの移動ができます。"
       }
     }
   },
@@ -1623,5 +1627,20 @@
     "returnTitle": "修正パックを解放しました",
     "returnDesc": "コード修正、PDF出力、30日間の自動チェックが使えます。",
     "returnWatch": "ウォッチを見る"
+  },
+  "fixPassPage": {
+    "title": "Fix Pass",
+    "subtitle": "9ドルのパスで解除できるすべてを、ここにまとめました。",
+    "activeUntil": "{{date}} まで有効",
+    "step1": "下のタグをコピーします。",
+    "step2": "ページの <head> に貼り付けます。",
+    "step3": "Watch をオンにして、再び問題が起きたら通知を受け取ります。",
+    "openWatch": "Site Watch を開く",
+    "openReport": "レポートと PDF を開く",
+    "emptyTitle": "有効な Fix Pass はまだありません",
+    "emptyDesc": "任意のアドレスで監査を実行し、レポートで 9ドルの Fix Pass を解除すると、貼り付け可能な修正コード、PDF エクスポート、30 日間の Site Watch が使えます。",
+    "emptyCta": "無料監査を実行",
+    "wildcardTitle": "任意のアドレスをテスト",
+    "wildcardDesc": "このアカウントは任意のアドレスで Fix Pass ツールを解除できます。下に入力してください。"
   }
 }
