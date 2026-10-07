@@ -1496,6 +1496,10 @@
       "compareInsights": {
         "title": "Slimmer vergelijken",
         "desc": "Inhaalplan, wat je van de concurrent overneemt, gedeelde blinde vlekken en categoriedetails."
+      },
+      "fixPassPage": {
+        "title": "Fix Pass krijgt een eigen pagina",
+        "desc": "De Fix Pass van $ 9 heeft nu een eigen pagina: bekijk je actieve passen, kopieer de kant-en-klare fixes en ga naar Site Watch of je PDF-rapport."
       }
     }
   },
@@ -1624,5 +1628,20 @@
     "returnTitle": "Fixpakket ontgrendeld",
     "returnDesc": "Je codefixes, PDF-export en 30 dagen controles staan klaar.",
     "returnWatch": "Bekijk Watch"
+  },
+  "fixPassPage": {
+    "title": "Je Fix Pass",
+    "subtitle": "Alles wat je pas van $ 9 ontgrendelt, op één plek.",
+    "activeUntil": "Actief tot {{date}}",
+    "step1": "Kopieer de tags hieronder.",
+    "step2": "Plak ze in de <head> van je pagina.",
+    "step3": "Zet Watch aan om een melding te krijgen als er weer iets kapot gaat.",
+    "openWatch": "Site Watch openen",
+    "openReport": "Rapport & PDF openen",
+    "emptyTitle": "Nog geen actieve Fix Pass",
+    "emptyDesc": "Voer een audit uit op een willekeurig adres en ontgrendel daarna de Fix Pass van $ 9 in het rapport voor kant-en-klare fixes, de PDF-export en 30 dagen Site Watch.",
+    "emptyCta": "Gratis audit starten",
+    "wildcardTitle": "Test elk adres",
+    "wildcardDesc": "Je account kan de Fix Pass-tools voor elk adres ontgrendelen. Vul er hieronder een in."
   }
 }

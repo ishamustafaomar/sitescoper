@@ -1496,6 +1496,10 @@
       "compareInsights": {
         "title": "Smarter Compare",
         "desc": "Get an overtake plan, what to copy from your competitor, shared blind spots and a category drill-down."
+      },
+      "fixPassPage": {
+        "title": "Fix Pass gets its own page",
+        "desc": "The $9 Fix Pass now has a dedicated page: see your active passes, copy the ready-to-paste fixes, and jump to Site Watch or your PDF report."
       }
     }
   },
@@ -1624,5 +1628,20 @@
     "returnTitle": "Fix pack unlocked",
     "returnDesc": "Your code fixes, PDF export and 30 days of automatic checks are ready.",
     "returnWatch": "See Watch"
+  },
+  "fixPassPage": {
+    "title": "Your Fix Pass",
+    "subtitle": "Everything your $9 pass unlocks, in one place.",
+    "activeUntil": "Active until {{date}}",
+    "step1": "Copy the tags below.",
+    "step2": "Paste them into the <head> of your page.",
+    "step3": "Turn on Watch to get alerted if anything breaks again.",
+    "openWatch": "Open Site Watch",
+    "openReport": "Open report & PDF",
+    "emptyTitle": "No active Fix Pass yet",
+    "emptyDesc": "Run an audit on any address, then unlock the $9 Fix Pass on the report to get ready-to-paste fixes, the PDF export and 30 days of Site Watch.",
+    "emptyCta": "Run a free audit",
+    "wildcardTitle": "Test any address",
+    "wildcardDesc": "Your account can unlock the Fix Pass tools for any address. Enter one below."
   }
 }
