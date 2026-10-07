@@ -16,7 +16,7 @@ interface Props {
   description?: string;
 }
 
-function hostOf(url: string) {
+export function hostOf(url: string) {
   try {
     return new URL(url).hostname;
   } catch {
@@ -24,7 +24,7 @@ function hostOf(url: string) {
   }
 }
 
-function metaBlock(url: string, title: string, description: string) {
+export function metaBlock(url: string, title: string, description: string) {
   const host = hostOf(url);
   return `<title>${title}</title>
 <meta name="description" content="${description}" />
@@ -43,7 +43,7 @@ function metaBlock(url: string, title: string, description: string) {
 <meta name="twitter:image" content="${url.replace(/\/$/, "")}/og.png" />`;
 }
 
-function jsonLdBlock(url: string, title: string, description: string) {
+export function jsonLdBlock(url: string, title: string, description: string) {
   const host = hostOf(url);
   return `<script type="application/ld+json">
 ${JSON.stringify(
@@ -61,7 +61,7 @@ ${JSON.stringify(
 </script>`;
 }
 
-function CopyBlock({ label, code }: { label: string; code: string }) {
+export function CopyBlock({ label, code }: { label: string; code: string }) {
   const [copied, setCopied] = useState(false);
   return (
     <div className="space-y-2">
