@@ -63,7 +63,7 @@ export function AppHeader() {
     { to: "/monitoring", label: t("nav.monitoring"), icon: Eye, show: !!user, pro: !isPro && !planLoading },
     { to: "/tools", label: t("nav.tools"), icon: Wrench, show: true },
     { to: "/blog", label: t("nav.blog"), icon: BookOpen, show: true },
-    { to: "/pricing#fix-pass", label: t("nav.fixPass"), icon: Zap, show: true, match: "/pricing#fix-pass" },
+    { to: "/fix-pass", label: t("nav.fixPass"), icon: Zap, show: true },
     { to: "/pricing", label: t("nav.pricing"), icon: Tag, show: true, exact: true },
     { to: "/admin", label: t("nav.admin"), icon: Shield, show: !!user && isAdmin },
   ].filter((i) => i.show);

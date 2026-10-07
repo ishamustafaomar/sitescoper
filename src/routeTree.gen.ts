@@ -18,6 +18,7 @@ import { Route as BestAiWebsiteAuditToolsRouteImport } from './routes/best-ai-we
 import { Route as CompareRouteImport } from './routes/compare'
 import { Route as CroAuditRouteImport } from './routes/cro-audit'
 import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as FixPassRouteImport } from './routes/fix-pass'
 import { Route as LandingPageAuditRouteImport } from './routes/landing-page-audit'
 import { Route as MonitoringRouteImport } from './routes/monitoring'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
@@ -93,6 +94,11 @@ const CroAuditRoute = CroAuditRouteImport.update({
 const DashboardRoute = DashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FixPassRoute = FixPassRouteImport.update({
+  id: '/fix-pass',
+  path: '/fix-pass',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LandingPageAuditRoute = LandingPageAuditRouteImport.update({
@@ -266,6 +272,7 @@ export interface FileRoutesByFullPath {
   '/compare': typeof CompareRoute
   '/cro-audit': typeof CroAuditRoute
   '/dashboard': typeof DashboardRoute
+  '/fix-pass': typeof FixPassRoute
   '/landing-page-audit': typeof LandingPageAuditRoute
   '/monitoring': typeof MonitoringRoute
   '/onboarding': typeof OnboardingRoute
@@ -308,6 +315,7 @@ export interface FileRoutesByTo {
   '/compare': typeof CompareRoute
   '/cro-audit': typeof CroAuditRoute
   '/dashboard': typeof DashboardRoute
+  '/fix-pass': typeof FixPassRoute
   '/landing-page-audit': typeof LandingPageAuditRoute
   '/monitoring': typeof MonitoringRoute
   '/onboarding': typeof OnboardingRoute
@@ -351,6 +359,7 @@ export interface FileRoutesById {
   '/compare': typeof CompareRoute
   '/cro-audit': typeof CroAuditRoute
   '/dashboard': typeof DashboardRoute
+  '/fix-pass': typeof FixPassRoute
   '/landing-page-audit': typeof LandingPageAuditRoute
   '/monitoring': typeof MonitoringRoute
   '/onboarding': typeof OnboardingRoute
@@ -395,6 +404,7 @@ export interface FileRouteTypes {
     | '/compare'
     | '/cro-audit'
     | '/dashboard'
+    | '/fix-pass'
     | '/landing-page-audit'
     | '/monitoring'
     | '/onboarding'
@@ -437,6 +447,7 @@ export interface FileRouteTypes {
     | '/compare'
     | '/cro-audit'
     | '/dashboard'
+    | '/fix-pass'
     | '/landing-page-audit'
     | '/monitoring'
     | '/onboarding'
@@ -479,6 +490,7 @@ export interface FileRouteTypes {
     | '/compare'
     | '/cro-audit'
     | '/dashboard'
+    | '/fix-pass'
     | '/landing-page-audit'
     | '/monitoring'
     | '/onboarding'
@@ -522,6 +534,7 @@ export interface RootRouteChildren {
   CompareRoute: typeof CompareRoute
   CroAuditRoute: typeof CroAuditRoute
   DashboardRoute: typeof DashboardRoute
+  FixPassRoute: typeof FixPassRoute
   LandingPageAuditRoute: typeof LandingPageAuditRoute
   MonitoringRoute: typeof MonitoringRoute
   OnboardingRoute: typeof OnboardingRoute
@@ -618,6 +631,13 @@ declare module '@tanstack/react-router' {
       path: '/dashboard'
       fullPath: '/dashboard'
       preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fix-pass': {
+      id: '/fix-pass'
+      path: '/fix-pass'
+      fullPath: '/fix-pass'
+      preLoaderRoute: typeof FixPassRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/landing-page-audit': {
@@ -850,6 +870,7 @@ const rootRouteChildren: RootRouteChildren = {
   CompareRoute: CompareRoute,
   CroAuditRoute: CroAuditRoute,
   DashboardRoute: DashboardRoute,
+  FixPassRoute: FixPassRoute,
   LandingPageAuditRoute: LandingPageAuditRoute,
   MonitoringRoute: MonitoringRoute,
   OnboardingRoute: OnboardingRoute,
