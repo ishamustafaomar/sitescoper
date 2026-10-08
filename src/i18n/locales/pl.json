@@ -1641,6 +1641,7 @@
     "emptyTitle": "Brak aktywnego Fix Pass",
     "emptyDesc": "Uruchom audyt dla dowolnego adresu, a następnie odblokuj Fix Pass za 9 USD w raporcie, aby uzyskać gotowe poprawki, eksport PDF i 30 dni Site Watch.",
     "emptyCta": "Uruchom darmowy audyt",
+    "seeOffer": "Zobacz ofertę za 9 $",
     "wildcardTitle": "Przetestuj dowolny adres",
     "wildcardDesc": "Twoje konto może odblokować narzędzia Fix Pass dla dowolnego adresu. Wpisz go poniżej."
   }

@@ -1641,6 +1641,7 @@
     "emptyTitle": "Noch kein aktiver Fix Pass",
     "emptyDesc": "Führe ein Audit für eine beliebige Adresse aus und schalte dann den 9-$-Fix-Pass im Bericht frei, um fertige Code-Fixes, den PDF-Export und 30 Tage Site Watch zu erhalten.",
     "emptyCta": "Kostenloses Audit starten",
+    "seeOffer": "Das 9-$-Angebot ansehen",
     "wildcardTitle": "Beliebige Adresse testen",
     "wildcardDesc": "Dein Konto kann die Fix-Pass-Tools für jede Adresse freischalten. Gib unten eine ein."
   }
