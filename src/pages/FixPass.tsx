@@ -71,6 +71,10 @@ export default function FixPass() {
   const [wildcardUrl, setWildcardUrl] = useState("");
 
   useEffect(() => {
+    if (!user) {
+      setPasses([]);
+      return;
+    }
     let cancelled = false;
     listFixPasses()
       .then((p) => {
