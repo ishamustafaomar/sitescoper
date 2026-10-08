@@ -108,11 +108,16 @@ export default function FixPass() {
               <h2 className="font-heading font-semibold">{t("fixPassPage.emptyTitle")}</h2>
             </div>
             <p className="text-sm text-muted-foreground font-body">{t("fixPassPage.emptyDesc")}</p>
-            <Button asChild>
-              <Link to="/">
-                <Sparkles className="h-4 w-4" /> {t("fixPassPage.emptyCta")}
-              </Link>
-            </Button>
+            <div className="flex flex-wrap gap-2">
+              <Button asChild>
+                <Link to="/">
+                  <Sparkles className="h-4 w-4" /> {t("fixPassPage.emptyCta")}
+                </Link>
+              </Button>
+              <Button asChild variant="outline">
+                <Link to="/pricing#fix-pass">{t("fixPassPage.seeOffer")}</Link>
+              </Button>
+            </div>
           </Card>
         ) : (
           <div className="space-y-6">
