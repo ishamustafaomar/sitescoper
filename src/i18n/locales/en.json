@@ -1641,6 +1641,7 @@
     "emptyTitle": "No active Fix Pass yet",
     "emptyDesc": "Run an audit on any address, then unlock the $9 Fix Pass on the report to get ready-to-paste fixes, the PDF export and 30 days of Site Watch.",
     "emptyCta": "Run a free audit",
+    "seeOffer": "See the $9 offer",
     "wildcardTitle": "Test any address",
     "wildcardDesc": "Your account can unlock the Fix Pass tools for any address. Enter one below."
   }

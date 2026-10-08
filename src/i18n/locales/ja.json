@@ -1640,6 +1640,7 @@
     "emptyTitle": "有効な Fix Pass はまだありません",
     "emptyDesc": "任意のアドレスで監査を実行し、レポートで 9ドルの Fix Pass を解除すると、貼り付け可能な修正コード、PDF エクスポート、30 日間の Site Watch が使えます。",
     "emptyCta": "無料監査を実行",
+    "seeOffer": "9ドルのオファーを見る",
     "wildcardTitle": "任意のアドレスをテスト",
     "wildcardDesc": "このアカウントは任意のアドレスで Fix Pass ツールを解除できます。下に入力してください。"
   }
