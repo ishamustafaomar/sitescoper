@@ -103,7 +103,29 @@ export default function FixPass() {
           <p className="text-sm text-muted-foreground font-body">{t("fixPassPage.subtitle")}</p>
         </header>
 
-        {passes === null ? null : realPasses.length === 0 && !wildcard ? (
+        {authLoading || (user && passes === null) ? (
+          <div className="flex justify-center py-10">
+            <Loader2 className="h-6 w-6 animate-spin text-primary" />
+          </div>
+        ) : !user ? (
+          <Card className="p-6 space-y-4 border-primary/30">
+            <div className="flex items-center gap-2">
+              <LogIn className="h-4 w-4 text-primary" />
+              <h2 className="font-heading font-semibold">{t("fixPassPage.signedOutTitle")}</h2>
+            </div>
+            <p className="text-sm text-muted-foreground font-body">{t("fixPassPage.signedOutDesc")}</p>
+            <div className="flex flex-wrap gap-2">
+              <Button asChild>
+                <Link to="/auth?redirect=/fix-pass">
+                  <LogIn className="h-4 w-4" /> {t("nav.signIn")}
+                </Link>
+              </Button>
+              <Button asChild variant="outline">
+                <Link to="/pricing#fix-pass">{t("fixPassPage.seeOffer")}</Link>
+              </Button>
+            </div>
+          </Card>
+        ) : realPasses.length === 0 && !wildcard ? (
           <Card className="p-6 space-y-4 border-primary/30">
             <div className="flex items-center gap-2">
               <Lock className="h-4 w-4 text-primary" />
