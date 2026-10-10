@@ -1643,6 +1643,8 @@
     "emptyCta": "Gratis audit starten",
     "seeOffer": "Bekijk het aanbod van $9",
     "wildcardTitle": "Test elk adres",
-    "wildcardDesc": "Je account kan de Fix Pass-tools voor elk adres ontgrendelen. Vul er hieronder een in."
+    "wildcardDesc": "Je account kan de Fix Pass-tools voor elk adres ontgrendelen. Vul er hieronder een in.",
+    "signedOutTitle": "Log in om je Fix Pass te zien",
+    "signedOutDesc": "Heb je de pas van $9 gekocht? Log in met hetzelfde e-mailadres als bij de betaling en je fixes, PDF-export en Site Watch verschijnen hier."
   }
 }

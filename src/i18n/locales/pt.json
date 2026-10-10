@@ -1643,6 +1643,8 @@
     "emptyCta": "Executar uma auditoria grátis",
     "seeOffer": "Ver a oferta de 9 $",
     "wildcardTitle": "Teste qualquer endereço",
-    "wildcardDesc": "A sua conta pode desbloquear as ferramentas do Fix Pass para qualquer endereço. Introduza um abaixo."
+    "wildcardDesc": "A sua conta pode desbloquear as ferramentas do Fix Pass para qualquer endereço. Introduza um abaixo.",
+    "signedOutTitle": "Inicie sessão para ver o seu Fix Pass",
+    "signedOutDesc": "Comprou o passe de 9 $? Inicie sessão com o mesmo e-mail usado no pagamento e as suas correções, o PDF e o Site Watch aparecem aqui."
   }
 }

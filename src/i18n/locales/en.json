@@ -1643,6 +1643,8 @@
     "emptyCta": "Run a free audit",
     "seeOffer": "See the $9 offer",
     "wildcardTitle": "Test any address",
-    "wildcardDesc": "Your account can unlock the Fix Pass tools for any address. Enter one below."
+    "wildcardDesc": "Your account can unlock the Fix Pass tools for any address. Enter one below.",
+    "signedOutTitle": "Sign in to see your Fix Pass",
+    "signedOutDesc": "Bought the $9 pass? Sign in with the same email you used at checkout and your fixes, PDF export and Site Watch will show up here."
   }
 }

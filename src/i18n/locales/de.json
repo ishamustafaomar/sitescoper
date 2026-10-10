@@ -1643,6 +1643,8 @@
     "emptyCta": "Kostenloses Audit starten",
     "seeOffer": "Das 9-$-Angebot ansehen",
     "wildcardTitle": "Beliebige Adresse testen",
-    "wildcardDesc": "Dein Konto kann die Fix-Pass-Tools für jede Adresse freischalten. Gib unten eine ein."
+    "wildcardDesc": "Dein Konto kann die Fix-Pass-Tools für jede Adresse freischalten. Gib unten eine ein.",
+    "signedOutTitle": "Melde dich an, um deinen Fix Pass zu sehen",
+    "signedOutDesc": "Hast du den 9-$-Pass gekauft? Melde dich mit derselben E-Mail wie beim Kauf an – deine Fixes, der PDF-Export und Site Watch erscheinen hier."
   }
 }
