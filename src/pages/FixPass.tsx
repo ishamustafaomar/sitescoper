@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "@/lib/router-compat";
-import { Eye, FileDown, Lock, Sparkles, Wrench } from "lucide-react";
+import { Eye, FileDown, Loader2, Lock, LogIn, Sparkles, Wrench } from "lucide-react";
 import { AppHeader } from "@/components/AppHeader";
 import { useAuth } from "@/components/AuthProvider";
 import { listFixPasses } from "@/lib/fix-pass.functions";
@@ -66,15 +66,17 @@ function PassTools({ url, expiresAt }: { url: string; expiresAt: string }) {
 
 export default function FixPass() {
   const { t } = useTranslation();
-  const { user } = useAuth();
+  const { user, loading: authLoading } = useAuth();
   const [passes, setPasses] = useState<Pass[] | null>(null);
   const [wildcardUrl, setWildcardUrl] = useState("");
 
   useEffect(() => {
+    if (authLoading) return;
     if (!user) {
       setPasses([]);
       return;
     }
+    setPasses(null);
     let cancelled = false;
     listFixPasses()
       .then((p) => {
@@ -86,7 +88,7 @@ export default function FixPass() {
     return () => {
       cancelled = true;
     };
-  }, [user?.id]);
+  }, [user?.id, authLoading]);
 
   const wildcard = passes?.some((p) => p.url === "*") ?? false;
   const realPasses = (passes ?? []).filter((p) => p.url !== "*");
