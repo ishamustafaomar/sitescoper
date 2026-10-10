@@ -1642,6 +1642,8 @@
     "emptyCta": "無料監査を実行",
     "seeOffer": "9ドルのオファーを見る",
     "wildcardTitle": "任意のアドレスをテスト",
-    "wildcardDesc": "このアカウントは任意のアドレスで Fix Pass ツールを解除できます。下に入力してください。"
+    "wildcardDesc": "このアカウントは任意のアドレスで Fix Pass ツールを解除できます。下に入力してください。",
+    "signedOutTitle": "ログインしてFix Passを表示",
+    "signedOutDesc": "9ドルのパスを購入しましたか？決済時と同じメールでログインすると、修正コード、PDF、Site Watchがここに表示されます。"
   }
 }

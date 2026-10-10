@@ -1643,6 +1643,8 @@
     "emptyCta": "Uruchom darmowy audyt",
     "seeOffer": "Zobacz ofertę za 9 $",
     "wildcardTitle": "Przetestuj dowolny adres",
-    "wildcardDesc": "Twoje konto może odblokować narzędzia Fix Pass dla dowolnego adresu. Wpisz go poniżej."
+    "wildcardDesc": "Twoje konto może odblokować narzędzia Fix Pass dla dowolnego adresu. Wpisz go poniżej.",
+    "signedOutTitle": "Zaloguj się, aby zobaczyć swój Fix Pass",
+    "signedOutDesc": "Kupiłeś pass za 9 $? Zaloguj się tym samym e-mailem co przy płatności, a poprawki, PDF i Site Watch pojawią się tutaj."
   }
 }

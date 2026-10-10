@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "@/lib/router-compat";
-import { Eye, FileDown, Lock, Sparkles, Wrench } from "lucide-react";
+import { Eye, FileDown, Loader2, Lock, LogIn, Sparkles, Wrench } from "lucide-react";
 import { AppHeader } from "@/components/AppHeader";
 import { useAuth } from "@/components/AuthProvider";
 import { listFixPasses } from "@/lib/fix-pass.functions";
@@ -66,15 +66,17 @@ function PassTools({ url, expiresAt }: { url: string; expiresAt: string }) {
 
 export default function FixPass() {
   const { t } = useTranslation();
-  const { user } = useAuth();
+  const { user, loading: authLoading } = useAuth();
   const [passes, setPasses] = useState<Pass[] | null>(null);
   const [wildcardUrl, setWildcardUrl] = useState("");
 
   useEffect(() => {
+    if (authLoading) return;
     if (!user) {
       setPasses([]);
       return;
     }
+    setPasses(null);
     let cancelled = false;
     listFixPasses()
       .then((p) => {
@@ -86,7 +88,7 @@ export default function FixPass() {
     return () => {
       cancelled = true;
     };
-  }, [user?.id]);
+  }, [user?.id, authLoading]);
 
   const wildcard = passes?.some((p) => p.url === "*") ?? false;
   const realPasses = (passes ?? []).filter((p) => p.url !== "*");
@@ -101,7 +103,29 @@ export default function FixPass() {
           <p className="text-sm text-muted-foreground font-body">{t("fixPassPage.subtitle")}</p>
         </header>
 
-        {passes === null ? null : realPasses.length === 0 && !wildcard ? (
+        {authLoading || (user && passes === null) ? (
+          <div className="flex justify-center py-10">
+            <Loader2 className="h-6 w-6 animate-spin text-primary" />
+          </div>
+        ) : !user ? (
+          <Card className="p-6 space-y-4 border-primary/30">
+            <div className="flex items-center gap-2">
+              <LogIn className="h-4 w-4 text-primary" />
+              <h2 className="font-heading font-semibold">{t("fixPassPage.signedOutTitle")}</h2>
+            </div>
+            <p className="text-sm text-muted-foreground font-body">{t("fixPassPage.signedOutDesc")}</p>
+            <div className="flex flex-wrap gap-2">
+              <Button asChild>
+                <Link to="/auth?redirect=/fix-pass">
+                  <LogIn className="h-4 w-4" /> {t("nav.signIn")}
+                </Link>
+              </Button>
+              <Button asChild variant="outline">
+                <Link to="/pricing#fix-pass">{t("fixPassPage.seeOffer")}</Link>
+              </Button>
+            </div>
+          </Card>
+        ) : realPasses.length === 0 && !wildcard ? (
           <Card className="p-6 space-y-4 border-primary/30">
             <div className="flex items-center gap-2">
               <Lock className="h-4 w-4 text-primary" />
