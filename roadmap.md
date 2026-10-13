@@ -29,5 +29,5 @@ Diagnosis (start of run): indexed but invisible. 258 impressions / 0 clicks last
 - [ ] Directory listings kit (Product Hunt, AlternativeTo, SaaSHub, G2) — needs user accounts
 
 ## Compare search page (Oct 13, 2026)
-- [ ] Add public SEO explanation, clearly illustrative comparison and FAQs in all nine languages; preserve paid comparison access.
-- [ ] Include Compare in search metadata and sitemap; verify public page and sign-in return link.
+- [x] Add public SEO explanation, clearly illustrative comparison and FAQs in all nine languages; preserve paid comparison access.
+- [x] Include Compare in search metadata and sitemap; verify public page and sign-in return link.
