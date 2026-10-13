@@ -271,7 +271,28 @@ serve(async (req) => {
       });
     }
 
-    const systemPrompt = buildSystemPrompt(analysis, url, scrapeMeta, detectedSections || []);
+    // Pin the site to the user's own saved audit when available; never allow internal hosts.
+    let siteUrl: string = typeof url === "string" ? url : "";
+    if (analysisId) {
+      const { data: row } = await userClient.from("analysis_history").select("url").eq("id", analysisId).maybeSingle();
+      if (!row?.url) {
+        return new Response(JSON.stringify({ error: "Audit not found" }), {
+          status: 404, headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+      siteUrl = row.url;
+    }
+    try {
+      const h = new URL(siteUrl.startsWith("http") ? siteUrl : `https://${siteUrl}`).hostname.toLowerCase();
+      if (h === "localhost" || h.endsWith(".local") || h.endsWith(".internal") || /^(127\.|10\.|192\.168\.|169\.254\.|172\.(1[6-9]|2\d|3[01])\.|0\.|\[)/.test(h) || !h.includes(".")) {
+        throw new Error("blocked");
+      }
+    } catch {
+      return new Response(JSON.stringify({ error: "Invalid site address" }), {
+        status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+    const systemPrompt = buildSystemPrompt(analysis, siteUrl, scrapeMeta, detectedSections || []);
 
     // Tool-call loop (non-streaming so we can handle the rescan tool, then stream final answer)
     const conversation: ChatMessage[] = [
