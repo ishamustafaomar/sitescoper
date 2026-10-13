@@ -1240,7 +1240,7 @@
         "title": "No social proof appears before the first CTA",
         "where": "Hero section, right column",
         "why": "Your testimonials live at the bottom of the page, but the buy decision happens in the hero. Without logos, ratings, or user counts, the CTA asks for trust you haven't earned yet.",
-        "fix": "Add a 1-line proof strip directly under the CTA: “Trusted by 2,400+ teams” + 4 customer logos in greyscale. Keep it small — it's a confidence cue, not a feature."
+        "fix": "Add a 1-line proof strip directly under the CTA: a real customer quote or a link to a sample of your work. Keep it small — it's a confidence cue, not a feature."
       },
       "pricing": {
         "title": "Pricing is hidden behind a dropdown menu",
