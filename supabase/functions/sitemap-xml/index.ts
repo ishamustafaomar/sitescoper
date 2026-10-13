@@ -33,6 +33,7 @@ serve(async (req) => {
     const { data: posts } = await sb
       .from("blog_posts")
       .select("slug, published_at")
+      .eq("status", "published")
       .order("published_at", { ascending: false });
 
     const entries = [

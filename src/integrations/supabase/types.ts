@@ -499,6 +499,21 @@ export type Database = {
         }
         Relationships: []
       }
+      internal_cron_secret: {
+        Row: {
+          id: number
+          secret: string
+        }
+        Insert: {
+          id?: number
+          secret?: string
+        }
+        Update: {
+          id?: number
+          secret?: string
+        }
+        Relationships: []
+      }
       job_leases: {
         Row: {
           job_name: string

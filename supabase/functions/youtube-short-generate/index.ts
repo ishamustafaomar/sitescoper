@@ -365,6 +365,29 @@ serve(async (req) => {
       Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
     );
 
+    // Only the scheduled job (shared secret) or a signed-in admin may run this.
+    let allowed = false;
+    const cronSecret = req.headers.get("x-cron-secret");
+    if (cronSecret) {
+      const { data: row } = await supabase.from("internal_cron_secret").select("secret").eq("id", 1).maybeSingle();
+      allowed = !!row?.secret && row.secret === cronSecret;
+    }
+    if (!allowed) {
+      const token = (req.headers.get("Authorization") ?? "").replace(/^Bearer\s+/i, "");
+      if (token) {
+        const { data: u } = await supabase.auth.getUser(token);
+        if (u?.user) {
+          const { data: role } = await supabase.from("user_roles").select("role").eq("user_id", u.user.id).eq("role", "admin").maybeSingle();
+          allowed = !!role;
+        }
+      }
+    }
+    if (!allowed) {
+      return new Response(JSON.stringify({ error: "Unauthorized" }), {
+        status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
     const id = crypto.randomUUID();
     const format = await pickFormat(supabase);
     const targetSite = pickRandom(TARGET_SITES);

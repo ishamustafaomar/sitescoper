@@ -1,3 +1,4 @@
+import { safeReturnUrl } from "@/lib/return-url";
 // One-time "Audit & Fix Pass" ($9): unlocks ready-to-paste code fixes, the
 // full branded PDF export, and 30 days of Site Watch for one address.
 import { createServerFn } from "@tanstack/react-start";
@@ -25,6 +26,7 @@ export const startFixPass = createServerFn({ method: "POST" })
     const data = (input ?? {}) as { url?: string; analysisId?: string; returnUrl?: string; environment?: string };
     if (!data.url || typeof data.url !== "string") throw new Error("Missing url");
     if (!data.returnUrl || typeof data.returnUrl !== "string") throw new Error("Missing returnUrl");
+    if (!safeReturnUrl(data.returnUrl)) throw new Error("Invalid returnUrl");
     return data as { url: string; analysisId?: string; returnUrl: string; environment?: string };
   })
   .handler(async ({ data }): Promise<{ clientSecret?: string | null; error?: string }> => {

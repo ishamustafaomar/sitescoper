@@ -1,3 +1,4 @@
+import { safeReturnUrl } from "@/lib/return-url";
 // Migrated from supabase/functions/create-portal-session (Deno edge function).
 import { createServerFn } from "@tanstack/react-start";
 import type { StripeEnv } from "@/lib/stripe-gateway.server";
@@ -27,7 +28,7 @@ export const createPortalSession = createServerFn({ method: "POST" })
     const stripe = createStripeClient(env);
     const portal = await stripe.billingPortal.sessions.create({
       customer: sub.stripe_customer_id,
-      ...(data.returnUrl && { return_url: data.returnUrl }),
+      ...(safeReturnUrl(data.returnUrl) && { return_url: safeReturnUrl(data.returnUrl) }),
     });
     return { url: portal.url };
   });
