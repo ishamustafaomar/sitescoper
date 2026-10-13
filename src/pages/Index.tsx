@@ -300,10 +300,10 @@ const Index = () => {
                         actually influence the decision — not buried in a
                         testimonial section further down the page. */}
                     <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px] font-body text-muted-foreground">
-                      <span className="inline-flex items-center gap-1.5">
-                        <Star className="h-3 w-3 fill-[hsl(45,90%,52%)] text-[hsl(45,90%,52%)]" aria-hidden="true" />
-                        {t("hero.proofRated", "Loved by founders and indie hackers")}
-                      </span>
+                      <a href="#sample-report" className="inline-flex items-center gap-1.5 underline underline-offset-4 decoration-[hsl(var(--accent))] decoration-2 hover:text-[hsl(var(--accent))] transition-colors">
+                        <FileText className="h-3 w-3" aria-hidden="true" />
+                        {t("hero.proofSample", "See a real sample report")}
+                      </a>
                       <span className="inline-flex items-center gap-1.5">
                         <ShieldCheck className="h-3 w-3" aria-hidden="true" />
                         {t("hero.proofNoCard", "No credit card — 3 full audits every month")}
