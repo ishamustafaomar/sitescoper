@@ -278,9 +278,13 @@ serve(async (req) => {
       { role: "user" as any, content: systemPrompt }, // prepend as system below
     ];
     // Actually convert: send system separately
+    const safeMessages = (Array.isArray(messages) ? messages : [])
+      .slice(-40)
+      .filter((m: any) => m && (m.role === "user" || m.role === "assistant") && typeof m.content === "string")
+      .map((m: any) => ({ role: m.role, content: String(m.content).slice(0, 8000) }));
     const fullMessages: any[] = [
       { role: "system", content: systemPrompt },
-      ...messages,
+      ...safeMessages,
     ];
 
     // Loop up to 3 times to allow tool calls
