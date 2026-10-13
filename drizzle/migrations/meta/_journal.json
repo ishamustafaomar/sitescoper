@@ -36,6 +36,13 @@
       "when": 1791918538725,
       "tag": "0004_restrict_ab_experiments_read",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1791919559764,
+      "tag": "0005_cron_shared_secret",
+      "breakpoints": true
     }
   ]
 }
