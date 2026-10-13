@@ -40,9 +40,9 @@
     "upgradeCta": "Przejdź na Pro",
     "upgradeSub": "— nielimitowane skany, głębokie skanowanie wielu podstron, eksport do PDF i linki do udostępnienia.",
     "evidenceCaption": "Prawdziwy werdykt, nie lista kontrolna. Każdy skan oceniany jest w ten sam sposób.",
-    "proofRated": "Uwielbiane przez założycieli i indie hackerów",
     "proofNoCard": "Bez konta przy pierwszym audycie — 3 pełne audyty miesięcznie po rejestracji",
-    "proofSpeed": "Pełny raport w około 60 sekund"
+    "proofSpeed": "Pełny raport w około 60 sekund",
+    "proofSample": "Zobacz prawdziwy przykładowy raport"
   },
   "signin": {
     "tooltipTitle": "Dlaczego warto założyć darmowe konto?",
@@ -220,9 +220,8 @@
       "part2": "które naprawdę warto zrobić w tym tygodniu."
     },
     "socialProof": {
-      "loved": "Uwielbiane przez założycieli",
-      "scored": "stron ocenionych w tym miesiącu",
-      "trusted": "Zaufany przez zespoły SaaS, e-commerce i indie"
+      "trusted": "Zaufany przez zespoły SaaS, e-commerce i indie",
+      "sample": "Zobacz prawdziwy przykładowy raport"
     },
     "stats": {
       "s1": "Średni czas analizy",
@@ -1500,6 +1499,10 @@
       "fixPassPage": {
         "title": "Fix Pass ma własną stronę",
         "desc": "Fix Pass za 9 USD ma teraz dedykowaną stronę: zobacz aktywne karnety, skopiuj gotowe poprawki i przejdź do Site Watch lub raportu PDF."
+      },
+      "honestProof": {
+        "title": "Uczciwe dowody na stronie głównej",
+        "desc": "Usunęliśmy niepotwierdzone twierdzenia „2 400+ ocenionych stron” i „Uwielbiane przez założycieli”, zastępując je linkiem do prawdziwego przykładowego raportu."
       }
     }
   },

@@ -40,9 +40,9 @@
     "upgradeCta": "Passez à Pro",
     "upgradeSub": "— analyses illimitées, explorations multi-pages approfondies, exports PDF et liens de partage.",
     "evidenceCaption": "Un verdict réel, pas une simple liste de contrôle. Chaque analyse est notée de la même façon.",
-    "proofRated": "Adopté par les fondateurs et les indie hackers",
     "proofNoCard": "Aucun compte pour le premier audit — 3 audits complets par mois après inscription",
-    "proofSpeed": "Rapport complet en 60 secondes environ"
+    "proofSpeed": "Rapport complet en 60 secondes environ",
+    "proofSample": "Voir un exemple de rapport réel"
   },
   "signin": {
     "tooltipTitle": "Pourquoi créer un compte gratuit ?",
@@ -220,9 +220,8 @@
       "part2": "qui valent vraiment la peine cette semaine."
     },
     "socialProof": {
-      "loved": "Adoré par les fondateurs",
-      "scored": "sites analysés ce mois",
-      "trusted": "Confiance des équipes SaaS, e-commerce et indie"
+      "trusted": "Confiance des équipes SaaS, e-commerce et indie",
+      "sample": "Voir un exemple de rapport réel"
     },
     "stats": {
       "s1": "Temps moyen d'analyse",
@@ -1500,6 +1499,10 @@
       "fixPassPage": {
         "title": "Le Fix Pass a sa propre page",
         "desc": "Le Fix Pass à 9 $ dispose désormais d'une page dédiée : voyez vos pass actifs, copiez les corrections prêtes à coller et accédez à Site Watch ou à votre rapport PDF."
+      },
+      "honestProof": {
+        "title": "Preuves honnêtes sur l'accueil",
+        "desc": "Suppression des affirmations non prouvées « 2 400+ sites analysés » et « Adoré par les fondateurs », remplacées par un lien vers un vrai exemple de rapport."
       }
     }
   },
