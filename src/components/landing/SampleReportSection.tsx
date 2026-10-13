@@ -51,7 +51,7 @@ export function SampleReportSection({ onTryYours }: { onTryYours: () => void }) 
   const topWinKeys = ["design", "mobile", "performance"] as const;
   const topRiskKeys = ["hero", "trust", "conversion"] as const;
   return (
-    <section className="py-20 px-4 bg-secondary">
+    <section id="sample-report" className="py-20 px-4 bg-secondary scroll-mt-20">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-10">
           <div className="inline-flex items-center gap-2 px-2.5 py-1 border border-foreground mb-4">
