@@ -423,10 +423,10 @@ const Index = () => {
                       transition={{ delay: 0.2 }}
                       className="bg-card rounded-xl border border-border p-4 shadow-[var(--shadow-sm)] space-y-2.5"
                     >
-                      <h4 className="font-heading font-semibold text-sm flex items-center gap-2">
+                      <h3 className="font-heading font-semibold text-sm flex items-center gap-2">
                         <FileText className="h-4 w-4 text-muted-foreground" />
                         Page Info
-                      </h4>
+                      </h3>
                       {scrapeData.metadata.title && (
                         <p className="text-sm font-body">
                           <span className="text-muted-foreground">Title:</span>{" "}
