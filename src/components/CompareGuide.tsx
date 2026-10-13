@@ -79,9 +79,9 @@ export function CompareGuide() {
         <h2 id="compare-faq-title" className="font-heading text-3xl mb-6">{t("compare.seo.faqTitle")}</h2>
         <Accordion type="single" collapsible>
           {[1, 2, 3, 4, 5].map((n) => (
-            <AccordionItem key={n} value={`compare-faq-${n}`}>
-              <h3><AccordionTrigger className="text-left font-body font-medium hover:no-underline">{t(`compare.seo.faq.q${n}`)}</AccordionTrigger></h3>
-              <AccordionContent forceMount className="text-muted-foreground leading-relaxed data-[state=closed]:hidden">{t(`compare.seo.faq.a${n}`)}</AccordionContent>
+            <AccordionItem key={n} value={`compare-faq-${n}`} className="group">
+              <AccordionTrigger className="text-left font-body font-medium hover:no-underline">{t(`compare.seo.faq.q${n}`)}</AccordionTrigger>
+              <AccordionContent forceMount className="text-muted-foreground leading-relaxed group-data-[state=closed]:hidden">{t(`compare.seo.faq.a${n}`)}</AccordionContent>
             </AccordionItem>
           ))}
         </Accordion>

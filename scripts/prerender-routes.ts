@@ -105,7 +105,7 @@ const routes: RouteMeta[] = [
   { path: "/privacy", title: "Privacy Policy — SiteScoper", description: "How SiteScoper handles your data.", noindex: false },
   { path: "/terms", title: "Terms of Service — SiteScoper", description: "Terms of using SiteScoper.", noindex: false },
   { path: "/auth", title: "Sign in — SiteScoper", description: "Sign in to SiteScoper to run AI website audits.", noindex: true },
-  { path: "/compare", title: "Compare websites — SiteScoper", description: "Compare two websites side-by-side with AI.", noindex: true },
+  { path: "/compare", title: "Compare Websites SEO Side by Side — SiteScoper", description: "Compare two websites for SEO, content and UX. See an example, find competitor gaps and shared weaknesses, and prioritize fixes. Live comparisons require Pro." },
 ]
 
 const shell = readFileSync(SHELL_PATH, "utf8")
