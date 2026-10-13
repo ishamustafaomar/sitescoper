@@ -40,9 +40,9 @@
     "upgradeCta": "Go Pro",
     "upgradeSub": "— unlimited scans, deep multi-page crawls, PDF and share-link exports.",
     "evidenceCaption": "A real verdict, not a checklist. Every scan is scored the same way.",
-    "proofRated": "Loved by founders and indie hackers",
     "proofNoCard": "No account for your first audit — 3 full audits a month once you sign up",
-    "proofSpeed": "Full report in about 60 seconds"
+    "proofSpeed": "Full report in about 60 seconds",
+    "proofSample": "See a real sample report"
   },
   "signin": {
     "tooltipTitle": "Why create a free account?",
@@ -220,9 +220,8 @@
       "part2": "actually worth doing this week."
     },
     "socialProof": {
-      "loved": "Loved by founders",
-      "scored": "sites scored this month",
-      "trusted": "Trusted by SaaS, ecommerce & indie teams"
+      "trusted": "Trusted by SaaS, ecommerce & indie teams",
+      "sample": "See a real sample report"
     },
     "stats": {
       "s1": "Average analysis time",
@@ -1500,6 +1499,10 @@
       "fixPassPage": {
         "title": "Fix Pass gets its own page",
         "desc": "The $9 Fix Pass now has a dedicated page: see your active passes, copy the ready-to-paste fixes, and jump to Site Watch or your PDF report."
+      },
+      "honestProof": {
+        "title": "Honest homepage proof",
+        "desc": "Removed the unproven “2,400+ sites scored” and “Loved by founders” claims and replaced them with a link to a real sample report you can inspect yourself."
       }
     }
   },

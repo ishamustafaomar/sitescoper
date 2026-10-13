@@ -40,9 +40,9 @@
     "upgradeCta": "Ga Pro",
     "upgradeSub": "— onbeperkte scans, diepe multi-pagina crawls, PDF- en deel-link-exports.",
     "evidenceCaption": "Een echt oordeel, geen checklist. Elke scan wordt op dezelfde manier beoordeeld.",
-    "proofRated": "Geliefd bij founders en indie hackers",
     "proofNoCard": "Geen account voor je eerste audit — 3 volledige audits per maand na aanmelden",
-    "proofSpeed": "Volledig rapport in ongeveer 60 seconden"
+    "proofSpeed": "Volledig rapport in ongeveer 60 seconden",
+    "proofSample": "Bekijk een echt voorbeeldrapport"
   },
   "signin": {
     "tooltipTitle": "Waarom een gratis account aanmaken?",
@@ -220,9 +220,8 @@
       "part2": "die deze week écht de moeite waard zijn."
     },
     "socialProof": {
-      "loved": "Geliefd bij founders",
-      "scored": "sites gescoord deze maand",
-      "trusted": "Vertrouwd door SaaS-, e-commerce- en indie-teams"
+      "trusted": "Vertrouwd door SaaS-, e-commerce- en indie-teams",
+      "sample": "Bekijk een echt voorbeeldrapport"
     },
     "stats": {
       "s1": "Gemiddelde analysetijd",
@@ -1500,6 +1499,10 @@
       "fixPassPage": {
         "title": "Fix Pass krijgt een eigen pagina",
         "desc": "De Fix Pass van $ 9 heeft nu een eigen pagina: bekijk je actieve passen, kopieer de kant-en-klare fixes en ga naar Site Watch of je PDF-rapport."
+      },
+      "honestProof": {
+        "title": "Eerlijke bewijzen op de homepage",
+        "desc": "De onbewezen claims “2.400+ sites gescoord” en “Geliefd bij founders” zijn verwijderd en vervangen door een link naar een echt voorbeeldrapport."
       }
     }
   },

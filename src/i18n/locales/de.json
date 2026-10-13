@@ -40,9 +40,9 @@
     "upgradeCta": "Auf Pro upgraden",
     "upgradeSub": "— unbegrenzte Scans, tiefe Multi-Page-Crawls, PDF- und Share-Link-Exporte.",
     "evidenceCaption": "Ein echtes Urteil, keine Checkliste. Jeder Scan wird nach demselben Maßstab bewertet.",
-    "proofRated": "Beliebt bei Gründern und Indie Hackern",
     "proofNoCard": "Kein Konto für das erste Audit — 3 vollständige Audits pro Monat nach der Anmeldung",
-    "proofSpeed": "Vollständiger Bericht in etwa 60 Sekunden"
+    "proofSpeed": "Vollständiger Bericht in etwa 60 Sekunden",
+    "proofSample": "Einen echten Beispielbericht ansehen"
   },
   "signin": {
     "tooltipTitle": "Warum ein kostenloses Konto?",
@@ -220,9 +220,8 @@
       "part2": "die diese Woche wirklich zählen."
     },
     "socialProof": {
-      "loved": "Von Gründern geliebt",
-      "scored": "Websites diesen Monat bewertet",
-      "trusted": "Vertraut von SaaS-, E-Commerce- und Indie-Teams"
+      "trusted": "Vertraut von SaaS-, E-Commerce- und Indie-Teams",
+      "sample": "Einen echten Beispielbericht ansehen"
     },
     "stats": {
       "s1": "Durchschnittliche Analysezeit",
@@ -1500,6 +1499,10 @@
       "fixPassPage": {
         "title": "Fix Pass bekommt eine eigene Seite",
         "desc": "Der 9-$-Fix-Pass hat jetzt eine eigene Seite: Sieh deine aktiven Pässe, kopiere die fertigen Fixes und springe zu Site Watch oder deinem PDF-Bericht."
+      },
+      "honestProof": {
+        "title": "Ehrliche Nachweise auf der Startseite",
+        "desc": "Die unbewiesenen Behauptungen „2.400+ bewertete Websites“ und „Von Gründern geliebt“ wurden entfernt und durch einen Link zu einem echten Beispielbericht ersetzt."
       }
     }
   },
