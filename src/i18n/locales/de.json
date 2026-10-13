@@ -545,6 +545,53 @@
       "issueLoad": "Probleme (hoch · mittel · niedrig)",
       "drillTitle": "Kategorie-Details",
       "noIssues": "Keine Probleme."
+    },
+    "seo": {
+      "badge": "SEO-Wettbewerbsvergleich",
+      "title": "Zwei Websites nach SEO vergleichen",
+      "intro": "Stelle deine Seite einer Konkurrenzseite gegenüber. Vergleiche SEO-, Inhalts- und UX-Wertungen, erkenne die größten Unterschiede und priorisiere Verbesserungen.",
+      "accessTitle": "Eigenen Vergleich starten",
+      "accessBody": "Live-Vergleiche erfordern ein Pro-Konto. Beispiel und Leitfaden sind für alle zugänglich.",
+      "signIn": "Zum Vergleichen anmelden",
+      "viewPlans": "Tarife ansehen",
+      "whyTitle": "Was ein SEO-Vergleich zeigt",
+      "whyBody": "Ein Audit zeigt Handlungsbedarf. Ein Vergleich liefert Kontext: Wo ist die andere Seite stärker, wo führst du, und welche Schwächen teilen beide? SiteScoper kombiniert Kategoriewertungen mit Vorschlägen, Prioritäten und verfügbaren Teilwertungen.",
+      "step1Title": "Vergleichbare Seiten wählen",
+      "step1Body": "Vergleiche Seiten mit gleichem Zweck: zwei Startseiten oder zwei Produktseiten für ähnliche Zielgruppen. Ergänze ein Keyword oder eine Zielgruppe in den Anweisungen, um die Analyse auszurichten.",
+      "step2Title": "Unterschiede statt nur Gewinner betrachten",
+      "step2Body": "Beginne bei Kategorien, in denen deine Seite zurückliegt. Der Aufholplan ordnet die Lücken und zeigt einen Verbesserungsvorschlag; die Details enthalten Teilwertungen und Probleme beider Seiten.",
+      "step3Title": "Unterschiede in Prioritäten übersetzen",
+      "step3Body": "Untersuche den Ansatz des Konkurrenten, statt ihn blind zu kopieren. Bewahre deine Stärken und suche gemeinsame Schwächen, die Besucherbedürfnisse verfehlen.",
+      "exampleTitle": "Beispiel eines SEO-Vergleichs",
+      "exampleNote": "Nur zur Veranschaulichung: Fiktive Werte und Befunde erklären den Vergleich. Keine echten Audits, Kundenergebnisse oder Google-Rankings.",
+      "category": "Kategorie",
+      "yourPage": "Deine Seite",
+      "competitorPage": "Konkurrenzseite",
+      "seoLabel": "SEO",
+      "contentLabel": "Inhalt",
+      "trustLabel": "Vertrauen",
+      "seoTakeaway": "SEO-Lücke schließen",
+      "seoAction": "58 zu 76: Meldet der Bericht einen unklaren Seitentitel, formuliere ihn passend zum tatsächlichen Thema. Prüfe die Klarheit des Konkurrenztitels, ohne ihn zu kopieren.",
+      "contentTakeaway": "Inhaltsvorsprung bewahren",
+      "contentAction": "71 zu 63: Behalte konkrete Produkterklärungen, die Besuchern helfen. Prüfe, ob die Konkurrenz eine wichtige Frage beantwortet, die bei dir fehlt.",
+      "trustTakeaway": "Gemeinsame Schwäche erkennen",
+      "trustAction": "49 zu 52: Beide Seiten sind beim Vertrauen schwach. Fehlen Nachweise, ergänze echte Kundenbelege oder ein überprüfbares Beispiel statt erfundener Bewertungen.",
+      "limitations": "Die Werte sind KI-Bewertungen der Seiten, keine Google-Rankings. Höhere Werte garantieren keinen Traffic. Dies ist kein vollständiger Website-Crawl, keine Backlinkanalyse und kein Keyword-Ranktracking.",
+      "faqTitle": "Häufige Fragen zum SEO-Vergleich",
+      "auditGuide": "SEO-Audit-Leitfaden lesen",
+      "freeAudit": "Ein kostenloses Audit testen",
+      "faq": {
+        "q1": "Wie vergleiche ich Websites nach SEO?",
+        "a1": "Wähle zwei öffentliche Seiten mit ähnlichem Zweck, gib ihre URLs in Compare ein und prüfe Werte und Vorschläge. Beginne mit den größten Lücken, dann gemeinsamen Schwächen und eigenen Stärken. Live-Vergleiche erfordern Pro.",
+        "q2": "Zeigt SiteScoper, warum ein Konkurrent bei Google höher rankt?",
+        "a2": "Es kann Unterschiede in SEO, Inhalt und UX der eingereichten Seiten zeigen. Es erklärt nicht eindeutig Googles Ranking. Auch hier nicht gemessene Faktoren wie Backlinks und Suchkonkurrenz spielen eine Rolle.",
+        "q3": "Ist der Website-Vergleich kostenlos?",
+        "a3": "Beispiel und FAQ sind kostenlos. Der Live-Vergleich zweier Seiten ist eine Pro-Funktion. Auf der Startseite kannst du ein einzelnes Audit ohne Konto testen; der $9 Fix Pass schaltet Compare nicht frei.",
+        "q4": "Was unterscheidet Compare von zwei einzelnen Audits?",
+        "a4": "Compare gleicht Kategorien ab, zeigt Vorteile, ordnet Lücken im Aufholplan, zählt Probleme nach Priorität und erkennt gemeinsame Schwächen. Kategorien lassen sich für verfügbare Teilwertungen und Vorschläge öffnen.",
+        "q5": "Vergleicht es ganze Websites oder einzelne Seiten?",
+        "a5": "Der Vergleich prüft die öffentlichen URLs und dort lesbare Inhalte. Er crawlt nicht jede Seite beider Websites. Wähle vergleichbare Seiten und berücksichtige unzugängliche oder fehlende Inhalte."
+      }
     }
   },
   "siteFooter": {
@@ -1503,6 +1550,10 @@
       "honestProof": {
         "title": "Ehrliche Nachweise auf der Startseite",
         "desc": "Die unbewiesenen Behauptungen „2.400+ bewertete Websites“ und „Von Gründern geliebt“ wurden entfernt und durch einen Link zu einem echten Beispielbericht ersetzt."
+      },
+      "compareSeo": {
+        "title": "Zwei Websites nach SEO vergleichen",
+        "desc": "Stelle deine Seite einer Konkurrenzseite gegenüber. Vergleiche SEO-, Inhalts- und UX-Wertungen, erkenne die größten Unterschiede und priorisiere Verbesserungen."
       }
     }
   },

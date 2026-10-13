@@ -545,6 +545,53 @@
       "issueLoad": "Problemen (hoog · middel · laag)",
       "drillTitle": "Details per categorie",
       "noIssues": "Geen problemen."
+    },
+    "seo": {
+      "badge": "SEO-concurrentievergelijking",
+      "title": "Vergelijk de SEO van twee websites",
+      "intro": "Zet je pagina naast die van een concurrent. Vergelijk SEO-, inhouds- en UX-scores, ontdek de grootste verschillen en kies wat je eerst verbetert.",
+      "accessTitle": "Start je eigen vergelijking",
+      "accessBody": "Live vergelijkingen vereisen een Pro-account. Het voorbeeld en de uitleg zijn voor iedereen beschikbaar.",
+      "signIn": "Inloggen om te vergelijken",
+      "viewPlans": "Bekijk abonnementen",
+      "whyTitle": "Wat een SEO-vergelijking laat zien",
+      "whyBody": "Een audit laat verbeterpunten zien. Een vergelijking geeft context: waar scoort een andere pagina beter, waar loop jij voor en welke zwaktes delen jullie? SiteScoper combineert categoriescores met suggesties, prioriteiten en beschikbare deelscores.",
+      "step1Title": "Kies vergelijkbare pagina’s",
+      "step1Body": "Vergelijk pagina’s met hetzelfde doel: twee homepages of twee productpagina’s voor een vergelijkbaar publiek. Voeg een zoekwoord of doelgroep toe aan de instructies om de analyse te richten.",
+      "step2Title": "Bekijk verschillen, niet alleen de winnaar",
+      "step2Body": "Begin bij categorieën waarin je achterloopt. Het inhaalplan rangschikt verschillen en toont een verbeterpunt; de details geven deelscores en problemen van elke pagina.",
+      "step3Title": "Maak van verschillen prioriteiten",
+      "step3Body": "Bestudeer de aanpak van je concurrent zonder blind te kopiëren. Behoud je sterke punten en zoek gedeelde zwaktes waar bezoekers niet goed worden geholpen.",
+      "exampleTitle": "Voorbeeld van een SEO-vergelijking",
+      "exampleNote": "Alleen ter illustratie: fictieve scores en bevindingen leggen de vergelijking uit. Geen echte audits, klantresultaten of Google-posities.",
+      "category": "Categorie",
+      "yourPage": "Jouw pagina",
+      "competitorPage": "Concurrentpagina",
+      "seoLabel": "SEO",
+      "contentLabel": "Inhoud",
+      "trustLabel": "Vertrouwen",
+      "seoTakeaway": "Verklein het SEO-verschil",
+      "seoAction": "58 tegenover 76: meldt het rapport een vage paginatitel, herschrijf die rond het echte onderwerp. Bestudeer de duidelijkheid van de concurrerende titel zonder te kopiëren.",
+      "contentTakeaway": "Behoud je inhoudsvoorsprong",
+      "contentAction": "71 tegenover 63: behoud concrete productuitleg die bezoekers helpt. Kijk of de concurrent een nuttige vraag beantwoordt die jij mist.",
+      "trustTakeaway": "Ontdek een gedeelde zwakte",
+      "trustAction": "49 tegenover 52: beide pagina’s zijn zwak in vertrouwen. Voeg echte klantbewijzen of een verifieerbaar voorbeeld toe, geen verzonnen recensies.",
+      "limitations": "Scores zijn AI-beoordelingen, geen Google-posities. Een hogere score garandeert geen verkeer. Dit is geen volledige sitecrawl, backlinkanalyse of zoekwoordtracker.",
+      "faqTitle": "Veelgestelde vragen over SEO vergelijken",
+      "auditGuide": "Lees de SEO-auditgids",
+      "freeAudit": "Probeer één gratis audit",
+      "faq": {
+        "q1": "Hoe vergelijk ik websites op SEO?",
+        "a1": "Kies twee openbare pagina’s met een vergelijkbaar doel, voer hun URL’s in Compare in en bekijk scores en suggesties. Begin bij grote verschillen, daarna gedeelde zwaktes en sterke punten. Live vergelijkingen vereisen Pro.",
+        "q2": "Laat SiteScoper zien waarom een concurrent hoger staat in Google?",
+        "a2": "Het kan SEO-, inhouds- en UX-verschillen op de ingestuurde pagina’s tonen. Het bepaalt niet waarom Google een pagina hoger plaatst. Niet gemeten factoren zoals backlinks en concurrentie tellen ook mee.",
+        "q3": "Is de vergelijking gratis?",
+        "a3": "Het voorbeeld en de FAQ zijn gratis. Twee pagina’s live vergelijken is een Pro-functie. Op de homepage kun je één losse audit zonder account proberen; de $9 Fix Pass ontgrendelt Compare niet.",
+        "q4": "Wat is het verschil met twee losse audits?",
+        "a4": "Compare lijnt categoriescores uit, toont voordelen, rangschikt verschillen in een plan, telt problemen per prioriteit en vindt gedeelde zwaktes. Open categorieën voor beschikbare deelscores en suggesties.",
+        "q5": "Vergelijkt het hele websites of losse pagina’s?",
+        "a5": "Het bekijkt de openbare URL’s en de inhoud die SiteScoper daar kan lezen. Het crawlt niet elke pagina van beide sites. Kies vergelijkbare pagina’s en houd rekening met ontbrekende of onbereikbare inhoud."
+      }
     }
   },
   "siteFooter": {
@@ -1503,6 +1550,10 @@
       "honestProof": {
         "title": "Eerlijke bewijzen op de homepage",
         "desc": "De onbewezen claims “2.400+ sites gescoord” en “Geliefd bij founders” zijn verwijderd en vervangen door een link naar een echt voorbeeldrapport."
+      },
+      "compareSeo": {
+        "title": "Vergelijk de SEO van twee websites",
+        "desc": "Zet je pagina naast die van een concurrent. Vergelijk SEO-, inhouds- en UX-scores, ontdek de grootste verschillen en kies wat je eerst verbetert."
       }
     }
   },

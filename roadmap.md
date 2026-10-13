@@ -27,3 +27,7 @@ Diagnosis (start of run): indexed but invisible. 258 impressions / 0 clicks last
 - [ ] Score badge embed on shared reports (earns backlinks)
 - [ ] Remaining topic queue: cro audit checklist, website design audit, ux audit template, technical seo audit (autopilot will publish these twice weekly)
 - [ ] Directory listings kit (Product Hunt, AlternativeTo, SaaSHub, G2) — needs user accounts
+
+## Compare search page (Oct 13, 2026)
+- [x] Add public SEO explanation, clearly illustrative comparison and FAQs in all nine languages; preserve paid comparison access.
+- [x] Include Compare in search metadata and sitemap; verify public page and sign-in return link.

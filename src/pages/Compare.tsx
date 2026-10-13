@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Swords, Loader2, ArrowRight, Trophy, Minus } from "lucide-react";
+import { ArrowRight, Trophy, Minus } from "lucide-react";
 import { AppHeader } from "@/components/AppHeader";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -13,6 +13,10 @@ import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 import { CompareInsights } from "@/components/CompareInsights";
 import { useTranslation } from "react-i18next";
+import { useAuth } from "@/components/AuthProvider";
+import { Link } from "@/lib/router-compat";
+import { CompareIntro, CompareGuide } from "@/components/CompareGuide";
+import { SiteFooter } from "@/components/SiteFooter";
 
 interface Side {
   url: string;
@@ -24,6 +28,7 @@ const empty: Side = { url: "", analysis: null, loading: false };
 
 export default function Compare() {
   const { t } = useTranslation();
+  const { user, loading: authLoading } = useAuth();
   const { toast } = useToast();
   const [a, setA] = useState<Side>({ ...empty });
   const [b, setB] = useState<Side>({ ...empty });
@@ -68,27 +73,21 @@ export default function Compare() {
     <div className="min-h-screen bg-background">
       <AppHeader />
       <main className="max-w-6xl mx-auto px-4 py-10 space-y-8">
+        <CompareIntro />
+        {!user && !authLoading ? (
+          <section className="border-y border-border py-6 space-y-3">
+            <h2 className="font-heading text-2xl">{t("compare.seo.accessTitle")}</h2>
+            <p className="text-sm text-muted-foreground max-w-2xl">{t("compare.seo.accessBody")}</p>
+            <div className="flex flex-wrap gap-3">
+              <Button asChild><Link to="/auth?redirect=%2Fcompare">{t("compare.seo.signIn")}<ArrowRight className="h-4 w-4" /></Link></Button>
+              <Button variant="outline" asChild><Link to="/pricing">{t("compare.seo.viewPlans")}</Link></Button>
+            </div>
+          </section>
+        ) : (
         <ProGate
           title={t("compare.gateTitle")}
           description={t("compare.gateDesc")}
         >
-        <div className="text-center space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-body border border-primary/20">
-            <Swords className="h-3 w-3" />
-            {t("compare.modeBadge")}
-          </div>
-          <h1 className="text-3xl md:text-5xl font-heading font-bold tracking-tight">
-            {t("compare.titleLine1")}
-            <br />
-            <span className="bg-gradient-to-r from-primary via-[hsl(265,70%,58%)] to-[hsl(280,70%,60%)] bg-clip-text text-transparent">
-              {t("compare.titleLine2")}
-            </span>
-          </h1>
-          <p className="text-muted-foreground font-body max-w-md mx-auto">
-            {t("compare.subtitle")}
-          </p>
-        </div>
-
         {step !== "scanning" && (
           <form onSubmit={handleCompare} className="grid md:grid-cols-[1fr_auto_1fr] gap-3 items-stretch max-w-4xl mx-auto">
             <Input
@@ -138,7 +137,10 @@ export default function Compare() {
           <BattleResults a={a} b={b} onReset={reset} />
         )}
         </ProGate>
+        )}
+        <CompareGuide />
       </main>
+      <SiteFooter />
     </div>
   );
 }

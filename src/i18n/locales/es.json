@@ -545,6 +545,53 @@
       "issueLoad": "Carga de problemas (alta · media · baja)",
       "drillTitle": "Detalle por categoría",
       "noIssues": "Sin problemas."
+    },
+    "seo": {
+      "badge": "Comparación SEO de competidores",
+      "title": "Compara el SEO de dos sitios web",
+      "intro": "Pon tu página y la de un competidor lado a lado. Compara las puntuaciones de SEO, contenido y UX, detecta las mayores diferencias y decide qué corregir primero.",
+      "accessTitle": "Haz tu propia comparación",
+      "accessBody": "Las comparaciones reales requieren una cuenta Pro. El ejemplo y la guía están disponibles para todos.",
+      "signIn": "Inicia sesión para comparar",
+      "viewPlans": "Ver planes",
+      "whyTitle": "Qué revela una comparación SEO",
+      "whyBody": "Una auditoría muestra qué mejorar. Una comparación aporta contexto: dónde otra página puntúa mejor, dónde lideras y qué debilidades comparten ambas. SiteScoper combina puntuaciones por categoría con sugerencias, prioridades y subpuntuaciones cuando están disponibles.",
+      "step1Title": "Elige páginas comparables",
+      "step1Body": "Compara páginas con el mismo objetivo: dos páginas de inicio o dos páginas de producto para un público similar. Añade una palabra clave o un público en las instrucciones para enfocar el análisis.",
+      "step2Title": "Mira las diferencias, no solo al ganador",
+      "step2Body": "Empieza por las categorías donde tu página queda atrás. El plan ordena esas diferencias y propone una corrección; el detalle muestra subpuntuaciones y problemas de cada página.",
+      "step3Title": "Convierte las diferencias en prioridades",
+      "step3Body": "Estudia el enfoque del competidor sin copiarlo a ciegas. Conserva tus fortalezas y busca debilidades comunes donde ninguna página responde a las necesidades del visitante.",
+      "exampleTitle": "Ejemplo de comparación SEO",
+      "exampleNote": "Solo ilustrativo: estas puntuaciones y observaciones ficticias explican cómo interpretar una comparación. No son auditorías reales, resultados de clientes ni posiciones en Google.",
+      "category": "Categoría",
+      "yourPage": "Tu página",
+      "competitorPage": "Página del competidor",
+      "seoLabel": "SEO",
+      "contentLabel": "Contenido",
+      "trustLabel": "Confianza",
+      "seoTakeaway": "Reduce la diferencia SEO",
+      "seoAction": "58 frente a 76: si el informe detecta un título impreciso, reescríbelo sobre el tema real de la página. Estudia la claridad del título rival, sin copiarlo.",
+      "contentTakeaway": "Conserva tu ventaja en contenido",
+      "contentAction": "71 frente a 63: conserva las explicaciones concretas que ayudan a tus visitantes. Comprueba si el competidor responde a una pregunta útil que has omitido.",
+      "trustTakeaway": "Detecta una debilidad común",
+      "trustAction": "49 frente a 52: ninguna página destaca en confianza. Si ambas carecen de pruebas, añade testimonios reales o un ejemplo verificable, no reseñas inventadas.",
+      "limitations": "Las puntuaciones son valoraciones de IA, no posiciones en Google. Una puntuación mayor no garantiza tráfico. Esto no es un rastreo completo, un análisis de enlaces ni un seguimiento de palabras clave.",
+      "faqTitle": "Preguntas sobre la comparación SEO",
+      "auditGuide": "Leer la guía de auditoría SEO",
+      "freeAudit": "Probar una auditoría gratuita",
+      "faq": {
+        "q1": "¿Cómo comparo el SEO de dos sitios web?",
+        "a1": "Elige dos páginas públicas con un objetivo similar, introduce sus URL en Compare y revisa puntuaciones y sugerencias. Empieza por las mayores diferencias, después revisa debilidades comunes y fortalezas. Las comparaciones reales requieren Pro.",
+        "q2": "¿SiteScoper explica por qué un competidor aparece más arriba en Google?",
+        "a2": "Puede destacar diferencias de SEO, contenido y UX en las páginas enviadas. No determina por qué Google clasifica mejor una página. También influyen factores que esta comparación no mide, como enlaces externos y competencia.",
+        "q3": "¿La comparación es gratuita?",
+        "a3": "El ejemplo y las preguntas son gratuitos. Comparar dos páginas reales es una función Pro. Puedes probar una auditoría individual sin cuenta en la página de inicio; el Fix Pass de $9 no desbloquea Compare.",
+        "q4": "¿En qué se diferencia de dos auditorías separadas?",
+        "a4": "Compare alinea puntuaciones, destaca ventajas, ordena diferencias en un plan, cuenta problemas por prioridad y detecta debilidades comunes. Puedes abrir categorías para ver subpuntuaciones y sugerencias disponibles.",
+        "q5": "¿Compara sitios completos o páginas individuales?",
+        "a5": "Revisa las URL públicas enviadas y el contenido que SiteScoper puede leer allí. No rastrea todas las páginas de cada sitio. Elige páginas comparables y ten en cuenta el contenido inaccesible o ausente."
+      }
     }
   },
   "siteFooter": {
@@ -1503,6 +1550,10 @@
       "honestProof": {
         "title": "Pruebas honestas en la portada",
         "desc": "Eliminamos las afirmaciones no comprobadas «2.400+ sitios evaluados» y «Amado por fundadores» y las reemplazamos con un enlace a un informe de ejemplo real que puedes revisar."
+      },
+      "compareSeo": {
+        "title": "Compara el SEO de dos sitios web",
+        "desc": "Pon tu página y la de un competidor lado a lado. Compara las puntuaciones de SEO, contenido y UX, detecta las mayores diferencias y decide qué corregir primero."
       }
     }
   },
