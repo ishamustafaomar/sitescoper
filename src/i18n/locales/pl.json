@@ -545,6 +545,53 @@
       "issueLoad": "Problemy (wysoki · średni · niski)",
       "drillTitle": "Szczegóły kategorii",
       "noIssues": "Brak problemów."
+    },
+    "seo": {
+      "badge": "Porównanie SEO konkurencji",
+      "title": "Porównaj SEO dwóch witryn",
+      "intro": "Zestaw swoją stronę ze stroną konkurenta. Porównaj oceny SEO, treści i UX, znajdź największe różnice i wybierz pierwsze poprawki.",
+      "accessTitle": "Uruchom własne porównanie",
+      "accessBody": "Rzeczywiste porównania wymagają konta Pro. Przykład i poradnik są dostępne dla wszystkich.",
+      "signIn": "Zaloguj się, aby porównać",
+      "viewPlans": "Zobacz plany",
+      "whyTitle": "Co pokazuje porównanie SEO",
+      "whyBody": "Audyt wskazuje, co poprawić. Porównanie daje kontekst: gdzie inna strona wypada lepiej, gdzie prowadzisz i jakie słabości są wspólne. SiteScoper łączy oceny kategorii z sugestiami, priorytetami i dostępnymi ocenami szczegółowymi.",
+      "step1Title": "Wybierz porównywalne strony",
+      "step1Body": "Porównuj strony o tym samym celu: dwie strony główne lub dwie strony produktu dla podobnych odbiorców. Dodaj słowo kluczowe lub grupę odbiorców w instrukcjach, aby ukierunkować analizę.",
+      "step2Title": "Sprawdź różnice, nie tylko zwycięzcę",
+      "step2Body": "Zacznij od kategorii, w których jesteś w tyle. Plan nadrabiania dystansu porządkuje różnice i wskazuje poprawkę; szczegóły pokazują oceny i problemy każdej strony.",
+      "step3Title": "Zamień różnice w priorytety",
+      "step3Body": "Analizuj podejście konkurenta zamiast bezmyślnie kopiować. Zachowaj mocne strony i szukaj wspólnych słabości, które utrudniają życie odwiedzającym.",
+      "exampleTitle": "Przykład porównania SEO",
+      "exampleNote": "Tylko ilustracja: fikcyjne oceny i obserwacje wyjaśniają wynik porównania. To nie są prawdziwe audyty, wyniki klientów ani pozycje w Google.",
+      "category": "Kategoria",
+      "yourPage": "Twoja strona",
+      "competitorPage": "Strona konkurenta",
+      "seoLabel": "SEO",
+      "contentLabel": "Treść",
+      "trustLabel": "Zaufanie",
+      "seoTakeaway": "Zmniejsz różnicę SEO",
+      "seoAction": "58 do 76: jeśli raport wskazuje niejasny tytuł, napisz go zgodnie z tematem strony. Sprawdź klarowność tytułu konkurenta, ale go nie kopiuj.",
+      "contentTakeaway": "Zachowaj przewagę treści",
+      "contentAction": "71 do 63: zachowaj konkretne wyjaśnienia produktu pomocne odbiorcom. Sprawdź, czy konkurent odpowiada na ważne pytanie, które pomijasz.",
+      "trustTakeaway": "Znajdź wspólną słabość",
+      "trustAction": "49 do 52: obie strony słabo budują zaufanie. Dodaj prawdziwe opinie klientów lub weryfikowalny przykład, nie zmyślone recenzje.",
+      "limitations": "Oceny są analizą AI, nie pozycjami Google. Wyższa ocena nie gwarantuje ruchu. To nie jest pełne skanowanie witryny, analiza linków zwrotnych ani śledzenie słów kluczowych.",
+      "faqTitle": "Pytania o porównanie SEO",
+      "auditGuide": "Przeczytaj poradnik audytu SEO",
+      "freeAudit": "Wypróbuj jeden darmowy audyt",
+      "faq": {
+        "q1": "Jak porównać SEO dwóch witryn?",
+        "a1": "Wybierz dwie publiczne strony o podobnym celu, podaj adresy w Compare i sprawdź oceny oraz sugestie. Zacznij od dużych różnic, potem wspólnych słabości i mocnych stron. Rzeczywiste porównania wymagają Pro.",
+        "q2": "Czy SiteScoper wyjaśnia wyższą pozycję konkurenta w Google?",
+        "a2": "Może wskazać różnice SEO, treści i UX na przesłanych stronach. Nie ustala przyczyn pozycji Google. Liczą się też niemierzone tu czynniki, np. linki zwrotne i konkurencja.",
+        "q3": "Czy porównanie jest darmowe?",
+        "a3": "Przykład i FAQ są bezpłatne. Porównanie dwóch rzeczywistych stron to funkcja Pro. Na stronie głównej możesz wykonać jeden audyt bez konta; Fix Pass za $9 nie odblokowuje Compare.",
+        "q4": "Czym Compare różni się od dwóch osobnych audytów?",
+        "a4": "Compare zestawia oceny kategorii, wskazuje przewagi, porządkuje różnice w planie, zlicza problemy według priorytetu i wykrywa wspólne słabości. Otwórz kategorie, aby zobaczyć dostępne oceny szczegółowe i sugestie.",
+        "q5": "Czy porównuje całe witryny, czy pojedyncze strony?",
+        "a5": "Analizuje publiczne adresy i treści, które SiteScoper może tam odczytać. Nie skanuje wszystkich stron witryn. Wybierz porównywalne strony i uwzględnij brakujące lub niedostępne treści."
+      }
     }
   },
   "siteFooter": {
@@ -1503,6 +1550,10 @@
       "honestProof": {
         "title": "Uczciwe dowody na stronie głównej",
         "desc": "Usunęliśmy niepotwierdzone twierdzenia „2 400+ ocenionych stron” i „Uwielbiane przez założycieli”, zastępując je linkiem do prawdziwego przykładowego raportu."
+      },
+      "compareSeo": {
+        "title": "Porównaj SEO dwóch witryn",
+        "desc": "Zestaw swoją stronę ze stroną konkurenta. Porównaj oceny SEO, treści i UX, znajdź największe różnice i wybierz pierwsze poprawki."
       }
     }
   },

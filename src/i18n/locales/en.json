@@ -545,6 +545,53 @@
       "issueLoad": "Issue load (high · medium · low)",
       "drillTitle": "Category drill-down",
       "noIssues": "No issues found."
+    },
+    "seo": {
+      "badge": "Competitor SEO comparison",
+      "title": "Compare two websites for SEO",
+      "intro": "Put your page and a competitor side by side. Compare SEO, content and UX scores, identify the biggest gaps, and choose which fixes to tackle first.",
+      "accessTitle": "Run your own comparison",
+      "accessBody": "Live website comparisons require a Pro account. The example and guide below are available to everyone.",
+      "signIn": "Sign in to compare",
+      "viewPlans": "View plans",
+      "whyTitle": "What a website SEO comparison tells you",
+      "whyBody": "A single audit tells you what needs attention. A comparison adds context: where another page scores higher, where you already lead, and where both pages have weaknesses. SiteScoper pairs category scores with suggestions, priority counts and detailed sub-scores when available.",
+      "step1Title": "Choose comparable pages",
+      "step1Body": "Compare pages with the same purpose: homepage against homepage, or two product pages serving a similar audience. Add a target keyword or audience in custom instructions to focus the review.",
+      "step2Title": "Read the gaps, not just the winner",
+      "step2Body": "Start with categories where your page trails. The overtake plan ranks these gaps and surfaces a suggested fix; category details show each page’s sub-scores and issues.",
+      "step3Title": "Turn differences into priorities",
+      "step3Body": "Review the competitor’s approach rather than copying it blindly. Protect your strengths and look for shared weak spots where neither page meets visitors’ needs.",
+      "exampleTitle": "Example SEO comparison",
+      "exampleNote": "Illustrative only: these fictional scores and findings explain how to read a comparison. They are not live audits, customer results or Google ranking measurements.",
+      "category": "Category",
+      "yourPage": "Your page",
+      "competitorPage": "Competitor page",
+      "seoLabel": "SEO",
+      "contentLabel": "Content",
+      "trustLabel": "Trust",
+      "seoTakeaway": "Close the SEO gap",
+      "seoAction": "58 vs 76: if your report flags a vague page title, rewrite it around the page’s actual topic. Review the competitor’s title for clarity, not as text to copy.",
+      "contentTakeaway": "Protect your content advantage",
+      "contentAction": "71 vs 63: retain the specific product explanations that help your visitors. Check whether the competitor answers a useful question you have missed.",
+      "trustTakeaway": "Spot a shared weakness",
+      "trustAction": "49 vs 52: neither page is strong on trust. If both lack proof, add genuine customer evidence or a verifiable sample instead of invented testimonials.",
+      "limitations": "Scores are AI assessments of the submitted pages, not Google rankings. A higher score does not guarantee more traffic. This comparison is not a full-site crawl, backlink analysis or keyword rank tracker.",
+      "faqTitle": "Website SEO comparison FAQs",
+      "auditGuide": "Read the SEO audit guide",
+      "freeAudit": "Try one free website audit",
+      "faq": {
+        "q1": "How do I compare websites for SEO?",
+        "a1": "Choose two public pages with a similar purpose, enter their URLs in Compare, and review the category scores and suggestions. Start with the largest gaps, then check shared weaknesses and your existing strengths. Live comparisons require Pro.",
+        "q2": "Can SiteScoper tell me why a competitor ranks higher on Google?",
+        "a2": "It can highlight differences in the submitted pages’ SEO, content and UX. It cannot establish why Google ranks a page higher. Rankings also depend on factors this comparison does not measure, including backlinks and search competition.",
+        "q3": "Is the website comparison free?",
+        "a3": "The example and FAQs are free to read. Running a live two-page comparison is a Pro feature. You can try one standalone website audit without an account on the homepage; the $9 Fix Pass does not unlock Compare.",
+        "q4": "How is Compare different from running two separate audits?",
+        "a4": "Compare aligns category scores, highlights where each page leads, ranks gaps in an overtake plan, counts issues by priority, and identifies shared weak spots. You can open categories for sub-scores and suggestions when available.",
+        "q5": "Does it compare entire websites or individual pages?",
+        "a5": "The comparison reviews the public URLs you submit and the content SiteScoper can read there. It does not crawl every page of either website. Use comparable pages and treat inaccessible or missing content as a limitation."
+      }
     }
   },
   "siteFooter": {
@@ -1503,6 +1550,10 @@
       "honestProof": {
         "title": "Honest homepage proof",
         "desc": "Removed the unproven “2,400+ sites scored” and “Loved by founders” claims and replaced them with a link to a real sample report you can inspect yourself."
+      },
+      "compareSeo": {
+        "title": "Compare two websites for SEO",
+        "desc": "Put your page and a competitor side by side. Compare SEO, content and UX scores, identify the biggest gaps, and choose which fixes to tackle first."
       }
     }
   },
