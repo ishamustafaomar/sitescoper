@@ -1554,6 +1554,10 @@
       "compareSeo": {
         "title": "Compare two websites for SEO",
         "desc": "Put your page and a competitor side by side. Compare SEO, content and UX scores, identify the biggest gaps, and choose which fixes to tackle first."
+      },
+      "roastComparison": {
+        "title": "Website roast comparison",
+        "desc": "Compare SiteScoper, RoastFast, PageRoast and Roast My Web, with sourced offers and clear limitations."
       }
     }
   },
@@ -1700,5 +1704,40 @@
     "wildcardDesc": "Your account can unlock the Fix Pass tools for any address. Enter one below.",
     "signedOutTitle": "Sign in to see your Fix Pass",
     "signedOutDesc": "Bought the $9 pass? Sign in with the same email you used at checkout and your fixes, PDF export and Site Watch will show up here."
+  },
+  "roastComparison": {
+    "title": "Roast my website: four tools compared",
+    "intro": "Compare SiteScoper, RoastFast, PageRoast and Roast My Web before choosing your next website review.",
+    "disclosure": "We build SiteScoper. This comparison describes published features, not a hands-on benchmark or a ranking of audit quality. Sources checked October 13, 2026; offers may change.",
+    "choose": "Which website roast fits your next step?",
+    "s": "SiteScoper: try one full audit without an account. Use the report to prioritize SEO, content and UX fixes; optional Fix Pass tools help you implement selected fixes yourself.",
+    "r": "RoastFast: its website offers five free roasts per day after signup, with a score and three fixes. Consider it if you want repeated, short feedback.",
+    "p": "PageRoast: its website highlights screenshots across desktop, tablet and mobile, specific conversion recommendations and PDF reports. Consider it for a visual landing-page review.",
+    "w": "Roast My Web: its website advertises section-by-section design, UX, conversion, mobile and SEO feedback, plus branded client-ready PDFs. Consider it if report presentation matters.",
+    "table": "Published offers at a glance",
+    "tool": "Tool",
+    "entry": "Getting started",
+    "focus": "Published focus",
+    "sEntry": "One guest audit; signup for saving and further audits. Optional $9 Fix Pass; Pro subscription available.",
+    "rEntry": "Five free roasts daily after signup.",
+    "pEntry": "$39 once for two audits; $69 once for a plan advertised as 50 audits per month. Confirm current terms before buying.",
+    "wEntry": "See the provider for current pricing; no price is verified here.",
+    "meaning": "What does “roast my website” mean?",
+    "meaningBody": "A website roast is a critical review of a public page: what the offer communicates, how easy it is to act, and which issues deserve attention. AI feedback is a starting point, not proof of what causes lost sales or low Google rankings.",
+    "next": "From roast to fixes",
+    "nextBody": "Review the evidence behind each suggestion, choose a few useful changes and test them. SiteScoper’s Pro Compare tool identifies competitor gaps and shared weaknesses; it does not measure Google ranking causes. The $9 Fix Pass is a separate purchase with selected copyable tags and schema, PDF access and 30 days of Site Watch for its address. You apply the code yourself; it does not unlock Compare.",
+    "faq": "Common questions",
+    "q1": "Which tool is best for a free website roast?",
+    "a1": "Start with the access you need: SiteScoper offers one audit without signup, while RoastFast advertises five daily roasts after signup. These allowances do not establish which tool gives better advice.",
+    "q2": "Will a website roast increase my search traffic?",
+    "a2": "No tool can guarantee that. Reviews can suggest clearer titles, content and page structure, but rankings also depend on search demand, competition and links. Verify changes and measure results over time.",
+    "q3": "Can I compare scores between different roast tools?",
+    "a3": "Not reliably. Each tool uses its own criteria and scoring. Compare the relevance and evidence of its recommendations, rather than treating scores as interchangeable.",
+    "audit": "Run a free audit",
+    "sample": "See a sample report",
+    "compare": "Compare two websites",
+    "sources": "Sources and limitations",
+    "sourcesBody": "Descriptions reflect the linked providers’ public pages, not independently tested outcomes. Unlisted features are unknown, not absent. No conversion, traffic or ranking improvements are promised.",
+    "nav": "Website roast tools compared"
   }
 }
