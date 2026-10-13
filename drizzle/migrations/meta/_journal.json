@@ -29,6 +29,13 @@
       "when": 1790011674281,
       "tag": "0003_restrict_user_roles_self_delete",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1791918538725,
+      "tag": "0004_restrict_ab_experiments_read",
+      "breakpoints": true
     }
   ]
 }
