@@ -1,3 +1,4 @@
+import { safeReturnUrl } from "@/lib/return-url";
 // Migrated from supabase/functions/create-checkout (Deno edge function).
 import { createServerFn } from "@tanstack/react-start";
 import type Stripe from "stripe";
@@ -43,6 +44,7 @@ export const createCheckout = createServerFn({ method: "POST" })
     if (!data.returnUrl || typeof data.returnUrl !== "string") {
       throw new Error("Missing returnUrl");
     }
+    if (!safeReturnUrl(data.returnUrl)) throw new Error("Invalid returnUrl");
     return data as Input;
   })
   .handler(async ({ data }): Promise<{ clientSecret?: string | null; error?: string }> => {
