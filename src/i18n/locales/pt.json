@@ -1554,6 +1554,10 @@
       "compareSeo": {
         "title": "Compare o SEO de dois sites",
         "desc": "Coloque sua página e a de um concorrente lado a lado. Compare pontuações de SEO, conteúdo e UX, identifique as maiores diferenças e escolha o que corrigir primeiro."
+      },
+      "roastComparison": {
+        "title": "Comparação de roast web",
+        "desc": "Compare SiteScoper, RoastFast, PageRoast e Roast My Web com fontes e limites claros."
       }
     }
   },
@@ -1700,5 +1704,40 @@
     "wildcardDesc": "A sua conta pode desbloquear as ferramentas do Fix Pass para qualquer endereço. Introduza um abaixo.",
     "signedOutTitle": "Inicie sessão para ver o seu Fix Pass",
     "signedOutDesc": "Comprou o passe de 9 $? Inicie sessão com o mesmo e-mail usado no pagamento e as suas correções, o PDF e o Site Watch aparecem aqui."
+  },
+  "roastComparison": {
+    "title": "Roast de sites: quatro ferramentas comparadas",
+    "intro": "Compare SiteScoper, RoastFast, PageRoast e Roast My Web antes da sua próxima análise de site.",
+    "disclosure": "Criámos o SiteScoper. Esta comparação descreve funções publicadas, não testes práticos nem uma classificação da qualidade das auditorias. Fontes consultadas a 13 de outubro de 2026; as ofertas podem mudar.",
+    "choose": "Qual o roast adequado ao seu próximo passo?",
+    "s": "SiteScoper: experimente uma auditoria completa sem conta. Priorize correções de SEO, conteúdo e UX; as ferramentas opcionais Fix Pass ajudam a aplicar algumas correções por si.",
+    "r": "RoastFast: o site oferece cinco roasts gratuitos por dia após o registo, com pontuação e três correções. Considere-o para comentários curtos e repetidos.",
+    "p": "PageRoast: o site destaca capturas de computador, tablet e telemóvel, recomendações específicas de conversão e relatórios PDF. Considere-o para uma análise visual da página de destino.",
+    "w": "Roast My Web: o site anuncia comentários por secção sobre design, UX, conversão, dispositivos móveis e SEO, além de PDF personalizados para clientes. Considere-o se a apresentação importa.",
+    "table": "Ofertas publicadas em resumo",
+    "tool": "Ferramenta",
+    "entry": "Primeiros passos",
+    "focus": "Foco publicado",
+    "sEntry": "Uma auditoria sem conta; registo para guardar e realizar outras auditorias. Fix Pass opcional de 9 USD; subscrição Pro disponível.",
+    "rEntry": "Cinco roasts gratuitos por dia após o registo.",
+    "pEntry": "39 USD uma vez por duas auditorias; 69 USD uma vez por um plano anunciado com 50 auditorias por mês. Confirme as condições antes da compra.",
+    "wEntry": "Consulte o fornecedor para preços atuais; nenhum preço foi verificado aqui.",
+    "meaning": "O que significa “roast my website”?",
+    "meaningBody": "É uma análise crítica de uma página pública: o que a oferta comunica, a facilidade de agir e os problemas que merecem atenção. O feedback de IA é um ponto de partida, não prova das causas de vendas perdidas ou baixas posições no Google.",
+    "next": "Do roast às correções",
+    "nextBody": "Reveja as provas de cada sugestão, escolha poucas alterações e teste-as. Pro Compare identifica diferenças face à concorrência e fraquezas comuns, não as causas das posições no Google. O Fix Pass de 9 USD é uma compra separada: algumas etiquetas e dados estruturados copiáveis, acesso PDF e 30 dias de Site Watch para o seu endereço. Aplica o código por si; não desbloqueia Compare.",
+    "faq": "Perguntas frequentes",
+    "q1": "Qual a ferramenta para um roast gratuito?",
+    "a1": "Depende do acesso: SiteScoper oferece uma auditoria sem registo, RoastFast anuncia cinco por dia após o registo. Estes limites não determinam a qualidade dos conselhos.",
+    "q2": "Um roast aumenta o tráfego de pesquisa?",
+    "a2": "Nenhuma ferramenta garante isso. As análises sugerem títulos, conteúdo e estrutura mais claros, mas as posições também dependem da procura, concorrência e links. Verifique alterações e meça resultados.",
+    "q3": "Posso comparar pontuações de ferramentas diferentes?",
+    "a3": "Não de forma fiável. Cada uma usa critérios próprios. Compare a relevância e as provas das recomendações, não trate pontuações como equivalentes.",
+    "audit": "Fazer uma auditoria gratuita",
+    "sample": "Ver um relatório de exemplo",
+    "compare": "Comparar dois sites",
+    "sources": "Fontes e limitações",
+    "sourcesBody": "As descrições refletem páginas públicas dos fornecedores, não resultados testados independentemente. Funções não listadas são desconhecidas, não inexistentes. Não prometemos melhorias de conversão, tráfego ou posições.",
+    "nav": "Ferramentas de roast web comparadas"
   }
 }

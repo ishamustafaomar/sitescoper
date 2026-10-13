@@ -41,6 +41,7 @@ export function SiteFooter() {
             <li><Link to="/landing-page-audit" className="hover:text-primary">{t("siteFooter.landingPageAudit")}</Link></li>
             <li><Link to="/seo-audit-report" className="hover:text-primary">{t("siteFooter.seoAuditReport")}</Link></li>
             <li><Link to="/best-ai-website-audit-tools" className="hover:text-primary">Best AI audit tools</Link></li>
+            <li><Link to="/roast-my-website" className="hover:text-primary">{t("roastComparison.nav")}</Link></li>
           </ul>
         </nav>
 

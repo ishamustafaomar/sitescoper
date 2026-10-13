@@ -31,3 +31,6 @@ Diagnosis (start of run): indexed but invisible. 258 impressions / 0 clicks last
 ## Compare search page (Oct 13, 2026)
 - [x] Add public SEO explanation, clearly illustrative comparison and FAQs in all nine languages; preserve paid comparison access.
 - [x] Include Compare in search metadata and sitemap; verify public page and sign-in return link.
+
+## Website roast comparison (Oct 13, 2026)
+- [x] Create a sourced public comparison of SiteScoper, RoastFast, PageRoast and Roast My Web in nine languages; verify public rendering and links.

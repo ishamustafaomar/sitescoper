@@ -1554,6 +1554,10 @@
       "compareSeo": {
         "title": "Porównaj SEO dwóch witryn",
         "desc": "Zestaw swoją stronę ze stroną konkurenta. Porównaj oceny SEO, treści i UX, znajdź największe różnice i wybierz pierwsze poprawki."
+      },
+      "roastComparison": {
+        "title": "Porównanie roastów stron",
+        "desc": "Porównaj SiteScoper, RoastFast, PageRoast i Roast My Web ze źródłami i jasnymi ograniczeniami."
       }
     }
   },
@@ -1700,5 +1704,40 @@
     "wildcardDesc": "Twoje konto może odblokować narzędzia Fix Pass dla dowolnego adresu. Wpisz go poniżej.",
     "signedOutTitle": "Zaloguj się, aby zobaczyć swój Fix Pass",
     "signedOutDesc": "Kupiłeś pass za 9 $? Zaloguj się tym samym e-mailem co przy płatności, a poprawki, PDF i Site Watch pojawią się tutaj."
+  },
+  "roastComparison": {
+    "title": "Roast strony: cztery narzędzia w porównaniu",
+    "intro": "Porównaj SiteScoper, RoastFast, PageRoast i Roast My Web przed kolejną analizą strony.",
+    "disclosure": "Tworzymy SiteScoper. Opisujemy opublikowane funkcje, nie wyniki testów ani ranking jakości audytów. Źródła sprawdzono 13 października 2026 r.; oferty mogą się zmienić.",
+    "choose": "Który roast pasuje do następnego kroku?",
+    "s": "SiteScoper: wypróbuj jeden pełny audyt bez konta. Ustal priorytety poprawek SEO, treści i UX; opcjonalny Fix Pass pomaga samodzielnie wdrożyć wybrane poprawki.",
+    "r": "RoastFast: strona oferuje pięć darmowych roastów dziennie po rejestracji, z oceną i trzema poprawkami. Opcja dla krótkich, powtarzanych opinii.",
+    "p": "PageRoast: strona wyróżnia zrzuty ekranu z komputerów, tabletów i telefonów, konkretne zalecenia konwersji i raporty PDF. Opcja do wizualnej oceny strony docelowej.",
+    "w": "Roast My Web: strona reklamuje opinie sekcja po sekcji o projekcie, UX, konwersji, wersji mobilnej i SEO, a także firmowe PDF dla klientów. Opcja, gdy ważna jest prezentacja raportu.",
+    "table": "Opublikowane oferty w skrócie",
+    "tool": "Narzędzie",
+    "entry": "Rozpoczęcie",
+    "focus": "Opublikowany zakres",
+    "sEntry": "Jeden audyt gościnny; rejestracja do zapisywania i kolejnych audytów. Opcjonalny Fix Pass za 9 USD; dostępna subskrypcja Pro.",
+    "rEntry": "Pięć darmowych roastów dziennie po rejestracji.",
+    "pEntry": "39 USD jednorazowo za dwa audyty; 69 USD jednorazowo za plan reklamowany jako 50 audytów miesięcznie. Sprawdź warunki przed zakupem.",
+    "wEntry": "Sprawdź aktualne ceny u dostawcy; tutaj żadnej nie zweryfikowano.",
+    "meaning": "Co oznacza „roast my website”?",
+    "meaningBody": "To krytyczna ocena publicznej strony: co przekazuje oferta, jak łatwo podjąć działanie i które problemy wymagają uwagi. Opinia AI jest punktem wyjścia, nie dowodem przyczyn utraconej sprzedaży czy niskich pozycji w Google.",
+    "next": "Od roasta do poprawek",
+    "nextBody": "Sprawdź podstawy sugestii, wybierz kilka zmian i przetestuj je. Pro Compare pokazuje różnice wobec konkurencji i wspólne słabości, nie przyczyny pozycji w Google. Fix Pass za 9 USD kupuje się oddzielnie: wybrane tagi i dane strukturalne do skopiowania, dostęp PDF i 30 dni Site Watch dla danego adresu. Kod stosujesz samodzielnie; Compare nie jest odblokowany.",
+    "faq": "Częste pytania",
+    "q1": "Które narzędzie do darmowego roasta?",
+    "a1": "Wybierz według dostępu: SiteScoper oferuje jeden audyt bez rejestracji, RoastFast reklamuje pięć dziennie po rejestracji. Limity nie dowodzą jakości porad.",
+    "q2": "Czy roast zwiększy ruch z wyszukiwarek?",
+    "a2": "Żadne narzędzie tego nie gwarantuje. Oceny mogą sugerować czytelniejsze tytuły, treści i strukturę, ale pozycje zależą też od popytu, konkurencji i linków. Sprawdź zmiany i mierz wyniki.",
+    "q3": "Czy można porównywać oceny różnych narzędzi?",
+    "a3": "Nie wiarygodnie. Każde ma własne kryteria. Porównuj trafność i uzasadnienie zaleceń, zamiast traktować oceny jak równoważne.",
+    "audit": "Uruchom darmowy audyt",
+    "sample": "Zobacz przykładowy raport",
+    "compare": "Porównaj dwie strony",
+    "sources": "Źródła i ograniczenia",
+    "sourcesBody": "Opisy odzwierciedlają publiczne strony dostawców, nie niezależnie testowane wyniki. Niewymienione funkcje są nieznane, nie nieobecne. Nie obiecujemy poprawy konwersji, ruchu ani pozycji.",
+    "nav": "Porównanie narzędzi do roastowania stron"
   }
 }

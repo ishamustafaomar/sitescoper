@@ -1554,6 +1554,10 @@
       "compareSeo": {
         "title": "Vergelijk de SEO van twee websites",
         "desc": "Zet je pagina naast die van een concurrent. Vergelijk SEO-, inhouds- en UX-scores, ontdek de grootste verschillen en kies wat je eerst verbetert."
+      },
+      "roastComparison": {
+        "title": "Website-roast-vergelijking",
+        "desc": "Vergelijk SiteScoper, RoastFast, PageRoast en Roast My Web met bronnen en duidelijke beperkingen."
       }
     }
   },
@@ -1700,5 +1704,40 @@
     "wildcardDesc": "Je account kan de Fix Pass-tools voor elk adres ontgrendelen. Vul er hieronder een in.",
     "signedOutTitle": "Log in om je Fix Pass te zien",
     "signedOutDesc": "Heb je de pas van $9 gekocht? Log in met hetzelfde e-mailadres als bij de betaling en je fixes, PDF-export en Site Watch verschijnen hier."
+  },
+  "roastComparison": {
+    "title": "Roast mijn website: vier tools vergeleken",
+    "intro": "Vergelijk SiteScoper, RoastFast, PageRoast en Roast My Web voor je volgende websitebeoordeling.",
+    "disclosure": "Wij ontwikkelen SiteScoper. Dit zijn gepubliceerde functies, geen praktijktest of ranglijst van auditkwaliteit. Bronnen gecontroleerd op 13 oktober 2026; aanbiedingen kunnen veranderen.",
+    "choose": "Welke roast past bij je volgende stap?",
+    "s": "SiteScoper: probeer één volledige audit zonder account. Prioriteer SEO-, content- en UX-verbeteringen; optionele Fix Pass-tools helpen geselecteerde verbeteringen zelf toe te passen.",
+    "r": "RoastFast: de website biedt vijf gratis roasts per dag na aanmelding, met een score en drie verbeterpunten. Een optie voor korte, herhaalde feedback.",
+    "p": "PageRoast: de website benadrukt screenshots op desktop, tablet en mobiel, concrete conversieaanbevelingen en PDF-rapporten. Een optie voor een visuele landingpagebeoordeling.",
+    "w": "Roast My Web: de website adverteert feedback per sectie over design, UX, conversie, mobiel en SEO, plus PDF’s met eigen branding voor klanten. Een optie als rapportpresentatie belangrijk is.",
+    "table": "Gepubliceerde aanbiedingen in het kort",
+    "tool": "Tool",
+    "entry": "Aan de slag",
+    "focus": "Gepubliceerde focus",
+    "sEntry": "Eén gast-audit; aanmelden voor opslaan en verdere audits. Optionele Fix Pass van 9 USD; Pro-abonnement beschikbaar.",
+    "rEntry": "Vijf gratis roasts per dag na aanmelding.",
+    "pEntry": "Eenmalig 39 USD voor twee audits; eenmalig 69 USD voor een plan geadverteerd met 50 audits per maand. Controleer de voorwaarden vóór aankoop.",
+    "wEntry": "Bekijk actuele prijzen bij de aanbieder; hier is geen prijs geverifieerd.",
+    "meaning": "Wat betekent “roast my website”?",
+    "meaningBody": "Een kritische beoordeling van een openbare pagina: wat het aanbod communiceert, hoe makkelijk handelen is en welke problemen aandacht verdienen. AI-feedback is een startpunt, geen bewijs van de oorzaak van gemiste verkopen of lage Google-posities.",
+    "next": "Van roast naar verbeteringen",
+    "nextBody": "Controleer de onderbouwing, kies enkele veranderingen en test ze. Pro Compare toont concurrentieverschillen en gedeelde zwakheden, niet de oorzaken van Google-posities. De Fix Pass van 9 USD is een losse aankoop met geselecteerde kopieerbare tags en schema, PDF-toegang en 30 dagen Site Watch voor het adres. Je past de code zelf toe; Compare wordt niet ontgrendeld.",
+    "faq": "Veelgestelde vragen",
+    "q1": "Welke tool voor een gratis roast?",
+    "a1": "Kies op toegang: SiteScoper biedt één audit zonder aanmelding, RoastFast adverteert vijf dagelijks na aanmelding. Deze quota bepalen geen advieskwaliteit.",
+    "q2": "Levert een roast meer zoekverkeer op?",
+    "a2": "Geen tool garandeert dat. Duidelijkere titels, content en structuur kunnen worden voorgesteld, maar posities hangen ook af van vraag, concurrentie en links. Controleer wijzigingen en meet resultaten.",
+    "q3": "Kan ik scores van verschillende tools vergelijken?",
+    "a3": "Niet betrouwbaar. Iedere tool heeft eigen criteria. Vergelijk relevantie en onderbouwing van aanbevelingen in plaats van scores als uitwisselbaar te zien.",
+    "audit": "Start een gratis audit",
+    "sample": "Bekijk een voorbeeldrapport",
+    "compare": "Vergelijk twee websites",
+    "sources": "Bronnen en beperkingen",
+    "sourcesBody": "Beschrijvingen volgen openbare aanbiederspagina’s, geen onafhankelijk geteste resultaten. Niet genoemde functies zijn onbekend, niet afwezig. Er worden geen conversie-, verkeers- of rankingverbeteringen beloofd.",
+    "nav": "Website-roast-tools vergeleken"
   }
 }

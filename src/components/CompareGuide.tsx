@@ -88,6 +88,7 @@ export function CompareGuide() {
         <div className="flex flex-wrap gap-3 mt-8">
           <Button variant="outline" asChild><Link to="/seo-audit-report">{t("compare.seo.auditGuide")}<ArrowRight className="h-4 w-4" /></Link></Button>
           <Button variant="outline" asChild><Link to="/">{t("compare.seo.freeAudit")}<ArrowRight className="h-4 w-4" /></Link></Button>
+          <Button variant="outline" asChild><Link to="/roast-my-website">{t("roastComparison.nav")}<ArrowRight className="h-4 w-4" /></Link></Button>
         </div>
       </section>
     </div>

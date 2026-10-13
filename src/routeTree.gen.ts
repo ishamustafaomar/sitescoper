@@ -24,6 +24,7 @@ import { Route as MonitoringRouteImport } from './routes/monitoring'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as RoastMyWebsiteRouteImport } from './routes/roast-my-website'
 import { Route as SeoAuditReportRouteImport } from './routes/seo-audit-report'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as TermsRouteImport } from './routes/terms'
@@ -124,6 +125,11 @@ const PricingRoute = PricingRouteImport.update({
 const PrivacyRoute = PrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RoastMyWebsiteRoute = RoastMyWebsiteRouteImport.update({
+  id: '/roast-my-website',
+  path: '/roast-my-website',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SeoAuditReportRoute = SeoAuditReportRouteImport.update({
@@ -278,6 +284,7 @@ export interface FileRoutesByFullPath {
   '/onboarding': typeof OnboardingRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
+  '/roast-my-website': typeof RoastMyWebsiteRoute
   '/seo-audit-report': typeof SeoAuditReportRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
@@ -321,6 +328,7 @@ export interface FileRoutesByTo {
   '/onboarding': typeof OnboardingRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
+  '/roast-my-website': typeof RoastMyWebsiteRoute
   '/seo-audit-report': typeof SeoAuditReportRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
@@ -365,6 +373,7 @@ export interface FileRoutesById {
   '/onboarding': typeof OnboardingRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
+  '/roast-my-website': typeof RoastMyWebsiteRoute
   '/seo-audit-report': typeof SeoAuditReportRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
@@ -410,6 +419,7 @@ export interface FileRouteTypes {
     | '/onboarding'
     | '/pricing'
     | '/privacy'
+    | '/roast-my-website'
     | '/seo-audit-report'
     | '/sitemap.xml'
     | '/terms'
@@ -453,6 +463,7 @@ export interface FileRouteTypes {
     | '/onboarding'
     | '/pricing'
     | '/privacy'
+    | '/roast-my-website'
     | '/seo-audit-report'
     | '/sitemap.xml'
     | '/terms'
@@ -496,6 +507,7 @@ export interface FileRouteTypes {
     | '/onboarding'
     | '/pricing'
     | '/privacy'
+    | '/roast-my-website'
     | '/seo-audit-report'
     | '/sitemap.xml'
     | '/terms'
@@ -540,6 +552,7 @@ export interface RootRouteChildren {
   OnboardingRoute: typeof OnboardingRoute
   PricingRoute: typeof PricingRoute
   PrivacyRoute: typeof PrivacyRoute
+  RoastMyWebsiteRoute: typeof RoastMyWebsiteRoute
   SeoAuditReportRoute: typeof SeoAuditReportRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
@@ -673,6 +686,13 @@ declare module '@tanstack/react-router' {
       path: '/privacy'
       fullPath: '/privacy'
       preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/roast-my-website': {
+      id: '/roast-my-website'
+      path: '/roast-my-website'
+      fullPath: '/roast-my-website'
+      preLoaderRoute: typeof RoastMyWebsiteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/seo-audit-report': {
@@ -876,6 +896,7 @@ const rootRouteChildren: RootRouteChildren = {
   OnboardingRoute: OnboardingRoute,
   PricingRoute: PricingRoute,
   PrivacyRoute: PrivacyRoute,
+  RoastMyWebsiteRoute: RoastMyWebsiteRoute,
   SeoAuditReportRoute: SeoAuditReportRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,

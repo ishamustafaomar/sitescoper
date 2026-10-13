@@ -1554,6 +1554,10 @@
       "compareSeo": {
         "title": "Zwei Websites nach SEO vergleichen",
         "desc": "Stelle deine Seite einer Konkurrenzseite gegenüber. Vergleiche SEO-, Inhalts- und UX-Wertungen, erkenne die größten Unterschiede und priorisiere Verbesserungen."
+      },
+      "roastComparison": {
+        "title": "Website-Roast-Vergleich",
+        "desc": "Vergleiche SiteScoper, RoastFast, PageRoast und Roast My Web mit Quellen und klaren Einschränkungen."
       }
     }
   },
@@ -1700,5 +1704,40 @@
     "wildcardDesc": "Dein Konto kann die Fix-Pass-Tools für jede Adresse freischalten. Gib unten eine ein.",
     "signedOutTitle": "Melde dich an, um deinen Fix Pass zu sehen",
     "signedOutDesc": "Hast du den 9-$-Pass gekauft? Melde dich mit derselben E-Mail wie beim Kauf an – deine Fixes, der PDF-Export und Site Watch erscheinen hier."
+  },
+  "roastComparison": {
+    "title": "Website-Roast: vier Tools im Vergleich",
+    "intro": "Vergleiche SiteScoper, RoastFast, PageRoast und Roast My Web vor deiner nächsten Website-Überprüfung.",
+    "disclosure": "Wir entwickeln SiteScoper. Der Vergleich beschreibt veröffentlichte Funktionen, keine Praxistests oder Rangliste der Audit-Qualität. Quellen geprüft am 13. Oktober 2026; Angebote können sich ändern.",
+    "choose": "Welcher Website-Roast passt zu deinem nächsten Schritt?",
+    "s": "SiteScoper: Teste ein vollständiges Audit ohne Konto. Priorisiere SEO-, Inhalts- und UX-Verbesserungen; optionale Fix-Pass-Tools helfen, ausgewählte Korrekturen selbst umzusetzen.",
+    "r": "RoastFast: Die Website bietet fünf kostenlose Roasts täglich nach Anmeldung, mit einer Wertung und drei Korrekturen. Eine Option für kurze, wiederholte Rückmeldungen.",
+    "p": "PageRoast: Die Website hebt Desktop-, Tablet- und Mobil-Screenshots, konkrete Conversion-Empfehlungen und PDF-Berichte hervor. Eine Option für visuelle Landingpage-Prüfungen.",
+    "w": "Roast My Web: Die Website bewirbt abschnittsweise Rückmeldungen zu Design, UX, Conversion, Mobilansicht und SEO sowie gebrandete Kunden-PDFs. Eine Option, wenn die Berichtspräsentation wichtig ist.",
+    "table": "Veröffentlichte Angebote im Überblick",
+    "tool": "Tool",
+    "entry": "Einstieg",
+    "focus": "Veröffentlichter Schwerpunkt",
+    "sEntry": "Ein Gast-Audit; Anmeldung für Speicherung und weitere Audits. Optionaler Fix Pass für 9 USD; Pro-Abonnement verfügbar.",
+    "rEntry": "Fünf kostenlose Roasts täglich nach Anmeldung.",
+    "pEntry": "Einmalig 39 USD für zwei Audits; einmalig 69 USD für ein Angebot mit beworbenen 50 Audits monatlich. Bedingungen vor Kauf prüfen.",
+    "wEntry": "Aktuelle Preise beim Anbieter prüfen; hier ist kein Preis verifiziert.",
+    "meaning": "Was bedeutet „roast my website“?",
+    "meaningBody": "Ein Website-Roast prüft eine öffentliche Seite kritisch: Was vermittelt das Angebot, wie leicht lässt sich handeln, welche Probleme verdienen Aufmerksamkeit? KI-Rückmeldungen sind ein Ausgangspunkt, kein Beweis für verlorene Verkäufe oder schlechte Google-Rankings.",
+    "next": "Vom Roast zu Verbesserungen",
+    "nextBody": "Prüfe die Belege jedes Vorschlags, wähle einige Änderungen und teste sie. Pro Compare erkennt Wettbewerberabstände und gemeinsame Schwächen, nicht die Ursachen des Google-Rankings. Der Fix Pass für 9 USD ist ein separater Kauf mit ausgewählten kopierbaren Tags und Schema, PDF-Zugang und 30 Tagen Site Watch für seine Adresse. Du setzt den Code selbst ein; Compare wird nicht freigeschaltet.",
+    "faq": "Häufige Fragen",
+    "q1": "Welches Tool eignet sich für einen kostenlosen Roast?",
+    "a1": "Je nach benötigtem Zugang: SiteScoper bietet ein Audit ohne Anmeldung, RoastFast bewirbt fünf täglich nach Anmeldung. Diese Kontingente beweisen keine bessere Beratungsqualität.",
+    "q2": "Steigert ein Roast meinen Suchtraffic?",
+    "a2": "Kein Tool garantiert das. Klarere Titel, Inhalte und Seitenstrukturen können empfohlen werden; Rankings hängen auch von Nachfrage, Wettbewerb und Links ab. Änderungen prüfen und Ergebnisse messen.",
+    "q3": "Kann ich Werte verschiedener Tools vergleichen?",
+    "a3": "Nicht zuverlässig. Jedes Tool verwendet eigene Kriterien. Vergleiche Relevanz und Belege der Empfehlungen statt Werte als austauschbar zu behandeln.",
+    "audit": "Kostenloses Audit starten",
+    "sample": "Beispielbericht ansehen",
+    "compare": "Zwei Websites vergleichen",
+    "sources": "Quellen und Einschränkungen",
+    "sourcesBody": "Beschrieben werden öffentliche Anbieterseiten, keine unabhängig getesteten Ergebnisse. Nicht genannte Funktionen sind unbekannt, nicht ausgeschlossen. Verbesserungen von Conversion, Traffic oder Rankings werden nicht versprochen.",
+    "nav": "Website-Roast-Tools im Vergleich"
   }
 }
