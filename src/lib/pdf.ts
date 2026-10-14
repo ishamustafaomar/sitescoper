@@ -258,12 +258,11 @@ export function generateAnalysisPDF(
     doc.setPage(i);
     doc.setFontSize(8);
     doc.setTextColor(150, 150, 150);
-    doc.text(
-      `SiteScoper AI Report - Page ${i} of ${pageCount}`,
-      pageWidth / 2,
-      pageHeight - 10,
-      { align: "center" }
-    );
+    doc.text(`Page ${i} of ${pageCount}`, pageWidth - 20, pageHeight - 10, { align: "right" });
+    doc.setTextColor(99, 91, 255);
+    doc.textWithLink("Audit by SiteScoper — sitescoper.com", 20, pageHeight - 10, {
+      url: "https://sitescoper.com/?utm_source=report&utm_medium=pdf&utm_campaign=attribution",
+    });
   }
 
   doc.save(`sitescoper-report-${new URL(url).hostname}.pdf`);

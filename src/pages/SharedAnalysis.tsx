@@ -138,7 +138,12 @@ export default function SharedAnalysis() {
       </main>
 
       <footer className="border-t border-border mt-12 py-6 text-center text-xs text-muted-foreground font-body">
-        {text("sharedAnalysis.poweredBy", "Powered by")} <a href="/" className="hover:text-foreground transition-colors">SiteScoper</a>
+        <a
+          href="https://sitescoper.com/?utm_source=report&utm_medium=shared&utm_campaign=attribution"
+          className="font-medium hover:text-primary transition-colors"
+        >
+          {text("sharedAnalysis.auditBy", "Audit by SiteScoper")}
+        </a>
       </footer>
 
     </div>

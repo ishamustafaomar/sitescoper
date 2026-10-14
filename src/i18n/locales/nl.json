@@ -820,7 +820,8 @@
     "gateTitle": "Je SiteScoper-rapport is klaar",
     "gateBody": "Maak een gratis account aan (of log in) om het volledige rapport te ontgrendelen — elke bevinding, prioriteit en fix voor je site.",
     "gateButton": "Meld je gratis aan om mijn rapport te bekijken",
-    "gateSignIn": "Al een account? Inloggen"
+    "gateSignIn": "Al een account? Inloggen",
+    "auditBy": "Audit door SiteScoper"
   },
   "pages": {
     "adminReddit": {

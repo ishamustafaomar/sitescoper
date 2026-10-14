@@ -820,7 +820,8 @@
     "gateTitle": "あなたのSiteScoperレポートの準備ができました",
     "gateBody": "無料アカウントを作成（またはサインイン）して、すべての所見、優先順位、修正案を含むフルレポートを解放しましょう。",
     "gateButton": "無料登録してレポートを見る",
-    "gateSignIn": "すでにアカウントをお持ちですか？サインイン"
+    "gateSignIn": "すでにアカウントをお持ちですか？サインイン",
+    "auditBy": "SiteScoperによる監査"
   },
   "pages": {
     "adminReddit": {
