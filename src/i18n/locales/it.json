@@ -820,7 +820,8 @@
     "gateTitle": "Il tuo report SiteScoper è pronto",
     "gateBody": "Crea un account gratuito (o accedi) per sbloccare il report completo: ogni problema, priorità e soluzione per il tuo sito.",
     "gateButton": "Registrati gratis per vedere il report",
-    "gateSignIn": "Hai già un account? Accedi"
+    "gateSignIn": "Hai già un account? Accedi",
+    "auditBy": "Audit di SiteScoper"
   },
   "pages": {
     "adminReddit": {

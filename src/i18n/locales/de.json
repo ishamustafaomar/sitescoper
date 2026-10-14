@@ -820,7 +820,8 @@
     "gateTitle": "Dein SiteScoper-Bericht ist fertig",
     "gateBody": "Erstelle ein kostenloses Konto (oder melde dich an), um den vollständigen Bericht freizuschalten – jeden Befund, jede Priorität und jede Lösung für deine Website.",
     "gateButton": "Kostenlos registrieren und Bericht ansehen",
-    "gateSignIn": "Bereits ein Konto? Anmelden"
+    "gateSignIn": "Bereits ein Konto? Anmelden",
+    "auditBy": "Audit von SiteScoper"
   },
   "pages": {
     "adminReddit": {

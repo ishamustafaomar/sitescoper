@@ -820,7 +820,8 @@
     "gateTitle": "O seu relatório SiteScoper está pronto",
     "gateBody": "Crie uma conta gratuita (ou inicie sessão) para desbloquear o relatório completo — todas as conclusões, prioridades e correções do seu site.",
     "gateButton": "Registe-se gratuitamente para ver o meu relatório",
-    "gateSignIn": "Já tem uma conta? Inicie sessão"
+    "gateSignIn": "Já tem uma conta? Inicie sessão",
+    "auditBy": "Auditoria por SiteScoper"
   },
   "pages": {
     "adminReddit": {
