@@ -575,6 +575,7 @@ const Index = () => {
       <footer className="border-t border-border mt-8 py-8">
         <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted-foreground font-body">
           <div>SiteScoper — AI website audits that tell you the truth.</div>
+          <a target="_blank" rel="noopener" href="https://goodaitools.com/ai/sitescoper"><img src="https://goodaitools.com/assets/images/badge.png" alt="Good AI Tools" height={54} loading="lazy" /></a>
           <nav className="flex items-center gap-5" aria-label="Footer">
             <Link to="/pricing" className="hover:text-foreground transition-colors">Pricing</Link>
             <Link to="/blog" className="hover:text-foreground transition-colors">Blog</Link>
