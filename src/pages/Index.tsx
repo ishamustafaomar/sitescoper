@@ -573,9 +573,9 @@ const Index = () => {
       )}
 
       <footer className="border-t border-border mt-8 py-8">
-        <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted-foreground font-body">
+        <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row sm:flex-wrap items-center justify-between gap-3 text-xs text-muted-foreground font-body">
           <div>SiteScoper — AI website audits that tell you the truth.</div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 shrink-0">
             <a target="_blank" rel="noopener" href="https://goodaitools.com/ai/sitescoper"><img src="https://goodaitools.com/assets/images/badge.png" alt="Good AI Tools" height={54} loading="lazy" /></a>
             <a href="https://best-ai.org" target="_blank" rel="dofollow"><img src="https://best-ai.org/images/badge-best-ai-org.png" srcSet="https://best-ai.org/images/badge-best-ai-org.png 1x, https://best-ai.org/images/badge-best-ai-org@2x.png 2x" alt="Listed on Best-AI.org" width={200} height={48} loading="lazy" className="h-12 w-auto" /></a>
           </div>
