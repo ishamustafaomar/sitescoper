@@ -10,9 +10,9 @@ export function StatsSection() {
     { value: "3", label: t("landing.stats.s4") },
   ];
   return (
-    <section className="py-16 px-4 border-y border-border bg-muted/20">
+    <section className="py-8 px-4 border-b border-border bg-muted/20">
       <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {stats.map((stat, i) => (
             <motion.div
               key={stat.label}
@@ -22,7 +22,7 @@ export function StatsSection() {
               transition={{ duration: 0.4, delay: i * 0.1 }}
               className="text-center"
             >
-              <div className="text-5xl md:text-6xl font-heading mb-2">
+              <div className="text-3xl md:text-4xl font-heading mb-2">
                 {stat.value}
               </div>
               <div className="text-sm text-muted-foreground font-body">{stat.label}</div>
