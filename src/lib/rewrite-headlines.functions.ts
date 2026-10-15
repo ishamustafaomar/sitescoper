@@ -38,37 +38,15 @@ export const rewriteHeadlines = createServerFn({ method: "POST" })
     const { requireSupabaseAuth } = await import("@/lib/supabase.server");
     await requireSupabaseAuth();
 
-    const LOVABLE_API_KEY = process.env.LOVABLE_API_KEY;
-    if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY not configured");
-
-    const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
-      method: "POST",
-      headers: { Authorization: `Bearer ${LOVABLE_API_KEY}`, "Content-Type": "application/json" },
-      body: JSON.stringify({
-        model: "google/gemini-2.5-flash",
-        temperature: 0.7,
-        messages: [
-          { role: "system", content: SYSTEM_PROMPT },
-          {
-            role: "user",
-            content: `Site: ${data.url}\nCategory: ${data.site_category || "unknown"}\nWhat we know: ${data.summary || ""}\n\nPage content (truncated):\n${data.markdown.slice(0, 12000)}`,
-          },
-        ],
-        response_format: { type: "json_object" },
-      }),
+    const { claudeText, extractJson } = await import("@/lib/claude.server");
+    const content = await claudeText({
+      system: SYSTEM_PROMPT,
+      user: `Site: ${data.url}\nCategory: ${data.site_category || "unknown"}\nWhat we know: ${data.summary || ""}\n\nPage content (truncated):\n${data.markdown.slice(0, 12000)}`,
+      label: "Headline rewriting",
     });
-
-    if (!response.ok) {
-      if (response.status === 429) throw new Error("Rate limited. Try again shortly.");
-      if (response.status === 402) throw new Error("AI credits exhausted. Add funds in Settings > Workspace > Usage.");
-      console.error("AI error", response.status, await response.text());
-      throw new Error("AI rewrite failed");
-    }
-    const aiData = (await response.json()) as { choices?: { message?: { content?: string } }[] };
-    const content = aiData.choices?.[0]?.message?.content ?? "";
     let result: JsonValue;
     try {
-      result = JSON.parse(content) as JsonValue;
+      result = extractJson(content) as JsonValue;
     } catch {
       result = { rewrites: [], current_headline: "", diagnosis: content };
     }
