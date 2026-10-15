@@ -136,6 +136,33 @@ function selectPages(urls: string[], baseUrl: string, max = 8): string[] {
   return filtered.map((c) => c.url);
 }
 
+// Backup scraper: used only when Firecrawl itself fails (outage, credits, timeout).
+async function plainFetchScrape(url: string): Promise<any | null> {
+  try {
+    const res = await fetch(url, {
+      redirect: "follow",
+      headers: { "User-Agent": "SiteScoperBot/1.0 (+https://sitescoper.com)", Accept: "text/html" },
+    });
+    if (!res.ok) return null;
+    const html = (await res.text()).slice(0, 600_000);
+    const title = html.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1]?.trim();
+    const description = html.match(/<meta[^>]+name=["']description["'][^>]+content=["']([^"']*)/i)?.[1];
+    const markdown = html
+      .replace(/<(script|style|noscript|svg|template)[\s\S]*?<\/\1>/gi, " ")
+      .replace(/<h([1-6])[^>]*>([\s\S]*?)<\/h\1>/gi, (_m, n, t) => `\n${"#".repeat(Number(n))} ${t.replace(/<[^>]*>/g, "")}\n`)
+      .replace(/<(p|li|br|div)[^>]*>/gi, "\n")
+      .replace(/<[^>]*>/g, " ")
+      .replace(/&nbsp;/g, " ").replace(/&amp;/g, "&")
+      .replace(/[ \t]+/g, " ").replace(/\n\s*\n+/g, "\n\n").trim();
+    const links = Array.from(html.matchAll(/href=["']([^"'#]+)["']/gi))
+      .map((m) => { try { return new URL(m[1], url).toString(); } catch { return ""; } })
+      .filter(Boolean);
+    return { markdown, html, links, metadata: { title, description, sourceURL: url } };
+  } catch {
+    return null;
+  }
+}
+
 async function firecrawlRequest(path: string, body: object, apiKey: string) {
   const res = await fetch(`${FIRECRAWL_V2}${path}`, {
     method: "POST",
