@@ -13,6 +13,7 @@ import { BenchmarkCard } from "@/components/BenchmarkCard";
 import { VerdictCard } from "@/components/VerdictCard";
 import { ImpactGroupedView } from "@/components/ImpactGroupedView";
 import { HeadlineRewrites } from "@/components/HeadlineRewrites";
+import { CompetitorIntelPanel, VideoRoastPanel } from "@/components/AiExtras";
 import { Button } from "@/components/ui/button";
 
 interface AnalysisPanelProps {
@@ -179,6 +180,10 @@ export function AnalysisPanel({ analysis, scrapeData, onRequestFullReport }: Ana
             summary={analysis.summary}
             site_category={analysis.site_category}
           />
+          <div className="mt-4 space-y-4">
+            <CompetitorIntelPanel url={scrapeData?.metadata?.sourceURL || ""} analysis={analysis} />
+            <VideoRoastPanel url={scrapeData?.metadata?.sourceURL || ""} analysis={analysis} />
+          </div>
         </TabsContent>
 
         {/* Categories tab */}

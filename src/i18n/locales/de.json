@@ -1559,6 +1559,10 @@
       "roastComparison": {
         "title": "Website-Roast-Vergleich",
         "desc": "Vergleiche SiteScoper, RoastFast, PageRoast und Roast My Web mit Quellen und klaren Einschränkungen."
+      },
+      "aiUpgrades": {
+        "title": "Sofortiger erster Einblick, Wettbewerber-Analysen und Video-Roasts",
+        "desc": "Sehen Sie eine schnelle erste Bewertung, während Ihr Audit läuft. Pro-Nutzer können echte Wettbewerber mit Quellen recherchieren und jedes Audit in einen kurzen Video-Roast verwandeln. Text-Optimierungen sind jetzt präziser, und Audits verfügen über einen Backup-Reader, falls eine Website schwer zu laden ist."
       }
     }
   },
@@ -1740,5 +1744,30 @@
     "sources": "Quellen und Einschränkungen",
     "sourcesBody": "Beschrieben werden öffentliche Anbieterseiten, keine unabhängig getesteten Ergebnisse. Nicht genannte Funktionen sind unbekannt, nicht ausgeschlossen. Verbesserungen von Conversion, Traffic oder Rankings werden nicht versprochen.",
     "nav": "Website-Roast-Tools im Vergleich"
+  },
+  "aiExtras": {
+    "intelTitle": "Wettbewerber-Analysen",
+    "intelDesc": "Pro: Wir durchsuchen das Live-Web nach 3 echten Wettbewerbern und was Sie von ihnen lernen können, inklusive Quellen.",
+    "intelRun": "Wettbewerber recherchieren",
+    "researching": "Recherchiere…",
+    "doingWell": "Gut umgesetzt",
+    "stealThis": "Idee für Sie",
+    "source": "Quelle",
+    "intelFootnote": "Basierend auf öffentlichen Web-Suchergebnissen vom {{date}}. Prüfen Sie die Quellen, bevor Sie handeln.",
+    "proOnly": "Wettbewerber-Recherche ist Teil des Pro-Plans.",
+    "videoTitle": "Video-Roast",
+    "videoDesc": "Pro und Fix Pass: Verwandeln Sie dieses Audit in ein 8-sekündiges vertikales Video für Shorts, TikTok oder X. Bis zu 3 pro Tag.",
+    "videoRun": "Video-Roast erstellen",
+    "videoMaking": "Video wird erstellt… {{progress}}%",
+    "videoWait": "Dies dauert normalerweise 1–3 Minuten. Sie können den Bericht weiterlesen.",
+    "videoFailed": "Videoerstellung fehlgeschlagen. Versuchen Sie es später erneut.",
+    "videoProOnly": "Video-Roasts sind Teil von Pro und dem Fix Pass.",
+    "download": "Video herunterladen",
+    "previewLabel": "Schneller erster Blick",
+    "previewNote": "Schnelle Vorschau nur basierend auf dem Text der Startseite. Ihre vollständige Bewertung folgt.",
+    "flag_headline": "Überschrift sagt, was Sie anbieten",
+    "flag_cta": "Klarer Call-to-Action",
+    "flag_trust": "Vertrauenssignale sichtbar",
+    "flag_speed_of_understanding": "In 5 Sekunden verständlich"
   }
 }

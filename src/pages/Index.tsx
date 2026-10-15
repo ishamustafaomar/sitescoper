@@ -31,6 +31,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { useSubscription } from "@/hooks/useSubscription";
 import { StreamingProgress } from "@/components/StreamingProgress";
+import { QuickPreviewCard } from "@/components/AiExtras";
 import { hasUsedFreeAudit, markFreeAuditUsed, saveAnonymousAudit } from "@/lib/anon-audit";
 import { useExperiment } from "@/lib/ab";
 
@@ -371,6 +372,9 @@ const Index = () => {
               techSeo={liveTechSeo}
             />
           )}
+        </AnimatePresence>
+        {isLoading && currentUrl && <div className="mt-4"><QuickPreviewCard url={currentUrl} /></div>}
+        <AnimatePresence>
         </AnimatePresence>
 
         {/* Results */}

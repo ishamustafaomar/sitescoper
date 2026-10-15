@@ -1559,6 +1559,10 @@
       "roastComparison": {
         "title": "Website roast comparison",
         "desc": "Compare SiteScoper, RoastFast, PageRoast and Roast My Web, with sourced offers and clear limitations."
+      },
+      "aiUpgrades": {
+        "title": "Instant first look, competitor intel and video roasts",
+        "desc": "See a quick first-look score while your audit runs. Pro users can research real competitors with sources and turn any audit into a short video roast. Copy rewrites are now sharper, and audits have a backup reader if a site is hard to load."
       }
     }
   },
@@ -1740,5 +1744,30 @@
     "sources": "Sources and limitations",
     "sourcesBody": "Descriptions reflect the linked providers’ public pages, not independently tested outcomes. Unlisted features are unknown, not absent. No conversion, traffic or ranking improvements are promised.",
     "nav": "Website roast tools compared"
+  },
+  "aiExtras": {
+    "intelTitle": "Competitor intel",
+    "intelDesc": "Pro: we search the live web for 3 real competitors and what you can learn from them, with sources.",
+    "intelRun": "Research competitors",
+    "researching": "Researching…",
+    "doingWell": "Doing well",
+    "stealThis": "Idea for you",
+    "source": "Source",
+    "intelFootnote": "Based on public web search results from {{date}}. Check sources before acting.",
+    "proOnly": "Competitor research is part of the Pro plan.",
+    "videoTitle": "Video roast",
+    "videoDesc": "Pro and Fix Pass: turn this audit into an 8-second vertical video for Shorts, TikTok or X. Up to 3 a day.",
+    "videoRun": "Make video roast",
+    "videoMaking": "Making video… {{progress}}%",
+    "videoWait": "This usually takes 1–3 minutes. You can keep reading the report.",
+    "videoFailed": "The video failed. Try again later.",
+    "videoProOnly": "Video roasts are part of Pro and the Fix Pass.",
+    "download": "Download video",
+    "previewLabel": "Quick first look",
+    "previewNote": "Quick preview from the homepage text only. Your full score is coming.",
+    "flag_headline": "Headline says what you offer",
+    "flag_cta": "Clear call to action",
+    "flag_trust": "Trust signals visible",
+    "flag_speed_of_understanding": "Understandable in 5 seconds"
   }
 }

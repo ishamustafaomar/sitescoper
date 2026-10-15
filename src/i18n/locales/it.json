@@ -1559,6 +1559,10 @@
       "roastComparison": {
         "title": "Confronto roast web",
         "desc": "Confronta SiteScoper, RoastFast, PageRoast e Roast My Web con fonti e limiti chiari."
+      },
+      "aiUpgrades": {
+        "title": "Analisi istantanea, dati sui competitor e video roast",
+        "desc": "Visualizza un punteggio preliminare immediato mentre l'audit è in corso. Gli utenti Pro possono analizzare competitor reali con relative fonti e trasformare qualsiasi audit in un breve video roast. I testi suggeriti sono ora più precisi e gli audit dispongono di un lettore di backup se un sito è difficile da caricare."
       }
     }
   },
@@ -1740,5 +1744,30 @@
     "sources": "Fonti e limiti",
     "sourcesBody": "Le descrizioni riflettono pagine pubbliche dei fornitori, non risultati testati indipendentemente. Le funzioni non elencate sono sconosciute, non assenti. Non promettiamo miglioramenti di conversione, traffico o posizionamento.",
     "nav": "Strumenti di roast web a confronto"
+  },
+  "aiExtras": {
+    "intelTitle": "Competitor intel",
+    "intelDesc": "Pro: cerchiamo nel web in tempo reale 3 competitor reali e cosa puoi imparare da loro, con le fonti.",
+    "intelRun": "Ricerca i competitor",
+    "researching": "Ricerca in corso…",
+    "doingWell": "Cosa fanno bene",
+    "stealThis": "Idea per te",
+    "source": "Fonte",
+    "intelFootnote": "Basato sui risultati di ricerca web pubblica del {{date}}. Controlla le fonti prima di agire.",
+    "proOnly": "La ricerca dei competitor fa parte del piano Pro.",
+    "videoTitle": "Video roast",
+    "videoDesc": "Pro e Fix Pass: trasforma questo audit in un video verticale di 8 secondi per Shorts, TikTok o X. Fino a 3 al giorno.",
+    "videoRun": "Crea video roast",
+    "videoMaking": "Creazione video… {{progress}}%",
+    "videoWait": "Di solito richiede 1–3 minuti. Puoi continuare a leggere il report.",
+    "videoFailed": "Creazione video fallita. Riprova più tardi.",
+    "videoProOnly": "I video roast fanno parte di Pro e del Fix Pass.",
+    "download": "Scarica video",
+    "previewLabel": "Anteprima rapida",
+    "previewNote": "Anteprima rapida basata solo sul testo della homepage. Il tuo punteggio completo sta arrivando.",
+    "flag_headline": "Il titolo dice cosa offri",
+    "flag_cta": "Call to action chiara",
+    "flag_trust": "Segnali di fiducia visibili",
+    "flag_speed_of_understanding": "Comprensibile in 5 secondi"
   }
 }
