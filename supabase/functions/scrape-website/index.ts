@@ -498,7 +498,17 @@ serve(async (req) => {
           };
 
           sendProgress("homepage", "Loading homepage", 15);
-          let homeResult = await scrapeHome(3000);
+          let homeResult: any;
+          try {
+            homeResult = await scrapeHome(3000);
+          } catch (fcErr: any) {
+            // 422 = site blocks crawlers; a plain fetch would fail too.
+            if (fcErr?.status === 422) throw fcErr;
+            console.warn("Firecrawl failed, using backup reader:", fcErr?.message || fcErr);
+            sendProgress("homepage", "Using backup reader", 18);
+            homeResult = await plainFetchScrape(inputUrl!);
+            if (!homeResult) throw fcErr;
+          }
           let partialReason: string | null = null;
           let loginWall = false;
           const isEmpty = (r: any) =>
