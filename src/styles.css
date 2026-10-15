@@ -241,15 +241,29 @@
   .font-heading {
     font-family: var(--font-heading);
     font-weight: 400 !important;
-    letter-spacing: -0.015em;
+    letter-spacing: 0;
   }
 
 
-  /* Prevent accidental horizontal scroll on tablet/mobile */
+  /* Reflow belongs to each layout; do not conceal overflow defects. */
   html,
   body {
-    overflow-x: hidden;
     max-width: 100%;
+  }
+
+  a:focus-visible,
+  summary:focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 
   /* Wrap long URLs / inline code so they don't blow out narrow viewports */

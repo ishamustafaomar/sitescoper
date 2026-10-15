@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useId, useState } from "react";
 import { ChevronDown, ChevronUp, Sparkles } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
 interface Props {
   value: string;
@@ -14,6 +15,8 @@ interface Props {
 
 export function CustomInstructions({ value, onChange, disabled, className, defaultOpen }: Props) {
   const { t } = useTranslation();
+  const panelId = useId();
+  const inputId = useId();
   const PRESETS: { label: string; value: string }[] = [
     { label: t("customInstructions.presets.conversion"), value: t("customInstructions.presets.conversionValue") },
     { label: t("customInstructions.presets.seo"), value: t("customInstructions.presets.seoValue") },
@@ -34,32 +37,40 @@ export function CustomInstructions({ value, onChange, disabled, className, defau
 
   return (
     <div className={cn("w-full max-w-2xl mx-auto", className)}>
-      <button
+      <Button
+        variant="ghost"
         type="button"
+        disabled={disabled}
+        aria-expanded={open}
+        aria-controls={panelId}
         onClick={() => setOpen((o) => !o)}
-        className="inline-flex items-center gap-1.5 text-xs font-body text-muted-foreground hover:text-foreground transition-colors"
+        className="justify-start gap-1.5 px-0 text-xs text-muted-foreground hover:bg-transparent hover:text-foreground"
       >
         <Sparkles className="h-3.5 w-3.5" />
         {value.trim() ? t("customInstructions.toggle.added") : t("customInstructions.toggle.add")}
         {open ? <ChevronUp className="h-3 w-3" /> : <ChevronDown className="h-3 w-3" />}
-      </button>
+      </Button>
 
       {open && (
-        <div className="mt-3 rounded-2xl border border-border bg-card p-4 space-y-3 shadow-[var(--shadow-sm)]">
+        <div id={panelId} className="mt-2 border-l-2 border-border pl-4 space-y-3">
           <div className="flex flex-wrap gap-1.5">
             {PRESETS.map((p) => (
-              <button
+              <Button
+                variant="outline"
+                size="sm"
                 key={p.label}
                 type="button"
                 disabled={disabled}
                 onClick={() => togglePreset(p.value)}
-                className="text-[11px] font-body px-2.5 py-1 rounded-full border border-border bg-background hover:bg-muted hover:border-primary/40 transition-colors disabled:opacity-50"
+                className="text-xs px-2.5"
               >
                 + {p.label}
-              </button>
+              </Button>
             ))}
           </div>
+          <label htmlFor={inputId} className="sr-only">{t("customInstructions.textareaPlaceholder")}</label>
           <Textarea
+            id={inputId}
             value={value}
             onChange={(e) => onChange(e.target.value)}
             disabled={disabled}
@@ -68,7 +79,7 @@ export function CustomInstructions({ value, onChange, disabled, className, defau
             maxLength={1000}
             className="text-sm font-body resize-none"
           />
-          <div className="flex items-center justify-between text-[10px] font-body text-muted-foreground">
+          <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3 text-xs font-body text-muted-foreground">
             <span>{t("customInstructions.helperText")}</span>
             <span>{value.length}/1000</span>
           </div>
