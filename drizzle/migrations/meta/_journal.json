@@ -43,6 +43,13 @@
       "when": 1791919559764,
       "tag": "0005_cron_shared_secret",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1792091171476,
+      "tag": "0006_video_roasts",
+      "breakpoints": true
     }
   ]
 }

@@ -1120,6 +1120,39 @@ export type Database = {
         }
         Relationships: []
       }
+      video_roasts: {
+        Row: {
+          created_at: string
+          error: string | null
+          id: string
+          job_id: string | null
+          site_url: string
+          status: string
+          storage_path: string | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          error?: string | null
+          id?: string
+          job_id?: string | null
+          site_url: string
+          status?: string
+          storage_path?: string | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          error?: string | null
+          id?: string
+          job_id?: string | null
+          site_url?: string
+          status?: string
+          storage_path?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
       websites: {
         Row: {
           created_at: string
