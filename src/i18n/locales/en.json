@@ -1563,6 +1563,10 @@
       "aiUpgrades": {
         "title": "Instant first look, competitor intel and video roasts",
         "desc": "See a quick first-look score while your audit runs. Pro users can research real competitors with sources and turn any audit into a short video roast. Copy rewrites are now sharper, and audits have a backup reader if a site is hard to load."
+      },
+      "socialCard": {
+        "title": "Social promo cards replace video roasts",
+        "desc": "Turn any report into a flattering Instagram or LinkedIn image of your score and top strengths, in square or story size."
       }
     }
   },
@@ -1769,5 +1773,22 @@
     "flag_cta": "Clear call to action",
     "flag_trust": "Trust signals visible",
     "flag_speed_of_understanding": "Understandable in 5 seconds"
+  },
+  "socialCard": {
+    "title": "Social promo card",
+    "desc": "Download a ready-to-post image of your score for Instagram, LinkedIn or X. Free, instant.",
+    "format": {
+      "square": "Square post",
+      "story": "Story"
+    },
+    "theme": {
+      "ink": "Ink",
+      "paper": "Paper",
+      "glow": "Glow"
+    },
+    "download": "Download PNG",
+    "cardTitle": "Website score",
+    "cardWins": "Top strengths",
+    "cardFooter": "Audited with sitescoper.com"
   }
 }

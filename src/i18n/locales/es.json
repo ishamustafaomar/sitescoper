@@ -1563,6 +1563,10 @@
       "aiUpgrades": {
         "title": "Primer vistazo instantáneo, inteligencia de la competencia y video roasts",
         "desc": "Mira una puntuación rápida de primer vistazo mientras se ejecuta tu auditoría. Los usuarios Pro pueden investigar competidores reales con fuentes y convertir cualquier auditoría en un breve video roast. Las reescrituras de copy ahora son más precisas y las auditorías tienen un lector de respaldo si un sitio es difícil de cargar."
+      },
+      "socialCard": {
+        "title": "Tarjetas promocionales en lugar de vídeos",
+        "desc": "Convierte cualquier informe en una imagen para Instagram o LinkedIn con tu puntuación y tus puntos fuertes."
       }
     }
   },
@@ -1769,5 +1773,22 @@
     "flag_cta": "Llamada a la acción clara",
     "flag_trust": "Señales de confianza visibles",
     "flag_speed_of_understanding": "Comprensible en 5 segundos"
+  },
+  "socialCard": {
+    "title": "Tarjeta promocional",
+    "desc": "Descarga una imagen lista para publicar con tu puntuación para Instagram, LinkedIn o X. Gratis e instantánea.",
+    "format": {
+      "square": "Cuadrada",
+      "story": "Historia"
+    },
+    "theme": {
+      "ink": "Tinta",
+      "paper": "Papel",
+      "glow": "Brillo"
+    },
+    "download": "Descargar PNG",
+    "cardTitle": "Puntuación del sitio",
+    "cardWins": "Puntos fuertes",
+    "cardFooter": "Auditado con sitescoper.com"
   }
 }

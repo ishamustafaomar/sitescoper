@@ -1563,6 +1563,10 @@
       "aiUpgrades": {
         "title": "Aperçu instantané, veille concurrentielle et critiques vidéo",
         "desc": "Consultez un score préliminaire pendant que votre audit s'exécute. Les utilisateurs Pro peuvent analyser de vrais concurrents avec sources et transformer n'importe quel audit en une courte critique vidéo. La réécriture de contenu est désormais plus précise, et les audits disposent d'un lecteur de secours si un site est difficile à charger."
+      },
+      "socialCard": {
+        "title": "Cartes promo à la place des vidéos",
+        "desc": "Transformez un rapport en image Instagram ou LinkedIn valorisant votre score et vos points forts."
       }
     }
   },
@@ -1769,5 +1773,22 @@
     "flag_cta": "Appel à l'action clair",
     "flag_trust": "Signaux de confiance visibles",
     "flag_speed_of_understanding": "Compréhensible en 5 secondes"
+  },
+  "socialCard": {
+    "title": "Carte promo sociale",
+    "desc": "Téléchargez une image prête à publier de votre score pour Instagram, LinkedIn ou X. Gratuit et instantané.",
+    "format": {
+      "square": "Carré",
+      "story": "Story"
+    },
+    "theme": {
+      "ink": "Encre",
+      "paper": "Papier",
+      "glow": "Éclat"
+    },
+    "download": "Télécharger PNG",
+    "cardTitle": "Score du site",
+    "cardWins": "Points forts",
+    "cardFooter": "Audité avec sitescoper.com"
   }
 }

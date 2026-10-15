@@ -1563,6 +1563,10 @@
       "aiUpgrades": {
         "title": "Directe eerste blik, concurrentie-informatie en video roasts",
         "desc": "Bekijk een snelle eerste score terwijl uw audit draait. Pro-gebruikers kunnen echte concurrenten onderzoeken met bronvermelding en elke audit veranderen in een korte video roast. Tekstherstructureringen zijn nu scherper en audits hebben een back-up lezer als een site moeilijk te laden is."
+      },
+      "socialCard": {
+        "title": "Promokaarten in plaats van video-roasts",
+        "desc": "Maak van elk rapport een Instagram- of LinkedIn-afbeelding met je score en sterke punten."
       }
     }
   },
@@ -1769,5 +1773,22 @@
     "flag_cta": "Duidelijke call to action",
     "flag_trust": "Vertrouwenssignalen zichtbaar",
     "flag_speed_of_understanding": "Begrijpelijk binnen 5 seconden"
+  },
+  "socialCard": {
+    "title": "Social promokaart",
+    "desc": "Download een kant-en-klare afbeelding van je score voor Instagram, LinkedIn of X. Gratis en direct.",
+    "format": {
+      "square": "Vierkant",
+      "story": "Story"
+    },
+    "theme": {
+      "ink": "Inkt",
+      "paper": "Papier",
+      "glow": "Gloed"
+    },
+    "download": "PNG downloaden",
+    "cardTitle": "Websitescore",
+    "cardWins": "Sterkste punten",
+    "cardFooter": "Gecontroleerd met sitescoper.com"
   }
 }

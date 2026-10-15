@@ -1563,6 +1563,10 @@
       "aiUpgrades": {
         "title": "Analisi istantanea, dati sui competitor e video roast",
         "desc": "Visualizza un punteggio preliminare immediato mentre l'audit è in corso. Gli utenti Pro possono analizzare competitor reali con relative fonti e trasformare qualsiasi audit in un breve video roast. I testi suggeriti sono ora più precisi e gli audit dispongono di un lettore di backup se un sito è difficile da caricare."
+      },
+      "socialCard": {
+        "title": "Card promozionali al posto dei video",
+        "desc": "Trasforma ogni report in un'immagine per Instagram o LinkedIn con punteggio e punti di forza."
       }
     }
   },
@@ -1769,5 +1773,22 @@
     "flag_cta": "Call to action chiara",
     "flag_trust": "Segnali di fiducia visibili",
     "flag_speed_of_understanding": "Comprensibile in 5 secondi"
+  },
+  "socialCard": {
+    "title": "Card promozionale",
+    "desc": "Scarica un'immagine pronta da pubblicare con il tuo punteggio per Instagram, LinkedIn o X. Gratis e immediata.",
+    "format": {
+      "square": "Quadrata",
+      "story": "Storia"
+    },
+    "theme": {
+      "ink": "Inchiostro",
+      "paper": "Carta",
+      "glow": "Luce"
+    },
+    "download": "Scarica PNG",
+    "cardTitle": "Punteggio del sito",
+    "cardWins": "Punti di forza",
+    "cardFooter": "Analizzato con sitescoper.com"
   }
 }
