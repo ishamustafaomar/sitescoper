@@ -94,19 +94,20 @@ export default function Pricing() {
               className="inline-flex border border-foreground"
             >
               {(["monthly", "annual"] as const).map((v) => (
-                <button
+                <Button
+                  variant="ghost"
                   key={v}
                   type="button"
                   onClick={() => setInterval(v)}
                   aria-pressed={interval === v}
-                  className={`px-4 py-2 text-[11px] uppercase tracking-[0.14em] font-body font-semibold transition-colors ${
+                  className={`rounded-none px-4 py-2 text-xs font-body font-medium ${
                     interval === v
-                      ? "bg-foreground text-background"
+                      ? "bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground"
                       : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
                   {v === "monthly" ? t("pricing.monthly") : t("pricing.annual")}
-                </button>
+                </Button>
               ))}
             </div>
             <p className="text-[12px] font-body text-muted-foreground">
@@ -116,7 +117,7 @@ export default function Pricing() {
         )}
 
         <div className="grid md:grid-cols-2 gap-6">
-          <Card className="p-6 md:p-8 flex flex-col">
+          <Card className="p-6 md:p-8 rounded-md shadow-none flex flex-col">
             <div className="flex items-baseline justify-between mb-4">
               <div className="font-heading text-xl font-bold">Free</div>
               <div>
@@ -153,10 +154,7 @@ export default function Pricing() {
             </Button>
           </Card>
 
-          <Card className="p-6 md:p-8 border-2 border-primary/40 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent flex flex-col relative">
-            <span className="absolute -top-3 right-6 px-2 py-0.5 rounded-full bg-primary text-primary-foreground text-[10px] font-body font-bold uppercase tracking-wider">
-              Most popular
-            </span>
+          <Card className="p-6 md:p-8 rounded-md shadow-none border-2 border-primary bg-card flex flex-col">
             <div className="flex items-baseline justify-between mb-4">
               <div className="font-heading text-xl font-bold text-primary inline-flex items-center gap-1.5">
                 <Crown className="h-5 w-5" /> Pro
@@ -224,7 +222,7 @@ export default function Pricing() {
         <section id="fix-pass" className="mt-10 scroll-mt-28 max-w-3xl mx-auto border-2 border-accent/40 bg-accent/5 p-6 md:p-8">
           <div className="flex items-start gap-3">
             <Zap className="h-6 w-6 text-accent shrink-0 mt-1" />
-            <div className="flex-1">
+            <div className="min-w-0 flex-1">
               <div className="flex flex-wrap items-baseline justify-between gap-2">
                 <h2 className="font-heading text-2xl font-bold">{t("fixPass.title")}</h2>
                 <span className="text-[11px] uppercase tracking-[0.14em] font-body text-muted-foreground">
