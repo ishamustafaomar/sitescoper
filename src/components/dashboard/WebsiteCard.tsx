@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { Clock, ExternalLink, RefreshCw, Trash2, Loader2, Eye, TrendingUp, TrendingDown, Minus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sparkline } from "@/components/Sparkline";
@@ -32,6 +32,7 @@ function trendDelta(scores?: number[]) {
 
 export function WebsiteCard({ website, analyzing, onAnalyze, onDelete, onViewSEO, scoreHistory }: WebsiteCardProps) {
   const { t } = useTranslation();
+  const reduceMotion = useReducedMotion();
   const delta = trendDelta(scoreHistory);
   const TrendIcon = delta === null ? Minus : delta > 0 ? TrendingUp : delta < 0 ? TrendingDown : Minus;
   const trendColor = delta === null ? "text-muted-foreground" : delta > 0 ? "text-accent" : delta < 0 ? "text-destructive" : "text-muted-foreground";
@@ -40,11 +41,11 @@ export function WebsiteCard({ website, analyzing, onAnalyze, onDelete, onViewSEO
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 10 }}
+      initial={reduceMotion ? false : { opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, scale: 0.95 }}
+      exit={reduceMotion ? undefined : { opacity: 0 }}
       className={cn(
-        "relative bg-card rounded-2xl border p-5 shadow-[var(--shadow-sm)] hover:shadow-[var(--shadow-md)] transition-all overflow-hidden",
+        "relative min-w-0 bg-card rounded-md border p-4 sm:p-5 transition-colors",
         level === "good" && "border-[hsl(var(--score-good))]/30 hover:border-[hsl(var(--score-good))]/60",
         level === "warn" && "border-[hsl(var(--score-warn))]/30 hover:border-[hsl(var(--score-warn))]/60",
         level === "bad" && "border-[hsl(var(--score-bad))]/30 hover:border-[hsl(var(--score-bad))]/60",
@@ -54,19 +55,19 @@ export function WebsiteCard({ website, analyzing, onAnalyze, onDelete, onViewSEO
       {/* Left status stripe */}
       <div className={cn("absolute left-0 top-0 bottom-0 w-1", styles.dot)} />
 
-      <div className="flex items-start justify-between gap-3">
+      <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3">
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 mb-1">
             <TrafficDot score={website.last_score} size="md" />
-            <h3 className="font-heading font-semibold text-sm truncate">{website.name || website.url}</h3>
+            <h3 className="font-body font-semibold text-sm truncate">{website.name || website.url}</h3>
           </div>
           <a
             href={website.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs text-muted-foreground hover:text-primary font-body truncate flex items-center gap-1 mt-0.5"
+            className="text-xs text-muted-foreground hover:text-primary font-body flex items-start gap-1 mt-0.5"
           >
-            {website.url}
+            <span className="min-w-0 break-all">{website.url}</span>
             <ExternalLink className="h-3 w-3 shrink-0" />
           </a>
 
@@ -81,7 +82,7 @@ export function WebsiteCard({ website, analyzing, onAnalyze, onDelete, onViewSEO
                   </span>
                 )}
               </div>
-              <span className="text-[10px] text-muted-foreground/70 font-body">
+              <span className="text-xs text-muted-foreground font-body">
                 {t("dashboard.card.scans", { count: scoreHistory.length })}
               </span>
             </div>
@@ -90,7 +91,7 @@ export function WebsiteCard({ website, analyzing, onAnalyze, onDelete, onViewSEO
         {website.last_score !== null ? (
           <div className="flex flex-col items-center gap-1 shrink-0">
             <div className={cn(
-              "h-14 w-14 rounded-2xl flex items-center justify-center font-heading font-bold text-xl",
+              "h-14 w-14 rounded-md flex items-center justify-center font-body font-semibold tabular-nums text-2xl",
               styles.chip
             )}>
               {website.last_score}
@@ -104,14 +105,14 @@ export function WebsiteCard({ website, analyzing, onAnalyze, onDelete, onViewSEO
         )}
       </div>
 
-      <div className="flex items-center justify-between mt-4 pt-3 border-t border-border">
+      <div className="grid grid-cols-1 sm:grid-cols-[minmax(0,1fr)_auto] items-center gap-3 mt-4 pt-3 border-t border-border">
         <div className="flex items-center gap-1 text-xs text-muted-foreground font-body">
           <Clock className="h-3 w-3" />
           {website.last_analyzed_at
             ? new Date(website.last_analyzed_at).toLocaleDateString()
             : t("dashboard.card.notAnalyzed")}
         </div>
-        <div className="flex gap-1.5">
+        <div className="flex flex-wrap gap-1.5">
           {website.last_score !== null && (
             <Button size="sm" variant="outline" className="h-8 text-xs" onClick={onViewSEO}>
               <Eye className="h-3 w-3" />
