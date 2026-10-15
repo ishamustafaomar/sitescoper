@@ -26,20 +26,20 @@ export function getTrafficLabel(level: TrafficLevel): string {
 const STYLES: Record<TrafficLevel, { dot: string; chip: string; text: string; ring: string }> = {
   good: {
     dot: "bg-[hsl(var(--score-good))]",
-    chip: "bg-[hsl(var(--score-good-bg))] text-[hsl(var(--score-good))] border-[hsl(var(--score-good))]/30",
-    text: "text-[hsl(var(--score-good))]",
+    chip: "bg-[hsl(var(--score-good-bg))] text-[hsl(var(--score-good-text))] border-[hsl(var(--score-good))]/30",
+    text: "text-[hsl(var(--score-good-text))]",
     ring: "ring-[hsl(var(--score-good))]/40",
   },
   warn: {
     dot: "bg-[hsl(var(--score-warn))]",
-    chip: "bg-[hsl(var(--score-warn-bg))] text-[hsl(var(--score-warn))] border-[hsl(var(--score-warn))]/30",
-    text: "text-[hsl(var(--score-warn))]",
+    chip: "bg-[hsl(var(--score-warn-bg))] text-[hsl(var(--score-warn-text))] border-[hsl(var(--score-warn))]/30",
+    text: "text-[hsl(var(--score-warn-text))]",
     ring: "ring-[hsl(var(--score-warn))]/40",
   },
   bad: {
     dot: "bg-[hsl(var(--score-bad))]",
-    chip: "bg-[hsl(var(--score-bad-bg))] text-[hsl(var(--score-bad))] border-[hsl(var(--score-bad))]/30",
-    text: "text-[hsl(var(--score-bad))]",
+    chip: "bg-[hsl(var(--score-bad-bg))] text-[hsl(var(--score-bad-text))] border-[hsl(var(--score-bad))]/30",
+    text: "text-[hsl(var(--score-bad-text))]",
     ring: "ring-[hsl(var(--score-bad))]/40",
   },
   none: {

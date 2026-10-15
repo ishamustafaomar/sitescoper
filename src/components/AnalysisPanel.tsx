@@ -85,7 +85,7 @@ export function AnalysisPanel({ analysis, scrapeData, onRequestFullReport }: Ana
       {/* Layer 1: Verdict only — overall + 3 blockers + 3 opportunities */}
       <VerdictCard
         analysis={analysis}
-        onJumpToImpact={() => openFull()}
+        onJumpToImpact={showFull ? undefined : () => openFull()}
       />
 
       {!showFull && (
@@ -99,7 +99,7 @@ export function AnalysisPanel({ analysis, scrapeData, onRequestFullReport }: Ana
             {text("analysisPanel.seeFullReport", "See full report")}
             <ArrowDown className="h-4 w-4" />
           </Button>
-          <p className="text-[11px] text-muted-foreground font-body">
+          <p className="text-xs text-muted-foreground font-body text-center">
             {text("analysisPanel.seeFullReportSub", "Category scores, action plan, and deep diagnostics")}
           </p>
         </div>
@@ -196,7 +196,7 @@ export function AnalysisPanel({ analysis, scrapeData, onRequestFullReport }: Ana
           {analysis.categories.map((category, idx) => (
             <motion.div
               key={category.name}
-              initial={{ opacity: 0, y: 10 }}
+              initial={reduceMotion ? false : { opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.05 * idx }}
               className="bg-card rounded-md border border-border overflow-hidden"
@@ -204,7 +204,7 @@ export function AnalysisPanel({ analysis, scrapeData, onRequestFullReport }: Ana
               <Button
                 variant="ghost"
                 aria-expanded={expandedCategory === idx}
-                aria-controls={`${categoryId}-${idx}`}
+                aria-controls={expandedCategory === idx ? `${categoryId}-${idx}` : undefined}
                 onClick={() => setExpandedCategory(expandedCategory === idx ? null : idx)}
                 className="h-auto w-full justify-between gap-3 rounded-none p-4 text-left hover:bg-muted/50"
               >
@@ -227,7 +227,7 @@ export function AnalysisPanel({ analysis, scrapeData, onRequestFullReport }: Ana
               {expandedCategory === idx && (
                 <motion.div
                   id={`${categoryId}-${idx}`}
-                  initial={{ height: 0, opacity: 0 }}
+                  initial={reduceMotion ? false : { height: 0, opacity: 0 }}
                   animate={{ height: "auto", opacity: 1 }}
                   transition={{ duration: 0.25 }}
                   className="border-t border-border"

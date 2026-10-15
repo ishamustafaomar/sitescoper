@@ -42,7 +42,7 @@ export function CustomInstructions({ value, onChange, disabled, className, defau
         type="button"
         disabled={disabled}
         aria-expanded={open}
-        aria-controls={panelId}
+        aria-controls={open ? panelId : undefined}
         onClick={() => setOpen((o) => !o)}
         className="justify-start gap-1.5 px-0 text-xs text-muted-foreground hover:bg-transparent hover:text-foreground"
       >

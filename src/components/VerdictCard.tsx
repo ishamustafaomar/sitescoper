@@ -1,9 +1,10 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { AlertTriangle, Sparkles, ArrowRight } from "lucide-react";
 import { ScoreRing } from "@/components/ScoreRing";
 import { Badge } from "@/components/ui/badge";
 import { AnalysisResult, AnalysisSuggestion } from "@/lib/api";
 import { useTranslation } from "react-i18next";
+import { Button } from "@/components/ui/button";
 
 function useCategoryLabels(): Record<string, string> {
   const { t } = useTranslation();
@@ -53,6 +54,7 @@ interface Props {
 
 export function VerdictCard({ analysis, onJumpToImpact }: Props) {
   const { t } = useTranslation();
+  const reduceMotion = useReducedMotion();
   const text = (key: string, fallback: string) => {
     const translated = t(key, { defaultValue: fallback });
     return translated === key || translated.includes("Card.") ? fallback : translated;
@@ -80,13 +82,13 @@ export function VerdictCard({ analysis, onJumpToImpact }: Props) {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 10 }}
+      initial={reduceMotion ? false : { opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.35 }}
-      className="rounded-2xl border border-border bg-card p-5 sm:p-6 shadow-[var(--shadow-md)] space-y-5"
+      className="rounded-md border border-border bg-card p-4 sm:p-6 space-y-5"
     >
-      <div className="flex items-start gap-5">
-        <ScoreRing score={score} />
+      <div className="grid grid-cols-1 sm:grid-cols-[auto_minmax(0,1fr)] items-start gap-4">
+        <div className="shrink-0"><ScoreRing score={score} /></div>
         <div className="flex-1 min-w-0 space-y-1.5">
           <div className="flex items-center gap-2 flex-wrap">
             <span className="text-[10px] font-body uppercase tracking-wider text-muted-foreground">{text("verdictCard.verdict", "Verdict")}</span>
@@ -124,12 +126,13 @@ export function VerdictCard({ analysis, onJumpToImpact }: Props) {
 
       {onJumpToImpact && (
         <div className="pt-2 flex justify-end">
-          <button
+          <Button
+            variant="link"
             onClick={onJumpToImpact}
-            className="text-xs font-body text-primary hover:underline inline-flex items-center gap-1"
+            className="text-xs px-0"
           >
             {text("verdictCard.seeFullReport", "See full report")} <ArrowRight className="h-3 w-3" />
-          </button>
+          </Button>
         </div>
       )}
     </motion.div>
@@ -166,14 +169,14 @@ function TopList({
           {items.map((s, i) => (
             <li
               key={i}
-              className="flex items-start gap-2.5 p-2.5 rounded-lg bg-muted/40 border border-border/60"
+              className="flex items-start gap-2.5 py-3 border-t border-border/60"
             >
-              <span className={`shrink-0 inline-flex items-center justify-center h-5 w-5 rounded-full ${chipClass} text-[10px] font-heading font-semibold`}>
+              <span className={`shrink-0 inline-flex items-center justify-center h-5 w-5 rounded-full ${chipClass} text-xs font-body font-medium`}>
                 {i + 1}
               </span>
               <div className="min-w-0 flex-1 space-y-0.5">
-                <p className="text-[13px] font-heading font-medium leading-snug">{s.title}</p>
-                <p className="text-[11px] text-muted-foreground font-body leading-snug line-clamp-2">
+                <p className="text-sm font-body font-medium leading-relaxed">{s.title}</p>
+                <p className="text-xs text-muted-foreground font-body leading-relaxed">
                   {s.impact_reason || s.fix || s.description}
                 </p>
               </div>

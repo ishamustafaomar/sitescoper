@@ -15,6 +15,7 @@ import { StatsOverview } from "@/components/dashboard/StatsOverview";
 import { AddWebsiteForm } from "@/components/dashboard/AddWebsiteForm";
 import { WebsiteCard, Website } from "@/components/dashboard/WebsiteCard";
 import { SEODetailPanel } from "@/components/dashboard/SEODetailPanel";
+import { averageHealthScore } from "@/lib/dashboard-health";
 
 interface AnalysisRecord {
   id: string;
@@ -141,10 +142,7 @@ export default function Dashboard() {
     ? websites.find((w) => w.id === seoWebsiteId)
     : null;
 
-  const scoredWebsites = websites.filter((w) => w.last_score != null);
-  const avgScore = scoredWebsites.length > 0
-    ? Math.round(scoredWebsites.reduce((sum, w) => sum + (w.last_score ?? 0), 0) / scoredWebsites.length)
-    : null;
+  const avgScore = averageHealthScore(websites);
 
   // Aggregate KPIs across most recent analysis per website
   const latestByWebsite = useMemo(() => {
