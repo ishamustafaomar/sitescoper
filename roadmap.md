@@ -1,5 +1,8 @@
 # Roadmap — Organic search growth (Sep 21, 2026)
 
+## Website promotional images (Oct 15, 2026)
+- [ ] Replace score cards with website-grounded AI social ads, real source uploads, editable wording and square/story downloads; verify without publishing.
+
 ## Preview UI refinement (Oct 15, 2026)
 - [x] Refine shared controls, homepage rhythm, dashboard accessibility and report hierarchy; preserve all flows and nine-language copy.
 - [x] Apply bounded Compare/Pricing presentation fixes and verify desktop/mobile in two QA rounds; preview only, not published.
