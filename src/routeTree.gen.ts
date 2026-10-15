@@ -44,6 +44,7 @@ import { Route as ToolsCopywriterRouteImport } from './routes/tools/copywriter'
 import { Route as ToolsLlmsTxtGeneratorRouteImport } from './routes/tools/llms-txt-generator'
 import { Route as ToolsOpenGraphCheckerRouteImport } from './routes/tools/open-graph-checker'
 import { Route as ApiPublicSaveAnonymousAuditRouteImport } from './routes/api/public/save-anonymous-audit'
+import { Route as ApiPublicSocialPromoRouteImport } from './routes/api/public/social-promo'
 import { Route as LovableEmailEventsRouteImport } from './routes/lovable/email/events'
 import { Route as ApiPublicHooksAbEvaluateRouteImport } from './routes/api/public/hooks/ab-evaluate'
 import { Route as ApiPublicHooksMonitorRunRouteImport } from './routes/api/public/hooks/monitor-run'
@@ -228,6 +229,11 @@ const ApiPublicSaveAnonymousAuditRoute =
     path: '/api/public/save-anonymous-audit',
     getParentRoute: () => rootRouteImport,
   } as any)
+const ApiPublicSocialPromoRoute = ApiPublicSocialPromoRouteImport.update({
+  id: '/api/public/social-promo',
+  path: '/api/public/social-promo',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LovableEmailEventsRoute = LovableEmailEventsRouteImport.update({
   id: '/lovable/email/events',
   path: '/lovable/email/events',
@@ -304,6 +310,7 @@ export interface FileRoutesByFullPath {
   '/blog/': typeof BlogIndexRoute
   '/tools/': typeof ToolsIndexRoute
   '/api/public/save-anonymous-audit': typeof ApiPublicSaveAnonymousAuditRoute
+  '/api/public/social-promo': typeof ApiPublicSocialPromoRoute
   '/lovable/email/events': typeof LovableEmailEventsRoute
   '/api/public/hooks/ab-evaluate': typeof ApiPublicHooksAbEvaluateRoute
   '/api/public/hooks/monitor-run': typeof ApiPublicHooksMonitorRunRoute
@@ -348,6 +355,7 @@ export interface FileRoutesByTo {
   '/blog': typeof BlogIndexRoute
   '/tools': typeof ToolsIndexRoute
   '/api/public/save-anonymous-audit': typeof ApiPublicSaveAnonymousAuditRoute
+  '/api/public/social-promo': typeof ApiPublicSocialPromoRoute
   '/lovable/email/events': typeof LovableEmailEventsRoute
   '/api/public/hooks/ab-evaluate': typeof ApiPublicHooksAbEvaluateRoute
   '/api/public/hooks/monitor-run': typeof ApiPublicHooksMonitorRunRoute
@@ -393,6 +401,7 @@ export interface FileRoutesById {
   '/blog/': typeof BlogIndexRoute
   '/tools/': typeof ToolsIndexRoute
   '/api/public/save-anonymous-audit': typeof ApiPublicSaveAnonymousAuditRoute
+  '/api/public/social-promo': typeof ApiPublicSocialPromoRoute
   '/lovable/email/events': typeof LovableEmailEventsRoute
   '/api/public/hooks/ab-evaluate': typeof ApiPublicHooksAbEvaluateRoute
   '/api/public/hooks/monitor-run': typeof ApiPublicHooksMonitorRunRoute
@@ -439,6 +448,7 @@ export interface FileRouteTypes {
     | '/blog/'
     | '/tools/'
     | '/api/public/save-anonymous-audit'
+    | '/api/public/social-promo'
     | '/lovable/email/events'
     | '/api/public/hooks/ab-evaluate'
     | '/api/public/hooks/monitor-run'
@@ -483,6 +493,7 @@ export interface FileRouteTypes {
     | '/blog'
     | '/tools'
     | '/api/public/save-anonymous-audit'
+    | '/api/public/social-promo'
     | '/lovable/email/events'
     | '/api/public/hooks/ab-evaluate'
     | '/api/public/hooks/monitor-run'
@@ -527,6 +538,7 @@ export interface FileRouteTypes {
     | '/blog/'
     | '/tools/'
     | '/api/public/save-anonymous-audit'
+    | '/api/public/social-promo'
     | '/lovable/email/events'
     | '/api/public/hooks/ab-evaluate'
     | '/api/public/hooks/monitor-run'
@@ -572,6 +584,7 @@ export interface RootRouteChildren {
   BlogIndexRoute: typeof BlogIndexRoute
   ToolsIndexRoute: typeof ToolsIndexRoute
   ApiPublicSaveAnonymousAuditRoute: typeof ApiPublicSaveAnonymousAuditRoute
+  ApiPublicSocialPromoRoute: typeof ApiPublicSocialPromoRoute
   LovableEmailEventsRoute: typeof LovableEmailEventsRoute
   ApiPublicHooksAbEvaluateRoute: typeof ApiPublicHooksAbEvaluateRoute
   ApiPublicHooksMonitorRunRoute: typeof ApiPublicHooksMonitorRunRoute
@@ -828,6 +841,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicSaveAnonymousAuditRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/social-promo': {
+      id: '/api/public/social-promo'
+      path: '/api/public/social-promo'
+      fullPath: '/api/public/social-promo'
+      preLoaderRoute: typeof ApiPublicSocialPromoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/lovable/email/events': {
       id: '/lovable/email/events'
       path: '/lovable/email/events'
@@ -916,6 +936,7 @@ const rootRouteChildren: RootRouteChildren = {
   BlogIndexRoute: BlogIndexRoute,
   ToolsIndexRoute: ToolsIndexRoute,
   ApiPublicSaveAnonymousAuditRoute: ApiPublicSaveAnonymousAuditRoute,
+  ApiPublicSocialPromoRoute: ApiPublicSocialPromoRoute,
   LovableEmailEventsRoute: LovableEmailEventsRoute,
   ApiPublicHooksAbEvaluateRoute: ApiPublicHooksAbEvaluateRoute,
   ApiPublicHooksMonitorRunRoute: ApiPublicHooksMonitorRunRoute,
