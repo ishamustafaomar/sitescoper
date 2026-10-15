@@ -1740,5 +1740,30 @@
     "sources": "Fontes e limitações",
     "sourcesBody": "As descrições refletem páginas públicas dos fornecedores, não resultados testados independentemente. Funções não listadas são desconhecidas, não inexistentes. Não prometemos melhorias de conversão, tráfego ou posições.",
     "nav": "Ferramentas de roast web comparadas"
+  },
+  "aiExtras": {
+    "intelTitle": "Inteligência competitiva",
+    "intelDesc": "Pro: pesquisamos na web em tempo real por 3 concorrentes reais e o que você pode aprender com eles, com fontes.",
+    "intelRun": "Pesquisar concorrentes",
+    "researching": "Pesquisando…",
+    "doingWell": "Fazendo bem",
+    "stealThis": "Ideia para você",
+    "source": "Fonte",
+    "intelFootnote": "Baseado em resultados de pesquisa pública na web de {{date}}. Verifique as fontes antes de agir.",
+    "proOnly": "A pesquisa de concorrentes faz parte do plano Pro.",
+    "videoTitle": "Roast em vídeo",
+    "videoDesc": "Pro e Fix Pass: transforme esta auditoria em um vídeo vertical de 8 segundos para Shorts, TikTok ou X. Até 3 por dia.",
+    "videoRun": "Criar roast em vídeo",
+    "videoMaking": "Criando vídeo… {{progress}}%",
+    "videoWait": "Isso geralmente leva de 1 a 3 minutos. Você pode continuar lendo o relatório.",
+    "videoFailed": "O vídeo falhou. Tente novamente mais tarde.",
+    "videoProOnly": "Os roasts em vídeo fazem parte do Pro e do Fix Pass.",
+    "download": "Baixar vídeo",
+    "previewLabel": "Primeira olhada rápida",
+    "previewNote": "Prévia rápida apenas a partir do texto da página inicial. Sua pontuação completa está chegando.",
+    "flag_headline": "O título diz o que você oferece",
+    "flag_cta": "Chamada para ação clara",
+    "flag_trust": "Sinais de confiança visíveis",
+    "flag_speed_of_understanding": "Compreensível em 5 segundos"
   }
 }

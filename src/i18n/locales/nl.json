@@ -1740,5 +1740,30 @@
     "sources": "Bronnen en beperkingen",
     "sourcesBody": "Beschrijvingen volgen openbare aanbiederspagina’s, geen onafhankelijk geteste resultaten. Niet genoemde functies zijn onbekend, niet afwezig. Er worden geen conversie-, verkeers- of rankingverbeteringen beloofd.",
     "nav": "Website-roast-tools vergeleken"
+  },
+  "aiExtras": {
+    "intelTitle": "Concurrentenanalyse",
+    "intelDesc": "Pro: we doorzoeken het live web naar 3 echte concurrenten en wat je van hen kunt leren, inclusief bronnen.",
+    "intelRun": "Onderzoek concurrenten",
+    "researching": "Onderzoeken…",
+    "doingWell": "Gaat goed",
+    "stealThis": "Idee voor jou",
+    "source": "Bron",
+    "intelFootnote": "Gebaseerd op openbare webzoekresultaten van {{date}}. Controleer de bronnen voordat je actie onderneemt.",
+    "proOnly": "Concurrentieonderzoek is onderdeel van het Pro-abonnement.",
+    "videoTitle": "Video roast",
+    "videoDesc": "Pro en Fix Pass: verander deze audit in een verticale video van 8 seconden voor Shorts, TikTok of X. Maximaal 3 per dag.",
+    "videoRun": "Maak video roast",
+    "videoMaking": "Video maken… {{progress}}%",
+    "videoWait": "Dit duurt meestal 1–3 minuten. Je kunt ondertussen het rapport blijven lezen.",
+    "videoFailed": "De video is mislukt. Probeer het later opnieuw.",
+    "videoProOnly": "Video roasts zijn onderdeel van Pro en de Fix Pass.",
+    "download": "Video downloaden",
+    "previewLabel": "Snelle eerste blik",
+    "previewNote": "Snelle preview op basis van alleen de tekst op de homepage. Je volledige score volgt.",
+    "flag_headline": "Koptekst vertelt wat je aanbiedt",
+    "flag_cta": "Duidelijke call to action",
+    "flag_trust": "Vertrouwenssignalen zichtbaar",
+    "flag_speed_of_understanding": "Begrijpelijk binnen 5 seconden"
   }
 }

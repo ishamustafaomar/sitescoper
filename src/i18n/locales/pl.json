@@ -1740,5 +1740,30 @@
     "sources": "Źródła i ograniczenia",
     "sourcesBody": "Opisy odzwierciedlają publiczne strony dostawców, nie niezależnie testowane wyniki. Niewymienione funkcje są nieznane, nie nieobecne. Nie obiecujemy poprawy konwersji, ruchu ani pozycji.",
     "nav": "Porównanie narzędzi do roastowania stron"
+  },
+  "aiExtras": {
+    "intelTitle": "Analiza konkurencji",
+    "intelDesc": "Pro: przeszukujemy sieć w poszukiwaniu 3 realnych konkurentów i sprawdzamy, czego możesz się od nich nauczyć, wraz ze źródłami.",
+    "intelRun": "Badaj konkurencję",
+    "researching": "Analizowanie…",
+    "doingWell": "Co robią dobrze",
+    "stealThis": "Pomysł dla Ciebie",
+    "source": "Źródło",
+    "intelFootnote": "Na podstawie publicznych wyników wyszukiwania z dnia {{date}}. Sprawdź źródła przed podjęciem działań.",
+    "proOnly": "Badanie konkurencji jest częścią planu Pro.",
+    "videoTitle": "Video roast",
+    "videoDesc": "Pro i Fix Pass: zamień ten audyt w 8-sekundowe pionowe wideo na Shorts, TikTok lub X. Do 3 dziennie.",
+    "videoRun": "Stwórz video roast",
+    "videoMaking": "Tworzenie wideo… {{progress}}%",
+    "videoWait": "Zazwyczaj zajmuje to 1–3 minuty. Możesz kontynuować czytanie raportu.",
+    "videoFailed": "Tworzenie wideo nie powiodło się. Spróbuj ponownie później.",
+    "videoProOnly": "Video roasts są częścią Pro i Fix Pass.",
+    "download": "Pobierz wideo",
+    "previewLabel": "Szybki rzut oka",
+    "previewNote": "Szybki podgląd wyłącznie na podstawie tekstu ze strony głównej. Twój pełny wynik jest w drodze.",
+    "flag_headline": "Nagłówek mówi, co oferujesz",
+    "flag_cta": "Jasne wezwanie do działania",
+    "flag_trust": "Widoczne sygnały zaufania",
+    "flag_speed_of_understanding": "Zrozumiałe w 5 sekund"
   }
 }
