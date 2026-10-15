@@ -187,7 +187,7 @@ export function AnalysisPanel({ analysis, scrapeData, onRequestFullReport }: Ana
           />
           <div className="mt-4 space-y-4">
             <CompetitorIntelPanel url={scrapeData?.metadata?.sourceURL || ""} analysis={analysis} />
-            <SocialCardPanel url={scrapeData?.metadata?.sourceURL || ""} analysis={analysis} />
+            <SocialCardPanel url={scrapeData?.metadata?.sourceURL || ""} scrapeData={scrapeData} />
           </div>
         </TabsContent>
 
