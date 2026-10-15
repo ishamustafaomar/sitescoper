@@ -33,7 +33,7 @@ export function ScopeSection() {
 
           <div className="grid md:grid-cols-2 gap-6">
             {ITEMS.map(({ icon: Icon, key }) => (
-              <div key={key} className="border border-border rounded-2xl p-6 bg-card">
+              <div key={key} className="min-w-0 border-t border-border pt-5">
                 <Icon className="h-5 w-5 text-primary mb-3" aria-hidden="true" />
                 <h3 className="font-heading font-semibold text-lg mb-2">{t(`landing.scope.${key}.title`)}</h3>
                 <p className="text-sm text-muted-foreground font-body leading-relaxed">

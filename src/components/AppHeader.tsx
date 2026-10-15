@@ -50,7 +50,7 @@ export function AppHeader() {
 
   const path = location.pathname;
   const pillBase =
-    "inline-flex items-center gap-1.5 px-3 py-1.5 text-[13px] font-body border-b-2 transition-colors";
+    "inline-flex min-h-11 items-center gap-1.5 px-3 py-1.5 text-[13px] font-body border-b-2 transition-colors";
   const pillActive = "border-foreground text-foreground";
   const pillIdle = "border-transparent text-muted-foreground hover:text-foreground";
 
@@ -77,8 +77,8 @@ export function AppHeader() {
 
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-card/80 backdrop-blur-md supports-[backdrop-filter]:bg-card/70">
-      <div className="max-w-6xl mx-auto h-[60px] px-4 flex items-center justify-between gap-2 sm:gap-4">
+    <header className="sticky top-0 z-40 border-b border-border bg-card">
+      <div className="max-w-6xl mx-auto min-h-[60px] px-3 sm:px-4 grid grid-cols-[minmax(0,1fr)_auto] items-center gap-1 sm:gap-4">
         <Link
           to="/"
           onClick={(e) => {
@@ -87,7 +87,7 @@ export function AppHeader() {
               window.location.assign("/");
             }
           }}
-          className="flex shrink-0 items-center gap-2.5 hover:opacity-80 transition-opacity"
+          className="flex min-w-0 items-center gap-1.5 sm:gap-2.5 hover:opacity-80 transition-opacity"
           aria-label="SiteScoper home"
         >
           <img
@@ -95,13 +95,13 @@ export function AppHeader() {
             alt=""
             width={34}
             height={34}
-            className="h-[34px] w-[34px] object-contain"
+            className="h-7 w-7 sm:h-[34px] sm:w-[34px] shrink-0 object-contain"
           />
           <div className="flex shrink-0 flex-col items-start gap-[2px]">
             <img
               src={logoWordmark}
               alt="SiteScoper"
-              className="h-[17px] w-auto object-contain dark:invert"
+              className="h-[15px] sm:h-[17px] w-auto object-contain dark:invert"
             />
             <span className="hidden xs:block sm:block whitespace-nowrap text-[8.5px] text-muted-foreground font-body tracking-[0.18em] uppercase">
               AI Website Analyzer
@@ -109,7 +109,7 @@ export function AppHeader() {
           </div>
         </Link>
 
-        <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
+        <div className="flex shrink-0 items-center gap-0 sm:gap-2">
 
           <LanguageSwitcher />
           <ThemeToggle />
@@ -130,9 +130,11 @@ export function AppHeader() {
           )}
           {user ? (
             <div className="flex items-center gap-1">
-              <button
+              <Button
+                variant="ghost"
+                size="icon"
                 onClick={() => navigate("/account")}
-                className="h-8 w-8 rounded-full overflow-hidden font-heading text-[13px] text-primary-foreground bg-primary flex items-center justify-center hover:opacity-80 transition"
+                className="rounded-full overflow-hidden text-[13px] text-primary-foreground bg-primary hover:bg-primary/90 hover:text-primary-foreground"
                 
                 aria-label={t("nav.account")}
               >
@@ -144,15 +146,15 @@ export function AppHeader() {
                 ) : (
                   initial
                 )}
-              </button>
-              <Button variant="ghost" size="icon" className="h-8 w-8" onClick={handleSignOut} aria-label={t("nav.signOut", { defaultValue: "Sign out" })}>
+              </Button>
+              <Button variant="ghost" size="icon" className="hidden sm:inline-flex" onClick={handleSignOut} aria-label={t("nav.signOut", { defaultValue: "Sign out" })}>
                 <LogOut className="h-3.5 w-3.5" />
               </Button>
             </div>
           ) : (
             <Tooltip>
               <TooltipTrigger asChild>
-                <Button variant="outline" size="sm" onClick={() => navigate(authPath)} className="text-xs font-body" aria-label={t("nav.signIn")}>
+                <Button variant="outline" size="sm" onClick={() => navigate(authPath)} className="min-w-11 px-2 sm:px-3 text-xs font-body" aria-label={t("nav.signIn")}>
                   <LogIn className="h-3.5 w-3.5" />
                   <span className="hidden sm:inline">{t("nav.signIn")}</span>
                 </Button>
@@ -170,7 +172,7 @@ export function AppHeader() {
           )}
           <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="h-8 w-8 md:hidden" aria-label="Open menu">
+              <Button variant="ghost" size="icon" className="md:hidden" aria-label={t("nav.menu")}>
                 <Menu className="h-4 w-4" />
               </Button>
             </SheetTrigger>
@@ -186,6 +188,7 @@ export function AppHeader() {
                     <Link
                       key={item.to}
                       to={item.to}
+                       aria-current={active ? "page" : undefined}
                       onClick={() => setMobileOpen(false)}
                       className={cn(
                         "flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-body text-left transition-colors",
@@ -202,6 +205,7 @@ export function AppHeader() {
                     </Link>
                   );
                 })}
+                {user && <Button variant="ghost" onClick={handleSignOut} className="justify-start mt-4"><LogOut className="h-4 w-4" />{t("nav.signOut", { defaultValue: "Sign out" })}</Button>}
               </nav>
             </SheetContent>
           </Sheet>
@@ -219,6 +223,7 @@ export function AppHeader() {
               <Link
                 key={item.to}
                 to={item.to}
+                 aria-current={isItemActive(item) ? "page" : undefined}
                 className={cn(pillBase, "whitespace-nowrap", isItemActive(item) ? pillActive : pillIdle)}
               >
                 {Icon && <Icon className="h-3.5 w-3.5" />}

@@ -1,8 +1,8 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { AnalysisResult, ScrapeResult } from "@/lib/api";
 import { Badge } from "@/components/ui/badge";
 import { ChevronDown, ChevronUp, LayoutList, Zap, Image as ImageIcon, Calendar, Flame, AlertCircle, ArrowDown, Wand2 } from "lucide-react";
-import { useState } from "react";
+import { useId, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ImpactMatrix } from "@/components/ImpactMatrix";
@@ -16,6 +16,7 @@ import { HeadlineRewrites } from "@/components/HeadlineRewrites";
 import { CompetitorIntelPanel } from "@/components/AiExtras";
 import { SocialCardPanel } from "@/components/SocialCardPanel";
 import { Button } from "@/components/ui/button";
+import { getTrafficLevel, getTrafficStyles } from "@/components/TrafficLight";
 
 interface AnalysisPanelProps {
   analysis: AnalysisResult;
@@ -25,24 +26,27 @@ interface AnalysisPanelProps {
 }
 
 function MiniScoreBar({ score }: { score: number }) {
-  const color = score >= 80 ? "bg-accent" : score >= 50 ? "bg-primary" : "bg-destructive";
+  const styles = getTrafficStyles(getTrafficLevel(score));
+  const reduceMotion = useReducedMotion();
   return (
-    <div className="flex items-center gap-2">
-      <div className="h-1.5 w-16 rounded-full bg-border overflow-hidden">
+    <div className="flex shrink-0 items-center gap-2">
+      <div className="h-1.5 w-16 rounded-full bg-border overflow-hidden" aria-hidden="true">
         <motion.div
-          className={`h-full rounded-full ${color}`}
-          initial={{ width: 0 }}
+          className={`h-full rounded-full ${styles.dot}`}
+          initial={reduceMotion ? false : { width: 0 }}
           animate={{ width: `${score}%` }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         />
       </div>
-      <span className="text-xs font-heading font-semibold text-muted-foreground">{score}</span>
+      <span className={`text-sm font-body font-medium tabular-nums ${styles.text}`}>{score}</span>
     </div>
   );
 }
 
 export function AnalysisPanel({ analysis, scrapeData, onRequestFullReport }: AnalysisPanelProps) {
   const { t } = useTranslation();
+  const categoryId = useId();
+  const reduceMotion = useReducedMotion();
   const text = (key: string, fallback: string) => {
     const translated = t(key, { defaultValue: fallback });
     return translated === key || translated.includes("Panel.") ? fallback : translated;
@@ -62,14 +66,14 @@ export function AnalysisPanel({ analysis, scrapeData, onRequestFullReport }: Ana
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={reduceMotion ? false : { opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: 0.2 }}
-      className="space-y-4"
+      className="min-w-0 space-y-5"
     >
       {/* Partial-data banner */}
       {scrapeData?.partial && (
-        <div className="rounded-xl border border-primary/30 bg-primary/10 p-3 flex items-start gap-2.5">
+        <div className="rounded-md border border-primary/30 bg-primary/10 p-3 flex items-start gap-2.5">
           <AlertCircle className="h-4 w-4 text-primary shrink-0 mt-0.5" />
           <p className="text-xs font-body text-foreground/90 leading-relaxed">
             {scrapeData.partialReason ||
@@ -81,7 +85,7 @@ export function AnalysisPanel({ analysis, scrapeData, onRequestFullReport }: Ana
       {/* Layer 1: Verdict only — overall + 3 blockers + 3 opportunities */}
       <VerdictCard
         analysis={analysis}
-        onJumpToImpact={() => openFull()}
+        onJumpToImpact={showFull ? undefined : () => openFull()}
       />
 
       {!showFull && (
@@ -95,7 +99,7 @@ export function AnalysisPanel({ analysis, scrapeData, onRequestFullReport }: Ana
             {text("analysisPanel.seeFullReport", "See full report")}
             <ArrowDown className="h-4 w-4" />
           </Button>
-          <p className="text-[11px] text-muted-foreground font-body">
+          <p className="text-xs text-muted-foreground font-body text-center">
             {text("analysisPanel.seeFullReportSub", "Category scores, action plan, and deep diagnostics")}
           </p>
         </div>
@@ -106,12 +110,12 @@ export function AnalysisPanel({ analysis, scrapeData, onRequestFullReport }: Ana
         <>
 
       {/* Category overview grid */}
-      <div className="bg-card rounded-2xl border border-border p-5 shadow-[var(--shadow-sm)]">
+      <div className="border-y border-border py-5">
         <div className="text-[10px] font-body uppercase tracking-wider text-muted-foreground mb-3">{t("analysisPanel.categoryScoresLabel")}</div>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
           {analysis.categories.map((cat) => (
             <div key={cat.name} className="flex flex-col gap-1">
-              <span className="text-xs font-body text-muted-foreground truncate">{cat.name}</span>
+              <span className="text-xs font-body text-muted-foreground leading-relaxed">{cat.name}</span>
               <MiniScoreBar score={cat.score} />
             </div>
           ))}
@@ -123,7 +127,7 @@ export function AnalysisPanel({ analysis, scrapeData, onRequestFullReport }: Ana
 
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <TabsList className="grid w-full grid-cols-6">
+        <TabsList className="grid h-auto w-full grid-cols-3 gap-1">
           <TabsTrigger value="impact" className="gap-1.5 text-xs">
             <Flame className="h-3.5 w-3.5" />
             <span className="hidden sm:inline">{t("analysisPanel.tabs.byImpact")}</span>
@@ -192,17 +196,20 @@ export function AnalysisPanel({ analysis, scrapeData, onRequestFullReport }: Ana
           {analysis.categories.map((category, idx) => (
             <motion.div
               key={category.name}
-              initial={{ opacity: 0, y: 10 }}
+              initial={reduceMotion ? false : { opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.05 * idx }}
-              className="bg-card rounded-xl border border-border overflow-hidden shadow-[var(--shadow-sm)]"
+              className="bg-card rounded-md border border-border overflow-hidden"
             >
-              <button
+              <Button
+                variant="ghost"
+                aria-expanded={expandedCategory === idx}
+                aria-controls={expandedCategory === idx ? `${categoryId}-${idx}` : undefined}
                 onClick={() => setExpandedCategory(expandedCategory === idx ? null : idx)}
-                className="w-full flex items-center justify-between p-4 hover:bg-muted/50 transition-colors"
+                className="h-auto w-full justify-between gap-3 rounded-none p-4 text-left hover:bg-muted/50"
               >
                 <div className="flex items-center gap-3 min-w-0">
-                  <span className="font-heading font-semibold text-sm truncate">{category.name}</span>
+                  <span className="min-w-0 font-body font-medium text-sm">{category.name}</span>
                   <Badge variant="secondary" className="text-[10px] font-body shrink-0">
                     {category.score}/100
                   </Badge>
@@ -215,11 +222,12 @@ export function AnalysisPanel({ analysis, scrapeData, onRequestFullReport }: Ana
                 ) : (
                   <ChevronDown className="h-4 w-4 text-muted-foreground shrink-0" />
                 )}
-              </button>
+              </Button>
 
               {expandedCategory === idx && (
                 <motion.div
-                  initial={{ height: 0, opacity: 0 }}
+                  id={`${categoryId}-${idx}`}
+                  initial={reduceMotion ? false : { height: 0, opacity: 0 }}
                   animate={{ height: "auto", opacity: 1 }}
                   transition={{ duration: 0.25 }}
                   className="border-t border-border"

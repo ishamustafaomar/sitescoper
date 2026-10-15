@@ -1,5 +1,10 @@
 # Roadmap — Organic search growth (Sep 21, 2026)
 
+## Preview UI refinement (Oct 15, 2026)
+- [x] Refine shared controls, homepage rhythm, dashboard accessibility and report hierarchy; preserve all flows and nine-language copy.
+- [x] Apply bounded Compare/Pricing presentation fixes and verify desktop/mobile in two QA rounds; preview only, not published.
+- [ ] Separately resolve the existing stored-language hydration warning; requires an out-of-scope internationalization initialization change.
+
 Diagnosis (start of run): indexed but invisible. 258 impressions / 0 clicks last 28 days, only query was a competitor brand. 1 organic keyword in Semrush. Blog bodies were not server-rendered, 12 of 18 posts missing from sitemap, 6 posts were ~150 words, homepage claimed fake proof numbers.
 
 ## Done this run

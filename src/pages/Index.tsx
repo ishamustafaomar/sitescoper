@@ -254,13 +254,13 @@ const Index = () => {
             >
               <div className="grid lg:grid-cols-[7fr_5fr]">
                 {/* Left column — the argument */}
-                <div className="p-6 sm:p-10 lg:p-14 border-b lg:border-b-0 lg:border-r border-border flex flex-col justify-between">
+                <div className="min-w-0 p-5 sm:p-8 lg:p-10 border-b lg:border-b-0 lg:border-r border-border flex flex-col justify-between">
                   <div>
-                    <div className="inline-block border border-foreground px-2.5 py-1 text-[10px] uppercase tracking-[0.18em] font-body font-semibold mb-8 sm:mb-12">
+                    <div className="text-xs text-muted-foreground font-body mb-5 sm:mb-6">
                       {t("hero.badgeFoundersLine")}
                     </div>
 
-                    <h1 className="font-heading text-5xl sm:text-6xl lg:text-7xl leading-[0.92] mb-6">
+                    <h1 className="font-heading text-4xl sm:text-5xl xl:text-6xl leading-[1.05] mb-5 text-balance">
                       {heroHeadline ? (
                         heroHeadline
                       ) : (
@@ -273,7 +273,7 @@ const Index = () => {
                       )}
                     </h1>
 
-                    <p className="text-muted-foreground font-body text-base sm:text-lg max-w-xl leading-relaxed mb-8">
+                    <p className="text-muted-foreground font-body text-base max-w-xl leading-relaxed mb-6">
                       {heroSub ? (
                         heroSub
                       ) : (
@@ -284,7 +284,7 @@ const Index = () => {
                     {/* URL Input — the page's primary object */}
                     <div ref={inputRef}>
                       <UrlInput onSubmit={handleAnalyze} isLoading={isLoading} />
-                      <div className="mt-3">
+                      <div className="mt-1">
                         <CustomInstructions
                           value={customInstructions}
                           onChange={setCustomInstructions}
@@ -293,15 +293,15 @@ const Index = () => {
                       </div>
                     </div>
 
-                    <p className="mt-4 text-[12px] text-muted-foreground font-body">
+                    <p className="mt-2 text-xs leading-relaxed text-muted-foreground font-body">
                       {t("hero.freeScansFootnote")}
                     </p>
 
                     {/* Proof placed beside the primary action, where it can
                         actually influence the decision — not buried in a
                         testimonial section further down the page. */}
-                    <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px] font-body text-muted-foreground">
-                      <a href="#sample-report" className="inline-flex items-center gap-1.5 underline underline-offset-4 decoration-[hsl(var(--accent))] decoration-2 hover:text-[hsl(var(--accent))] transition-colors">
+                    <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs leading-relaxed font-body text-muted-foreground">
+                      <a href="#sample-report" className="inline-flex min-h-11 items-center gap-1.5 text-foreground underline underline-offset-4 decoration-accent decoration-2 hover:text-foreground transition-colors">
                         <FileText className="h-3 w-3" aria-hidden="true" />
                         {t("hero.proofSample", "See a real sample report")}
                       </a>
@@ -334,7 +334,7 @@ const Index = () => {
 
                   </div>
 
-                  <div className="mt-12 sm:mt-16 pt-6 border-t border-border flex flex-wrap gap-x-8 gap-y-2 text-[11px] uppercase tracking-[0.12em] font-body font-medium text-muted-foreground">
+                  <div className="mt-6 sm:mt-8 pt-4 border-t border-border flex flex-wrap gap-x-6 gap-y-2 text-xs leading-relaxed font-body text-muted-foreground">
                     <span>{t("hero.signUpForThree")}</span>
                     <span>{t("hero.multiPageCrawl")}</span>
                     <span>{t("hero.export")}</span>
@@ -342,9 +342,9 @@ const Index = () => {
                 </div>
 
                 {/* Right column — the evidence */}
-                <div className="bg-secondary p-6 sm:p-10 lg:p-12 flex flex-col justify-center">
+                <div className="min-w-0 bg-secondary p-5 sm:p-8 lg:p-10 flex flex-col justify-center">
                   <HeroPreview />
-                  <p className="mt-8 font-heading italic text-[13px] leading-snug text-muted-foreground">
+                  <p className="mt-5 font-body text-xs leading-relaxed text-muted-foreground">
                     {t("hero.evidenceCaption", "A real verdict, not a checklist. Every scan is scored the same way.")}
                   </p>
                 </div>
@@ -401,7 +401,7 @@ const Index = () => {
                       </a>
                     )}
                   </div>
-                  <Button variant="hero" size="default" onClick={handleExportPDF} className="rounded-xl">
+                  <Button variant="outline" size="default" onClick={handleExportPDF}>
                     {user && isPro ? <Download className="h-4 w-4" /> : <Lock className="h-4 w-4" />}
                     {!user
                       ? t("index.downloadNeedsAccount", "Download this report — free account")
@@ -413,7 +413,7 @@ const Index = () => {
               )}
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div className="space-y-4">
+                <div className="min-w-0 space-y-4">
                   <h2 className="font-heading font-semibold text-xs text-muted-foreground uppercase tracking-widest flex items-center gap-2">
                     <Link2 className="h-3.5 w-3.5" />
                     Website Preview
@@ -452,7 +452,7 @@ const Index = () => {
                   )}
                 </div>
 
-                <div className="space-y-4">
+                <div className="min-w-0 space-y-4">
                   <h2 className="font-heading font-semibold text-xs text-muted-foreground uppercase tracking-widest flex items-center gap-2">
                     <Sparkles className="h-3.5 w-3.5" />
                     AI Analysis
@@ -583,7 +583,7 @@ const Index = () => {
             <a target="_blank" rel="noopener" href="https://goodaitools.com/ai/sitescoper"><img src="https://goodaitools.com/assets/images/badge.png" alt="Good AI Tools" height={54} loading="lazy" /></a>
             <a href="https://best-ai.org" target="_blank" rel="dofollow"><img src="https://best-ai.org/images/badge-best-ai-org.png" srcSet="https://best-ai.org/images/badge-best-ai-org.png 1x, https://best-ai.org/images/badge-best-ai-org@2x.png 2x" alt="Listed on Best-AI.org" width={200} height={48} loading="lazy" className="h-12 w-auto" /></a>
           </div>
-          <nav className="flex items-center gap-5" aria-label="Footer">
+          <nav className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2" aria-label="Footer">
             <Link to="/pricing" className="hover:text-foreground transition-colors">Pricing</Link>
             <Link to="/blog" className="hover:text-foreground transition-colors">Blog</Link>
             <Link to="/ai-website-audit-tool" className="hover:text-foreground transition-colors">AI Audit Tool</Link>

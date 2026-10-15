@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useId, useState } from "react";
 import { Target, Sparkles, AlertTriangle, ChevronDown, Scale } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import type { AnalysisResult, AnalysisCategory } from "@/lib/api";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
 export const catKey = (n: string) =>
   n.toLowerCase().replace(/&|and|the|mechanics/g, " ").replace(/[^a-z ]/g, " ").trim().split(/\s+/)[0] ?? n;
@@ -36,6 +37,7 @@ export function CompareInsights({ a, b, nameA, nameB }: { a: AnalysisResult; b: 
   const gap = b.overall_score - a.overall_score;
   const pa = countPri(a), pb = countPri(b);
   const [open, setOpen] = useState<string | null>(null);
+  const panelId = useId();
 
   return (
     <div className="space-y-6">
@@ -132,15 +134,15 @@ export function CompareInsights({ a, b, nameA, nameB }: { a: AnalysisResult; b: 
             r.b!.sub_scores?.forEach((s) => subs.set(s.name, { ...subs.get(s.name), b: s.score }));
             return (
               <div key={r.key}>
-                <button onClick={() => setOpen(isOpen ? null : r.key)} className="w-full flex items-center justify-between px-5 py-3 hover:bg-muted/40 text-left">
-                  <span className="text-sm font-heading font-semibold">{r.icon} {r.name}</span>
-                  <span className="flex items-center gap-3 text-xs font-body tabular-nums">
+                <Button variant="ghost" aria-expanded={isOpen} aria-controls={isOpen ? `${panelId}-${r.key}` : undefined} onClick={() => setOpen(isOpen ? null : r.key)} className="w-full h-auto rounded-none justify-between gap-3 px-4 py-3 hover:bg-muted/40 text-left">
+                  <span className="min-w-0 text-sm font-body font-medium">{r.icon} {r.name}</span>
+                  <span className="flex shrink-0 items-center gap-3 text-xs font-body tabular-nums">
                     {r.a!.score} – {r.b!.score}
                     <ChevronDown className={cn("h-4 w-4 transition-transform", isOpen && "rotate-180")} />
                   </span>
-                </button>
+                </Button>
                 {isOpen && (
-                  <div className="px-5 pb-4 space-y-3">
+                  <div id={`${panelId}-${r.key}`} className="px-5 pb-4 space-y-3">
                     {subs.size > 0 && (
                       <div className="space-y-1">
                         {Array.from(subs.entries()).map(([n, v]) => (

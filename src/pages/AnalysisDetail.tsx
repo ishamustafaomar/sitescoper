@@ -155,10 +155,10 @@ export default function AnalysisDetail() {
   return (
     <div className="min-h-screen bg-background">
       <AppHeader />
-      <main className="max-w-4xl mx-auto px-4 py-8 space-y-6">
-        <div className="flex items-center justify-between gap-3 flex-wrap">
-          <div className="flex items-center gap-3 min-w-0">
-            <Button variant="ghost" size="icon" onClick={() => navigate(-1)} aria-label="Go back">
+      <main className="max-w-4xl mx-auto px-4 pt-8 pb-28 space-y-6">
+        <div className="grid grid-cols-1 gap-4 border-b border-border pb-5">
+          <div className="grid grid-cols-[auto_auto_minmax(0,1fr)] items-center gap-2 min-w-0">
+            <Button variant="ghost" size="icon" onClick={() => navigate(-1)} aria-label={t("analysisDetail.goBack")}>
               <ArrowLeft className="h-4 w-4" />
             </Button>
             <Button variant="ghost" size="sm" onClick={() => navigate("/")} className="text-xs font-body">
@@ -166,13 +166,13 @@ export default function AnalysisDetail() {
               {t("analysisDetail.home")}
             </Button>
             <div className="min-w-0">
-              <h2 className="font-heading font-bold text-lg truncate">{record.url}</h2>
+              <h1 className="font-body font-medium text-base break-all">{record.url}</h1>
               <p className="text-xs text-muted-foreground font-body">
                 {t("analysisDetail.analyzedAt", { date: new Date(record.created_at).toLocaleString() })}
               </p>
             </div>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <Button variant="outline" size="sm" onClick={handleShare} disabled={sharing}>
               {copied ? <Check className="h-3.5 w-3.5" /> : sharing ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Share2 className="h-3.5 w-3.5" />}
               {copied ? t("analysisDetail.copied") : t("analysisDetail.share")}
@@ -185,19 +185,21 @@ export default function AnalysisDetail() {
         </div>
 
         {(record as any).share_token && (
-          <div className="bg-muted/40 border border-border rounded-lg px-3 py-2 flex items-center gap-2 text-xs font-body">
+          <div className="bg-muted/40 border border-border rounded-md px-3 py-2 grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2 text-xs font-body">
             <Share2 className="h-3 w-3 text-muted-foreground" />
-            <span className="text-muted-foreground">{t("analysisDetail.publicLink")}</span>
-            <code className="truncate flex-1 text-foreground">
+            <div className="min-w-0"><span className="block text-muted-foreground mb-1">{t("analysisDetail.publicLink")}</span>
+            <code className="block truncate text-foreground">
               {window.location.origin}/share/{(record as any).share_token}
             </code>
-            <button
+            </div>
+            <Button
+              variant="ghost"
+              size="icon"
               onClick={handleShare}
-              className="text-primary hover:text-primary/80 transition-colors shrink-0"
-              aria-label="Copy"
+              aria-label={t("analysisDetail.share")}
             >
               <Copy className="h-3 w-3" />
-            </button>
+            </Button>
           </div>
         )}
 
@@ -238,13 +240,14 @@ export default function AnalysisDetail() {
       {isPro ? (
         <ChatPanel analysis={analysis} scrapeData={scrapeData} url={record.url} analysisId={record.id} />
       ) : (
-        <button
+        <Button
+          variant="outline"
           onClick={() => navigate("/pricing")}
-          className="fixed bottom-6 right-6 z-40 flex items-center gap-2 px-4 py-3 rounded-full bg-card border border-border shadow-lg hover:shadow-xl transition text-sm font-body"
+          className="fixed bottom-4 right-4 left-4 sm:left-auto z-40 px-4 py-3 rounded-md bg-card border-border shadow-[var(--shadow-sm)] text-sm font-body"
         >
           <Lock className="h-4 w-4 text-primary" />
           <span>{t("analysisDetail.chatWithReport")}<span className="text-primary font-semibold">Pro</span></span>
-        </button>
+        </Button>
       )}
     </div>
   );

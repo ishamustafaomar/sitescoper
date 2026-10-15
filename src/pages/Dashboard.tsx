@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import { AnimatePresence } from "framer-motion";
-import { useNavigate } from "@/lib/router-compat";
+import { Link, useNavigate } from "@/lib/router-compat";
 import { Globe, Clock, Search, Sparkles, Loader2, Plus, Swords } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
@@ -15,6 +15,7 @@ import { StatsOverview } from "@/components/dashboard/StatsOverview";
 import { AddWebsiteForm } from "@/components/dashboard/AddWebsiteForm";
 import { WebsiteCard, Website } from "@/components/dashboard/WebsiteCard";
 import { SEODetailPanel } from "@/components/dashboard/SEODetailPanel";
+import { averageHealthScore } from "@/lib/dashboard-health";
 
 interface AnalysisRecord {
   id: string;
@@ -141,13 +142,7 @@ export default function Dashboard() {
     ? websites.find((w) => w.id === seoWebsiteId)
     : null;
 
-  const avgScore =
-    websites.length > 0
-      ? Math.round(
-          websites.filter((w) => w.last_score).reduce((acc, w) => acc + (w.last_score || 0), 0) /
-            Math.max(1, websites.filter((w) => w.last_score).length)
-        )
-      : null;
+  const avgScore = averageHealthScore(websites);
 
   // Aggregate KPIs across most recent analysis per website
   const latestByWebsite = useMemo(() => {
@@ -200,8 +195,8 @@ export default function Dashboard() {
     <div className="min-h-screen bg-background">
       <AppHeader />
 
-      <main className="max-w-7xl mx-auto px-4 py-8 space-y-8">
-        <h1 className="sr-only">{t("dashboard.srH1")}</h1>
+      <main className="max-w-6xl mx-auto px-4 py-8 space-y-8">
+        <h1 className="font-heading text-3xl sm:text-4xl">{t("dashboard.srH1")}</h1>
         <StatsOverview
           websiteCount={websites.length}
           historyCount={history.length}
@@ -213,14 +208,14 @@ export default function Dashboard() {
         <AddWebsiteForm onAdd={addWebsite} />
 
         {/* Compare CTA */}
-        <div className="flex items-center justify-between gap-3 px-4 py-3 rounded-xl border border-primary/20 bg-gradient-to-r from-primary/5 to-transparent">
+        <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 py-4 border-y border-border">
           <div className="flex items-center gap-3 min-w-0">
             <div className="p-2 rounded-lg bg-primary/10 text-primary shrink-0">
               <Swords className="h-4 w-4" />
             </div>
             <div className="min-w-0">
-              <p className="text-sm font-heading font-semibold">{t("dashboard.battleTitle")}</p>
-              <p className="text-[11px] text-muted-foreground font-body truncate">{t("dashboard.battleDesc")}</p>
+              <p className="text-sm font-body font-medium">{t("dashboard.battleTitle")}</p>
+              <p className="text-xs leading-relaxed text-muted-foreground font-body">{t("dashboard.battleDesc")}</p>
             </div>
           </div>
           <Button size="sm" variant="outline" onClick={() => navigate("/compare")} className="shrink-0">
@@ -250,7 +245,7 @@ export default function Dashboard() {
           </h2>
 
           {websites.length === 0 ? (
-            <div className="bg-gradient-to-br from-card to-muted/30 rounded-2xl border border-dashed border-border p-12 text-center shadow-[var(--shadow-sm)]">
+            <div className="border-y border-dashed border-border px-4 py-10 text-center">
               <div className="inline-flex p-3 rounded-2xl bg-primary/10 mb-4">
                 <Globe className="h-8 w-8 text-primary" />
               </div>
@@ -290,7 +285,7 @@ export default function Dashboard() {
           </h2>
 
           {history.length === 0 ? (
-            <div className="bg-gradient-to-br from-card to-muted/30 rounded-2xl border border-dashed border-border p-12 text-center shadow-[var(--shadow-sm)]">
+            <div className="border-y border-dashed border-border px-4 py-10 text-center">
               <div className="inline-flex p-3 rounded-2xl bg-accent/10 mb-4">
                 <Search className="h-8 w-8 text-accent" />
               </div>
@@ -300,27 +295,27 @@ export default function Dashboard() {
               </p>
             </div>
           ) : (
-            <div className="bg-card rounded-xl border border-border overflow-hidden shadow-[var(--shadow-sm)]">
+            <div className="bg-card rounded-md border border-border overflow-hidden">
               <div className="divide-y divide-border">
                 {history.slice(0, historyVisible).map((record) => {
                   const lvl = getTrafficLevel(record.overall_score);
                   const sty = getTrafficStyles(lvl);
                   return (
-                    <div
+                    <Link
                       key={record.id}
-                      className="flex items-center justify-between p-4 hover:bg-muted/50 transition-colors cursor-pointer group"
-                      onClick={() => navigate(`/analysis/${record.id}`)}
+                      to={`/analysis/${record.id}`}
+                      className="block p-4 hover:bg-muted/50 focus-visible:bg-muted transition-colors group"
                     >
                       <div className="flex items-center gap-3 min-w-0">
                         <div className={cn(
-                          "h-10 w-10 rounded-xl flex items-center justify-center font-heading font-bold text-sm shrink-0",
+                          "h-11 w-11 rounded-md flex items-center justify-center font-body font-semibold tabular-nums text-base shrink-0",
                           sty.chip
                         )}>
                           {record.overall_score}
                         </div>
                         <div className="min-w-0">
-                          <p className="text-sm font-heading font-medium truncate">{record.url}</p>
-                          <div className="flex items-center gap-2 mt-0.5">
+                          <p className="text-sm font-body font-medium truncate">{record.url}</p>
+                          <div className="flex flex-wrap items-center gap-2 mt-0.5">
                             <TrafficDot score={record.overall_score} size="sm" />
                             <span className={cn("text-[10px] font-body font-medium", sty.text)}>
                               {getTrafficLabel(lvl)}
@@ -331,7 +326,7 @@ export default function Dashboard() {
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </Link>
                   );
                 })}
               </div>
@@ -351,13 +346,13 @@ export default function Dashboard() {
         </div>
 
         {/* Quick Analyze CTA */}
-        <div className="bg-card rounded-xl border border-border p-8 text-center shadow-[var(--shadow-sm)]">
+        <div className="border-t border-border py-8 text-center">
           <Sparkles className="h-8 w-8 text-primary mx-auto mb-3" />
           <h3 className="font-heading font-semibold text-lg mb-2">{t("dashboard.quickTitle")}</h3>
           <p className="text-muted-foreground font-body text-sm mb-4">
             {t("dashboard.quickDesc")}
           </p>
-          <Button variant="hero" onClick={() => navigate("/")} className="rounded-xl">
+          <Button variant="outline" onClick={() => navigate("/")}>
             <Sparkles className="h-4 w-4" />
             {t("dashboard.goAnalyzer")}
           </Button>

@@ -96,7 +96,7 @@ export default function Compare() {
               placeholder={t("compare.yourSitePlaceholder")}
               value={a.url}
               onChange={(e) => setA((s) => ({ ...s, url: e.target.value }))}
-              className="h-12 rounded-xl"
+              className="h-12"
             />
             <div className="hidden md:flex items-center justify-center">
               <div className="h-10 w-10 rounded-full bg-primary/10 text-primary flex items-center justify-center font-heading font-bold">
@@ -109,9 +109,9 @@ export default function Compare() {
               placeholder={t("compare.competitorPlaceholder")}
               value={b.url}
               onChange={(e) => setB((s) => ({ ...s, url: e.target.value }))}
-              className="h-12 rounded-xl"
+              className="h-12"
             />
-            <Button type="submit" variant="hero" size="lg" className="md:col-span-3 rounded-xl">
+            <Button type="submit" variant="hero" size="lg" className="md:col-span-3" disabled={!a.url.trim() || !b.url.trim()}>
               {t("compare.startBattle")}
               <ArrowRight className="h-4 w-4" />
             </Button>
@@ -189,7 +189,7 @@ function BattleResults({ a, b, onReset }: { a: Side; b: Side; onReset: () => voi
       className="space-y-6"
     >
       {/* Verdict */}
-      <div className="rounded-3xl border border-border bg-card p-6 md:p-8 shadow-[var(--shadow-md)] text-center space-y-4">
+      <div className="border-y border-border py-6 md:py-8 text-center space-y-4">
         <div className="inline-flex items-center gap-2 text-xs font-body uppercase tracking-[0.2em] text-muted-foreground">
           <Trophy className="h-3.5 w-3.5" />
           {t("compare.battleVerdict")}
@@ -199,7 +199,7 @@ function BattleResults({ a, b, onReset }: { a: Side; b: Side; onReset: () => voi
             <>{t("compare.draw")}</>
           ) : (
             <>
-              <span className="bg-gradient-to-r from-primary to-[hsl(280,70%,60%)] bg-clip-text text-transparent">
+              <span className="text-foreground break-all">
                 {hostnameOf((winnerOverall === "a" ? a : b).url)}
               </span>{" "}
               {t("compare.winsOverall")}
@@ -223,8 +223,8 @@ function BattleResults({ a, b, onReset }: { a: Side; b: Side; onReset: () => voi
       <CompareInsights a={a.analysis} b={b.analysis} nameA={hostnameOf(a.url)} nameB={hostnameOf(b.url)} />
 
       {/* Category-by-category */}
-      <div className="rounded-2xl border border-border bg-card overflow-hidden shadow-[var(--shadow-sm)]">
-        <div className="px-5 py-4 border-b border-border flex items-center justify-between">
+      <div className="rounded-md border border-border bg-card overflow-hidden">
+        <div className="px-4 py-4 border-b border-border grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3">
           <h3 className="font-heading font-semibold text-sm">{t("compare.categoryByCategory")}</h3>
           <span className="text-[10px] font-body uppercase tracking-wider text-muted-foreground">
             {t("compare.higherIsBetter")}
@@ -234,10 +234,10 @@ function BattleResults({ a, b, onReset }: { a: Side; b: Side; onReset: () => voi
           {categories.map((c) => {
             const winner = c.a == null || c.b == null ? null : c.a === c.b ? "tie" : c.a > c.b ? "a" : "b";
             return (
-              <div key={c.name} className="grid grid-cols-[1fr_auto_1fr] items-center gap-3 px-5 py-3">
+              <div key={c.name} className="grid grid-cols-[minmax(0,1fr)_minmax(0,1.5fr)_minmax(0,1fr)] items-center gap-2 px-3 sm:px-5 py-3">
                 <CategoryBar score={c.a} winner={winner === "a"} align="right" />
                 <div className="text-center min-w-0 px-2">
-                  <p className="text-xs font-heading font-semibold truncate">
+                  <p className="text-xs leading-relaxed font-body font-medium">
                     {c.icon && <span className="mr-1">{c.icon}</span>}
                     {c.name}
                   </p>
@@ -263,8 +263,8 @@ function ScoreCard({ side, highlight, label }: { side: Side; highlight: boolean;
   const sty = getTrafficStyles(lvl);
   return (
     <div className={cn(
-      "rounded-2xl border p-5 transition-all",
-      highlight ? "border-primary shadow-[var(--shadow-glow)] bg-gradient-to-br from-primary/5 to-transparent" : "border-border bg-card"
+      "min-w-0 rounded-md border p-5",
+      highlight ? "border-primary bg-card" : "border-border bg-card"
     )}>
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2 min-w-0">
@@ -273,14 +273,14 @@ function ScoreCard({ side, highlight, label }: { side: Side; highlight: boolean;
         </div>
         <TrafficChip score={side.analysis.overall_score} showScore={false} />
       </div>
-      <p className="font-heading font-bold text-base truncate mb-3">{hostnameOf(side.url)}</p>
+      <p className="font-body font-medium text-base break-all mb-3">{hostnameOf(side.url)}</p>
       <div className="flex items-baseline gap-2">
-        <span className={cn("font-heading font-bold text-5xl", sty.text)}>
+        <span className={cn("font-body font-semibold tabular-nums text-5xl", sty.text)}>
           {side.analysis.overall_score}
         </span>
         <span className="text-sm text-muted-foreground font-body">/ 100</span>
       </div>
-      <p className="text-xs text-muted-foreground font-body mt-2 line-clamp-2">
+      <p className="text-sm leading-relaxed text-muted-foreground font-body mt-3">
         {side.analysis.summary}
       </p>
     </div>
@@ -294,9 +294,9 @@ function CategoryBar({ score, winner, align }: { score?: number; winner: boolean
     return <div className="text-[10px] text-muted-foreground font-body italic text-center">—</div>;
   }
   return (
-    <div className={cn("flex items-center gap-2", align === "right" ? "flex-row-reverse" : "flex-row")}>
+    <div className={cn("flex min-w-0 items-center gap-2", align === "right" ? "flex-row-reverse" : "flex-row")}>
       <span className={cn(
-        "font-heading font-bold text-sm tabular-nums",
+        "font-body font-medium text-sm tabular-nums",
         winner ? sty.text : "text-muted-foreground"
       )}>
         {score}
@@ -306,7 +306,7 @@ function CategoryBar({ score, winner, align }: { score?: number; winner: boolean
           initial={{ width: 0 }}
           animate={{ width: `${score}%` }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className={cn("h-full rounded-full", sty.dot, winner && "shadow-[0_0_8px_currentColor]")}
+          className={cn("h-full rounded-full", sty.dot)}
         />
       </div>
     </div>
