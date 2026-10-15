@@ -186,7 +186,10 @@ Rewrite the copy now as JSON.`;
 
     let parsed: Omit<CopyResult, "url" | "current">;
     try {
-      parsed = JSON.parse(await streamJson(SYSTEM, user));
+      const { claudeText, extractJson } = await import("@/lib/claude.server");
+      const schemaHint = `\n\nReply with ONLY a JSON object, no prose, matching exactly this JSON schema:\n${JSON.stringify(SCHEMA)}`;
+      parsed = extractJson(await claudeText({ system: SYSTEM + schemaHint, user, label: "The copywriter" })) as Omit<CopyResult, "url" | "current">;
+      if (!Array.isArray(parsed?.headlines)) throw new Error("The copywriter could not finish. Please try again.");
     } catch (e) {
       return { ok: false, error: e instanceof Error && e.message.startsWith("The copywriter") ? e.message : "The copywriter could not finish. Please try again." };
     }
