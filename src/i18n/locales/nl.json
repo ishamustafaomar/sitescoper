@@ -1559,6 +1559,10 @@
       "roastComparison": {
         "title": "Website-roast-vergelijking",
         "desc": "Vergelijk SiteScoper, RoastFast, PageRoast en Roast My Web met bronnen en duidelijke beperkingen."
+      },
+      "aiUpgrades": {
+        "title": "Directe eerste blik, concurrentie-informatie en video roasts",
+        "desc": "Bekijk een snelle eerste score terwijl uw audit draait. Pro-gebruikers kunnen echte concurrenten onderzoeken met bronvermelding en elke audit veranderen in een korte video roast. Tekstherstructureringen zijn nu scherper en audits hebben een back-up lezer als een site moeilijk te laden is."
       }
     }
   },

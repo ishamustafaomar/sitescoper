@@ -1559,6 +1559,10 @@
       "roastComparison": {
         "title": "Website roast comparison",
         "desc": "Compare SiteScoper, RoastFast, PageRoast and Roast My Web, with sourced offers and clear limitations."
+      },
+      "aiUpgrades": {
+        "title": "Instant first look, competitor intel and video roasts",
+        "desc": "See a quick first-look score while your audit runs. Pro users can research real competitors with sources and turn any audit into a short video roast. Copy rewrites are now sharper, and audits have a backup reader if a site is hard to load."
       }
     }
   },

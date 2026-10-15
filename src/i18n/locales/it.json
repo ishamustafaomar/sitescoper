@@ -1559,6 +1559,10 @@
       "roastComparison": {
         "title": "Confronto roast web",
         "desc": "Confronta SiteScoper, RoastFast, PageRoast e Roast My Web con fonti e limiti chiari."
+      },
+      "aiUpgrades": {
+        "title": "Analisi istantanea, dati sui competitor e video roast",
+        "desc": "Visualizza un punteggio preliminare immediato mentre l'audit è in corso. Gli utenti Pro possono analizzare competitor reali con relative fonti e trasformare qualsiasi audit in un breve video roast. I testi suggeriti sono ora più precisi e gli audit dispongono di un lettore di backup se un sito è difficile da caricare."
       }
     }
   },
