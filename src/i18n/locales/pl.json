@@ -1563,6 +1563,10 @@
       "aiUpgrades": {
         "title": "Błyskawiczny pierwszy wgląd, dane o konkurencji i wideo-roasty",
         "desc": "Zobacz wstępny wynik, podczas gdy Twój audyt jest w toku. Użytkownicy Pro mogą analizować prawdziwą konkurencję wraz ze źródłami oraz zamienić każdy audyt w krótki wideo-roast. Sugestie tekstowe są teraz trafniejsze, a audyty posiadają zapasowy czytnik na wypadek trudności z załadowaniem strony."
+      },
+      "socialCard": {
+        "title": "Karty promocyjne zamiast wideo",
+        "desc": "Zamień każdy raport w obraz na Instagram lub LinkedIn z wynikiem i mocnymi stronami."
       }
     }
   },
@@ -1769,5 +1773,22 @@
     "flag_cta": "Jasne wezwanie do działania",
     "flag_trust": "Widoczne sygnały zaufania",
     "flag_speed_of_understanding": "Zrozumiałe w 5 sekund"
+  },
+  "socialCard": {
+    "title": "Karta promocyjna",
+    "desc": "Pobierz gotowy obraz z wynikiem na Instagram, LinkedIn lub X. Za darmo i od razu.",
+    "format": {
+      "square": "Kwadrat",
+      "story": "Relacja"
+    },
+    "theme": {
+      "ink": "Atrament",
+      "paper": "Papier",
+      "glow": "Blask"
+    },
+    "download": "Pobierz PNG",
+    "cardTitle": "Wynik strony",
+    "cardWins": "Mocne strony",
+    "cardFooter": "Sprawdzone przez sitescoper.com"
   }
 }
