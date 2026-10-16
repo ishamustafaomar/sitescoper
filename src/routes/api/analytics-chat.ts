@@ -1,0 +1,2 @@
+import { createFileRoute } from '@tanstack/react-router';
+export const Route = createFileRoute('/api/analytics-chat')({ staticData: { sitemap: false }, server: { handlers: { POST: async ({ request }) => { const { handleAnalyticsChat } = await import('@/lib/analytics/chat.server'); return handleAnalyticsChat(request); } } } });
