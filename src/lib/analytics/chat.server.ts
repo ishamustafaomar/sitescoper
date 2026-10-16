@@ -53,7 +53,7 @@ export async function handleAnalyticsChat(request: Request) {
   let upstreamStatus = 0;
   let upstreamMessage = '';
   const run = createLovableAiGatewayRunIdFetch();
-  const gatewayFetch: typeof fetch = async (input, init) => { baseURL: 'https://ai.gateway.lovable.dev/v1', apiKey, headers: { 'Lovable-API-Key': apiKey, 'X-Lovable-AIG-SDK': 'vercel-ai-sdk' }, fetch: async (input, init) => {
+  const gatewayFetch = async (input: RequestInfo | URL, init?: RequestInit) => {
     const response = await run.fetch(input as RequestInfo, init);
     if (!response.ok) {
       upstreamStatus = response.status;
