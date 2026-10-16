@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AccountRouteImport } from './routes/account'
 import { Route as AiWebsiteAuditToolRouteImport } from './routes/ai-website-audit-tool'
+import { Route as AnalyticsRouteImport } from './routes/analytics'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as BestAiWebsiteAuditToolsRouteImport } from './routes/best-ai-website-audit-tools'
 import { Route as CompareRouteImport } from './routes/compare'
@@ -35,6 +36,8 @@ import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as AdminRedditRouteImport } from './routes/admin/reddit'
 import { Route as AdminYoutubeRouteImport } from './routes/admin/youtube'
 import { Route as AnalysisIdRouteImport } from './routes/analysis/$id'
+import { Route as AnalyticsIndexRouteImport } from './routes/analytics.index'
+import { Route as AnalyticsThreadIdRouteImport } from './routes/analytics.$threadId'
 import { Route as ApiAnalyticsChatRouteImport } from './routes/api/analytics-chat'
 import { Route as BlogIndexRouteImport } from './routes/blog/index'
 import { Route as BlogSlugRouteImport } from './routes/blog/$slug'
@@ -72,6 +75,11 @@ const AccountRoute = AccountRouteImport.update({
 const AiWebsiteAuditToolRoute = AiWebsiteAuditToolRouteImport.update({
   id: '/ai-website-audit-tool',
   path: '/ai-website-audit-tool',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AnalyticsRoute = AnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthRoute = AuthRouteImport.update({
@@ -184,6 +192,16 @@ const AnalysisIdRoute = AnalysisIdRouteImport.update({
   path: '/analysis/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AnalyticsIndexRoute = AnalyticsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AnalyticsRoute,
+} as any)
+const AnalyticsThreadIdRoute = AnalyticsThreadIdRouteImport.update({
+  id: '/$threadId',
+  path: '/$threadId',
+  getParentRoute: () => AnalyticsRoute,
+} as any)
 const ApiAnalyticsChatRoute = ApiAnalyticsChatRouteImport.update({
   id: '/api/analytics-chat',
   path: '/api/analytics-chat',
@@ -285,6 +303,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/account': typeof AccountRoute
   '/ai-website-audit-tool': typeof AiWebsiteAuditToolRoute
+  '/analytics': typeof AnalyticsRouteWithChildren
   '/auth': typeof AuthRoute
   '/best-ai-website-audit-tools': typeof BestAiWebsiteAuditToolsRoute
   '/compare': typeof CompareRoute
@@ -306,6 +325,7 @@ export interface FileRoutesByFullPath {
   '/admin/reddit': typeof AdminRedditRoute
   '/admin/youtube': typeof AdminYoutubeRoute
   '/analysis/$id': typeof AnalysisIdRoute
+  '/analytics/$threadId': typeof AnalyticsThreadIdRoute
   '/api/analytics-chat': typeof ApiAnalyticsChatRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/checkout/return': typeof CheckoutReturnRoute
@@ -314,6 +334,7 @@ export interface FileRoutesByFullPath {
   '/tools/llms-txt-generator': typeof ToolsLlmsTxtGeneratorRoute
   '/tools/open-graph-checker': typeof ToolsOpenGraphCheckerRoute
   '/admin/': typeof AdminIndexRoute
+  '/analytics/': typeof AnalyticsIndexRoute
   '/blog/': typeof BlogIndexRoute
   '/tools/': typeof ToolsIndexRoute
   '/api/public/save-anonymous-audit': typeof ApiPublicSaveAnonymousAuditRoute
@@ -352,6 +373,7 @@ export interface FileRoutesByTo {
   '/admin/reddit': typeof AdminRedditRoute
   '/admin/youtube': typeof AdminYoutubeRoute
   '/analysis/$id': typeof AnalysisIdRoute
+  '/analytics/$threadId': typeof AnalyticsThreadIdRoute
   '/api/analytics-chat': typeof ApiAnalyticsChatRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/checkout/return': typeof CheckoutReturnRoute
@@ -360,6 +382,7 @@ export interface FileRoutesByTo {
   '/tools/llms-txt-generator': typeof ToolsLlmsTxtGeneratorRoute
   '/tools/open-graph-checker': typeof ToolsOpenGraphCheckerRoute
   '/admin': typeof AdminIndexRoute
+  '/analytics': typeof AnalyticsIndexRoute
   '/blog': typeof BlogIndexRoute
   '/tools': typeof ToolsIndexRoute
   '/api/public/save-anonymous-audit': typeof ApiPublicSaveAnonymousAuditRoute
@@ -378,6 +401,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/account': typeof AccountRoute
   '/ai-website-audit-tool': typeof AiWebsiteAuditToolRoute
+  '/analytics': typeof AnalyticsRouteWithChildren
   '/auth': typeof AuthRoute
   '/best-ai-website-audit-tools': typeof BestAiWebsiteAuditToolsRoute
   '/compare': typeof CompareRoute
@@ -399,6 +423,7 @@ export interface FileRoutesById {
   '/admin/reddit': typeof AdminRedditRoute
   '/admin/youtube': typeof AdminYoutubeRoute
   '/analysis/$id': typeof AnalysisIdRoute
+  '/analytics/$threadId': typeof AnalyticsThreadIdRoute
   '/api/analytics-chat': typeof ApiAnalyticsChatRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/checkout/return': typeof CheckoutReturnRoute
@@ -407,6 +432,7 @@ export interface FileRoutesById {
   '/tools/llms-txt-generator': typeof ToolsLlmsTxtGeneratorRoute
   '/tools/open-graph-checker': typeof ToolsOpenGraphCheckerRoute
   '/admin/': typeof AdminIndexRoute
+  '/analytics/': typeof AnalyticsIndexRoute
   '/blog/': typeof BlogIndexRoute
   '/tools/': typeof ToolsIndexRoute
   '/api/public/save-anonymous-audit': typeof ApiPublicSaveAnonymousAuditRoute
@@ -426,6 +452,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/account'
     | '/ai-website-audit-tool'
+    | '/analytics'
     | '/auth'
     | '/best-ai-website-audit-tools'
     | '/compare'
@@ -447,6 +474,7 @@ export interface FileRouteTypes {
     | '/admin/reddit'
     | '/admin/youtube'
     | '/analysis/$id'
+    | '/analytics/$threadId'
     | '/api/analytics-chat'
     | '/blog/$slug'
     | '/checkout/return'
@@ -455,6 +483,7 @@ export interface FileRouteTypes {
     | '/tools/llms-txt-generator'
     | '/tools/open-graph-checker'
     | '/admin/'
+    | '/analytics/'
     | '/blog/'
     | '/tools/'
     | '/api/public/save-anonymous-audit'
@@ -493,6 +522,7 @@ export interface FileRouteTypes {
     | '/admin/reddit'
     | '/admin/youtube'
     | '/analysis/$id'
+    | '/analytics/$threadId'
     | '/api/analytics-chat'
     | '/blog/$slug'
     | '/checkout/return'
@@ -501,6 +531,7 @@ export interface FileRouteTypes {
     | '/tools/llms-txt-generator'
     | '/tools/open-graph-checker'
     | '/admin'
+    | '/analytics'
     | '/blog'
     | '/tools'
     | '/api/public/save-anonymous-audit'
@@ -518,6 +549,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/account'
     | '/ai-website-audit-tool'
+    | '/analytics'
     | '/auth'
     | '/best-ai-website-audit-tools'
     | '/compare'
@@ -539,6 +571,7 @@ export interface FileRouteTypes {
     | '/admin/reddit'
     | '/admin/youtube'
     | '/analysis/$id'
+    | '/analytics/$threadId'
     | '/api/analytics-chat'
     | '/blog/$slug'
     | '/checkout/return'
@@ -547,6 +580,7 @@ export interface FileRouteTypes {
     | '/tools/llms-txt-generator'
     | '/tools/open-graph-checker'
     | '/admin/'
+    | '/analytics/'
     | '/blog/'
     | '/tools/'
     | '/api/public/save-anonymous-audit'
@@ -565,6 +599,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AccountRoute: typeof AccountRoute
   AiWebsiteAuditToolRoute: typeof AiWebsiteAuditToolRoute
+  AnalyticsRoute: typeof AnalyticsRouteWithChildren
   AuthRoute: typeof AuthRoute
   BestAiWebsiteAuditToolsRoute: typeof BestAiWebsiteAuditToolsRoute
   CompareRoute: typeof CompareRoute
@@ -635,6 +670,13 @@ declare module '@tanstack/react-router' {
       path: '/ai-website-audit-tool'
       fullPath: '/ai-website-audit-tool'
       preLoaderRoute: typeof AiWebsiteAuditToolRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/analytics': {
+      id: '/analytics'
+      path: '/analytics'
+      fullPath: '/analytics'
+      preLoaderRoute: typeof AnalyticsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/auth': {
@@ -791,6 +833,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AnalysisIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/analytics/': {
+      id: '/analytics/'
+      path: '/'
+      fullPath: '/analytics/'
+      preLoaderRoute: typeof AnalyticsIndexRouteImport
+      parentRoute: typeof AnalyticsRoute
+    }
+    '/analytics/$threadId': {
+      id: '/analytics/$threadId'
+      path: '/$threadId'
+      fullPath: '/analytics/$threadId'
+      preLoaderRoute: typeof AnalyticsThreadIdRouteImport
+      parentRoute: typeof AnalyticsRoute
+    }
     '/api/analytics-chat': {
       id: '/api/analytics-chat'
       path: '/api/analytics-chat'
@@ -920,11 +976,26 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface AnalyticsRouteChildren {
+  AnalyticsThreadIdRoute: typeof AnalyticsThreadIdRoute
+  AnalyticsIndexRoute: typeof AnalyticsIndexRoute
+}
+
+const AnalyticsRouteChildren: AnalyticsRouteChildren = {
+  AnalyticsThreadIdRoute: AnalyticsThreadIdRoute,
+  AnalyticsIndexRoute: AnalyticsIndexRoute,
+}
+
+const AnalyticsRouteWithChildren = AnalyticsRoute._addFileChildren(
+  AnalyticsRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   AccountRoute: AccountRoute,
   AiWebsiteAuditToolRoute: AiWebsiteAuditToolRoute,
+  AnalyticsRoute: AnalyticsRouteWithChildren,
   AuthRoute: AuthRoute,
   BestAiWebsiteAuditToolsRoute: BestAiWebsiteAuditToolsRoute,
   CompareRoute: CompareRoute,
