@@ -57,9 +57,9 @@ export function SocialCardPanel({ url, scrapeData }: { url: string; scrapeData?:
     <section className="min-w-0 space-y-5 border-t border-border pt-6" aria-labelledby={`${id}-title`}>
       <h3 id={`${id}-title`} className="flex items-center gap-2 font-heading text-xl"><ImageIcon className="h-4 w-4 text-primary" />{t("socialCard.title")}</h3>
       <div className="grid gap-5 lg:grid-cols-2">
-        <div className="min-w-0 space-y-4">
-          <div className="space-y-2"><Label htmlFor={`${id}-brand`}>{t("socialCard.brand")}</Label><Input id={`${id}-brand`} value={brand} maxLength={100} onChange={(e) => setBrand(e.target.value)} disabled={busy} /></div>
-          <div className="space-y-2"><Label htmlFor={`${id}-headline`}>{t("socialCard.headline")}</Label><Input id={`${id}-headline`} value={headline} maxLength={160} onChange={(e) => setHeadline(e.target.value)} disabled={busy} /></div>
+        <form className="min-w-0 space-y-4" onSubmit={(event) => { event.preventDefault(); if (!brand.trim() || !headline.trim()) return; void generate(); }}>
+          <div className="space-y-2"><Label htmlFor={`${id}-brand`}>{t("socialCard.brand")}</Label><Input id={`${id}-brand`} value={brand} required pattern=".*\S.*" maxLength={100} onChange={(e) => setBrand(e.target.value)} disabled={busy} /></div>
+          <div className="space-y-2"><Label htmlFor={`${id}-headline`}>{t("socialCard.headline")}</Label><Input id={`${id}-headline`} value={headline} required pattern=".*\S.*" maxLength={160} onChange={(e) => setHeadline(e.target.value)} disabled={busy} /></div>
           <div className="space-y-2"><Label htmlFor={`${id}-detail`}>{t("socialCard.detail")}</Label><Textarea id={`${id}-detail`} value={detail} maxLength={240} onChange={(e) => setDetail(e.target.value)} disabled={busy} /></div>
           <details><summary className="cursor-pointer text-sm font-body focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring">{t("socialCard.context")}</summary><Textarea className="mt-2" aria-label={t("socialCard.context")} value={context} maxLength={10000} onChange={(e) => setContext(e.target.value)} disabled={busy} /></details>
           <fieldset className="space-y-2"><legend className="mb-2 text-sm font-body font-medium">{t("socialCard.source")}</legend>
@@ -69,9 +69,9 @@ export function SocialCardPanel({ url, scrapeData }: { url: string; scrapeData?:
           </fieldset>
           <fieldset><legend className="mb-2 text-sm font-body font-medium">{t("socialCard.styleLabel")}</legend><div className="flex flex-wrap gap-2">{(["photo", "poster", "collage"] as PromoStyle[]).map((s) => <Button key={s} type="button" size="sm" variant={style === s ? "default" : "outline"} aria-pressed={style === s} onClick={() => setStyle(s)} disabled={busy}>{t(`socialCard.style.${s}`)}</Button>)}</div></fieldset>
           <fieldset><legend className="mb-2 text-sm font-body font-medium">{t("socialCard.formatLabel")}</legend><div className="flex flex-wrap gap-2">{(["square", "story"] as PromoFormat[]).map((f) => <Button key={f} type="button" size="sm" variant={format === f ? "default" : "outline"} aria-pressed={format === f} onClick={() => setFormat(f)} disabled={busy}>{t(`socialCard.format.${f}`)}</Button>)}</div></fieldset>
-          {user ? <Button type="button" onClick={generate} disabled={busy || !brand.trim() || !headline.trim() || (!source && !sourceUrl)}>{busy ? <Loader2 className="h-4 w-4 motion-safe:animate-spin" /> : <Sparkles className="h-4 w-4" />}{t(busy ? "socialCard.generating" : "socialCard.generate")}</Button> : <Button asChild><Link to={`/auth?redirect=${encodeURIComponent(typeof window === "undefined" ? "/" : window.location.pathname + window.location.search)}`}>{t("socialCard.signIn")}</Link></Button>}
+          {user ? <Button type="submit" disabled={busy}>{busy ? <Loader2 className="h-4 w-4 motion-safe:animate-spin" /> : <Sparkles className="h-4 w-4" />}{t(busy ? "socialCard.generating" : "socialCard.generate")}</Button> : <Button asChild><Link to={`/auth?redirect=${encodeURIComponent(typeof window === "undefined" ? "/" : window.location.pathname + window.location.search)}`}>{t("socialCard.signIn")}</Link></Button>}
           {error && <p role="alert" className="break-words text-sm text-destructive">{error}</p>}
-        </div>
+        </form>
         <div className="min-w-0 space-y-3">
           <div className={`flex items-center justify-center overflow-hidden rounded-md border border-border bg-muted/30 ${format === "story" ? "aspect-[9/16] max-w-sm" : "aspect-square"}`} aria-busy={busy}>
             {image ? <img src={image} alt={t("socialCard.preview")} className={`h-full w-full object-contain transition-[filter] motion-reduce:transition-none ${final ? "blur-0" : "blur-2xl"}`} /> : <div role="status" className="p-6 text-center text-sm text-muted-foreground">{busy ? t("socialCard.generating") : t("socialCard.preview")}</div>}
