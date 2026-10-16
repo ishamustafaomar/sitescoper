@@ -1,7 +1,7 @@
 # Roadmap — Organic search growth (Sep 21, 2026)
 
 ## Image creation and separate outreach (Oct 16, 2026)
-- [ ] Verify image creation explains missing required inputs instead of silently disabling submission.
+- [x] Image submission now focuses missing required name/headline fields and shows the localized missing-photo error; verified on a signed-in saved report, 2 prompt tests passed, build OK. No new paid generation request was needed.
 - [ ] Set up a separate verified SiteScoper outreach sender; blocked on a real reply-capable mailbox and outreach provider setup. Existing Mailgun has only a sandbox; Brevo credentials are inactive. Leave notify.sitescoper.com sign-in email unchanged.
 
 ## Website promotional images (Oct 15, 2026)
