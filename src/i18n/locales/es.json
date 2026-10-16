@@ -1844,6 +1844,7 @@
       "readReport": "Leer informe",
       "preparePromotion": "Preparar imagen promocional"
     },
-    "model": "Modelo de IA"
+    "model": "Modelo de IA",
+    "modelAuto": "Automático (el mejor para la tarea)"
   }
 }

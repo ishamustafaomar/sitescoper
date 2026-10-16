@@ -1844,6 +1844,7 @@
       "readReport": "Read report",
       "preparePromotion": "Prepare promo image"
     },
-    "model": "AI model"
+    "model": "AI model",
+    "modelAuto": "Auto (best for the task)"
   }
 }

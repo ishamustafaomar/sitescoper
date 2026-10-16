@@ -1844,6 +1844,7 @@
       "readReport": "Rapport lezen",
       "preparePromotion": "Promobeeld voorbereiden"
     },
-    "model": "AI-model"
+    "model": "AI-model",
+    "modelAuto": "Automatisch (beste voor de taak)"
   }
 }

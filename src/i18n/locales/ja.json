@@ -1843,6 +1843,7 @@
       "readReport": "レポートを読む",
       "preparePromotion": "宣伝画像を準備"
     },
-    "model": "AIモデル"
+    "model": "AIモデル",
+    "modelAuto": "自動（タスクに最適）"
   }
 }

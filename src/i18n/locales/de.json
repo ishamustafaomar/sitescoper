@@ -1844,6 +1844,7 @@
       "readReport": "Bericht lesen",
       "preparePromotion": "Werbebild vorbereiten"
     },
-    "model": "KI-Modell"
+    "model": "KI-Modell",
+    "modelAuto": "Automatisch (bestes Modell für die Aufgabe)"
   }
 }
