@@ -1480,6 +1480,10 @@
     "empty": "Aucune mise à jour pour l'instant.",
     "newBadge": "NOUVEAU",
     "entries": {
+      "analyticsAuto": {
+        "title": "Un assistant plus malin, bien en vue",
+        "desc": "L'assistant Analytics choisit désormais automatiquement le meilleur modèle d'IA pour chaque demande et est mis en avant sur la page d'accueil."
+      },
       "easierNav": {
         "title": "Tout est plus facile à trouver",
         "desc": "Une barre de menu complète affiche Analyser, Tableau de bord, Comparer, Surveillance, Outils, Blog, le Pass correctifs à 9 $ et Tarifs sur chaque page."

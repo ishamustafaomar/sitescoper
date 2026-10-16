@@ -1480,6 +1480,10 @@
     "empty": "Brak jeszcze aktualizacji.",
     "newBadge": "NOWOŚĆ",
     "entries": {
+      "analyticsAuto": {
+        "title": "Mądrzejszy asystent na pierwszym planie",
+        "desc": "Asystent Analytics teraz automatycznie wybiera najlepszy model AI dla każdego zapytania i jest wyróżniony na stronie głównej."
+      },
       "easierNav": {
         "title": "Wszystko łatwiej znaleźć",
         "desc": "Pełny pasek menu pokazuje Analizę, Panel, Porównanie, Monitoring, Narzędzia, Blog, Pakiet poprawek za $9 i Cennik na każdej stronie."

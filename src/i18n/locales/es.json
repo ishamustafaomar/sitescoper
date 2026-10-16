@@ -1480,6 +1480,10 @@
     "empty": "Aún no hay novedades.",
     "newBadge": "NUEVO",
     "entries": {
+      "analyticsAuto": {
+        "title": "Asistente más inteligente y visible",
+        "desc": "El asistente de Analytics ahora elige automáticamente el mejor modelo de IA para cada solicitud y aparece destacado en la página principal."
+      },
       "easierNav": {
         "title": "Todo es más fácil de encontrar",
         "desc": "Una barra de menú completa muestra Analizar, Panel, Comparar, Vigilancia, Herramientas, Blog, el Pase de arreglos de $9 y Precios en todas las páginas."

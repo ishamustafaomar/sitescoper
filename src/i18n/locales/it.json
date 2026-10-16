@@ -1480,6 +1480,10 @@
     "empty": "Nessun aggiornamento.",
     "newBadge": "NOVITÀ",
     "entries": {
+      "analyticsAuto": {
+        "title": "Assistente più intelligente e in evidenza",
+        "desc": "L'assistente Analytics ora sceglie automaticamente il miglior modello di IA per ogni richiesta ed è in primo piano nella home page."
+      },
       "easierNav": {
         "title": "Tutto è più facile da trovare",
         "desc": "Una barra dei menu completa mostra Analizza, Dashboard, Confronta, Monitoraggio, Strumenti, Blog, il Fix Pass da 9 $ e Prezzi su ogni pagina."

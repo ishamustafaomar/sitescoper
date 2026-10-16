@@ -1480,6 +1480,10 @@
     "empty": "Noch keine Neuigkeiten.",
     "newBadge": "NEU",
     "entries": {
+      "analyticsAuto": {
+        "title": "Smarterer Assistent, ganz vorne dabei",
+        "desc": "Der Analytics-Assistent wählt jetzt automatisch das beste KI-Modell für jede Anfrage und wird auf der Startseite vorgestellt."
+      },
       "easierNav": {
         "title": "Alles ist leichter zu finden",
         "desc": "Eine vollständige Menüleiste zeigt Analyse, Dashboard, Vergleich, Überwachung, Tools, Blog, den 9-$-Fix-Pass und Preise auf jeder Seite."
