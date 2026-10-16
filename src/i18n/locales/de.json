@@ -1571,6 +1571,10 @@
       "websitePromos": {
         "title": "Deine Website bewerben",
         "desc": "Erstelle Werbung für dein Unternehmen mit echten Fotos und geprüftem Text. Quadrat oder Story, ohne Audit-Scores oder Abzeichen."
+      },
+      "analyticsAssistant": {
+        "title": "Analyse-Assistent",
+        "desc": "Chatte mit einem Assistenten, der deine Audits liest, Fixes vorschlägt und Werbebilder zur Prüfung vorbereitet."
       }
     }
   },
@@ -1803,6 +1807,42 @@
       "photo": "Produktfoto",
       "poster": "Markantes Plakat",
       "collage": "Produktcollage"
+    }
+  },
+  "analytics": {
+    "title": "Analyse",
+    "start": "Woran arbeiten wir?",
+    "conversations": "Unterhaltungen",
+    "newChat": "Neuer Chat",
+    "loading": "Unterhaltung wird geladen…",
+    "signIn": "Melde dich an, um Analyse zu nutzen.",
+    "message": "Nachricht",
+    "placeholder": "Frag zu deinen Berichten, SEO oder einem Werbebild…",
+    "send": "Senden",
+    "stop": "Stopp",
+    "working": "Arbeite…",
+    "done": "Fertig",
+    "failed": "Etwas ist schiefgelaufen.",
+    "action": "Aktion",
+    "reasoning": "Überlegung",
+    "openReport": "Bericht öffnen",
+    "notConnected": "Automatisches Posten auf Instagram oder Muse ist noch nicht verbunden. Lade das Bild herunter und poste es selbst.",
+    "museDocs": "Muse-Dokumentation",
+    "intro": "Stell Fragen zu deinen gespeicherten Audits und bereite Werbebilder vor.",
+    "quick": {
+      "review": "Letztes Audit prüfen",
+      "seo": "Wichtigste SEO-Fixes",
+      "instagram": "Instagram-Post erstellen"
+    },
+    "prompt": {
+      "review": "Prüfe mein letztes gespeichertes Audit und nenne mir die drei wichtigsten Fixes.",
+      "seo": "Welche SEO-Fixes haben in meinen gespeicherten Berichten die größte Wirkung?",
+      "instagram": "Bereite ein Instagram-Werbebild für meine neueste Website vor."
+    },
+    "tool": {
+      "listReports": "Berichte lesen",
+      "readReport": "Bericht lesen",
+      "preparePromotion": "Werbebild vorbereiten"
     }
   }
 }

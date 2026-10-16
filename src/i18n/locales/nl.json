@@ -1571,6 +1571,10 @@
       "websitePromos": {
         "title": "Promoot je website",
         "desc": "Maak advertenties voor je bedrijf met echte foto’s en tekst die je controleert. Vierkant of story, zonder auditscores of badges."
+      },
+      "analyticsAssistant": {
+        "title": "Analyse-assistent",
+        "desc": "Chat met een assistent die je audits leest, fixes voorstelt en promobeelden voorbereidt om te controleren."
       }
     }
   },
@@ -1803,6 +1807,42 @@
       "photo": "Productfoto",
       "poster": "Opvallende poster",
       "collage": "Productcollage"
+    }
+  },
+  "analytics": {
+    "title": "Analyse",
+    "start": "Waar gaan we aan werken?",
+    "conversations": "Gesprekken",
+    "newChat": "Nieuwe chat",
+    "loading": "Gesprek laden…",
+    "signIn": "Log in om Analyse te gebruiken.",
+    "message": "Bericht",
+    "placeholder": "Vraag naar je rapporten, SEO of een promobeeld…",
+    "send": "Versturen",
+    "stop": "Stoppen",
+    "working": "Bezig…",
+    "done": "Klaar",
+    "failed": "Er ging iets mis.",
+    "action": "Actie",
+    "reasoning": "Redenering",
+    "openReport": "Rapport openen",
+    "notConnected": "Automatisch posten naar Instagram of Muse is nog niet gekoppeld. Download de afbeelding en post hem zelf.",
+    "museDocs": "Muse-documentatie",
+    "intro": "Stel vragen over je opgeslagen audits en bereid promobeelden voor.",
+    "quick": {
+      "review": "Mijn laatste audit bekijken",
+      "seo": "Belangrijkste SEO-fixes",
+      "instagram": "Instagram-post maken"
+    },
+    "prompt": {
+      "review": "Bekijk mijn laatste opgeslagen audit en noem de drie belangrijkste fixes.",
+      "seo": "Wat zijn de SEO-fixes met de meeste impact in mijn opgeslagen rapporten?",
+      "instagram": "Maak een Instagram-promobeeld voor mijn nieuwste website."
+    },
+    "tool": {
+      "listReports": "Rapporten lezen",
+      "readReport": "Rapport lezen",
+      "preparePromotion": "Promobeeld voorbereiden"
     }
   }
 }

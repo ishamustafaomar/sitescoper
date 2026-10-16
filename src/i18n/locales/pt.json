@@ -1571,6 +1571,10 @@
       "websitePromos": {
         "title": "Promova seu site",
         "desc": "Crie anúncios do seu negócio com fotos reais e texto que você revisa. Quadrado ou story, sem pontuações ou selos."
+      },
+      "analyticsAssistant": {
+        "title": "Assistente de análise",
+        "desc": "Converse com um assistente que lê suas auditorias, sugere correções e prepara imagens promocionais para revisão."
       }
     }
   },
@@ -1803,6 +1807,42 @@
       "photo": "Foto do produto",
       "poster": "Pôster marcante",
       "collage": "Colagem do produto"
+    }
+  },
+  "analytics": {
+    "title": "Análise",
+    "start": "No que vamos trabalhar?",
+    "conversations": "Conversas",
+    "newChat": "Nova conversa",
+    "loading": "Carregando conversa…",
+    "signIn": "Entre para usar a Análise.",
+    "message": "Mensagem",
+    "placeholder": "Pergunte sobre seus relatórios, SEO ou uma imagem promocional…",
+    "send": "Enviar",
+    "stop": "Parar",
+    "working": "Trabalhando…",
+    "done": "Concluído",
+    "failed": "Algo deu errado.",
+    "action": "Ação",
+    "reasoning": "Raciocínio",
+    "openReport": "Abrir relatório",
+    "notConnected": "A publicação automática no Instagram ou Muse ainda não está conectada. Baixe a imagem e publique você mesmo.",
+    "museDocs": "Documentação do Muse",
+    "intro": "Pergunte sobre suas auditorias salvas e prepare imagens promocionais.",
+    "quick": {
+      "review": "Revisar minha última auditoria",
+      "seo": "Principais correções de SEO",
+      "instagram": "Criar post para Instagram"
+    },
+    "prompt": {
+      "review": "Revise minha última auditoria salva e diga as três correções mais importantes.",
+      "seo": "Quais são as correções de SEO de maior impacto nos meus relatórios salvos?",
+      "instagram": "Prepare uma imagem promocional para Instagram do meu site mais recente."
+    },
+    "tool": {
+      "listReports": "Ler relatórios salvos",
+      "readReport": "Ler relatório",
+      "preparePromotion": "Preparar imagem promocional"
     }
   }
 }

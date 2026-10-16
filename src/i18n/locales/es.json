@@ -1571,6 +1571,10 @@
       "websitePromos": {
         "title": "Promociona tu sitio",
         "desc": "Crea anuncios de tu negocio con fotos reales y texto que revisas. Formato cuadrado o historia, sin puntuaciones ni insignias."
+      },
+      "analyticsAssistant": {
+        "title": "Asistente de analítica",
+        "desc": "Chatea con un asistente que lee tus auditorías, sugiere mejoras y prepara imágenes promocionales para que las revises."
       }
     }
   },
@@ -1803,6 +1807,42 @@
       "photo": "Foto del producto",
       "poster": "Cartel llamativo",
       "collage": "Collage de productos"
+    }
+  },
+  "analytics": {
+    "title": "Analítica",
+    "start": "¿En qué trabajamos?",
+    "conversations": "Conversaciones",
+    "newChat": "Nuevo chat",
+    "loading": "Cargando conversación…",
+    "signIn": "Inicia sesión para usar Analítica.",
+    "message": "Mensaje",
+    "placeholder": "Pregunta sobre tus informes, SEO o una imagen promocional…",
+    "send": "Enviar",
+    "stop": "Detener",
+    "working": "Trabajando…",
+    "done": "Listo",
+    "failed": "Algo salió mal.",
+    "action": "Acción",
+    "reasoning": "Razonamiento",
+    "openReport": "Abrir informe",
+    "notConnected": "La publicación automática en Instagram o Muse aún no está conectada. Puedes descargar la imagen y publicarla tú.",
+    "museDocs": "Documentación de Muse",
+    "intro": "Pregunta sobre tus auditorías guardadas y prepara imágenes promocionales.",
+    "quick": {
+      "review": "Revisar mi última auditoría",
+      "seo": "Principales mejoras SEO",
+      "instagram": "Crear un post de Instagram"
+    },
+    "prompt": {
+      "review": "Revisa mi última auditoría guardada y dime las tres mejoras más importantes.",
+      "seo": "¿Cuáles son las mejoras SEO de mayor impacto en mis informes guardados?",
+      "instagram": "Prepara una imagen promocional de Instagram para mi sitio más reciente."
+    },
+    "tool": {
+      "listReports": "Leer informes guardados",
+      "readReport": "Leer informe",
+      "preparePromotion": "Preparar imagen promocional"
     }
   }
 }

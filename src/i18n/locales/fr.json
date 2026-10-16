@@ -1571,6 +1571,10 @@
       "websitePromos": {
         "title": "Promouvoir votre site",
         "desc": "Créez des publicités pour votre entreprise avec vos photos et un texte vérifié. Carré ou story, sans scores ni badges."
+      },
+      "analyticsAssistant": {
+        "title": "Assistant analytique",
+        "desc": "Discutez avec un assistant qui lit vos audits, propose des corrections et prépare des images promo à valider."
       }
     }
   },
@@ -1803,6 +1807,42 @@
       "photo": "Photo produit",
       "poster": "Affiche expressive",
       "collage": "Collage produit"
+    }
+  },
+  "analytics": {
+    "title": "Analytique",
+    "start": "Sur quoi travaillons-nous ?",
+    "conversations": "Conversations",
+    "newChat": "Nouvelle discussion",
+    "loading": "Chargement de la conversation…",
+    "signIn": "Connectez-vous pour utiliser Analytique.",
+    "message": "Message",
+    "placeholder": "Posez une question sur vos rapports, le SEO ou une image promo…",
+    "send": "Envoyer",
+    "stop": "Arrêter",
+    "working": "En cours…",
+    "done": "Terminé",
+    "failed": "Une erreur est survenue.",
+    "action": "Action",
+    "reasoning": "Raisonnement",
+    "openReport": "Ouvrir le rapport",
+    "notConnected": "La publication automatique sur Instagram ou Muse n'est pas encore connectée. Téléchargez l'image et publiez-la vous-même.",
+    "museDocs": "Documentation Muse",
+    "intro": "Interrogez vos audits enregistrés et préparez des images promotionnelles.",
+    "quick": {
+      "review": "Revoir mon dernier audit",
+      "seo": "Principales corrections SEO",
+      "instagram": "Créer un post Instagram"
+    },
+    "prompt": {
+      "review": "Analyse mon dernier audit enregistré et donne-moi les trois corrections les plus importantes.",
+      "seo": "Quelles sont les corrections SEO les plus efficaces dans mes rapports enregistrés ?",
+      "instagram": "Prépare une image promo Instagram pour mon site le plus récent."
+    },
+    "tool": {
+      "listReports": "Lire les rapports",
+      "readReport": "Lire le rapport",
+      "preparePromotion": "Préparer l'image promo"
     }
   }
 }
