@@ -1571,6 +1571,10 @@
       "websitePromos": {
         "title": "Promote your website",
         "desc": "Create social ads for your actual business using real photos and wording you review. Choose a square post or story, without audit scores or badges."
+      },
+      "analyticsAssistant": {
+        "title": "Analytics assistant",
+        "desc": "Chat with an assistant that reads your saved audits, suggests fixes, and prepares promo images for your review."
       }
     }
   },
@@ -1803,6 +1807,42 @@
       "photo": "Product photo",
       "poster": "Bold poster",
       "collage": "Product collage"
+    }
+  },
+  "analytics": {
+    "title": "Analytics",
+    "start": "What should we work on?",
+    "conversations": "Conversations",
+    "newChat": "New chat",
+    "loading": "Loading conversation…",
+    "signIn": "Sign in to use Analytics.",
+    "message": "Message",
+    "placeholder": "Ask about your reports, SEO, or a promo image…",
+    "send": "Send",
+    "stop": "Stop",
+    "working": "Working…",
+    "done": "Done",
+    "failed": "Something went wrong.",
+    "action": "Action",
+    "reasoning": "Reasoning",
+    "openReport": "Open report",
+    "notConnected": "Automatic posting to Instagram or Muse is not connected yet. You can download the image and post it yourself.",
+    "museDocs": "Muse connection docs",
+    "intro": "Ask questions about your saved audits and get help preparing promotional images.",
+    "quick": {
+      "review": "Review my latest audit",
+      "seo": "Top SEO fixes",
+      "instagram": "Make an Instagram post"
+    },
+    "prompt": {
+      "review": "Review my latest saved audit and tell me the three most important fixes.",
+      "seo": "What are the highest-impact SEO fixes across my saved reports?",
+      "instagram": "Prepare an Instagram promo image for my latest website."
+    },
+    "tool": {
+      "listReports": "Read saved reports",
+      "readReport": "Read report",
+      "preparePromotion": "Prepare promo image"
     }
   }
 }

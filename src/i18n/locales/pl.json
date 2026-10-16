@@ -1571,6 +1571,10 @@
       "websitePromos": {
         "title": "Promuj swoją stronę",
         "desc": "Twórz reklamy swojej firmy z prawdziwymi zdjęciami i sprawdzonym tekstem. Kwadrat lub relacja, bez wyników audytu i odznak."
+      },
+      "analyticsAssistant": {
+        "title": "Asystent analityki",
+        "desc": "Czatuj z asystentem, który czyta Twoje audyty, sugeruje poprawki i przygotowuje grafiki promocyjne do sprawdzenia."
       }
     }
   },
@@ -1803,6 +1807,42 @@
       "photo": "Zdjęcie produktu",
       "poster": "Wyrazisty plakat",
       "collage": "Kolaż produktów"
+    }
+  },
+  "analytics": {
+    "title": "Analityka",
+    "start": "Nad czym pracujemy?",
+    "conversations": "Rozmowy",
+    "newChat": "Nowy czat",
+    "loading": "Wczytywanie rozmowy…",
+    "signIn": "Zaloguj się, aby używać Analityki.",
+    "message": "Wiadomość",
+    "placeholder": "Zapytaj o raporty, SEO lub grafikę promocyjną…",
+    "send": "Wyślij",
+    "stop": "Zatrzymaj",
+    "working": "Pracuję…",
+    "done": "Gotowe",
+    "failed": "Coś poszło nie tak.",
+    "action": "Akcja",
+    "reasoning": "Rozumowanie",
+    "openReport": "Otwórz raport",
+    "notConnected": "Automatyczne publikowanie na Instagramie lub w Muse nie jest jeszcze połączone. Pobierz grafikę i opublikuj ją samodzielnie.",
+    "museDocs": "Dokumentacja Muse",
+    "intro": "Zadawaj pytania o zapisane audyty i przygotowuj grafiki promocyjne.",
+    "quick": {
+      "review": "Przejrzyj ostatni audyt",
+      "seo": "Najważniejsze poprawki SEO",
+      "instagram": "Utwórz post na Instagram"
+    },
+    "prompt": {
+      "review": "Przejrzyj mój ostatni zapisany audyt i podaj trzy najważniejsze poprawki.",
+      "seo": "Jakie poprawki SEO mają największy wpływ w moich zapisanych raportach?",
+      "instagram": "Przygotuj grafikę promocyjną na Instagram dla mojej najnowszej strony."
+    },
+    "tool": {
+      "listReports": "Czytaj zapisane raporty",
+      "readReport": "Czytaj raport",
+      "preparePromotion": "Przygotuj grafikę promo"
     }
   }
 }

@@ -1571,6 +1571,10 @@
       "websitePromos": {
         "title": "Promuovi il tuo sito",
         "desc": "Crea annunci per la tua attività con foto reali e testo che controlli. Quadrato o storia, senza punteggi o badge."
+      },
+      "analyticsAssistant": {
+        "title": "Assistente analisi",
+        "desc": "Chatta con un assistente che legge i tuoi audit, suggerisce correzioni e prepara immagini promo da rivedere."
       }
     }
   },
@@ -1803,6 +1807,42 @@
       "photo": "Foto prodotto",
       "poster": "Poster d’impatto",
       "collage": "Collage prodotto"
+    }
+  },
+  "analytics": {
+    "title": "Analisi",
+    "start": "Su cosa lavoriamo?",
+    "conversations": "Conversazioni",
+    "newChat": "Nuova chat",
+    "loading": "Caricamento conversazione…",
+    "signIn": "Accedi per usare Analisi.",
+    "message": "Messaggio",
+    "placeholder": "Chiedi dei tuoi report, della SEO o di un'immagine promozionale…",
+    "send": "Invia",
+    "stop": "Ferma",
+    "working": "Al lavoro…",
+    "done": "Fatto",
+    "failed": "Qualcosa è andato storto.",
+    "action": "Azione",
+    "reasoning": "Ragionamento",
+    "openReport": "Apri report",
+    "notConnected": "La pubblicazione automatica su Instagram o Muse non è ancora collegata. Scarica l'immagine e pubblicala tu.",
+    "museDocs": "Documentazione Muse",
+    "intro": "Fai domande sui tuoi audit salvati e prepara immagini promozionali.",
+    "quick": {
+      "review": "Rivedi il mio ultimo audit",
+      "seo": "Principali correzioni SEO",
+      "instagram": "Crea un post Instagram"
+    },
+    "prompt": {
+      "review": "Rivedi il mio ultimo audit salvato e dimmi le tre correzioni più importanti.",
+      "seo": "Quali sono le correzioni SEO di maggiore impatto nei miei report salvati?",
+      "instagram": "Prepara un'immagine promozionale Instagram per il mio sito più recente."
+    },
+    "tool": {
+      "listReports": "Leggi report salvati",
+      "readReport": "Leggi report",
+      "preparePromotion": "Prepara immagine promo"
     }
   }
 }

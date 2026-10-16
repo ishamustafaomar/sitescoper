@@ -37,7 +37,7 @@ export async function handleAnalyticsChat(request: Request) {
     preparePromotion: tool({ description: 'Open a real promotional image editor for an owned report. Does NOT generate, spend credits or post; the user reviews the wording and source photo.', inputSchema: z.object({ reportId: z.string(), headline: z.string(), detail: z.string() }), execute: async ({ reportId, headline, detail }) => {
       const { data, error } = await sb.from('analysis_history').select('id,url,scrape_data').eq('id', reportId).eq('user_id', userId).single();
       if (error || !data) throw new Error('Report not found.');
-      return { kind: 'promotion', url: data.url, scrapeData: data.scrape_data, headline: headline.slice(0,160), detail: detail.slice(0,240), postingConnected: false };
+      return { kind: 'promotion', url: data.url, scrapeData: (() => { const sd = (data.scrape_data ?? {}) as { images?: unknown; markdown?: unknown; metadata?: unknown }; return { images: Array.isArray(sd.images) ? sd.images.slice(0, 12) : [], markdown: typeof sd.markdown === 'string' ? sd.markdown.slice(0, 4000) : '', metadata: sd.metadata ?? {} }; })(), headline: headline.slice(0,160), detail: detail.slice(0,240), postingConnected: false };
     } }),
   };
   let messages: UIMessage[];
@@ -58,7 +58,7 @@ export async function handleAnalyticsChat(request: Request) {
       const raw = await response.clone().text();
       try { const parsed = JSON.parse(raw); upstreamMessage = parsed.error?.message ?? parsed.message ?? 'AI request failed.'; } catch { upstreamMessage = 'AI request failed.'; }
       if (response.status === 402 || response.status === 403) {
-        const { error } = await sb.from('analytics_threads').update({ ai_paused_reason: upstreamMessage }).eq('user_id', userId);
+        const { error } = await sb.from('analytics_threads').update({ ai_paused_reason: upstreamMessage }).eq('id', body.threadId).eq('user_id', userId);
         if (error) throw new Error('Could not pause blocked AI requests.');
       }
     }
