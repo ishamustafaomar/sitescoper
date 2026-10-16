@@ -12,15 +12,15 @@ import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/components/AuthProvider";
 import { Link } from "@/lib/router-compat";
 
-export function SocialCardPanel({ url, scrapeData }: { url: string; scrapeData?: ScrapeResult }) {
+export function SocialCardPanel({ url, scrapeData, initialHeadline = "", initialDetail, initialFormat = "square" }: { url: string; scrapeData?: ScrapeResult; initialHeadline?: string; initialDetail?: string; initialFormat?: PromoFormat }) {
   const { t } = useTranslation();
   const { user } = useAuth();
   const id = useId();
-  const [format, setFormat] = useState<PromoFormat>("square");
+  const [format, setFormat] = useState<PromoFormat>(initialFormat);
   const [style, setStyle] = useState<PromoStyle>("photo");
   const [brand, setBrand] = useState("");
-  const [headline, setHeadline] = useState("");
-  const [detail, setDetail] = useState(scrapeData?.metadata?.description?.slice(0, 240) ?? "");
+  const [headline, setHeadline] = useState(initialHeadline);
+  const [detail, setDetail] = useState(initialDetail ?? scrapeData?.metadata?.description?.slice(0, 240) ?? "");
   const [context, setContext] = useState(scrapeData?.markdown?.slice(0, 10000) ?? "");
   const [source, setSource] = useState<File | null>(null);
   const [sourceUrl, setSourceUrl] = useState("");

@@ -151,6 +151,36 @@ export type Database = {
           },
         ]
       }
+      analytics_threads: {
+        Row: {
+          ai_paused_reason: string | null
+          created_at: string
+          id: string
+          messages: Json
+          title: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          ai_paused_reason?: string | null
+          created_at?: string
+          id?: string
+          messages?: Json
+          title?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          ai_paused_reason?: string | null
+          created_at?: string
+          id?: string
+          messages?: Json
+          title?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       anon_scan_usage: {
         Row: {
           created_at: string

@@ -50,6 +50,13 @@
       "when": 1792091171476,
       "tag": "0006_video_roasts",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1792114629060,
+      "tag": "0007_analytics_assistant_threads",
+      "breakpoints": true
     }
   ]
 }
