@@ -21,7 +21,7 @@ export async function handleAnalyticsChat(request: Request) {
   if (authError || !identity.user) return Response.json({ error: 'Sign in to use Analytics.' }, { status: 401 });
   const userId = identity.user.id;
   let body;
-  try { body = z.object({ threadId: z.string().uuid(), messages: z.array(z.unknown()), model: z.enum(['chatgpt','claude','gemini']).optional() }).parse(await request.json()); } catch { return Response.json({ error: 'Invalid conversation.' }, { status: 400 }); }
+  try { body = z.object({ threadId: z.string().uuid(), messages: z.array(z.unknown()), model: z.enum(['auto','chatgpt','claude','gemini']).optional() }).parse(await request.json()); } catch { return Response.json({ error: 'Invalid conversation.' }, { status: 400 }); }
   const { data: thread, error } = await sb.from('analytics_threads').select('id,ai_paused_reason').eq('id', body.threadId).eq('user_id', userId).single();
   if (error || !thread) return Response.json({ error: 'Conversation not found.' }, { status: 404 });
   if (thread.ai_paused_reason) return Response.json({ error: thread.ai_paused_reason }, { status: 403 });
@@ -66,7 +66,7 @@ export async function handleAnalyticsChat(request: Request) {
     }
     return response;
   };
-  const choice = body.model ?? 'chatgpt';
+  const choice = body.model && body.model !== 'auto' ? body.model : pickModel(messages);
   const model = choice === 'claude'
     ? createAnthropic({ baseURL: 'https://ai.gateway.lovable.dev/v1', apiKey, headers: { 'X-Lovable-AIG-SDK': 'vercel-ai-sdk' }, fetch: gatewayFetch })('anthropic/claude-sonnet-5')
     : choice === 'gemini'
