@@ -1,5 +1,9 @@
 # Roadmap — Organic search growth (Sep 21, 2026)
 
+## Image creation and separate outreach (Oct 16, 2026)
+- [ ] Verify image creation explains missing required inputs instead of silently disabling submission.
+- [ ] Set up a separate verified SiteScoper outreach sender; blocked on a real reply-capable mailbox and outreach provider setup. Existing Mailgun has only a sandbox; Brevo credentials are inactive. Leave notify.sitescoper.com sign-in email unchanged.
+
 ## Website promotional images (Oct 15, 2026)
 - [x] Replace score cards with website-grounded AI social ads, real source uploads, editable wording and square/story downloads; verified signed-in square generation at 1280/375/390/768px without publishing. Story generation and remote-photo availability remain unverified.
 
