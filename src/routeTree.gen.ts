@@ -35,6 +35,7 @@ import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as AdminRedditRouteImport } from './routes/admin/reddit'
 import { Route as AdminYoutubeRouteImport } from './routes/admin/youtube'
 import { Route as AnalysisIdRouteImport } from './routes/analysis/$id'
+import { Route as ApiAnalyticsChatRouteImport } from './routes/api/analytics-chat'
 import { Route as BlogIndexRouteImport } from './routes/blog/index'
 import { Route as BlogSlugRouteImport } from './routes/blog/$slug'
 import { Route as CheckoutReturnRouteImport } from './routes/checkout/return'
@@ -183,6 +184,11 @@ const AnalysisIdRoute = AnalysisIdRouteImport.update({
   path: '/analysis/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiAnalyticsChatRoute = ApiAnalyticsChatRouteImport.update({
+  id: '/api/analytics-chat',
+  path: '/api/analytics-chat',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
   id: '/blog/',
   path: '/blog/',
@@ -300,6 +306,7 @@ export interface FileRoutesByFullPath {
   '/admin/reddit': typeof AdminRedditRoute
   '/admin/youtube': typeof AdminYoutubeRoute
   '/analysis/$id': typeof AnalysisIdRoute
+  '/api/analytics-chat': typeof ApiAnalyticsChatRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/checkout/return': typeof CheckoutReturnRoute
   '/share/$token': typeof ShareTokenRoute
@@ -345,6 +352,7 @@ export interface FileRoutesByTo {
   '/admin/reddit': typeof AdminRedditRoute
   '/admin/youtube': typeof AdminYoutubeRoute
   '/analysis/$id': typeof AnalysisIdRoute
+  '/api/analytics-chat': typeof ApiAnalyticsChatRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/checkout/return': typeof CheckoutReturnRoute
   '/share/$token': typeof ShareTokenRoute
@@ -391,6 +399,7 @@ export interface FileRoutesById {
   '/admin/reddit': typeof AdminRedditRoute
   '/admin/youtube': typeof AdminYoutubeRoute
   '/analysis/$id': typeof AnalysisIdRoute
+  '/api/analytics-chat': typeof ApiAnalyticsChatRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/checkout/return': typeof CheckoutReturnRoute
   '/share/$token': typeof ShareTokenRoute
@@ -438,6 +447,7 @@ export interface FileRouteTypes {
     | '/admin/reddit'
     | '/admin/youtube'
     | '/analysis/$id'
+    | '/api/analytics-chat'
     | '/blog/$slug'
     | '/checkout/return'
     | '/share/$token'
@@ -483,6 +493,7 @@ export interface FileRouteTypes {
     | '/admin/reddit'
     | '/admin/youtube'
     | '/analysis/$id'
+    | '/api/analytics-chat'
     | '/blog/$slug'
     | '/checkout/return'
     | '/share/$token'
@@ -528,6 +539,7 @@ export interface FileRouteTypes {
     | '/admin/reddit'
     | '/admin/youtube'
     | '/analysis/$id'
+    | '/api/analytics-chat'
     | '/blog/$slug'
     | '/checkout/return'
     | '/share/$token'
@@ -574,6 +586,7 @@ export interface RootRouteChildren {
   AdminRedditRoute: typeof AdminRedditRoute
   AdminYoutubeRoute: typeof AdminYoutubeRoute
   AnalysisIdRoute: typeof AnalysisIdRoute
+  ApiAnalyticsChatRoute: typeof ApiAnalyticsChatRoute
   BlogSlugRoute: typeof BlogSlugRoute
   CheckoutReturnRoute: typeof CheckoutReturnRoute
   ShareTokenRoute: typeof ShareTokenRoute
@@ -778,6 +791,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AnalysisIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/analytics-chat': {
+      id: '/api/analytics-chat'
+      path: '/api/analytics-chat'
+      fullPath: '/api/analytics-chat'
+      preLoaderRoute: typeof ApiAnalyticsChatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog/': {
       id: '/blog/'
       path: '/blog'
@@ -926,6 +946,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminRedditRoute: AdminRedditRoute,
   AdminYoutubeRoute: AdminYoutubeRoute,
   AnalysisIdRoute: AnalysisIdRoute,
+  ApiAnalyticsChatRoute: ApiAnalyticsChatRoute,
   BlogSlugRoute: BlogSlugRoute,
   CheckoutReturnRoute: CheckoutReturnRoute,
   ShareTokenRoute: ShareTokenRoute,
