@@ -15,7 +15,12 @@ export const Route = createFileRoute("/api/public/social-promo")({
         const apiKey = process.env.LOVABLE_API_KEY;
         if (!apiKey) return Response.json({ error: { message: "Image generation is not configured." } }, { status: 503 });
         const form = await request.formData();
-        const image = form.get("image");
+        let image = form.get("image");
+        const imageUrl = form.get("imageUrl");
+        if (!(image instanceof File) && typeof imageUrl === "string" && imageUrl) {
+          image = await fetchRemoteImage(imageUrl);
+          if (!image) return Response.json({ error: { message: "That website photo couldn't be used. Pick another or upload a PNG, JPEG or WebP image." } }, { status: 400 });
+        }
         if (!(image instanceof File) || !["image/png", "image/jpeg", "image/webp"].includes(image.type) || image.size > 10 * 1024 * 1024 || image.size === 0) {
           return Response.json({ error: { message: "Choose a PNG, JPEG or WebP image under 10 MB." } }, { status: 400 });
         }
