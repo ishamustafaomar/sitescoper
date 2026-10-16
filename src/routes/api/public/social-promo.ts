@@ -51,3 +51,24 @@ export const Route = createFileRoute("/api/public/social-promo")({
     },
   },
 });
+const PRIVATE_HOST = /^(localhost|.*\.local|.*\.internal|0\.0\.0\.0|127\.|10\.|192\.168\.|169\.254\.|172\.(1[6-9]|2\d|3[01])\.|\[?::1\]?|\[?f[cd]|\[?fe80)/i;
+
+async function fetchRemoteImage(raw: string): Promise<File | null> {
+  let url = raw;
+  try {
+    for (let hop = 0; hop < 4; hop++) {
+      const u = new URL(url);
+      if (!["http:", "https:"].includes(u.protocol) || PRIVATE_HOST.test(u.hostname)) return null;
+      const res = await fetch(u, { redirect: "manual", headers: { Accept: "image/png,image/jpeg,image/webp" }, signal: AbortSignal.timeout(10000) });
+      if (res.status >= 300 && res.status < 400) { const next = res.headers.get("location"); if (!next) return null; url = new URL(next, u).toString(); continue; }
+      if (!res.ok) return null;
+      const type = (res.headers.get("content-type") ?? "").split(";")[0].trim().toLowerCase();
+      if (!["image/png", "image/jpeg", "image/webp"].includes(type)) return null;
+      if (Number(res.headers.get("content-length") ?? 0) > 10 * 1024 * 1024) return null;
+      const buf = await res.arrayBuffer();
+      if (!buf.byteLength || buf.byteLength > 10 * 1024 * 1024) return null;
+      return new File([buf], "website-source", { type });
+    }
+  } catch { return null; }
+  return null;
+}
