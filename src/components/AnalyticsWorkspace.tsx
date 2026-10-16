@@ -57,7 +57,7 @@ function ChatWindow({ threadId, initialMessages }: { threadId: string; initialMe
   const client = useQueryClient();
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const [input,setInput] = useState('');
-  const [model,setModel] = useState<'chatgpt'|'claude'|'gemini'>('chatgpt');
+  const [model,setModel] = useState<'auto'|'chatgpt'|'claude'|'gemini'>('auto');
   const transport = useMemo(() => new DefaultChatTransport({ api: '/api/analytics-chat', body: { threadId }, headers: async () => {
     const { data: { session } } = await supabase.auth.getSession();
     if (!session) throw new Error(t('analytics.signIn'));

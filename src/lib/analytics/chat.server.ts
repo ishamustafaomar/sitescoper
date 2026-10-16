@@ -7,6 +7,20 @@ import { z } from 'zod';
 import { createLovableAiGatewayRunIdFetch, withLovableAiGatewayRunIdHeader } from './run-id.ts';
 import { ANALYTICS_INSTRUCTIONS, ownedReportLink } from './policy';
 
+type ModelChoice = 'chatgpt' | 'claude' | 'gemini';
+
+// Auto mode: pick the best model for the latest user request.
+// ChatGPT for image/promo work, Claude for code fixes and copywriting,
+// Gemini for quick lookups; ChatGPT is the general default.
+function pickModel(messages: UIMessage[]): ModelChoice {
+  const lastUser = [...messages].reverse().find(m => m.role === 'user');
+  const text = (lastUser?.parts ?? []).filter(p => p.type === 'text').map(p => p.text).join(' ').toLowerCase();
+  if (/\b(image|photo|picture|promo|instagram|story|ad|poster|graphic)\b/.test(text)) return 'chatgpt';
+  if (/\b(fix|code|snippet|rewrite|headline|copy|write|draft)\b/.test(text)) return 'claude';
+  if (/\b(quick|list|which|score|summary|summarize)\b/.test(text)) return 'gemini';
+  return 'chatgpt';
+}
+
 export async function handleAnalyticsChat(request: Request) {
   const origin = request.headers.get('origin');
   if (origin && origin !== new URL(request.url).origin) return new Response(null, { status: 403 });
