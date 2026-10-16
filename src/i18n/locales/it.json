@@ -340,6 +340,18 @@
       },
       "outro": "Vuoi prima fare questi controlli a mano? Leggi la nostra guida passo passo per",
       "link": "fare l'audit SEO di un sito"
+    },
+    "analyticsPromo": {
+      "badge": "Novità: assistente Analytics",
+      "title": "Chiedi tutto ai tuoi report",
+      "subtitle": "Un assistente integrato che legge i tuoi audit salvati, spiega cosa correggere prima e prepara immagini promozionali per il tuo sito: tu controlli tutto prima di creare qualsiasi cosa.",
+      "p1t": "Legge i tuoi audit reali",
+      "p1d": "Risponde in base ai tuoi report salvati, non con consigli generici.",
+      "p2t": "Dà priorità alle correzioni",
+      "p2d": "Chiedi cosa conta di più e ottieni un passo successivo chiaro.",
+      "p3t": "Prepara immagini promozionali",
+      "p3d": "Apre l'editor di immagini con un testo suggerito: tu approvi prima della generazione.",
+      "cta": "Prova l'assistente"
     }
   },
   "dashboard": {

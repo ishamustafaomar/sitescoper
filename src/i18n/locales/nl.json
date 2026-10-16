@@ -340,6 +340,18 @@
       },
       "outro": "Wil je deze checks eerst zelf doen? Lees onze stapsgewijze gids over",
       "link": "een website auditen voor SEO"
+    },
+    "analyticsPromo": {
+      "badge": "Nieuw: Analytics-assistent",
+      "title": "Vraag je rapporten alles",
+      "subtitle": "Een ingebouwde assistent die je opgeslagen audits leest, uitlegt wat je eerst moet oplossen en promo-afbeeldingen voor je site voorbereidt — jij controleert alles voordat er iets wordt gemaakt.",
+      "p1t": "Leest je echte audits",
+      "p1d": "Hij antwoordt op basis van je opgeslagen rapporten, geen algemeen advies.",
+      "p2t": "Prioriteert de fixes",
+      "p2d": "Vraag wat het belangrijkst is en krijg een duidelijke volgende stap.",
+      "p3t": "Bereidt promo-afbeeldingen voor",
+      "p3d": "Hij opent de afbeeldingseditor met voorgestelde tekst — jij keurt goed vóór het genereren.",
+      "cta": "Probeer de assistent"
     }
   },
   "dashboard": {

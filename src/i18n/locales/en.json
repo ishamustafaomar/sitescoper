@@ -340,6 +340,18 @@
       },
       "outro": "Want to work through the same checks by hand first? Read our step-by-step guide to",
       "link": "auditing a website for SEO"
+    },
+    "analyticsPromo": {
+      "badge": "New: Analytics assistant",
+      "title": "Ask your reports anything",
+      "subtitle": "A built-in assistant that reads your saved audits, explains what to fix first, and prepares promo images for your site — you review everything before anything is created.",
+      "p1t": "Reads your real audits",
+      "p1d": "It answers from your saved reports, not generic advice.",
+      "p2t": "Prioritizes the fixes",
+      "p2d": "Ask what matters most and get a clear next step.",
+      "p3t": "Prepares promo images",
+      "p3d": "It opens the image editor with suggested wording — you approve before generating.",
+      "cta": "Try the assistant"
     }
   },
   "dashboard": {

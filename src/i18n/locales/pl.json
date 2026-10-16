@@ -340,6 +340,18 @@
       },
       "outro": "Chcesz najpierw przejść te kontrole ręcznie? Przeczytaj nasz przewodnik krok po kroku, jak",
       "link": "zrobić audyt SEO strony"
+    },
+    "analyticsPromo": {
+      "badge": "Nowość: asystent Analytics",
+      "title": "Pytaj swoje raporty o wszystko",
+      "subtitle": "Wbudowany asystent, który czyta zapisane audyty, wyjaśnia, co naprawić najpierw, i przygotowuje grafiki promocyjne dla Twojej strony — wszystko sprawdzasz przed utworzeniem.",
+      "p1t": "Czyta prawdziwe audyty",
+      "p1d": "Odpowiada na podstawie zapisanych raportów, a nie ogólnych porad.",
+      "p2t": "Ustala priorytety poprawek",
+      "p2d": "Zapytaj, co jest najważniejsze, i uzyskaj jasny następny krok.",
+      "p3t": "Przygotowuje grafiki promocyjne",
+      "p3d": "Otwiera edytor grafik z proponowanym tekstem — zatwierdzasz przed wygenerowaniem.",
+      "cta": "Wypróbuj asystenta"
     }
   },
   "dashboard": {

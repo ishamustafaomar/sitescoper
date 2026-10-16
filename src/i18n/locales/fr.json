@@ -340,6 +340,18 @@
       },
       "outro": "Vous voulez d'abord faire ces vérifications à la main ? Lisez notre guide pas à pas pour",
       "link": "auditer un site web pour le SEO"
+    },
+    "analyticsPromo": {
+      "badge": "Nouveau : assistant Analytics",
+      "title": "Posez vos questions à vos rapports",
+      "subtitle": "Un assistant intégré qui lit vos audits enregistrés, explique quoi corriger en premier et prépare des visuels promotionnels pour votre site — vous validez tout avant toute création.",
+      "p1t": "Lit vos vrais audits",
+      "p1d": "Il répond à partir de vos rapports enregistrés, pas de conseils génériques.",
+      "p2t": "Priorise les corrections",
+      "p2d": "Demandez ce qui compte le plus et obtenez une prochaine étape claire.",
+      "p3t": "Prépare des visuels promo",
+      "p3d": "Il ouvre l'éditeur d'images avec un texte suggéré — vous approuvez avant la génération.",
+      "cta": "Essayer l'assistant"
     }
   },
   "dashboard": {

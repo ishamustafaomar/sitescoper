@@ -340,6 +340,18 @@
       },
       "outro": "¿Prefieres hacer primero estas comprobaciones a mano? Lee nuestra guía paso a paso para",
       "link": "auditar un sitio web para SEO"
+    },
+    "analyticsPromo": {
+      "badge": "Nuevo: asistente de Analytics",
+      "title": "Pregunta lo que quieras a tus informes",
+      "subtitle": "Un asistente integrado que lee tus auditorías guardadas, explica qué corregir primero y prepara imágenes promocionales para tu sitio; tú revisas todo antes de crear nada.",
+      "p1t": "Lee tus auditorías reales",
+      "p1d": "Responde a partir de tus informes guardados, no con consejos genéricos.",
+      "p2t": "Prioriza las correcciones",
+      "p2d": "Pregunta qué es lo más importante y obtén un siguiente paso claro.",
+      "p3t": "Prepara imágenes promocionales",
+      "p3d": "Abre el editor de imágenes con texto sugerido; tú apruebas antes de generar.",
+      "cta": "Probar el asistente"
     }
   },
   "dashboard": {
