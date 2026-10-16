@@ -1,5 +1,8 @@
 # Project rules
 
+- Analytics conversations use account-owned database threads and route-derived IDs; AI tools read through the caller's RLS client, and publishing or paid generation requires explicit user review.
+- Analytics uses AI Elements and the AI SDK UI-message stream; server tools never call server-function RPC stubs or claim unconnected external actions succeeded.
+
 - Generate social promotional artwork through the authenticated streaming image route using source image uploads and owner-reviewed wording; keep audit scoring out of creative inputs so ads reflect the actual business.
 
 - Keep Compare's educational content publicly rendered, with live comparisons inside the existing subscription gate; search visitors need readable content without changing paid access.
