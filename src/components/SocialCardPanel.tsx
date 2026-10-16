@@ -18,7 +18,7 @@ export function SocialCardPanel({ url, scrapeData }: { url: string; scrapeData?:
   const id = useId();
   const [format, setFormat] = useState<PromoFormat>("square");
   const [style, setStyle] = useState<PromoStyle>("photo");
-  const [brand, setBrand] = useState(scrapeData?.metadata?.title?.split(/\s[|–—]\s/)[0] ?? "");
+  const [brand, setBrand] = useState("");
   const [headline, setHeadline] = useState("");
   const [detail, setDetail] = useState(scrapeData?.metadata?.description?.slice(0, 240) ?? "");
   const [context, setContext] = useState(scrapeData?.markdown?.slice(0, 10000) ?? "");
@@ -28,7 +28,7 @@ export function SocialCardPanel({ url, scrapeData }: { url: string; scrapeData?:
   const [final, setFinal] = useState(false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
-  const photos = (scrapeData?.images ?? []).filter((p) => /^https?:\/\//.test(p.src)).slice(0, 8);
+  const photos = (scrapeData?.images ?? []).filter((p) => /^https?:\/\//.test(p.src) && !/badge|goodaitools|best-ai\.org/i.test(`${p.src} ${p.alt}`)).slice(0, 8);
 
   const generate = async () => {
     setBusy(true); setError(""); setImage(""); setFinal(false);
