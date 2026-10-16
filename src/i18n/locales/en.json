@@ -1843,6 +1843,7 @@
       "listReports": "Read saved reports",
       "readReport": "Read report",
       "preparePromotion": "Prepare promo image"
-    }
+    },
+    "model": "AI model"
   }
 }

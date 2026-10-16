@@ -1843,6 +1843,7 @@
       "listReports": "Rapporten lezen",
       "readReport": "Rapport lezen",
       "preparePromotion": "Promobeeld voorbereiden"
-    }
+    },
+    "model": "AI-model"
   }
 }

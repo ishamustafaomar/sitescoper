@@ -1843,6 +1843,7 @@
       "listReports": "Leer informes guardados",
       "readReport": "Leer informe",
       "preparePromotion": "Preparar imagen promocional"
-    }
+    },
+    "model": "Modelo de IA"
   }
 }

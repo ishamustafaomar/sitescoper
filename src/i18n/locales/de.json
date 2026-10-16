@@ -1843,6 +1843,7 @@
       "listReports": "Berichte lesen",
       "readReport": "Bericht lesen",
       "preparePromotion": "Werbebild vorbereiten"
-    }
+    },
+    "model": "KI-Modell"
   }
 }
