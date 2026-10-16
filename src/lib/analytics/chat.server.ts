@@ -70,7 +70,7 @@ export async function handleAnalyticsChat(request: Request) {
   const model = choice === 'claude'
     ? createAnthropic({ baseURL: 'https://ai.gateway.lovable.dev/v1', apiKey, headers: { 'X-Lovable-AIG-SDK': 'vercel-ai-sdk' }, fetch: gatewayFetch })('anthropic/claude-sonnet-5')
     : choice === 'gemini'
-      ? createOpenAICompatible({ name: 'lovable', baseURL: 'https://ai.gateway.lovable.dev/v1', headers: { 'Lovable-API-Key': apiKey, 'X-Lovable-AIG-SDK': 'vercel-ai-sdk' }, fetch: gatewayFetch })('google/gemini-3.7-flash')
+      ? createOpenAICompatible({ name: 'lovable', baseURL: 'https://ai.gateway.lovable.dev/v1', headers: { 'Lovable-API-Key': apiKey, 'X-Lovable-AIG-SDK': 'vercel-ai-sdk' }, fetch: gatewayFetch })('google/gemini-3.8-flash')
       : createOpenAI({ baseURL: 'https://ai.gateway.lovable.dev/v1', apiKey, headers: { 'Lovable-API-Key': apiKey, 'X-Lovable-AIG-SDK': 'vercel-ai-sdk' }, fetch: gatewayFetch }).responses('openai/gpt-6-astra');
   const result = streamText({ model, system: ANALYTICS_INSTRUCTIONS, messages: await convertToModelMessages(messages), tools, stopWhen: stepCountIs(50), maxRetries: 0, abortSignal: request.signal,
     providerOptions: choice !== 'chatgpt' ? {} : { openai: { forceReasoning: true, reasoningEffort: 'low', reasoningSummary: 'auto', store: false, include: ['reasoning.encrypted_content'] } },
