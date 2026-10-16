@@ -39,7 +39,7 @@ export function AnalyticsWorkspace({ threadId }: { threadId?: string }) {
       <div className="mb-6 flex flex-wrap items-center justify-between gap-3"><h1 className="flex items-center gap-3 font-heading text-3xl"><img src={logo} alt="" className="h-8 w-8" />{t('analytics.title')}</h1><Button onClick={newChat} disabled={creating}><Plus />{t('analytics.newChat')}</Button></div>
       {(error || threads.error) && <p role="alert" className="mb-4 text-sm text-destructive">{error || threads.error?.message}</p>}
       <div className="grid min-w-0 gap-6 md:grid-cols-[210px_minmax(0,1fr)]">
-        <aside className="min-w-0 border-b border-border pb-4 md:border-b-0 md:border-r md:pr-4"><h2 className="mb-3 text-sm font-body font-medium">{t('analytics.conversations')}</h2><nav className="flex max-h-48 flex-col gap-1 overflow-y-auto md:max-h-[65vh]">{threads.data?.map(row => <Button asChild variant={threadId === row.id ? 'secondary' : 'ghost'} className="justify-start text-left" key={row.id}><Link to="/analytics/$threadId" params={{ threadId: row.id }} aria-current={threadId === row.id ? 'page' : undefined}><span className="line-clamp-2 break-words">{row.title}</span></Link></Button>)}</nav><div className="mt-5 border-t border-border pt-4 text-xs text-muted-foreground"><p className="font-medium">Muse · {t('analytics.notConnected')}</p><a className="mt-2 inline-flex items-center gap-1 underline" href="https://muse.ai/platform/docs" target="_blank" rel="noopener noreferrer">{t('analytics.museDocs')}<ArrowUpRight className="h-3 w-3" /></a></div></aside>
+        <aside className="min-w-0 border-b border-border pb-4 md:border-b-0 md:border-r md:pr-4"><h2 className="mb-3 text-sm font-body font-medium">{t('analytics.conversations')}</h2><nav className="flex max-h-48 flex-col gap-1 overflow-y-auto md:max-h-[65vh]">{threads.data?.map(row => <Button asChild variant={threadId === row.id ? 'secondary' : 'ghost'} className="justify-start text-left" key={row.id}><Link to="/analytics/$threadId" params={{ threadId: row.id }} aria-current={threadId === row.id ? 'page' : undefined}><span className="line-clamp-2 break-words">{row.title}</span></Link></Button>)}</nav></aside>
         {threadId ? <SavedChat key={threadId} threadId={threadId} /> : <section className="py-12"><BarChart3 className="mb-5 h-6 w-6 text-accent" /><h2 className="mb-6 font-heading text-2xl">{t('analytics.start')}</h2><Button variant="outline" onClick={newChat} disabled={creating}><Plus />{t('analytics.newChat')}</Button></section>}
       </div>
     </main></div>;
@@ -57,6 +57,7 @@ function ChatWindow({ threadId, initialMessages }: { threadId: string; initialMe
   const client = useQueryClient();
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const [input,setInput] = useState('');
+  const [model,setModel] = useState<'chatgpt'|'claude'|'gemini'>('chatgpt');
   const transport = useMemo(() => new DefaultChatTransport({ api: '/api/analytics-chat', body: { threadId }, headers: async () => {
     const { data: { session } } = await supabase.auth.getSession();
     if (!session) throw new Error(t('analytics.signIn'));
@@ -65,7 +66,7 @@ function ChatWindow({ threadId, initialMessages }: { threadId: string; initialMe
   const { messages,sendMessage,status,stop,error } = useChat({ id: threadId, messages: initialMessages, transport, onFinish: () => { void client.invalidateQueries({ queryKey: ['analytics-threads'] }); } });
   const busy = status === 'submitted' || status === 'streaming';
   useEffect(() => { if (!busy) inputRef.current?.focus(); }, [busy]);
-  const send = async (text: string) => { if (!text.trim() || busy) return; setInput(''); inputRef.current?.focus(); await sendMessage({ text }); };
+  const send = async (text: string) => { if (!text.trim() || busy) return; setInput(''); inputRef.current?.focus(); await sendMessage({ text }, { body: { model } }); };
   return <section className="min-w-0">
     <Conversation className="h-[55vh] min-h-80"><ConversationContent className="px-0">
       {messages.length === 0 && <div className="space-y-3 py-8"><h2 className="font-heading text-2xl">{t('analytics.start')}</h2><div className="flex flex-wrap gap-2">{['review','seo','instagram'].map(k => <Button key={k} variant="outline" onClick={() => void send(t(`analytics.prompt.${k}`))}>{t(`analytics.quick.${k}`)}</Button>)}</div></div>}
@@ -78,7 +79,7 @@ function ChatWindow({ threadId, initialMessages }: { threadId: string; initialMe
       {status === 'submitted' && <Shimmer>{t('analytics.working')}</Shimmer>}
     </ConversationContent><ConversationScrollButton /></Conversation>
     {error && <p role="alert" className="my-3 break-words text-sm text-destructive">{error.message}</p>}
-    <PromptInput className="mt-4" onSubmit={() => send(input)}><PromptInputTextarea ref={inputRef} value={input} onChange={e => setInput(e.target.value)} aria-label={t('analytics.message')} placeholder={t('analytics.placeholder')} /><PromptInputFooter className="justify-end"><PromptInputSubmit className="h-11 w-11" status={status} onStop={() => void stop()} disabled={!busy && !input.trim()} aria-label={t(busy ? 'analytics.stop' : 'analytics.send')} /></PromptInputFooter></PromptInput>
+    <PromptInput className="mt-4" onSubmit={() => send(input)}><PromptInputTextarea ref={inputRef} value={input} onChange={e => setInput(e.target.value)} aria-label={t('analytics.message')} placeholder={t('analytics.placeholder')} /><PromptInputFooter className="justify-between gap-2"><label className="flex items-center gap-2 text-xs text-muted-foreground">{t('analytics.model')}<select className="h-9 rounded-md border border-input bg-background px-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" value={model} disabled={busy} onChange={e => setModel(e.target.value as typeof model)}><option value="chatgpt">ChatGPT</option><option value="claude">Claude</option><option value="gemini">Gemini</option></select></label><PromptInputSubmit className="h-11 w-11" status={status} onStop={() => void stop()} disabled={!busy && !input.trim()} aria-label={t(busy ? 'analytics.stop' : 'analytics.send')} /></PromptInputFooter></PromptInput>
   </section>;
 }
 function ToolResult({ output }: { output: unknown }) {

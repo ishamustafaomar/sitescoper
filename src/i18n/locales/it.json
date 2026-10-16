@@ -1843,6 +1843,7 @@
       "listReports": "Leggi report salvati",
       "readReport": "Leggi report",
       "preparePromotion": "Prepara immagine promo"
-    }
+    },
+    "model": "Modello IA"
   }
 }

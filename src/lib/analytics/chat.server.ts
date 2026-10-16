@@ -1,5 +1,7 @@
 import { createClient } from '@supabase/supabase-js';
 import { createOpenAI } from '@ai-sdk/openai';
+import { createAnthropic } from '@ai-sdk/anthropic';
+import { createOpenAICompatible } from '@ai-sdk/openai-compatible';
 import { streamText, tool, stepCountIs, convertToModelMessages, validateUIMessages, type UIMessage } from 'ai';
 import { z } from 'zod';
 import { createLovableAiGatewayRunIdFetch, withLovableAiGatewayRunIdHeader } from './run-id.ts';
@@ -19,7 +21,7 @@ export async function handleAnalyticsChat(request: Request) {
   if (authError || !identity.user) return Response.json({ error: 'Sign in to use Analytics.' }, { status: 401 });
   const userId = identity.user.id;
   let body;
-  try { body = z.object({ threadId: z.string().uuid(), messages: z.array(z.unknown()) }).parse(await request.json()); } catch { return Response.json({ error: 'Invalid conversation.' }, { status: 400 }); }
+  try { body = z.object({ threadId: z.string().uuid(), messages: z.array(z.unknown()), model: z.enum(['chatgpt','claude','gemini']).optional() }).parse(await request.json()); } catch { return Response.json({ error: 'Invalid conversation.' }, { status: 400 }); }
   const { data: thread, error } = await sb.from('analytics_threads').select('id,ai_paused_reason').eq('id', body.threadId).eq('user_id', userId).single();
   if (error || !thread) return Response.json({ error: 'Conversation not found.' }, { status: 404 });
   if (thread.ai_paused_reason) return Response.json({ error: thread.ai_paused_reason }, { status: 403 });
@@ -51,8 +53,8 @@ export async function handleAnalyticsChat(request: Request) {
   let upstreamStatus = 0;
   let upstreamMessage = '';
   const run = createLovableAiGatewayRunIdFetch();
-  const provider = createOpenAI({ baseURL: 'https://ai.gateway.lovable.dev/v1', apiKey, headers: { 'Lovable-API-Key': apiKey, 'X-Lovable-AIG-SDK': 'vercel-ai-sdk' }, fetch: async (input, init) => {
-    const response = await run.fetch(input, init);
+  const gatewayFetch = async (input: RequestInfo | URL, init?: RequestInit) => {
+    const response = await run.fetch(input as RequestInfo, init);
     if (!response.ok) {
       upstreamStatus = response.status;
       const raw = await response.clone().text();
@@ -63,9 +65,15 @@ export async function handleAnalyticsChat(request: Request) {
       }
     }
     return response;
-  } });
-  const result = streamText({ model: provider.responses('openai/gpt-6-astra'), system: ANALYTICS_INSTRUCTIONS, messages: await convertToModelMessages(messages), tools, stopWhen: stepCountIs(50), maxRetries: 0, abortSignal: request.signal,
-    providerOptions: { openai: { forceReasoning: true, reasoningEffort: 'low', reasoningSummary: 'auto', store: false, include: ['reasoning.encrypted_content'] } },
+  };
+  const choice = body.model ?? 'chatgpt';
+  const model = choice === 'claude'
+    ? createAnthropic({ baseURL: 'https://ai.gateway.lovable.dev/v1', apiKey, headers: { 'X-Lovable-AIG-SDK': 'vercel-ai-sdk' }, fetch: gatewayFetch })('anthropic/claude-sonnet-5')
+    : choice === 'gemini'
+      ? createOpenAICompatible({ name: 'lovable', baseURL: 'https://ai.gateway.lovable.dev/v1', headers: { 'Lovable-API-Key': apiKey, 'X-Lovable-AIG-SDK': 'vercel-ai-sdk' }, fetch: gatewayFetch })('google/gemini-3.8-flash')
+      : createOpenAI({ baseURL: 'https://ai.gateway.lovable.dev/v1', apiKey, headers: { 'Lovable-API-Key': apiKey, 'X-Lovable-AIG-SDK': 'vercel-ai-sdk' }, fetch: gatewayFetch }).responses('openai/gpt-6-astra');
+  const result = streamText({ model, system: ANALYTICS_INSTRUCTIONS, messages: await convertToModelMessages(messages), tools, stopWhen: stepCountIs(50), maxRetries: 0, abortSignal: request.signal,
+    providerOptions: choice !== 'chatgpt' ? {} : { openai: { forceReasoning: true, reasoningEffort: 'low', reasoningSummary: 'auto', store: false, include: ['reasoning.encrypted_content'] } },
   });
   const response = await withLovableAiGatewayRunIdHeader(result.toUIMessageStreamResponse({ originalMessages: messages, sendReasoning: true, onFinish: async ({ messages }) => { await save(messages); }, onError: error => upstreamMessage || (error instanceof Error ? error.message : 'Analytics failed.') }), run, { 'Cache-Control': 'no-store' });
   if (upstreamStatus) { await response.body?.cancel(); return Response.json({ error: upstreamMessage }, { status: upstreamStatus }); }

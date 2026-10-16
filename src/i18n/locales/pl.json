@@ -1843,6 +1843,7 @@
       "listReports": "Czytaj zapisane raporty",
       "readReport": "Czytaj raport",
       "preparePromotion": "Przygotuj grafikę promo"
-    }
+    },
+    "model": "Model AI"
   }
 }

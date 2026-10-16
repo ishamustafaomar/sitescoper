@@ -1842,6 +1842,7 @@
       "listReports": "保存済みレポートを読む",
       "readReport": "レポートを読む",
       "preparePromotion": "宣伝画像を準備"
-    }
+    },
+    "model": "AIモデル"
   }
 }
