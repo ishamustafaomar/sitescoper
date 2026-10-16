@@ -1,111 +1,84 @@
-import { useEffect, useRef, useState } from "react";
+import { useId, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Download, ImageIcon } from "lucide-react";
+import { Download, ImageIcon, Loader2, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import type { AnalysisResult } from "@/lib/api";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import type { ScrapeResult } from "@/lib/api";
+import type { PromoFormat, PromoStyle } from "@/lib/social-promo";
+import { streamImage } from "@/lib/stream-image";
+import { supabase } from "@/integrations/supabase/client";
+import { useAuth } from "@/components/AuthProvider";
+import { Link } from "@/lib/router-compat";
 
-type Format = "square" | "story";
-type Theme = "ink" | "paper" | "glow";
-
-// Canvas drawing colors are image pixels, not UI tokens; kept local to the exported artwork.
-const THEMES: Record<Theme, { bg: [string, string]; fg: string; muted: string; accent: string; chip: string }> = {
-  ink: { bg: ["#111214", "#1d1f24"], fg: "#f5f2ea", muted: "#a5a29a", accent: "#e8b84a", chip: "rgba(255,255,255,0.08)" },
-  paper: { bg: ["#f6f1e6", "#ece4d2"], fg: "#16140f", muted: "#6b665a", accent: "#c2410c", chip: "rgba(0,0,0,0.06)" },
-  glow: { bg: ["#0f3d3e", "#1f6f5c"], fg: "#ffffff", muted: "#cfe8df", accent: "#ffd166", chip: "rgba(255,255,255,0.12)" },
-};
-
-function domainOf(url: string) {
-  try { return new URL(url).hostname.replace(/^www\./, ""); } catch { return url || "your-site.com"; }
-}
-
-function draw(canvas: HTMLCanvasElement, opts: { format: Format; theme: Theme; domain: string; score: number; wins: string[]; labels: { title: string; wins: string; footer: string } }) {
-  const W = 1080, H = opts.format === "square" ? 1080 : 1920;
-  canvas.width = W; canvas.height = H;
-  const c = canvas.getContext("2d")!;
-  const th = THEMES[opts.theme];
-  const g = c.createLinearGradient(0, 0, W, H);
-  g.addColorStop(0, th.bg[0]); g.addColorStop(1, th.bg[1]);
-  c.fillStyle = g; c.fillRect(0, 0, W, H);
-
-  const top = opts.format === "square" ? 110 : 300;
-  c.textAlign = "center";
-  c.fillStyle = th.muted; c.font = "600 40px Georgia, serif";
-  c.fillText(opts.labels.title.toUpperCase(), W / 2, top);
-  c.fillStyle = th.fg; c.font = "700 76px Georgia, serif";
-  let d = opts.domain; while (c.measureText(d).width > W - 140 && d.length > 4) d = d.slice(0, -2);
-  c.fillText(d, W / 2, top + 100);
-
-  // Score ring
-  const cy = top + 360, r = 170;
-  c.lineWidth = 28; c.strokeStyle = th.chip;
-  c.beginPath(); c.arc(W / 2, cy, r, 0, Math.PI * 2); c.stroke();
-  c.strokeStyle = th.accent; c.lineCap = "round";
-  c.beginPath(); c.arc(W / 2, cy, r, -Math.PI / 2, -Math.PI / 2 + (Math.PI * 2 * opts.score) / 100); c.stroke();
-  c.fillStyle = th.fg; c.font = "800 150px Georgia, serif"; c.textBaseline = "middle";
-  c.fillText(String(opts.score), W / 2, cy - 10);
-  c.fillStyle = th.muted; c.font = "500 38px Georgia, serif";
-  c.fillText("/ 100", W / 2, cy + 85);
-  c.textBaseline = "alphabetic";
-
-  // Wins
-  let y = cy + r + (opts.format === "square" ? 100 : 180);
-  c.fillStyle = th.muted; c.font = "600 34px Georgia, serif";
-  c.fillText(opts.labels.wins, W / 2, y);
-  y += 40;
-  c.font = "600 38px Georgia, serif"; c.textAlign = "left";
-  for (const w of opts.wins) {
-    let txt = `✓  ${w}`; while (c.measureText(txt).width > W - 220 && txt.length > 6) txt = txt.slice(0, -2);
-    if (txt !== `✓  ${w}`) txt += "…";
-    c.fillStyle = th.chip; c.beginPath(); c.roundRect(90, y, W - 180, 80, 40); c.fill();
-    c.fillStyle = th.fg; c.fillText(txt, 130, y + 53);
-    y += 100;
-  }
-
-  c.textAlign = "center"; c.fillStyle = th.muted; c.font = "500 30px Georgia, serif";
-  c.fillText(opts.labels.footer, W / 2, H - 60);
-}
-
-export function SocialCardPanel({ url, analysis }: { url: string; analysis: AnalysisResult }) {
+export function SocialCardPanel({ url, scrapeData }: { url: string; scrapeData?: ScrapeResult }) {
   const { t } = useTranslation();
-  const ref = useRef<HTMLCanvasElement>(null);
-  const [format, setFormat] = useState<Format>("square");
-  const [theme, setTheme] = useState<Theme>("ink");
-  const domain = domainOf(url);
-  const score = Math.round(analysis.overall_score);
-  const wins = [...analysis.categories].sort((a, b) => b.score - a.score).slice(0, 3)
-    .map((cat) => `${cat.name} · ${Math.round(cat.score)}/100`);
+  const { user } = useAuth();
+  const id = useId();
+  const [format, setFormat] = useState<PromoFormat>("square");
+  const [style, setStyle] = useState<PromoStyle>("photo");
+  const [brand, setBrand] = useState("");
+  const [headline, setHeadline] = useState("");
+  const [detail, setDetail] = useState(scrapeData?.metadata?.description?.slice(0, 240) ?? "");
+  const [context, setContext] = useState(scrapeData?.markdown?.slice(0, 10000) ?? "");
+  const [source, setSource] = useState<File | null>(null);
+  const [sourceUrl, setSourceUrl] = useState("");
+  const [image, setImage] = useState("");
+  const [final, setFinal] = useState(false);
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState("");
+  const photos = (scrapeData?.images ?? []).filter((p) => /^https?:\/\//.test(p.src) && !/badge|goodaitools|best-ai\.org/i.test(`${p.src} ${p.alt}`)).slice(0, 8);
 
-  useEffect(() => {
-    if (!ref.current) return;
-    draw(ref.current, { format, theme, domain, score, wins, labels: {
-      title: t("socialCard.cardTitle"), wins: t("socialCard.cardWins"), footer: t("socialCard.cardFooter"),
-    } });
-  }, [format, theme, domain, score, wins.join("|"), t]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  const download = () => {
-    const a = document.createElement("a");
-    a.href = ref.current!.toDataURL("image/png");
-    a.download = `${domain}-sitescoper-${format}.png`;
-    a.click();
+  const generate = async () => {
+    setBusy(true); setError(""); setImage(""); setFinal(false);
+    try {
+      let file = source;
+      if (!file && sourceUrl) {
+        const res = await fetch(sourceUrl);
+        if (!res.ok) throw new Error(t("socialCard.sourceError"));
+        const blob = await res.blob();
+        file = new File([blob], "website-source", { type: blob.type });
+      }
+      if (!file) throw new Error(t("socialCard.sourceError"));
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) throw new Error(t("socialCard.signIn"));
+      const form = new FormData();
+      form.set("image", file);
+      for (const [key, value] of Object.entries({ brand, headline, detail, context, format, style })) form.set(key, value);
+      await streamImage("/api/public/social-promo", form, (src, complete) => { setImage(src); setFinal(complete); }, undefined, { Authorization: `Bearer ${session.access_token}` });
+    } catch (e) {
+      setImage(""); setFinal(false);
+      setError(e instanceof TypeError ? t("socialCard.sourceError") : e instanceof Error ? e.message : t("socialCard.failed"));
+    } finally { setBusy(false); }
   };
 
   return (
-    <div className="rounded-2xl border border-border bg-card p-5 space-y-4">
-      <div>
-        <h3 className="font-heading font-bold text-base flex items-center gap-2"><ImageIcon className="h-4 w-4 text-primary" />{t("socialCard.title")}</h3>
-        <p className="text-xs text-muted-foreground font-body mt-1 max-w-md">{t("socialCard.desc")}</p>
+    <section className="min-w-0 space-y-5 border-t border-border pt-6" aria-labelledby={`${id}-title`}>
+      <h3 id={`${id}-title`} className="flex items-center gap-2 font-heading text-xl"><ImageIcon className="h-4 w-4 text-primary" />{t("socialCard.title")}</h3>
+      <div className="grid gap-5 lg:grid-cols-2">
+        <div className="min-w-0 space-y-4">
+          <div className="space-y-2"><Label htmlFor={`${id}-brand`}>{t("socialCard.brand")}</Label><Input id={`${id}-brand`} value={brand} maxLength={100} onChange={(e) => setBrand(e.target.value)} disabled={busy} /></div>
+          <div className="space-y-2"><Label htmlFor={`${id}-headline`}>{t("socialCard.headline")}</Label><Input id={`${id}-headline`} value={headline} maxLength={160} onChange={(e) => setHeadline(e.target.value)} disabled={busy} /></div>
+          <div className="space-y-2"><Label htmlFor={`${id}-detail`}>{t("socialCard.detail")}</Label><Textarea id={`${id}-detail`} value={detail} maxLength={240} onChange={(e) => setDetail(e.target.value)} disabled={busy} /></div>
+          <details><summary className="cursor-pointer text-sm font-body focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring">{t("socialCard.context")}</summary><Textarea className="mt-2" aria-label={t("socialCard.context")} value={context} maxLength={10000} onChange={(e) => setContext(e.target.value)} disabled={busy} /></details>
+          <fieldset className="space-y-2"><legend className="mb-2 text-sm font-body font-medium">{t("socialCard.source")}</legend>
+            {photos.length > 0 && <div className="grid grid-cols-4 gap-2">{photos.map((p, i) => <Button key={`${p.src}-${i}`} type="button" variant="outline" className={`h-auto aspect-square overflow-hidden p-1 ${sourceUrl === p.src ? "ring-2 ring-ring" : ""}`} aria-label={p.alt || `${t("socialCard.source")} ${i + 1}`} aria-pressed={sourceUrl === p.src} disabled={busy} onClick={() => { setSource(null); setSourceUrl(p.src); }}><img src={p.src} alt={p.alt} className="h-full w-full object-contain" loading="lazy" /></Button>)}</div>}
+            <Input type="file" aria-label={t("socialCard.upload")} accept="image/png,image/jpeg,image/webp" disabled={busy} onChange={(e) => { setSource(e.target.files?.[0] ?? null); setSourceUrl(""); }} />
+            {source && <p className="break-all text-xs text-muted-foreground">{source.name}</p>}
+          </fieldset>
+          <fieldset><legend className="mb-2 text-sm font-body font-medium">{t("socialCard.styleLabel")}</legend><div className="flex flex-wrap gap-2">{(["photo", "poster", "collage"] as PromoStyle[]).map((s) => <Button key={s} type="button" size="sm" variant={style === s ? "default" : "outline"} aria-pressed={style === s} onClick={() => setStyle(s)} disabled={busy}>{t(`socialCard.style.${s}`)}</Button>)}</div></fieldset>
+          <fieldset><legend className="mb-2 text-sm font-body font-medium">{t("socialCard.formatLabel")}</legend><div className="flex flex-wrap gap-2">{(["square", "story"] as PromoFormat[]).map((f) => <Button key={f} type="button" size="sm" variant={format === f ? "default" : "outline"} aria-pressed={format === f} onClick={() => setFormat(f)} disabled={busy}>{t(`socialCard.format.${f}`)}</Button>)}</div></fieldset>
+          {user ? <Button type="button" onClick={generate} disabled={busy || !brand.trim() || !headline.trim() || (!source && !sourceUrl)}>{busy ? <Loader2 className="h-4 w-4 motion-safe:animate-spin" /> : <Sparkles className="h-4 w-4" />}{t(busy ? "socialCard.generating" : "socialCard.generate")}</Button> : <Button asChild><Link to={`/auth?redirect=${encodeURIComponent(typeof window === "undefined" ? "/" : window.location.pathname + window.location.search)}`}>{t("socialCard.signIn")}</Link></Button>}
+          {error && <p role="alert" className="break-words text-sm text-destructive">{error}</p>}
+        </div>
+        <div className="min-w-0 space-y-3">
+          <div className={`flex items-center justify-center overflow-hidden rounded-md border border-border bg-muted/30 ${format === "story" ? "aspect-[9/16] max-w-sm" : "aspect-square"}`} aria-busy={busy}>
+            {image ? <img src={image} alt={t("socialCard.preview")} className={`h-full w-full object-contain transition-[filter] motion-reduce:transition-none ${final ? "blur-0" : "blur-2xl"}`} /> : <div role="status" className="p-6 text-center text-sm text-muted-foreground">{busy ? t("socialCard.generating") : t("socialCard.preview")}</div>}
+          </div>
+          {image && final && !busy && <Button asChild variant="outline"><a href={image} download={`${url.replace(/^https?:\/\//, "").replace(/[^a-z0-9.-]/gi, "_") || "website"}-promo-${format}.png`}><Download className="h-4 w-4" />{t("socialCard.download")}</a></Button>}
+        </div>
       </div>
-      <div className="flex flex-wrap gap-2">
-        {(["square", "story"] as Format[]).map((f) => (
-          <Button key={f} size="sm" variant={format === f ? "default" : "outline"} onClick={() => setFormat(f)}>{t(`socialCard.format.${f}`)}</Button>
-        ))}
-        <span className="w-px bg-border mx-1" />
-        {(["ink", "paper", "glow"] as Theme[]).map((s) => (
-          <Button key={s} size="sm" variant={theme === s ? "default" : "outline"} onClick={() => setTheme(s)}>{t(`socialCard.theme.${s}`)}</Button>
-        ))}
-      </div>
-      <canvas ref={ref} className="w-full max-w-[300px] rounded-xl border border-border" aria-label={t("socialCard.title")} />
-      <Button size="sm" variant="hero" onClick={download}><Download className="h-4 w-4" />{t("socialCard.download")}</Button>
-    </div>
+    </section>
   );
 }

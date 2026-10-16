@@ -1567,6 +1567,10 @@
       "socialCard": {
         "title": "Cartões promocionais no lugar de vídeos",
         "desc": "Transforme qualquer relatório numa imagem para Instagram ou LinkedIn com pontuação e pontos fortes."
+      },
+      "websitePromos": {
+        "title": "Promova seu site",
+        "desc": "Crie anúncios do seu negócio com fotos reais e texto que você revisa. Quadrado ou story, sem pontuações ou selos."
       }
     }
   },
@@ -1775,20 +1779,30 @@
     "flag_speed_of_understanding": "Compreensível em 5 segundos"
   },
   "socialCard": {
-    "title": "Cartão promocional",
-    "desc": "Baixe uma imagem pronta para postar com sua pontuação para Instagram, LinkedIn ou X. Grátis e instantâneo.",
+    "title": "Promova seu site",
+    "brand": "Nome do negócio",
+    "headline": "Título do anúncio",
+    "detail": "Texto de apoio",
+    "context": "Conteúdo do site",
+    "source": "Foto do produto ou site",
+    "upload": "Enviar sua foto",
+    "styleLabel": "Estilo visual",
+    "formatLabel": "Formato",
+    "generate": "Criar imagem promocional",
+    "generating": "Criando imagem…",
+    "signIn": "Entre para criar imagens",
+    "preview": "Imagem promocional",
+    "sourceError": "Escolha uma foto ou envie PNG, JPEG ou WebP com menos de 10 MB. Se a foto do site não carregar, envie-a.",
+    "failed": "Não foi possível criar a imagem.",
     "format": {
       "square": "Quadrado",
       "story": "Story"
     },
-    "theme": {
-      "ink": "Tinta",
-      "paper": "Papel",
-      "glow": "Brilho"
-    },
     "download": "Baixar PNG",
-    "cardTitle": "Pontuação do site",
-    "cardWins": "Pontos fortes",
-    "cardFooter": "Auditado com sitescoper.com"
+    "style": {
+      "photo": "Foto do produto",
+      "poster": "Pôster marcante",
+      "collage": "Colagem do produto"
+    }
   }
 }

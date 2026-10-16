@@ -1567,6 +1567,10 @@
       "socialCard": {
         "title": "Promo-Karten statt Video-Roasts",
         "desc": "Mach aus jedem Bericht ein Instagram- oder LinkedIn-Bild mit Score und Stärken."
+      },
+      "websitePromos": {
+        "title": "Deine Website bewerben",
+        "desc": "Erstelle Werbung für dein Unternehmen mit echten Fotos und geprüftem Text. Quadrat oder Story, ohne Audit-Scores oder Abzeichen."
       }
     }
   },
@@ -1775,20 +1779,30 @@
     "flag_speed_of_understanding": "In 5 Sekunden verständlich"
   },
   "socialCard": {
-    "title": "Social-Promo-Karte",
-    "desc": "Lade ein fertiges Bild deines Scores für Instagram, LinkedIn oder X herunter. Kostenlos und sofort.",
+    "title": "Deine Website bewerben",
+    "brand": "Unternehmensname",
+    "headline": "Anzeigenüberschrift",
+    "detail": "Zusatztext",
+    "context": "Website-Inhalt",
+    "source": "Produkt- oder Website-Foto",
+    "upload": "Foto hochladen",
+    "styleLabel": "Visueller Stil",
+    "formatLabel": "Beitragsformat",
+    "generate": "Werbebild erstellen",
+    "generating": "Bild wird erstellt…",
+    "signIn": "Zum Erstellen anmelden",
+    "preview": "Werbebild",
+    "sourceError": "Wähle ein Foto oder lade PNG, JPEG oder WebP unter 10 MB hoch. Wenn das Website-Foto nicht lädt, lade es hoch.",
+    "failed": "Das Bild konnte nicht erstellt werden.",
     "format": {
       "square": "Quadrat",
       "story": "Story"
     },
-    "theme": {
-      "ink": "Tinte",
-      "paper": "Papier",
-      "glow": "Leuchten"
-    },
     "download": "PNG herunterladen",
-    "cardTitle": "Website-Score",
-    "cardWins": "Top-Stärken",
-    "cardFooter": "Geprüft mit sitescoper.com"
+    "style": {
+      "photo": "Produktfoto",
+      "poster": "Markantes Plakat",
+      "collage": "Produktcollage"
+    }
   }
 }

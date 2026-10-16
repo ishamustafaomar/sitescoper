@@ -1567,6 +1567,10 @@
       "socialCard": {
         "title": "Cartes promo à la place des vidéos",
         "desc": "Transformez un rapport en image Instagram ou LinkedIn valorisant votre score et vos points forts."
+      },
+      "websitePromos": {
+        "title": "Promouvoir votre site",
+        "desc": "Créez des publicités pour votre entreprise avec vos photos et un texte vérifié. Carré ou story, sans scores ni badges."
       }
     }
   },
@@ -1775,20 +1779,30 @@
     "flag_speed_of_understanding": "Compréhensible en 5 secondes"
   },
   "socialCard": {
-    "title": "Carte promo sociale",
-    "desc": "Téléchargez une image prête à publier de votre score pour Instagram, LinkedIn ou X. Gratuit et instantané.",
+    "title": "Promouvoir votre site",
+    "brand": "Nom de l’entreprise",
+    "headline": "Titre de l’annonce",
+    "detail": "Texte complémentaire",
+    "context": "Contenu du site",
+    "source": "Photo du produit ou du site",
+    "upload": "Importer votre photo",
+    "styleLabel": "Style visuel",
+    "formatLabel": "Format",
+    "generate": "Créer une image promotionnelle",
+    "generating": "Création de l’image…",
+    "signIn": "Connectez-vous pour créer des images",
+    "preview": "Image promotionnelle",
+    "sourceError": "Choisissez une photo ou importez un PNG, JPEG ou WebP de moins de 10 Mo. Si la photo du site ne charge pas, importez-la.",
+    "failed": "Impossible de créer l’image.",
     "format": {
       "square": "Carré",
       "story": "Story"
     },
-    "theme": {
-      "ink": "Encre",
-      "paper": "Papier",
-      "glow": "Éclat"
-    },
     "download": "Télécharger PNG",
-    "cardTitle": "Score du site",
-    "cardWins": "Points forts",
-    "cardFooter": "Audité avec sitescoper.com"
+    "style": {
+      "photo": "Photo produit",
+      "poster": "Affiche expressive",
+      "collage": "Collage produit"
+    }
   }
 }

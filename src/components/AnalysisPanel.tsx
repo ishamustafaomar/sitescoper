@@ -88,6 +88,13 @@ export function AnalysisPanel({ analysis, scrapeData, onRequestFullReport }: Ana
         onJumpToImpact={showFull ? undefined : () => openFull()}
       />
 
+      <Button variant="outline" className="gap-2" onClick={() => {
+        if (onRequestFullReport?.() === true) return;
+        setShowFull(true);
+        setActiveTab("rewrite");
+        requestAnimationFrame(() => document.getElementById(`${categoryId}-promo`)?.scrollIntoView({ block: "start" }));
+      }}><ImageIcon className="h-4 w-4" />{t("socialCard.title")}</Button>
+
       {!showFull && (
         <div className="flex flex-col items-center gap-2 pt-2 pb-4">
           <Button
@@ -187,7 +194,7 @@ export function AnalysisPanel({ analysis, scrapeData, onRequestFullReport }: Ana
           />
           <div className="mt-4 space-y-4">
             <CompetitorIntelPanel url={scrapeData?.metadata?.sourceURL || ""} analysis={analysis} />
-            <SocialCardPanel url={scrapeData?.metadata?.sourceURL || ""} analysis={analysis} />
+            <div id={`${categoryId}-promo`} className="scroll-mt-24"><SocialCardPanel url={scrapeData?.metadata?.sourceURL || ""} scrapeData={scrapeData} /></div>
           </div>
         </TabsContent>
 

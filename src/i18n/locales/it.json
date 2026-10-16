@@ -1567,6 +1567,10 @@
       "socialCard": {
         "title": "Card promozionali al posto dei video",
         "desc": "Trasforma ogni report in un'immagine per Instagram o LinkedIn con punteggio e punti di forza."
+      },
+      "websitePromos": {
+        "title": "Promuovi il tuo sito",
+        "desc": "Crea annunci per la tua attività con foto reali e testo che controlli. Quadrato o storia, senza punteggi o badge."
       }
     }
   },
@@ -1775,20 +1779,30 @@
     "flag_speed_of_understanding": "Comprensibile in 5 secondi"
   },
   "socialCard": {
-    "title": "Card promozionale",
-    "desc": "Scarica un'immagine pronta da pubblicare con il tuo punteggio per Instagram, LinkedIn o X. Gratis e immediata.",
+    "title": "Promuovi il tuo sito",
+    "brand": "Nome dell’attività",
+    "headline": "Titolo dell’annuncio",
+    "detail": "Testo aggiuntivo",
+    "context": "Contenuto del sito",
+    "source": "Foto del prodotto o del sito",
+    "upload": "Carica la tua foto",
+    "styleLabel": "Stile visivo",
+    "formatLabel": "Formato",
+    "generate": "Crea immagine promozionale",
+    "generating": "Creazione immagine…",
+    "signIn": "Accedi per creare immagini",
+    "preview": "Immagine promozionale",
+    "sourceError": "Scegli una foto o carica un PNG, JPEG o WebP sotto 10 MB. Se la foto del sito non si carica, caricala tu.",
+    "failed": "Impossibile creare l’immagine.",
     "format": {
       "square": "Quadrata",
       "story": "Storia"
     },
-    "theme": {
-      "ink": "Inchiostro",
-      "paper": "Carta",
-      "glow": "Luce"
-    },
     "download": "Scarica PNG",
-    "cardTitle": "Punteggio del sito",
-    "cardWins": "Punti di forza",
-    "cardFooter": "Analizzato con sitescoper.com"
+    "style": {
+      "photo": "Foto prodotto",
+      "poster": "Poster d’impatto",
+      "collage": "Collage prodotto"
+    }
   }
 }
