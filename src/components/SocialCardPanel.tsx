@@ -33,18 +33,11 @@ export function SocialCardPanel({ url, scrapeData, initialHeadline = "", initial
   const generate = async () => {
     setBusy(true); setError(""); setImage(""); setFinal(false);
     try {
-      let file = source;
-      if (!file && sourceUrl) {
-        const res = await fetch(sourceUrl);
-        if (!res.ok) throw new Error(t("socialCard.sourceError"));
-        const blob = await res.blob();
-        file = new File([blob], "website-source", { type: blob.type });
-      }
-      if (!file) throw new Error(t("socialCard.sourceError"));
+      if (!source && !sourceUrl) throw new Error(t("socialCard.sourceError"));
       const { data: { session } } = await supabase.auth.getSession();
       if (!session) throw new Error(t("socialCard.signIn"));
       const form = new FormData();
-      form.set("image", file);
+      if (source) form.set("image", source); else form.set("imageUrl", sourceUrl);
       for (const [key, value] of Object.entries({ brand, headline, detail, context, format, style })) form.set(key, value);
       await streamImage("/api/public/social-promo", form, (src, complete) => { setImage(src); setFinal(complete); }, undefined, { Authorization: `Bearer ${session.access_token}` });
     } catch (e) {
