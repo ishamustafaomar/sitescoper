@@ -340,6 +340,18 @@
       },
       "outro": "Willst du diese Checks erst selbst durchgehen? Lies unsere Schritt-für-Schritt-Anleitung zum",
       "link": "SEO-Audit einer Website"
+    },
+    "analyticsPromo": {
+      "badge": "Neu: Analytics-Assistent",
+      "title": "Frag deine Berichte alles",
+      "subtitle": "Ein integrierter Assistent, der deine gespeicherten Audits liest, erklärt, was zuerst zu beheben ist, und Promo-Bilder für deine Website vorbereitet — du prüfst alles, bevor etwas erstellt wird.",
+      "p1t": "Liest deine echten Audits",
+      "p1d": "Er antwortet auf Basis deiner gespeicherten Berichte, nicht mit allgemeinen Ratschlägen.",
+      "p2t": "Priorisiert die Korrekturen",
+      "p2d": "Frag, was am wichtigsten ist, und erhalte einen klaren nächsten Schritt.",
+      "p3t": "Bereitet Promo-Bilder vor",
+      "p3d": "Er öffnet den Bildeditor mit vorgeschlagenem Text — du genehmigst vor der Erstellung.",
+      "cta": "Assistenten ausprobieren"
     }
   },
   "dashboard": {
@@ -1468,6 +1480,10 @@
     "empty": "Noch keine Neuigkeiten.",
     "newBadge": "NEU",
     "entries": {
+      "analyticsAuto": {
+        "title": "Smarterer Assistent, ganz vorne dabei",
+        "desc": "Der Analytics-Assistent wählt jetzt automatisch das beste KI-Modell für jede Anfrage und wird auf der Startseite vorgestellt."
+      },
       "easierNav": {
         "title": "Alles ist leichter zu finden",
         "desc": "Eine vollständige Menüleiste zeigt Analyse, Dashboard, Vergleich, Überwachung, Tools, Blog, den 9-$-Fix-Pass und Preise auf jeder Seite."
@@ -1844,6 +1860,7 @@
       "readReport": "Bericht lesen",
       "preparePromotion": "Werbebild vorbereiten"
     },
-    "model": "KI-Modell"
+    "model": "KI-Modell",
+    "modelAuto": "Automatisch (bestes Modell für die Aufgabe)"
   }
 }

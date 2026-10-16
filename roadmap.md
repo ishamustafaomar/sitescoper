@@ -2,6 +2,9 @@
 
 ## Analytics assistant (Oct 16, 2026)
 - [ ] Add account-owned threaded Analytics chats with real report research and promotional-image handoff; verify two saved conversations.
+- [x] Auto model routing (image→ChatGPT, code/copy→Claude, quick→Gemini) with manual override; verified typecheck.
+- [x] Homepage promo section for the assistant in 9 locales; browser-verified.
+- [x] Motion-graphics promo video for the assistant (30s, 1920×1080, /mnt/documents/videos/sitescoper-analytics-assistant-promo.mp4); chat and editor shots are mock-ups, not screen recordings.
 - [ ] Verify official muse.ai connection capabilities and connect only a supported endpoint; posting remains blocked until the service exposes a suitable connection.
 
 ## Image creation and separate outreach (Oct 16, 2026)

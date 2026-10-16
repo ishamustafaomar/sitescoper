@@ -57,7 +57,7 @@ function ChatWindow({ threadId, initialMessages }: { threadId: string; initialMe
   const client = useQueryClient();
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const [input,setInput] = useState('');
-  const [model,setModel] = useState<'chatgpt'|'claude'|'gemini'>('chatgpt');
+  const [model,setModel] = useState<'auto'|'chatgpt'|'claude'|'gemini'>('auto');
   const transport = useMemo(() => new DefaultChatTransport({ api: '/api/analytics-chat', body: { threadId }, headers: async () => {
     const { data: { session } } = await supabase.auth.getSession();
     if (!session) throw new Error(t('analytics.signIn'));
@@ -79,7 +79,7 @@ function ChatWindow({ threadId, initialMessages }: { threadId: string; initialMe
       {status === 'submitted' && <Shimmer>{t('analytics.working')}</Shimmer>}
     </ConversationContent><ConversationScrollButton /></Conversation>
     {error && <p role="alert" className="my-3 break-words text-sm text-destructive">{error.message}</p>}
-    <PromptInput className="mt-4" onSubmit={() => send(input)}><PromptInputTextarea ref={inputRef} value={input} onChange={e => setInput(e.target.value)} aria-label={t('analytics.message')} placeholder={t('analytics.placeholder')} /><PromptInputFooter className="justify-between gap-2"><label className="flex items-center gap-2 text-xs text-muted-foreground">{t('analytics.model')}<select className="h-9 rounded-md border border-input bg-background px-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" value={model} disabled={busy} onChange={e => setModel(e.target.value as typeof model)}><option value="chatgpt">ChatGPT</option><option value="claude">Claude</option><option value="gemini">Gemini</option></select></label><PromptInputSubmit className="h-11 w-11" status={status} onStop={() => void stop()} disabled={!busy && !input.trim()} aria-label={t(busy ? 'analytics.stop' : 'analytics.send')} /></PromptInputFooter></PromptInput>
+    <PromptInput className="mt-4" onSubmit={() => send(input)}><PromptInputTextarea ref={inputRef} value={input} onChange={e => setInput(e.target.value)} aria-label={t('analytics.message')} placeholder={t('analytics.placeholder')} /><PromptInputFooter className="justify-between gap-2"><label className="flex items-center gap-2 text-xs text-muted-foreground">{t('analytics.model')}<select className="h-9 rounded-md border border-input bg-background px-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" value={model} disabled={busy} onChange={e => setModel(e.target.value as typeof model)}><option value="auto">{t('analytics.modelAuto')}</option><option value="chatgpt">ChatGPT</option><option value="claude">Claude</option><option value="gemini">Gemini</option></select></label><PromptInputSubmit className="h-11 w-11" status={status} onStop={() => void stop()} disabled={!busy && !input.trim()} aria-label={t(busy ? 'analytics.stop' : 'analytics.send')} /></PromptInputFooter></PromptInput>
   </section>;
 }
 function ToolResult({ output }: { output: unknown }) {

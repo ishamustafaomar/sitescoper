@@ -14,6 +14,7 @@ import { AppHeader } from "@/components/AppHeader";
 import { EarlyAccessBanner } from "@/components/EarlyAccessBanner";
 const WhyPaySection = lazy(() => import("@/components/landing/WhyPaySection").then(m => ({ default: m.WhyPaySection })));
 const FeaturesSection = lazy(() => import("@/components/landing/FeaturesSection").then(m => ({ default: m.FeaturesSection })));
+const AnalyticsPromoSection = lazy(() => import("@/components/landing/AnalyticsPromoSection").then(m => ({ default: m.AnalyticsPromoSection })));
 const HowItWorksSection = lazy(() => import("@/components/landing/HowItWorksSection").then(m => ({ default: m.HowItWorksSection })));
 const CategoriesSection = lazy(() => import("@/components/landing/CategoriesSection").then(m => ({ default: m.CategoriesSection })));
 const StatsSection = lazy(() => import("@/components/landing/StatsSection").then(m => ({ default: m.StatsSection })));
@@ -564,6 +565,7 @@ const Index = () => {
           <SocialProofBar />
           <StatsSection />
           <FeaturesSection />
+          <AnalyticsPromoSection />
           <HowItWorksSection />
           <ScopeSection />
           <SampleReportSection onTryYours={scrollToInput} />

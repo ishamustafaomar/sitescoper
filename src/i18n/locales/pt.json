@@ -340,6 +340,18 @@
       },
       "outro": "Queres primeiro fazer estas verificações à mão? Lê o nosso guia passo a passo para",
       "link": "auditar um site para SEO"
+    },
+    "analyticsPromo": {
+      "badge": "Novo: assistente de Analytics",
+      "title": "Pergunte tudo aos seus relatórios",
+      "subtitle": "Um assistente integrado que lê as suas auditorias guardadas, explica o que corrigir primeiro e prepara imagens promocionais para o seu site — você revê tudo antes de criar qualquer coisa.",
+      "p1t": "Lê as suas auditorias reais",
+      "p1d": "Responde com base nos seus relatórios guardados, não com conselhos genéricos.",
+      "p2t": "Prioriza as correções",
+      "p2d": "Pergunte o que é mais importante e obtenha um próximo passo claro.",
+      "p3t": "Prepara imagens promocionais",
+      "p3d": "Abre o editor de imagens com texto sugerido — você aprova antes de gerar.",
+      "cta": "Experimentar o assistente"
     }
   },
   "dashboard": {
@@ -1468,6 +1480,10 @@
     "empty": "Ainda sem atualizações.",
     "newBadge": "NOVO",
     "entries": {
+      "analyticsAuto": {
+        "title": "Assistente mais inteligente e em destaque",
+        "desc": "O assistente de Analytics agora escolhe automaticamente o melhor modelo de IA para cada pedido e está em destaque na página inicial."
+      },
       "easierNav": {
         "title": "Tudo ficou mais fácil de encontrar",
         "desc": "Uma barra de menu completa mostra Analisar, Painel, Comparar, Monitorização, Ferramentas, Blog, o Passe de correções de $9 e Preços em todas as páginas."
@@ -1844,6 +1860,7 @@
       "readReport": "Ler relatório",
       "preparePromotion": "Preparar imagem promocional"
     },
-    "model": "Modelo de IA"
+    "model": "Modelo de IA",
+    "modelAuto": "Automático (o melhor para a tarefa)"
   }
 }
