@@ -1567,6 +1567,10 @@
       "socialCard": {
         "title": "Social promo cards replace video roasts",
         "desc": "Turn any report into a flattering Instagram or LinkedIn image of your score and top strengths, in square or story size."
+      },
+      "websitePromos": {
+        "title": "Promote your website",
+        "desc": "Create social ads for your actual business using real photos and wording you review. Choose a square post or story, without audit scores or badges."
       }
     }
   },
@@ -1775,20 +1779,30 @@
     "flag_speed_of_understanding": "Understandable in 5 seconds"
   },
   "socialCard": {
-    "title": "Social promo card",
-    "desc": "Download a ready-to-post image of your score for Instagram, LinkedIn or X. Free, instant.",
+    "title": "Promote your website",
+    "brand": "Business name",
+    "headline": "Ad headline",
+    "detail": "Supporting line",
+    "context": "Website content",
+    "source": "Product or website photo",
+    "upload": "Upload your photo",
+    "styleLabel": "Visual style",
+    "formatLabel": "Post format",
+    "generate": "Create promotional image",
+    "generating": "Creating image…",
+    "signIn": "Sign in to create images",
+    "preview": "Promotional image",
+    "sourceError": "Choose a website photo or upload a PNG, JPEG or WebP under 10 MB. If a website photo cannot load, upload it instead.",
+    "failed": "The image could not be created.",
     "format": {
       "square": "Square post",
       "story": "Story"
     },
-    "theme": {
-      "ink": "Ink",
-      "paper": "Paper",
-      "glow": "Glow"
-    },
     "download": "Download PNG",
-    "cardTitle": "Website score",
-    "cardWins": "Top strengths",
-    "cardFooter": "Audited with sitescoper.com"
+    "style": {
+      "photo": "Product photo",
+      "poster": "Bold poster",
+      "collage": "Product collage"
+    }
   }
 }

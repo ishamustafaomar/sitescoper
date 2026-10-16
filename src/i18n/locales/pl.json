@@ -1567,6 +1567,10 @@
       "socialCard": {
         "title": "Karty promocyjne zamiast wideo",
         "desc": "Zamień każdy raport w obraz na Instagram lub LinkedIn z wynikiem i mocnymi stronami."
+      },
+      "websitePromos": {
+        "title": "Promuj swoją stronę",
+        "desc": "Twórz reklamy swojej firmy z prawdziwymi zdjęciami i sprawdzonym tekstem. Kwadrat lub relacja, bez wyników audytu i odznak."
       }
     }
   },
@@ -1775,20 +1779,30 @@
     "flag_speed_of_understanding": "Zrozumiałe w 5 sekund"
   },
   "socialCard": {
-    "title": "Karta promocyjna",
-    "desc": "Pobierz gotowy obraz z wynikiem na Instagram, LinkedIn lub X. Za darmo i od razu.",
+    "title": "Promuj swoją stronę",
+    "brand": "Nazwa firmy",
+    "headline": "Nagłówek reklamy",
+    "detail": "Tekst uzupełniający",
+    "context": "Treść strony",
+    "source": "Zdjęcie produktu lub strony",
+    "upload": "Prześlij zdjęcie",
+    "styleLabel": "Styl wizualny",
+    "formatLabel": "Format",
+    "generate": "Utwórz obraz promocyjny",
+    "generating": "Tworzenie obrazu…",
+    "signIn": "Zaloguj się, aby tworzyć obrazy",
+    "preview": "Obraz promocyjny",
+    "sourceError": "Wybierz zdjęcie lub prześlij PNG, JPEG albo WebP poniżej 10 MB. Jeśli zdjęcie strony nie ładuje się, prześlij je.",
+    "failed": "Nie udało się utworzyć obrazu.",
     "format": {
       "square": "Kwadrat",
       "story": "Relacja"
     },
-    "theme": {
-      "ink": "Atrament",
-      "paper": "Papier",
-      "glow": "Blask"
-    },
     "download": "Pobierz PNG",
-    "cardTitle": "Wynik strony",
-    "cardWins": "Mocne strony",
-    "cardFooter": "Sprawdzone przez sitescoper.com"
+    "style": {
+      "photo": "Zdjęcie produktu",
+      "poster": "Wyrazisty plakat",
+      "collage": "Kolaż produktów"
+    }
   }
 }

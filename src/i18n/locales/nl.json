@@ -1567,6 +1567,10 @@
       "socialCard": {
         "title": "Promokaarten in plaats van video-roasts",
         "desc": "Maak van elk rapport een Instagram- of LinkedIn-afbeelding met je score en sterke punten."
+      },
+      "websitePromos": {
+        "title": "Promoot je website",
+        "desc": "Maak advertenties voor je bedrijf met echte foto’s en tekst die je controleert. Vierkant of story, zonder auditscores of badges."
       }
     }
   },
@@ -1775,20 +1779,30 @@
     "flag_speed_of_understanding": "Begrijpelijk binnen 5 seconden"
   },
   "socialCard": {
-    "title": "Social promokaart",
-    "desc": "Download een kant-en-klare afbeelding van je score voor Instagram, LinkedIn of X. Gratis en direct.",
+    "title": "Promoot je website",
+    "brand": "Bedrijfsnaam",
+    "headline": "Advertentiekop",
+    "detail": "Aanvullende tekst",
+    "context": "Website-inhoud",
+    "source": "Product- of websitefoto",
+    "upload": "Upload je foto",
+    "styleLabel": "Visuele stijl",
+    "formatLabel": "Postformaat",
+    "generate": "Promotiebeeld maken",
+    "generating": "Afbeelding maken…",
+    "signIn": "Log in om afbeeldingen te maken",
+    "preview": "Promotiebeeld",
+    "sourceError": "Kies een foto of upload PNG, JPEG of WebP onder 10 MB. Upload de websitefoto als deze niet laadt.",
+    "failed": "De afbeelding kon niet worden gemaakt.",
     "format": {
       "square": "Vierkant",
       "story": "Story"
     },
-    "theme": {
-      "ink": "Inkt",
-      "paper": "Papier",
-      "glow": "Gloed"
-    },
     "download": "PNG downloaden",
-    "cardTitle": "Websitescore",
-    "cardWins": "Sterkste punten",
-    "cardFooter": "Gecontroleerd met sitescoper.com"
+    "style": {
+      "photo": "Productfoto",
+      "poster": "Opvallende poster",
+      "collage": "Productcollage"
+    }
   }
 }

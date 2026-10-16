@@ -1567,6 +1567,10 @@
       "socialCard": {
         "title": "動画ローストをプロモカードに変更",
         "desc": "レポートからスコアと強みを載せたInstagram・LinkedIn用画像を作成できます。"
+      },
+      "websitePromos": {
+        "title": "サイトを宣伝",
+        "desc": "実際の写真と確認した文言で事業の広告を作成。正方形・ストーリーに対応し、診断スコアやバッジは含みません。"
       }
     }
   },
@@ -1774,20 +1778,30 @@
     "flag_speed_of_understanding": "5秒以内に理解できる"
   },
   "socialCard": {
-    "title": "SNS用プロモカード",
-    "desc": "スコアをInstagram・LinkedIn・X用の画像としてダウンロード。無料ですぐ作成。",
+    "title": "サイトを宣伝",
+    "brand": "事業名",
+    "headline": "広告の見出し",
+    "detail": "補足テキスト",
+    "context": "サイトの内容",
+    "source": "商品・サイトの写真",
+    "upload": "写真をアップロード",
+    "styleLabel": "ビジュアルスタイル",
+    "formatLabel": "投稿形式",
+    "generate": "宣伝画像を作成",
+    "generating": "画像を作成中…",
+    "signIn": "ログインして画像を作成",
+    "preview": "宣伝画像",
+    "sourceError": "写真を選択するか、10 MB未満のPNG・JPEG・WebPをアップロードしてください。サイトの写真を読み込めない場合はアップロードしてください。",
+    "failed": "画像を作成できませんでした。",
     "format": {
       "square": "正方形",
       "story": "ストーリー"
     },
-    "theme": {
-      "ink": "インク",
-      "paper": "ペーパー",
-      "glow": "グロー"
-    },
     "download": "PNGをダウンロード",
-    "cardTitle": "サイトスコア",
-    "cardWins": "主な強み",
-    "cardFooter": "sitescoper.comで診断"
+    "style": {
+      "photo": "商品写真",
+      "poster": "大胆なポスター",
+      "collage": "商品コラージュ"
+    }
   }
 }
