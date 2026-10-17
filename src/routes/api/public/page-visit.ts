@@ -2,6 +2,7 @@ import { createFileRoute } from '@tanstack/react-router';
 import { safeReferrer, visitSchema } from '@/lib/marketing-attribution';
 
 export const Route = createFileRoute('/api/public/page-visit')({
+  staticData: { sitemap: false },
   server: { handlers: { POST: async ({ request }) => {
     const { sameOriginRequest, verifiedMarketingCaller } = await import('@/lib/marketing-attribution.server');
     // Anonymous telemetry is write-only, same-origin, bounded and uniquely deduplicated.

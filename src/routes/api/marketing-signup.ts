@@ -2,6 +2,7 @@ import { createFileRoute } from '@tanstack/react-router';
 import { attributionSchema, safeReferrer } from '@/lib/marketing-attribution';
 
 export const Route = createFileRoute('/api/marketing-signup')({
+  staticData: { sitemap: false },
   server: { handlers: { POST: async ({ request }) => {
     const { sameOriginRequest, verifiedMarketingCaller } = await import('@/lib/marketing-attribution.server');
     if (!sameOriginRequest(request)) return new Response(null, { status: 403 });
