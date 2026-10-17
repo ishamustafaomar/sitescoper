@@ -1,5 +1,9 @@
 # Roadmap — Organic search growth (Sep 21, 2026)
 
+## First-party marketing attribution (Oct 17, 2026)
+- [ ] Add private visit records, landing attribution, signup profile fields, and admin-only daily/weekly summaries without changing existing flows.
+- [ ] Test deduplication and permissions; deploy and verify a real visit and test signup attribution.
+
 ## Analytics assistant (Oct 16, 2026)
 - [ ] Add account-owned threaded Analytics chats with real report research and promotional-image handoff; verify two saved conversations.
 - [x] Auto model routing (image→ChatGPT, code/copy→Claude, quick→Gemini) with manual override; verified typecheck.
