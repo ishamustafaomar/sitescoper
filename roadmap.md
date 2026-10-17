@@ -1,8 +1,8 @@
 # Roadmap — Organic search growth (Sep 21, 2026)
 
 ## First-party marketing attribution (Oct 17, 2026)
-- [ ] Add private visit records, landing attribution, signup profile fields, and admin-only daily/weekly summaries without changing existing flows.
-- [ ] Test deduplication and permissions; deploy and verify a real visit and test signup attribution.
+- [x] Add private visit records, landing attribution, signup profile fields, and admin-only daily/weekly summaries without changing existing flows.
+- [x] Seven attribution tests passed; deployed and verified live test/test visits (one row per path) and test signup profile values with landing page /. Signed-out signup writes return 401; summaries enforce admin checks in both server function and database. Test account retained as Attribution QA Test.
 
 ## Analytics assistant (Oct 16, 2026)
 - [ ] Add account-owned threaded Analytics chats with real report research and promotional-image handoff; verify two saved conversations.
