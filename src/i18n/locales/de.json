@@ -1480,6 +1480,7 @@
     "empty": "Noch keine Neuigkeiten.",
     "newBadge": "NEU",
     "entries": {
+      "marketingAttribution": {"title": "Eigene Marketing-Zuordnung", "desc": "Besuche und neue Konten behalten ihren Einstiegskanal. Administratoren erhalten private tägliche und wöchentliche Zusammenfassungen – ohne Drittanbieter-Tracker."},
       "analyticsAuto": {
         "title": "Smarterer Assistent, ganz vorne dabei",
         "desc": "Der Analytics-Assistent wählt jetzt automatisch das beste KI-Modell für jede Anfrage und wird auf der Startseite vorgestellt."

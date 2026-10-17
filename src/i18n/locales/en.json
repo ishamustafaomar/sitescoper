@@ -1480,6 +1480,7 @@
     "empty": "No updates yet.",
     "newBadge": "NEW",
     "entries": {
+      "marketingAttribution": {"title": "First-party marketing attribution", "desc": "Visits and new accounts now retain their landing channel, with private daily and weekly summaries for admins and no third-party trackers."},
       "analyticsAuto": {
         "title": "Smarter assistant, front and center",
         "desc": "The Analytics assistant now picks the best AI model for each request automatically, and it's featured on the homepage."
