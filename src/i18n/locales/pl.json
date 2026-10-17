@@ -1480,6 +1480,7 @@
     "empty": "Brak jeszcze aktualizacji.",
     "newBadge": "NOWOŚĆ",
     "entries": {
+      "marketingAttribution": {"title": "Własna atrybucja marketingowa", "desc": "Wizyty i nowe konta zachowują kanał wejścia, z prywatnymi podsumowaniami dziennymi i tygodniowymi dla administratorów, bez zewnętrznych trackerów."},
       "analyticsAuto": {
         "title": "Mądrzejszy asystent na pierwszym planie",
         "desc": "Asystent Analytics teraz automatycznie wybiera najlepszy model AI dla każdego zapytania i jest wyróżniony na stronie głównej."

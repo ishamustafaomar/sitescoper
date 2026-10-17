@@ -1480,6 +1480,7 @@
     "empty": "Aún no hay novedades.",
     "newBadge": "NUEVO",
     "entries": {
+      "marketingAttribution": {"title": "Atribución de marketing propia", "desc": "Las visitas y las cuentas nuevas conservan su canal de llegada, con resúmenes diarios y semanales privados para administradores y sin rastreadores externos."},
       "analyticsAuto": {
         "title": "Asistente más inteligente y visible",
         "desc": "El asistente de Analytics ahora elige automáticamente el mejor modelo de IA para cada solicitud y aparece destacado en la página principal."

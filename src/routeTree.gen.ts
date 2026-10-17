@@ -39,6 +39,7 @@ import { Route as AnalysisIdRouteImport } from './routes/analysis/$id'
 import { Route as AnalyticsIndexRouteImport } from './routes/analytics.index'
 import { Route as AnalyticsThreadIdRouteImport } from './routes/analytics.$threadId'
 import { Route as ApiAnalyticsChatRouteImport } from './routes/api/analytics-chat'
+import { Route as ApiMarketingSignupRouteImport } from './routes/api/marketing-signup'
 import { Route as BlogIndexRouteImport } from './routes/blog/index'
 import { Route as BlogSlugRouteImport } from './routes/blog/$slug'
 import { Route as CheckoutReturnRouteImport } from './routes/checkout/return'
@@ -47,6 +48,7 @@ import { Route as ToolsIndexRouteImport } from './routes/tools/index'
 import { Route as ToolsCopywriterRouteImport } from './routes/tools/copywriter'
 import { Route as ToolsLlmsTxtGeneratorRouteImport } from './routes/tools/llms-txt-generator'
 import { Route as ToolsOpenGraphCheckerRouteImport } from './routes/tools/open-graph-checker'
+import { Route as ApiPublicPageVisitRouteImport } from './routes/api/public/page-visit'
 import { Route as ApiPublicSaveAnonymousAuditRouteImport } from './routes/api/public/save-anonymous-audit'
 import { Route as ApiPublicSocialPromoRouteImport } from './routes/api/public/social-promo'
 import { Route as LovableEmailEventsRouteImport } from './routes/lovable/email/events'
@@ -207,6 +209,11 @@ const ApiAnalyticsChatRoute = ApiAnalyticsChatRouteImport.update({
   path: '/api/analytics-chat',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiMarketingSignupRoute = ApiMarketingSignupRouteImport.update({
+  id: '/api/marketing-signup',
+  path: '/api/marketing-signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
   id: '/blog/',
   path: '/blog/',
@@ -245,6 +252,11 @@ const ToolsLlmsTxtGeneratorRoute = ToolsLlmsTxtGeneratorRouteImport.update({
 const ToolsOpenGraphCheckerRoute = ToolsOpenGraphCheckerRouteImport.update({
   id: '/tools/open-graph-checker',
   path: '/tools/open-graph-checker',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicPageVisitRoute = ApiPublicPageVisitRouteImport.update({
+  id: '/api/public/page-visit',
+  path: '/api/public/page-visit',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiPublicSaveAnonymousAuditRoute =
@@ -327,6 +339,7 @@ export interface FileRoutesByFullPath {
   '/analysis/$id': typeof AnalysisIdRoute
   '/analytics/$threadId': typeof AnalyticsThreadIdRoute
   '/api/analytics-chat': typeof ApiAnalyticsChatRoute
+  '/api/marketing-signup': typeof ApiMarketingSignupRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/checkout/return': typeof CheckoutReturnRoute
   '/share/$token': typeof ShareTokenRoute
@@ -337,6 +350,7 @@ export interface FileRoutesByFullPath {
   '/analytics/': typeof AnalyticsIndexRoute
   '/blog/': typeof BlogIndexRoute
   '/tools/': typeof ToolsIndexRoute
+  '/api/public/page-visit': typeof ApiPublicPageVisitRoute
   '/api/public/save-anonymous-audit': typeof ApiPublicSaveAnonymousAuditRoute
   '/api/public/social-promo': typeof ApiPublicSocialPromoRoute
   '/lovable/email/events': typeof LovableEmailEventsRoute
@@ -375,6 +389,7 @@ export interface FileRoutesByTo {
   '/analysis/$id': typeof AnalysisIdRoute
   '/analytics/$threadId': typeof AnalyticsThreadIdRoute
   '/api/analytics-chat': typeof ApiAnalyticsChatRoute
+  '/api/marketing-signup': typeof ApiMarketingSignupRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/checkout/return': typeof CheckoutReturnRoute
   '/share/$token': typeof ShareTokenRoute
@@ -385,6 +400,7 @@ export interface FileRoutesByTo {
   '/analytics': typeof AnalyticsIndexRoute
   '/blog': typeof BlogIndexRoute
   '/tools': typeof ToolsIndexRoute
+  '/api/public/page-visit': typeof ApiPublicPageVisitRoute
   '/api/public/save-anonymous-audit': typeof ApiPublicSaveAnonymousAuditRoute
   '/api/public/social-promo': typeof ApiPublicSocialPromoRoute
   '/lovable/email/events': typeof LovableEmailEventsRoute
@@ -425,6 +441,7 @@ export interface FileRoutesById {
   '/analysis/$id': typeof AnalysisIdRoute
   '/analytics/$threadId': typeof AnalyticsThreadIdRoute
   '/api/analytics-chat': typeof ApiAnalyticsChatRoute
+  '/api/marketing-signup': typeof ApiMarketingSignupRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/checkout/return': typeof CheckoutReturnRoute
   '/share/$token': typeof ShareTokenRoute
@@ -435,6 +452,7 @@ export interface FileRoutesById {
   '/analytics/': typeof AnalyticsIndexRoute
   '/blog/': typeof BlogIndexRoute
   '/tools/': typeof ToolsIndexRoute
+  '/api/public/page-visit': typeof ApiPublicPageVisitRoute
   '/api/public/save-anonymous-audit': typeof ApiPublicSaveAnonymousAuditRoute
   '/api/public/social-promo': typeof ApiPublicSocialPromoRoute
   '/lovable/email/events': typeof LovableEmailEventsRoute
@@ -476,6 +494,7 @@ export interface FileRouteTypes {
     | '/analysis/$id'
     | '/analytics/$threadId'
     | '/api/analytics-chat'
+    | '/api/marketing-signup'
     | '/blog/$slug'
     | '/checkout/return'
     | '/share/$token'
@@ -486,6 +505,7 @@ export interface FileRouteTypes {
     | '/analytics/'
     | '/blog/'
     | '/tools/'
+    | '/api/public/page-visit'
     | '/api/public/save-anonymous-audit'
     | '/api/public/social-promo'
     | '/lovable/email/events'
@@ -524,6 +544,7 @@ export interface FileRouteTypes {
     | '/analysis/$id'
     | '/analytics/$threadId'
     | '/api/analytics-chat'
+    | '/api/marketing-signup'
     | '/blog/$slug'
     | '/checkout/return'
     | '/share/$token'
@@ -534,6 +555,7 @@ export interface FileRouteTypes {
     | '/analytics'
     | '/blog'
     | '/tools'
+    | '/api/public/page-visit'
     | '/api/public/save-anonymous-audit'
     | '/api/public/social-promo'
     | '/lovable/email/events'
@@ -573,6 +595,7 @@ export interface FileRouteTypes {
     | '/analysis/$id'
     | '/analytics/$threadId'
     | '/api/analytics-chat'
+    | '/api/marketing-signup'
     | '/blog/$slug'
     | '/checkout/return'
     | '/share/$token'
@@ -583,6 +606,7 @@ export interface FileRouteTypes {
     | '/analytics/'
     | '/blog/'
     | '/tools/'
+    | '/api/public/page-visit'
     | '/api/public/save-anonymous-audit'
     | '/api/public/social-promo'
     | '/lovable/email/events'
@@ -622,6 +646,7 @@ export interface RootRouteChildren {
   AdminYoutubeRoute: typeof AdminYoutubeRoute
   AnalysisIdRoute: typeof AnalysisIdRoute
   ApiAnalyticsChatRoute: typeof ApiAnalyticsChatRoute
+  ApiMarketingSignupRoute: typeof ApiMarketingSignupRoute
   BlogSlugRoute: typeof BlogSlugRoute
   CheckoutReturnRoute: typeof CheckoutReturnRoute
   ShareTokenRoute: typeof ShareTokenRoute
@@ -631,6 +656,7 @@ export interface RootRouteChildren {
   AdminIndexRoute: typeof AdminIndexRoute
   BlogIndexRoute: typeof BlogIndexRoute
   ToolsIndexRoute: typeof ToolsIndexRoute
+  ApiPublicPageVisitRoute: typeof ApiPublicPageVisitRoute
   ApiPublicSaveAnonymousAuditRoute: typeof ApiPublicSaveAnonymousAuditRoute
   ApiPublicSocialPromoRoute: typeof ApiPublicSocialPromoRoute
   LovableEmailEventsRoute: typeof LovableEmailEventsRoute
@@ -854,6 +880,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiAnalyticsChatRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/marketing-signup': {
+      id: '/api/marketing-signup'
+      path: '/api/marketing-signup'
+      fullPath: '/api/marketing-signup'
+      preLoaderRoute: typeof ApiMarketingSignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog/': {
       id: '/blog/'
       path: '/blog'
@@ -908,6 +941,13 @@ declare module '@tanstack/react-router' {
       path: '/tools/open-graph-checker'
       fullPath: '/tools/open-graph-checker'
       preLoaderRoute: typeof ToolsOpenGraphCheckerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/page-visit': {
+      id: '/api/public/page-visit'
+      path: '/api/public/page-visit'
+      fullPath: '/api/public/page-visit'
+      preLoaderRoute: typeof ApiPublicPageVisitRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/public/save-anonymous-audit': {
@@ -1018,6 +1058,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminYoutubeRoute: AdminYoutubeRoute,
   AnalysisIdRoute: AnalysisIdRoute,
   ApiAnalyticsChatRoute: ApiAnalyticsChatRoute,
+  ApiMarketingSignupRoute: ApiMarketingSignupRoute,
   BlogSlugRoute: BlogSlugRoute,
   CheckoutReturnRoute: CheckoutReturnRoute,
   ShareTokenRoute: ShareTokenRoute,
@@ -1027,6 +1068,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminIndexRoute: AdminIndexRoute,
   BlogIndexRoute: BlogIndexRoute,
   ToolsIndexRoute: ToolsIndexRoute,
+  ApiPublicPageVisitRoute: ApiPublicPageVisitRoute,
   ApiPublicSaveAnonymousAuditRoute: ApiPublicSaveAnonymousAuditRoute,
   ApiPublicSocialPromoRoute: ApiPublicSocialPromoRoute,
   LovableEmailEventsRoute: LovableEmailEventsRoute,

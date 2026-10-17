@@ -14,6 +14,7 @@ import { useEffect } from "react";
 import { SignInBenefits } from "@/components/SignInBenefits";
 import logoMark from "@/assets/logo-mark.png";
 import logoWordmark from "@/assets/logo-wordmark.png";
+import { readLandingAttribution } from "@/lib/marketing-attribution";
 
 const getErrorMessage = (error: unknown) =>
   error instanceof Error ? error.message : "Something went wrong. Please try again.";
@@ -74,7 +75,7 @@ export default function Auth() {
         const { error } = await supabase.auth.signUp({
           email,
           password,
-          options: { data: { full_name: fullName } },
+          options: { data: { full_name: fullName, marketing_attribution: readLandingAttribution() } },
         });
         if (error) throw error;
         toast({ title: "Account created!", description: "You're now signed in." });

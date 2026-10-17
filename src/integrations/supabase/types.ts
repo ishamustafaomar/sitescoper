@@ -752,6 +752,42 @@ export type Database = {
         }
         Relationships: []
       }
+      page_visits: {
+        Row: {
+          id: string
+          path: string
+          referrer: string | null
+          session_id: string
+          user_id: string | null
+          utm_campaign: string | null
+          utm_medium: string
+          utm_source: string
+          visited_at: string
+        }
+        Insert: {
+          id?: string
+          path: string
+          referrer?: string | null
+          session_id: string
+          user_id?: string | null
+          utm_campaign?: string | null
+          utm_medium?: string
+          utm_source?: string
+          visited_at?: string
+        }
+        Update: {
+          id?: string
+          path?: string
+          referrer?: string | null
+          session_id?: string
+          user_id?: string | null
+          utm_campaign?: string | null
+          utm_medium?: string
+          utm_source?: string
+          visited_at?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -760,6 +796,11 @@ export type Database = {
           display_name: string | null
           id: string
           onboarding_completed: boolean
+          signup_landing_page: string | null
+          signup_referrer: string | null
+          signup_utm_campaign: string | null
+          signup_utm_medium: string | null
+          signup_utm_source: string | null
           updated_at: string
           user_id: string
         }
@@ -770,6 +811,11 @@ export type Database = {
           display_name?: string | null
           id?: string
           onboarding_completed?: boolean
+          signup_landing_page?: string | null
+          signup_referrer?: string | null
+          signup_utm_campaign?: string | null
+          signup_utm_medium?: string | null
+          signup_utm_source?: string | null
           updated_at?: string
           user_id: string
         }
@@ -780,6 +826,11 @@ export type Database = {
           display_name?: string | null
           id?: string
           onboarding_completed?: boolean
+          signup_landing_page?: string | null
+          signup_referrer?: string | null
+          signup_utm_campaign?: string | null
+          signup_utm_medium?: string | null
+          signup_utm_source?: string | null
           updated_at?: string
           user_id?: string
         }
@@ -1360,6 +1411,11 @@ export type Database = {
         }
         Returns: boolean
       }
+      marketing_attribution_summary: {
+        Args: { p_days?: number; p_grain?: string }
+        Returns: Json
+      }
+      record_signup_attribution: { Args: { a: Json }; Returns: boolean }
     }
     Enums: {
       app_role: "admin" | "moderator" | "user"
