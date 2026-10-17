@@ -9,3 +9,4 @@
 - Keep illustrative comparison values separate from live analysis results and label them explicitly; example numbers must never look like measured customer data.
 - Competitor comparison pages cite dated public provider claims, distinguish unknown features from absent ones, and never imply a hands-on benchmark without testing; this keeps comparisons checkable.
 - Keep dashboard score averaging in the tested browser-safe health helper; missing scores must remain distinct from measured zero scores.
+- Marketing attribution lives in a non-blocking root observer with bounded same-origin ingestion, database session/path dedupe, first-write signup capture and an admin-checked aggregate RPC; this preserves product flows and keeps raw visit data private.
