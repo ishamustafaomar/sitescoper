@@ -1,7 +1,7 @@
 # Roadmap — Organic search growth (Sep 21, 2026)
 
 ## Google Ads connection (Oct 23, 2026)
-- [x] Linked the existing Google connection and confirmed the SiteScoper ad account (USD, America/New_York) is selected and ready to create campaigns; billing not yet active in Google Ads.
+- [x] DECIDED Oct 23: owner is not running paid ads. Keep the Google Ads connection but do not create campaigns or activate billing unless the owner changes their mind.
 - [ ] Uneed directory: free-queue rejection received Oct 22 (saturated category); advised skipping the $39.99 paid queue. Awaiting owner decision.
 
 ## First-party marketing attribution (Oct 17, 2026)
