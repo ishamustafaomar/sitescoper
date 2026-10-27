@@ -1146,7 +1146,10 @@
     "tradeoffLabel": "Compromis :",
     "fixCode": "Correctif à copier-coller",
     "copy": "Copier",
-    "copied": "Copié"
+    "copied": "Copié",
+    "verified": "Vérification confirmée",
+    "hypothesis": "Hypothèse IA",
+    "hypothesisHint": "Déduction de l'IA non vérifiée techniquement"
   },
   "headlineRewrites": {
     "toastErrorTitle": "Impossible de générer les réécritures",
@@ -1480,7 +1483,10 @@
     "empty": "Aucune mise à jour pour l'instant.",
     "newBadge": "NOUVEAU",
     "entries": {
-      "marketingAttribution": {"title": "Attribution marketing interne", "desc": "Les visites et les nouveaux comptes conservent leur canal d’arrivée, avec des résumés quotidiens et hebdomadaires privés pour les administrateurs, sans traceurs tiers."},
+      "marketingAttribution": {
+        "title": "Attribution marketing interne",
+        "desc": "Les visites et les nouveaux comptes conservent leur canal d’arrivée, avec des résumés quotidiens et hebdomadaires privés pour les administrateurs, sans traceurs tiers."
+      },
       "analyticsAuto": {
         "title": "Un assistant plus malin, bien en vue",
         "desc": "L'assistant Analytics choisit désormais automatiquement le meilleur modèle d'IA pour chaque demande et est mis en avant sur la page d'accueil."
@@ -1592,6 +1598,10 @@
       "analyticsAssistant": {
         "title": "Assistant analytique",
         "desc": "Discutez avec un assistant qui lit vos audits, propose des corrections et prépare des images promo à valider."
+      },
+      "findingLabels": {
+        "title": "Les constats indiquent vérification confirmée ou hypothèse IA",
+        "desc": "Chaque constat du rapport est étiqueté pour distinguer les problèmes confirmés techniquement des déductions de l'IA, et les audits ne présentent plus de statistiques non sourcées comme des faits."
       }
     }
   },

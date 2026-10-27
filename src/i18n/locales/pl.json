@@ -1146,7 +1146,10 @@
     "tradeoffLabel": "Kompromis:",
     "fixCode": "Poprawka do wklejenia",
     "copy": "Kopiuj",
-    "copied": "Skopiowano"
+    "copied": "Skopiowano",
+    "verified": "Zweryfikowane",
+    "hypothesis": "Hipoteza AI",
+    "hypothesisHint": "Wniosek AI, niezweryfikowany technicznie"
   },
   "headlineRewrites": {
     "toastErrorTitle": "Nie udało się wygenerować przeróbek",
@@ -1480,7 +1483,10 @@
     "empty": "Brak jeszcze aktualizacji.",
     "newBadge": "NOWOŚĆ",
     "entries": {
-      "marketingAttribution": {"title": "Własna atrybucja marketingowa", "desc": "Wizyty i nowe konta zachowują kanał wejścia, z prywatnymi podsumowaniami dziennymi i tygodniowymi dla administratorów, bez zewnętrznych trackerów."},
+      "marketingAttribution": {
+        "title": "Własna atrybucja marketingowa",
+        "desc": "Wizyty i nowe konta zachowują kanał wejścia, z prywatnymi podsumowaniami dziennymi i tygodniowymi dla administratorów, bez zewnętrznych trackerów."
+      },
       "analyticsAuto": {
         "title": "Mądrzejszy asystent na pierwszym planie",
         "desc": "Asystent Analytics teraz automatycznie wybiera najlepszy model AI dla każdego zapytania i jest wyróżniony na stronie głównej."
@@ -1592,6 +1598,10 @@
       "analyticsAssistant": {
         "title": "Asystent analityki",
         "desc": "Czatuj z asystentem, który czyta Twoje audyty, sugeruje poprawki i przygotowuje grafiki promocyjne do sprawdzenia."
+      },
+      "findingLabels": {
+        "title": "Ustalenia oznaczone jako zweryfikowane lub hipoteza AI",
+        "desc": "Każde ustalenie w raporcie jest oznaczone, aby odróżnić problemy potwierdzone technicznie od wniosków AI, a audyty nie podają już statystyk bez źródła jako faktów."
       }
     }
   },

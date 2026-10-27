@@ -5,6 +5,7 @@ import { AnalysisSuggestion } from "@/lib/api";
 import { useTranslation } from "react-i18next";
 import { snippetFor } from "@/lib/fix-snippets";
 import { Copy, Check } from "lucide-react";
+import { findingBasis } from "@/lib/finding-verification";
 
 const priorityConfig: Record<string, { class: string; icon: typeof TrendingUp }> = {
   high: { class: "bg-destructive/10 text-destructive border-destructive/20", icon: TrendingUp },
@@ -28,6 +29,7 @@ export function SuggestionCard({ suggestion, categoryLabel, categoryIcon }: Sugg
   };
   const config = priorityConfig[suggestion.priority] || priorityConfig.medium;
   const [open, setOpen] = useState(false);
+  const basis = findingBasis(suggestion);
   const [copied, setCopied] = useState(false);
   const snippet = snippetFor(suggestion);
   const copySnippet = async () => {
@@ -48,6 +50,13 @@ export function SuggestionCard({ suggestion, categoryLabel, categoryIcon }: Sugg
       <div className="flex items-start justify-between gap-2">
         <h4 className="font-heading font-medium text-sm leading-snug min-w-0">{suggestion.title}</h4>
         <div className="flex gap-1 shrink-0 flex-wrap justify-end">
+          <Badge
+            variant="outline"
+            title={basis === "verified" ? suggestion.verified_by : t("suggestionCard.hypothesisHint")}
+            className={`text-[10px] px-1.5 ${basis === "verified" ? "bg-accent/10 text-accent border-accent/30" : "bg-muted text-muted-foreground border-dashed"}`}
+          >
+            {basis === "verified" ? t("suggestionCard.verified") : t("suggestionCard.hypothesis")}
+          </Badge>
           <Badge variant="outline" className={`text-[10px] px-1.5 ${config.class}`}>
             {suggestion.priority}
           </Badge>

@@ -1146,7 +1146,10 @@
     "tradeoffLabel": "Tradeoff:",
     "fixCode": "Copy-paste fix",
     "copy": "Copy",
-    "copied": "Copied"
+    "copied": "Copied",
+    "verified": "Verified check",
+    "hypothesis": "AI hypothesis",
+    "hypothesisHint": "An AI inference that has not been technically verified"
   },
   "headlineRewrites": {
     "toastErrorTitle": "Couldn't generate rewrites",
@@ -1480,7 +1483,10 @@
     "empty": "No updates yet.",
     "newBadge": "NEW",
     "entries": {
-      "marketingAttribution": {"title": "First-party marketing attribution", "desc": "Visits and new accounts now retain their landing channel, with private daily and weekly summaries for admins and no third-party trackers."},
+      "marketingAttribution": {
+        "title": "First-party marketing attribution",
+        "desc": "Visits and new accounts now retain their landing channel, with private daily and weekly summaries for admins and no third-party trackers."
+      },
       "analyticsAuto": {
         "title": "Smarter assistant, front and center",
         "desc": "The Analytics assistant now picks the best AI model for each request automatically, and it's featured on the homepage."
@@ -1592,6 +1598,10 @@
       "analyticsAssistant": {
         "title": "Analytics assistant",
         "desc": "Chat with an assistant that reads your saved audits, suggests fixes, and prepares promo images for your review."
+      },
+      "findingLabels": {
+        "title": "Findings now show Verified check or AI hypothesis",
+        "desc": "Every report finding is labelled so you can tell technically confirmed issues from AI inferences, and audits no longer state unsourced statistics as fact."
       }
     }
   },

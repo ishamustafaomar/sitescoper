@@ -1146,7 +1146,10 @@
     "tradeoffLabel": "Kompromiss:",
     "fixCode": "Fix zum Einfügen",
     "copy": "Kopieren",
-    "copied": "Kopiert"
+    "copied": "Kopiert",
+    "verified": "Geprüft",
+    "hypothesis": "KI-Hypothese",
+    "hypothesisHint": "KI-Einschätzung, technisch nicht überprüft"
   },
   "headlineRewrites": {
     "toastErrorTitle": "Umschreibungen konnten nicht erstellt werden",
@@ -1480,7 +1483,10 @@
     "empty": "Noch keine Neuigkeiten.",
     "newBadge": "NEU",
     "entries": {
-      "marketingAttribution": {"title": "Eigene Marketing-Zuordnung", "desc": "Besuche und neue Konten behalten ihren Einstiegskanal. Administratoren erhalten private tägliche und wöchentliche Zusammenfassungen – ohne Drittanbieter-Tracker."},
+      "marketingAttribution": {
+        "title": "Eigene Marketing-Zuordnung",
+        "desc": "Besuche und neue Konten behalten ihren Einstiegskanal. Administratoren erhalten private tägliche und wöchentliche Zusammenfassungen – ohne Drittanbieter-Tracker."
+      },
       "analyticsAuto": {
         "title": "Smarterer Assistent, ganz vorne dabei",
         "desc": "Der Analytics-Assistent wählt jetzt automatisch das beste KI-Modell für jede Anfrage und wird auf der Startseite vorgestellt."
@@ -1592,6 +1598,10 @@
       "analyticsAssistant": {
         "title": "Analyse-Assistent",
         "desc": "Chatte mit einem Assistenten, der deine Audits liest, Fixes vorschlägt und Werbebilder zur Prüfung vorbereitet."
+      },
+      "findingLabels": {
+        "title": "Befunde zeigen jetzt Geprüft oder KI-Hypothese",
+        "desc": "Jeder Befund im Bericht ist gekennzeichnet, damit technisch bestätigte Probleme von KI-Einschätzungen unterscheidbar sind; Audits nennen keine unbelegten Statistiken mehr als Fakt."
       }
     }
   },

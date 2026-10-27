@@ -1146,7 +1146,10 @@
     "tradeoffLabel": "Afweging:",
     "fixCode": "Fix om te plakken",
     "copy": "Kopiëren",
-    "copied": "Gekopieerd"
+    "copied": "Gekopieerd",
+    "verified": "Geverifieerd",
+    "hypothesis": "AI-hypothese",
+    "hypothesisHint": "AI-inschatting, niet technisch geverifieerd"
   },
   "headlineRewrites": {
     "toastErrorTitle": "Kon geen herschrijvingen genereren",
@@ -1480,7 +1483,10 @@
     "empty": "Nog geen updates.",
     "newBadge": "NIEUW",
     "entries": {
-      "marketingAttribution": {"title": "Eigen marketingattributie", "desc": "Bezoeken en nieuwe accounts behouden hun herkomstkanaal, met privéoverzichten per dag en week voor beheerders en zonder trackers van derden."},
+      "marketingAttribution": {
+        "title": "Eigen marketingattributie",
+        "desc": "Bezoeken en nieuwe accounts behouden hun herkomstkanaal, met privéoverzichten per dag en week voor beheerders en zonder trackers van derden."
+      },
       "analyticsAuto": {
         "title": "Slimmere assistent, prominent aanwezig",
         "desc": "De Analytics-assistent kiest nu automatisch het beste AI-model voor elk verzoek en wordt op de homepage uitgelicht."
@@ -1592,6 +1598,10 @@
       "analyticsAssistant": {
         "title": "Analyse-assistent",
         "desc": "Chat met een assistent die je audits leest, fixes voorstelt en promobeelden voorbereidt om te controleren."
+      },
+      "findingLabels": {
+        "title": "Bevindingen tonen nu Geverifieerd of AI-hypothese",
+        "desc": "Elke bevinding in het rapport is gelabeld, zodat je technisch bevestigde problemen van AI-inschattingen onderscheidt; audits presenteren geen ongefundeerde statistieken meer als feit."
       }
     }
   },
