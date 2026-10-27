@@ -1,5 +1,6 @@
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
+import { findingBasis } from "@/lib/finding-verification";
 import { AnalysisResult } from "@/lib/api";
 
 // jsPDF's built-in helvetica is WinAnsi-only and renders unicode emojis as garbled glyphs
@@ -195,8 +196,9 @@ export function generateAnalysisPDF(
     if (category.suggestions.length > 0) {
       const tableData = category.suggestions.map((s) => [
         s.priority.toUpperCase(),
-        clean(s.title),
+        clean(s.title) + (findingBasis(s) === "verified" ? "\n[Verified check]" : "\n[AI hypothesis]"),
         clean(s.description) + (s.evidence ? `\n\nEvidence: "${clean(s.evidence)}"` : "") +
+          (findingBasis(s) === "verified" ? `\n\nChecked: ${clean(s.verified_by ?? "")}` : "") +
           (s.rewrite ? `\n\nBefore: ${clean(s.rewrite.before)}\nAfter: ${clean(s.rewrite.after)}` : ""),
         `${s.impact ?? "med"}/${s.effort ?? "med"}`,
       ]);

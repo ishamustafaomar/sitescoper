@@ -69,6 +69,10 @@ export interface AnalysisSuggestion {
   category?: string;
   category_icon?: string;
   kind?: "blocker" | "opportunity";
+  /** "verified" only when a technical check confirmed it (see verified_by). */
+  verification?: "verified" | "hypothesis";
+  /** Short description of the technical check that confirmed the finding. */
+  verified_by?: string;
 }
 
 export interface CategorySubScore {

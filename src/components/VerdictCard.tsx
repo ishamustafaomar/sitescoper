@@ -175,7 +175,12 @@ function TopList({
                 {i + 1}
               </span>
               <div className="min-w-0 flex-1 space-y-0.5">
-                <p className="text-sm font-body font-medium leading-relaxed">{s.title}</p>
+                <p className="text-sm font-body font-medium leading-relaxed">
+                  {s.title}{" "}
+                  <span className="ml-1 align-middle text-[10px] font-normal uppercase tracking-wider text-muted-foreground">
+                    {findingBasis(s) === "verified" ? t("suggestionCard.verified") : t("suggestionCard.hypothesis")}
+                  </span>
+                </p>
                 <p className="text-xs text-muted-foreground font-body leading-relaxed">
                   {s.impact_reason || s.fix || s.description}
                 </p>
