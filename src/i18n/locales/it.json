@@ -1146,7 +1146,10 @@
     "tradeoffLabel": "Compromesso:",
     "fixCode": "Correzione da copiare",
     "copy": "Copia",
-    "copied": "Copiato"
+    "copied": "Copiato",
+    "verified": "Controllo verificato",
+    "hypothesis": "Ipotesi IA",
+    "hypothesisHint": "Deduzione dell'IA non verificata tecnicamente"
   },
   "headlineRewrites": {
     "toastErrorTitle": "Impossibile generare le riscritture",
@@ -1480,7 +1483,10 @@
     "empty": "Nessun aggiornamento.",
     "newBadge": "NOVITÀ",
     "entries": {
-      "marketingAttribution": {"title": "Attribuzione marketing interna", "desc": "Le visite e i nuovi account conservano il canale di arrivo, con riepiloghi giornalieri e settimanali privati per gli amministratori e senza tracker di terze parti."},
+      "marketingAttribution": {
+        "title": "Attribuzione marketing interna",
+        "desc": "Le visite e i nuovi account conservano il canale di arrivo, con riepiloghi giornalieri e settimanali privati per gli amministratori e senza tracker di terze parti."
+      },
       "analyticsAuto": {
         "title": "Assistente più intelligente e in evidenza",
         "desc": "L'assistente Analytics ora sceglie automaticamente il miglior modello di IA per ogni richiesta ed è in primo piano nella home page."
@@ -1592,6 +1598,10 @@
       "analyticsAssistant": {
         "title": "Assistente analisi",
         "desc": "Chatta con un assistente che legge i tuoi audit, suggerisce correzioni e prepara immagini promo da rivedere."
+      },
+      "findingLabels": {
+        "title": "I risultati indicano controllo verificato o ipotesi IA",
+        "body": "Ogni risultato del report è etichettato per distinguere i problemi confermati tecnicamente dalle deduzioni dell'IA, e gli audit non presentano più statistiche senza fonte come fatti."
       }
     }
   },
