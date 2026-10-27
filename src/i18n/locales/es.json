@@ -1601,7 +1601,7 @@
       },
       "findingLabels": {
         "title": "Los hallazgos indican comprobación verificada o hipótesis de IA",
-        "body": "Cada hallazgo del informe está etiquetado para distinguir problemas confirmados técnicamente de inferencias de IA, y las auditorías ya no presentan estadísticas sin fuente como hechos."
+        "desc": "Cada hallazgo del informe está etiquetado para distinguir problemas confirmados técnicamente de inferencias de IA, y las auditorías ya no presentan estadísticas sin fuente como hechos."
       }
     }
   },

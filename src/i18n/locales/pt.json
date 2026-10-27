@@ -1601,7 +1601,7 @@
       },
       "findingLabels": {
         "title": "As conclusões mostram verificação confirmada ou hipótese de IA",
-        "body": "Cada conclusão do relatório é rotulada para distinguir problemas confirmados tecnicamente de inferências de IA, e as auditorias já não apresentam estatísticas sem fonte como factos."
+        "desc": "Cada conclusão do relatório é rotulada para distinguir problemas confirmados tecnicamente de inferências de IA, e as auditorias já não apresentam estatísticas sem fonte como factos."
       }
     }
   },

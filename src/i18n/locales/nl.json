@@ -1601,7 +1601,7 @@
       },
       "findingLabels": {
         "title": "Bevindingen tonen nu Geverifieerd of AI-hypothese",
-        "body": "Elke bevinding in het rapport is gelabeld, zodat je technisch bevestigde problemen van AI-inschattingen onderscheidt; audits presenteren geen ongefundeerde statistieken meer als feit."
+        "desc": "Elke bevinding in het rapport is gelabeld, zodat je technisch bevestigde problemen van AI-inschattingen onderscheidt; audits presenteren geen ongefundeerde statistieken meer als feit."
       }
     }
   },

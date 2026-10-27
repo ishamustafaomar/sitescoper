@@ -1601,7 +1601,7 @@
       },
       "findingLabels": {
         "title": "Befunde zeigen jetzt Geprüft oder KI-Hypothese",
-        "body": "Jeder Befund im Bericht ist gekennzeichnet, damit technisch bestätigte Probleme von KI-Einschätzungen unterscheidbar sind; Audits nennen keine unbelegten Statistiken mehr als Fakt."
+        "desc": "Jeder Befund im Bericht ist gekennzeichnet, damit technisch bestätigte Probleme von KI-Einschätzungen unterscheidbar sind; Audits nennen keine unbelegten Statistiken mehr als Fakt."
       }
     }
   },

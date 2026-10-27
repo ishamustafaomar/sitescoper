@@ -191,6 +191,11 @@ For EVERY suggestion, you MUST include:
 - "rewrite": ONLY for copy/messaging/positioning suggestions, provide a concrete before/after rewrite as { "before": "...", "after": "..." }. Omit for non-copy issues.
 - "tradeoff": optional 1-sentence note if the fix conflicts with another goal.
 
+## Evidence honesty (REQUIRED)
+- NEVER state industry statistics, percentages or abandonment/conversion rates as fact (e.g. "causes over 40% of visitors to abandon") unless the provided site content itself contains that number. Describe likely impact qualitatively ("likely to make some visitors give up") or explicitly label any number a "rough estimate".
+- You only see extracted page text, not the live DOM. Repeated text can come from carousels, mobile/desktop variants or SEO fallback blocks — do NOT diagnose "duplicate rendering", "hydration bugs" or DOM bloat from repeated text alone; at most suggest double-checking it.
+- Every finding you write is an AI hypothesis; never claim it was technically verified.
+
 ## Site-type tailoring (REQUIRED)
 After detecting site_category, your suggestions MUST be specific to that type AND to the actual product mechanics you identified in STEP 0. NEVER give generic advice like "improve readability" or "add more content". Examples of tailoring:
 - game → core loop clarity, win/lose feedback, difficulty progression, replay motivation, controls discoverability, tutorial/onboarding, scoring meaning
@@ -331,6 +336,22 @@ Be a real advisor. Quote actual content. Be specific. Be honest.`,
       analysis = JSON.parse(content);
     } catch {
       analysis = { summary: content, categories: [], overall_score: 0 };
+    }
+
+    // Label every finding: AI-written findings are hypotheses; only findings confirmed
+    // by a deterministic check on the scanned data are marked "verified".
+    const emptyAlt = imageList.filter((img: any) => !String(img?.alt ?? "").trim()).length;
+    for (const cat of Array.isArray(analysis?.categories) ? analysis.categories : []) {
+      for (const sug of Array.isArray(cat?.suggestions) ? cat.suggestions : []) {
+        const text = `${sug?.title ?? ""} ${sug?.fix ?? ""}`.toLowerCase();
+        if (emptyAlt > 0 && /\balt\b|alt[- ]text/.test(text)) {
+          sug.verification = "verified";
+          sug.verified_by = `${emptyAlt} of ${imageList.length} scanned images have empty alt text`;
+        } else {
+          sug.verification = "hypothesis";
+          delete sug.verified_by;
+        }
+      }
     }
 
     return new Response(JSON.stringify({ success: true, analysis }), {

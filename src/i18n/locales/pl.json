@@ -1601,7 +1601,7 @@
       },
       "findingLabels": {
         "title": "Ustalenia oznaczone jako zweryfikowane lub hipoteza AI",
-        "body": "Każde ustalenie w raporcie jest oznaczone, aby odróżnić problemy potwierdzone technicznie od wniosków AI, a audyty nie podają już statystyk bez źródła jako faktów."
+        "desc": "Każde ustalenie w raporcie jest oznaczone, aby odróżnić problemy potwierdzone technicznie od wniosków AI, a audyty nie podają już statystyk bez źródła jako faktów."
       }
     }
   },

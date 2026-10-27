@@ -1601,7 +1601,7 @@
       },
       "findingLabels": {
         "title": "Les constats indiquent vérification confirmée ou hypothèse IA",
-        "body": "Chaque constat du rapport est étiqueté pour distinguer les problèmes confirmés techniquement des déductions de l'IA, et les audits ne présentent plus de statistiques non sourcées comme des faits."
+        "desc": "Chaque constat du rapport est étiqueté pour distinguer les problèmes confirmés techniquement des déductions de l'IA, et les audits ne présentent plus de statistiques non sourcées comme des faits."
       }
     }
   },

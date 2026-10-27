@@ -1601,7 +1601,7 @@
       },
       "findingLabels": {
         "title": "Findings now show Verified check or AI hypothesis",
-        "body": "Every report finding is labelled so you can tell technically confirmed issues from AI inferences, and audits no longer state unsourced statistics as fact."
+        "desc": "Every report finding is labelled so you can tell technically confirmed issues from AI inferences, and audits no longer state unsourced statistics as fact."
       }
     }
   },

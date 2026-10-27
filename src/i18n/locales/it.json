@@ -1601,7 +1601,7 @@
       },
       "findingLabels": {
         "title": "I risultati indicano controllo verificato o ipotesi IA",
-        "body": "Ogni risultato del report è etichettato per distinguere i problemi confermati tecnicamente dalle deduzioni dell'IA, e gli audit non presentano più statistiche senza fonte come fatti."
+        "desc": "Ogni risultato del report è etichettato per distinguere i problemi confermati tecnicamente dalle deduzioni dell'IA, e gli audit non presentano più statistiche senza fonte come fatti."
       }
     }
   },
