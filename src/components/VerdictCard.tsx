@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { AnalysisResult, AnalysisSuggestion } from "@/lib/api";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
+import { findingBasis } from "@/lib/finding-verification";
 
 function useCategoryLabels(): Record<string, string> {
   const { t } = useTranslation();
@@ -154,6 +155,7 @@ function TopList({
   chipClass: string;
   emptyText: string;
 }) {
+  const { t } = useTranslation();
   return (
     <div className="space-y-2.5">
       <div className="flex items-center gap-1.5">
